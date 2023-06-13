@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -37,7 +37,7 @@ class ReactivateRequestBuilder():
     
     async def post(self,request_configuration: Optional[ReactivateRequestBuilderPostRequestConfiguration] = None) -> Optional[recommendation.Recommendation]:
         """
-        Invoke action reactivate
+        Reactivate a completed, dismissed, or postponed recommendation object. This action updates the **status** of the recommendation to `active`. This method only works when the **status** of the recommendation is `completedByUser`, `dismissed`, or `postponed`.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[recommendation.Recommendation]
@@ -59,7 +59,7 @@ class ReactivateRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ReactivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action reactivate
+        Reactivate a completed, dismissed, or postponed recommendation object. This action updates the **status** of the recommendation to `active`. This method only works when the **status** of the recommendation is `completedByUser`, `dismissed`, or `postponed`.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

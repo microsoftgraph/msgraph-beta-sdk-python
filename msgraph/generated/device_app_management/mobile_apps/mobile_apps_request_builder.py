@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -13,8 +13,6 @@ if TYPE_CHECKING:
     from ...models import mobile_app, mobile_app_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .get_mobile_app_count_with_status import get_mobile_app_count_with_status_request_builder
-    from .get_top_mobile_apps_with_status_with_count import get_top_mobile_apps_with_status_with_count_request_builder
     from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
     from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
     from .has_payload_links import has_payload_links_request_builder
@@ -79,35 +77,6 @@ class MobileAppsRequestBuilder():
         from ...models import mobile_app_collection_response
 
         return await self.request_adapter.send_async(request_info, mobile_app_collection_response.MobileAppCollectionResponse, error_mapping)
-    
-    def get_mobile_app_count_with_status(self,status: Optional[str] = None) -> get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder:
-        """
-        Provides operations to call the getMobileAppCount method.
-        Args:
-            status: Usage: status='{status}'
-        Returns: get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder
-        """
-        if status is None:
-            raise Exception("status cannot be undefined")
-        from .get_mobile_app_count_with_status import get_mobile_app_count_with_status_request_builder
-
-        return get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder(self.request_adapter, self.path_parameters, status)
-    
-    def get_top_mobile_apps_with_status_with_count(self,count: Optional[int] = None, status: Optional[str] = None) -> get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder:
-        """
-        Provides operations to call the getTopMobileApps method.
-        Args:
-            count: Usage: count={count}
-            status: Usage: status='{status}'
-        Returns: get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder
-        """
-        if count is None:
-            raise Exception("count cannot be undefined")
-        if status is None:
-            raise Exception("status cannot be undefined")
-        from .get_top_mobile_apps_with_status_with_count import get_top_mobile_apps_with_status_with_count_request_builder
-
-        return get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder(self.request_adapter, self.path_parameters, count, status)
     
     async def post(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
         """

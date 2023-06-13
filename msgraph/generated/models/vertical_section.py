@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class VerticalSection(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new verticalSection and sets the default values.
-        """
-        super().__init__()
-        # Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
-        self._emphasis: Optional[section_emphasis_type.SectionEmphasisType] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The set of web parts in this section.
-        self._webparts: Optional[List[web_part.WebPart]] = None
+    # Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
+    emphasis: Optional[section_emphasis_type.SectionEmphasisType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The set of web parts in this section.
+    webparts: Optional[List[web_part.WebPart]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VerticalSection:
@@ -31,23 +28,6 @@ class VerticalSection(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return VerticalSection()
-    
-    @property
-    def emphasis(self,) -> Optional[section_emphasis_type.SectionEmphasisType]:
-        """
-        Gets the emphasis property value. Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
-        Returns: Optional[section_emphasis_type.SectionEmphasisType]
-        """
-        return self._emphasis
-    
-    @emphasis.setter
-    def emphasis(self,value: Optional[section_emphasis_type.SectionEmphasisType] = None) -> None:
-        """
-        Sets the emphasis property value. Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
-        Args:
-            value: Value to set for the emphasis property.
-        """
-        self._emphasis = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -75,22 +55,5 @@ class VerticalSection(entity.Entity):
         super().serialize(writer)
         writer.write_enum_value("emphasis", self.emphasis)
         writer.write_collection_of_object_values("webparts", self.webparts)
-    
-    @property
-    def webparts(self,) -> Optional[List[web_part.WebPart]]:
-        """
-        Gets the webparts property value. The set of web parts in this section.
-        Returns: Optional[List[web_part.WebPart]]
-        """
-        return self._webparts
-    
-    @webparts.setter
-    def webparts(self,value: Optional[List[web_part.WebPart]] = None) -> None:
-        """
-        Sets the webparts property value. The set of web parts in this section.
-        Args:
-            value: Value to set for the webparts property.
-        """
-        self._webparts = value
     
 

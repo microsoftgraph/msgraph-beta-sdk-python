@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -65,7 +65,7 @@ class ListItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ListItemRequestBuilderGetRequestConfiguration] = None) -> Optional[list.List]:
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a [list][].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[list.List]
@@ -128,7 +128,7 @@ class ListItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ListItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a [list][].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -261,7 +261,7 @@ class ListItemRequestBuilder():
     @dataclass
     class ListItemRequestBuilderGetQueryParameters():
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a [list][].
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

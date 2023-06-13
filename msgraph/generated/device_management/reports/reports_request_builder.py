@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -77,6 +77,8 @@ if TYPE_CHECKING:
     from .get_unhealthy_firewall_report import get_unhealthy_firewall_report_request_builder
     from .get_unhealthy_firewall_summary_report import get_unhealthy_firewall_summary_report_request_builder
     from .get_user_install_status_report import get_user_install_status_report_request_builder
+    from .get_windows_driver_update_alerts_per_policy_per_device_report import get_windows_driver_update_alerts_per_policy_per_device_report_request_builder
+    from .get_windows_driver_update_alert_summary_report import get_windows_driver_update_alert_summary_report_request_builder
     from .get_windows_quality_update_alerts_per_policy_per_device_report import get_windows_quality_update_alerts_per_policy_per_device_report_request_builder
     from .get_windows_quality_update_alert_summary_report import get_windows_quality_update_alert_summary_report_request_builder
     from .get_windows_update_alerts_per_policy_per_device_report import get_windows_update_alerts_per_policy_per_device_report_request_builder
@@ -810,6 +812,24 @@ class ReportsRequestBuilder():
         from .get_user_install_status_report import get_user_install_status_report_request_builder
 
         return get_user_install_status_report_request_builder.GetUserInstallStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_windows_driver_update_alerts_per_policy_per_device_report(self) -> get_windows_driver_update_alerts_per_policy_per_device_report_request_builder.GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
+        """
+        Provides operations to call the getWindowsDriverUpdateAlertsPerPolicyPerDeviceReport method.
+        """
+        from .get_windows_driver_update_alerts_per_policy_per_device_report import get_windows_driver_update_alerts_per_policy_per_device_report_request_builder
+
+        return get_windows_driver_update_alerts_per_policy_per_device_report_request_builder.GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_windows_driver_update_alert_summary_report(self) -> get_windows_driver_update_alert_summary_report_request_builder.GetWindowsDriverUpdateAlertSummaryReportRequestBuilder:
+        """
+        Provides operations to call the getWindowsDriverUpdateAlertSummaryReport method.
+        """
+        from .get_windows_driver_update_alert_summary_report import get_windows_driver_update_alert_summary_report_request_builder
+
+        return get_windows_driver_update_alert_summary_report_request_builder.GetWindowsDriverUpdateAlertSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_windows_quality_update_alerts_per_policy_per_device_report(self) -> get_windows_quality_update_alerts_per_policy_per_device_report_request_builder.GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:

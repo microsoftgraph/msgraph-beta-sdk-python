@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,43 +8,22 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AttendanceRecord(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new attendanceRecord and sets the default values.
-        """
-        super().__init__()
-        # List of time periods between joining and leaving a meeting.
-        self._attendance_intervals: Optional[List[attendance_interval.AttendanceInterval]] = None
-        # Email address of the user associated with this attendance record.
-        self._email_address: Optional[str] = None
-        # Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
-        self._identity: Optional[identity.Identity] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Unique identifier of a meetingRegistrant. Presents when the participant has registered for the meeting.
-        self._registrant_id: Optional[str] = None
-        # Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
-        self._role: Optional[str] = None
-        # Total duration of the attendances in seconds.
-        self._total_attendance_in_seconds: Optional[int] = None
-    
-    @property
-    def attendance_intervals(self,) -> Optional[List[attendance_interval.AttendanceInterval]]:
-        """
-        Gets the attendanceIntervals property value. List of time periods between joining and leaving a meeting.
-        Returns: Optional[List[attendance_interval.AttendanceInterval]]
-        """
-        return self._attendance_intervals
-    
-    @attendance_intervals.setter
-    def attendance_intervals(self,value: Optional[List[attendance_interval.AttendanceInterval]] = None) -> None:
-        """
-        Sets the attendanceIntervals property value. List of time periods between joining and leaving a meeting.
-        Args:
-            value: Value to set for the attendance_intervals property.
-        """
-        self._attendance_intervals = value
+    # List of time periods between joining and leaving a meeting.
+    attendance_intervals: Optional[List[attendance_interval.AttendanceInterval]] = None
+    # Email address of the user associated with this attendance record.
+    email_address: Optional[str] = None
+    # Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
+    identity: Optional[identity.Identity] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Unique identifier of a meetingRegistrant. Presents when the participant has registered for the meeting.
+    registrant_id: Optional[str] = None
+    # Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
+    role: Optional[str] = None
+    # Total duration of the attendances in seconds.
+    total_attendance_in_seconds: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AttendanceRecord:
@@ -56,23 +36,6 @@ class AttendanceRecord(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AttendanceRecord()
-    
-    @property
-    def email_address(self,) -> Optional[str]:
-        """
-        Gets the emailAddress property value. Email address of the user associated with this attendance record.
-        Returns: Optional[str]
-        """
-        return self._email_address
-    
-    @email_address.setter
-    def email_address(self,value: Optional[str] = None) -> None:
-        """
-        Sets the emailAddress property value. Email address of the user associated with this attendance record.
-        Args:
-            value: Value to set for the email_address property.
-        """
-        self._email_address = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -93,57 +56,6 @@ class AttendanceRecord(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def identity(self,) -> Optional[identity.Identity]:
-        """
-        Gets the identity property value. Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
-        Returns: Optional[identity.Identity]
-        """
-        return self._identity
-    
-    @identity.setter
-    def identity(self,value: Optional[identity.Identity] = None) -> None:
-        """
-        Sets the identity property value. Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
-        Args:
-            value: Value to set for the identity property.
-        """
-        self._identity = value
-    
-    @property
-    def registrant_id(self,) -> Optional[str]:
-        """
-        Gets the registrantId property value. Unique identifier of a meetingRegistrant. Presents when the participant has registered for the meeting.
-        Returns: Optional[str]
-        """
-        return self._registrant_id
-    
-    @registrant_id.setter
-    def registrant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the registrantId property value. Unique identifier of a meetingRegistrant. Presents when the participant has registered for the meeting.
-        Args:
-            value: Value to set for the registrant_id property.
-        """
-        self._registrant_id = value
-    
-    @property
-    def role(self,) -> Optional[str]:
-        """
-        Gets the role property value. Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
-        Returns: Optional[str]
-        """
-        return self._role
-    
-    @role.setter
-    def role(self,value: Optional[str] = None) -> None:
-        """
-        Sets the role property value. Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
-        Args:
-            value: Value to set for the role property.
-        """
-        self._role = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -159,22 +71,5 @@ class AttendanceRecord(entity.Entity):
         writer.write_str_value("registrantId", self.registrant_id)
         writer.write_str_value("role", self.role)
         writer.write_int_value("totalAttendanceInSeconds", self.total_attendance_in_seconds)
-    
-    @property
-    def total_attendance_in_seconds(self,) -> Optional[int]:
-        """
-        Gets the totalAttendanceInSeconds property value. Total duration of the attendances in seconds.
-        Returns: Optional[int]
-        """
-        return self._total_attendance_in_seconds
-    
-    @total_attendance_in_seconds.setter
-    def total_attendance_in_seconds(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalAttendanceInSeconds property value. Total duration of the attendances in seconds.
-        Args:
-            value: Value to set for the total_attendance_in_seconds property.
-        """
-        self._total_attendance_in_seconds = value
     
 

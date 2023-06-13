@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagementParameterValueType(Enum):
+class ManagementParameterValueType(str, Enum):
     String = "string",
     Integer = "integer",
     Boolean = "boolean",

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,33 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Document(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Document and sets the default values.
-        """
-        super().__init__()
-        # The comments property
-        self._comments: Optional[List[document_comment.DocumentComment]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def comments(self,) -> Optional[List[document_comment.DocumentComment]]:
-        """
-        Gets the comments property value. The comments property
-        Returns: Optional[List[document_comment.DocumentComment]]
-        """
-        return self._comments
-    
-    @comments.setter
-    def comments(self,value: Optional[List[document_comment.DocumentComment]] = None) -> None:
-        """
-        Sets the comments property value. The comments property
-        Args:
-            value: Value to set for the comments property.
-        """
-        self._comments = value
+    # The comments property
+    comments: Optional[List[document_comment.DocumentComment]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Document:

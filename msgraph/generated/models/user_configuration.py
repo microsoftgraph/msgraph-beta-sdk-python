@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,33 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserConfiguration(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userConfiguration and sets the default values.
-        """
-        super().__init__()
-        # The binaryData property
-        self._binary_data: Optional[bytes] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def binary_data(self,) -> Optional[bytes]:
-        """
-        Gets the binaryData property value. The binaryData property
-        Returns: Optional[bytes]
-        """
-        return self._binary_data
-    
-    @binary_data.setter
-    def binary_data(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the binaryData property value. The binaryData property
-        Args:
-            value: Value to set for the binary_data property.
-        """
-        self._binary_data = value
+    # The binaryData property
+    binary_data: Optional[bytes] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserConfiguration:

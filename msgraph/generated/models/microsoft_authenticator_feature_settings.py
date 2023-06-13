@@ -1,62 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import authentication_method_feature_configuration
 
+@dataclass
 class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new microsoftAuthenticatorFeatureSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Determines whether users will be able to approve push notifications on other Microsoft applications such as Outlook Mobile.
-        self._companion_app_allowed_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
-        # Determines whether the user's Authenticator app will show them the client app they are signing into.
-        self._display_app_information_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
-        # Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
-        self._display_location_information_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
-        # Specifies whether the user needs to enter a number in the Authenticator app from the login screen to complete their login. Value is ignored for phone sign-in notifications.
-        self._number_matching_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def companion_app_allowed_state(self,) -> Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]:
-        """
-        Gets the companionAppAllowedState property value. Determines whether users will be able to approve push notifications on other Microsoft applications such as Outlook Mobile.
-        Returns: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]
-        """
-        return self._companion_app_allowed_state
-    
-    @companion_app_allowed_state.setter
-    def companion_app_allowed_state(self,value: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None) -> None:
-        """
-        Sets the companionAppAllowedState property value. Determines whether users will be able to approve push notifications on other Microsoft applications such as Outlook Mobile.
-        Args:
-            value: Value to set for the companion_app_allowed_state property.
-        """
-        self._companion_app_allowed_state = value
+    # Determines whether users will be able to approve push notifications on other Microsoft applications such as Outlook Mobile.
+    companion_app_allowed_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
+    # Determines whether the user's Authenticator app will show them the client app they are signing into.
+    display_app_information_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
+    # Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
+    display_location_information_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
+    # Specifies whether the user needs to enter a number in the Authenticator app from the login screen to complete their login. Value is ignored for phone sign-in notifications.
+    number_matching_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftAuthenticatorFeatureSettings:
@@ -69,40 +33,6 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return MicrosoftAuthenticatorFeatureSettings()
-    
-    @property
-    def display_app_information_required_state(self,) -> Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]:
-        """
-        Gets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app will show them the client app they are signing into.
-        Returns: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]
-        """
-        return self._display_app_information_required_state
-    
-    @display_app_information_required_state.setter
-    def display_app_information_required_state(self,value: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None) -> None:
-        """
-        Sets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app will show them the client app they are signing into.
-        Args:
-            value: Value to set for the display_app_information_required_state property.
-        """
-        self._display_app_information_required_state = value
-    
-    @property
-    def display_location_information_required_state(self,) -> Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]:
-        """
-        Gets the displayLocationInformationRequiredState property value. Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
-        Returns: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]
-        """
-        return self._display_location_information_required_state
-    
-    @display_location_information_required_state.setter
-    def display_location_information_required_state(self,value: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None) -> None:
-        """
-        Sets the displayLocationInformationRequiredState property value. Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
-        Args:
-            value: Value to set for the display_location_information_required_state property.
-        """
-        self._display_location_information_required_state = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -119,40 +49,6 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def number_matching_required_state(self,) -> Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]:
-        """
-        Gets the numberMatchingRequiredState property value. Specifies whether the user needs to enter a number in the Authenticator app from the login screen to complete their login. Value is ignored for phone sign-in notifications.
-        Returns: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]
-        """
-        return self._number_matching_required_state
-    
-    @number_matching_required_state.setter
-    def number_matching_required_state(self,value: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None) -> None:
-        """
-        Sets the numberMatchingRequiredState property value. Specifies whether the user needs to enter a number in the Authenticator app from the login screen to complete their login. Value is ignored for phone sign-in notifications.
-        Args:
-            value: Value to set for the number_matching_required_state property.
-        """
-        self._number_matching_required_state = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import search_answer
 
+@dataclass
 class Acronym(search_answer.SearchAnswer):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Acronym and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # What the acronym stands for.
-        self._stands_for: Optional[str] = None
-        # The state property
-        self._state: Optional[answer_state.AnswerState] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # What the acronym stands for.
+    stands_for: Optional[str] = None
+    # The state property
+    state: Optional[answer_state.AnswerState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Acronym:
@@ -58,39 +55,5 @@ class Acronym(search_answer.SearchAnswer):
         super().serialize(writer)
         writer.write_str_value("standsFor", self.stands_for)
         writer.write_enum_value("state", self.state)
-    
-    @property
-    def stands_for(self,) -> Optional[str]:
-        """
-        Gets the standsFor property value. What the acronym stands for.
-        Returns: Optional[str]
-        """
-        return self._stands_for
-    
-    @stands_for.setter
-    def stands_for(self,value: Optional[str] = None) -> None:
-        """
-        Sets the standsFor property value. What the acronym stands for.
-        Args:
-            value: Value to set for the stands_for property.
-        """
-        self._stands_for = value
-    
-    @property
-    def state(self,) -> Optional[answer_state.AnswerState]:
-        """
-        Gets the state property value. The state property
-        Returns: Optional[answer_state.AnswerState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[answer_state.AnswerState] = None) -> None:
-        """
-        Sets the state property value. The state property
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 

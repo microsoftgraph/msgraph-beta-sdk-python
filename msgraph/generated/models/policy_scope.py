@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PolicyScope(Enum):
+class PolicyScope(str, Enum):
     None_ = "none",
     All = "all",
     Selected = "selected",

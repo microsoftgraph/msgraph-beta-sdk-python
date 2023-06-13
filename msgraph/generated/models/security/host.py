@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,63 +9,25 @@ if TYPE_CHECKING:
 
 from . import artifact
 
+@dataclass
 class Host(artifact.Artifact):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Host and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.host"
-        # The hostComponents that are associated with this host.
-        self._components: Optional[List[host_component.HostComponent]] = None
-        # The hostCookies that are associated with this host.
-        self._cookies: Optional[List[host_cookie.HostCookie]] = None
-        # The first date and time when this host was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._first_seen_date_time: Optional[datetime] = None
-        # The most recent date and time when this host was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._last_seen_date_time: Optional[datetime] = None
-        # Passive DNS retrieval about this host.
-        self._passive_dns: Optional[List[passive_dns_record.PassiveDnsRecord]] = None
-        # Reverse passive DNS retrieval about this host.
-        self._passive_dns_reverse: Optional[List[passive_dns_record.PassiveDnsRecord]] = None
-        # Represents a calculated reputation of this host.
-        self._reputation: Optional[host_reputation.HostReputation] = None
-        # The hostTrackers that are associated with this host.
-        self._trackers: Optional[List[host_tracker.HostTracker]] = None
-    
-    @property
-    def components(self,) -> Optional[List[host_component.HostComponent]]:
-        """
-        Gets the components property value. The hostComponents that are associated with this host.
-        Returns: Optional[List[host_component.HostComponent]]
-        """
-        return self._components
-    
-    @components.setter
-    def components(self,value: Optional[List[host_component.HostComponent]] = None) -> None:
-        """
-        Sets the components property value. The hostComponents that are associated with this host.
-        Args:
-            value: Value to set for the components property.
-        """
-        self._components = value
-    
-    @property
-    def cookies(self,) -> Optional[List[host_cookie.HostCookie]]:
-        """
-        Gets the cookies property value. The hostCookies that are associated with this host.
-        Returns: Optional[List[host_cookie.HostCookie]]
-        """
-        return self._cookies
-    
-    @cookies.setter
-    def cookies(self,value: Optional[List[host_cookie.HostCookie]] = None) -> None:
-        """
-        Sets the cookies property value. The hostCookies that are associated with this host.
-        Args:
-            value: Value to set for the cookies property.
-        """
-        self._cookies = value
+    odata_type = "#microsoft.graph.security.host"
+    # The hostComponents that are associated with this host.
+    components: Optional[List[host_component.HostComponent]] = None
+    # The hostCookies that are associated with this host.
+    cookies: Optional[List[host_cookie.HostCookie]] = None
+    # The first date and time when this host was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    first_seen_date_time: Optional[datetime] = None
+    # The most recent date and time when this host was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    last_seen_date_time: Optional[datetime] = None
+    # Passive DNS retrieval about this host.
+    passive_dns: Optional[List[passive_dns_record.PassiveDnsRecord]] = None
+    # Reverse passive DNS retrieval about this host.
+    passive_dns_reverse: Optional[List[passive_dns_record.PassiveDnsRecord]] = None
+    # Represents a calculated reputation of this host.
+    reputation: Optional[host_reputation.HostReputation] = None
+    # The hostTrackers that are associated with this host.
+    trackers: Optional[List[host_tracker.HostTracker]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Host:
@@ -89,23 +52,6 @@ class Host(artifact.Artifact):
                 return ip_address.IpAddress()
         return Host()
     
-    @property
-    def first_seen_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the firstSeenDateTime property value. The first date and time when this host was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._first_seen_date_time
-    
-    @first_seen_date_time.setter
-    def first_seen_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the firstSeenDateTime property value. The first date and time when this host was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the first_seen_date_time property.
-        """
-        self._first_seen_date_time = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -127,74 +73,6 @@ class Host(artifact.Artifact):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_seen_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSeenDateTime property value. The most recent date and time when this host was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._last_seen_date_time
-    
-    @last_seen_date_time.setter
-    def last_seen_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSeenDateTime property value. The most recent date and time when this host was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the last_seen_date_time property.
-        """
-        self._last_seen_date_time = value
-    
-    @property
-    def passive_dns(self,) -> Optional[List[passive_dns_record.PassiveDnsRecord]]:
-        """
-        Gets the passiveDns property value. Passive DNS retrieval about this host.
-        Returns: Optional[List[passive_dns_record.PassiveDnsRecord]]
-        """
-        return self._passive_dns
-    
-    @passive_dns.setter
-    def passive_dns(self,value: Optional[List[passive_dns_record.PassiveDnsRecord]] = None) -> None:
-        """
-        Sets the passiveDns property value. Passive DNS retrieval about this host.
-        Args:
-            value: Value to set for the passive_dns property.
-        """
-        self._passive_dns = value
-    
-    @property
-    def passive_dns_reverse(self,) -> Optional[List[passive_dns_record.PassiveDnsRecord]]:
-        """
-        Gets the passiveDnsReverse property value. Reverse passive DNS retrieval about this host.
-        Returns: Optional[List[passive_dns_record.PassiveDnsRecord]]
-        """
-        return self._passive_dns_reverse
-    
-    @passive_dns_reverse.setter
-    def passive_dns_reverse(self,value: Optional[List[passive_dns_record.PassiveDnsRecord]] = None) -> None:
-        """
-        Sets the passiveDnsReverse property value. Reverse passive DNS retrieval about this host.
-        Args:
-            value: Value to set for the passive_dns_reverse property.
-        """
-        self._passive_dns_reverse = value
-    
-    @property
-    def reputation(self,) -> Optional[host_reputation.HostReputation]:
-        """
-        Gets the reputation property value. Represents a calculated reputation of this host.
-        Returns: Optional[host_reputation.HostReputation]
-        """
-        return self._reputation
-    
-    @reputation.setter
-    def reputation(self,value: Optional[host_reputation.HostReputation] = None) -> None:
-        """
-        Sets the reputation property value. Represents a calculated reputation of this host.
-        Args:
-            value: Value to set for the reputation property.
-        """
-        self._reputation = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -212,22 +90,5 @@ class Host(artifact.Artifact):
         writer.write_collection_of_object_values("passiveDnsReverse", self.passive_dns_reverse)
         writer.write_object_value("reputation", self.reputation)
         writer.write_collection_of_object_values("trackers", self.trackers)
-    
-    @property
-    def trackers(self,) -> Optional[List[host_tracker.HostTracker]]:
-        """
-        Gets the trackers property value. The hostTrackers that are associated with this host.
-        Returns: Optional[List[host_tracker.HostTracker]]
-        """
-        return self._trackers
-    
-    @trackers.setter
-    def trackers(self,value: Optional[List[host_tracker.HostTracker]] = None) -> None:
-        """
-        Sets the trackers property value. The hostTrackers that are associated with this host.
-        Args:
-            value: Value to set for the trackers property.
-        """
-        self._trackers = value
     
 

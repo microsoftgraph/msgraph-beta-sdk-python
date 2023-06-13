@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import solutions_root
     from ..models.o_data_errors import o_data_error
     from .business_scenarios import business_scenarios_request_builder
+    from .virtual_events import virtual_events_request_builder
 
 class SolutionsRequestBuilder():
     """
@@ -130,6 +131,15 @@ class SolutionsRequestBuilder():
         from .business_scenarios import business_scenarios_request_builder
 
         return business_scenarios_request_builder.BusinessScenariosRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def virtual_events(self) -> virtual_events_request_builder.VirtualEventsRequestBuilder:
+        """
+        Provides operations to manage the virtualEvents property of the microsoft.graph.solutionsRoot entity.
+        """
+        from .virtual_events import virtual_events_request_builder
+
+        return virtual_events_request_builder.VirtualEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SolutionsRequestBuilderGetQueryParameters():

@@ -1,43 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import matching_label, responsible_policy, responsible_sensitive_type
 
+@dataclass
 class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateLabelJobResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The responsiblePolicy property
-        self._responsible_policy: Optional[responsible_policy.ResponsiblePolicy] = None
-        # The responsibleSensitiveTypes property
-        self._responsible_sensitive_types: Optional[List[responsible_sensitive_type.ResponsibleSensitiveType]] = None
-        # The sensitivityLabel property
-        self._sensitivity_label: Optional[matching_label.MatchingLabel] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The responsiblePolicy property
+    responsible_policy: Optional[responsible_policy.ResponsiblePolicy] = None
+    # The responsibleSensitiveTypes property
+    responsible_sensitive_types: Optional[List[responsible_sensitive_type.ResponsibleSensitiveType]] = None
+    # The sensitivityLabel property
+    sensitivity_label: Optional[matching_label.MatchingLabel] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluateLabelJobResult:
@@ -65,74 +46,6 @@ class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
             "sensitivityLabel": lambda n : setattr(self, 'sensitivity_label', n.get_object_value(matching_label.MatchingLabel)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def responsible_policy(self,) -> Optional[responsible_policy.ResponsiblePolicy]:
-        """
-        Gets the responsiblePolicy property value. The responsiblePolicy property
-        Returns: Optional[responsible_policy.ResponsiblePolicy]
-        """
-        return self._responsible_policy
-    
-    @responsible_policy.setter
-    def responsible_policy(self,value: Optional[responsible_policy.ResponsiblePolicy] = None) -> None:
-        """
-        Sets the responsiblePolicy property value. The responsiblePolicy property
-        Args:
-            value: Value to set for the responsible_policy property.
-        """
-        self._responsible_policy = value
-    
-    @property
-    def responsible_sensitive_types(self,) -> Optional[List[responsible_sensitive_type.ResponsibleSensitiveType]]:
-        """
-        Gets the responsibleSensitiveTypes property value. The responsibleSensitiveTypes property
-        Returns: Optional[List[responsible_sensitive_type.ResponsibleSensitiveType]]
-        """
-        return self._responsible_sensitive_types
-    
-    @responsible_sensitive_types.setter
-    def responsible_sensitive_types(self,value: Optional[List[responsible_sensitive_type.ResponsibleSensitiveType]] = None) -> None:
-        """
-        Sets the responsibleSensitiveTypes property value. The responsibleSensitiveTypes property
-        Args:
-            value: Value to set for the responsible_sensitive_types property.
-        """
-        self._responsible_sensitive_types = value
-    
-    @property
-    def sensitivity_label(self,) -> Optional[matching_label.MatchingLabel]:
-        """
-        Gets the sensitivityLabel property value. The sensitivityLabel property
-        Returns: Optional[matching_label.MatchingLabel]
-        """
-        return self._sensitivity_label
-    
-    @sensitivity_label.setter
-    def sensitivity_label(self,value: Optional[matching_label.MatchingLabel] = None) -> None:
-        """
-        Sets the sensitivityLabel property value. The sensitivityLabel property
-        Args:
-            value: Value to set for the sensitivity_label property.
-        """
-        self._sensitivity_label = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -56,7 +56,7 @@ class NamedLocationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[NamedLocationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[named_location.NamedLocation]:
         """
-        Retrieve the properties and relationships of a countryNamedLocation object.
+        Retrieve the properties and relationships of a namedLocation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[named_location.NamedLocation]
@@ -119,7 +119,7 @@ class NamedLocationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[NamedLocationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a countryNamedLocation object.
+        Retrieve the properties and relationships of a namedLocation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class NamedLocationItemRequestBuilder():
     @dataclass
     class NamedLocationItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a countryNamedLocation object.
+        Retrieve the properties and relationships of a namedLocation object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

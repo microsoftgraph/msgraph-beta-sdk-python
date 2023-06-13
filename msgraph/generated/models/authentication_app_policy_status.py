@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AuthenticationAppPolicyStatus(Enum):
+class AuthenticationAppPolicyStatus(str, Enum):
     Unknown = "unknown",
     AppLockOutOfDate = "appLockOutOfDate",
     AppLockEnabled = "appLockEnabled",

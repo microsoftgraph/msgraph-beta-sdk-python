@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import updatable_asset
 
+@dataclass
 class UpdatableAssetGroup(updatable_asset.UpdatableAsset):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new UpdatableAssetGroup and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.updatableAssetGroup"
-        # Members of the group. Read-only.
-        self._members: Optional[List[updatable_asset.UpdatableAsset]] = None
+    odata_type = "#microsoft.graph.windowsUpdates.updatableAssetGroup"
+    # Members of the group. Read-only.
+    members: Optional[List[updatable_asset.UpdatableAsset]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdatableAssetGroup:
@@ -42,23 +39,6 @@ class UpdatableAssetGroup(updatable_asset.UpdatableAsset):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def members(self,) -> Optional[List[updatable_asset.UpdatableAsset]]:
-        """
-        Gets the members property value. Members of the group. Read-only.
-        Returns: Optional[List[updatable_asset.UpdatableAsset]]
-        """
-        return self._members
-    
-    @members.setter
-    def members(self,value: Optional[List[updatable_asset.UpdatableAsset]] = None) -> None:
-        """
-        Sets the members property value. Members of the group. Read-only.
-        Args:
-            value: Value to set for the members property.
-        """
-        self._members = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

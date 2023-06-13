@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,54 +9,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class SearchEntity(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SearchEntity and sets the default values.
-        """
-        super().__init__()
-        # Administrative answer in Microsoft Search results to define common acronyms in a organization.
-        self._acronyms: Optional[List[acronym.Acronym]] = None
-        # Administrative answer in Microsoft Search results for common search queries in an organization.
-        self._bookmarks: Optional[List[bookmark.Bookmark]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
-        self._qnas: Optional[List[qna.Qna]] = None
-    
-    @property
-    def acronyms(self,) -> Optional[List[acronym.Acronym]]:
-        """
-        Gets the acronyms property value. Administrative answer in Microsoft Search results to define common acronyms in a organization.
-        Returns: Optional[List[acronym.Acronym]]
-        """
-        return self._acronyms
-    
-    @acronyms.setter
-    def acronyms(self,value: Optional[List[acronym.Acronym]] = None) -> None:
-        """
-        Sets the acronyms property value. Administrative answer in Microsoft Search results to define common acronyms in a organization.
-        Args:
-            value: Value to set for the acronyms property.
-        """
-        self._acronyms = value
-    
-    @property
-    def bookmarks(self,) -> Optional[List[bookmark.Bookmark]]:
-        """
-        Gets the bookmarks property value. Administrative answer in Microsoft Search results for common search queries in an organization.
-        Returns: Optional[List[bookmark.Bookmark]]
-        """
-        return self._bookmarks
-    
-    @bookmarks.setter
-    def bookmarks(self,value: Optional[List[bookmark.Bookmark]] = None) -> None:
-        """
-        Sets the bookmarks property value. Administrative answer in Microsoft Search results for common search queries in an organization.
-        Args:
-            value: Value to set for the bookmarks property.
-        """
-        self._bookmarks = value
+    # Administrative answer in Microsoft Search results to define common acronyms in a organization.
+    acronyms: Optional[List[acronym.Acronym]] = None
+    # Administrative answer in Microsoft Search results for common search queries in an organization.
+    bookmarks: Optional[List[bookmark.Bookmark]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
+    qnas: Optional[List[qna.Qna]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SearchEntity:
@@ -85,23 +48,6 @@ class SearchEntity(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def qnas(self,) -> Optional[List[qna.Qna]]:
-        """
-        Gets the qnas property value. Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
-        Returns: Optional[List[qna.Qna]]
-        """
-        return self._qnas
-    
-    @qnas.setter
-    def qnas(self,value: Optional[List[qna.Qna]] = None) -> None:
-        """
-        Sets the qnas property value. Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
-        Args:
-            value: Value to set for the qnas property.
-        """
-        self._qnas = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

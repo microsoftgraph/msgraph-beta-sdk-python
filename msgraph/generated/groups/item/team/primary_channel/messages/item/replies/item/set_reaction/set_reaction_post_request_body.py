@@ -1,34 +1,15 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class SetReactionPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new setReactionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The reactionType property
-        self._reaction_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The reactionType property
+    reaction_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SetReactionPostRequestBody:
@@ -51,23 +32,6 @@ class SetReactionPostRequestBody(AdditionalDataHolder, Parsable):
             "reactionType": lambda n : setattr(self, 'reaction_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def reaction_type(self,) -> Optional[str]:
-        """
-        Gets the reactionType property value. The reactionType property
-        Returns: Optional[str]
-        """
-        return self._reaction_type
-    
-    @reaction_type.setter
-    def reaction_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reactionType property value. The reactionType property
-        Args:
-            value: Value to set for the reaction_type property.
-        """
-        self._reaction_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

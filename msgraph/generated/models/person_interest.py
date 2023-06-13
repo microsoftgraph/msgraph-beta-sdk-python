@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,59 +8,21 @@ if TYPE_CHECKING:
 
 from . import item_facet
 
+@dataclass
 class PersonInterest(item_facet.ItemFacet):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PersonInterest and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.personInterest"
-        # Contains categories a user has associated with the interest (for example, personal, recipies).
-        self._categories: Optional[List[str]] = None
-        # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-        self._collaboration_tags: Optional[List[str]] = None
-        # Contains a description of the interest.
-        self._description: Optional[str] = None
-        # Contains a friendly name for the interest.
-        self._display_name: Optional[str] = None
-        # The thumbnailUrl property
-        self._thumbnail_url: Optional[str] = None
-        # Contains a link to a web page or resource about the interest.
-        self._web_url: Optional[str] = None
-    
-    @property
-    def categories(self,) -> Optional[List[str]]:
-        """
-        Gets the categories property value. Contains categories a user has associated with the interest (for example, personal, recipies).
-        Returns: Optional[List[str]]
-        """
-        return self._categories
-    
-    @categories.setter
-    def categories(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the categories property value. Contains categories a user has associated with the interest (for example, personal, recipies).
-        Args:
-            value: Value to set for the categories property.
-        """
-        self._categories = value
-    
-    @property
-    def collaboration_tags(self,) -> Optional[List[str]]:
-        """
-        Gets the collaborationTags property value. Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-        Returns: Optional[List[str]]
-        """
-        return self._collaboration_tags
-    
-    @collaboration_tags.setter
-    def collaboration_tags(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the collaborationTags property value. Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-        Args:
-            value: Value to set for the collaboration_tags property.
-        """
-        self._collaboration_tags = value
+    odata_type = "#microsoft.graph.personInterest"
+    # Contains categories a user has associated with the interest (for example, personal, recipies).
+    categories: Optional[List[str]] = None
+    # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
+    collaboration_tags: Optional[List[str]] = None
+    # Contains a description of the interest.
+    description: Optional[str] = None
+    # Contains a friendly name for the interest.
+    display_name: Optional[str] = None
+    # The thumbnailUrl property
+    thumbnail_url: Optional[str] = None
+    # Contains a link to a web page or resource about the interest.
+    web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonInterest:
@@ -72,40 +35,6 @@ class PersonInterest(item_facet.ItemFacet):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PersonInterest()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Contains a description of the interest.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Contains a description of the interest.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Contains a friendly name for the interest.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Contains a friendly name for the interest.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -141,39 +70,5 @@ class PersonInterest(item_facet.ItemFacet):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("thumbnailUrl", self.thumbnail_url)
         writer.write_str_value("webUrl", self.web_url)
-    
-    @property
-    def thumbnail_url(self,) -> Optional[str]:
-        """
-        Gets the thumbnailUrl property value. The thumbnailUrl property
-        Returns: Optional[str]
-        """
-        return self._thumbnail_url
-    
-    @thumbnail_url.setter
-    def thumbnail_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the thumbnailUrl property value. The thumbnailUrl property
-        Args:
-            value: Value to set for the thumbnail_url property.
-        """
-        self._thumbnail_url = value
-    
-    @property
-    def web_url(self,) -> Optional[str]:
-        """
-        Gets the webUrl property value. Contains a link to a web page or resource about the interest.
-        Returns: Optional[str]
-        """
-        return self._web_url
-    
-    @web_url.setter
-    def web_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the webUrl property value. Contains a link to a web page or resource about the interest.
-        Args:
-            value: Value to set for the web_url property.
-        """
-        self._web_url = value
     
 

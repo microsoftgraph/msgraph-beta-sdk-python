@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,75 +8,37 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
     """
     Device Management Configuration Policy Template
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationPolicyTemplate and sets the default values.
-        """
-        super().__init__()
-        # Allow unmanaged setting templates
-        self._allow_unmanaged_settings: Optional[bool] = None
-        # Template base identifier
-        self._base_id: Optional[str] = None
-        # Template description
-        self._description: Optional[str] = None
-        # Template display name
-        self._display_name: Optional[str] = None
-        # Description of template version
-        self._display_version: Optional[str] = None
-        # Describes current lifecycle state of a template
-        self._lifecycle_state: Optional[device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Supported platform types.
-        self._platforms: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms] = None
-        # Number of setting templates. Valid values 0 to 2147483647. This property is read-only.
-        self._setting_template_count: Optional[int] = None
-        # Setting templates
-        self._setting_templates: Optional[List[device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate]] = None
-        # Describes which technology this setting can be deployed with
-        self._technologies: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None
-        # Describes the TemplateFamily for the Template entity
-        self._template_family: Optional[device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily] = None
-        # Template version. Valid values 1 to 2147483647. This property is read-only.
-        self._version: Optional[int] = None
-    
-    @property
-    def allow_unmanaged_settings(self,) -> Optional[bool]:
-        """
-        Gets the allowUnmanagedSettings property value. Allow unmanaged setting templates
-        Returns: Optional[bool]
-        """
-        return self._allow_unmanaged_settings
-    
-    @allow_unmanaged_settings.setter
-    def allow_unmanaged_settings(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowUnmanagedSettings property value. Allow unmanaged setting templates
-        Args:
-            value: Value to set for the allow_unmanaged_settings property.
-        """
-        self._allow_unmanaged_settings = value
-    
-    @property
-    def base_id(self,) -> Optional[str]:
-        """
-        Gets the baseId property value. Template base identifier
-        Returns: Optional[str]
-        """
-        return self._base_id
-    
-    @base_id.setter
-    def base_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the baseId property value. Template base identifier
-        Args:
-            value: Value to set for the base_id property.
-        """
-        self._base_id = value
+    # Allow unmanaged setting templates
+    allow_unmanaged_settings: Optional[bool] = None
+    # Template base identifier
+    base_id: Optional[str] = None
+    # Template description
+    description: Optional[str] = None
+    # Template display name
+    display_name: Optional[str] = None
+    # Description of template version
+    display_version: Optional[str] = None
+    # Describes current lifecycle state of a template
+    lifecycle_state: Optional[device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Supported platform types.
+    platforms: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms] = None
+    # Number of setting templates. Valid values 0 to 2147483647. This property is read-only.
+    setting_template_count: Optional[int] = None
+    # Setting templates
+    setting_templates: Optional[List[device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate]] = None
+    # Describes which technology this setting can be deployed with
+    technologies: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None
+    # Describes the TemplateFamily for the Template entity
+    template_family: Optional[device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily] = None
+    # Template version. Valid values 1 to 2147483647. This property is read-only.
+    version: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationPolicyTemplate:
@@ -88,57 +51,6 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceManagementConfigurationPolicyTemplate()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Template description
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Template description
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Template display name
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Template display name
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def display_version(self,) -> Optional[str]:
-        """
-        Gets the displayVersion property value. Description of template version
-        Returns: Optional[str]
-        """
-        return self._display_version
-    
-    @display_version.setter
-    def display_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayVersion property value. Description of template version
-        Args:
-            value: Value to set for the display_version property.
-        """
-        self._display_version = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -165,40 +77,6 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def lifecycle_state(self,) -> Optional[device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState]:
-        """
-        Gets the lifecycleState property value. Describes current lifecycle state of a template
-        Returns: Optional[device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState]
-        """
-        return self._lifecycle_state
-    
-    @lifecycle_state.setter
-    def lifecycle_state(self,value: Optional[device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState] = None) -> None:
-        """
-        Sets the lifecycleState property value. Describes current lifecycle state of a template
-        Args:
-            value: Value to set for the lifecycle_state property.
-        """
-        self._lifecycle_state = value
-    
-    @property
-    def platforms(self,) -> Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms]:
-        """
-        Gets the platforms property value. Supported platform types.
-        Returns: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms]
-        """
-        return self._platforms
-    
-    @platforms.setter
-    def platforms(self,value: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms] = None) -> None:
-        """
-        Sets the platforms property value. Supported platform types.
-        Args:
-            value: Value to set for the platforms property.
-        """
-        self._platforms = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -218,90 +96,5 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         writer.write_collection_of_object_values("settingTemplates", self.setting_templates)
         writer.write_enum_value("technologies", self.technologies)
         writer.write_enum_value("templateFamily", self.template_family)
-    
-    @property
-    def setting_template_count(self,) -> Optional[int]:
-        """
-        Gets the settingTemplateCount property value. Number of setting templates. Valid values 0 to 2147483647. This property is read-only.
-        Returns: Optional[int]
-        """
-        return self._setting_template_count
-    
-    @setting_template_count.setter
-    def setting_template_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the settingTemplateCount property value. Number of setting templates. Valid values 0 to 2147483647. This property is read-only.
-        Args:
-            value: Value to set for the setting_template_count property.
-        """
-        self._setting_template_count = value
-    
-    @property
-    def setting_templates(self,) -> Optional[List[device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate]]:
-        """
-        Gets the settingTemplates property value. Setting templates
-        Returns: Optional[List[device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate]]
-        """
-        return self._setting_templates
-    
-    @setting_templates.setter
-    def setting_templates(self,value: Optional[List[device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate]] = None) -> None:
-        """
-        Sets the settingTemplates property value. Setting templates
-        Args:
-            value: Value to set for the setting_templates property.
-        """
-        self._setting_templates = value
-    
-    @property
-    def technologies(self,) -> Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies]:
-        """
-        Gets the technologies property value. Describes which technology this setting can be deployed with
-        Returns: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies]
-        """
-        return self._technologies
-    
-    @technologies.setter
-    def technologies(self,value: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None) -> None:
-        """
-        Sets the technologies property value. Describes which technology this setting can be deployed with
-        Args:
-            value: Value to set for the technologies property.
-        """
-        self._technologies = value
-    
-    @property
-    def template_family(self,) -> Optional[device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily]:
-        """
-        Gets the templateFamily property value. Describes the TemplateFamily for the Template entity
-        Returns: Optional[device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily]
-        """
-        return self._template_family
-    
-    @template_family.setter
-    def template_family(self,value: Optional[device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily] = None) -> None:
-        """
-        Sets the templateFamily property value. Describes the TemplateFamily for the Template entity
-        Args:
-            value: Value to set for the template_family property.
-        """
-        self._template_family = value
-    
-    @property
-    def version(self,) -> Optional[int]:
-        """
-        Gets the version property value. Template version. Valid values 1 to 2147483647. This property is read-only.
-        Returns: Optional[int]
-        """
-        return self._version
-    
-    @version.setter
-    def version(self,value: Optional[int] = None) -> None:
-        """
-        Sets the version property value. Template version. Valid values 1 to 2147483647. This property is read-only.
-        Args:
-            value: Value to set for the version property.
-        """
-        self._version = value
     
 

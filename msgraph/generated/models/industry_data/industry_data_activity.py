@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,18 +9,14 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class IndustryDataActivity(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new industryDataActivity and sets the default values.
-        """
-        super().__init__()
-        # The name of the activity. Maximum supported length is 100 characters.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The readinessStatus property
-        self._readiness_status: Optional[readiness_status.ReadinessStatus] = None
+    # The name of the activity. Maximum supported length is 100 characters.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The readinessStatus property
+    readiness_status: Optional[readiness_status.ReadinessStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IndustryDataActivity:
@@ -44,23 +41,6 @@ class IndustryDataActivity(entity.Entity):
                 return inbound_flow.InboundFlow()
         return IndustryDataActivity()
     
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The name of the activity. Maximum supported length is 100 characters.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The name of the activity. Maximum supported length is 100 characters.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -76,23 +56,6 @@ class IndustryDataActivity(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def readiness_status(self,) -> Optional[readiness_status.ReadinessStatus]:
-        """
-        Gets the readinessStatus property value. The readinessStatus property
-        Returns: Optional[readiness_status.ReadinessStatus]
-        """
-        return self._readiness_status
-    
-    @readiness_status.setter
-    def readiness_status(self,value: Optional[readiness_status.ReadinessStatus] = None) -> None:
-        """
-        Sets the readinessStatus property value. The readinessStatus property
-        Args:
-            value: Value to set for the readiness_status property.
-        """
-        self._readiness_status = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

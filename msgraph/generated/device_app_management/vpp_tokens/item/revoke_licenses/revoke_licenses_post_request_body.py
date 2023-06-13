@@ -1,36 +1,17 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class RevokeLicensesPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new revokeLicensesPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The notifyManagedDevices property
-        self._notify_managed_devices: Optional[bool] = None
-        # The revokeUntrackedLicenses property
-        self._revoke_untracked_licenses: Optional[bool] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The notifyManagedDevices property
+    notify_managed_devices: Optional[bool] = None
+    # The revokeUntrackedLicenses property
+    revoke_untracked_licenses: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RevokeLicensesPostRequestBody:
@@ -54,40 +35,6 @@ class RevokeLicensesPostRequestBody(AdditionalDataHolder, Parsable):
             "revokeUntrackedLicenses": lambda n : setattr(self, 'revoke_untracked_licenses', n.get_bool_value()),
         }
         return fields
-    
-    @property
-    def notify_managed_devices(self,) -> Optional[bool]:
-        """
-        Gets the notifyManagedDevices property value. The notifyManagedDevices property
-        Returns: Optional[bool]
-        """
-        return self._notify_managed_devices
-    
-    @notify_managed_devices.setter
-    def notify_managed_devices(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the notifyManagedDevices property value. The notifyManagedDevices property
-        Args:
-            value: Value to set for the notify_managed_devices property.
-        """
-        self._notify_managed_devices = value
-    
-    @property
-    def revoke_untracked_licenses(self,) -> Optional[bool]:
-        """
-        Gets the revokeUntrackedLicenses property value. The revokeUntrackedLicenses property
-        Returns: Optional[bool]
-        """
-        return self._revoke_untracked_licenses
-    
-    @revoke_untracked_licenses.setter
-    def revoke_untracked_licenses(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the revokeUntrackedLicenses property value. The revokeUntrackedLicenses property
-        Args:
-            value: Value to set for the revoke_untracked_licenses property.
-        """
-        self._revoke_untracked_licenses = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

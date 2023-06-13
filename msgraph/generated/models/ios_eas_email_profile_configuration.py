@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,152 +8,63 @@ if TYPE_CHECKING:
 
 from . import eas_email_profile_configuration_base
 
+@dataclass
 class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEmailProfileConfigurationBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosEasEmailProfileConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosEasEmailProfileConfiguration"
-        # Account name.
-        self._account_name: Optional[str] = None
-        # Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
-        self._authentication_method: Optional[eas_authentication_method.EasAuthenticationMethod] = None
-        # Indicates whether or not to block moving messages to other email accounts.
-        self._block_moving_messages_to_other_email_accounts: Optional[bool] = None
-        # Indicates whether or not to block sending email from third party apps.
-        self._block_sending_email_from_third_party_apps: Optional[bool] = None
-        # Indicates whether or not to block syncing recently used email addresses, for instance - when composing new email.
-        self._block_syncing_recently_used_email_addresses: Optional[bool] = None
-        # Tenant level settings for the Derived Credentials to be used for authentication.
-        self._derived_credential_settings: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None
-        # Possible values for email sync duration.
-        self._duration_of_email_to_sync: Optional[email_sync_duration.EmailSyncDuration] = None
-        # Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
-        self._eas_services: Optional[eas_services.EasServices] = None
-        # Allow users to change sync settings.
-        self._eas_services_user_override_enabled: Optional[bool] = None
-        # Possible values for username source or email source.
-        self._email_address_source: Optional[user_email_source.UserEmailSource] = None
-        # Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-        self._encryption_certificate_type: Optional[email_certificate_type.EmailCertificateType] = None
-        # Exchange location that (URL) that the native mail app connects to.
-        self._host_name: Optional[str] = None
-        # Identity certificate.
-        self._identity_certificate: Optional[ios_certificate_profile_base.IosCertificateProfileBase] = None
-        # Profile ID of the Per-App VPN policy to be used to access emails from the native Mail client
-        self._per_app_v_p_n_profile_id: Optional[str] = None
-        # Indicates whether or not to use S/MIME certificate.
-        self._require_smime: Optional[bool] = None
-        # Indicates whether or not to use SSL.
-        self._require_ssl: Optional[bool] = None
-        # Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-        self._signing_certificate_type: Optional[email_certificate_type.EmailCertificateType] = None
-        # Indicates whether or not to allow unencrypted emails.
-        self._smime_enable_per_message_switch: Optional[bool] = None
-        # If set to true S/MIME encryption is enabled by default.
-        self._smime_encrypt_by_default_enabled: Optional[bool] = None
-        # If set to true, the user can toggle the encryption by default setting.
-        self._smime_encrypt_by_default_user_override_enabled: Optional[bool] = None
-        # S/MIME encryption certificate.
-        self._smime_encryption_certificate: Optional[ios_certificate_profile.IosCertificateProfile] = None
-        # If set to true the user can select the S/MIME encryption identity.
-        self._smime_encryption_certificate_user_override_enabled: Optional[bool] = None
-        # S/MIME signing certificate.
-        self._smime_signing_certificate: Optional[ios_certificate_profile.IosCertificateProfile] = None
-        # If set to true, the user can select the signing identity.
-        self._smime_signing_certificate_user_override_enabled: Optional[bool] = None
-        # If set to true S/MIME signing is enabled for this account
-        self._smime_signing_enabled: Optional[bool] = None
-        # If set to true, the user can toggle S/MIME signing on or off.
-        self._smime_signing_user_override_enabled: Optional[bool] = None
-        # Specifies whether the connection should use OAuth for authentication.
-        self._use_o_auth: Optional[bool] = None
-    
-    @property
-    def account_name(self,) -> Optional[str]:
-        """
-        Gets the accountName property value. Account name.
-        Returns: Optional[str]
-        """
-        return self._account_name
-    
-    @account_name.setter
-    def account_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountName property value. Account name.
-        Args:
-            value: Value to set for the account_name property.
-        """
-        self._account_name = value
-    
-    @property
-    def authentication_method(self,) -> Optional[eas_authentication_method.EasAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
-        Returns: Optional[eas_authentication_method.EasAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[eas_authentication_method.EasAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
-    @property
-    def block_moving_messages_to_other_email_accounts(self,) -> Optional[bool]:
-        """
-        Gets the blockMovingMessagesToOtherEmailAccounts property value. Indicates whether or not to block moving messages to other email accounts.
-        Returns: Optional[bool]
-        """
-        return self._block_moving_messages_to_other_email_accounts
-    
-    @block_moving_messages_to_other_email_accounts.setter
-    def block_moving_messages_to_other_email_accounts(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the blockMovingMessagesToOtherEmailAccounts property value. Indicates whether or not to block moving messages to other email accounts.
-        Args:
-            value: Value to set for the block_moving_messages_to_other_email_accounts property.
-        """
-        self._block_moving_messages_to_other_email_accounts = value
-    
-    @property
-    def block_sending_email_from_third_party_apps(self,) -> Optional[bool]:
-        """
-        Gets the blockSendingEmailFromThirdPartyApps property value. Indicates whether or not to block sending email from third party apps.
-        Returns: Optional[bool]
-        """
-        return self._block_sending_email_from_third_party_apps
-    
-    @block_sending_email_from_third_party_apps.setter
-    def block_sending_email_from_third_party_apps(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the blockSendingEmailFromThirdPartyApps property value. Indicates whether or not to block sending email from third party apps.
-        Args:
-            value: Value to set for the block_sending_email_from_third_party_apps property.
-        """
-        self._block_sending_email_from_third_party_apps = value
-    
-    @property
-    def block_syncing_recently_used_email_addresses(self,) -> Optional[bool]:
-        """
-        Gets the blockSyncingRecentlyUsedEmailAddresses property value. Indicates whether or not to block syncing recently used email addresses, for instance - when composing new email.
-        Returns: Optional[bool]
-        """
-        return self._block_syncing_recently_used_email_addresses
-    
-    @block_syncing_recently_used_email_addresses.setter
-    def block_syncing_recently_used_email_addresses(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the blockSyncingRecentlyUsedEmailAddresses property value. Indicates whether or not to block syncing recently used email addresses, for instance - when composing new email.
-        Args:
-            value: Value to set for the block_syncing_recently_used_email_addresses property.
-        """
-        self._block_syncing_recently_used_email_addresses = value
+    odata_type = "#microsoft.graph.iosEasEmailProfileConfiguration"
+    # Account name.
+    account_name: Optional[str] = None
+    # Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
+    authentication_method: Optional[eas_authentication_method.EasAuthenticationMethod] = None
+    # Indicates whether or not to block moving messages to other email accounts.
+    block_moving_messages_to_other_email_accounts: Optional[bool] = None
+    # Indicates whether or not to block sending email from third party apps.
+    block_sending_email_from_third_party_apps: Optional[bool] = None
+    # Indicates whether or not to block syncing recently used email addresses, for instance - when composing new email.
+    block_syncing_recently_used_email_addresses: Optional[bool] = None
+    # Tenant level settings for the Derived Credentials to be used for authentication.
+    derived_credential_settings: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None
+    # Possible values for email sync duration.
+    duration_of_email_to_sync: Optional[email_sync_duration.EmailSyncDuration] = None
+    # Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
+    eas_services: Optional[eas_services.EasServices] = None
+    # Allow users to change sync settings.
+    eas_services_user_override_enabled: Optional[bool] = None
+    # Possible values for username source or email source.
+    email_address_source: Optional[user_email_source.UserEmailSource] = None
+    # Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
+    encryption_certificate_type: Optional[email_certificate_type.EmailCertificateType] = None
+    # Exchange location that (URL) that the native mail app connects to.
+    host_name: Optional[str] = None
+    # Identity certificate.
+    identity_certificate: Optional[ios_certificate_profile_base.IosCertificateProfileBase] = None
+    # Profile ID of the Per-App VPN policy to be used to access emails from the native Mail client
+    per_app_v_p_n_profile_id: Optional[str] = None
+    # Indicates whether or not to use S/MIME certificate.
+    require_smime: Optional[bool] = None
+    # Indicates whether or not to use SSL.
+    require_ssl: Optional[bool] = None
+    # Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
+    signing_certificate_type: Optional[email_certificate_type.EmailCertificateType] = None
+    # Indicates whether or not to allow unencrypted emails.
+    smime_enable_per_message_switch: Optional[bool] = None
+    # If set to true S/MIME encryption is enabled by default.
+    smime_encrypt_by_default_enabled: Optional[bool] = None
+    # If set to true, the user can toggle the encryption by default setting.
+    smime_encrypt_by_default_user_override_enabled: Optional[bool] = None
+    # S/MIME encryption certificate.
+    smime_encryption_certificate: Optional[ios_certificate_profile.IosCertificateProfile] = None
+    # If set to true the user can select the S/MIME encryption identity.
+    smime_encryption_certificate_user_override_enabled: Optional[bool] = None
+    # S/MIME signing certificate.
+    smime_signing_certificate: Optional[ios_certificate_profile.IosCertificateProfile] = None
+    # If set to true, the user can select the signing identity.
+    smime_signing_certificate_user_override_enabled: Optional[bool] = None
+    # If set to true S/MIME signing is enabled for this account
+    smime_signing_enabled: Optional[bool] = None
+    # If set to true, the user can toggle S/MIME signing on or off.
+    smime_signing_user_override_enabled: Optional[bool] = None
+    # Specifies whether the connection should use OAuth for authentication.
+    use_o_auth: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosEasEmailProfileConfiguration:
@@ -165,108 +77,6 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return IosEasEmailProfileConfiguration()
-    
-    @property
-    def derived_credential_settings(self,) -> Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings]:
-        """
-        Gets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
-        Returns: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings]
-        """
-        return self._derived_credential_settings
-    
-    @derived_credential_settings.setter
-    def derived_credential_settings(self,value: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None) -> None:
-        """
-        Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
-        Args:
-            value: Value to set for the derived_credential_settings property.
-        """
-        self._derived_credential_settings = value
-    
-    @property
-    def duration_of_email_to_sync(self,) -> Optional[email_sync_duration.EmailSyncDuration]:
-        """
-        Gets the durationOfEmailToSync property value. Possible values for email sync duration.
-        Returns: Optional[email_sync_duration.EmailSyncDuration]
-        """
-        return self._duration_of_email_to_sync
-    
-    @duration_of_email_to_sync.setter
-    def duration_of_email_to_sync(self,value: Optional[email_sync_duration.EmailSyncDuration] = None) -> None:
-        """
-        Sets the durationOfEmailToSync property value. Possible values for email sync duration.
-        Args:
-            value: Value to set for the duration_of_email_to_sync property.
-        """
-        self._duration_of_email_to_sync = value
-    
-    @property
-    def eas_services(self,) -> Optional[eas_services.EasServices]:
-        """
-        Gets the easServices property value. Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
-        Returns: Optional[eas_services.EasServices]
-        """
-        return self._eas_services
-    
-    @eas_services.setter
-    def eas_services(self,value: Optional[eas_services.EasServices] = None) -> None:
-        """
-        Sets the easServices property value. Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
-        Args:
-            value: Value to set for the eas_services property.
-        """
-        self._eas_services = value
-    
-    @property
-    def eas_services_user_override_enabled(self,) -> Optional[bool]:
-        """
-        Gets the easServicesUserOverrideEnabled property value. Allow users to change sync settings.
-        Returns: Optional[bool]
-        """
-        return self._eas_services_user_override_enabled
-    
-    @eas_services_user_override_enabled.setter
-    def eas_services_user_override_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the easServicesUserOverrideEnabled property value. Allow users to change sync settings.
-        Args:
-            value: Value to set for the eas_services_user_override_enabled property.
-        """
-        self._eas_services_user_override_enabled = value
-    
-    @property
-    def email_address_source(self,) -> Optional[user_email_source.UserEmailSource]:
-        """
-        Gets the emailAddressSource property value. Possible values for username source or email source.
-        Returns: Optional[user_email_source.UserEmailSource]
-        """
-        return self._email_address_source
-    
-    @email_address_source.setter
-    def email_address_source(self,value: Optional[user_email_source.UserEmailSource] = None) -> None:
-        """
-        Sets the emailAddressSource property value. Possible values for username source or email source.
-        Args:
-            value: Value to set for the email_address_source property.
-        """
-        self._email_address_source = value
-    
-    @property
-    def encryption_certificate_type(self,) -> Optional[email_certificate_type.EmailCertificateType]:
-        """
-        Gets the encryptionCertificateType property value. Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-        Returns: Optional[email_certificate_type.EmailCertificateType]
-        """
-        return self._encryption_certificate_type
-    
-    @encryption_certificate_type.setter
-    def encryption_certificate_type(self,value: Optional[email_certificate_type.EmailCertificateType] = None) -> None:
-        """
-        Sets the encryptionCertificateType property value. Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-        Args:
-            value: Value to set for the encryption_certificate_type property.
-        """
-        self._encryption_certificate_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -308,91 +118,6 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         fields.update(super_fields)
         return fields
     
-    @property
-    def host_name(self,) -> Optional[str]:
-        """
-        Gets the hostName property value. Exchange location that (URL) that the native mail app connects to.
-        Returns: Optional[str]
-        """
-        return self._host_name
-    
-    @host_name.setter
-    def host_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the hostName property value. Exchange location that (URL) that the native mail app connects to.
-        Args:
-            value: Value to set for the host_name property.
-        """
-        self._host_name = value
-    
-    @property
-    def identity_certificate(self,) -> Optional[ios_certificate_profile_base.IosCertificateProfileBase]:
-        """
-        Gets the identityCertificate property value. Identity certificate.
-        Returns: Optional[ios_certificate_profile_base.IosCertificateProfileBase]
-        """
-        return self._identity_certificate
-    
-    @identity_certificate.setter
-    def identity_certificate(self,value: Optional[ios_certificate_profile_base.IosCertificateProfileBase] = None) -> None:
-        """
-        Sets the identityCertificate property value. Identity certificate.
-        Args:
-            value: Value to set for the identity_certificate property.
-        """
-        self._identity_certificate = value
-    
-    @property
-    def per_app_v_p_n_profile_id(self,) -> Optional[str]:
-        """
-        Gets the perAppVPNProfileId property value. Profile ID of the Per-App VPN policy to be used to access emails from the native Mail client
-        Returns: Optional[str]
-        """
-        return self._per_app_v_p_n_profile_id
-    
-    @per_app_v_p_n_profile_id.setter
-    def per_app_v_p_n_profile_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the perAppVPNProfileId property value. Profile ID of the Per-App VPN policy to be used to access emails from the native Mail client
-        Args:
-            value: Value to set for the per_app_v_p_n_profile_id property.
-        """
-        self._per_app_v_p_n_profile_id = value
-    
-    @property
-    def require_smime(self,) -> Optional[bool]:
-        """
-        Gets the requireSmime property value. Indicates whether or not to use S/MIME certificate.
-        Returns: Optional[bool]
-        """
-        return self._require_smime
-    
-    @require_smime.setter
-    def require_smime(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the requireSmime property value. Indicates whether or not to use S/MIME certificate.
-        Args:
-            value: Value to set for the require_smime property.
-        """
-        self._require_smime = value
-    
-    @property
-    def require_ssl(self,) -> Optional[bool]:
-        """
-        Gets the requireSsl property value. Indicates whether or not to use SSL.
-        Returns: Optional[bool]
-        """
-        return self._require_ssl
-    
-    @require_ssl.setter
-    def require_ssl(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the requireSsl property value. Indicates whether or not to use SSL.
-        Args:
-            value: Value to set for the require_ssl property.
-        """
-        self._require_ssl = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -429,192 +154,5 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         writer.write_bool_value("smimeSigningEnabled", self.smime_signing_enabled)
         writer.write_bool_value("smimeSigningUserOverrideEnabled", self.smime_signing_user_override_enabled)
         writer.write_bool_value("useOAuth", self.use_o_auth)
-    
-    @property
-    def signing_certificate_type(self,) -> Optional[email_certificate_type.EmailCertificateType]:
-        """
-        Gets the signingCertificateType property value. Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-        Returns: Optional[email_certificate_type.EmailCertificateType]
-        """
-        return self._signing_certificate_type
-    
-    @signing_certificate_type.setter
-    def signing_certificate_type(self,value: Optional[email_certificate_type.EmailCertificateType] = None) -> None:
-        """
-        Sets the signingCertificateType property value. Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-        Args:
-            value: Value to set for the signing_certificate_type property.
-        """
-        self._signing_certificate_type = value
-    
-    @property
-    def smime_enable_per_message_switch(self,) -> Optional[bool]:
-        """
-        Gets the smimeEnablePerMessageSwitch property value. Indicates whether or not to allow unencrypted emails.
-        Returns: Optional[bool]
-        """
-        return self._smime_enable_per_message_switch
-    
-    @smime_enable_per_message_switch.setter
-    def smime_enable_per_message_switch(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the smimeEnablePerMessageSwitch property value. Indicates whether or not to allow unencrypted emails.
-        Args:
-            value: Value to set for the smime_enable_per_message_switch property.
-        """
-        self._smime_enable_per_message_switch = value
-    
-    @property
-    def smime_encrypt_by_default_enabled(self,) -> Optional[bool]:
-        """
-        Gets the smimeEncryptByDefaultEnabled property value. If set to true S/MIME encryption is enabled by default.
-        Returns: Optional[bool]
-        """
-        return self._smime_encrypt_by_default_enabled
-    
-    @smime_encrypt_by_default_enabled.setter
-    def smime_encrypt_by_default_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the smimeEncryptByDefaultEnabled property value. If set to true S/MIME encryption is enabled by default.
-        Args:
-            value: Value to set for the smime_encrypt_by_default_enabled property.
-        """
-        self._smime_encrypt_by_default_enabled = value
-    
-    @property
-    def smime_encrypt_by_default_user_override_enabled(self,) -> Optional[bool]:
-        """
-        Gets the smimeEncryptByDefaultUserOverrideEnabled property value. If set to true, the user can toggle the encryption by default setting.
-        Returns: Optional[bool]
-        """
-        return self._smime_encrypt_by_default_user_override_enabled
-    
-    @smime_encrypt_by_default_user_override_enabled.setter
-    def smime_encrypt_by_default_user_override_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the smimeEncryptByDefaultUserOverrideEnabled property value. If set to true, the user can toggle the encryption by default setting.
-        Args:
-            value: Value to set for the smime_encrypt_by_default_user_override_enabled property.
-        """
-        self._smime_encrypt_by_default_user_override_enabled = value
-    
-    @property
-    def smime_encryption_certificate(self,) -> Optional[ios_certificate_profile.IosCertificateProfile]:
-        """
-        Gets the smimeEncryptionCertificate property value. S/MIME encryption certificate.
-        Returns: Optional[ios_certificate_profile.IosCertificateProfile]
-        """
-        return self._smime_encryption_certificate
-    
-    @smime_encryption_certificate.setter
-    def smime_encryption_certificate(self,value: Optional[ios_certificate_profile.IosCertificateProfile] = None) -> None:
-        """
-        Sets the smimeEncryptionCertificate property value. S/MIME encryption certificate.
-        Args:
-            value: Value to set for the smime_encryption_certificate property.
-        """
-        self._smime_encryption_certificate = value
-    
-    @property
-    def smime_encryption_certificate_user_override_enabled(self,) -> Optional[bool]:
-        """
-        Gets the smimeEncryptionCertificateUserOverrideEnabled property value. If set to true the user can select the S/MIME encryption identity.
-        Returns: Optional[bool]
-        """
-        return self._smime_encryption_certificate_user_override_enabled
-    
-    @smime_encryption_certificate_user_override_enabled.setter
-    def smime_encryption_certificate_user_override_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the smimeEncryptionCertificateUserOverrideEnabled property value. If set to true the user can select the S/MIME encryption identity.
-        Args:
-            value: Value to set for the smime_encryption_certificate_user_override_enabled property.
-        """
-        self._smime_encryption_certificate_user_override_enabled = value
-    
-    @property
-    def smime_signing_certificate(self,) -> Optional[ios_certificate_profile.IosCertificateProfile]:
-        """
-        Gets the smimeSigningCertificate property value. S/MIME signing certificate.
-        Returns: Optional[ios_certificate_profile.IosCertificateProfile]
-        """
-        return self._smime_signing_certificate
-    
-    @smime_signing_certificate.setter
-    def smime_signing_certificate(self,value: Optional[ios_certificate_profile.IosCertificateProfile] = None) -> None:
-        """
-        Sets the smimeSigningCertificate property value. S/MIME signing certificate.
-        Args:
-            value: Value to set for the smime_signing_certificate property.
-        """
-        self._smime_signing_certificate = value
-    
-    @property
-    def smime_signing_certificate_user_override_enabled(self,) -> Optional[bool]:
-        """
-        Gets the smimeSigningCertificateUserOverrideEnabled property value. If set to true, the user can select the signing identity.
-        Returns: Optional[bool]
-        """
-        return self._smime_signing_certificate_user_override_enabled
-    
-    @smime_signing_certificate_user_override_enabled.setter
-    def smime_signing_certificate_user_override_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the smimeSigningCertificateUserOverrideEnabled property value. If set to true, the user can select the signing identity.
-        Args:
-            value: Value to set for the smime_signing_certificate_user_override_enabled property.
-        """
-        self._smime_signing_certificate_user_override_enabled = value
-    
-    @property
-    def smime_signing_enabled(self,) -> Optional[bool]:
-        """
-        Gets the smimeSigningEnabled property value. If set to true S/MIME signing is enabled for this account
-        Returns: Optional[bool]
-        """
-        return self._smime_signing_enabled
-    
-    @smime_signing_enabled.setter
-    def smime_signing_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the smimeSigningEnabled property value. If set to true S/MIME signing is enabled for this account
-        Args:
-            value: Value to set for the smime_signing_enabled property.
-        """
-        self._smime_signing_enabled = value
-    
-    @property
-    def smime_signing_user_override_enabled(self,) -> Optional[bool]:
-        """
-        Gets the smimeSigningUserOverrideEnabled property value. If set to true, the user can toggle S/MIME signing on or off.
-        Returns: Optional[bool]
-        """
-        return self._smime_signing_user_override_enabled
-    
-    @smime_signing_user_override_enabled.setter
-    def smime_signing_user_override_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the smimeSigningUserOverrideEnabled property value. If set to true, the user can toggle S/MIME signing on or off.
-        Args:
-            value: Value to set for the smime_signing_user_override_enabled property.
-        """
-        self._smime_signing_user_override_enabled = value
-    
-    @property
-    def use_o_auth(self,) -> Optional[bool]:
-        """
-        Gets the useOAuth property value. Specifies whether the connection should use OAuth for authentication.
-        Returns: Optional[bool]
-        """
-        return self._use_o_auth
-    
-    @use_o_auth.setter
-    def use_o_auth(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the useOAuth property value. Specifies whether the connection should use OAuth for authentication.
-        Args:
-            value: Value to set for the use_o_auth property.
-        """
-        self._use_o_auth = value
     
 

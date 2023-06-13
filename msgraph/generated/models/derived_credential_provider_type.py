@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DerivedCredentialProviderType(Enum):
+class DerivedCredentialProviderType(str, Enum):
     # No Derived Credential Provider Configured.
     NotConfigured = "notConfigured",
     # Entrust.

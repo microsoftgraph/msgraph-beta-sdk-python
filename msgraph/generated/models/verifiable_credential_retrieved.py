@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,15 +9,11 @@ if TYPE_CHECKING:
 
 from . import verifiable_credential_requirement_status
 
+@dataclass
 class VerifiableCredentialRetrieved(verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new VerifiableCredentialRetrieved and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.verifiableCredentialRetrieved"
-        # The specific date and time that the presentation request will expire and a new one will need to be generated.
-        self._expiry_date_time: Optional[datetime] = None
+    odata_type = "#microsoft.graph.verifiableCredentialRetrieved"
+    # The specific date and time that the presentation request will expire and a new one will need to be generated.
+    expiry_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VerifiableCredentialRetrieved:
@@ -29,23 +26,6 @@ class VerifiableCredentialRetrieved(verifiable_credential_requirement_status.Ver
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return VerifiableCredentialRetrieved()
-    
-    @property
-    def expiry_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the expiryDateTime property value. The specific date and time that the presentation request will expire and a new one will need to be generated.
-        Returns: Optional[datetime]
-        """
-        return self._expiry_date_time
-    
-    @expiry_date_time.setter
-    def expiry_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the expiryDateTime property value. The specific date and time that the presentation request will expire and a new one will need to be generated.
-        Args:
-            value: Value to set for the expiry_date_time property.
-        """
-        self._expiry_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

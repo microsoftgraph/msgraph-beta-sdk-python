@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,16 +9,12 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class Catalog(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new catalog and sets the default values.
-        """
-        super().__init__()
-        # Lists the content that you can approve for deployment. Read-only.
-        self._entries: Optional[List[catalog_entry.CatalogEntry]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # Lists the content that you can approve for deployment. Read-only.
+    entries: Optional[List[catalog_entry.CatalogEntry]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Catalog:
@@ -30,23 +27,6 @@ class Catalog(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Catalog()
-    
-    @property
-    def entries(self,) -> Optional[List[catalog_entry.CatalogEntry]]:
-        """
-        Gets the entries property value. Lists the content that you can approve for deployment. Read-only.
-        Returns: Optional[List[catalog_entry.CatalogEntry]]
-        """
-        return self._entries
-    
-    @entries.setter
-    def entries(self,value: Optional[List[catalog_entry.CatalogEntry]] = None) -> None:
-        """
-        Sets the entries property value. Lists the content that you can approve for deployment. Read-only.
-        Args:
-            value: Value to set for the entries property.
-        """
-        self._entries = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeliveryOptimizationGroupIdOptionsType(Enum):
+class DeliveryOptimizationGroupIdOptionsType(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Active Directory site.

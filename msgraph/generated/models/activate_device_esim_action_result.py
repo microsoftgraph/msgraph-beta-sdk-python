@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,33 +8,12 @@ if TYPE_CHECKING:
 
 from . import device_action_result
 
+@dataclass
 class ActivateDeviceEsimActionResult(device_action_result.DeviceActionResult):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ActivateDeviceEsimActionResult and sets the default values.
-        """
-        super().__init__()
-        # Carrier Url to activate the device eSIM
-        self._carrier_url: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def carrier_url(self,) -> Optional[str]:
-        """
-        Gets the carrierUrl property value. Carrier Url to activate the device eSIM
-        Returns: Optional[str]
-        """
-        return self._carrier_url
-    
-    @carrier_url.setter
-    def carrier_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the carrierUrl property value. Carrier Url to activate the device eSIM
-        Args:
-            value: Value to set for the carrier_url property.
-        """
-        self._carrier_url = value
+    # Carrier Url to activate the device eSIM
+    carrier_url: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ActivateDeviceEsimActionResult:

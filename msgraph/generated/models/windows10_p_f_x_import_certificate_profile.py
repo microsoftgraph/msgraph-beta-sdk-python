@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfiguration):
-    """
-    Deprecated
-    """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windows10PFXImportCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10PFXImportCertificateProfile"
-        # Key Storage Provider (KSP) Import Options.
-        self._key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
+    odata_type = "#microsoft.graph.windows10PFXImportCertificateProfile"
+    # Key Storage Provider (KSP) Import Options.
+    key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10PFXImportCertificateProfile:
@@ -45,23 +39,6 @@ class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfigurat
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def key_storage_provider(self,) -> Optional[key_storage_provider_option.KeyStorageProviderOption]:
-        """
-        Gets the keyStorageProvider property value. Key Storage Provider (KSP) Import Options.
-        Returns: Optional[key_storage_provider_option.KeyStorageProviderOption]
-        """
-        return self._key_storage_provider
-    
-    @key_storage_provider.setter
-    def key_storage_provider(self,value: Optional[key_storage_provider_option.KeyStorageProviderOption] = None) -> None:
-        """
-        Sets the keyStorageProvider property value. Key Storage Provider (KSP) Import Options.
-        Args:
-            value: Value to set for the key_storage_provider property.
-        """
-        self._key_storage_provider = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

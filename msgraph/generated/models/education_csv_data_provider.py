@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import education_synchronization_data_provider
 
+@dataclass
 class EducationCsvDataProvider(education_synchronization_data_provider.EducationSynchronizationDataProvider):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EducationCsvDataProvider and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.educationCsvDataProvider"
-        # Optional customizations to be applied to the synchronization profile.
-        self._customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
+    odata_type = "#microsoft.graph.educationCsvDataProvider"
+    # Optional customizations to be applied to the synchronization profile.
+    customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationCsvDataProvider:
@@ -28,23 +25,6 @@ class EducationCsvDataProvider(education_synchronization_data_provider.Education
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return EducationCsvDataProvider()
-    
-    @property
-    def customizations(self,) -> Optional[education_synchronization_customizations.EducationSynchronizationCustomizations]:
-        """
-        Gets the customizations property value. Optional customizations to be applied to the synchronization profile.
-        Returns: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations]
-        """
-        return self._customizations
-    
-    @customizations.setter
-    def customizations(self,value: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None) -> None:
-        """
-        Sets the customizations property value. Optional customizations to be applied to the synchronization profile.
-        Args:
-            value: Value to set for the customizations property.
-        """
-        self._customizations = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

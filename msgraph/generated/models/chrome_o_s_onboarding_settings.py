@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,25 +9,21 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ChromeOSOnboardingSettings(entity.Entity):
     """
     Entity that represents a Chromebook tenant settings
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new chromeOSOnboardingSettings and sets the default values.
-        """
-        super().__init__()
-        # The ChromebookTenant's LastDirectorySyncDateTime
-        self._last_directory_sync_date_time: Optional[datetime] = None
-        # The ChromebookTenant's LastModifiedDateTime
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The onboarding status of the tenant.
-        self._onboarding_status: Optional[onboarding_status.OnboardingStatus] = None
-        # The ChromebookTenant's OwnerUserPrincipalName
-        self._owner_user_principal_name: Optional[str] = None
+    # The ChromebookTenant's LastDirectorySyncDateTime
+    last_directory_sync_date_time: Optional[datetime] = None
+    # The ChromebookTenant's LastModifiedDateTime
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The onboarding status of the tenant.
+    onboarding_status: Optional[onboarding_status.OnboardingStatus] = None
+    # The ChromebookTenant's OwnerUserPrincipalName
+    owner_user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChromeOSOnboardingSettings:
@@ -56,74 +53,6 @@ class ChromeOSOnboardingSettings(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_directory_sync_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastDirectorySyncDateTime property value. The ChromebookTenant's LastDirectorySyncDateTime
-        Returns: Optional[datetime]
-        """
-        return self._last_directory_sync_date_time
-    
-    @last_directory_sync_date_time.setter
-    def last_directory_sync_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastDirectorySyncDateTime property value. The ChromebookTenant's LastDirectorySyncDateTime
-        Args:
-            value: Value to set for the last_directory_sync_date_time property.
-        """
-        self._last_directory_sync_date_time = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The ChromebookTenant's LastModifiedDateTime
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The ChromebookTenant's LastModifiedDateTime
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def onboarding_status(self,) -> Optional[onboarding_status.OnboardingStatus]:
-        """
-        Gets the onboardingStatus property value. The onboarding status of the tenant.
-        Returns: Optional[onboarding_status.OnboardingStatus]
-        """
-        return self._onboarding_status
-    
-    @onboarding_status.setter
-    def onboarding_status(self,value: Optional[onboarding_status.OnboardingStatus] = None) -> None:
-        """
-        Sets the onboardingStatus property value. The onboarding status of the tenant.
-        Args:
-            value: Value to set for the onboarding_status property.
-        """
-        self._onboarding_status = value
-    
-    @property
-    def owner_user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the ownerUserPrincipalName property value. The ChromebookTenant's OwnerUserPrincipalName
-        Returns: Optional[str]
-        """
-        return self._owner_user_principal_name
-    
-    @owner_user_principal_name.setter
-    def owner_user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ownerUserPrincipalName property value. The ChromebookTenant's OwnerUserPrincipalName
-        Args:
-            value: Value to set for the owner_user_principal_name property.
-        """
-        self._owner_user_principal_name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

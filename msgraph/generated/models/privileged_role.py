@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,39 +8,18 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PrivilegedRole(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedRole and sets the default values.
-        """
-        super().__init__()
-        # The assignments property
-        self._assignments: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The settings property
-        self._settings: Optional[privileged_role_settings.PrivilegedRoleSettings] = None
-        # The summary property
-        self._summary: Optional[privileged_role_summary.PrivilegedRoleSummary] = None
-    
-    @property
-    def assignments(self,) -> Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]]:
-        """
-        Gets the assignments property value. The assignments property
-        Returns: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The assignments property
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
+    # The assignments property
+    assignments: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]] = None
+    # The name property
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The settings property
+    settings: Optional[privileged_role_settings.PrivilegedRoleSettings] = None
+    # The summary property
+    summary: Optional[privileged_role_summary.PrivilegedRoleSummary] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedRole:
@@ -70,23 +50,6 @@ class PrivilegedRole(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name property
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name property
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -100,39 +63,5 @@ class PrivilegedRole(entity.Entity):
         writer.write_str_value("name", self.name)
         writer.write_object_value("settings", self.settings)
         writer.write_object_value("summary", self.summary)
-    
-    @property
-    def settings(self,) -> Optional[privileged_role_settings.PrivilegedRoleSettings]:
-        """
-        Gets the settings property value. The settings property
-        Returns: Optional[privileged_role_settings.PrivilegedRoleSettings]
-        """
-        return self._settings
-    
-    @settings.setter
-    def settings(self,value: Optional[privileged_role_settings.PrivilegedRoleSettings] = None) -> None:
-        """
-        Sets the settings property value. The settings property
-        Args:
-            value: Value to set for the settings property.
-        """
-        self._settings = value
-    
-    @property
-    def summary(self,) -> Optional[privileged_role_summary.PrivilegedRoleSummary]:
-        """
-        Gets the summary property value. The summary property
-        Returns: Optional[privileged_role_summary.PrivilegedRoleSummary]
-        """
-        return self._summary
-    
-    @summary.setter
-    def summary(self,value: Optional[privileged_role_summary.PrivilegedRoleSummary] = None) -> None:
-        """
-        Sets the summary property value. The summary property
-        Args:
-            value: Value to set for the summary property.
-        """
-        self._summary = value
     
 

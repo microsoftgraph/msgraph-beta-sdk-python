@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import governance_criteria
 
+@dataclass
 class RoleMembershipGovernanceCriteria(governance_criteria.GovernanceCriteria):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RoleMembershipGovernanceCriteria and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.roleMembershipGovernanceCriteria"
-        # The roleId property
-        self._role_id: Optional[str] = None
-        # The roleTemplateId property
-        self._role_template_id: Optional[str] = None
+    odata_type = "#microsoft.graph.roleMembershipGovernanceCriteria"
+    # The roleId property
+    role_id: Optional[str] = None
+    # The roleTemplateId property
+    role_template_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RoleMembershipGovernanceCriteria:
@@ -45,40 +42,6 @@ class RoleMembershipGovernanceCriteria(governance_criteria.GovernanceCriteria):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def role_id(self,) -> Optional[str]:
-        """
-        Gets the roleId property value. The roleId property
-        Returns: Optional[str]
-        """
-        return self._role_id
-    
-    @role_id.setter
-    def role_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the roleId property value. The roleId property
-        Args:
-            value: Value to set for the role_id property.
-        """
-        self._role_id = value
-    
-    @property
-    def role_template_id(self,) -> Optional[str]:
-        """
-        Gets the roleTemplateId property value. The roleTemplateId property
-        Returns: Optional[str]
-        """
-        return self._role_template_id
-    
-    @role_template_id.setter
-    def role_template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the roleTemplateId property value. The roleTemplateId property
-        Args:
-            value: Value to set for the role_template_id property.
-        """
-        self._role_template_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

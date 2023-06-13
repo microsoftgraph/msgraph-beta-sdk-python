@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import detected_sensitive_content
 
+@dataclass
 class MachineLearningDetectedSensitiveContent(detected_sensitive_content.DetectedSensitiveContent):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MachineLearningDetectedSensitiveContent and sets the default values.
-        """
-        super().__init__()
-        # The matchTolerance property
-        self._match_tolerance: Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance] = None
-        # The modelVersion property
-        self._model_version: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The matchTolerance property
+    match_tolerance: Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance] = None
+    # The modelVersion property
+    model_version: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MachineLearningDetectedSensitiveContent:
@@ -46,40 +43,6 @@ class MachineLearningDetectedSensitiveContent(detected_sensitive_content.Detecte
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def match_tolerance(self,) -> Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance]:
-        """
-        Gets the matchTolerance property value. The matchTolerance property
-        Returns: Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance]
-        """
-        return self._match_tolerance
-    
-    @match_tolerance.setter
-    def match_tolerance(self,value: Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance] = None) -> None:
-        """
-        Sets the matchTolerance property value. The matchTolerance property
-        Args:
-            value: Value to set for the match_tolerance property.
-        """
-        self._match_tolerance = value
-    
-    @property
-    def model_version(self,) -> Optional[str]:
-        """
-        Gets the modelVersion property value. The modelVersion property
-        Returns: Optional[str]
-        """
-        return self._model_version
-    
-    @model_version.setter
-    def model_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the modelVersion property value. The modelVersion property
-        Args:
-            value: Value to set for the model_version property.
-        """
-        self._model_version = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

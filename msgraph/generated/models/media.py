@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import media_source
 
+@dataclass
 class Media(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new media and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # If a file has a transcript, this setting controls if the closed captions / transcription for the media file should be shown to people during viewing. Read-Write.
-        self._is_transcription_shown: Optional[bool] = None
-        # Information about the source of media. Read-only.
-        self._media_source: Optional[media_source.MediaSource] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # If a file has a transcript, this setting controls if the closed captions / transcription for the media file should be shown to people during viewing. Read-Write.
+    is_transcription_shown: Optional[bool] = None
+    # Information about the source of media. Read-only.
+    media_source: Optional[media_source.MediaSource] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Media:
@@ -62,57 +43,6 @@ class Media(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def is_transcription_shown(self,) -> Optional[bool]:
-        """
-        Gets the isTranscriptionShown property value. If a file has a transcript, this setting controls if the closed captions / transcription for the media file should be shown to people during viewing. Read-Write.
-        Returns: Optional[bool]
-        """
-        return self._is_transcription_shown
-    
-    @is_transcription_shown.setter
-    def is_transcription_shown(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isTranscriptionShown property value. If a file has a transcript, this setting controls if the closed captions / transcription for the media file should be shown to people during viewing. Read-Write.
-        Args:
-            value: Value to set for the is_transcription_shown property.
-        """
-        self._is_transcription_shown = value
-    
-    @property
-    def media_source(self,) -> Optional[media_source.MediaSource]:
-        """
-        Gets the mediaSource property value. Information about the source of media. Read-only.
-        Returns: Optional[media_source.MediaSource]
-        """
-        return self._media_source
-    
-    @media_source.setter
-    def media_source(self,value: Optional[media_source.MediaSource] = None) -> None:
-        """
-        Sets the mediaSource property value. Information about the source of media. Read-only.
-        Args:
-            value: Value to set for the media_source property.
-        """
-        self._media_source = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

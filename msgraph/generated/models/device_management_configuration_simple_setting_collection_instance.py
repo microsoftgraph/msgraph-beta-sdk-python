@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance
 
+@dataclass
 class DeviceManagementConfigurationSimpleSettingCollectionInstance(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSimpleSettingCollectionInstance and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance"
-        # Simple setting collection instance value
-        self._simple_setting_collection_value: Optional[List[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue]] = None
+    odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance"
+    # Simple setting collection instance value
+    simple_setting_collection_value: Optional[List[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingCollectionInstance:
@@ -53,22 +50,5 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstance(device_manage
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("simpleSettingCollectionValue", self.simple_setting_collection_value)
-    
-    @property
-    def simple_setting_collection_value(self,) -> Optional[List[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue]]:
-        """
-        Gets the simpleSettingCollectionValue property value. Simple setting collection instance value
-        Returns: Optional[List[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue]]
-        """
-        return self._simple_setting_collection_value
-    
-    @simple_setting_collection_value.setter
-    def simple_setting_collection_value(self,value: Optional[List[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue]] = None) -> None:
-        """
-        Sets the simpleSettingCollectionValue property value. Simple setting collection instance value
-        Args:
-            value: Value to set for the simple_setting_collection_value property.
-        """
-        self._simple_setting_collection_value = value
     
 

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -84,7 +84,7 @@ class EducationUserItemRequestBuilder():
     
     async def patch(self,body: Optional[education_user.EducationUser] = None, request_configuration: Optional[EducationUserItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_user.EducationUser]:
         """
-        Update the properties of an **educationuser** object.
+        Update the relatedContact collection of an educationUser object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -143,7 +143,7 @@ class EducationUserItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[education_user.EducationUser] = None, request_configuration: Optional[EducationUserItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an **educationuser** object.
+        Update the relatedContact collection of an educationUser object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

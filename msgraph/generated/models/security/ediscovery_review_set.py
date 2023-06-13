@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import data_set
 
+@dataclass
 class EdiscoveryReviewSet(data_set.DataSet):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EdiscoveryReviewSet and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.ediscoveryReviewSet"
-        # Represents files within the review set.
-        self._files: Optional[List[ediscovery_file.EdiscoveryFile]] = None
-        # Represents queries within the review set.
-        self._queries: Optional[List[ediscovery_review_set_query.EdiscoveryReviewSetQuery]] = None
+    odata_type = "#microsoft.graph.security.ediscoveryReviewSet"
+    # Represents files within the review set.
+    files: Optional[List[ediscovery_file.EdiscoveryFile]] = None
+    # Represents queries within the review set.
+    queries: Optional[List[ediscovery_review_set_query.EdiscoveryReviewSetQuery]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EdiscoveryReviewSet:
@@ -30,23 +27,6 @@ class EdiscoveryReviewSet(data_set.DataSet):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return EdiscoveryReviewSet()
-    
-    @property
-    def files(self,) -> Optional[List[ediscovery_file.EdiscoveryFile]]:
-        """
-        Gets the files property value. Represents files within the review set.
-        Returns: Optional[List[ediscovery_file.EdiscoveryFile]]
-        """
-        return self._files
-    
-    @files.setter
-    def files(self,value: Optional[List[ediscovery_file.EdiscoveryFile]] = None) -> None:
-        """
-        Sets the files property value. Represents files within the review set.
-        Args:
-            value: Value to set for the files property.
-        """
-        self._files = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -62,23 +42,6 @@ class EdiscoveryReviewSet(data_set.DataSet):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def queries(self,) -> Optional[List[ediscovery_review_set_query.EdiscoveryReviewSetQuery]]:
-        """
-        Gets the queries property value. Represents queries within the review set.
-        Returns: Optional[List[ediscovery_review_set_query.EdiscoveryReviewSetQuery]]
-        """
-        return self._queries
-    
-    @queries.setter
-    def queries(self,value: Optional[List[ediscovery_review_set_query.EdiscoveryReviewSetQuery]] = None) -> None:
-        """
-        Sets the queries property value. Represents queries within the review set.
-        Args:
-            value: Value to set for the queries property.
-        """
-        self._queries = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

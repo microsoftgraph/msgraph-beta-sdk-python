@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -54,7 +54,7 @@ class RoleManagementPoliciesRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleManagementPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_policy_collection_response.UnifiedRoleManagementPolicyCollectionResponse]:
         """
-        Get role management policies and their details. This API only applies to Azure AD roles. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
+        Get the details of the policies in PIM that can be applied to Azure AD roles or group membership or ownership. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_management_policy_collection_response.UnifiedRoleManagementPolicyCollectionResponse]
@@ -101,7 +101,7 @@ class RoleManagementPoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleManagementPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get role management policies and their details. This API only applies to Azure AD roles. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
+        Get the details of the policies in PIM that can be applied to Azure AD roles or group membership or ownership. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class RoleManagementPoliciesRequestBuilder():
     @dataclass
     class RoleManagementPoliciesRequestBuilderGetQueryParameters():
         """
-        Get role management policies and their details. This API only applies to Azure AD roles. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
+        Get the details of the policies in PIM that can be applied to Azure AD roles or group membership or ownership. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

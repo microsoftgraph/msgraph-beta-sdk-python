@@ -1,44 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import subject_alternative_name_type
 
+@dataclass
 class CustomSubjectAlternativeName(AdditionalDataHolder, Parsable):
     """
     Custom Subject Alternative Name definition
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customSubjectAlternativeName and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Custom SAN Name
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Subject Alternative Name Options.
-        self._san_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Custom SAN Name
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Subject Alternative Name Options.
+    san_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomSubjectAlternativeName:
@@ -65,57 +46,6 @@ class CustomSubjectAlternativeName(AdditionalDataHolder, Parsable):
             "sanType": lambda n : setattr(self, 'san_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
         }
         return fields
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. Custom SAN Name
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. Custom SAN Name
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def san_type(self,) -> Optional[subject_alternative_name_type.SubjectAlternativeNameType]:
-        """
-        Gets the sanType property value. Subject Alternative Name Options.
-        Returns: Optional[subject_alternative_name_type.SubjectAlternativeNameType]
-        """
-        return self._san_type
-    
-    @san_type.setter
-    def san_type(self,value: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None) -> None:
-        """
-        Sets the sanType property value. Subject Alternative Name Options.
-        Args:
-            value: Value to set for the san_type property.
-        """
-        self._san_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

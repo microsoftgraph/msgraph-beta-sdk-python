@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import android_device_compliance_local_action_base
 
+@dataclass
 class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(android_device_compliance_local_action_base.AndroidDeviceComplianceLocalActionBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceComplianceLocalActionLockDeviceWithPasscode and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode"
-        # Passcode to reset to Android device. This property is read-only.
-        self._passcode: Optional[str] = None
-        # Number of sign in failures before wiping device, the value can be 4-11. Valid values 4 to 11
-        self._passcode_sign_in_failure_count_before_wipe: Optional[int] = None
+    odata_type = "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode"
+    # Passcode to reset to Android device. This property is read-only.
+    passcode: Optional[str] = None
+    # Number of sign in failures before wiping device, the value can be 4-11. Valid values 4 to 11
+    passcode_sign_in_failure_count_before_wipe: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceComplianceLocalActionLockDeviceWithPasscode:
@@ -45,40 +42,6 @@ class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(android_device_co
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def passcode(self,) -> Optional[str]:
-        """
-        Gets the passcode property value. Passcode to reset to Android device. This property is read-only.
-        Returns: Optional[str]
-        """
-        return self._passcode
-    
-    @passcode.setter
-    def passcode(self,value: Optional[str] = None) -> None:
-        """
-        Sets the passcode property value. Passcode to reset to Android device. This property is read-only.
-        Args:
-            value: Value to set for the passcode property.
-        """
-        self._passcode = value
-    
-    @property
-    def passcode_sign_in_failure_count_before_wipe(self,) -> Optional[int]:
-        """
-        Gets the passcodeSignInFailureCountBeforeWipe property value. Number of sign in failures before wiping device, the value can be 4-11. Valid values 4 to 11
-        Returns: Optional[int]
-        """
-        return self._passcode_sign_in_failure_count_before_wipe
-    
-    @passcode_sign_in_failure_count_before_wipe.setter
-    def passcode_sign_in_failure_count_before_wipe(self,value: Optional[int] = None) -> None:
-        """
-        Sets the passcodeSignInFailureCountBeforeWipe property value. Number of sign in failures before wiping device, the value can be 4-11. Valid values 4 to 11
-        Args:
-            value: Value to set for the passcode_sign_in_failure_count_before_wipe property.
-        """
-        self._passcode_sign_in_failure_count_before_wipe = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

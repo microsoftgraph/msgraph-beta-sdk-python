@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AppleDeviceFeaturesConfigurationBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
-        # An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
-        self._air_print_destinations: Optional[List[air_print_destination.AirPrintDestination]] = None
-    
-    @property
-    def air_print_destinations(self,) -> Optional[List[air_print_destination.AirPrintDestination]]:
-        """
-        Gets the airPrintDestinations property value. An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[air_print_destination.AirPrintDestination]]
-        """
-        return self._air_print_destinations
-    
-    @air_print_destinations.setter
-    def air_print_destinations(self,value: Optional[List[air_print_destination.AirPrintDestination]] = None) -> None:
-        """
-        Sets the airPrintDestinations property value. An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the air_print_destinations property.
-        """
-        self._air_print_destinations = value
+    odata_type = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
+    # An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
+    air_print_destinations: Optional[List[air_print_destination.AirPrintDestination]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleDeviceFeaturesConfigurationBase:

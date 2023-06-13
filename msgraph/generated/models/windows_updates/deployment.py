@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,77 +10,22 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class Deployment(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deployment and sets the default values.
-        """
-        super().__init__()
-        # Specifies the audience to which content is deployed.
-        self._audience: Optional[deployment_audience.DeploymentAudience] = None
-        # Specifies what content to deploy. Cannot be changed. Returned by default.
-        self._content: Optional[deployable_content.DeployableContent] = None
-        # The date and time the deployment was created. Returned by default. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # The date and time the deployment was last modified. Returned by default. Read-only.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Settings specified on the specific deployment governing how to deploy content. Returned by default.
-        self._settings: Optional[deployment_settings.DeploymentSettings] = None
-        # Execution status of the deployment. Returned by default.
-        self._state: Optional[deployment_state.DeploymentState] = None
-    
-    @property
-    def audience(self,) -> Optional[deployment_audience.DeploymentAudience]:
-        """
-        Gets the audience property value. Specifies the audience to which content is deployed.
-        Returns: Optional[deployment_audience.DeploymentAudience]
-        """
-        return self._audience
-    
-    @audience.setter
-    def audience(self,value: Optional[deployment_audience.DeploymentAudience] = None) -> None:
-        """
-        Sets the audience property value. Specifies the audience to which content is deployed.
-        Args:
-            value: Value to set for the audience property.
-        """
-        self._audience = value
-    
-    @property
-    def content(self,) -> Optional[deployable_content.DeployableContent]:
-        """
-        Gets the content property value. Specifies what content to deploy. Cannot be changed. Returned by default.
-        Returns: Optional[deployable_content.DeployableContent]
-        """
-        return self._content
-    
-    @content.setter
-    def content(self,value: Optional[deployable_content.DeployableContent] = None) -> None:
-        """
-        Sets the content property value. Specifies what content to deploy. Cannot be changed. Returned by default.
-        Args:
-            value: Value to set for the content property.
-        """
-        self._content = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time the deployment was created. Returned by default. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time the deployment was created. Returned by default. Read-only.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # Specifies the audience to which content is deployed.
+    audience: Optional[deployment_audience.DeploymentAudience] = None
+    # Specifies what content to deploy. Cannot be changed. Returned by default.
+    content: Optional[deployable_content.DeployableContent] = None
+    # The date and time the deployment was created. Returned by default. Read-only.
+    created_date_time: Optional[datetime] = None
+    # The date and time the deployment was last modified. Returned by default. Read-only.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Settings specified on the specific deployment governing how to deploy content. Returned by default.
+    settings: Optional[deployment_settings.DeploymentSettings] = None
+    # Execution status of the deployment. Returned by default.
+    state: Optional[deployment_state.DeploymentState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Deployment:
@@ -113,23 +59,6 @@ class Deployment(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date and time the deployment was last modified. Returned by default. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date and time the deployment was last modified. Returned by default. Read-only.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -145,39 +74,5 @@ class Deployment(entity.Entity):
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_object_value("settings", self.settings)
         writer.write_object_value("state", self.state)
-    
-    @property
-    def settings(self,) -> Optional[deployment_settings.DeploymentSettings]:
-        """
-        Gets the settings property value. Settings specified on the specific deployment governing how to deploy content. Returned by default.
-        Returns: Optional[deployment_settings.DeploymentSettings]
-        """
-        return self._settings
-    
-    @settings.setter
-    def settings(self,value: Optional[deployment_settings.DeploymentSettings] = None) -> None:
-        """
-        Sets the settings property value. Settings specified on the specific deployment governing how to deploy content. Returned by default.
-        Args:
-            value: Value to set for the settings property.
-        """
-        self._settings = value
-    
-    @property
-    def state(self,) -> Optional[deployment_state.DeploymentState]:
-        """
-        Gets the state property value. Execution status of the deployment. Returned by default.
-        Returns: Optional[deployment_state.DeploymentState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[deployment_state.DeploymentState] = None) -> None:
-        """
-        Sets the state property value. Execution status of the deployment. Returned by default.
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 

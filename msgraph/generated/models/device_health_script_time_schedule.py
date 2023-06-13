@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,17 +9,13 @@ if TYPE_CHECKING:
 
 from . import device_health_script_run_schedule
 
+@dataclass
 class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHealthScriptRunSchedule):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceHealthScriptTimeSchedule and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceHealthScriptTimeSchedule"
-        # At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
-        self._time: Optional[time] = None
-        # Indicate if the time is Utc or client local time.
-        self._use_utc: Optional[bool] = None
+    odata_type = "#microsoft.graph.deviceHealthScriptTimeSchedule"
+    # At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
+    time: Optional[time] = None
+    # Indicate if the time is Utc or client local time.
+    use_utc: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptTimeSchedule:
@@ -69,39 +66,5 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         super().serialize(writer)
         writer.write_time_value("time", self.time)
         writer.write_bool_value("useUtc", self.use_utc)
-    
-    @property
-    def time(self,) -> Optional[time]:
-        """
-        Gets the time property value. At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
-        Returns: Optional[time]
-        """
-        return self._time
-    
-    @time.setter
-    def time(self,value: Optional[time] = None) -> None:
-        """
-        Sets the time property value. At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
-        Args:
-            value: Value to set for the time property.
-        """
-        self._time = value
-    
-    @property
-    def use_utc(self,) -> Optional[bool]:
-        """
-        Gets the useUtc property value. Indicate if the time is Utc or client local time.
-        Returns: Optional[bool]
-        """
-        return self._use_utc
-    
-    @use_utc.setter
-    def use_utc(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the useUtc property value. Indicate if the time is Utc or client local time.
-        Args:
-            value: Value to set for the use_utc property.
-        """
-        self._use_utc = value
     
 

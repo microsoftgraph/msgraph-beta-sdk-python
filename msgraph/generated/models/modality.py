@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Modality(Enum):
+class Modality(str, Enum):
     Unknown = "unknown",
     Audio = "audio",
     Video = "video",

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import device_management_setting_definition
 
+@dataclass
 class DeviceManagementComplexSettingDefinition(device_management_setting_definition.DeviceManagementSettingDefinition):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementComplexSettingDefinition and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The definitions of each property of the complex setting
-        self._property_definition_ids: Optional[List[str]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The definitions of each property of the complex setting
+    property_definition_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementComplexSettingDefinition:
@@ -43,23 +40,6 @@ class DeviceManagementComplexSettingDefinition(device_management_setting_definit
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def property_definition_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the propertyDefinitionIds property value. The definitions of each property of the complex setting
-        Returns: Optional[List[str]]
-        """
-        return self._property_definition_ids
-    
-    @property_definition_ids.setter
-    def property_definition_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the propertyDefinitionIds property value. The definitions of each property of the complex setting
-        Args:
-            value: Value to set for the property_definition_ids property.
-        """
-        self._property_definition_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

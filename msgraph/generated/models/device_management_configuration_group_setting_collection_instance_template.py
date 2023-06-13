@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,34 +8,13 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstanceTemplate"
-        # Linked policy may append values which are not present in the template.
-        self._allow_unmanaged_values: Optional[bool] = None
-        # Group Setting Collection Value Template
-        self._group_setting_collection_value_template: Optional[List[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]] = None
-    
-    @property
-    def allow_unmanaged_values(self,) -> Optional[bool]:
-        """
-        Gets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
-        Returns: Optional[bool]
-        """
-        return self._allow_unmanaged_values
-    
-    @allow_unmanaged_values.setter
-    def allow_unmanaged_values(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
-        Args:
-            value: Value to set for the allow_unmanaged_values property.
-        """
-        self._allow_unmanaged_values = value
+    odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstanceTemplate"
+    # Linked policy may append values which are not present in the template.
+    allow_unmanaged_values: Optional[bool] = None
+    # Group Setting Collection Value Template
+    group_setting_collection_value_template: Optional[List[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate:
@@ -62,23 +42,6 @@ class DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate(device
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group_setting_collection_value_template(self,) -> Optional[List[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]]:
-        """
-        Gets the groupSettingCollectionValueTemplate property value. Group Setting Collection Value Template
-        Returns: Optional[List[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]]
-        """
-        return self._group_setting_collection_value_template
-    
-    @group_setting_collection_value_template.setter
-    def group_setting_collection_value_template(self,value: Optional[List[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]] = None) -> None:
-        """
-        Sets the groupSettingCollectionValueTemplate property value. Group Setting Collection Value Template
-        Args:
-            value: Value to set for the group_setting_collection_value_template property.
-        """
-        self._group_setting_collection_value_template = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

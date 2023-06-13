@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,88 +9,33 @@ if TYPE_CHECKING:
 
 from . import mobile_app
 
+@dataclass
 class MacOsVppApp(mobile_app.MobileApp):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOsVppApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOsVppApp"
-        # The store URL.
-        self._app_store_url: Optional[str] = None
-        # The licenses assigned to this app.
-        self._assigned_licenses: Optional[List[mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense]] = None
-        # The Identity Name.
-        self._bundle_id: Optional[str] = None
-        # The supported License Type.
-        self._licensing_type: Optional[vpp_licensing_type.VppLicensingType] = None
-        # The VPP application release date and time.
-        self._release_date_time: Optional[datetime] = None
-        # Results of revoke license actions on this app.
-        self._revoke_license_action_results: Optional[List[mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult]] = None
-        # The total number of VPP licenses.
-        self._total_license_count: Optional[int] = None
-        # The number of VPP licenses in use.
-        self._used_license_count: Optional[int] = None
-        # Possible types of an Apple Volume Purchase Program token.
-        self._vpp_token_account_type: Optional[vpp_token_account_type.VppTokenAccountType] = None
-        # The Apple Id associated with the given Apple Volume Purchase Program Token.
-        self._vpp_token_apple_id: Optional[str] = None
-        # Identifier of the VPP token associated with this app.
-        self._vpp_token_id: Optional[str] = None
-        # The organization associated with the Apple Volume Purchase Program Token
-        self._vpp_token_organization_name: Optional[str] = None
-    
-    @property
-    def app_store_url(self,) -> Optional[str]:
-        """
-        Gets the appStoreUrl property value. The store URL.
-        Returns: Optional[str]
-        """
-        return self._app_store_url
-    
-    @app_store_url.setter
-    def app_store_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appStoreUrl property value. The store URL.
-        Args:
-            value: Value to set for the app_store_url property.
-        """
-        self._app_store_url = value
-    
-    @property
-    def assigned_licenses(self,) -> Optional[List[mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense]]:
-        """
-        Gets the assignedLicenses property value. The licenses assigned to this app.
-        Returns: Optional[List[mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense]]
-        """
-        return self._assigned_licenses
-    
-    @assigned_licenses.setter
-    def assigned_licenses(self,value: Optional[List[mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense]] = None) -> None:
-        """
-        Sets the assignedLicenses property value. The licenses assigned to this app.
-        Args:
-            value: Value to set for the assigned_licenses property.
-        """
-        self._assigned_licenses = value
-    
-    @property
-    def bundle_id(self,) -> Optional[str]:
-        """
-        Gets the bundleId property value. The Identity Name.
-        Returns: Optional[str]
-        """
-        return self._bundle_id
-    
-    @bundle_id.setter
-    def bundle_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the bundleId property value. The Identity Name.
-        Args:
-            value: Value to set for the bundle_id property.
-        """
-        self._bundle_id = value
+    odata_type = "#microsoft.graph.macOsVppApp"
+    # The store URL.
+    app_store_url: Optional[str] = None
+    # The licenses assigned to this app.
+    assigned_licenses: Optional[List[mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense]] = None
+    # The Identity Name.
+    bundle_id: Optional[str] = None
+    # The supported License Type.
+    licensing_type: Optional[vpp_licensing_type.VppLicensingType] = None
+    # The VPP application release date and time.
+    release_date_time: Optional[datetime] = None
+    # Results of revoke license actions on this app.
+    revoke_license_action_results: Optional[List[mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult]] = None
+    # The total number of VPP licenses.
+    total_license_count: Optional[int] = None
+    # The number of VPP licenses in use.
+    used_license_count: Optional[int] = None
+    # Possible types of an Apple Volume Purchase Program token.
+    vpp_token_account_type: Optional[vpp_token_account_type.VppTokenAccountType] = None
+    # The Apple Id associated with the given Apple Volume Purchase Program Token.
+    vpp_token_apple_id: Optional[str] = None
+    # Identifier of the VPP token associated with this app.
+    vpp_token_id: Optional[str] = None
+    # The organization associated with the Apple Volume Purchase Program Token
+    vpp_token_organization_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOsVppApp:
@@ -128,57 +74,6 @@ class MacOsVppApp(mobile_app.MobileApp):
         fields.update(super_fields)
         return fields
     
-    @property
-    def licensing_type(self,) -> Optional[vpp_licensing_type.VppLicensingType]:
-        """
-        Gets the licensingType property value. The supported License Type.
-        Returns: Optional[vpp_licensing_type.VppLicensingType]
-        """
-        return self._licensing_type
-    
-    @licensing_type.setter
-    def licensing_type(self,value: Optional[vpp_licensing_type.VppLicensingType] = None) -> None:
-        """
-        Sets the licensingType property value. The supported License Type.
-        Args:
-            value: Value to set for the licensing_type property.
-        """
-        self._licensing_type = value
-    
-    @property
-    def release_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the releaseDateTime property value. The VPP application release date and time.
-        Returns: Optional[datetime]
-        """
-        return self._release_date_time
-    
-    @release_date_time.setter
-    def release_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the releaseDateTime property value. The VPP application release date and time.
-        Args:
-            value: Value to set for the release_date_time property.
-        """
-        self._release_date_time = value
-    
-    @property
-    def revoke_license_action_results(self,) -> Optional[List[mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult]]:
-        """
-        Gets the revokeLicenseActionResults property value. Results of revoke license actions on this app.
-        Returns: Optional[List[mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult]]
-        """
-        return self._revoke_license_action_results
-    
-    @revoke_license_action_results.setter
-    def revoke_license_action_results(self,value: Optional[List[mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult]] = None) -> None:
-        """
-        Sets the revokeLicenseActionResults property value. Results of revoke license actions on this app.
-        Args:
-            value: Value to set for the revoke_license_action_results property.
-        """
-        self._revoke_license_action_results = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -200,107 +95,5 @@ class MacOsVppApp(mobile_app.MobileApp):
         writer.write_str_value("vppTokenAppleId", self.vpp_token_apple_id)
         writer.write_str_value("vppTokenId", self.vpp_token_id)
         writer.write_str_value("vppTokenOrganizationName", self.vpp_token_organization_name)
-    
-    @property
-    def total_license_count(self,) -> Optional[int]:
-        """
-        Gets the totalLicenseCount property value. The total number of VPP licenses.
-        Returns: Optional[int]
-        """
-        return self._total_license_count
-    
-    @total_license_count.setter
-    def total_license_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalLicenseCount property value. The total number of VPP licenses.
-        Args:
-            value: Value to set for the total_license_count property.
-        """
-        self._total_license_count = value
-    
-    @property
-    def used_license_count(self,) -> Optional[int]:
-        """
-        Gets the usedLicenseCount property value. The number of VPP licenses in use.
-        Returns: Optional[int]
-        """
-        return self._used_license_count
-    
-    @used_license_count.setter
-    def used_license_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the usedLicenseCount property value. The number of VPP licenses in use.
-        Args:
-            value: Value to set for the used_license_count property.
-        """
-        self._used_license_count = value
-    
-    @property
-    def vpp_token_account_type(self,) -> Optional[vpp_token_account_type.VppTokenAccountType]:
-        """
-        Gets the vppTokenAccountType property value. Possible types of an Apple Volume Purchase Program token.
-        Returns: Optional[vpp_token_account_type.VppTokenAccountType]
-        """
-        return self._vpp_token_account_type
-    
-    @vpp_token_account_type.setter
-    def vpp_token_account_type(self,value: Optional[vpp_token_account_type.VppTokenAccountType] = None) -> None:
-        """
-        Sets the vppTokenAccountType property value. Possible types of an Apple Volume Purchase Program token.
-        Args:
-            value: Value to set for the vpp_token_account_type property.
-        """
-        self._vpp_token_account_type = value
-    
-    @property
-    def vpp_token_apple_id(self,) -> Optional[str]:
-        """
-        Gets the vppTokenAppleId property value. The Apple Id associated with the given Apple Volume Purchase Program Token.
-        Returns: Optional[str]
-        """
-        return self._vpp_token_apple_id
-    
-    @vpp_token_apple_id.setter
-    def vpp_token_apple_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the vppTokenAppleId property value. The Apple Id associated with the given Apple Volume Purchase Program Token.
-        Args:
-            value: Value to set for the vpp_token_apple_id property.
-        """
-        self._vpp_token_apple_id = value
-    
-    @property
-    def vpp_token_id(self,) -> Optional[str]:
-        """
-        Gets the vppTokenId property value. Identifier of the VPP token associated with this app.
-        Returns: Optional[str]
-        """
-        return self._vpp_token_id
-    
-    @vpp_token_id.setter
-    def vpp_token_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the vppTokenId property value. Identifier of the VPP token associated with this app.
-        Args:
-            value: Value to set for the vpp_token_id property.
-        """
-        self._vpp_token_id = value
-    
-    @property
-    def vpp_token_organization_name(self,) -> Optional[str]:
-        """
-        Gets the vppTokenOrganizationName property value. The organization associated with the Apple Volume Purchase Program Token
-        Returns: Optional[str]
-        """
-        return self._vpp_token_organization_name
-    
-    @vpp_token_organization_name.setter
-    def vpp_token_organization_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the vppTokenOrganizationName property value. The organization associated with the Apple Volume Purchase Program Token
-        Args:
-            value: Value to set for the vpp_token_organization_name property.
-        """
-        self._vpp_token_organization_name = value
     
 

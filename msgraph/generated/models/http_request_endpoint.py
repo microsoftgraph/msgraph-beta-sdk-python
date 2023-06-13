@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import custom_extension_endpoint_configuration
 
+@dataclass
 class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new HttpRequestEndpoint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.httpRequestEndpoint"
-        # The HTTP endpoint that a custom extension calls.
-        self._target_url: Optional[str] = None
+    odata_type = "#microsoft.graph.httpRequestEndpoint"
+    # The HTTP endpoint that a custom extension calls.
+    target_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HttpRequestEndpoint:
@@ -53,22 +50,5 @@ class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensio
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("targetUrl", self.target_url)
-    
-    @property
-    def target_url(self,) -> Optional[str]:
-        """
-        Gets the targetUrl property value. The HTTP endpoint that a custom extension calls.
-        Returns: Optional[str]
-        """
-        return self._target_url
-    
-    @target_url.setter
-    def target_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetUrl property value. The HTTP endpoint that a custom extension calls.
-        Args:
-            value: Value to set for the target_url property.
-        """
-        self._target_url = value
     
 

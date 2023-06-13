@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,37 +8,16 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_definition
 
+@dataclass
 class DeviceManagementConfigurationSettingGroupDefinition(device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSettingGroupDefinition and sets the default values.
-        """
-        super().__init__()
-        # Dependent child settings to this group of settings
-        self._child_ids: Optional[List[str]] = None
-        # List of child settings that depend on this setting
-        self._depended_on_by: Optional[List[device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy]] = None
-        # List of Dependencies for the setting group
-        self._dependent_on: Optional[List[device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def child_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the childIds property value. Dependent child settings to this group of settings
-        Returns: Optional[List[str]]
-        """
-        return self._child_ids
-    
-    @child_ids.setter
-    def child_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the childIds property value. Dependent child settings to this group of settings
-        Args:
-            value: Value to set for the child_ids property.
-        """
-        self._child_ids = value
+    # Dependent child settings to this group of settings
+    child_ids: Optional[List[str]] = None
+    # List of child settings that depend on this setting
+    depended_on_by: Optional[List[device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy]] = None
+    # List of Dependencies for the setting group
+    dependent_on: Optional[List[device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingGroupDefinition:
@@ -57,40 +37,6 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
 
                 return device_management_configuration_setting_group_collection_definition.DeviceManagementConfigurationSettingGroupCollectionDefinition()
         return DeviceManagementConfigurationSettingGroupDefinition()
-    
-    @property
-    def depended_on_by(self,) -> Optional[List[device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy]]:
-        """
-        Gets the dependedOnBy property value. List of child settings that depend on this setting
-        Returns: Optional[List[device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy]]
-        """
-        return self._depended_on_by
-    
-    @depended_on_by.setter
-    def depended_on_by(self,value: Optional[List[device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy]] = None) -> None:
-        """
-        Sets the dependedOnBy property value. List of child settings that depend on this setting
-        Args:
-            value: Value to set for the depended_on_by property.
-        """
-        self._depended_on_by = value
-    
-    @property
-    def dependent_on(self,) -> Optional[List[device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn]]:
-        """
-        Gets the dependentOn property value. List of Dependencies for the setting group
-        Returns: Optional[List[device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn]]
-        """
-        return self._dependent_on
-    
-    @dependent_on.setter
-    def dependent_on(self,value: Optional[List[device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn]] = None) -> None:
-        """
-        Sets the dependentOn property value. List of Dependencies for the setting group
-        Args:
-            value: Value to set for the dependent_on property.
-        """
-        self._dependent_on = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

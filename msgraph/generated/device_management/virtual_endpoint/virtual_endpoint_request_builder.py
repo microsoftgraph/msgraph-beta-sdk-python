@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import virtual_endpoint
     from ...models.o_data_errors import o_data_error
     from .audit_events import audit_events_request_builder
+    from .bulk_actions import bulk_actions_request_builder
     from .cloud_p_cs import cloud_p_cs_request_builder
     from .cross_cloud_government_organization_mapping import cross_cloud_government_organization_mapping_request_builder
     from .device_images import device_images_request_builder
@@ -180,6 +181,15 @@ class VirtualEndpointRequestBuilder():
         from .audit_events import audit_events_request_builder
 
         return audit_events_request_builder.AuditEventsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def bulk_actions(self) -> bulk_actions_request_builder.BulkActionsRequestBuilder:
+        """
+        Provides operations to manage the bulkActions property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .bulk_actions import bulk_actions_request_builder
+
+        return bulk_actions_request_builder.BulkActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def cloud_p_cs(self) -> cloud_p_cs_request_builder.CloudPCsRequestBuilder:

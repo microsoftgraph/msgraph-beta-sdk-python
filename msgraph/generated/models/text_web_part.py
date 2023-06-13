@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import web_part
 
+@dataclass
 class TextWebPart(web_part.WebPart):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TextWebPart and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.textWebPart"
-        # The HTML string in text web part.
-        self._inner_html: Optional[str] = None
+    odata_type = "#microsoft.graph.textWebPart"
+    # The HTML string in text web part.
+    inner_html: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TextWebPart:
@@ -42,23 +39,6 @@ class TextWebPart(web_part.WebPart):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def inner_html(self,) -> Optional[str]:
-        """
-        Gets the innerHtml property value. The HTML string in text web part.
-        Returns: Optional[str]
-        """
-        return self._inner_html
-    
-    @inner_html.setter
-    def inner_html(self,value: Optional[str] = None) -> None:
-        """
-        Sets the innerHtml property value. The HTML string in text web part.
-        Args:
-            value: Value to set for the inner_html property.
-        """
-        self._inner_html = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

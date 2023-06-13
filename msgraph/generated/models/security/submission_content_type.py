@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SubmissionContentType(Enum):
+class SubmissionContentType(str, Enum):
     Email = "email",
     Url = "url",
     File = "file",

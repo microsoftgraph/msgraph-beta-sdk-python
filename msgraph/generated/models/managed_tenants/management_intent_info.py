@@ -1,43 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import management_template_detailed_info
 
+@dataclass
 class ManagementIntentInfo(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managementIntentInfo and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The display name for the management intent. Optional. Read-only.
-        self._management_intent_display_name: Optional[str] = None
-        # The identifier for the management intent. Required. Read-only.
-        self._management_intent_id: Optional[str] = None
-        # The collection of management template information associated with the management intent. Optional. Read-only.
-        self._management_templates: Optional[List[management_template_detailed_info.ManagementTemplateDetailedInfo]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The display name for the management intent. Optional. Read-only.
+    management_intent_display_name: Optional[str] = None
+    # The identifier for the management intent. Required. Read-only.
+    management_intent_id: Optional[str] = None
+    # The collection of management template information associated with the management intent. Optional. Read-only.
+    management_templates: Optional[List[management_template_detailed_info.ManagementTemplateDetailedInfo]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementIntentInfo:
@@ -65,74 +46,6 @@ class ManagementIntentInfo(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def management_intent_display_name(self,) -> Optional[str]:
-        """
-        Gets the managementIntentDisplayName property value. The display name for the management intent. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._management_intent_display_name
-    
-    @management_intent_display_name.setter
-    def management_intent_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the managementIntentDisplayName property value. The display name for the management intent. Optional. Read-only.
-        Args:
-            value: Value to set for the management_intent_display_name property.
-        """
-        self._management_intent_display_name = value
-    
-    @property
-    def management_intent_id(self,) -> Optional[str]:
-        """
-        Gets the managementIntentId property value. The identifier for the management intent. Required. Read-only.
-        Returns: Optional[str]
-        """
-        return self._management_intent_id
-    
-    @management_intent_id.setter
-    def management_intent_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the managementIntentId property value. The identifier for the management intent. Required. Read-only.
-        Args:
-            value: Value to set for the management_intent_id property.
-        """
-        self._management_intent_id = value
-    
-    @property
-    def management_templates(self,) -> Optional[List[management_template_detailed_info.ManagementTemplateDetailedInfo]]:
-        """
-        Gets the managementTemplates property value. The collection of management template information associated with the management intent. Optional. Read-only.
-        Returns: Optional[List[management_template_detailed_info.ManagementTemplateDetailedInfo]]
-        """
-        return self._management_templates
-    
-    @management_templates.setter
-    def management_templates(self,value: Optional[List[management_template_detailed_info.ManagementTemplateDetailedInfo]] = None) -> None:
-        """
-        Sets the managementTemplates property value. The collection of management template information associated with the management intent. Optional. Read-only.
-        Args:
-            value: Value to set for the management_templates property.
-        """
-        self._management_templates = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

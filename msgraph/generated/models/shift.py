@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,23 +8,19 @@ if TYPE_CHECKING:
 
 from . import change_tracked_entity
 
+@dataclass
 class Shift(change_tracked_entity.ChangeTrackedEntity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Shift and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.shift"
-        # The draft version of this shift that is viewable by managers. Required.
-        self._draft_shift: Optional[shift_item.ShiftItem] = None
-        # The isStagedForDeletion property
-        self._is_staged_for_deletion: Optional[bool] = None
-        # The schedulingGroupId property
-        self._scheduling_group_id: Optional[str] = None
-        # The sharedShift property
-        self._shared_shift: Optional[shift_item.ShiftItem] = None
-        # The userId property
-        self._user_id: Optional[str] = None
+    odata_type = "#microsoft.graph.shift"
+    # The draft version of this shift that is viewable by managers. Required.
+    draft_shift: Optional[shift_item.ShiftItem] = None
+    # The isStagedForDeletion property
+    is_staged_for_deletion: Optional[bool] = None
+    # The schedulingGroupId property
+    scheduling_group_id: Optional[str] = None
+    # The sharedShift property
+    shared_shift: Optional[shift_item.ShiftItem] = None
+    # The userId property
+    user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Shift:
@@ -36,23 +33,6 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Shift()
-    
-    @property
-    def draft_shift(self,) -> Optional[shift_item.ShiftItem]:
-        """
-        Gets the draftShift property value. The draft version of this shift that is viewable by managers. Required.
-        Returns: Optional[shift_item.ShiftItem]
-        """
-        return self._draft_shift
-    
-    @draft_shift.setter
-    def draft_shift(self,value: Optional[shift_item.ShiftItem] = None) -> None:
-        """
-        Sets the draftShift property value. The draft version of this shift that is viewable by managers. Required.
-        Args:
-            value: Value to set for the draft_shift property.
-        """
-        self._draft_shift = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -72,40 +52,6 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_staged_for_deletion(self,) -> Optional[bool]:
-        """
-        Gets the isStagedForDeletion property value. The isStagedForDeletion property
-        Returns: Optional[bool]
-        """
-        return self._is_staged_for_deletion
-    
-    @is_staged_for_deletion.setter
-    def is_staged_for_deletion(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isStagedForDeletion property value. The isStagedForDeletion property
-        Args:
-            value: Value to set for the is_staged_for_deletion property.
-        """
-        self._is_staged_for_deletion = value
-    
-    @property
-    def scheduling_group_id(self,) -> Optional[str]:
-        """
-        Gets the schedulingGroupId property value. The schedulingGroupId property
-        Returns: Optional[str]
-        """
-        return self._scheduling_group_id
-    
-    @scheduling_group_id.setter
-    def scheduling_group_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the schedulingGroupId property value. The schedulingGroupId property
-        Args:
-            value: Value to set for the scheduling_group_id property.
-        """
-        self._scheduling_group_id = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -120,39 +66,5 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         writer.write_str_value("schedulingGroupId", self.scheduling_group_id)
         writer.write_object_value("sharedShift", self.shared_shift)
         writer.write_str_value("userId", self.user_id)
-    
-    @property
-    def shared_shift(self,) -> Optional[shift_item.ShiftItem]:
-        """
-        Gets the sharedShift property value. The sharedShift property
-        Returns: Optional[shift_item.ShiftItem]
-        """
-        return self._shared_shift
-    
-    @shared_shift.setter
-    def shared_shift(self,value: Optional[shift_item.ShiftItem] = None) -> None:
-        """
-        Sets the sharedShift property value. The sharedShift property
-        Args:
-            value: Value to set for the shared_shift property.
-        """
-        self._shared_shift = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The userId property
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The userId property
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
     
 

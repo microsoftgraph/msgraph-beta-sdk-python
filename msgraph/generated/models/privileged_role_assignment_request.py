@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,55 +9,34 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PrivilegedRoleAssignmentRequest(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PrivilegedRoleAssignmentRequest and sets the default values.
-        """
-        super().__init__()
-        # The assignmentState property
-        self._assignment_state: Optional[str] = None
-        # The duration property
-        self._duration: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The reason property
-        self._reason: Optional[str] = None
-        # The requestedDateTime property
-        self._requested_date_time: Optional[datetime] = None
-        # The roleId property
-        self._role_id: Optional[str] = None
-        # The roleInfo property
-        self._role_info: Optional[privileged_role.PrivilegedRole] = None
-        # The schedule property
-        self._schedule: Optional[governance_schedule.GovernanceSchedule] = None
-        # The status property
-        self._status: Optional[str] = None
-        # The ticketNumber property
-        self._ticket_number: Optional[str] = None
-        # The ticketSystem property
-        self._ticket_system: Optional[str] = None
-        # The type property
-        self._type: Optional[str] = None
-        # The userId property
-        self._user_id: Optional[str] = None
-    
-    @property
-    def assignment_state(self,) -> Optional[str]:
-        """
-        Gets the assignmentState property value. The assignmentState property
-        Returns: Optional[str]
-        """
-        return self._assignment_state
-    
-    @assignment_state.setter
-    def assignment_state(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assignmentState property value. The assignmentState property
-        Args:
-            value: Value to set for the assignment_state property.
-        """
-        self._assignment_state = value
+    # The assignmentState property
+    assignment_state: Optional[str] = None
+    # The duration property
+    duration: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The reason property
+    reason: Optional[str] = None
+    # The requestedDateTime property
+    requested_date_time: Optional[datetime] = None
+    # The roleId property
+    role_id: Optional[str] = None
+    # The roleInfo property
+    role_info: Optional[privileged_role.PrivilegedRole] = None
+    # The schedule property
+    schedule: Optional[governance_schedule.GovernanceSchedule] = None
+    # The status property
+    status: Optional[str] = None
+    # The ticketNumber property
+    ticket_number: Optional[str] = None
+    # The ticketSystem property
+    ticket_system: Optional[str] = None
+    # The type property
+    type: Optional[str] = None
+    # The userId property
+    user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedRoleAssignmentRequest:
@@ -69,23 +49,6 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PrivilegedRoleAssignmentRequest()
-    
-    @property
-    def duration(self,) -> Optional[str]:
-        """
-        Gets the duration property value. The duration property
-        Returns: Optional[str]
-        """
-        return self._duration
-    
-    @duration.setter
-    def duration(self,value: Optional[str] = None) -> None:
-        """
-        Sets the duration property value. The duration property
-        Args:
-            value: Value to set for the duration property.
-        """
-        self._duration = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -112,91 +75,6 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def reason(self,) -> Optional[str]:
-        """
-        Gets the reason property value. The reason property
-        Returns: Optional[str]
-        """
-        return self._reason
-    
-    @reason.setter
-    def reason(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reason property value. The reason property
-        Args:
-            value: Value to set for the reason property.
-        """
-        self._reason = value
-    
-    @property
-    def requested_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the requestedDateTime property value. The requestedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._requested_date_time
-    
-    @requested_date_time.setter
-    def requested_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the requestedDateTime property value. The requestedDateTime property
-        Args:
-            value: Value to set for the requested_date_time property.
-        """
-        self._requested_date_time = value
-    
-    @property
-    def role_id(self,) -> Optional[str]:
-        """
-        Gets the roleId property value. The roleId property
-        Returns: Optional[str]
-        """
-        return self._role_id
-    
-    @role_id.setter
-    def role_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the roleId property value. The roleId property
-        Args:
-            value: Value to set for the role_id property.
-        """
-        self._role_id = value
-    
-    @property
-    def role_info(self,) -> Optional[privileged_role.PrivilegedRole]:
-        """
-        Gets the roleInfo property value. The roleInfo property
-        Returns: Optional[privileged_role.PrivilegedRole]
-        """
-        return self._role_info
-    
-    @role_info.setter
-    def role_info(self,value: Optional[privileged_role.PrivilegedRole] = None) -> None:
-        """
-        Sets the roleInfo property value. The roleInfo property
-        Args:
-            value: Value to set for the role_info property.
-        """
-        self._role_info = value
-    
-    @property
-    def schedule(self,) -> Optional[governance_schedule.GovernanceSchedule]:
-        """
-        Gets the schedule property value. The schedule property
-        Returns: Optional[governance_schedule.GovernanceSchedule]
-        """
-        return self._schedule
-    
-    @schedule.setter
-    def schedule(self,value: Optional[governance_schedule.GovernanceSchedule] = None) -> None:
-        """
-        Sets the schedule property value. The schedule property
-        Args:
-            value: Value to set for the schedule property.
-        """
-        self._schedule = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -218,90 +96,5 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         writer.write_str_value("ticketSystem", self.ticket_system)
         writer.write_str_value("type", self.type)
         writer.write_str_value("userId", self.user_id)
-    
-    @property
-    def status(self,) -> Optional[str]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[str]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[str] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def ticket_number(self,) -> Optional[str]:
-        """
-        Gets the ticketNumber property value. The ticketNumber property
-        Returns: Optional[str]
-        """
-        return self._ticket_number
-    
-    @ticket_number.setter
-    def ticket_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ticketNumber property value. The ticketNumber property
-        Args:
-            value: Value to set for the ticket_number property.
-        """
-        self._ticket_number = value
-    
-    @property
-    def ticket_system(self,) -> Optional[str]:
-        """
-        Gets the ticketSystem property value. The ticketSystem property
-        Returns: Optional[str]
-        """
-        return self._ticket_system
-    
-    @ticket_system.setter
-    def ticket_system(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ticketSystem property value. The ticketSystem property
-        Args:
-            value: Value to set for the ticket_system property.
-        """
-        self._ticket_system = value
-    
-    @property
-    def type(self,) -> Optional[str]:
-        """
-        Gets the type property value. The type property
-        Returns: Optional[str]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the type property value. The type property
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The userId property
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The userId property
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,104 +9,32 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PrivilegedApproval(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PrivilegedApproval and sets the default values.
-        """
-        super().__init__()
-        # The approvalDuration property
-        self._approval_duration: Optional[timedelta] = None
-        # The approvalState property
-        self._approval_state: Optional[approval_state.ApprovalState] = None
-        # The approvalType property
-        self._approval_type: Optional[str] = None
-        # The approverReason property
-        self._approver_reason: Optional[str] = None
-        # The endDateTime property
-        self._end_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The request property
-        self._request: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None
-        # The requestorReason property
-        self._requestor_reason: Optional[str] = None
-        # The roleId property
-        self._role_id: Optional[str] = None
-        # The roleInfo property
-        self._role_info: Optional[privileged_role.PrivilegedRole] = None
-        # The startDateTime property
-        self._start_date_time: Optional[datetime] = None
-        # The userId property
-        self._user_id: Optional[str] = None
-    
-    @property
-    def approval_duration(self,) -> Optional[timedelta]:
-        """
-        Gets the approvalDuration property value. The approvalDuration property
-        Returns: Optional[timedelta]
-        """
-        return self._approval_duration
-    
-    @approval_duration.setter
-    def approval_duration(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the approvalDuration property value. The approvalDuration property
-        Args:
-            value: Value to set for the approval_duration property.
-        """
-        self._approval_duration = value
-    
-    @property
-    def approval_state(self,) -> Optional[approval_state.ApprovalState]:
-        """
-        Gets the approvalState property value. The approvalState property
-        Returns: Optional[approval_state.ApprovalState]
-        """
-        return self._approval_state
-    
-    @approval_state.setter
-    def approval_state(self,value: Optional[approval_state.ApprovalState] = None) -> None:
-        """
-        Sets the approvalState property value. The approvalState property
-        Args:
-            value: Value to set for the approval_state property.
-        """
-        self._approval_state = value
-    
-    @property
-    def approval_type(self,) -> Optional[str]:
-        """
-        Gets the approvalType property value. The approvalType property
-        Returns: Optional[str]
-        """
-        return self._approval_type
-    
-    @approval_type.setter
-    def approval_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the approvalType property value. The approvalType property
-        Args:
-            value: Value to set for the approval_type property.
-        """
-        self._approval_type = value
-    
-    @property
-    def approver_reason(self,) -> Optional[str]:
-        """
-        Gets the approverReason property value. The approverReason property
-        Returns: Optional[str]
-        """
-        return self._approver_reason
-    
-    @approver_reason.setter
-    def approver_reason(self,value: Optional[str] = None) -> None:
-        """
-        Sets the approverReason property value. The approverReason property
-        Args:
-            value: Value to set for the approver_reason property.
-        """
-        self._approver_reason = value
+    # The approvalDuration property
+    approval_duration: Optional[timedelta] = None
+    # The approvalState property
+    approval_state: Optional[approval_state.ApprovalState] = None
+    # The approvalType property
+    approval_type: Optional[str] = None
+    # The approverReason property
+    approver_reason: Optional[str] = None
+    # The endDateTime property
+    end_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The request property
+    request: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None
+    # The requestorReason property
+    requestor_reason: Optional[str] = None
+    # The roleId property
+    role_id: Optional[str] = None
+    # The roleInfo property
+    role_info: Optional[privileged_role.PrivilegedRole] = None
+    # The startDateTime property
+    start_date_time: Optional[datetime] = None
+    # The userId property
+    user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedApproval:
@@ -118,23 +47,6 @@ class PrivilegedApproval(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PrivilegedApproval()
-    
-    @property
-    def end_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the endDateTime property value. The endDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._end_date_time
-    
-    @end_date_time.setter
-    def end_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the endDateTime property value. The endDateTime property
-        Args:
-            value: Value to set for the end_date_time property.
-        """
-        self._end_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -160,74 +72,6 @@ class PrivilegedApproval(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def request(self,) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
-        """
-        Gets the request property value. The request property
-        Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]
-        """
-        return self._request
-    
-    @request.setter
-    def request(self,value: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None) -> None:
-        """
-        Sets the request property value. The request property
-        Args:
-            value: Value to set for the request property.
-        """
-        self._request = value
-    
-    @property
-    def requestor_reason(self,) -> Optional[str]:
-        """
-        Gets the requestorReason property value. The requestorReason property
-        Returns: Optional[str]
-        """
-        return self._requestor_reason
-    
-    @requestor_reason.setter
-    def requestor_reason(self,value: Optional[str] = None) -> None:
-        """
-        Sets the requestorReason property value. The requestorReason property
-        Args:
-            value: Value to set for the requestor_reason property.
-        """
-        self._requestor_reason = value
-    
-    @property
-    def role_id(self,) -> Optional[str]:
-        """
-        Gets the roleId property value. The roleId property
-        Returns: Optional[str]
-        """
-        return self._role_id
-    
-    @role_id.setter
-    def role_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the roleId property value. The roleId property
-        Args:
-            value: Value to set for the role_id property.
-        """
-        self._role_id = value
-    
-    @property
-    def role_info(self,) -> Optional[privileged_role.PrivilegedRole]:
-        """
-        Gets the roleInfo property value. The roleInfo property
-        Returns: Optional[privileged_role.PrivilegedRole]
-        """
-        return self._role_info
-    
-    @role_info.setter
-    def role_info(self,value: Optional[privileged_role.PrivilegedRole] = None) -> None:
-        """
-        Sets the roleInfo property value. The roleInfo property
-        Args:
-            value: Value to set for the role_info property.
-        """
-        self._role_info = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -248,39 +92,5 @@ class PrivilegedApproval(entity.Entity):
         writer.write_object_value("roleInfo", self.role_info)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_str_value("userId", self.user_id)
-    
-    @property
-    def start_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the startDateTime property value. The startDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._start_date_time
-    
-    @start_date_time.setter
-    def start_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the startDateTime property value. The startDateTime property
-        Args:
-            value: Value to set for the start_date_time property.
-        """
-        self._start_date_time = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The userId property
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The userId property
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
     
 

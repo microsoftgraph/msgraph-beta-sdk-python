@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,42 +8,21 @@ if TYPE_CHECKING:
 
 from . import privileged_access_schedule
 
+@dataclass
 class PrivilegedAccessGroupEligibilitySchedule(privileged_access_schedule.PrivilegedAccessSchedule):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedAccessGroupEligibilitySchedule and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.privilegedAccessGroupEligibilitySchedule"
-        # The identifier of the membership or ownership eligibility to the group that is governed by PIM. Required. The possible values are: owner, member.
-        self._access_id: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None
-        # References the group that is the scope of the membership or ownership eligibility through PIM for groups. Supports $expand.
-        self._group: Optional[group.Group] = None
-        # The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required.
-        self._group_id: Optional[str] = None
-        # Indicates whether the assignment is derived from a group assignment. It can further imply whether the caller can manage the schedule. Required. The possible values are: direct, group, unknownFutureValue.
-        self._member_type: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType] = None
-        # References the principal that's in the scope of this membership or ownership eligibility request to the group that's governed by PIM. Supports $expand.
-        self._principal: Optional[directory_object.DirectoryObject] = None
-        # The identifier of the principal whose membership or ownership eligibility is granted through PIM for groups. Required.
-        self._principal_id: Optional[str] = None
-    
-    @property
-    def access_id(self,) -> Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]:
-        """
-        Gets the accessId property value. The identifier of the membership or ownership eligibility to the group that is governed by PIM. Required. The possible values are: owner, member.
-        Returns: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]
-        """
-        return self._access_id
-    
-    @access_id.setter
-    def access_id(self,value: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None) -> None:
-        """
-        Sets the accessId property value. The identifier of the membership or ownership eligibility to the group that is governed by PIM. Required. The possible values are: owner, member.
-        Args:
-            value: Value to set for the access_id property.
-        """
-        self._access_id = value
+    odata_type = "#microsoft.graph.privilegedAccessGroupEligibilitySchedule"
+    # The identifier of the membership or ownership eligibility to the group that is governed by PIM. Required. The possible values are: owner, member.
+    access_id: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None
+    # References the group that is the scope of the membership or ownership eligibility through PIM for groups. Supports $expand.
+    group: Optional[group.Group] = None
+    # The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required.
+    group_id: Optional[str] = None
+    # Indicates whether the assignment is derived from a group assignment. It can further imply whether the caller can manage the schedule. Required. The possible values are: direct, group, unknownFutureValue.
+    member_type: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType] = None
+    # References the principal that's in the scope of this membership or ownership eligibility request to the group that's governed by PIM. Supports $expand.
+    principal: Optional[directory_object.DirectoryObject] = None
+    # The identifier of the principal whose membership or ownership eligibility is granted through PIM for groups. Required.
+    principal_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessGroupEligibilitySchedule:
@@ -74,91 +54,6 @@ class PrivilegedAccessGroupEligibilitySchedule(privileged_access_schedule.Privil
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group(self,) -> Optional[group.Group]:
-        """
-        Gets the group property value. References the group that is the scope of the membership or ownership eligibility through PIM for groups. Supports $expand.
-        Returns: Optional[group.Group]
-        """
-        return self._group
-    
-    @group.setter
-    def group(self,value: Optional[group.Group] = None) -> None:
-        """
-        Sets the group property value. References the group that is the scope of the membership or ownership eligibility through PIM for groups. Supports $expand.
-        Args:
-            value: Value to set for the group property.
-        """
-        self._group = value
-    
-    @property
-    def group_id(self,) -> Optional[str]:
-        """
-        Gets the groupId property value. The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required.
-        Returns: Optional[str]
-        """
-        return self._group_id
-    
-    @group_id.setter
-    def group_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the groupId property value. The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required.
-        Args:
-            value: Value to set for the group_id property.
-        """
-        self._group_id = value
-    
-    @property
-    def member_type(self,) -> Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType]:
-        """
-        Gets the memberType property value. Indicates whether the assignment is derived from a group assignment. It can further imply whether the caller can manage the schedule. Required. The possible values are: direct, group, unknownFutureValue.
-        Returns: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType]
-        """
-        return self._member_type
-    
-    @member_type.setter
-    def member_type(self,value: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType] = None) -> None:
-        """
-        Sets the memberType property value. Indicates whether the assignment is derived from a group assignment. It can further imply whether the caller can manage the schedule. Required. The possible values are: direct, group, unknownFutureValue.
-        Args:
-            value: Value to set for the member_type property.
-        """
-        self._member_type = value
-    
-    @property
-    def principal(self,) -> Optional[directory_object.DirectoryObject]:
-        """
-        Gets the principal property value. References the principal that's in the scope of this membership or ownership eligibility request to the group that's governed by PIM. Supports $expand.
-        Returns: Optional[directory_object.DirectoryObject]
-        """
-        return self._principal
-    
-    @principal.setter
-    def principal(self,value: Optional[directory_object.DirectoryObject] = None) -> None:
-        """
-        Sets the principal property value. References the principal that's in the scope of this membership or ownership eligibility request to the group that's governed by PIM. Supports $expand.
-        Args:
-            value: Value to set for the principal property.
-        """
-        self._principal = value
-    
-    @property
-    def principal_id(self,) -> Optional[str]:
-        """
-        Gets the principalId property value. The identifier of the principal whose membership or ownership eligibility is granted through PIM for groups. Required.
-        Returns: Optional[str]
-        """
-        return self._principal_id
-    
-    @principal_id.setter
-    def principal_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the principalId property value. The identifier of the principal whose membership or ownership eligibility is granted through PIM for groups. Required.
-        Args:
-            value: Value to set for the principal_id property.
-        """
-        self._principal_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

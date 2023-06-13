@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,61 +9,23 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class CertificateConnectorDetails(entity.Entity):
     """
     Entity used to retrieve information about Intune Certificate Connectors.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new certificateConnectorDetails and sets the default values.
-        """
-        super().__init__()
-        # Connector name (set during enrollment).
-        self._connector_name: Optional[str] = None
-        # Version of the connector installed.
-        self._connector_version: Optional[str] = None
-        # Date/time when this connector was enrolled.
-        self._enrollment_date_time: Optional[datetime] = None
-        # Date/time when this connector last connected to the service.
-        self._last_checkin_date_time: Optional[datetime] = None
-        # Name of the machine hosting this connector service.
-        self._machine_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def connector_name(self,) -> Optional[str]:
-        """
-        Gets the connectorName property value. Connector name (set during enrollment).
-        Returns: Optional[str]
-        """
-        return self._connector_name
-    
-    @connector_name.setter
-    def connector_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the connectorName property value. Connector name (set during enrollment).
-        Args:
-            value: Value to set for the connector_name property.
-        """
-        self._connector_name = value
-    
-    @property
-    def connector_version(self,) -> Optional[str]:
-        """
-        Gets the connectorVersion property value. Version of the connector installed.
-        Returns: Optional[str]
-        """
-        return self._connector_version
-    
-    @connector_version.setter
-    def connector_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the connectorVersion property value. Version of the connector installed.
-        Args:
-            value: Value to set for the connector_version property.
-        """
-        self._connector_version = value
+    # Connector name (set during enrollment).
+    connector_name: Optional[str] = None
+    # Version of the connector installed.
+    connector_version: Optional[str] = None
+    # Date/time when this connector was enrolled.
+    enrollment_date_time: Optional[datetime] = None
+    # Date/time when this connector last connected to the service.
+    last_checkin_date_time: Optional[datetime] = None
+    # Name of the machine hosting this connector service.
+    machine_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CertificateConnectorDetails:
@@ -75,23 +38,6 @@ class CertificateConnectorDetails(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return CertificateConnectorDetails()
-    
-    @property
-    def enrollment_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the enrollmentDateTime property value. Date/time when this connector was enrolled.
-        Returns: Optional[datetime]
-        """
-        return self._enrollment_date_time
-    
-    @enrollment_date_time.setter
-    def enrollment_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the enrollmentDateTime property value. Date/time when this connector was enrolled.
-        Args:
-            value: Value to set for the enrollment_date_time property.
-        """
-        self._enrollment_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -110,40 +56,6 @@ class CertificateConnectorDetails(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_checkin_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastCheckinDateTime property value. Date/time when this connector last connected to the service.
-        Returns: Optional[datetime]
-        """
-        return self._last_checkin_date_time
-    
-    @last_checkin_date_time.setter
-    def last_checkin_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastCheckinDateTime property value. Date/time when this connector last connected to the service.
-        Args:
-            value: Value to set for the last_checkin_date_time property.
-        """
-        self._last_checkin_date_time = value
-    
-    @property
-    def machine_name(self,) -> Optional[str]:
-        """
-        Gets the machineName property value. Name of the machine hosting this connector service.
-        Returns: Optional[str]
-        """
-        return self._machine_name
-    
-    @machine_name.setter
-    def machine_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the machineName property value. Name of the machine hosting this connector service.
-        Args:
-            value: Value to set for the machine_name property.
-        """
-        self._machine_name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

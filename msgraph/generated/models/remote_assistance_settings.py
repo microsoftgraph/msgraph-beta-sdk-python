@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,54 +8,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class RemoteAssistanceSettings(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new remoteAssistanceSettings and sets the default values.
-        """
-        super().__init__()
-        # Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.
-        self._allow_sessions_to_unenrolled_devices: Optional[bool] = None
-        # Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
-        self._block_chat: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # State of remote assistance for the account
-        self._remote_assistance_state: Optional[remote_assistance_state.RemoteAssistanceState] = None
-    
-    @property
-    def allow_sessions_to_unenrolled_devices(self,) -> Optional[bool]:
-        """
-        Gets the allowSessionsToUnenrolledDevices property value. Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.
-        Returns: Optional[bool]
-        """
-        return self._allow_sessions_to_unenrolled_devices
-    
-    @allow_sessions_to_unenrolled_devices.setter
-    def allow_sessions_to_unenrolled_devices(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowSessionsToUnenrolledDevices property value. Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.
-        Args:
-            value: Value to set for the allow_sessions_to_unenrolled_devices property.
-        """
-        self._allow_sessions_to_unenrolled_devices = value
-    
-    @property
-    def block_chat(self,) -> Optional[bool]:
-        """
-        Gets the blockChat property value. Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
-        Returns: Optional[bool]
-        """
-        return self._block_chat
-    
-    @block_chat.setter
-    def block_chat(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the blockChat property value. Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
-        Args:
-            value: Value to set for the block_chat property.
-        """
-        self._block_chat = value
+    # Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.
+    allow_sessions_to_unenrolled_devices: Optional[bool] = None
+    # Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
+    block_chat: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # State of remote assistance for the account
+    remote_assistance_state: Optional[remote_assistance_state.RemoteAssistanceState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RemoteAssistanceSettings:
@@ -83,23 +46,6 @@ class RemoteAssistanceSettings(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def remote_assistance_state(self,) -> Optional[remote_assistance_state.RemoteAssistanceState]:
-        """
-        Gets the remoteAssistanceState property value. State of remote assistance for the account
-        Returns: Optional[remote_assistance_state.RemoteAssistanceState]
-        """
-        return self._remote_assistance_state
-    
-    @remote_assistance_state.setter
-    def remote_assistance_state(self,value: Optional[remote_assistance_state.RemoteAssistanceState] = None) -> None:
-        """
-        Sets the remoteAssistanceState property value. State of remote assistance for the account
-        Args:
-            value: Value to set for the remote_assistance_state property.
-        """
-        self._remote_assistance_state = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

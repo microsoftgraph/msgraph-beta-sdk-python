@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import unified_role_schedule_base
 
+@dataclass
 class UnifiedRoleEligibilitySchedule(unified_role_schedule_base.UnifiedRoleScheduleBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRoleEligibilitySchedule and sets the default values.
-        """
-        super().__init__()
-        # Membership type of the eligible assignment. It can either be Inherited, Direct, or Group. Supports $filter (eq).
-        self._member_type: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The schedule object of the eligible role assignment request.
-        self._schedule_info: Optional[request_schedule.RequestSchedule] = None
+    # Membership type of the eligible assignment. It can either be Inherited, Direct, or Group. Supports $filter (eq).
+    member_type: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The schedule object of the eligible role assignment request.
+    schedule_info: Optional[request_schedule.RequestSchedule] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleEligibilitySchedule:
@@ -46,40 +43,6 @@ class UnifiedRoleEligibilitySchedule(unified_role_schedule_base.UnifiedRoleSched
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def member_type(self,) -> Optional[str]:
-        """
-        Gets the memberType property value. Membership type of the eligible assignment. It can either be Inherited, Direct, or Group. Supports $filter (eq).
-        Returns: Optional[str]
-        """
-        return self._member_type
-    
-    @member_type.setter
-    def member_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the memberType property value. Membership type of the eligible assignment. It can either be Inherited, Direct, or Group. Supports $filter (eq).
-        Args:
-            value: Value to set for the member_type property.
-        """
-        self._member_type = value
-    
-    @property
-    def schedule_info(self,) -> Optional[request_schedule.RequestSchedule]:
-        """
-        Gets the scheduleInfo property value. The schedule object of the eligible role assignment request.
-        Returns: Optional[request_schedule.RequestSchedule]
-        """
-        return self._schedule_info
-    
-    @schedule_info.setter
-    def schedule_info(self,value: Optional[request_schedule.RequestSchedule] = None) -> None:
-        """
-        Sets the scheduleInfo property value. The schedule object of the eligible role assignment request.
-        Args:
-            value: Value to set for the schedule_info property.
-        """
-        self._schedule_info = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

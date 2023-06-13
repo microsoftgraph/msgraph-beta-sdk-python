@@ -1,97 +1,27 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class IpReferenceData(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ipReferenceData and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The asn property
-        self._asn: Optional[int] = None
-        # The city property
-        self._city: Optional[str] = None
-        # The countryOrRegionCode property
-        self._country_or_region_code: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The organization property
-        self._organization: Optional[str] = None
-        # The state property
-        self._state: Optional[str] = None
-        # The vendor property
-        self._vendor: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def asn(self,) -> Optional[int]:
-        """
-        Gets the asn property value. The asn property
-        Returns: Optional[int]
-        """
-        return self._asn
-    
-    @asn.setter
-    def asn(self,value: Optional[int] = None) -> None:
-        """
-        Sets the asn property value. The asn property
-        Args:
-            value: Value to set for the asn property.
-        """
-        self._asn = value
-    
-    @property
-    def city(self,) -> Optional[str]:
-        """
-        Gets the city property value. The city property
-        Returns: Optional[str]
-        """
-        return self._city
-    
-    @city.setter
-    def city(self,value: Optional[str] = None) -> None:
-        """
-        Sets the city property value. The city property
-        Args:
-            value: Value to set for the city property.
-        """
-        self._city = value
-    
-    @property
-    def country_or_region_code(self,) -> Optional[str]:
-        """
-        Gets the countryOrRegionCode property value. The countryOrRegionCode property
-        Returns: Optional[str]
-        """
-        return self._country_or_region_code
-    
-    @country_or_region_code.setter
-    def country_or_region_code(self,value: Optional[str] = None) -> None:
-        """
-        Sets the countryOrRegionCode property value. The countryOrRegionCode property
-        Args:
-            value: Value to set for the country_or_region_code property.
-        """
-        self._country_or_region_code = value
+    # The asn property
+    asn: Optional[int] = None
+    # The city property
+    city: Optional[str] = None
+    # The countryOrRegionCode property
+    country_or_region_code: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The organization property
+    organization: Optional[str] = None
+    # The state property
+    state: Optional[str] = None
+    # The vendor property
+    vendor: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IpReferenceData:
@@ -121,40 +51,6 @@ class IpReferenceData(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def organization(self,) -> Optional[str]:
-        """
-        Gets the organization property value. The organization property
-        Returns: Optional[str]
-        """
-        return self._organization
-    
-    @organization.setter
-    def organization(self,value: Optional[str] = None) -> None:
-        """
-        Sets the organization property value. The organization property
-        Args:
-            value: Value to set for the organization property.
-        """
-        self._organization = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -171,39 +67,5 @@ class IpReferenceData(AdditionalDataHolder, Parsable):
         writer.write_str_value("state", self.state)
         writer.write_str_value("vendor", self.vendor)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def state(self,) -> Optional[str]:
-        """
-        Gets the state property value. The state property
-        Returns: Optional[str]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[str] = None) -> None:
-        """
-        Sets the state property value. The state property
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
-    
-    @property
-    def vendor(self,) -> Optional[str]:
-        """
-        Gets the vendor property value. The vendor property
-        Returns: Optional[str]
-        """
-        return self._vendor
-    
-    @vendor.setter
-    def vendor(self,value: Optional[str] = None) -> None:
-        """
-        Sets the vendor property value. The vendor property
-        Args:
-            value: Value to set for the vendor property.
-        """
-        self._vendor = value
     
 

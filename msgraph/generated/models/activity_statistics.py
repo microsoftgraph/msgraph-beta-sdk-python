@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import date, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,41 +9,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ActivityStatistics(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new activityStatistics and sets the default values.
-        """
-        super().__init__()
-        # The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
-        self._activity: Optional[analytics_activity_type.AnalyticsActivityType] = None
-        # Total hours spent on the activity. The value is represented in ISO 8601 format for durations.
-        self._duration: Optional[timedelta] = None
-        # Date when the activity ended, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-03' that follows the YYYY-MM-DD format.
-        self._end_date: Optional[date] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Date when the activity started, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-04' that follows the YYYY-MM-DD format.
-        self._start_date: Optional[date] = None
-        # The time zone that the user sets in Microsoft Outlook is used for the computation. For example, the property value could be 'Pacific Standard Time.'
-        self._time_zone_used: Optional[str] = None
-    
-    @property
-    def activity(self,) -> Optional[analytics_activity_type.AnalyticsActivityType]:
-        """
-        Gets the activity property value. The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
-        Returns: Optional[analytics_activity_type.AnalyticsActivityType]
-        """
-        return self._activity
-    
-    @activity.setter
-    def activity(self,value: Optional[analytics_activity_type.AnalyticsActivityType] = None) -> None:
-        """
-        Sets the activity property value. The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
-        Args:
-            value: Value to set for the activity property.
-        """
-        self._activity = value
+    # The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
+    activity: Optional[analytics_activity_type.AnalyticsActivityType] = None
+    # Total hours spent on the activity. The value is represented in ISO 8601 format for durations.
+    duration: Optional[timedelta] = None
+    # Date when the activity ended, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-03' that follows the YYYY-MM-DD format.
+    end_date: Optional[date] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Date when the activity started, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-04' that follows the YYYY-MM-DD format.
+    start_date: Optional[date] = None
+    # The time zone that the user sets in Microsoft Outlook is used for the computation. For example, the property value could be 'Pacific Standard Time.'
+    time_zone_used: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ActivityStatistics:
@@ -79,40 +59,6 @@ class ActivityStatistics(entity.Entity):
                 return meeting_activity_statistics.MeetingActivityStatistics()
         return ActivityStatistics()
     
-    @property
-    def duration(self,) -> Optional[timedelta]:
-        """
-        Gets the duration property value. Total hours spent on the activity. The value is represented in ISO 8601 format for durations.
-        Returns: Optional[timedelta]
-        """
-        return self._duration
-    
-    @duration.setter
-    def duration(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the duration property value. Total hours spent on the activity. The value is represented in ISO 8601 format for durations.
-        Args:
-            value: Value to set for the duration property.
-        """
-        self._duration = value
-    
-    @property
-    def end_date(self,) -> Optional[date]:
-        """
-        Gets the endDate property value. Date when the activity ended, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-03' that follows the YYYY-MM-DD format.
-        Returns: Optional[date]
-        """
-        return self._end_date
-    
-    @end_date.setter
-    def end_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the endDate property value. Date when the activity ended, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-03' that follows the YYYY-MM-DD format.
-        Args:
-            value: Value to set for the end_date property.
-        """
-        self._end_date = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -145,39 +91,5 @@ class ActivityStatistics(entity.Entity):
         writer.write_date_value("endDate", self.end_date)
         writer.write_date_value("startDate", self.start_date)
         writer.write_str_value("timeZoneUsed", self.time_zone_used)
-    
-    @property
-    def start_date(self,) -> Optional[date]:
-        """
-        Gets the startDate property value. Date when the activity started, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-04' that follows the YYYY-MM-DD format.
-        Returns: Optional[date]
-        """
-        return self._start_date
-    
-    @start_date.setter
-    def start_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the startDate property value. Date when the activity started, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-04' that follows the YYYY-MM-DD format.
-        Args:
-            value: Value to set for the start_date property.
-        """
-        self._start_date = value
-    
-    @property
-    def time_zone_used(self,) -> Optional[str]:
-        """
-        Gets the timeZoneUsed property value. The time zone that the user sets in Microsoft Outlook is used for the computation. For example, the property value could be 'Pacific Standard Time.'
-        Returns: Optional[str]
-        """
-        return self._time_zone_used
-    
-    @time_zone_used.setter
-    def time_zone_used(self,value: Optional[str] = None) -> None:
-        """
-        Sets the timeZoneUsed property value. The time zone that the user sets in Microsoft Outlook is used for the computation. For example, the property value could be 'Pacific Standard Time.'
-        Args:
-            value: Value to set for the time_zone_used property.
-        """
-        self._time_zone_used = value
     
 

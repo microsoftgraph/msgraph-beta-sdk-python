@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import teamwork_on_premises_calendar_sync_configuration, teamwork_supported_client
 
+@dataclass
 class TeamworkAccountConfiguration(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkAccountConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The account used to sync the calendar.
-        self._on_premises_calendar_sync_configuration: Optional[teamwork_on_premises_calendar_sync_configuration.TeamworkOnPremisesCalendarSyncConfiguration] = None
-        # The supported client for Teams Rooms devices. The possible values are: unknown, skypeDefaultAndTeams, teamsDefaultAndSkype, skypeOnly, teamsOnly, unknownFutureValue.
-        self._supported_client: Optional[teamwork_supported_client.TeamworkSupportedClient] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The account used to sync the calendar.
+    on_premises_calendar_sync_configuration: Optional[teamwork_on_premises_calendar_sync_configuration.TeamworkOnPremisesCalendarSyncConfiguration] = None
+    # The supported client for Teams Rooms devices. The possible values are: unknown, skypeDefaultAndTeams, teamsDefaultAndSkype, skypeOnly, teamsOnly, unknownFutureValue.
+    supported_client: Optional[teamwork_supported_client.TeamworkSupportedClient] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkAccountConfiguration:
@@ -63,40 +44,6 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def on_premises_calendar_sync_configuration(self,) -> Optional[teamwork_on_premises_calendar_sync_configuration.TeamworkOnPremisesCalendarSyncConfiguration]:
-        """
-        Gets the onPremisesCalendarSyncConfiguration property value. The account used to sync the calendar.
-        Returns: Optional[teamwork_on_premises_calendar_sync_configuration.TeamworkOnPremisesCalendarSyncConfiguration]
-        """
-        return self._on_premises_calendar_sync_configuration
-    
-    @on_premises_calendar_sync_configuration.setter
-    def on_premises_calendar_sync_configuration(self,value: Optional[teamwork_on_premises_calendar_sync_configuration.TeamworkOnPremisesCalendarSyncConfiguration] = None) -> None:
-        """
-        Sets the onPremisesCalendarSyncConfiguration property value. The account used to sync the calendar.
-        Args:
-            value: Value to set for the on_premises_calendar_sync_configuration property.
-        """
-        self._on_premises_calendar_sync_configuration = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -109,22 +56,5 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, Parsable):
         writer.write_object_value("onPremisesCalendarSyncConfiguration", self.on_premises_calendar_sync_configuration)
         writer.write_enum_value("supportedClient", self.supported_client)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def supported_client(self,) -> Optional[teamwork_supported_client.TeamworkSupportedClient]:
-        """
-        Gets the supportedClient property value. The supported client for Teams Rooms devices. The possible values are: unknown, skypeDefaultAndTeams, teamsDefaultAndSkype, skypeOnly, teamsOnly, unknownFutureValue.
-        Returns: Optional[teamwork_supported_client.TeamworkSupportedClient]
-        """
-        return self._supported_client
-    
-    @supported_client.setter
-    def supported_client(self,value: Optional[teamwork_supported_client.TeamworkSupportedClient] = None) -> None:
-        """
-        Sets the supportedClient property value. The supported client for Teams Rooms devices. The possible values are: unknown, skypeDefaultAndTeams, teamsDefaultAndSkype, skypeOnly, teamsOnly, unknownFutureValue.
-        Args:
-            value: Value to set for the supported_client property.
-        """
-        self._supported_client = value
     
 

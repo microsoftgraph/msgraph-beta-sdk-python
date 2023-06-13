@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class TeamsAppIcon(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamsAppIcon and sets the default values.
-        """
-        super().__init__()
-        # The contents of the app icon if the icon is hosted within the Teams infrastructure.
-        self._hosted_content: Optional[teamwork_hosted_content.TeamworkHostedContent] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The web URL that can be used for downloading the image.
-        self._web_url: Optional[str] = None
+    # The contents of the app icon if the icon is hosted within the Teams infrastructure.
+    hosted_content: Optional[teamwork_hosted_content.TeamworkHostedContent] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The web URL that can be used for downloading the image.
+    web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamsAppIcon:
@@ -47,23 +44,6 @@ class TeamsAppIcon(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def hosted_content(self,) -> Optional[teamwork_hosted_content.TeamworkHostedContent]:
-        """
-        Gets the hostedContent property value. The contents of the app icon if the icon is hosted within the Teams infrastructure.
-        Returns: Optional[teamwork_hosted_content.TeamworkHostedContent]
-        """
-        return self._hosted_content
-    
-    @hosted_content.setter
-    def hosted_content(self,value: Optional[teamwork_hosted_content.TeamworkHostedContent] = None) -> None:
-        """
-        Sets the hostedContent property value. The contents of the app icon if the icon is hosted within the Teams infrastructure.
-        Args:
-            value: Value to set for the hosted_content property.
-        """
-        self._hosted_content = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -75,22 +55,5 @@ class TeamsAppIcon(entity.Entity):
         super().serialize(writer)
         writer.write_object_value("hostedContent", self.hosted_content)
         writer.write_str_value("webUrl", self.web_url)
-    
-    @property
-    def web_url(self,) -> Optional[str]:
-        """
-        Gets the webUrl property value. The web URL that can be used for downloading the image.
-        Returns: Optional[str]
-        """
-        return self._web_url
-    
-    @web_url.setter
-    def web_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the webUrl property value. The web URL that can be used for downloading the image.
-        Args:
-            value: Value to set for the web_url property.
-        """
-        self._web_url = value
     
 

@@ -1,84 +1,31 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import app_list_item
 
+@dataclass
 class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
     """
     iOS Kerberos authentication settings for single sign-on
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new iosSingleSignOnSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # List of app identifiers that are allowed to use this login. If this field is omitted, the login applies to all applications on the device. This collection can contain a maximum of 500 elements.
-        self._allowed_apps_list: Optional[List[app_list_item.AppListItem]] = None
-        # List of HTTP URLs that must be matched in order to use this login. With iOS 9.0 or later, a wildcard characters may be used.
-        self._allowed_urls: Optional[List[str]] = None
-        # The display name of login settings shown on the receiving device.
-        self._display_name: Optional[str] = None
-        # A Kerberos principal name. If not provided, the user is prompted for one during profile installation.
-        self._kerberos_principal_name: Optional[str] = None
-        # A Kerberos realm name. Case sensitive.
-        self._kerberos_realm: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def allowed_apps_list(self,) -> Optional[List[app_list_item.AppListItem]]:
-        """
-        Gets the allowedAppsList property value. List of app identifiers that are allowed to use this login. If this field is omitted, the login applies to all applications on the device. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[app_list_item.AppListItem]]
-        """
-        return self._allowed_apps_list
-    
-    @allowed_apps_list.setter
-    def allowed_apps_list(self,value: Optional[List[app_list_item.AppListItem]] = None) -> None:
-        """
-        Sets the allowedAppsList property value. List of app identifiers that are allowed to use this login. If this field is omitted, the login applies to all applications on the device. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the allowed_apps_list property.
-        """
-        self._allowed_apps_list = value
-    
-    @property
-    def allowed_urls(self,) -> Optional[List[str]]:
-        """
-        Gets the allowedUrls property value. List of HTTP URLs that must be matched in order to use this login. With iOS 9.0 or later, a wildcard characters may be used.
-        Returns: Optional[List[str]]
-        """
-        return self._allowed_urls
-    
-    @allowed_urls.setter
-    def allowed_urls(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the allowedUrls property value. List of HTTP URLs that must be matched in order to use this login. With iOS 9.0 or later, a wildcard characters may be used.
-        Args:
-            value: Value to set for the allowed_urls property.
-        """
-        self._allowed_urls = value
+    # List of app identifiers that are allowed to use this login. If this field is omitted, the login applies to all applications on the device. This collection can contain a maximum of 500 elements.
+    allowed_apps_list: Optional[List[app_list_item.AppListItem]] = None
+    # List of HTTP URLs that must be matched in order to use this login. With iOS 9.0 or later, a wildcard characters may be used.
+    allowed_urls: Optional[List[str]] = None
+    # The display name of login settings shown on the receiving device.
+    display_name: Optional[str] = None
+    # A Kerberos principal name. If not provided, the user is prompted for one during profile installation.
+    kerberos_principal_name: Optional[str] = None
+    # A Kerberos realm name. Case sensitive.
+    kerberos_realm: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosSingleSignOnSettings:
@@ -91,23 +38,6 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return IosSingleSignOnSettings()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name of login settings shown on the receiving device.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name of login settings shown on the receiving device.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -125,57 +55,6 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def kerberos_principal_name(self,) -> Optional[str]:
-        """
-        Gets the kerberosPrincipalName property value. A Kerberos principal name. If not provided, the user is prompted for one during profile installation.
-        Returns: Optional[str]
-        """
-        return self._kerberos_principal_name
-    
-    @kerberos_principal_name.setter
-    def kerberos_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the kerberosPrincipalName property value. A Kerberos principal name. If not provided, the user is prompted for one during profile installation.
-        Args:
-            value: Value to set for the kerberos_principal_name property.
-        """
-        self._kerberos_principal_name = value
-    
-    @property
-    def kerberos_realm(self,) -> Optional[str]:
-        """
-        Gets the kerberosRealm property value. A Kerberos realm name. Case sensitive.
-        Returns: Optional[str]
-        """
-        return self._kerberos_realm
-    
-    @kerberos_realm.setter
-    def kerberos_realm(self,value: Optional[str] = None) -> None:
-        """
-        Sets the kerberosRealm property value. A Kerberos realm name. Case sensitive.
-        Args:
-            value: Value to set for the kerberos_realm property.
-        """
-        self._kerberos_realm = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

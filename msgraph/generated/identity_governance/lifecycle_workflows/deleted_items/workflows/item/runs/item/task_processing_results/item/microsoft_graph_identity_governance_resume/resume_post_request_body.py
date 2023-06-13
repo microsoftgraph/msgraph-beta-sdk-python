@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...........models.identity_governance import custom_task_extension_callback_data
 
+@dataclass
 class ResumePostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new resumePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The data property
-        self._data: Optional[custom_task_extension_callback_data.CustomTaskExtensionCallbackData] = None
-        # The source property
-        self._source: Optional[str] = None
-        # The type property
-        self._type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The data property
+    data: Optional[custom_task_extension_callback_data.CustomTaskExtensionCallbackData] = None
+    # The source property
+    source: Optional[str] = None
+    # The type property
+    type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ResumePostRequestBody:
@@ -48,23 +29,6 @@ class ResumePostRequestBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return ResumePostRequestBody()
-    
-    @property
-    def data(self,) -> Optional[custom_task_extension_callback_data.CustomTaskExtensionCallbackData]:
-        """
-        Gets the data property value. The data property
-        Returns: Optional[custom_task_extension_callback_data.CustomTaskExtensionCallbackData]
-        """
-        return self._data
-    
-    @data.setter
-    def data(self,value: Optional[custom_task_extension_callback_data.CustomTaskExtensionCallbackData] = None) -> None:
-        """
-        Sets the data property value. The data property
-        Args:
-            value: Value to set for the data property.
-        """
-        self._data = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -92,39 +56,5 @@ class ResumePostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_str_value("source", self.source)
         writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def source(self,) -> Optional[str]:
-        """
-        Gets the source property value. The source property
-        Returns: Optional[str]
-        """
-        return self._source
-    
-    @source.setter
-    def source(self,value: Optional[str] = None) -> None:
-        """
-        Sets the source property value. The source property
-        Args:
-            value: Value to set for the source property.
-        """
-        self._source = value
-    
-    @property
-    def type(self,) -> Optional[str]:
-        """
-        Gets the type property value. The type property
-        Returns: Optional[str]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the type property value. The type property
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
     
 

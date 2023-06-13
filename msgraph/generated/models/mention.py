@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,98 +9,26 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Mention(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mention and sets the default values.
-        """
-        super().__init__()
-        # The name of the application where the mention is created. Optional. Not used and defaulted as null for message.
-        self._application: Optional[str] = None
-        # A unique identifier that represents a parent of the resource instance. Optional. Not used and defaulted as null for message.
-        self._client_reference: Optional[str] = None
-        # The email information of the user who made the mention.
-        self._created_by: Optional[email_address.EmailAddress] = None
-        # The date and time that the mention is created on the client.
-        self._created_date_time: Optional[datetime] = None
-        # A deep web link to the context of the mention in the resource instance. Optional. Not used and defaulted as null for message.
-        self._deep_link: Optional[str] = None
-        # Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
-        self._mention_text: Optional[str] = None
-        # The mentioned property
-        self._mentioned: Optional[email_address.EmailAddress] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
-        self._server_created_date_time: Optional[datetime] = None
-    
-    @property
-    def application(self,) -> Optional[str]:
-        """
-        Gets the application property value. The name of the application where the mention is created. Optional. Not used and defaulted as null for message.
-        Returns: Optional[str]
-        """
-        return self._application
-    
-    @application.setter
-    def application(self,value: Optional[str] = None) -> None:
-        """
-        Sets the application property value. The name of the application where the mention is created. Optional. Not used and defaulted as null for message.
-        Args:
-            value: Value to set for the application property.
-        """
-        self._application = value
-    
-    @property
-    def client_reference(self,) -> Optional[str]:
-        """
-        Gets the clientReference property value. A unique identifier that represents a parent of the resource instance. Optional. Not used and defaulted as null for message.
-        Returns: Optional[str]
-        """
-        return self._client_reference
-    
-    @client_reference.setter
-    def client_reference(self,value: Optional[str] = None) -> None:
-        """
-        Sets the clientReference property value. A unique identifier that represents a parent of the resource instance. Optional. Not used and defaulted as null for message.
-        Args:
-            value: Value to set for the client_reference property.
-        """
-        self._client_reference = value
-    
-    @property
-    def created_by(self,) -> Optional[email_address.EmailAddress]:
-        """
-        Gets the createdBy property value. The email information of the user who made the mention.
-        Returns: Optional[email_address.EmailAddress]
-        """
-        return self._created_by
-    
-    @created_by.setter
-    def created_by(self,value: Optional[email_address.EmailAddress] = None) -> None:
-        """
-        Sets the createdBy property value. The email information of the user who made the mention.
-        Args:
-            value: Value to set for the created_by property.
-        """
-        self._created_by = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time that the mention is created on the client.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time that the mention is created on the client.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The name of the application where the mention is created. Optional. Not used and defaulted as null for message.
+    application: Optional[str] = None
+    # A unique identifier that represents a parent of the resource instance. Optional. Not used and defaulted as null for message.
+    client_reference: Optional[str] = None
+    # The email information of the user who made the mention.
+    created_by: Optional[email_address.EmailAddress] = None
+    # The date and time that the mention is created on the client.
+    created_date_time: Optional[datetime] = None
+    # A deep web link to the context of the mention in the resource instance. Optional. Not used and defaulted as null for message.
+    deep_link: Optional[str] = None
+    # Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
+    mention_text: Optional[str] = None
+    # The mentioned property
+    mentioned: Optional[email_address.EmailAddress] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
+    server_created_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Mention:
@@ -112,23 +41,6 @@ class Mention(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Mention()
-    
-    @property
-    def deep_link(self,) -> Optional[str]:
-        """
-        Gets the deepLink property value. A deep web link to the context of the mention in the resource instance. Optional. Not used and defaulted as null for message.
-        Returns: Optional[str]
-        """
-        return self._deep_link
-    
-    @deep_link.setter
-    def deep_link(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deepLink property value. A deep web link to the context of the mention in the resource instance. Optional. Not used and defaulted as null for message.
-        Args:
-            value: Value to set for the deep_link property.
-        """
-        self._deep_link = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -151,40 +63,6 @@ class Mention(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def mention_text(self,) -> Optional[str]:
-        """
-        Gets the mentionText property value. Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
-        Returns: Optional[str]
-        """
-        return self._mention_text
-    
-    @mention_text.setter
-    def mention_text(self,value: Optional[str] = None) -> None:
-        """
-        Sets the mentionText property value. Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
-        Args:
-            value: Value to set for the mention_text property.
-        """
-        self._mention_text = value
-    
-    @property
-    def mentioned(self,) -> Optional[email_address.EmailAddress]:
-        """
-        Gets the mentioned property value. The mentioned property
-        Returns: Optional[email_address.EmailAddress]
-        """
-        return self._mentioned
-    
-    @mentioned.setter
-    def mentioned(self,value: Optional[email_address.EmailAddress] = None) -> None:
-        """
-        Sets the mentioned property value. The mentioned property
-        Args:
-            value: Value to set for the mentioned property.
-        """
-        self._mentioned = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -202,22 +80,5 @@ class Mention(entity.Entity):
         writer.write_object_value("mentioned", self.mentioned)
         writer.write_str_value("mentionText", self.mention_text)
         writer.write_datetime_value("serverCreatedDateTime", self.server_created_date_time)
-    
-    @property
-    def server_created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the serverCreatedDateTime property value. The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
-        Returns: Optional[datetime]
-        """
-        return self._server_created_date_time
-    
-    @server_created_date_time.setter
-    def server_created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the serverCreatedDateTime property value. The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
-        Args:
-            value: Value to set for the server_created_date_time property.
-        """
-        self._server_created_date_time = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,56 +9,18 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class IndustryDataRunActivity(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new industryDataRunActivity and sets the default values.
-        """
-        super().__init__()
-        # The flow that was run by this activity.
-        self._activity: Optional[industry_data_activity.IndustryDataActivity] = None
-        # An error object to diagnose critical failures in an activity.
-        self._blocking_error: Optional[public_error.PublicError] = None
-        # The name of the running flow.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[industry_data_activity_status.IndustryDataActivityStatus] = None
-    
-    @property
-    def activity(self,) -> Optional[industry_data_activity.IndustryDataActivity]:
-        """
-        Gets the activity property value. The flow that was run by this activity.
-        Returns: Optional[industry_data_activity.IndustryDataActivity]
-        """
-        return self._activity
-    
-    @activity.setter
-    def activity(self,value: Optional[industry_data_activity.IndustryDataActivity] = None) -> None:
-        """
-        Sets the activity property value. The flow that was run by this activity.
-        Args:
-            value: Value to set for the activity property.
-        """
-        self._activity = value
-    
-    @property
-    def blocking_error(self,) -> Optional[public_error.PublicError]:
-        """
-        Gets the blockingError property value. An error object to diagnose critical failures in an activity.
-        Returns: Optional[public_error.PublicError]
-        """
-        return self._blocking_error
-    
-    @blocking_error.setter
-    def blocking_error(self,value: Optional[public_error.PublicError] = None) -> None:
-        """
-        Sets the blockingError property value. An error object to diagnose critical failures in an activity.
-        Args:
-            value: Value to set for the blocking_error property.
-        """
-        self._blocking_error = value
+    # The flow that was run by this activity.
+    activity: Optional[industry_data_activity.IndustryDataActivity] = None
+    # An error object to diagnose critical failures in an activity.
+    blocking_error: Optional[public_error.PublicError] = None
+    # The name of the running flow.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The status property
+    status: Optional[industry_data_activity_status.IndustryDataActivityStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IndustryDataRunActivity:
@@ -81,23 +44,6 @@ class IndustryDataRunActivity(entity.Entity):
 
                 return outbound_flow_activity.OutboundFlowActivity()
         return IndustryDataRunActivity()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The name of the running flow.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The name of the running flow.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -128,22 +74,5 @@ class IndustryDataRunActivity(entity.Entity):
         super().serialize(writer)
         writer.write_object_value("activity", self.activity)
         writer.write_enum_value("status", self.status)
-    
-    @property
-    def status(self,) -> Optional[industry_data_activity_status.IndustryDataActivityStatus]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[industry_data_activity_status.IndustryDataActivityStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[industry_data_activity_status.IndustryDataActivityStatus] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,35 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Schema(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Schema and sets the default values.
-        """
-        super().__init__()
-        # The baseType property
-        self._base_type: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The properties property
-        self._properties: Optional[List[property_.Property_]] = None
-    
-    @property
-    def base_type(self,) -> Optional[str]:
-        """
-        Gets the baseType property value. The baseType property
-        Returns: Optional[str]
-        """
-        return self._base_type
-    
-    @base_type.setter
-    def base_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the baseType property value. The baseType property
-        Args:
-            value: Value to set for the base_type property.
-        """
-        self._base_type = value
+    # The baseType property
+    base_type: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The properties property
+    properties: Optional[List[property_.Property_]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Schema:
@@ -63,23 +43,6 @@ class Schema(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def properties(self,) -> Optional[List[property_.Property_]]:
-        """
-        Gets the properties property value. The properties property
-        Returns: Optional[List[property_.Property_]]
-        """
-        return self._properties
-    
-    @properties.setter
-    def properties(self,value: Optional[List[property_.Property_]] = None) -> None:
-        """
-        Sets the properties property value. The properties property
-        Args:
-            value: Value to set for the properties property.
-        """
-        self._properties = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

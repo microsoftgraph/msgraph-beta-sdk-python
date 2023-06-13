@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,23 +9,19 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class GroupPolicyPresentation(entity.Entity):
     """
     The base entity for the display presentation of any of the additional options in a group policy definition.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new groupPolicyPresentation and sets the default values.
-        """
-        super().__init__()
-        # The group policy definition associated with the presentation.
-        self._definition: Optional[group_policy_definition.GroupPolicyDefinition] = None
-        # Localized text label for any presentation entity. The default value is empty.
-        self._label: Optional[str] = None
-        # The date and time the entity was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The group policy definition associated with the presentation.
+    definition: Optional[group_policy_definition.GroupPolicyDefinition] = None
+    # Localized text label for any presentation entity. The default value is empty.
+    label: Optional[str] = None
+    # The date and time the entity was last modified.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyPresentation:
@@ -81,23 +78,6 @@ class GroupPolicyPresentation(entity.Entity):
                 return group_policy_uploaded_presentation.GroupPolicyUploadedPresentation()
         return GroupPolicyPresentation()
     
-    @property
-    def definition(self,) -> Optional[group_policy_definition.GroupPolicyDefinition]:
-        """
-        Gets the definition property value. The group policy definition associated with the presentation.
-        Returns: Optional[group_policy_definition.GroupPolicyDefinition]
-        """
-        return self._definition
-    
-    @definition.setter
-    def definition(self,value: Optional[group_policy_definition.GroupPolicyDefinition] = None) -> None:
-        """
-        Sets the definition property value. The group policy definition associated with the presentation.
-        Args:
-            value: Value to set for the definition property.
-        """
-        self._definition = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -113,40 +93,6 @@ class GroupPolicyPresentation(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def label(self,) -> Optional[str]:
-        """
-        Gets the label property value. Localized text label for any presentation entity. The default value is empty.
-        Returns: Optional[str]
-        """
-        return self._label
-    
-    @label.setter
-    def label(self,value: Optional[str] = None) -> None:
-        """
-        Sets the label property value. Localized text label for any presentation entity. The default value is empty.
-        Args:
-            value: Value to set for the label property.
-        """
-        self._label = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date and time the entity was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

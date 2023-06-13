@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,63 +9,25 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ConfigManagerCollection(entity.Entity):
     """
     A ConfigManager defined collection of devices or users.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new configManagerCollection and sets the default values.
-        """
-        super().__init__()
-        # The collection identifier in SCCM.
-        self._collection_identifier: Optional[str] = None
-        # The created date.
-        self._created_date_time: Optional[datetime] = None
-        # The DisplayName.
-        self._display_name: Optional[str] = None
-        # The Hierarchy Identifier.
-        self._hierarchy_identifier: Optional[str] = None
-        # The HierarchyName.
-        self._hierarchy_name: Optional[str] = None
-        # The last modified date.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def collection_identifier(self,) -> Optional[str]:
-        """
-        Gets the collectionIdentifier property value. The collection identifier in SCCM.
-        Returns: Optional[str]
-        """
-        return self._collection_identifier
-    
-    @collection_identifier.setter
-    def collection_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the collectionIdentifier property value. The collection identifier in SCCM.
-        Args:
-            value: Value to set for the collection_identifier property.
-        """
-        self._collection_identifier = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The created date.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The created date.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The collection identifier in SCCM.
+    collection_identifier: Optional[str] = None
+    # The created date.
+    created_date_time: Optional[datetime] = None
+    # The DisplayName.
+    display_name: Optional[str] = None
+    # The Hierarchy Identifier.
+    hierarchy_identifier: Optional[str] = None
+    # The HierarchyName.
+    hierarchy_name: Optional[str] = None
+    # The last modified date.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConfigManagerCollection:
@@ -77,23 +40,6 @@ class ConfigManagerCollection(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return ConfigManagerCollection()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The DisplayName.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The DisplayName.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -113,57 +59,6 @@ class ConfigManagerCollection(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def hierarchy_identifier(self,) -> Optional[str]:
-        """
-        Gets the hierarchyIdentifier property value. The Hierarchy Identifier.
-        Returns: Optional[str]
-        """
-        return self._hierarchy_identifier
-    
-    @hierarchy_identifier.setter
-    def hierarchy_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the hierarchyIdentifier property value. The Hierarchy Identifier.
-        Args:
-            value: Value to set for the hierarchy_identifier property.
-        """
-        self._hierarchy_identifier = value
-    
-    @property
-    def hierarchy_name(self,) -> Optional[str]:
-        """
-        Gets the hierarchyName property value. The HierarchyName.
-        Returns: Optional[str]
-        """
-        return self._hierarchy_name
-    
-    @hierarchy_name.setter
-    def hierarchy_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the hierarchyName property value. The HierarchyName.
-        Args:
-            value: Value to set for the hierarchy_name property.
-        """
-        self._hierarchy_name = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The last modified date.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The last modified date.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

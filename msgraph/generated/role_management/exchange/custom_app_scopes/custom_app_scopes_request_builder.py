@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -54,7 +54,7 @@ class CustomAppScopesRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomAppScopesRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_app_scope_collection_response.CustomAppScopeCollectionResponse]:
         """
-        Get customAppScopes from roleManagement
+        Get a list of customAppScope objects for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_app_scope_collection_response.CustomAppScopeCollectionResponse]
@@ -76,7 +76,7 @@ class CustomAppScopesRequestBuilder():
     
     async def post(self,body: Optional[custom_app_scope.CustomAppScope] = None, request_configuration: Optional[CustomAppScopesRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_app_scope.CustomAppScope]:
         """
-        Create new navigation property to customAppScopes for roleManagement
+        Create a new customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class CustomAppScopesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomAppScopesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get customAppScopes from roleManagement
+        Get a list of customAppScope objects for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class CustomAppScopesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[custom_app_scope.CustomAppScope] = None, request_configuration: Optional[CustomAppScopesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to customAppScopes for roleManagement
+        Create a new customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class CustomAppScopesRequestBuilder():
     @dataclass
     class CustomAppScopesRequestBuilderGetQueryParameters():
         """
-        Get customAppScopes from roleManagement
+        Get a list of customAppScope objects for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

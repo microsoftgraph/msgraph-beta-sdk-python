@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import comms_operation
 
+@dataclass
 class MuteParticipantsOperation(comms_operation.CommsOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MuteParticipantsOperation and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The participants property
-        self._participants: Optional[List[str]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The participants property
+    participants: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MuteParticipantsOperation:
@@ -43,23 +40,6 @@ class MuteParticipantsOperation(comms_operation.CommsOperation):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def participants(self,) -> Optional[List[str]]:
-        """
-        Gets the participants property value. The participants property
-        Returns: Optional[List[str]]
-        """
-        return self._participants
-    
-    @participants.setter
-    def participants(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the participants property value. The participants property
-        Args:
-            value: Value to set for the participants property.
-        """
-        self._participants = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

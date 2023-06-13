@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PersonAnnualEventType(Enum):
+class PersonAnnualEventType(str, Enum):
     Birthday = "birthday",
     Wedding = "wedding",
     Work = "work",

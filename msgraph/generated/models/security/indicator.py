@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,35 +9,14 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class Indicator(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new indicator and sets the default values.
-        """
-        super().__init__()
-        # The artifact property
-        self._artifact: Optional[artifact.Artifact] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The source property
-        self._source: Optional[indicator_source.IndicatorSource] = None
-    
-    @property
-    def artifact(self,) -> Optional[artifact.Artifact]:
-        """
-        Gets the artifact property value. The artifact property
-        Returns: Optional[artifact.Artifact]
-        """
-        return self._artifact
-    
-    @artifact.setter
-    def artifact(self,value: Optional[artifact.Artifact] = None) -> None:
-        """
-        Sets the artifact property value. The artifact property
-        Args:
-            value: Value to set for the artifact property.
-        """
-        self._artifact = value
+    # The artifact property
+    artifact: Optional[artifact.Artifact] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The source property
+    source: Optional[indicator_source.IndicatorSource] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Indicator:
@@ -88,22 +68,5 @@ class Indicator(entity.Entity):
         super().serialize(writer)
         writer.write_object_value("artifact", self.artifact)
         writer.write_enum_value("source", self.source)
-    
-    @property
-    def source(self,) -> Optional[indicator_source.IndicatorSource]:
-        """
-        Gets the source property value. The source property
-        Returns: Optional[indicator_source.IndicatorSource]
-        """
-        return self._source
-    
-    @source.setter
-    def source(self,value: Optional[indicator_source.IndicatorSource] = None) -> None:
-        """
-        Sets the source property value. The source property
-        Args:
-            value: Value to set for the source property.
-        """
-        self._source = value
     
 

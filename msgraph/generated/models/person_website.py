@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,40 +8,19 @@ if TYPE_CHECKING:
 
 from . import item_facet
 
+@dataclass
 class PersonWebsite(item_facet.ItemFacet):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PersonWebsite and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.personWebsite"
-        # Contains categories a user has associated with the website (for example, personal, recipes).
-        self._categories: Optional[List[str]] = None
-        # Contains a description of the website.
-        self._description: Optional[str] = None
-        # Contains a friendly name for the website.
-        self._display_name: Optional[str] = None
-        # The thumbnailUrl property
-        self._thumbnail_url: Optional[str] = None
-        # Contains a link to the website itself.
-        self._web_url: Optional[str] = None
-    
-    @property
-    def categories(self,) -> Optional[List[str]]:
-        """
-        Gets the categories property value. Contains categories a user has associated with the website (for example, personal, recipes).
-        Returns: Optional[List[str]]
-        """
-        return self._categories
-    
-    @categories.setter
-    def categories(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the categories property value. Contains categories a user has associated with the website (for example, personal, recipes).
-        Args:
-            value: Value to set for the categories property.
-        """
-        self._categories = value
+    odata_type = "#microsoft.graph.personWebsite"
+    # Contains categories a user has associated with the website (for example, personal, recipes).
+    categories: Optional[List[str]] = None
+    # Contains a description of the website.
+    description: Optional[str] = None
+    # Contains a friendly name for the website.
+    display_name: Optional[str] = None
+    # The thumbnailUrl property
+    thumbnail_url: Optional[str] = None
+    # Contains a link to the website itself.
+    web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonWebsite:
@@ -53,40 +33,6 @@ class PersonWebsite(item_facet.ItemFacet):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PersonWebsite()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Contains a description of the website.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Contains a description of the website.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Contains a friendly name for the website.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Contains a friendly name for the website.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -120,39 +66,5 @@ class PersonWebsite(item_facet.ItemFacet):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("thumbnailUrl", self.thumbnail_url)
         writer.write_str_value("webUrl", self.web_url)
-    
-    @property
-    def thumbnail_url(self,) -> Optional[str]:
-        """
-        Gets the thumbnailUrl property value. The thumbnailUrl property
-        Returns: Optional[str]
-        """
-        return self._thumbnail_url
-    
-    @thumbnail_url.setter
-    def thumbnail_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the thumbnailUrl property value. The thumbnailUrl property
-        Args:
-            value: Value to set for the thumbnail_url property.
-        """
-        self._thumbnail_url = value
-    
-    @property
-    def web_url(self,) -> Optional[str]:
-        """
-        Gets the webUrl property value. Contains a link to the website itself.
-        Returns: Optional[str]
-        """
-        return self._web_url
-    
-    @web_url.setter
-    def web_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the webUrl property value. Contains a link to the website itself.
-        Args:
-            value: Value to set for the web_url property.
-        """
-        self._web_url = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,57 +8,19 @@ if TYPE_CHECKING:
 
 from . import mobile_app
 
+@dataclass
 class AndroidForWorkApp(mobile_app.MobileApp):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidForWorkApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidForWorkApp"
-        # The Identity Name.
-        self._app_identifier: Optional[str] = None
-        # The Play for Work Store app URL.
-        self._app_store_url: Optional[str] = None
-        # The package identifier.
-        self._package_id: Optional[str] = None
-        # The total number of VPP licenses.
-        self._total_license_count: Optional[int] = None
-        # The number of VPP licenses in use.
-        self._used_license_count: Optional[int] = None
-    
-    @property
-    def app_identifier(self,) -> Optional[str]:
-        """
-        Gets the appIdentifier property value. The Identity Name.
-        Returns: Optional[str]
-        """
-        return self._app_identifier
-    
-    @app_identifier.setter
-    def app_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appIdentifier property value. The Identity Name.
-        Args:
-            value: Value to set for the app_identifier property.
-        """
-        self._app_identifier = value
-    
-    @property
-    def app_store_url(self,) -> Optional[str]:
-        """
-        Gets the appStoreUrl property value. The Play for Work Store app URL.
-        Returns: Optional[str]
-        """
-        return self._app_store_url
-    
-    @app_store_url.setter
-    def app_store_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appStoreUrl property value. The Play for Work Store app URL.
-        Args:
-            value: Value to set for the app_store_url property.
-        """
-        self._app_store_url = value
+    odata_type = "#microsoft.graph.androidForWorkApp"
+    # The Identity Name.
+    app_identifier: Optional[str] = None
+    # The Play for Work Store app URL.
+    app_store_url: Optional[str] = None
+    # The package identifier.
+    package_id: Optional[str] = None
+    # The total number of VPP licenses.
+    total_license_count: Optional[int] = None
+    # The number of VPP licenses in use.
+    used_license_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkApp:
@@ -89,23 +52,6 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         fields.update(super_fields)
         return fields
     
-    @property
-    def package_id(self,) -> Optional[str]:
-        """
-        Gets the packageId property value. The package identifier.
-        Returns: Optional[str]
-        """
-        return self._package_id
-    
-    @package_id.setter
-    def package_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the packageId property value. The package identifier.
-        Args:
-            value: Value to set for the package_id property.
-        """
-        self._package_id = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -120,39 +66,5 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         writer.write_str_value("packageId", self.package_id)
         writer.write_int_value("totalLicenseCount", self.total_license_count)
         writer.write_int_value("usedLicenseCount", self.used_license_count)
-    
-    @property
-    def total_license_count(self,) -> Optional[int]:
-        """
-        Gets the totalLicenseCount property value. The total number of VPP licenses.
-        Returns: Optional[int]
-        """
-        return self._total_license_count
-    
-    @total_license_count.setter
-    def total_license_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalLicenseCount property value. The total number of VPP licenses.
-        Args:
-            value: Value to set for the total_license_count property.
-        """
-        self._total_license_count = value
-    
-    @property
-    def used_license_count(self,) -> Optional[int]:
-        """
-        Gets the usedLicenseCount property value. The number of VPP licenses in use.
-        Returns: Optional[int]
-        """
-        return self._used_license_count
-    
-    @used_license_count.setter
-    def used_license_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the usedLicenseCount property value. The number of VPP licenses in use.
-        Args:
-            value: Value to set for the used_license_count property.
-        """
-        self._used_license_count = value
     
 

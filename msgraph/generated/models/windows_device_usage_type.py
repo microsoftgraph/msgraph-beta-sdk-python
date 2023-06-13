@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsDeviceUsageType(Enum):
+class WindowsDeviceUsageType(str, Enum):
     # Single User Device Type
     SingleUser = "singleUser",
     # Shared Device Type

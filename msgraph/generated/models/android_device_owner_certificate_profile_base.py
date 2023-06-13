@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,61 +8,23 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class AndroidDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerCertificateProfileBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerCertificateProfileBase"
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Value for the Certificate Validity Period.
-        self._certificate_validity_period_value: Optional[int] = None
-        # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
-        # Certificate renewal threshold percentage. Valid values 1 to 99
-        self._renewal_threshold_percentage: Optional[int] = None
-        # Trusted Root Certificate.
-        self._root_certificate: Optional[android_device_owner_trusted_root_certificate.AndroidDeviceOwnerTrustedRootCertificate] = None
-        # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-        self._subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
-        # Certificate Subject Name Format. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
-        self._subject_name_format: Optional[subject_name_format.SubjectNameFormat] = None
-    
-    @property
-    def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
-        """
-        Gets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
-        Returns: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]
-        """
-        return self._certificate_validity_period_scale
-    
-    @certificate_validity_period_scale.setter
-    def certificate_validity_period_scale(self,value: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None) -> None:
-        """
-        Sets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
-        Args:
-            value: Value to set for the certificate_validity_period_scale property.
-        """
-        self._certificate_validity_period_scale = value
-    
-    @property
-    def certificate_validity_period_value(self,) -> Optional[int]:
-        """
-        Gets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
-        Returns: Optional[int]
-        """
-        return self._certificate_validity_period_value
-    
-    @certificate_validity_period_value.setter
-    def certificate_validity_period_value(self,value: Optional[int] = None) -> None:
-        """
-        Sets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
-        Args:
-            value: Value to set for the certificate_validity_period_value property.
-        """
-        self._certificate_validity_period_value = value
+    odata_type = "#microsoft.graph.androidDeviceOwnerCertificateProfileBase"
+    # Certificate Validity Period Options.
+    certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+    # Value for the Certificate Validity Period.
+    certificate_validity_period_value: Optional[int] = None
+    # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
+    extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
+    # Certificate renewal threshold percentage. Valid values 1 to 99
+    renewal_threshold_percentage: Optional[int] = None
+    # Trusted Root Certificate.
+    root_certificate: Optional[android_device_owner_trusted_root_certificate.AndroidDeviceOwnerTrustedRootCertificate] = None
+    # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+    subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
+    # Certificate Subject Name Format. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
+    subject_name_format: Optional[subject_name_format.SubjectNameFormat] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerCertificateProfileBase:
@@ -90,23 +53,6 @@ class AndroidDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfig
                 return android_device_owner_scep_certificate_profile.AndroidDeviceOwnerScepCertificateProfile()
         return AndroidDeviceOwnerCertificateProfileBase()
     
-    @property
-    def extended_key_usages(self,) -> Optional[List[extended_key_usage.ExtendedKeyUsage]]:
-        """
-        Gets the extendedKeyUsages property value. Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[extended_key_usage.ExtendedKeyUsage]]
-        """
-        return self._extended_key_usages
-    
-    @extended_key_usages.setter
-    def extended_key_usages(self,value: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None) -> None:
-        """
-        Sets the extendedKeyUsages property value. Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the extended_key_usages property.
-        """
-        self._extended_key_usages = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -127,40 +73,6 @@ class AndroidDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfig
         fields.update(super_fields)
         return fields
     
-    @property
-    def renewal_threshold_percentage(self,) -> Optional[int]:
-        """
-        Gets the renewalThresholdPercentage property value. Certificate renewal threshold percentage. Valid values 1 to 99
-        Returns: Optional[int]
-        """
-        return self._renewal_threshold_percentage
-    
-    @renewal_threshold_percentage.setter
-    def renewal_threshold_percentage(self,value: Optional[int] = None) -> None:
-        """
-        Sets the renewalThresholdPercentage property value. Certificate renewal threshold percentage. Valid values 1 to 99
-        Args:
-            value: Value to set for the renewal_threshold_percentage property.
-        """
-        self._renewal_threshold_percentage = value
-    
-    @property
-    def root_certificate(self,) -> Optional[android_device_owner_trusted_root_certificate.AndroidDeviceOwnerTrustedRootCertificate]:
-        """
-        Gets the rootCertificate property value. Trusted Root Certificate.
-        Returns: Optional[android_device_owner_trusted_root_certificate.AndroidDeviceOwnerTrustedRootCertificate]
-        """
-        return self._root_certificate
-    
-    @root_certificate.setter
-    def root_certificate(self,value: Optional[android_device_owner_trusted_root_certificate.AndroidDeviceOwnerTrustedRootCertificate] = None) -> None:
-        """
-        Sets the rootCertificate property value. Trusted Root Certificate.
-        Args:
-            value: Value to set for the root_certificate property.
-        """
-        self._root_certificate = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -177,39 +89,5 @@ class AndroidDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfig
         writer.write_object_value("rootCertificate", self.root_certificate)
         writer.write_enum_value("subjectAlternativeNameType", self.subject_alternative_name_type)
         writer.write_enum_value("subjectNameFormat", self.subject_name_format)
-    
-    @property
-    def subject_alternative_name_type(self,) -> Optional[subject_alternative_name_type.SubjectAlternativeNameType]:
-        """
-        Gets the subjectAlternativeNameType property value. Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-        Returns: Optional[subject_alternative_name_type.SubjectAlternativeNameType]
-        """
-        return self._subject_alternative_name_type
-    
-    @subject_alternative_name_type.setter
-    def subject_alternative_name_type(self,value: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None) -> None:
-        """
-        Sets the subjectAlternativeNameType property value. Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-        Args:
-            value: Value to set for the subject_alternative_name_type property.
-        """
-        self._subject_alternative_name_type = value
-    
-    @property
-    def subject_name_format(self,) -> Optional[subject_name_format.SubjectNameFormat]:
-        """
-        Gets the subjectNameFormat property value. Certificate Subject Name Format. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
-        Returns: Optional[subject_name_format.SubjectNameFormat]
-        """
-        return self._subject_name_format
-    
-    @subject_name_format.setter
-    def subject_name_format(self,value: Optional[subject_name_format.SubjectNameFormat] = None) -> None:
-        """
-        Sets the subjectNameFormat property value. Certificate Subject Name Format. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
-        Args:
-            value: Value to set for the subject_name_format property.
-        """
-        self._subject_name_format = value
     
 

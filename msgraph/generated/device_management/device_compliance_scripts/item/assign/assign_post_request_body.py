@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import device_health_script_assignment
 
+@dataclass
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The deviceHealthScriptAssignments property
-        self._device_health_script_assignments: Optional[List[device_health_script_assignment.DeviceHealthScriptAssignment]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The deviceHealthScriptAssignments property
+    device_health_script_assignments: Optional[List[device_health_script_assignment.DeviceHealthScriptAssignment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignPostRequestBody:
@@ -44,23 +25,6 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AssignPostRequestBody()
-    
-    @property
-    def device_health_script_assignments(self,) -> Optional[List[device_health_script_assignment.DeviceHealthScriptAssignment]]:
-        """
-        Gets the deviceHealthScriptAssignments property value. The deviceHealthScriptAssignments property
-        Returns: Optional[List[device_health_script_assignment.DeviceHealthScriptAssignment]]
-        """
-        return self._device_health_script_assignments
-    
-    @device_health_script_assignments.setter
-    def device_health_script_assignments(self,value: Optional[List[device_health_script_assignment.DeviceHealthScriptAssignment]] = None) -> None:
-        """
-        Sets the deviceHealthScriptAssignments property value. The deviceHealthScriptAssignments property
-        Args:
-            value: Value to set for the device_health_script_assignments property.
-        """
-        self._device_health_script_assignments = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

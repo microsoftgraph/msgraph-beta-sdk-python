@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,41 +9,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceSetupConfiguration(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceSetupConfiguration and sets the default values.
-        """
-        super().__init__()
-        # DateTime the object was created.
-        self._created_date_time: Optional[datetime] = None
-        # Admin provided description of the Device Configuration.
-        self._description: Optional[str] = None
-        # Admin provided name of the device configuration.
-        self._display_name: Optional[str] = None
-        # DateTime the object was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Version of the device configuration.
-        self._version: Optional[int] = None
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. DateTime the object was created.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. DateTime the object was created.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # DateTime the object was created.
+    created_date_time: Optional[datetime] = None
+    # Admin provided description of the Device Configuration.
+    description: Optional[str] = None
+    # Admin provided name of the device configuration.
+    display_name: Optional[str] = None
+    # DateTime the object was last modified.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Version of the device configuration.
+    version: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceSetupConfiguration:
@@ -55,40 +35,6 @@ class DeviceSetupConfiguration(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceSetupConfiguration()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Admin provided description of the Device Configuration.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Admin provided description of the Device Configuration.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Admin provided name of the device configuration.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Admin provided name of the device configuration.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -108,23 +54,6 @@ class DeviceSetupConfiguration(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. DateTime the object was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. DateTime the object was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -139,22 +68,5 @@ class DeviceSetupConfiguration(entity.Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_int_value("version", self.version)
-    
-    @property
-    def version(self,) -> Optional[int]:
-        """
-        Gets the version property value. Version of the device configuration.
-        Returns: Optional[int]
-        """
-        return self._version
-    
-    @version.setter
-    def version(self,value: Optional[int] = None) -> None:
-        """
-        Sets the version property value. Version of the device configuration.
-        Args:
-            value: Value to set for the version property.
-        """
-        self._version = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,21 +8,17 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementConfigurationSetting(entity.Entity):
     """
     Setting instance within policy
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationSetting and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of related Setting Definitions. This property is read-only.
-        self._setting_definitions: Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]] = None
-        # Setting instance within policy
-        self._setting_instance: Optional[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # List of related Setting Definitions. This property is read-only.
+    setting_definitions: Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]] = None
+    # Setting instance within policy
+    setting_instance: Optional[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSetting:
@@ -61,39 +58,5 @@ class DeviceManagementConfigurationSetting(entity.Entity):
         super().serialize(writer)
         writer.write_collection_of_object_values("settingDefinitions", self.setting_definitions)
         writer.write_object_value("settingInstance", self.setting_instance)
-    
-    @property
-    def setting_definitions(self,) -> Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]]:
-        """
-        Gets the settingDefinitions property value. List of related Setting Definitions. This property is read-only.
-        Returns: Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]]
-        """
-        return self._setting_definitions
-    
-    @setting_definitions.setter
-    def setting_definitions(self,value: Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]] = None) -> None:
-        """
-        Sets the settingDefinitions property value. List of related Setting Definitions. This property is read-only.
-        Args:
-            value: Value to set for the setting_definitions property.
-        """
-        self._setting_definitions = value
-    
-    @property
-    def setting_instance(self,) -> Optional[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]:
-        """
-        Gets the settingInstance property value. Setting instance within policy
-        Returns: Optional[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]
-        """
-        return self._setting_instance
-    
-    @setting_instance.setter
-    def setting_instance(self,value: Optional[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance] = None) -> None:
-        """
-        Sets the settingInstance property value. Setting instance within policy
-        Args:
-            value: Value to set for the setting_instance property.
-        """
-        self._setting_instance = value
     
 

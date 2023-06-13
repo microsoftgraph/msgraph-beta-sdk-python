@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PrinterProcessingStateReason(Enum):
+class PrinterProcessingStateReason(str, Enum):
     Paused = "paused",
     MediaJam = "mediaJam",
     MediaNeeded = "mediaNeeded",

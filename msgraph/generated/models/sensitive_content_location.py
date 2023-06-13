@@ -1,64 +1,28 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import sensitive_content_evidence
 
+@dataclass
 class SensitiveContentLocation(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sensitiveContentLocation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The confidence property
-        self._confidence: Optional[int] = None
-        # The evidences property
-        self._evidences: Optional[List[sensitive_content_evidence.SensitiveContentEvidence]] = None
-        # The idMatch property
-        self._id_match: Optional[str] = None
-        # The length property
-        self._length: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The offset property
-        self._offset: Optional[int] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def confidence(self,) -> Optional[int]:
-        """
-        Gets the confidence property value. The confidence property
-        Returns: Optional[int]
-        """
-        return self._confidence
-    
-    @confidence.setter
-    def confidence(self,value: Optional[int] = None) -> None:
-        """
-        Sets the confidence property value. The confidence property
-        Args:
-            value: Value to set for the confidence property.
-        """
-        self._confidence = value
+    # The confidence property
+    confidence: Optional[int] = None
+    # The evidences property
+    evidences: Optional[List[sensitive_content_evidence.SensitiveContentEvidence]] = None
+    # The idMatch property
+    id_match: Optional[str] = None
+    # The length property
+    length: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The offset property
+    offset: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitiveContentLocation:
@@ -71,23 +35,6 @@ class SensitiveContentLocation(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return SensitiveContentLocation()
-    
-    @property
-    def evidences(self,) -> Optional[List[sensitive_content_evidence.SensitiveContentEvidence]]:
-        """
-        Gets the evidences property value. The evidences property
-        Returns: Optional[List[sensitive_content_evidence.SensitiveContentEvidence]]
-        """
-        return self._evidences
-    
-    @evidences.setter
-    def evidences(self,value: Optional[List[sensitive_content_evidence.SensitiveContentEvidence]] = None) -> None:
-        """
-        Sets the evidences property value. The evidences property
-        Args:
-            value: Value to set for the evidences property.
-        """
-        self._evidences = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -105,74 +52,6 @@ class SensitiveContentLocation(AdditionalDataHolder, Parsable):
             "offset": lambda n : setattr(self, 'offset', n.get_int_value()),
         }
         return fields
-    
-    @property
-    def id_match(self,) -> Optional[str]:
-        """
-        Gets the idMatch property value. The idMatch property
-        Returns: Optional[str]
-        """
-        return self._id_match
-    
-    @id_match.setter
-    def id_match(self,value: Optional[str] = None) -> None:
-        """
-        Sets the idMatch property value. The idMatch property
-        Args:
-            value: Value to set for the id_match property.
-        """
-        self._id_match = value
-    
-    @property
-    def length(self,) -> Optional[int]:
-        """
-        Gets the length property value. The length property
-        Returns: Optional[int]
-        """
-        return self._length
-    
-    @length.setter
-    def length(self,value: Optional[int] = None) -> None:
-        """
-        Sets the length property value. The length property
-        Args:
-            value: Value to set for the length property.
-        """
-        self._length = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def offset(self,) -> Optional[int]:
-        """
-        Gets the offset property value. The offset property
-        Returns: Optional[int]
-        """
-        return self._offset
-    
-    @offset.setter
-    def offset(self,value: Optional[int] = None) -> None:
-        """
-        Sets the offset property value. The offset property
-        Args:
-            value: Value to set for the offset property.
-        """
-        self._offset = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

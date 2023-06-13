@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,53 +8,15 @@ if TYPE_CHECKING:
 
 from . import resource_connection
 
+@dataclass
 class OperationalInsightsConnection(resource_connection.ResourceConnection):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OperationalInsightsConnection and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.operationalInsightsConnection"
-        # The name of the Azure resource group that contains the Log Analytics workspace.
-        self._azure_resource_group_name: Optional[str] = None
-        # The Azure subscription ID that contains the Log Analytics workspace.
-        self._azure_subscription_id: Optional[str] = None
-        # The name of the Log Analytics workspace.
-        self._workspace_name: Optional[str] = None
-    
-    @property
-    def azure_resource_group_name(self,) -> Optional[str]:
-        """
-        Gets the azureResourceGroupName property value. The name of the Azure resource group that contains the Log Analytics workspace.
-        Returns: Optional[str]
-        """
-        return self._azure_resource_group_name
-    
-    @azure_resource_group_name.setter
-    def azure_resource_group_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureResourceGroupName property value. The name of the Azure resource group that contains the Log Analytics workspace.
-        Args:
-            value: Value to set for the azure_resource_group_name property.
-        """
-        self._azure_resource_group_name = value
-    
-    @property
-    def azure_subscription_id(self,) -> Optional[str]:
-        """
-        Gets the azureSubscriptionId property value. The Azure subscription ID that contains the Log Analytics workspace.
-        Returns: Optional[str]
-        """
-        return self._azure_subscription_id
-    
-    @azure_subscription_id.setter
-    def azure_subscription_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureSubscriptionId property value. The Azure subscription ID that contains the Log Analytics workspace.
-        Args:
-            value: Value to set for the azure_subscription_id property.
-        """
-        self._azure_subscription_id = value
+    odata_type = "#microsoft.graph.windowsUpdates.operationalInsightsConnection"
+    # The name of the Azure resource group that contains the Log Analytics workspace.
+    azure_resource_group_name: Optional[str] = None
+    # The Azure subscription ID that contains the Log Analytics workspace.
+    azure_subscription_id: Optional[str] = None
+    # The name of the Log Analytics workspace.
+    workspace_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OperationalInsightsConnection:
@@ -95,22 +58,5 @@ class OperationalInsightsConnection(resource_connection.ResourceConnection):
         writer.write_str_value("azureResourceGroupName", self.azure_resource_group_name)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("workspaceName", self.workspace_name)
-    
-    @property
-    def workspace_name(self,) -> Optional[str]:
-        """
-        Gets the workspaceName property value. The name of the Log Analytics workspace.
-        Returns: Optional[str]
-        """
-        return self._workspace_name
-    
-    @workspace_name.setter
-    def workspace_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the workspaceName property value. The name of the Log Analytics workspace.
-        Args:
-            value: Value to set for the workspace_name property.
-        """
-        self._workspace_name = value
     
 

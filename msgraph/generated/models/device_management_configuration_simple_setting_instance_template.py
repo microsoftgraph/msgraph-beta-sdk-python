@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationSimpleSettingInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSimpleSettingInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate"
-        # Simple Setting Value Template
-        self._simple_setting_value_template: Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate] = None
+    odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate"
+    # Simple Setting Value Template
+    simple_setting_value_template: Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingInstanceTemplate:
@@ -53,22 +50,5 @@ class DeviceManagementConfigurationSimpleSettingInstanceTemplate(device_manageme
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("simpleSettingValueTemplate", self.simple_setting_value_template)
-    
-    @property
-    def simple_setting_value_template(self,) -> Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]:
-        """
-        Gets the simpleSettingValueTemplate property value. Simple Setting Value Template
-        Returns: Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]
-        """
-        return self._simple_setting_value_template
-    
-    @simple_setting_value_template.setter
-    def simple_setting_value_template(self,value: Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate] = None) -> None:
-        """
-        Sets the simpleSettingValueTemplate property value. Simple Setting Value Template
-        Args:
-            value: Value to set for the simple_setting_value_template property.
-        """
-        self._simple_setting_value_template = value
     
 

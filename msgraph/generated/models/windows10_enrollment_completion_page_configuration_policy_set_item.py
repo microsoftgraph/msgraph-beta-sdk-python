@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import policy_set_item
 
+@dataclass
 class Windows10EnrollmentCompletionPageConfigurationPolicySetItem(policy_set_item.PolicySetItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10EnrollmentCompletionPageConfigurationPolicySetItem and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10EnrollmentCompletionPageConfigurationPolicySetItem"
-        # Priority of the Windows10EnrollmentCompletionPageConfigurationPolicySetItem.
-        self._priority: Optional[int] = None
+    odata_type = "#microsoft.graph.windows10EnrollmentCompletionPageConfigurationPolicySetItem"
+    # Priority of the Windows10EnrollmentCompletionPageConfigurationPolicySetItem.
+    priority: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10EnrollmentCompletionPageConfigurationPolicySetItem:
@@ -42,23 +39,6 @@ class Windows10EnrollmentCompletionPageConfigurationPolicySetItem(policy_set_ite
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def priority(self,) -> Optional[int]:
-        """
-        Gets the priority property value. Priority of the Windows10EnrollmentCompletionPageConfigurationPolicySetItem.
-        Returns: Optional[int]
-        """
-        return self._priority
-    
-    @priority.setter
-    def priority(self,value: Optional[int] = None) -> None:
-        """
-        Sets the priority property value. Priority of the Windows10EnrollmentCompletionPageConfigurationPolicySetItem.
-        Args:
-            value: Value to set for the priority property.
-        """
-        self._priority = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

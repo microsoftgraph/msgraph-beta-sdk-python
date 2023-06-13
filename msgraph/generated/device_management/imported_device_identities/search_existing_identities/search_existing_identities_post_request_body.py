@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models import imported_device_identity
 
+@dataclass
 class SearchExistingIdentitiesPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new searchExistingIdentitiesPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The importedDeviceIdentities property
-        self._imported_device_identities: Optional[List[imported_device_identity.ImportedDeviceIdentity]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The importedDeviceIdentities property
+    imported_device_identities: Optional[List[imported_device_identity.ImportedDeviceIdentity]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SearchExistingIdentitiesPostRequestBody:
@@ -56,23 +37,6 @@ class SearchExistingIdentitiesPostRequestBody(AdditionalDataHolder, Parsable):
             "importedDeviceIdentities": lambda n : setattr(self, 'imported_device_identities', n.get_collection_of_object_values(imported_device_identity.ImportedDeviceIdentity)),
         }
         return fields
-    
-    @property
-    def imported_device_identities(self,) -> Optional[List[imported_device_identity.ImportedDeviceIdentity]]:
-        """
-        Gets the importedDeviceIdentities property value. The importedDeviceIdentities property
-        Returns: Optional[List[imported_device_identity.ImportedDeviceIdentity]]
-        """
-        return self._imported_device_identities
-    
-    @imported_device_identities.setter
-    def imported_device_identities(self,value: Optional[List[imported_device_identity.ImportedDeviceIdentity]] = None) -> None:
-        """
-        Sets the importedDeviceIdentities property value. The importedDeviceIdentities property
-        Args:
-            value: Value to set for the imported_device_identities property.
-        """
-        self._imported_device_identities = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

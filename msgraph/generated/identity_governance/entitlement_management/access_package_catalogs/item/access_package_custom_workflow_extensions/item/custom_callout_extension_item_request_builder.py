@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -78,7 +78,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     
     async def patch(self,body: Optional[custom_callout_extension.CustomCalloutExtension] = None, request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_callout_extension.CustomCalloutExtension]:
         """
-        Update the properties of an accessPackageAssignmentWorkflowExtension object.
+        Update the properties of an accessPackageAssignmentRequestWorkflowExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -137,7 +137,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[custom_callout_extension.CustomCalloutExtension] = None, request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an accessPackageAssignmentWorkflowExtension object.
+        Update the properties of an accessPackageAssignmentRequestWorkflowExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

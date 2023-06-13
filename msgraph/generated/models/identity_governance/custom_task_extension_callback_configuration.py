@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from .. import custom_extension_callback_configuration
 
+@dataclass
 class CustomTaskExtensionCallbackConfiguration(custom_extension_callback_configuration.CustomExtensionCallbackConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CustomTaskExtensionCallbackConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.identityGovernance.customTaskExtensionCallbackConfiguration"
-        # The authorizedApps property
-        self._authorized_apps: Optional[List[application.Application]] = None
-    
-    @property
-    def authorized_apps(self,) -> Optional[List[application.Application]]:
-        """
-        Gets the authorizedApps property value. The authorizedApps property
-        Returns: Optional[List[application.Application]]
-        """
-        return self._authorized_apps
-    
-    @authorized_apps.setter
-    def authorized_apps(self,value: Optional[List[application.Application]] = None) -> None:
-        """
-        Sets the authorizedApps property value. The authorizedApps property
-        Args:
-            value: Value to set for the authorized_apps property.
-        """
-        self._authorized_apps = value
+    odata_type = "#microsoft.graph.identityGovernance.customTaskExtensionCallbackConfiguration"
+    # The authorizedApps property
+    authorized_apps: Optional[List[application.Application]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomTaskExtensionCallbackConfiguration:

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,20 +8,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PlannerRosterMember(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerRosterMember and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Additional roles associated with the PlannerRosterMember, which determines permissions of the member in the plannerRoster. Currently there are no available roles to assign, and every member has full control over the contents of the plannerRoster.
-        self._roles: Optional[List[str]] = None
-        # Identifier of the tenant the user belongs to. Currently only the users from the same tenant can be added to a plannerRoster.
-        self._tenant_id: Optional[str] = None
-        # Identifier of the user.
-        self._user_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Additional roles associated with the PlannerRosterMember, which determines permissions of the member in the plannerRoster. Currently there are no available roles to assign, and every member has full control over the contents of the plannerRoster.
+    roles: Optional[List[str]] = None
+    # Identifier of the tenant the user belongs to. Currently only the users from the same tenant can be added to a plannerRoster.
+    tenant_id: Optional[str] = None
+    # Identifier of the user.
+    user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerRosterMember:
@@ -50,23 +47,6 @@ class PlannerRosterMember(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def roles(self,) -> Optional[List[str]]:
-        """
-        Gets the roles property value. Additional roles associated with the PlannerRosterMember, which determines permissions of the member in the plannerRoster. Currently there are no available roles to assign, and every member has full control over the contents of the plannerRoster.
-        Returns: Optional[List[str]]
-        """
-        return self._roles
-    
-    @roles.setter
-    def roles(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the roles property value. Additional roles associated with the PlannerRosterMember, which determines permissions of the member in the plannerRoster. Currently there are no available roles to assign, and every member has full control over the contents of the plannerRoster.
-        Args:
-            value: Value to set for the roles property.
-        """
-        self._roles = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -79,39 +59,5 @@ class PlannerRosterMember(entity.Entity):
         writer.write_collection_of_primitive_values("roles", self.roles)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("userId", self.user_id)
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. Identifier of the tenant the user belongs to. Currently only the users from the same tenant can be added to a plannerRoster.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. Identifier of the tenant the user belongs to. Currently only the users from the same tenant can be added to a plannerRoster.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. Identifier of the user.
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. Identifier of the user.
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,63 +10,25 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class GroupPolicyObjectFile(entity.Entity):
     """
     The Group Policy Object file uploaded by admin.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new groupPolicyObjectFile and sets the default values.
-        """
-        super().__init__()
-        # The Group Policy Object file content.
-        self._content: Optional[str] = None
-        # The date and time at which the GroupPolicy was first uploaded.
-        self._created_date_time: Optional[datetime] = None
-        # The Group Policy Object GUID from GPO Xml content
-        self._group_policy_object_id: Optional[UUID] = None
-        # The date and time at which the GroupPolicyObjectFile was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The distinguished name of the OU.
-        self._ou_distinguished_name: Optional[str] = None
-        # The list of scope tags for the configuration.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-    
-    @property
-    def content(self,) -> Optional[str]:
-        """
-        Gets the content property value. The Group Policy Object file content.
-        Returns: Optional[str]
-        """
-        return self._content
-    
-    @content.setter
-    def content(self,value: Optional[str] = None) -> None:
-        """
-        Sets the content property value. The Group Policy Object file content.
-        Args:
-            value: Value to set for the content property.
-        """
-        self._content = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time at which the GroupPolicy was first uploaded.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time at which the GroupPolicy was first uploaded.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The Group Policy Object file content.
+    content: Optional[str] = None
+    # The date and time at which the GroupPolicy was first uploaded.
+    created_date_time: Optional[datetime] = None
+    # The Group Policy Object GUID from GPO Xml content
+    group_policy_object_id: Optional[UUID] = None
+    # The date and time at which the GroupPolicyObjectFile was last modified.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The distinguished name of the OU.
+    ou_distinguished_name: Optional[str] = None
+    # The list of scope tags for the configuration.
+    role_scope_tag_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyObjectFile:
@@ -97,74 +60,6 @@ class GroupPolicyObjectFile(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group_policy_object_id(self,) -> Optional[UUID]:
-        """
-        Gets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
-        Returns: Optional[UUID]
-        """
-        return self._group_policy_object_id
-    
-    @group_policy_object_id.setter
-    def group_policy_object_id(self,value: Optional[UUID] = None) -> None:
-        """
-        Sets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
-        Args:
-            value: Value to set for the group_policy_object_id property.
-        """
-        self._group_policy_object_id = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date and time at which the GroupPolicyObjectFile was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date and time at which the GroupPolicyObjectFile was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def ou_distinguished_name(self,) -> Optional[str]:
-        """
-        Gets the ouDistinguishedName property value. The distinguished name of the OU.
-        Returns: Optional[str]
-        """
-        return self._ou_distinguished_name
-    
-    @ou_distinguished_name.setter
-    def ou_distinguished_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ouDistinguishedName property value. The distinguished name of the OU.
-        Args:
-            value: Value to set for the ou_distinguished_name property.
-        """
-        self._ou_distinguished_name = value
-    
-    @property
-    def role_scope_tag_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the roleScopeTagIds property value. The list of scope tags for the configuration.
-        Returns: Optional[List[str]]
-        """
-        return self._role_scope_tag_ids
-    
-    @role_scope_tag_ids.setter
-    def role_scope_tag_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the roleScopeTagIds property value. The list of scope tags for the configuration.
-        Args:
-            value: Value to set for the role_scope_tag_ids property.
-        """
-        self._role_scope_tag_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

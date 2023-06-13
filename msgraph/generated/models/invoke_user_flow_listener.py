@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import authentication_listener
 
+@dataclass
 class InvokeUserFlowListener(authentication_listener.AuthenticationListener):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new InvokeUserFlowListener and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.invokeUserFlowListener"
-        # The user flow that is invoked when this action executes.
-        self._user_flow: Optional[b2x_identity_user_flow.B2xIdentityUserFlow] = None
+    odata_type = "#microsoft.graph.invokeUserFlowListener"
+    # The user flow that is invoked when this action executes.
+    user_flow: Optional[b2x_identity_user_flow.B2xIdentityUserFlow] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InvokeUserFlowListener:
@@ -53,22 +50,5 @@ class InvokeUserFlowListener(authentication_listener.AuthenticationListener):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("userFlow", self.user_flow)
-    
-    @property
-    def user_flow(self,) -> Optional[b2x_identity_user_flow.B2xIdentityUserFlow]:
-        """
-        Gets the userFlow property value. The user flow that is invoked when this action executes.
-        Returns: Optional[b2x_identity_user_flow.B2xIdentityUserFlow]
-        """
-        return self._user_flow
-    
-    @user_flow.setter
-    def user_flow(self,value: Optional[b2x_identity_user_flow.B2xIdentityUserFlow] = None) -> None:
-        """
-        Sets the userFlow property value. The user flow that is invoked when this action executes.
-        Args:
-            value: Value to set for the user_flow property.
-        """
-        self._user_flow = value
     
 

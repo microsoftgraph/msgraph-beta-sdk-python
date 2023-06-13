@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import policy_base
 
+@dataclass
 class TenantRelationshipAccessPolicyBase(policy_base.PolicyBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TenantRelationshipAccessPolicyBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.tenantRelationshipAccessPolicyBase"
-        # The definition property
-        self._definition: Optional[List[str]] = None
+    odata_type = "#microsoft.graph.tenantRelationshipAccessPolicyBase"
+    # The definition property
+    definition: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantRelationshipAccessPolicyBase:
@@ -35,23 +32,6 @@ class TenantRelationshipAccessPolicyBase(policy_base.PolicyBase):
 
                 return cross_tenant_access_policy.CrossTenantAccessPolicy()
         return TenantRelationshipAccessPolicyBase()
-    
-    @property
-    def definition(self,) -> Optional[List[str]]:
-        """
-        Gets the definition property value. The definition property
-        Returns: Optional[List[str]]
-        """
-        return self._definition
-    
-    @definition.setter
-    def definition(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the definition property value. The definition property
-        Args:
-            value: Value to set for the definition property.
-        """
-        self._definition = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

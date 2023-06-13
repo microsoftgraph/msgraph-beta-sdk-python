@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import android_for_work_eas_email_profile_base
 
+@dataclass
 class AndroidForWorkNineWorkEasConfiguration(android_for_work_eas_email_profile_base.AndroidForWorkEasEmailProfileBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidForWorkNineWorkEasConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidForWorkNineWorkEasConfiguration"
-        # Toggles syncing the calendar. If set to false the calendar is turned off on the device.
-        self._sync_calendar: Optional[bool] = None
-        # Toggles syncing contacts. If set to false contacts are turned off on the device.
-        self._sync_contacts: Optional[bool] = None
-        # Toggles syncing tasks. If set to false tasks are turned off on the device.
-        self._sync_tasks: Optional[bool] = None
+    odata_type = "#microsoft.graph.androidForWorkNineWorkEasConfiguration"
+    # Toggles syncing the calendar. If set to false the calendar is turned off on the device.
+    sync_calendar: Optional[bool] = None
+    # Toggles syncing contacts. If set to false contacts are turned off on the device.
+    sync_contacts: Optional[bool] = None
+    # Toggles syncing tasks. If set to false tasks are turned off on the device.
+    sync_tasks: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkNineWorkEasConfiguration:
@@ -61,56 +58,5 @@ class AndroidForWorkNineWorkEasConfiguration(android_for_work_eas_email_profile_
         writer.write_bool_value("syncCalendar", self.sync_calendar)
         writer.write_bool_value("syncContacts", self.sync_contacts)
         writer.write_bool_value("syncTasks", self.sync_tasks)
-    
-    @property
-    def sync_calendar(self,) -> Optional[bool]:
-        """
-        Gets the syncCalendar property value. Toggles syncing the calendar. If set to false the calendar is turned off on the device.
-        Returns: Optional[bool]
-        """
-        return self._sync_calendar
-    
-    @sync_calendar.setter
-    def sync_calendar(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the syncCalendar property value. Toggles syncing the calendar. If set to false the calendar is turned off on the device.
-        Args:
-            value: Value to set for the sync_calendar property.
-        """
-        self._sync_calendar = value
-    
-    @property
-    def sync_contacts(self,) -> Optional[bool]:
-        """
-        Gets the syncContacts property value. Toggles syncing contacts. If set to false contacts are turned off on the device.
-        Returns: Optional[bool]
-        """
-        return self._sync_contacts
-    
-    @sync_contacts.setter
-    def sync_contacts(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the syncContacts property value. Toggles syncing contacts. If set to false contacts are turned off on the device.
-        Args:
-            value: Value to set for the sync_contacts property.
-        """
-        self._sync_contacts = value
-    
-    @property
-    def sync_tasks(self,) -> Optional[bool]:
-        """
-        Gets the syncTasks property value. Toggles syncing tasks. If set to false tasks are turned off on the device.
-        Returns: Optional[bool]
-        """
-        return self._sync_tasks
-    
-    @sync_tasks.setter
-    def sync_tasks(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the syncTasks property value. Toggles syncing tasks. If set to false tasks are turned off on the device.
-        Args:
-            value: Value to set for the sync_tasks property.
-        """
-        self._sync_tasks = value
     
 

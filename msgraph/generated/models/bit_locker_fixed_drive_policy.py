@@ -1,46 +1,27 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import bit_locker_encryption_method, bit_locker_recovery_options
 
+@dataclass
 class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
     """
     BitLocker Fixed Drive Policies.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bitLockerFixedDrivePolicy and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
-        self._encryption_method: Optional[bit_locker_encryption_method.BitLockerEncryptionMethod] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
-        self._recovery_options: Optional[bit_locker_recovery_options.BitLockerRecoveryOptions] = None
-        # This policy setting determines whether BitLocker protection is required for fixed data drives to be writable on a computer.
-        self._require_encryption_for_write_access: Optional[bool] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
+    encryption_method: Optional[bit_locker_encryption_method.BitLockerEncryptionMethod] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
+    recovery_options: Optional[bit_locker_recovery_options.BitLockerRecoveryOptions] = None
+    # This policy setting determines whether BitLocker protection is required for fixed data drives to be writable on a computer.
+    require_encryption_for_write_access: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BitLockerFixedDrivePolicy:
@@ -53,23 +34,6 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return BitLockerFixedDrivePolicy()
-    
-    @property
-    def encryption_method(self,) -> Optional[bit_locker_encryption_method.BitLockerEncryptionMethod]:
-        """
-        Gets the encryptionMethod property value. Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
-        Returns: Optional[bit_locker_encryption_method.BitLockerEncryptionMethod]
-        """
-        return self._encryption_method
-    
-    @encryption_method.setter
-    def encryption_method(self,value: Optional[bit_locker_encryption_method.BitLockerEncryptionMethod] = None) -> None:
-        """
-        Sets the encryptionMethod property value. Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
-        Args:
-            value: Value to set for the encryption_method property.
-        """
-        self._encryption_method = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -85,57 +49,6 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
             "requireEncryptionForWriteAccess": lambda n : setattr(self, 'require_encryption_for_write_access', n.get_bool_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def recovery_options(self,) -> Optional[bit_locker_recovery_options.BitLockerRecoveryOptions]:
-        """
-        Gets the recoveryOptions property value. This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
-        Returns: Optional[bit_locker_recovery_options.BitLockerRecoveryOptions]
-        """
-        return self._recovery_options
-    
-    @recovery_options.setter
-    def recovery_options(self,value: Optional[bit_locker_recovery_options.BitLockerRecoveryOptions] = None) -> None:
-        """
-        Sets the recoveryOptions property value. This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
-        Args:
-            value: Value to set for the recovery_options property.
-        """
-        self._recovery_options = value
-    
-    @property
-    def require_encryption_for_write_access(self,) -> Optional[bool]:
-        """
-        Gets the requireEncryptionForWriteAccess property value. This policy setting determines whether BitLocker protection is required for fixed data drives to be writable on a computer.
-        Returns: Optional[bool]
-        """
-        return self._require_encryption_for_write_access
-    
-    @require_encryption_for_write_access.setter
-    def require_encryption_for_write_access(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the requireEncryptionForWriteAccess property value. This policy setting determines whether BitLocker protection is required for fixed data drives to be writable on a computer.
-        Args:
-            value: Value to set for the require_encryption_for_write_access property.
-        """
-        self._require_encryption_for_write_access = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

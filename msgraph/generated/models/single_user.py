@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import user_set
 
+@dataclass
 class SingleUser(user_set.UserSet):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SingleUser and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.singleUser"
-        # The name of the user in Azure AD. Read only.
-        self._description: Optional[str] = None
-        # The ID of the user in Azure AD.
-        self._id: Optional[str] = None
+    odata_type = "#microsoft.graph.singleUser"
+    # The name of the user in Azure AD. Read only.
+    description: Optional[str] = None
+    # The ID of the user in Azure AD.
+    id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SingleUser:
@@ -30,23 +27,6 @@ class SingleUser(user_set.UserSet):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return SingleUser()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The name of the user in Azure AD. Read only.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The name of the user in Azure AD. Read only.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -62,23 +42,6 @@ class SingleUser(user_set.UserSet):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def id(self,) -> Optional[str]:
-        """
-        Gets the id property value. The ID of the user in Azure AD.
-        Returns: Optional[str]
-        """
-        return self._id
-    
-    @id.setter
-    def id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the id property value. The ID of the user in Azure AD.
-        Args:
-            value: Value to set for the id property.
-        """
-        self._id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

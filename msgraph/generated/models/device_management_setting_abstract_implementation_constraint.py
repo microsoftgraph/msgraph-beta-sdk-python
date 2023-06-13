@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_constraint
 
+@dataclass
 class DeviceManagementSettingAbstractImplementationConstraint(device_management_constraint.DeviceManagementConstraint):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementSettingAbstractImplementationConstraint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementSettingAbstractImplementationConstraint"
-        # List of value which means not configured for the setting
-        self._allowed_abstract_implementation_definition_ids: Optional[List[str]] = None
-    
-    @property
-    def allowed_abstract_implementation_definition_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the allowedAbstractImplementationDefinitionIds property value. List of value which means not configured for the setting
-        Returns: Optional[List[str]]
-        """
-        return self._allowed_abstract_implementation_definition_ids
-    
-    @allowed_abstract_implementation_definition_ids.setter
-    def allowed_abstract_implementation_definition_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the allowedAbstractImplementationDefinitionIds property value. List of value which means not configured for the setting
-        Args:
-            value: Value to set for the allowed_abstract_implementation_definition_ids property.
-        """
-        self._allowed_abstract_implementation_definition_ids = value
+    odata_type = "#microsoft.graph.deviceManagementSettingAbstractImplementationConstraint"
+    # List of value which means not configured for the setting
+    allowed_abstract_implementation_definition_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingAbstractImplementationConstraint:

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,57 +8,19 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSCertificateProfileBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSCertificateProfileBase"
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Value for the Certificate Validity Period.
-        self._certificate_validity_period_value: Optional[int] = None
-        # Certificate renewal threshold percentage.
-        self._renewal_threshold_percentage: Optional[int] = None
-        # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-        self._subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
-        # Subject Name Format Options for Apple devices.
-        self._subject_name_format: Optional[apple_subject_name_format.AppleSubjectNameFormat] = None
-    
-    @property
-    def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
-        """
-        Gets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
-        Returns: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]
-        """
-        return self._certificate_validity_period_scale
-    
-    @certificate_validity_period_scale.setter
-    def certificate_validity_period_scale(self,value: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None) -> None:
-        """
-        Sets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
-        Args:
-            value: Value to set for the certificate_validity_period_scale property.
-        """
-        self._certificate_validity_period_scale = value
-    
-    @property
-    def certificate_validity_period_value(self,) -> Optional[int]:
-        """
-        Gets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
-        Returns: Optional[int]
-        """
-        return self._certificate_validity_period_value
-    
-    @certificate_validity_period_value.setter
-    def certificate_validity_period_value(self,value: Optional[int] = None) -> None:
-        """
-        Sets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
-        Args:
-            value: Value to set for the certificate_validity_period_value property.
-        """
-        self._certificate_validity_period_value = value
+    odata_type = "#microsoft.graph.macOSCertificateProfileBase"
+    # Certificate Validity Period Options.
+    certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+    # Value for the Certificate Validity Period.
+    certificate_validity_period_value: Optional[int] = None
+    # Certificate renewal threshold percentage.
+    renewal_threshold_percentage: Optional[int] = None
+    # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+    subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
+    # Subject Name Format Options for Apple devices.
+    subject_name_format: Optional[apple_subject_name_format.AppleSubjectNameFormat] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSCertificateProfileBase:
@@ -104,23 +67,6 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         fields.update(super_fields)
         return fields
     
-    @property
-    def renewal_threshold_percentage(self,) -> Optional[int]:
-        """
-        Gets the renewalThresholdPercentage property value. Certificate renewal threshold percentage.
-        Returns: Optional[int]
-        """
-        return self._renewal_threshold_percentage
-    
-    @renewal_threshold_percentage.setter
-    def renewal_threshold_percentage(self,value: Optional[int] = None) -> None:
-        """
-        Sets the renewalThresholdPercentage property value. Certificate renewal threshold percentage.
-        Args:
-            value: Value to set for the renewal_threshold_percentage property.
-        """
-        self._renewal_threshold_percentage = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -135,39 +81,5 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         writer.write_int_value("renewalThresholdPercentage", self.renewal_threshold_percentage)
         writer.write_enum_value("subjectAlternativeNameType", self.subject_alternative_name_type)
         writer.write_enum_value("subjectNameFormat", self.subject_name_format)
-    
-    @property
-    def subject_alternative_name_type(self,) -> Optional[subject_alternative_name_type.SubjectAlternativeNameType]:
-        """
-        Gets the subjectAlternativeNameType property value. Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-        Returns: Optional[subject_alternative_name_type.SubjectAlternativeNameType]
-        """
-        return self._subject_alternative_name_type
-    
-    @subject_alternative_name_type.setter
-    def subject_alternative_name_type(self,value: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None) -> None:
-        """
-        Sets the subjectAlternativeNameType property value. Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-        Args:
-            value: Value to set for the subject_alternative_name_type property.
-        """
-        self._subject_alternative_name_type = value
-    
-    @property
-    def subject_name_format(self,) -> Optional[apple_subject_name_format.AppleSubjectNameFormat]:
-        """
-        Gets the subjectNameFormat property value. Subject Name Format Options for Apple devices.
-        Returns: Optional[apple_subject_name_format.AppleSubjectNameFormat]
-        """
-        return self._subject_name_format
-    
-    @subject_name_format.setter
-    def subject_name_format(self,value: Optional[apple_subject_name_format.AppleSubjectNameFormat] = None) -> None:
-        """
-        Sets the subjectNameFormat property value. Subject Name Format Options for Apple devices.
-        Args:
-            value: Value to set for the subject_name_format property.
-        """
-        self._subject_name_format = value
     
 

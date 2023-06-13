@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationGroupSettingInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate"
-        # Group Setting Value Template
-        self._group_setting_value_template: Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate] = None
+    odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate"
+    # Group Setting Value Template
+    group_setting_value_template: Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingInstanceTemplate:
@@ -42,23 +39,6 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_managemen
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group_setting_value_template(self,) -> Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]:
-        """
-        Gets the groupSettingValueTemplate property value. Group Setting Value Template
-        Returns: Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]
-        """
-        return self._group_setting_value_template
-    
-    @group_setting_value_template.setter
-    def group_setting_value_template(self,value: Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate] = None) -> None:
-        """
-        Sets the groupSettingValueTemplate property value. Group Setting Value Template
-        Args:
-            value: Value to set for the group_setting_value_template property.
-        """
-        self._group_setting_value_template = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

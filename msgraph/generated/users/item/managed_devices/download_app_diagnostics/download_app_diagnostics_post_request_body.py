@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import powerlift_download_request
 
+@dataclass
 class DownloadAppDiagnosticsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new downloadAppDiagnosticsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The request property
-        self._request: Optional[powerlift_download_request.PowerliftDownloadRequest] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The request property
+    request: Optional[powerlift_download_request.PowerliftDownloadRequest] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DownloadAppDiagnosticsPostRequestBody:
@@ -56,23 +37,6 @@ class DownloadAppDiagnosticsPostRequestBody(AdditionalDataHolder, Parsable):
             "request": lambda n : setattr(self, 'request', n.get_object_value(powerlift_download_request.PowerliftDownloadRequest)),
         }
         return fields
-    
-    @property
-    def request(self,) -> Optional[powerlift_download_request.PowerliftDownloadRequest]:
-        """
-        Gets the request property value. The request property
-        Returns: Optional[powerlift_download_request.PowerliftDownloadRequest]
-        """
-        return self._request
-    
-    @request.setter
-    def request(self,value: Optional[powerlift_download_request.PowerliftDownloadRequest] = None) -> None:
-        """
-        Sets the request property value. The request property
-        Args:
-            value: Value to set for the request property.
-        """
-        self._request = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

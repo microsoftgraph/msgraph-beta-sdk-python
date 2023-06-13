@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,58 +8,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UnifiedRoleManagementAlertConfiguration(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRoleManagementAlertConfiguration and sets the default values.
-        """
-        super().__init__()
-        # The alertDefinition property
-        self._alert_definition: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition] = None
-        # The alertDefinitionId property
-        self._alert_definition_id: Optional[str] = None
-        # The isEnabled property
-        self._is_enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The scopeId property
-        self._scope_id: Optional[str] = None
-        # The scopeType property
-        self._scope_type: Optional[str] = None
-    
-    @property
-    def alert_definition(self,) -> Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]:
-        """
-        Gets the alertDefinition property value. The alertDefinition property
-        Returns: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]
-        """
-        return self._alert_definition
-    
-    @alert_definition.setter
-    def alert_definition(self,value: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition] = None) -> None:
-        """
-        Sets the alertDefinition property value. The alertDefinition property
-        Args:
-            value: Value to set for the alert_definition property.
-        """
-        self._alert_definition = value
-    
-    @property
-    def alert_definition_id(self,) -> Optional[str]:
-        """
-        Gets the alertDefinitionId property value. The alertDefinitionId property
-        Returns: Optional[str]
-        """
-        return self._alert_definition_id
-    
-    @alert_definition_id.setter
-    def alert_definition_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the alertDefinitionId property value. The alertDefinitionId property
-        Args:
-            value: Value to set for the alert_definition_id property.
-        """
-        self._alert_definition_id = value
+    # The alertDefinition property
+    alert_definition: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition] = None
+    # The alertDefinitionId property
+    alert_definition_id: Optional[str] = None
+    # The isEnabled property
+    is_enabled: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The scopeId property
+    scope_id: Optional[str] = None
+    # The scopeType property
+    scope_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleManagementAlertConfiguration:
@@ -120,57 +83,6 @@ class UnifiedRoleManagementAlertConfiguration(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isEnabled property value. The isEnabled property
-        Returns: Optional[bool]
-        """
-        return self._is_enabled
-    
-    @is_enabled.setter
-    def is_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEnabled property value. The isEnabled property
-        Args:
-            value: Value to set for the is_enabled property.
-        """
-        self._is_enabled = value
-    
-    @property
-    def scope_id(self,) -> Optional[str]:
-        """
-        Gets the scopeId property value. The scopeId property
-        Returns: Optional[str]
-        """
-        return self._scope_id
-    
-    @scope_id.setter
-    def scope_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the scopeId property value. The scopeId property
-        Args:
-            value: Value to set for the scope_id property.
-        """
-        self._scope_id = value
-    
-    @property
-    def scope_type(self,) -> Optional[str]:
-        """
-        Gets the scopeType property value. The scopeType property
-        Returns: Optional[str]
-        """
-        return self._scope_type
-    
-    @scope_type.setter
-    def scope_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the scopeType property value. The scopeType property
-        Args:
-            value: Value to set for the scope_type property.
-        """
-        self._scope_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

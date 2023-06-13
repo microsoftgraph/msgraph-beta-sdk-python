@@ -1,60 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import app_log_decryption_algorithm
 
+@dataclass
 class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appLogCollectionDownloadDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The appLogDecryptionAlgorithm property
-        self._app_log_decryption_algorithm: Optional[app_log_decryption_algorithm.AppLogDecryptionAlgorithm] = None
-        # Decryption key that used to decrypt the log.
-        self._decryption_key: Optional[str] = None
-        # Download SAS (Shared Access Signature) Url for completed app log request.
-        self._download_url: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def app_log_decryption_algorithm(self,) -> Optional[app_log_decryption_algorithm.AppLogDecryptionAlgorithm]:
-        """
-        Gets the appLogDecryptionAlgorithm property value. The appLogDecryptionAlgorithm property
-        Returns: Optional[app_log_decryption_algorithm.AppLogDecryptionAlgorithm]
-        """
-        return self._app_log_decryption_algorithm
-    
-    @app_log_decryption_algorithm.setter
-    def app_log_decryption_algorithm(self,value: Optional[app_log_decryption_algorithm.AppLogDecryptionAlgorithm] = None) -> None:
-        """
-        Sets the appLogDecryptionAlgorithm property value. The appLogDecryptionAlgorithm property
-        Args:
-            value: Value to set for the app_log_decryption_algorithm property.
-        """
-        self._app_log_decryption_algorithm = value
+    # The appLogDecryptionAlgorithm property
+    app_log_decryption_algorithm: Optional[app_log_decryption_algorithm.AppLogDecryptionAlgorithm] = None
+    # Decryption key that used to decrypt the log.
+    decryption_key: Optional[str] = None
+    # Download SAS (Shared Access Signature) Url for completed app log request.
+    download_url: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppLogCollectionDownloadDetails:
@@ -67,40 +31,6 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AppLogCollectionDownloadDetails()
-    
-    @property
-    def decryption_key(self,) -> Optional[str]:
-        """
-        Gets the decryptionKey property value. Decryption key that used to decrypt the log.
-        Returns: Optional[str]
-        """
-        return self._decryption_key
-    
-    @decryption_key.setter
-    def decryption_key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the decryptionKey property value. Decryption key that used to decrypt the log.
-        Args:
-            value: Value to set for the decryption_key property.
-        """
-        self._decryption_key = value
-    
-    @property
-    def download_url(self,) -> Optional[str]:
-        """
-        Gets the downloadUrl property value. Download SAS (Shared Access Signature) Url for completed app log request.
-        Returns: Optional[str]
-        """
-        return self._download_url
-    
-    @download_url.setter
-    def download_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the downloadUrl property value. Download SAS (Shared Access Signature) Url for completed app log request.
-        Args:
-            value: Value to set for the download_url property.
-        """
-        self._download_url = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -116,23 +46,6 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,36 +1,17 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ConnectPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new connectPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The ownerAccessToken property
-        self._owner_access_token: Optional[str] = None
-        # The ownerUserPrincipalName property
-        self._owner_user_principal_name: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The ownerAccessToken property
+    owner_access_token: Optional[str] = None
+    # The ownerUserPrincipalName property
+    owner_user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConnectPostRequestBody:
@@ -54,40 +35,6 @@ class ConnectPostRequestBody(AdditionalDataHolder, Parsable):
             "ownerUserPrincipalName": lambda n : setattr(self, 'owner_user_principal_name', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def owner_access_token(self,) -> Optional[str]:
-        """
-        Gets the ownerAccessToken property value. The ownerAccessToken property
-        Returns: Optional[str]
-        """
-        return self._owner_access_token
-    
-    @owner_access_token.setter
-    def owner_access_token(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ownerAccessToken property value. The ownerAccessToken property
-        Args:
-            value: Value to set for the owner_access_token property.
-        """
-        self._owner_access_token = value
-    
-    @property
-    def owner_user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the ownerUserPrincipalName property value. The ownerUserPrincipalName property
-        Returns: Optional[str]
-        """
-        return self._owner_user_principal_name
-    
-    @owner_user_principal_name.setter
-    def owner_user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ownerUserPrincipalName property value. The ownerUserPrincipalName property
-        Args:
-            value: Value to set for the owner_user_principal_name property.
-        """
-        self._owner_user_principal_name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

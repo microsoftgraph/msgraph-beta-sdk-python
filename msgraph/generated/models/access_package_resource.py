@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,142 +9,36 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AccessPackageResource(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageResource and sets the default values.
-        """
-        super().__init__()
-        # Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
-        self._access_package_resource_environment: Optional[access_package_resource_environment.AccessPackageResourceEnvironment] = None
-        # Read-only. Nullable. Supports $expand.
-        self._access_package_resource_roles: Optional[List[access_package_resource_role.AccessPackageResourceRole]] = None
-        # Read-only. Nullable. Supports $expand.
-        self._access_package_resource_scopes: Optional[List[access_package_resource_scope.AccessPackageResourceScope]] = None
-        # The name of the user or application that first added this resource. Read-only.
-        self._added_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        self._added_on: Optional[datetime] = None
-        # Contains information about the attributes to be collected from the requestor and sent to the resource application.
-        self._attributes: Optional[List[access_package_resource_attribute.AccessPackageResourceAttribute]] = None
-        # A description for the resource.
-        self._description: Optional[str] = None
-        # The display name of the resource, such as the application name, group name or site name.
-        self._display_name: Optional[str] = None
-        # True if the resource is not yet available for assignment. Read-only.
-        self._is_pending_onboarding: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The unique identifier of the resource in the origin system. In the case of an Azure AD group, this is the identifier of the group.
-        self._origin_id: Optional[str] = None
-        # The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
-        self._origin_system: Optional[str] = None
-        # The type of the resource, such as Application if it is an Azure AD connected application, or SharePoint Online Site for a SharePoint Online site.
-        self._resource_type: Optional[str] = None
-        # A unique resource locator for the resource, such as the URL for signing a user into an application.
-        self._url: Optional[str] = None
-    
-    @property
-    def access_package_resource_environment(self,) -> Optional[access_package_resource_environment.AccessPackageResourceEnvironment]:
-        """
-        Gets the accessPackageResourceEnvironment property value. Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
-        Returns: Optional[access_package_resource_environment.AccessPackageResourceEnvironment]
-        """
-        return self._access_package_resource_environment
-    
-    @access_package_resource_environment.setter
-    def access_package_resource_environment(self,value: Optional[access_package_resource_environment.AccessPackageResourceEnvironment] = None) -> None:
-        """
-        Sets the accessPackageResourceEnvironment property value. Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
-        Args:
-            value: Value to set for the access_package_resource_environment property.
-        """
-        self._access_package_resource_environment = value
-    
-    @property
-    def access_package_resource_roles(self,) -> Optional[List[access_package_resource_role.AccessPackageResourceRole]]:
-        """
-        Gets the accessPackageResourceRoles property value. Read-only. Nullable. Supports $expand.
-        Returns: Optional[List[access_package_resource_role.AccessPackageResourceRole]]
-        """
-        return self._access_package_resource_roles
-    
-    @access_package_resource_roles.setter
-    def access_package_resource_roles(self,value: Optional[List[access_package_resource_role.AccessPackageResourceRole]] = None) -> None:
-        """
-        Sets the accessPackageResourceRoles property value. Read-only. Nullable. Supports $expand.
-        Args:
-            value: Value to set for the access_package_resource_roles property.
-        """
-        self._access_package_resource_roles = value
-    
-    @property
-    def access_package_resource_scopes(self,) -> Optional[List[access_package_resource_scope.AccessPackageResourceScope]]:
-        """
-        Gets the accessPackageResourceScopes property value. Read-only. Nullable. Supports $expand.
-        Returns: Optional[List[access_package_resource_scope.AccessPackageResourceScope]]
-        """
-        return self._access_package_resource_scopes
-    
-    @access_package_resource_scopes.setter
-    def access_package_resource_scopes(self,value: Optional[List[access_package_resource_scope.AccessPackageResourceScope]] = None) -> None:
-        """
-        Sets the accessPackageResourceScopes property value. Read-only. Nullable. Supports $expand.
-        Args:
-            value: Value to set for the access_package_resource_scopes property.
-        """
-        self._access_package_resource_scopes = value
-    
-    @property
-    def added_by(self,) -> Optional[str]:
-        """
-        Gets the addedBy property value. The name of the user or application that first added this resource. Read-only.
-        Returns: Optional[str]
-        """
-        return self._added_by
-    
-    @added_by.setter
-    def added_by(self,value: Optional[str] = None) -> None:
-        """
-        Sets the addedBy property value. The name of the user or application that first added this resource. Read-only.
-        Args:
-            value: Value to set for the added_by property.
-        """
-        self._added_by = value
-    
-    @property
-    def added_on(self,) -> Optional[datetime]:
-        """
-        Gets the addedOn property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._added_on
-    
-    @added_on.setter
-    def added_on(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the addedOn property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        Args:
-            value: Value to set for the added_on property.
-        """
-        self._added_on = value
-    
-    @property
-    def attributes(self,) -> Optional[List[access_package_resource_attribute.AccessPackageResourceAttribute]]:
-        """
-        Gets the attributes property value. Contains information about the attributes to be collected from the requestor and sent to the resource application.
-        Returns: Optional[List[access_package_resource_attribute.AccessPackageResourceAttribute]]
-        """
-        return self._attributes
-    
-    @attributes.setter
-    def attributes(self,value: Optional[List[access_package_resource_attribute.AccessPackageResourceAttribute]] = None) -> None:
-        """
-        Sets the attributes property value. Contains information about the attributes to be collected from the requestor and sent to the resource application.
-        Args:
-            value: Value to set for the attributes property.
-        """
-        self._attributes = value
+    # Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
+    access_package_resource_environment: Optional[access_package_resource_environment.AccessPackageResourceEnvironment] = None
+    # Read-only. Nullable. Supports $expand.
+    access_package_resource_roles: Optional[List[access_package_resource_role.AccessPackageResourceRole]] = None
+    # Read-only. Nullable. Supports $expand.
+    access_package_resource_scopes: Optional[List[access_package_resource_scope.AccessPackageResourceScope]] = None
+    # The name of the user or application that first added this resource. Read-only.
+    added_by: Optional[str] = None
+    # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+    added_on: Optional[datetime] = None
+    # Contains information about the attributes to be collected from the requestor and sent to the resource application.
+    attributes: Optional[List[access_package_resource_attribute.AccessPackageResourceAttribute]] = None
+    # A description for the resource.
+    description: Optional[str] = None
+    # The display name of the resource, such as the application name, group name or site name.
+    display_name: Optional[str] = None
+    # True if the resource is not yet available for assignment. Read-only.
+    is_pending_onboarding: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The unique identifier of the resource in the origin system. In the case of an Azure AD group, this is the identifier of the group.
+    origin_id: Optional[str] = None
+    # The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
+    origin_system: Optional[str] = None
+    # The type of the resource, such as Application if it is an Azure AD connected application, or SharePoint Online Site for a SharePoint Online site.
+    resource_type: Optional[str] = None
+    # A unique resource locator for the resource, such as the URL for signing a user into an application.
+    url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageResource:
@@ -156,40 +51,6 @@ class AccessPackageResource(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AccessPackageResource()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. A description for the resource.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. A description for the resource.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name of the resource, such as the application name, group name or site name.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name of the resource, such as the application name, group name or site name.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -217,74 +78,6 @@ class AccessPackageResource(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_pending_onboarding(self,) -> Optional[bool]:
-        """
-        Gets the isPendingOnboarding property value. True if the resource is not yet available for assignment. Read-only.
-        Returns: Optional[bool]
-        """
-        return self._is_pending_onboarding
-    
-    @is_pending_onboarding.setter
-    def is_pending_onboarding(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isPendingOnboarding property value. True if the resource is not yet available for assignment. Read-only.
-        Args:
-            value: Value to set for the is_pending_onboarding property.
-        """
-        self._is_pending_onboarding = value
-    
-    @property
-    def origin_id(self,) -> Optional[str]:
-        """
-        Gets the originId property value. The unique identifier of the resource in the origin system. In the case of an Azure AD group, this is the identifier of the group.
-        Returns: Optional[str]
-        """
-        return self._origin_id
-    
-    @origin_id.setter
-    def origin_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the originId property value. The unique identifier of the resource in the origin system. In the case of an Azure AD group, this is the identifier of the group.
-        Args:
-            value: Value to set for the origin_id property.
-        """
-        self._origin_id = value
-    
-    @property
-    def origin_system(self,) -> Optional[str]:
-        """
-        Gets the originSystem property value. The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
-        Returns: Optional[str]
-        """
-        return self._origin_system
-    
-    @origin_system.setter
-    def origin_system(self,value: Optional[str] = None) -> None:
-        """
-        Sets the originSystem property value. The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
-        Args:
-            value: Value to set for the origin_system property.
-        """
-        self._origin_system = value
-    
-    @property
-    def resource_type(self,) -> Optional[str]:
-        """
-        Gets the resourceType property value. The type of the resource, such as Application if it is an Azure AD connected application, or SharePoint Online Site for a SharePoint Online site.
-        Returns: Optional[str]
-        """
-        return self._resource_type
-    
-    @resource_type.setter
-    def resource_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the resourceType property value. The type of the resource, such as Application if it is an Azure AD connected application, or SharePoint Online Site for a SharePoint Online site.
-        Args:
-            value: Value to set for the resource_type property.
-        """
-        self._resource_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -307,22 +100,5 @@ class AccessPackageResource(entity.Entity):
         writer.write_str_value("originSystem", self.origin_system)
         writer.write_str_value("resourceType", self.resource_type)
         writer.write_str_value("url", self.url)
-    
-    @property
-    def url(self,) -> Optional[str]:
-        """
-        Gets the url property value. A unique resource locator for the resource, such as the URL for signing a user into an application.
-        Returns: Optional[str]
-        """
-        return self._url
-    
-    @url.setter
-    def url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the url property value. A unique resource locator for the resource, such as the URL for signing a user into an application.
-        Args:
-            value: Value to set for the url property.
-        """
-        self._url = value
     
 

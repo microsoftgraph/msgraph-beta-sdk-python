@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ServiceNowConnectionStatus(Enum):
+class ServiceNowConnectionStatus(str, Enum):
     # Tenant has disabled the connection
     Disabled = "disabled",
     # Tenant has enabled the connection

@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import kerberos_sign_on_settings, single_sign_on_mode
 
+@dataclass
 class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new onPremisesPublishingSingleSignOn and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The Kerberos Constrained Delegation settings for applications that use Integrated Window Authentication.
-        self._kerberos_sign_on_settings: Optional[kerberos_sign_on_settings.KerberosSignOnSettings] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
-        self._single_sign_on_mode: Optional[single_sign_on_mode.SingleSignOnMode] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The Kerberos Constrained Delegation settings for applications that use Integrated Window Authentication.
+    kerberos_sign_on_settings: Optional[kerberos_sign_on_settings.KerberosSignOnSettings] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
+    single_sign_on_mode: Optional[single_sign_on_mode.SingleSignOnMode] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesPublishingSingleSignOn:
@@ -63,40 +44,6 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def kerberos_sign_on_settings(self,) -> Optional[kerberos_sign_on_settings.KerberosSignOnSettings]:
-        """
-        Gets the kerberosSignOnSettings property value. The Kerberos Constrained Delegation settings for applications that use Integrated Window Authentication.
-        Returns: Optional[kerberos_sign_on_settings.KerberosSignOnSettings]
-        """
-        return self._kerberos_sign_on_settings
-    
-    @kerberos_sign_on_settings.setter
-    def kerberos_sign_on_settings(self,value: Optional[kerberos_sign_on_settings.KerberosSignOnSettings] = None) -> None:
-        """
-        Sets the kerberosSignOnSettings property value. The Kerberos Constrained Delegation settings for applications that use Integrated Window Authentication.
-        Args:
-            value: Value to set for the kerberos_sign_on_settings property.
-        """
-        self._kerberos_sign_on_settings = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -109,22 +56,5 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("singleSignOnMode", self.single_sign_on_mode)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def single_sign_on_mode(self,) -> Optional[single_sign_on_mode.SingleSignOnMode]:
-        """
-        Gets the singleSignOnMode property value. The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
-        Returns: Optional[single_sign_on_mode.SingleSignOnMode]
-        """
-        return self._single_sign_on_mode
-    
-    @single_sign_on_mode.setter
-    def single_sign_on_mode(self,value: Optional[single_sign_on_mode.SingleSignOnMode] = None) -> None:
-        """
-        Sets the singleSignOnMode property value. The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
-        Args:
-            value: Value to set for the single_sign_on_mode property.
-        """
-        self._single_sign_on_mode = value
     
 

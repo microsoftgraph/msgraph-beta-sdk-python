@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -32,7 +32,6 @@ if TYPE_CHECKING:
     from .get_cloud_pc_review_status import get_cloud_pc_review_status_request_builder
     from .get_file_vault_key import get_file_vault_key_request_builder
     from .get_non_compliant_settings import get_non_compliant_settings_request_builder
-    from .get_oem_warranty import get_oem_warranty_request_builder
     from .initiate_mobile_device_management_key_recovery import initiate_mobile_device_management_key_recovery_request_builder
     from .initiate_on_demand_proactive_remediation import initiate_on_demand_proactive_remediation_request_builder
     from .locate_device import locate_device_request_builder
@@ -392,15 +391,6 @@ class ManagedDeviceItemRequestBuilder():
         from .get_non_compliant_settings import get_non_compliant_settings_request_builder
 
         return get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_oem_warranty(self) -> get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder:
-        """
-        Provides operations to call the getOemWarranty method.
-        """
-        from .get_oem_warranty import get_oem_warranty_request_builder
-
-        return get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def initiate_mobile_device_management_key_recovery(self) -> initiate_mobile_device_management_key_recovery_request_builder.InitiateMobileDeviceManagementKeyRecoveryRequestBuilder:

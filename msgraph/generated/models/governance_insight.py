@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,16 +9,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class GovernanceInsight(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new governanceInsight and sets the default values.
-        """
-        super().__init__()
-        # Indicates when the insight was created.
-        self._insight_created_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # Indicates when the insight was created.
+    insight_created_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GovernanceInsight:
@@ -55,23 +52,6 @@ class GovernanceInsight(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def insight_created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the insightCreatedDateTime property value. Indicates when the insight was created.
-        Returns: Optional[datetime]
-        """
-        return self._insight_created_date_time
-    
-    @insight_created_date_time.setter
-    def insight_created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the insightCreatedDateTime property value. Indicates when the insight was created.
-        Args:
-            value: Value to set for the insight_created_date_time property.
-        """
-        self._insight_created_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -6,56 +7,19 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from . import service_provisioning_resource_error, service_provisioning_xml_error
 
+@dataclass
 class ServiceProvisioningError(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new serviceProvisioningError and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The date and time at which the error occurred.
-        self._created_date_time: Optional[datetime] = None
-        # Indicates whether the Error has been attended to.
-        self._is_resolved: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
-        self._service_instance: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time at which the error occurred.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time at which the error occurred.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The date and time at which the error occurred.
+    created_date_time: Optional[datetime] = None
+    # Indicates whether the Error has been attended to.
+    is_resolved: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
+    service_instance: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServiceProvisioningError:
@@ -95,40 +59,6 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def is_resolved(self,) -> Optional[bool]:
-        """
-        Gets the isResolved property value. Indicates whether the Error has been attended to.
-        Returns: Optional[bool]
-        """
-        return self._is_resolved
-    
-    @is_resolved.setter
-    def is_resolved(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isResolved property value. Indicates whether the Error has been attended to.
-        Args:
-            value: Value to set for the is_resolved property.
-        """
-        self._is_resolved = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -142,22 +72,5 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("serviceInstance", self.service_instance)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def service_instance(self,) -> Optional[str]:
-        """
-        Gets the serviceInstance property value. Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
-        Returns: Optional[str]
-        """
-        return self._service_instance
-    
-    @service_instance.setter
-    def service_instance(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serviceInstance property value. Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
-        Args:
-            value: Value to set for the service_instance property.
-        """
-        self._service_instance = value
     
 

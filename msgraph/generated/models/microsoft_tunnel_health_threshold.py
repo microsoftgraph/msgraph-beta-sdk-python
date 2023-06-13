@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,25 +8,21 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MicrosoftTunnelHealthThreshold(entity.Entity):
     """
     Entity that represents the health thresholds of a health metric
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new microsoftTunnelHealthThreshold and sets the default values.
-        """
-        super().__init__()
-        # The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized. Read-only.
-        self._default_healthy_threshold: Optional[int] = None
-        # The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency unhealthy > 20ms, health metrics can be customized. Read-only.
-        self._default_unhealthy_threshold: Optional[int] = None
-        # The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized.
-        self._healthy_threshold: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency Unhealthy > 20ms, health metrics can be customized.
-        self._unhealthy_threshold: Optional[int] = None
+    # The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized. Read-only.
+    default_healthy_threshold: Optional[int] = None
+    # The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency unhealthy > 20ms, health metrics can be customized. Read-only.
+    default_unhealthy_threshold: Optional[int] = None
+    # The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized.
+    healthy_threshold: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency Unhealthy > 20ms, health metrics can be customized.
+    unhealthy_threshold: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftTunnelHealthThreshold:
@@ -38,40 +35,6 @@ class MicrosoftTunnelHealthThreshold(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return MicrosoftTunnelHealthThreshold()
-    
-    @property
-    def default_healthy_threshold(self,) -> Optional[int]:
-        """
-        Gets the defaultHealthyThreshold property value. The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized. Read-only.
-        Returns: Optional[int]
-        """
-        return self._default_healthy_threshold
-    
-    @default_healthy_threshold.setter
-    def default_healthy_threshold(self,value: Optional[int] = None) -> None:
-        """
-        Sets the defaultHealthyThreshold property value. The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized. Read-only.
-        Args:
-            value: Value to set for the default_healthy_threshold property.
-        """
-        self._default_healthy_threshold = value
-    
-    @property
-    def default_unhealthy_threshold(self,) -> Optional[int]:
-        """
-        Gets the defaultUnhealthyThreshold property value. The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency unhealthy > 20ms, health metrics can be customized. Read-only.
-        Returns: Optional[int]
-        """
-        return self._default_unhealthy_threshold
-    
-    @default_unhealthy_threshold.setter
-    def default_unhealthy_threshold(self,value: Optional[int] = None) -> None:
-        """
-        Sets the defaultUnhealthyThreshold property value. The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency unhealthy > 20ms, health metrics can be customized. Read-only.
-        Args:
-            value: Value to set for the default_unhealthy_threshold property.
-        """
-        self._default_unhealthy_threshold = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -90,23 +53,6 @@ class MicrosoftTunnelHealthThreshold(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def healthy_threshold(self,) -> Optional[int]:
-        """
-        Gets the healthyThreshold property value. The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized.
-        Returns: Optional[int]
-        """
-        return self._healthy_threshold
-    
-    @healthy_threshold.setter
-    def healthy_threshold(self,value: Optional[int] = None) -> None:
-        """
-        Sets the healthyThreshold property value. The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized.
-        Args:
-            value: Value to set for the healthy_threshold property.
-        """
-        self._healthy_threshold = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -120,22 +66,5 @@ class MicrosoftTunnelHealthThreshold(entity.Entity):
         writer.write_int_value("defaultUnhealthyThreshold", self.default_unhealthy_threshold)
         writer.write_int_value("healthyThreshold", self.healthy_threshold)
         writer.write_int_value("unhealthyThreshold", self.unhealthy_threshold)
-    
-    @property
-    def unhealthy_threshold(self,) -> Optional[int]:
-        """
-        Gets the unhealthyThreshold property value. The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency Unhealthy > 20ms, health metrics can be customized.
-        Returns: Optional[int]
-        """
-        return self._unhealthy_threshold
-    
-    @unhealthy_threshold.setter
-    def unhealthy_threshold(self,value: Optional[int] = None) -> None:
-        """
-        Sets the unhealthyThreshold property value. The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency Unhealthy > 20ms, health metrics can be customized.
-        Args:
-            value: Value to set for the unhealthy_threshold property.
-        """
-        self._unhealthy_threshold = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class TrustFrameworkKeySet(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TrustFrameworkKeySet and sets the default values.
-        """
-        super().__init__()
-        # A collection of the keys.
-        self._keys: Optional[List[trust_framework_key.TrustFrameworkKey]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # A collection of the keys.
+    keys: Optional[List[trust_framework_key.TrustFrameworkKey]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TrustFrameworkKeySet:
@@ -43,23 +40,6 @@ class TrustFrameworkKeySet(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def keys(self,) -> Optional[List[trust_framework_key.TrustFrameworkKey]]:
-        """
-        Gets the keys property value. A collection of the keys.
-        Returns: Optional[List[trust_framework_key.TrustFrameworkKey]]
-        """
-        return self._keys
-    
-    @keys.setter
-    def keys(self,value: Optional[List[trust_framework_key.TrustFrameworkKey]] = None) -> None:
-        """
-        Sets the keys property value. A collection of the keys.
-        Args:
-            value: Value to set for the keys property.
-        """
-        self._keys = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

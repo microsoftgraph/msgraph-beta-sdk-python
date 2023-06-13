@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ProtocolType(Enum):
+class ProtocolType(str, Enum):
     None_ = "none",
     OAuth2 = "oAuth2",
     Ropc = "ropc",

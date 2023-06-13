@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import updatable_asset_error
 
+@dataclass
 class AzureADDeviceRegistrationError(updatable_asset_error.UpdatableAssetError):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AzureADDeviceRegistrationError and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.azureADDeviceRegistrationError"
-        # The reason property
-        self._reason: Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason] = None
+    odata_type = "#microsoft.graph.windowsUpdates.azureADDeviceRegistrationError"
+    # The reason property
+    reason: Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureADDeviceRegistrationError:
@@ -42,23 +39,6 @@ class AzureADDeviceRegistrationError(updatable_asset_error.UpdatableAssetError):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def reason(self,) -> Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason]:
-        """
-        Gets the reason property value. The reason property
-        Returns: Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason]
-        """
-        return self._reason
-    
-    @reason.setter
-    def reason(self,value: Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason] = None) -> None:
-        """
-        Sets the reason property value. The reason property
-        Args:
-            value: Value to set for the reason property.
-        """
-        self._reason = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

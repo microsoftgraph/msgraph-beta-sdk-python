@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ......models import business_scenario_task_target_base
 
+@dataclass
 class GetPlanPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new getPlanPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The target property
-        self._target: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The target property
+    target: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetPlanPostRequestBody:
@@ -67,22 +48,5 @@ class GetPlanPostRequestBody(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_object_value("target", self.target)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def target(self,) -> Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase]:
-        """
-        Gets the target property value. The target property
-        Returns: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase]
-        """
-        return self._target
-    
-    @target.setter
-    def target(self,value: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase] = None) -> None:
-        """
-        Sets the target property value. The target property
-        Args:
-            value: Value to set for the target property.
-        """
-        self._target = value
     
 

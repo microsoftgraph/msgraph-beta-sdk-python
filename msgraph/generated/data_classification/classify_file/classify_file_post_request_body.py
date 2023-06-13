@@ -1,36 +1,17 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ClassifyFilePostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new classifyFilePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The file property
-        self._file: Optional[bytes] = None
-        # The sensitiveTypeIds property
-        self._sensitive_type_ids: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The file property
+    file: Optional[bytes] = None
+    # The sensitiveTypeIds property
+    sensitive_type_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ClassifyFilePostRequestBody:
@@ -44,23 +25,6 @@ class ClassifyFilePostRequestBody(AdditionalDataHolder, Parsable):
             raise Exception("parse_node cannot be undefined")
         return ClassifyFilePostRequestBody()
     
-    @property
-    def file(self,) -> Optional[bytes]:
-        """
-        Gets the file property value. The file property
-        Returns: Optional[bytes]
-        """
-        return self._file
-    
-    @file.setter
-    def file(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the file property value. The file property
-        Args:
-            value: Value to set for the file property.
-        """
-        self._file = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -71,23 +35,6 @@ class ClassifyFilePostRequestBody(AdditionalDataHolder, Parsable):
             "sensitiveTypeIds": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
-    
-    @property
-    def sensitive_type_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the sensitiveTypeIds property value. The sensitiveTypeIds property
-        Returns: Optional[List[str]]
-        """
-        return self._sensitive_type_ids
-    
-    @sensitive_type_ids.setter
-    def sensitive_type_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the sensitiveTypeIds property value. The sensitiveTypeIds property
-        Args:
-            value: Value to set for the sensitive_type_ids property.
-        """
-        self._sensitive_type_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

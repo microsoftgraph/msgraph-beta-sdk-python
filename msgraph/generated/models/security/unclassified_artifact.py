@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import artifact
 
+@dataclass
 class UnclassifiedArtifact(artifact.Artifact):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new UnclassifiedArtifact and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.unclassifiedArtifact"
-        # The kind for this unclassifiedArtifact resource, describing what this value means.
-        self._kind: Optional[str] = None
-        # The value for this unclassifiedArtifact.
-        self._value: Optional[str] = None
+    odata_type = "#microsoft.graph.security.unclassifiedArtifact"
+    # The kind for this unclassifiedArtifact resource, describing what this value means.
+    kind: Optional[str] = None
+    # The value for this unclassifiedArtifact.
+    value: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnclassifiedArtifact:
@@ -46,23 +43,6 @@ class UnclassifiedArtifact(artifact.Artifact):
         fields.update(super_fields)
         return fields
     
-    @property
-    def kind(self,) -> Optional[str]:
-        """
-        Gets the kind property value. The kind for this unclassifiedArtifact resource, describing what this value means.
-        Returns: Optional[str]
-        """
-        return self._kind
-    
-    @kind.setter
-    def kind(self,value: Optional[str] = None) -> None:
-        """
-        Sets the kind property value. The kind for this unclassifiedArtifact resource, describing what this value means.
-        Args:
-            value: Value to set for the kind property.
-        """
-        self._kind = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -74,22 +54,5 @@ class UnclassifiedArtifact(artifact.Artifact):
         super().serialize(writer)
         writer.write_str_value("kind", self.kind)
         writer.write_str_value("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[str]:
-        """
-        Gets the value property value. The value for this unclassifiedArtifact.
-        Returns: Optional[str]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[str] = None) -> None:
-        """
-        Sets the value property value. The value for this unclassifiedArtifact.
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

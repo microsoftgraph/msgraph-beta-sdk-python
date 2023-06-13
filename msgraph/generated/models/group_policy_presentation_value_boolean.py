@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import group_policy_presentation_value
 
+@dataclass
 class GroupPolicyPresentationValueBoolean(group_policy_presentation_value.GroupPolicyPresentationValue):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GroupPolicyPresentationValueBoolean and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # An boolean value for the associated presentation.
-        self._value: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # An boolean value for the associated presentation.
+    value: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyPresentationValueBoolean:
@@ -54,22 +51,5 @@ class GroupPolicyPresentationValueBoolean(group_policy_presentation_value.GroupP
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_bool_value("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[bool]:
-        """
-        Gets the value property value. An boolean value for the associated presentation.
-        Returns: Optional[bool]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the value property value. An boolean value for the associated presentation.
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import windows_kiosk_app_configuration
 
+@dataclass
 class WindowsKioskSingleUWPApp(windows_kiosk_app_configuration.WindowsKioskAppConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsKioskSingleUWPApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsKioskSingleUWPApp"
-        # The uwpApp property
-        self._uwp_app: Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp] = None
+    odata_type = "#microsoft.graph.windowsKioskSingleUWPApp"
+    # The uwpApp property
+    uwp_app: Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskSingleUWPApp:
@@ -53,22 +50,5 @@ class WindowsKioskSingleUWPApp(windows_kiosk_app_configuration.WindowsKioskAppCo
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("uwpApp", self.uwp_app)
-    
-    @property
-    def uwp_app(self,) -> Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp]:
-        """
-        Gets the uwpApp property value. The uwpApp property
-        Returns: Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp]
-        """
-        return self._uwp_app
-    
-    @uwp_app.setter
-    def uwp_app(self,value: Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp] = None) -> None:
-        """
-        Sets the uwpApp property value. The uwpApp property
-        Args:
-            value: Value to set for the uwp_app property.
-        """
-        self._uwp_app = value
     
 

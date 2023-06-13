@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,51 +8,13 @@ if TYPE_CHECKING:
 
 from . import label_action_base
 
+@dataclass
 class ProtectSite(label_action_base.LabelActionBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProtectSite and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.protectSite"
-        # The accessType property
-        self._access_type: Optional[site_access_type.SiteAccessType] = None
-        # The conditionalAccessProtectionLevelId property
-        self._conditional_access_protection_level_id: Optional[str] = None
-    
-    @property
-    def access_type(self,) -> Optional[site_access_type.SiteAccessType]:
-        """
-        Gets the accessType property value. The accessType property
-        Returns: Optional[site_access_type.SiteAccessType]
-        """
-        return self._access_type
-    
-    @access_type.setter
-    def access_type(self,value: Optional[site_access_type.SiteAccessType] = None) -> None:
-        """
-        Sets the accessType property value. The accessType property
-        Args:
-            value: Value to set for the access_type property.
-        """
-        self._access_type = value
-    
-    @property
-    def conditional_access_protection_level_id(self,) -> Optional[str]:
-        """
-        Gets the conditionalAccessProtectionLevelId property value. The conditionalAccessProtectionLevelId property
-        Returns: Optional[str]
-        """
-        return self._conditional_access_protection_level_id
-    
-    @conditional_access_protection_level_id.setter
-    def conditional_access_protection_level_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the conditionalAccessProtectionLevelId property value. The conditionalAccessProtectionLevelId property
-        Args:
-            value: Value to set for the conditional_access_protection_level_id property.
-        """
-        self._conditional_access_protection_level_id = value
+    odata_type = "#microsoft.graph.protectSite"
+    # The accessType property
+    access_type: Optional[site_access_type.SiteAccessType] = None
+    # The conditionalAccessProtectionLevelId property
+    conditional_access_protection_level_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectSite:

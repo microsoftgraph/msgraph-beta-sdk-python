@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,92 +9,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsBatteryHealthCapacityDetails(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsBatteryHealthCapacityDetails and sets the default values.
-        """
-        super().__init__()
-        # Number of active devices within the tenant. Valid values -2147483648 to 2147483647
-        self._active_devices: Optional[int] = None
-        # Number of devices whose battery maximum capacity is greater than 50% but lesser than 80%. Valid values -2147483648 to 2147483647
-        self._battery_capacity_fair: Optional[int] = None
-        # Number of devices whose battery maximum capacity is greater than 80%. Valid values -2147483648 to 2147483647
-        self._battery_capacity_good: Optional[int] = None
-        # Number of devices whose battery maximum capacity is lesser than 50%. Valid values -2147483648 to 2147483647
-        self._battery_capacity_poor: Optional[int] = None
-        # Recorded date time of this capacity details instance.
-        self._last_refreshed_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def active_devices(self,) -> Optional[int]:
-        """
-        Gets the activeDevices property value. Number of active devices within the tenant. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._active_devices
-    
-    @active_devices.setter
-    def active_devices(self,value: Optional[int] = None) -> None:
-        """
-        Sets the activeDevices property value. Number of active devices within the tenant. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the active_devices property.
-        """
-        self._active_devices = value
-    
-    @property
-    def battery_capacity_fair(self,) -> Optional[int]:
-        """
-        Gets the batteryCapacityFair property value. Number of devices whose battery maximum capacity is greater than 50% but lesser than 80%. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._battery_capacity_fair
-    
-    @battery_capacity_fair.setter
-    def battery_capacity_fair(self,value: Optional[int] = None) -> None:
-        """
-        Sets the batteryCapacityFair property value. Number of devices whose battery maximum capacity is greater than 50% but lesser than 80%. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the battery_capacity_fair property.
-        """
-        self._battery_capacity_fair = value
-    
-    @property
-    def battery_capacity_good(self,) -> Optional[int]:
-        """
-        Gets the batteryCapacityGood property value. Number of devices whose battery maximum capacity is greater than 80%. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._battery_capacity_good
-    
-    @battery_capacity_good.setter
-    def battery_capacity_good(self,value: Optional[int] = None) -> None:
-        """
-        Sets the batteryCapacityGood property value. Number of devices whose battery maximum capacity is greater than 80%. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the battery_capacity_good property.
-        """
-        self._battery_capacity_good = value
-    
-    @property
-    def battery_capacity_poor(self,) -> Optional[int]:
-        """
-        Gets the batteryCapacityPoor property value. Number of devices whose battery maximum capacity is lesser than 50%. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._battery_capacity_poor
-    
-    @battery_capacity_poor.setter
-    def battery_capacity_poor(self,value: Optional[int] = None) -> None:
-        """
-        Sets the batteryCapacityPoor property value. Number of devices whose battery maximum capacity is lesser than 50%. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the battery_capacity_poor property.
-        """
-        self._battery_capacity_poor = value
+    # Number of active devices within the tenant. Valid values -2147483648 to 2147483647
+    active_devices: Optional[int] = None
+    # Number of devices whose battery maximum capacity is greater than 50% but lesser than 80%. Valid values -2147483648 to 2147483647
+    battery_capacity_fair: Optional[int] = None
+    # Number of devices whose battery maximum capacity is greater than 80%. Valid values -2147483648 to 2147483647
+    battery_capacity_good: Optional[int] = None
+    # Number of devices whose battery maximum capacity is lesser than 50%. Valid values -2147483648 to 2147483647
+    battery_capacity_poor: Optional[int] = None
+    # Recorded date time of this capacity details instance.
+    last_refreshed_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsBatteryHealthCapacityDetails:
@@ -124,23 +53,6 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_refreshed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastRefreshedDateTime property value. Recorded date time of this capacity details instance.
-        Returns: Optional[datetime]
-        """
-        return self._last_refreshed_date_time
-    
-    @last_refreshed_date_time.setter
-    def last_refreshed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastRefreshedDateTime property value. Recorded date time of this capacity details instance.
-        Args:
-            value: Value to set for the last_refreshed_date_time property.
-        """
-        self._last_refreshed_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

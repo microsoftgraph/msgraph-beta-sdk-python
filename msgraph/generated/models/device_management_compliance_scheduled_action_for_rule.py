@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,21 +8,17 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementComplianceScheduledActionForRule(entity.Entity):
     """
     Scheduled Action for Rule
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementComplianceScheduledActionForRule and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Name of the rule which this scheduled action applies to.
-        self._rule_name: Optional[str] = None
-        # The list of scheduled action configurations for this compliance policy. This collection can contain a maximum of 100 elements.
-        self._scheduled_action_configurations: Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Name of the rule which this scheduled action applies to.
+    rule_name: Optional[str] = None
+    # The list of scheduled action configurations for this compliance policy. This collection can contain a maximum of 100 elements.
+    scheduled_action_configurations: Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementComplianceScheduledActionForRule:
@@ -49,40 +46,6 @@ class DeviceManagementComplianceScheduledActionForRule(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def rule_name(self,) -> Optional[str]:
-        """
-        Gets the ruleName property value. Name of the rule which this scheduled action applies to.
-        Returns: Optional[str]
-        """
-        return self._rule_name
-    
-    @rule_name.setter
-    def rule_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ruleName property value. Name of the rule which this scheduled action applies to.
-        Args:
-            value: Value to set for the rule_name property.
-        """
-        self._rule_name = value
-    
-    @property
-    def scheduled_action_configurations(self,) -> Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]]:
-        """
-        Gets the scheduledActionConfigurations property value. The list of scheduled action configurations for this compliance policy. This collection can contain a maximum of 100 elements.
-        Returns: Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]]
-        """
-        return self._scheduled_action_configurations
-    
-    @scheduled_action_configurations.setter
-    def scheduled_action_configurations(self,value: Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]] = None) -> None:
-        """
-        Sets the scheduledActionConfigurations property value. The list of scheduled action configurations for this compliance policy. This collection can contain a maximum of 100 elements.
-        Args:
-            value: Value to set for the scheduled_action_configurations property.
-        """
-        self._scheduled_action_configurations = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

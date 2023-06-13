@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import account_target_content
 
+@dataclass
 class AddressBookAccountTargetContent(account_target_content.AccountTargetContent):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AddressBookAccountTargetContent and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.addressBookAccountTargetContent"
-        # List of user emails targeted for an attack simulation training campaign.
-        self._account_target_emails: Optional[List[str]] = None
-    
-    @property
-    def account_target_emails(self,) -> Optional[List[str]]:
-        """
-        Gets the accountTargetEmails property value. List of user emails targeted for an attack simulation training campaign.
-        Returns: Optional[List[str]]
-        """
-        return self._account_target_emails
-    
-    @account_target_emails.setter
-    def account_target_emails(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the accountTargetEmails property value. List of user emails targeted for an attack simulation training campaign.
-        Args:
-            value: Value to set for the account_target_emails property.
-        """
-        self._account_target_emails = value
+    odata_type = "#microsoft.graph.addressBookAccountTargetContent"
+    # List of user emails targeted for an attack simulation training campaign.
+    account_target_emails: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddressBookAccountTargetContent:

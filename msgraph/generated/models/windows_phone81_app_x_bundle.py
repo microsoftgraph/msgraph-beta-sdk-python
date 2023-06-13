@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import windows_phone81_app_x
 
+@dataclass
 class WindowsPhone81AppXBundle(windows_phone81_app_x.WindowsPhone81AppX):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsPhone81AppXBundle and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsPhone81AppXBundle"
-        # The list of AppX Package Information.
-        self._app_x_package_information_list: Optional[List[windows_package_information.WindowsPackageInformation]] = None
-    
-    @property
-    def app_x_package_information_list(self,) -> Optional[List[windows_package_information.WindowsPackageInformation]]:
-        """
-        Gets the appXPackageInformationList property value. The list of AppX Package Information.
-        Returns: Optional[List[windows_package_information.WindowsPackageInformation]]
-        """
-        return self._app_x_package_information_list
-    
-    @app_x_package_information_list.setter
-    def app_x_package_information_list(self,value: Optional[List[windows_package_information.WindowsPackageInformation]] = None) -> None:
-        """
-        Sets the appXPackageInformationList property value. The list of AppX Package Information.
-        Args:
-            value: Value to set for the app_x_package_information_list property.
-        """
-        self._app_x_package_information_list = value
+    odata_type = "#microsoft.graph.windowsPhone81AppXBundle"
+    # The list of AppX Package Information.
+    app_x_package_information_list: Optional[List[windows_package_information.WindowsPackageInformation]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPhone81AppXBundle:

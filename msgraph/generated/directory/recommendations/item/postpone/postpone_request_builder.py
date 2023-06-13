@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -38,7 +38,7 @@ class PostponeRequestBuilder():
     
     async def post(self,body: Optional[postpone_post_request_body.PostponePostRequestBody] = None, request_configuration: Optional[PostponeRequestBuilderPostRequestConfiguration] = None) -> Optional[recommendation.Recommendation]:
         """
-        Invoke action postpone
+        Postpone action on a recommendation object to a specified future date and time by marking its **status** as `postponed`. On the date and time provided, Azure AD will automatically update the **status** of the **recommendation** object to `active` again.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class PostponeRequestBuilder():
     
     def to_post_request_information(self,body: Optional[postpone_post_request_body.PostponePostRequestBody] = None, request_configuration: Optional[PostponeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action postpone
+        Postpone action on a recommendation object to a specified future date and time by marking its **status** as `postponed`. On the date and time provided, Azure AD will automatically update the **status** of the **recommendation** object to `active` again.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

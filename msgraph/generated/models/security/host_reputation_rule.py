@@ -1,45 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import host_reputation_rule_severity
 
+@dataclass
 class HostReputationRule(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new hostReputationRule and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The description of the rule that gives more context.
-        self._description: Optional[str] = None
-        # The name of the rule.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Link to a web page with details related to this rule.
-        self._related_details_url: Optional[str] = None
-        # The severity property
-        self._severity: Optional[host_reputation_rule_severity.HostReputationRuleSeverity] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The description of the rule that gives more context.
+    description: Optional[str] = None
+    # The name of the rule.
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Link to a web page with details related to this rule.
+    related_details_url: Optional[str] = None
+    # The severity property
+    severity: Optional[host_reputation_rule_severity.HostReputationRuleSeverity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HostReputationRule:
@@ -52,23 +33,6 @@ class HostReputationRule(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return HostReputationRule()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description of the rule that gives more context.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description of the rule that gives more context.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -86,57 +50,6 @@ class HostReputationRule(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name of the rule.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name of the rule.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def related_details_url(self,) -> Optional[str]:
-        """
-        Gets the relatedDetailsUrl property value. Link to a web page with details related to this rule.
-        Returns: Optional[str]
-        """
-        return self._related_details_url
-    
-    @related_details_url.setter
-    def related_details_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the relatedDetailsUrl property value. Link to a web page with details related to this rule.
-        Args:
-            value: Value to set for the related_details_url property.
-        """
-        self._related_details_url = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -151,22 +64,5 @@ class HostReputationRule(AdditionalDataHolder, Parsable):
         writer.write_str_value("relatedDetailsUrl", self.related_details_url)
         writer.write_enum_value("severity", self.severity)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def severity(self,) -> Optional[host_reputation_rule_severity.HostReputationRuleSeverity]:
-        """
-        Gets the severity property value. The severity property
-        Returns: Optional[host_reputation_rule_severity.HostReputationRuleSeverity]
-        """
-        return self._severity
-    
-    @severity.setter
-    def severity(self,value: Optional[host_reputation_rule_severity.HostReputationRuleSeverity] = None) -> None:
-        """
-        Sets the severity property value. The severity property
-        Args:
-            value: Value to set for the severity property.
-        """
-        self._severity = value
     
 

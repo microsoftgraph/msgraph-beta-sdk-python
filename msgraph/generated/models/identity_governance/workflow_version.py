@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import workflow_base
 
+@dataclass
 class WorkflowVersion(workflow_base.WorkflowBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new workflowVersion and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.identityGovernance.workflowVersion"
-        # The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        self._version_number: Optional[int] = None
+    odata_type = "#microsoft.graph.identityGovernance.workflowVersion"
+    # The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    version_number: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkflowVersion:
@@ -37,6 +34,7 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         from . import workflow_base
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "versionNumber": lambda n : setattr(self, 'version_number', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -52,23 +50,7 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("versionNumber", self.version_number)
-    
-    @property
-    def version_number(self,) -> Optional[int]:
-        """
-        Gets the versionNumber property value. The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[int]
-        """
-        return self._version_number
-    
-    @version_number.setter
-    def version_number(self,value: Optional[int] = None) -> None:
-        """
-        Sets the versionNumber property value. The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the version_number property.
-        """
-        self._version_number = value
     
 

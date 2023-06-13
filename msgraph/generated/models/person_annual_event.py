@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,19 +9,15 @@ if TYPE_CHECKING:
 
 from . import item_facet
 
+@dataclass
 class PersonAnnualEvent(item_facet.ItemFacet):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PersonAnnualEvent and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.personAnnualEvent"
-        # The date property
-        self._date: Optional[date] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The type property
-        self._type: Optional[person_annual_event_type.PersonAnnualEventType] = None
+    odata_type = "#microsoft.graph.personAnnualEvent"
+    # The date property
+    date: Optional[date] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The type property
+    type: Optional[person_annual_event_type.PersonAnnualEventType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonAnnualEvent:
@@ -33,40 +30,6 @@ class PersonAnnualEvent(item_facet.ItemFacet):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PersonAnnualEvent()
-    
-    @property
-    def date(self,) -> Optional[date]:
-        """
-        Gets the date property value. The date property
-        Returns: Optional[date]
-        """
-        return self._date
-    
-    @date.setter
-    def date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the date property value. The date property
-        Args:
-            value: Value to set for the date property.
-        """
-        self._date = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -96,22 +59,5 @@ class PersonAnnualEvent(item_facet.ItemFacet):
         writer.write_date_value("date", self.date)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("type", self.type)
-    
-    @property
-    def type(self,) -> Optional[person_annual_event_type.PersonAnnualEventType]:
-        """
-        Gets the type property value. The type property
-        Returns: Optional[person_annual_event_type.PersonAnnualEventType]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[person_annual_event_type.PersonAnnualEventType] = None) -> None:
-        """
-        Sets the type property value. The type property
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
     
 

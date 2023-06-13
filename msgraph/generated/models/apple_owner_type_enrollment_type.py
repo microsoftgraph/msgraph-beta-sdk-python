@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import apple_user_initiated_enrollment_type, managed_device_owner_type
 
+@dataclass
 class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appleOwnerTypeEnrollmentType and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The enrollmentType property
-        self._enrollment_type: Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Owner type of device.
-        self._owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The enrollmentType property
+    enrollment_type: Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Owner type of device.
+    owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleOwnerTypeEnrollmentType:
@@ -48,23 +29,6 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AppleOwnerTypeEnrollmentType()
-    
-    @property
-    def enrollment_type(self,) -> Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType]:
-        """
-        Gets the enrollmentType property value. The enrollmentType property
-        Returns: Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType]
-        """
-        return self._enrollment_type
-    
-    @enrollment_type.setter
-    def enrollment_type(self,value: Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType] = None) -> None:
-        """
-        Sets the enrollmentType property value. The enrollmentType property
-        Args:
-            value: Value to set for the enrollment_type property.
-        """
-        self._enrollment_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -79,40 +43,6 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
             "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def owner_type(self,) -> Optional[managed_device_owner_type.ManagedDeviceOwnerType]:
-        """
-        Gets the ownerType property value. Owner type of device.
-        Returns: Optional[managed_device_owner_type.ManagedDeviceOwnerType]
-        """
-        return self._owner_type
-    
-    @owner_type.setter
-    def owner_type(self,value: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None) -> None:
-        """
-        Sets the ownerType property value. Owner type of device.
-        Args:
-            value: Value to set for the owner_type property.
-        """
-        self._owner_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

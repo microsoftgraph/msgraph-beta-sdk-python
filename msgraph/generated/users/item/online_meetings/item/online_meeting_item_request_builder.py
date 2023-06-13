@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -15,9 +15,11 @@ if TYPE_CHECKING:
     from .alternative_recording import alternative_recording_request_builder
     from .attendance_reports import attendance_reports_request_builder
     from .attendee_report import attendee_report_request_builder
+    from .broadcast_recording import broadcast_recording_request_builder
     from .get_virtual_appointment_join_web_url import get_virtual_appointment_join_web_url_request_builder
     from .meeting_attendance_report import meeting_attendance_report_request_builder
     from .recording import recording_request_builder
+    from .recordings import recordings_request_builder
     from .registration import registration_request_builder
     from .transcripts import transcripts_request_builder
     from .virtual_appointment import virtual_appointment_request_builder
@@ -193,6 +195,15 @@ class OnlineMeetingItemRequestBuilder():
         return attendee_report_request_builder.AttendeeReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def broadcast_recording(self) -> broadcast_recording_request_builder.BroadcastRecordingRequestBuilder:
+        """
+        Provides operations to manage the media for the user entity.
+        """
+        from .broadcast_recording import broadcast_recording_request_builder
+
+        return broadcast_recording_request_builder.BroadcastRecordingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_virtual_appointment_join_web_url(self) -> get_virtual_appointment_join_web_url_request_builder.GetVirtualAppointmentJoinWebUrlRequestBuilder:
         """
         Provides operations to call the getVirtualAppointmentJoinWebUrl method.
@@ -218,6 +229,15 @@ class OnlineMeetingItemRequestBuilder():
         from .recording import recording_request_builder
 
         return recording_request_builder.RecordingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def recordings(self) -> recordings_request_builder.RecordingsRequestBuilder:
+        """
+        Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.
+        """
+        from .recordings import recordings_request_builder
+
+        return recordings_request_builder.RecordingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def registration(self) -> registration_request_builder.RegistrationRequestBuilder:

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IntendedPurpose(Enum):
+class IntendedPurpose(str, Enum):
     # Unassigned
     Unassigned = "unassigned",
     # SmimeEncryption

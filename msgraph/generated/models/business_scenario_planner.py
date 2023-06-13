@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,20 +8,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class BusinessScenarioPlanner(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new businessScenarioPlanner and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The configuration of Planner plans that will be created for the scenario.
-        self._plan_configuration: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None
-        # The configuration of Planner tasks that will be created for the scenario.
-        self._task_configuration: Optional[planner_task_configuration.PlannerTaskConfiguration] = None
-        # The Planner tasks for the scenario.
-        self._tasks: Optional[List[business_scenario_task.BusinessScenarioTask]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The configuration of Planner plans that will be created for the scenario.
+    plan_configuration: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None
+    # The configuration of Planner tasks that will be created for the scenario.
+    task_configuration: Optional[planner_task_configuration.PlannerTaskConfiguration] = None
+    # The Planner tasks for the scenario.
+    tasks: Optional[List[business_scenario_task.BusinessScenarioTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BusinessScenarioPlanner:
@@ -50,23 +47,6 @@ class BusinessScenarioPlanner(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def plan_configuration(self,) -> Optional[planner_plan_configuration.PlannerPlanConfiguration]:
-        """
-        Gets the planConfiguration property value. The configuration of Planner plans that will be created for the scenario.
-        Returns: Optional[planner_plan_configuration.PlannerPlanConfiguration]
-        """
-        return self._plan_configuration
-    
-    @plan_configuration.setter
-    def plan_configuration(self,value: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None) -> None:
-        """
-        Sets the planConfiguration property value. The configuration of Planner plans that will be created for the scenario.
-        Args:
-            value: Value to set for the plan_configuration property.
-        """
-        self._plan_configuration = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -79,39 +59,5 @@ class BusinessScenarioPlanner(entity.Entity):
         writer.write_object_value("planConfiguration", self.plan_configuration)
         writer.write_collection_of_object_values("tasks", self.tasks)
         writer.write_object_value("taskConfiguration", self.task_configuration)
-    
-    @property
-    def task_configuration(self,) -> Optional[planner_task_configuration.PlannerTaskConfiguration]:
-        """
-        Gets the taskConfiguration property value. The configuration of Planner tasks that will be created for the scenario.
-        Returns: Optional[planner_task_configuration.PlannerTaskConfiguration]
-        """
-        return self._task_configuration
-    
-    @task_configuration.setter
-    def task_configuration(self,value: Optional[planner_task_configuration.PlannerTaskConfiguration] = None) -> None:
-        """
-        Sets the taskConfiguration property value. The configuration of Planner tasks that will be created for the scenario.
-        Args:
-            value: Value to set for the task_configuration property.
-        """
-        self._task_configuration = value
-    
-    @property
-    def tasks(self,) -> Optional[List[business_scenario_task.BusinessScenarioTask]]:
-        """
-        Gets the tasks property value. The Planner tasks for the scenario.
-        Returns: Optional[List[business_scenario_task.BusinessScenarioTask]]
-        """
-        return self._tasks
-    
-    @tasks.setter
-    def tasks(self,value: Optional[List[business_scenario_task.BusinessScenarioTask]] = None) -> None:
-        """
-        Sets the tasks property value. The Planner tasks for the scenario.
-        Args:
-            value: Value to set for the tasks property.
-        """
-        self._tasks = value
     
 

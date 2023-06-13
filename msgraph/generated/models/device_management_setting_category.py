@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,23 +8,19 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementSettingCategory(entity.Entity):
     """
     Entity representing a setting category
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementSettingCategory and sets the default values.
-        """
-        super().__init__()
-        # The category name
-        self._display_name: Optional[str] = None
-        # The category contains top level required setting
-        self._has_required_setting: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The setting definitions this category contains
-        self._setting_definitions: Optional[List[device_management_setting_definition.DeviceManagementSettingDefinition]] = None
+    # The category name
+    display_name: Optional[str] = None
+    # The category contains top level required setting
+    has_required_setting: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The setting definitions this category contains
+    setting_definitions: Optional[List[device_management_setting_definition.DeviceManagementSettingDefinition]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingCategory:
@@ -48,23 +45,6 @@ class DeviceManagementSettingCategory(entity.Entity):
                 return device_management_template_setting_category.DeviceManagementTemplateSettingCategory()
         return DeviceManagementSettingCategory()
     
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The category name
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The category name
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -81,23 +61,6 @@ class DeviceManagementSettingCategory(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def has_required_setting(self,) -> Optional[bool]:
-        """
-        Gets the hasRequiredSetting property value. The category contains top level required setting
-        Returns: Optional[bool]
-        """
-        return self._has_required_setting
-    
-    @has_required_setting.setter
-    def has_required_setting(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the hasRequiredSetting property value. The category contains top level required setting
-        Args:
-            value: Value to set for the has_required_setting property.
-        """
-        self._has_required_setting = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -110,22 +73,5 @@ class DeviceManagementSettingCategory(entity.Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("hasRequiredSetting", self.has_required_setting)
         writer.write_collection_of_object_values("settingDefinitions", self.setting_definitions)
-    
-    @property
-    def setting_definitions(self,) -> Optional[List[device_management_setting_definition.DeviceManagementSettingDefinition]]:
-        """
-        Gets the settingDefinitions property value. The setting definitions this category contains
-        Returns: Optional[List[device_management_setting_definition.DeviceManagementSettingDefinition]]
-        """
-        return self._setting_definitions
-    
-    @setting_definitions.setter
-    def setting_definitions(self,value: Optional[List[device_management_setting_definition.DeviceManagementSettingDefinition]] = None) -> None:
-        """
-        Sets the settingDefinitions property value. The setting definitions this category contains
-        Args:
-            value: Value to set for the setting_definitions property.
-        """
-        self._setting_definitions = value
     
 

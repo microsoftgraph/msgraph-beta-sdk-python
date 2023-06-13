@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,21 +8,17 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsMetric(entity.Entity):
     """
     The user experience analytics metric contains the score and units of a metric of a user experience anlaytics category.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsMetric and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The unit of the user experience analytics metric.
-        self._unit: Optional[str] = None
-        # The value of the user experience analytics metric.
-        self._value: Optional[float] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The unit of the user experience analytics metric.
+    unit: Optional[str] = None
+    # The value of the user experience analytics metric.
+    value: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsMetric:
@@ -61,39 +58,5 @@ class UserExperienceAnalyticsMetric(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("unit", self.unit)
         writer.write_float_value("value", self.value)
-    
-    @property
-    def unit(self,) -> Optional[str]:
-        """
-        Gets the unit property value. The unit of the user experience analytics metric.
-        Returns: Optional[str]
-        """
-        return self._unit
-    
-    @unit.setter
-    def unit(self,value: Optional[str] = None) -> None:
-        """
-        Sets the unit property value. The unit of the user experience analytics metric.
-        Args:
-            value: Value to set for the unit property.
-        """
-        self._unit = value
-    
-    @property
-    def value(self,) -> Optional[float]:
-        """
-        Gets the value property value. The value of the user experience analytics metric.
-        Returns: Optional[float]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[float] = None) -> None:
-        """
-        Sets the value property value. The value of the user experience analytics metric.
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

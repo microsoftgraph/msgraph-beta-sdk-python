@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import managed_app_registration
 
+@dataclass
 class AndroidManagedAppRegistration(managed_app_registration.ManagedAppRegistration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidManagedAppRegistration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidManagedAppRegistration"
-        # The patch version for the current android app registration
-        self._patch_version: Optional[str] = None
+    odata_type = "#microsoft.graph.androidManagedAppRegistration"
+    # The patch version for the current android app registration
+    patch_version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidManagedAppRegistration:
@@ -42,23 +39,6 @@ class AndroidManagedAppRegistration(managed_app_registration.ManagedAppRegistrat
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def patch_version(self,) -> Optional[str]:
-        """
-        Gets the patchVersion property value. The patch version for the current android app registration
-        Returns: Optional[str]
-        """
-        return self._patch_version
-    
-    @patch_version.setter
-    def patch_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the patchVersion property value. The patch version for the current android app registration
-        Args:
-            value: Value to set for the patch_version property.
-        """
-        self._patch_version = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

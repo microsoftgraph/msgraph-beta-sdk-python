@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,21 +8,17 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EasEmailProfileConfigurationBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.easEmailProfileConfigurationBase"
-        # Custom domain name value used while generating an email profile before installing on the device.
-        self._custom_domain_name: Optional[str] = None
-        # UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
-        self._user_domain_name_source: Optional[domain_name_source.DomainNameSource] = None
-        # Name of the AAD field, that will be used to retrieve UserName for email profile. Possible values are: userPrincipalName, primarySmtpAddress, samAccountName.
-        self._username_a_a_d_source: Optional[username_source.UsernameSource] = None
-        # Possible values for username source or email source.
-        self._username_source: Optional[user_email_source.UserEmailSource] = None
+    odata_type = "#microsoft.graph.easEmailProfileConfigurationBase"
+    # Custom domain name value used while generating an email profile before installing on the device.
+    custom_domain_name: Optional[str] = None
+    # UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
+    user_domain_name_source: Optional[domain_name_source.DomainNameSource] = None
+    # Name of the AAD field, that will be used to retrieve UserName for email profile. Possible values are: userPrincipalName, primarySmtpAddress, samAccountName.
+    username_a_a_d_source: Optional[username_source.UsernameSource] = None
+    # Possible values for username source or email source.
+    username_source: Optional[user_email_source.UserEmailSource] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EasEmailProfileConfigurationBase:
@@ -49,23 +46,6 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
 
                 return windows_phone_e_a_s_email_profile_configuration.WindowsPhoneEASEmailProfileConfiguration()
         return EasEmailProfileConfigurationBase()
-    
-    @property
-    def custom_domain_name(self,) -> Optional[str]:
-        """
-        Gets the customDomainName property value. Custom domain name value used while generating an email profile before installing on the device.
-        Returns: Optional[str]
-        """
-        return self._custom_domain_name
-    
-    @custom_domain_name.setter
-    def custom_domain_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the customDomainName property value. Custom domain name value used while generating an email profile before installing on the device.
-        Args:
-            value: Value to set for the custom_domain_name property.
-        """
-        self._custom_domain_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -97,56 +77,5 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
         writer.write_enum_value("usernameAADSource", self.username_a_a_d_source)
         writer.write_enum_value("usernameSource", self.username_source)
         writer.write_enum_value("userDomainNameSource", self.user_domain_name_source)
-    
-    @property
-    def user_domain_name_source(self,) -> Optional[domain_name_source.DomainNameSource]:
-        """
-        Gets the userDomainNameSource property value. UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
-        Returns: Optional[domain_name_source.DomainNameSource]
-        """
-        return self._user_domain_name_source
-    
-    @user_domain_name_source.setter
-    def user_domain_name_source(self,value: Optional[domain_name_source.DomainNameSource] = None) -> None:
-        """
-        Sets the userDomainNameSource property value. UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
-        Args:
-            value: Value to set for the user_domain_name_source property.
-        """
-        self._user_domain_name_source = value
-    
-    @property
-    def username_a_a_d_source(self,) -> Optional[username_source.UsernameSource]:
-        """
-        Gets the usernameAADSource property value. Name of the AAD field, that will be used to retrieve UserName for email profile. Possible values are: userPrincipalName, primarySmtpAddress, samAccountName.
-        Returns: Optional[username_source.UsernameSource]
-        """
-        return self._username_a_a_d_source
-    
-    @username_a_a_d_source.setter
-    def username_a_a_d_source(self,value: Optional[username_source.UsernameSource] = None) -> None:
-        """
-        Sets the usernameAADSource property value. Name of the AAD field, that will be used to retrieve UserName for email profile. Possible values are: userPrincipalName, primarySmtpAddress, samAccountName.
-        Args:
-            value: Value to set for the username_a_a_d_source property.
-        """
-        self._username_a_a_d_source = value
-    
-    @property
-    def username_source(self,) -> Optional[user_email_source.UserEmailSource]:
-        """
-        Gets the usernameSource property value. Possible values for username source or email source.
-        Returns: Optional[user_email_source.UserEmailSource]
-        """
-        return self._username_source
-    
-    @username_source.setter
-    def username_source(self,value: Optional[user_email_source.UserEmailSource] = None) -> None:
-        """
-        Sets the usernameSource property value. Possible values for username source or email source.
-        Args:
-            value: Value to set for the username_source property.
-        """
-        self._username_source = value
     
 

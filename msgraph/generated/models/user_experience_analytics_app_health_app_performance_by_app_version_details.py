@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,118 +8,29 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.Entity):
     """
-    The user experience analytics application performance entity contains app performance by app version details.
+    The user experience analytics application performance entity contains application performance by application version details.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails and sets the default values.
-        """
-        super().__init__()
-        # The number of crashes for the app. Valid values -2147483648 to 2147483647
-        self._app_crash_count: Optional[int] = None
-        # The friendly name of the application.
-        self._app_display_name: Optional[str] = None
-        # The name of the application.
-        self._app_name: Optional[str] = None
-        # The publisher of the application.
-        self._app_publisher: Optional[str] = None
-        # The version of the application.
-        self._app_version: Optional[str] = None
-        # The total number of devices that have reported one or more application crashes for this application and version. Valid values -2147483648 to 2147483647
-        self._device_count_with_crashes: Optional[int] = None
-        # Is the version of application the latest version for that app that is in use.
-        self._is_latest_used_version: Optional[bool] = None
-        # Is the version of application the most used version for that app.
-        self._is_most_used_version: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def app_crash_count(self,) -> Optional[int]:
-        """
-        Gets the appCrashCount property value. The number of crashes for the app. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._app_crash_count
-    
-    @app_crash_count.setter
-    def app_crash_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the appCrashCount property value. The number of crashes for the app. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the app_crash_count property.
-        """
-        self._app_crash_count = value
-    
-    @property
-    def app_display_name(self,) -> Optional[str]:
-        """
-        Gets the appDisplayName property value. The friendly name of the application.
-        Returns: Optional[str]
-        """
-        return self._app_display_name
-    
-    @app_display_name.setter
-    def app_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appDisplayName property value. The friendly name of the application.
-        Args:
-            value: Value to set for the app_display_name property.
-        """
-        self._app_display_name = value
-    
-    @property
-    def app_name(self,) -> Optional[str]:
-        """
-        Gets the appName property value. The name of the application.
-        Returns: Optional[str]
-        """
-        return self._app_name
-    
-    @app_name.setter
-    def app_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appName property value. The name of the application.
-        Args:
-            value: Value to set for the app_name property.
-        """
-        self._app_name = value
-    
-    @property
-    def app_publisher(self,) -> Optional[str]:
-        """
-        Gets the appPublisher property value. The publisher of the application.
-        Returns: Optional[str]
-        """
-        return self._app_publisher
-    
-    @app_publisher.setter
-    def app_publisher(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appPublisher property value. The publisher of the application.
-        Args:
-            value: Value to set for the app_publisher property.
-        """
-        self._app_publisher = value
-    
-    @property
-    def app_version(self,) -> Optional[str]:
-        """
-        Gets the appVersion property value. The version of the application.
-        Returns: Optional[str]
-        """
-        return self._app_version
-    
-    @app_version.setter
-    def app_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appVersion property value. The version of the application.
-        Args:
-            value: Value to set for the app_version property.
-        """
-        self._app_version = value
+    # The number of crashes for the app. Valid values -2147483648 to 2147483647
+    app_crash_count: Optional[int] = None
+    # The friendly name of the application.
+    app_display_name: Optional[str] = None
+    # The name of the application.
+    app_name: Optional[str] = None
+    # The publisher of the application.
+    app_publisher: Optional[str] = None
+    # The version of the application.
+    app_version: Optional[str] = None
+    # The total number of devices that have reported one or more application crashes for this application and version. Valid values -2147483648 to 2147483647
+    device_count_with_crashes: Optional[int] = None
+    # Is the version of application the latest version for that app that is in use.
+    is_latest_used_version: Optional[bool] = None
+    # Is the version of application the most used version for that app.
+    is_most_used_version: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails:
@@ -131,23 +43,6 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails()
-    
-    @property
-    def device_count_with_crashes(self,) -> Optional[int]:
-        """
-        Gets the deviceCountWithCrashes property value. The total number of devices that have reported one or more application crashes for this application and version. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._device_count_with_crashes
-    
-    @device_count_with_crashes.setter
-    def device_count_with_crashes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the deviceCountWithCrashes property value. The total number of devices that have reported one or more application crashes for this application and version. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the device_count_with_crashes property.
-        """
-        self._device_count_with_crashes = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -169,40 +64,6 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_latest_used_version(self,) -> Optional[bool]:
-        """
-        Gets the isLatestUsedVersion property value. Is the version of application the latest version for that app that is in use.
-        Returns: Optional[bool]
-        """
-        return self._is_latest_used_version
-    
-    @is_latest_used_version.setter
-    def is_latest_used_version(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isLatestUsedVersion property value. Is the version of application the latest version for that app that is in use.
-        Args:
-            value: Value to set for the is_latest_used_version property.
-        """
-        self._is_latest_used_version = value
-    
-    @property
-    def is_most_used_version(self,) -> Optional[bool]:
-        """
-        Gets the isMostUsedVersion property value. Is the version of application the most used version for that app.
-        Returns: Optional[bool]
-        """
-        return self._is_most_used_version
-    
-    @is_most_used_version.setter
-    def is_most_used_version(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isMostUsedVersion property value. Is the version of application the most used version for that app.
-        Args:
-            value: Value to set for the is_most_used_version property.
-        """
-        self._is_most_used_version = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

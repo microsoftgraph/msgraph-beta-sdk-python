@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsAutopilotProfileAssignmentDetailedStatus(Enum):
+class WindowsAutopilotProfileAssignmentDetailedStatus(str, Enum):
     # No assignment detailed status
     None_ = "none",
     # Hardware requirements are not met. This can happen if a self-deploying AutoPilot Profile is assigned to a device without TPM 2.0.

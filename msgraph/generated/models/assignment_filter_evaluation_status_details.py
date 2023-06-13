@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AssignmentFilterEvaluationStatusDetails(entity.Entity):
     """
     A class containing information about the payloads on which filter has been applied.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignmentFilterEvaluationStatusDetails and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # PayloadId on which filter has been applied.
-        self._payload_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # PayloadId on which filter has been applied.
+    payload_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignmentFilterEvaluationStatusDetails:
@@ -46,23 +43,6 @@ class AssignmentFilterEvaluationStatusDetails(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def payload_id(self,) -> Optional[str]:
-        """
-        Gets the payloadId property value. PayloadId on which filter has been applied.
-        Returns: Optional[str]
-        """
-        return self._payload_id
-    
-    @payload_id.setter
-    def payload_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the payloadId property value. PayloadId on which filter has been applied.
-        Args:
-            value: Value to set for the payload_id property.
-        """
-        self._payload_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,60 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import code, device_compliance_script_rules_validation_error, device_compliance_script_rule_error
 
+@dataclass
 class DeviceComplianceScriptError(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceComplianceScriptError and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Error code for rule validation.
-        self._code: Optional[code.Code] = None
-        # Error code for rule validation.
-        self._device_compliance_script_rules_validation_error: Optional[device_compliance_script_rules_validation_error.DeviceComplianceScriptRulesValidationError] = None
-        # Error message.
-        self._message: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def code(self,) -> Optional[code.Code]:
-        """
-        Gets the code property value. Error code for rule validation.
-        Returns: Optional[code.Code]
-        """
-        return self._code
-    
-    @code.setter
-    def code(self,value: Optional[code.Code] = None) -> None:
-        """
-        Sets the code property value. Error code for rule validation.
-        Args:
-            value: Value to set for the code property.
-        """
-        self._code = value
+    # Error code for rule validation.
+    code: Optional[code.Code] = None
+    # Error code for rule validation.
+    device_compliance_script_rules_validation_error: Optional[device_compliance_script_rules_validation_error.DeviceComplianceScriptRulesValidationError] = None
+    # Error message.
+    message: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComplianceScriptError:
@@ -75,23 +39,6 @@ class DeviceComplianceScriptError(AdditionalDataHolder, Parsable):
                 return device_compliance_script_rule_error.DeviceComplianceScriptRuleError()
         return DeviceComplianceScriptError()
     
-    @property
-    def device_compliance_script_rules_validation_error(self,) -> Optional[device_compliance_script_rules_validation_error.DeviceComplianceScriptRulesValidationError]:
-        """
-        Gets the deviceComplianceScriptRulesValidationError property value. Error code for rule validation.
-        Returns: Optional[device_compliance_script_rules_validation_error.DeviceComplianceScriptRulesValidationError]
-        """
-        return self._device_compliance_script_rules_validation_error
-    
-    @device_compliance_script_rules_validation_error.setter
-    def device_compliance_script_rules_validation_error(self,value: Optional[device_compliance_script_rules_validation_error.DeviceComplianceScriptRulesValidationError] = None) -> None:
-        """
-        Sets the deviceComplianceScriptRulesValidationError property value. Error code for rule validation.
-        Args:
-            value: Value to set for the device_compliance_script_rules_validation_error property.
-        """
-        self._device_compliance_script_rules_validation_error = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -106,40 +53,6 @@ class DeviceComplianceScriptError(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def message(self,) -> Optional[str]:
-        """
-        Gets the message property value. Error message.
-        Returns: Optional[str]
-        """
-        return self._message
-    
-    @message.setter
-    def message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the message property value. Error message.
-        Args:
-            value: Value to set for the message property.
-        """
-        self._message = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

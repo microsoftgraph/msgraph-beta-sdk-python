@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import device_log_collection_request
 
+@dataclass
 class CreateDeviceLogCollectionRequestPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new createDeviceLogCollectionRequestPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The templateType property
-        self._template_type: Optional[device_log_collection_request.DeviceLogCollectionRequest] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The templateType property
+    template_type: Optional[device_log_collection_request.DeviceLogCollectionRequest] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CreateDeviceLogCollectionRequestPostRequestBody:
@@ -67,22 +48,5 @@ class CreateDeviceLogCollectionRequestPostRequestBody(AdditionalDataHolder, Pars
             raise Exception("writer cannot be undefined")
         writer.write_object_value("templateType", self.template_type)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def template_type(self,) -> Optional[device_log_collection_request.DeviceLogCollectionRequest]:
-        """
-        Gets the templateType property value. The templateType property
-        Returns: Optional[device_log_collection_request.DeviceLogCollectionRequest]
-        """
-        return self._template_type
-    
-    @template_type.setter
-    def template_type(self,value: Optional[device_log_collection_request.DeviceLogCollectionRequest] = None) -> None:
-        """
-        Sets the templateType property value. The templateType property
-        Args:
-            value: Value to set for the template_type property.
-        """
-        self._template_type = value
     
 

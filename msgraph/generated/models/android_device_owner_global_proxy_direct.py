@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import android_device_owner_global_proxy
 
+@dataclass
 class AndroidDeviceOwnerGlobalProxyDirect(android_device_owner_global_proxy.AndroidDeviceOwnerGlobalProxy):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerGlobalProxyDirect and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerGlobalProxyDirect"
-        # The excluded hosts
-        self._excluded_hosts: Optional[List[str]] = None
-        # The host name
-        self._host: Optional[str] = None
-        # The port
-        self._port: Optional[int] = None
+    odata_type = "#microsoft.graph.androidDeviceOwnerGlobalProxyDirect"
+    # The excluded hosts
+    excluded_hosts: Optional[List[str]] = None
+    # The host name
+    host: Optional[str] = None
+    # The port
+    port: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerGlobalProxyDirect:
@@ -32,23 +29,6 @@ class AndroidDeviceOwnerGlobalProxyDirect(android_device_owner_global_proxy.Andr
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AndroidDeviceOwnerGlobalProxyDirect()
-    
-    @property
-    def excluded_hosts(self,) -> Optional[List[str]]:
-        """
-        Gets the excludedHosts property value. The excluded hosts
-        Returns: Optional[List[str]]
-        """
-        return self._excluded_hosts
-    
-    @excluded_hosts.setter
-    def excluded_hosts(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the excludedHosts property value. The excluded hosts
-        Args:
-            value: Value to set for the excluded_hosts property.
-        """
-        self._excluded_hosts = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -65,40 +45,6 @@ class AndroidDeviceOwnerGlobalProxyDirect(android_device_owner_global_proxy.Andr
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def host(self,) -> Optional[str]:
-        """
-        Gets the host property value. The host name
-        Returns: Optional[str]
-        """
-        return self._host
-    
-    @host.setter
-    def host(self,value: Optional[str] = None) -> None:
-        """
-        Sets the host property value. The host name
-        Args:
-            value: Value to set for the host property.
-        """
-        self._host = value
-    
-    @property
-    def port(self,) -> Optional[int]:
-        """
-        Gets the port property value. The port
-        Returns: Optional[int]
-        """
-        return self._port
-    
-    @port.setter
-    def port(self,value: Optional[int] = None) -> None:
-        """
-        Sets the port property value. The port
-        Args:
-            value: Value to set for the port property.
-        """
-        self._port = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

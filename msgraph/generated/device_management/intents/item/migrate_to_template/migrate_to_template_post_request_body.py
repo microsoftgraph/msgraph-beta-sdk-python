@@ -1,36 +1,17 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class MigrateToTemplatePostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new migrateToTemplatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The newTemplateId property
-        self._new_template_id: Optional[str] = None
-        # The preserveCustomValues property
-        self._preserve_custom_values: Optional[bool] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The newTemplateId property
+    new_template_id: Optional[str] = None
+    # The preserveCustomValues property
+    preserve_custom_values: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MigrateToTemplatePostRequestBody:
@@ -54,40 +35,6 @@ class MigrateToTemplatePostRequestBody(AdditionalDataHolder, Parsable):
             "preserveCustomValues": lambda n : setattr(self, 'preserve_custom_values', n.get_bool_value()),
         }
         return fields
-    
-    @property
-    def new_template_id(self,) -> Optional[str]:
-        """
-        Gets the newTemplateId property value. The newTemplateId property
-        Returns: Optional[str]
-        """
-        return self._new_template_id
-    
-    @new_template_id.setter
-    def new_template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the newTemplateId property value. The newTemplateId property
-        Args:
-            value: Value to set for the new_template_id property.
-        """
-        self._new_template_id = value
-    
-    @property
-    def preserve_custom_values(self,) -> Optional[bool]:
-        """
-        Gets the preserveCustomValues property value. The preserveCustomValues property
-        Returns: Optional[bool]
-        """
-        return self._preserve_custom_values
-    
-    @preserve_custom_values.setter
-    def preserve_custom_values(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the preserveCustomValues property value. The preserveCustomValues property
-        Args:
-            value: Value to set for the preserve_custom_values property.
-        """
-        self._preserve_custom_values = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

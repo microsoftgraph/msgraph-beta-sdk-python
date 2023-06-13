@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import device_management_compliance_scheduled_action_for_rule
 
+@dataclass
 class SetScheduledActionsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new setScheduledActionsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The scheduledActions property
-        self._scheduled_actions: Optional[List[device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The scheduledActions property
+    scheduled_actions: Optional[List[device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SetScheduledActionsPostRequestBody:
@@ -56,23 +37,6 @@ class SetScheduledActionsPostRequestBody(AdditionalDataHolder, Parsable):
             "scheduledActions": lambda n : setattr(self, 'scheduled_actions', n.get_collection_of_object_values(device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule)),
         }
         return fields
-    
-    @property
-    def scheduled_actions(self,) -> Optional[List[device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule]]:
-        """
-        Gets the scheduledActions property value. The scheduledActions property
-        Returns: Optional[List[device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule]]
-        """
-        return self._scheduled_actions
-    
-    @scheduled_actions.setter
-    def scheduled_actions(self,value: Optional[List[device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule]] = None) -> None:
-        """
-        Sets the scheduledActions property value. The scheduledActions property
-        Args:
-            value: Value to set for the scheduled_actions property.
-        """
-        self._scheduled_actions = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

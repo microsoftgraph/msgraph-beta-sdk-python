@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,66 +8,28 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DataClassificationService(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DataClassificationService and sets the default values.
-        """
-        super().__init__()
-        # The classifyFileJobs property
-        self._classify_file_jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The classifyTextJobs property
-        self._classify_text_jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The evaluateDlpPoliciesJobs property
-        self._evaluate_dlp_policies_jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The evaluateLabelJobs property
-        self._evaluate_label_jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The exactMatchDataStores property
-        self._exact_match_data_stores: Optional[List[exact_match_data_store.ExactMatchDataStore]] = None
-        # The exactMatchUploadAgents property
-        self._exact_match_upload_agents: Optional[List[exact_match_upload_agent.ExactMatchUploadAgent]] = None
-        # The jobs property
-        self._jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The sensitiveTypes property
-        self._sensitive_types: Optional[List[sensitive_type.SensitiveType]] = None
-        # The sensitivityLabels property
-        self._sensitivity_labels: Optional[List[sensitivity_label.SensitivityLabel]] = None
-    
-    @property
-    def classify_file_jobs(self,) -> Optional[List[job_response_base.JobResponseBase]]:
-        """
-        Gets the classifyFileJobs property value. The classifyFileJobs property
-        Returns: Optional[List[job_response_base.JobResponseBase]]
-        """
-        return self._classify_file_jobs
-    
-    @classify_file_jobs.setter
-    def classify_file_jobs(self,value: Optional[List[job_response_base.JobResponseBase]] = None) -> None:
-        """
-        Sets the classifyFileJobs property value. The classifyFileJobs property
-        Args:
-            value: Value to set for the classify_file_jobs property.
-        """
-        self._classify_file_jobs = value
-    
-    @property
-    def classify_text_jobs(self,) -> Optional[List[job_response_base.JobResponseBase]]:
-        """
-        Gets the classifyTextJobs property value. The classifyTextJobs property
-        Returns: Optional[List[job_response_base.JobResponseBase]]
-        """
-        return self._classify_text_jobs
-    
-    @classify_text_jobs.setter
-    def classify_text_jobs(self,value: Optional[List[job_response_base.JobResponseBase]] = None) -> None:
-        """
-        Sets the classifyTextJobs property value. The classifyTextJobs property
-        Args:
-            value: Value to set for the classify_text_jobs property.
-        """
-        self._classify_text_jobs = value
+    # The classifyFileJobs property
+    classify_file_jobs: Optional[List[job_response_base.JobResponseBase]] = None
+    # The classifyTextJobs property
+    classify_text_jobs: Optional[List[job_response_base.JobResponseBase]] = None
+    # The evaluateDlpPoliciesJobs property
+    evaluate_dlp_policies_jobs: Optional[List[job_response_base.JobResponseBase]] = None
+    # The evaluateLabelJobs property
+    evaluate_label_jobs: Optional[List[job_response_base.JobResponseBase]] = None
+    # The exactMatchDataStores property
+    exact_match_data_stores: Optional[List[exact_match_data_store.ExactMatchDataStore]] = None
+    # The exactMatchUploadAgents property
+    exact_match_upload_agents: Optional[List[exact_match_upload_agent.ExactMatchUploadAgent]] = None
+    # The jobs property
+    jobs: Optional[List[job_response_base.JobResponseBase]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The sensitiveTypes property
+    sensitive_types: Optional[List[sensitive_type.SensitiveType]] = None
+    # The sensitivityLabels property
+    sensitivity_labels: Optional[List[sensitivity_label.SensitivityLabel]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DataClassificationService:
@@ -79,74 +42,6 @@ class DataClassificationService(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DataClassificationService()
-    
-    @property
-    def evaluate_dlp_policies_jobs(self,) -> Optional[List[job_response_base.JobResponseBase]]:
-        """
-        Gets the evaluateDlpPoliciesJobs property value. The evaluateDlpPoliciesJobs property
-        Returns: Optional[List[job_response_base.JobResponseBase]]
-        """
-        return self._evaluate_dlp_policies_jobs
-    
-    @evaluate_dlp_policies_jobs.setter
-    def evaluate_dlp_policies_jobs(self,value: Optional[List[job_response_base.JobResponseBase]] = None) -> None:
-        """
-        Sets the evaluateDlpPoliciesJobs property value. The evaluateDlpPoliciesJobs property
-        Args:
-            value: Value to set for the evaluate_dlp_policies_jobs property.
-        """
-        self._evaluate_dlp_policies_jobs = value
-    
-    @property
-    def evaluate_label_jobs(self,) -> Optional[List[job_response_base.JobResponseBase]]:
-        """
-        Gets the evaluateLabelJobs property value. The evaluateLabelJobs property
-        Returns: Optional[List[job_response_base.JobResponseBase]]
-        """
-        return self._evaluate_label_jobs
-    
-    @evaluate_label_jobs.setter
-    def evaluate_label_jobs(self,value: Optional[List[job_response_base.JobResponseBase]] = None) -> None:
-        """
-        Sets the evaluateLabelJobs property value. The evaluateLabelJobs property
-        Args:
-            value: Value to set for the evaluate_label_jobs property.
-        """
-        self._evaluate_label_jobs = value
-    
-    @property
-    def exact_match_data_stores(self,) -> Optional[List[exact_match_data_store.ExactMatchDataStore]]:
-        """
-        Gets the exactMatchDataStores property value. The exactMatchDataStores property
-        Returns: Optional[List[exact_match_data_store.ExactMatchDataStore]]
-        """
-        return self._exact_match_data_stores
-    
-    @exact_match_data_stores.setter
-    def exact_match_data_stores(self,value: Optional[List[exact_match_data_store.ExactMatchDataStore]] = None) -> None:
-        """
-        Sets the exactMatchDataStores property value. The exactMatchDataStores property
-        Args:
-            value: Value to set for the exact_match_data_stores property.
-        """
-        self._exact_match_data_stores = value
-    
-    @property
-    def exact_match_upload_agents(self,) -> Optional[List[exact_match_upload_agent.ExactMatchUploadAgent]]:
-        """
-        Gets the exactMatchUploadAgents property value. The exactMatchUploadAgents property
-        Returns: Optional[List[exact_match_upload_agent.ExactMatchUploadAgent]]
-        """
-        return self._exact_match_upload_agents
-    
-    @exact_match_upload_agents.setter
-    def exact_match_upload_agents(self,value: Optional[List[exact_match_upload_agent.ExactMatchUploadAgent]] = None) -> None:
-        """
-        Sets the exactMatchUploadAgents property value. The exactMatchUploadAgents property
-        Args:
-            value: Value to set for the exact_match_upload_agents property.
-        """
-        self._exact_match_upload_agents = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -169,57 +64,6 @@ class DataClassificationService(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def jobs(self,) -> Optional[List[job_response_base.JobResponseBase]]:
-        """
-        Gets the jobs property value. The jobs property
-        Returns: Optional[List[job_response_base.JobResponseBase]]
-        """
-        return self._jobs
-    
-    @jobs.setter
-    def jobs(self,value: Optional[List[job_response_base.JobResponseBase]] = None) -> None:
-        """
-        Sets the jobs property value. The jobs property
-        Args:
-            value: Value to set for the jobs property.
-        """
-        self._jobs = value
-    
-    @property
-    def sensitive_types(self,) -> Optional[List[sensitive_type.SensitiveType]]:
-        """
-        Gets the sensitiveTypes property value. The sensitiveTypes property
-        Returns: Optional[List[sensitive_type.SensitiveType]]
-        """
-        return self._sensitive_types
-    
-    @sensitive_types.setter
-    def sensitive_types(self,value: Optional[List[sensitive_type.SensitiveType]] = None) -> None:
-        """
-        Sets the sensitiveTypes property value. The sensitiveTypes property
-        Args:
-            value: Value to set for the sensitive_types property.
-        """
-        self._sensitive_types = value
-    
-    @property
-    def sensitivity_labels(self,) -> Optional[List[sensitivity_label.SensitivityLabel]]:
-        """
-        Gets the sensitivityLabels property value. The sensitivityLabels property
-        Returns: Optional[List[sensitivity_label.SensitivityLabel]]
-        """
-        return self._sensitivity_labels
-    
-    @sensitivity_labels.setter
-    def sensitivity_labels(self,value: Optional[List[sensitivity_label.SensitivityLabel]] = None) -> None:
-        """
-        Sets the sensitivityLabels property value. The sensitivityLabels property
-        Args:
-            value: Value to set for the sensitivity_labels property.
-        """
-        self._sensitivity_labels = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

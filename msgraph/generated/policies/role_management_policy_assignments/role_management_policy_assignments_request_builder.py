@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -54,7 +54,7 @@ class RoleManagementPolicyAssignmentsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleManagementPolicyAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_policy_assignment_collection_response.UnifiedRoleManagementPolicyAssignmentCollectionResponse]:
         """
-        Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
+        Get the details of all role management policy assignments made in PIM for Azure AD roles and PIM for groups.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_management_policy_assignment_collection_response.UnifiedRoleManagementPolicyAssignmentCollectionResponse]
@@ -101,7 +101,7 @@ class RoleManagementPolicyAssignmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleManagementPolicyAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
+        Get the details of all role management policy assignments made in PIM for Azure AD roles and PIM for groups.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class RoleManagementPolicyAssignmentsRequestBuilder():
     @dataclass
     class RoleManagementPolicyAssignmentsRequestBuilderGetQueryParameters():
         """
-        Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
+        Get the details of all role management policy assignments made in PIM for Azure AD roles and PIM for groups.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

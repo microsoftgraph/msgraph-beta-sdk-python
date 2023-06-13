@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,46 +8,25 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsImpactingProcess(entity.Entity):
     """
     The user experience analytics top impacting process entity.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsImpactingProcess and sets the default values.
-        """
-        super().__init__()
-        # The category of impacting process.
-        self._category: Optional[str] = None
-        # The description of process.
-        self._description: Optional[str] = None
-        # The unique identifier of the impacted device.
-        self._device_id: Optional[str] = None
-        # The impact value of the process. Valid values 0 to 1.79769313486232E+308
-        self._impact_value: Optional[float] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The process name.
-        self._process_name: Optional[str] = None
-        # The publisher of the process.
-        self._publisher: Optional[str] = None
-    
-    @property
-    def category(self,) -> Optional[str]:
-        """
-        Gets the category property value. The category of impacting process.
-        Returns: Optional[str]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[str] = None) -> None:
-        """
-        Sets the category property value. The category of impacting process.
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
+    # The category of impacting process.
+    category: Optional[str] = None
+    # The description of process.
+    description: Optional[str] = None
+    # The unique identifier of the impacted device.
+    device_id: Optional[str] = None
+    # The impact value of the process. Valid values 0 to 1.79769313486232E+308
+    impact_value: Optional[float] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The process name.
+    process_name: Optional[str] = None
+    # The publisher of the process.
+    publisher: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsImpactingProcess:
@@ -59,40 +39,6 @@ class UserExperienceAnalyticsImpactingProcess(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return UserExperienceAnalyticsImpactingProcess()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description of process.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description of process.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The unique identifier of the impacted device.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The unique identifier of the impacted device.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -112,57 +58,6 @@ class UserExperienceAnalyticsImpactingProcess(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def impact_value(self,) -> Optional[float]:
-        """
-        Gets the impactValue property value. The impact value of the process. Valid values 0 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._impact_value
-    
-    @impact_value.setter
-    def impact_value(self,value: Optional[float] = None) -> None:
-        """
-        Sets the impactValue property value. The impact value of the process. Valid values 0 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the impact_value property.
-        """
-        self._impact_value = value
-    
-    @property
-    def process_name(self,) -> Optional[str]:
-        """
-        Gets the processName property value. The process name.
-        Returns: Optional[str]
-        """
-        return self._process_name
-    
-    @process_name.setter
-    def process_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the processName property value. The process name.
-        Args:
-            value: Value to set for the process_name property.
-        """
-        self._process_name = value
-    
-    @property
-    def publisher(self,) -> Optional[str]:
-        """
-        Gets the publisher property value. The publisher of the process.
-        Returns: Optional[str]
-        """
-        return self._publisher
-    
-    @publisher.setter
-    def publisher(self,value: Optional[str] = None) -> None:
-        """
-        Sets the publisher property value. The publisher of the process.
-        Args:
-            value: Value to set for the publisher property.
-        """
-        self._publisher = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

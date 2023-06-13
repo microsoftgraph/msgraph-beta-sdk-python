@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,60 +9,36 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MobileAppInstallStatus(entity.Entity):
-    """
-    Contains properties for the installation state of a mobile app for a device. This will be deprecated starting May, 2023 (Intune Release 2305).
-    """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mobileAppInstallStatus and sets the default values.
-        """
-        super().__init__()
-        # The navigation link to the mobile app.
-        self._app: Optional[mobile_app.MobileApp] = None
-        # Device ID
-        self._device_id: Optional[str] = None
-        # Device name
-        self._device_name: Optional[str] = None
-        # Human readable version of the application
-        self._display_version: Optional[str] = None
-        # The error code for install or uninstall failures.
-        self._error_code: Optional[int] = None
-        # A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
-        self._install_state: Optional[resultant_app_state.ResultantAppState] = None
-        # Enum indicating additional details regarding why an application has a particular install state.
-        self._install_state_detail: Optional[resultant_app_state_detail.ResultantAppStateDetail] = None
-        # Last sync date time
-        self._last_sync_date_time: Optional[datetime] = None
-        # A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
-        self._mobile_app_install_status_value: Optional[resultant_app_state.ResultantAppState] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # OS Description
-        self._os_description: Optional[str] = None
-        # OS Version
-        self._os_version: Optional[str] = None
-        # Device User Name
-        self._user_name: Optional[str] = None
-        # User Principal Name
-        self._user_principal_name: Optional[str] = None
-    
-    @property
-    def app(self,) -> Optional[mobile_app.MobileApp]:
-        """
-        Gets the app property value. The navigation link to the mobile app.
-        Returns: Optional[mobile_app.MobileApp]
-        """
-        return self._app
-    
-    @app.setter
-    def app(self,value: Optional[mobile_app.MobileApp] = None) -> None:
-        """
-        Sets the app property value. The navigation link to the mobile app.
-        Args:
-            value: Value to set for the app property.
-        """
-        self._app = value
+    # The navigation link to the mobile app.
+    app: Optional[mobile_app.MobileApp] = None
+    # Device ID
+    device_id: Optional[str] = None
+    # Device name
+    device_name: Optional[str] = None
+    # Human readable version of the application
+    display_version: Optional[str] = None
+    # The error code for install or uninstall failures.
+    error_code: Optional[int] = None
+    # A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
+    install_state: Optional[resultant_app_state.ResultantAppState] = None
+    # Enum indicating additional details regarding why an application has a particular install state.
+    install_state_detail: Optional[resultant_app_state_detail.ResultantAppStateDetail] = None
+    # Last sync date time
+    last_sync_date_time: Optional[datetime] = None
+    # A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
+    mobile_app_install_status_value: Optional[resultant_app_state.ResultantAppState] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # OS Description
+    os_description: Optional[str] = None
+    # OS Version
+    os_version: Optional[str] = None
+    # Device User Name
+    user_name: Optional[str] = None
+    # User Principal Name
+    user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppInstallStatus:
@@ -74,74 +51,6 @@ class MobileAppInstallStatus(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return MobileAppInstallStatus()
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. Device ID
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. Device ID
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
-    @property
-    def device_name(self,) -> Optional[str]:
-        """
-        Gets the deviceName property value. Device name
-        Returns: Optional[str]
-        """
-        return self._device_name
-    
-    @device_name.setter
-    def device_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceName property value. Device name
-        Args:
-            value: Value to set for the device_name property.
-        """
-        self._device_name = value
-    
-    @property
-    def display_version(self,) -> Optional[str]:
-        """
-        Gets the displayVersion property value. Human readable version of the application
-        Returns: Optional[str]
-        """
-        return self._display_version
-    
-    @display_version.setter
-    def display_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayVersion property value. Human readable version of the application
-        Args:
-            value: Value to set for the display_version property.
-        """
-        self._display_version = value
-    
-    @property
-    def error_code(self,) -> Optional[int]:
-        """
-        Gets the errorCode property value. The error code for install or uninstall failures.
-        Returns: Optional[int]
-        """
-        return self._error_code
-    
-    @error_code.setter
-    def error_code(self,value: Optional[int] = None) -> None:
-        """
-        Sets the errorCode property value. The error code for install or uninstall failures.
-        Args:
-            value: Value to set for the error_code property.
-        """
-        self._error_code = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -169,108 +78,6 @@ class MobileAppInstallStatus(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def install_state(self,) -> Optional[resultant_app_state.ResultantAppState]:
-        """
-        Gets the installState property value. A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
-        Returns: Optional[resultant_app_state.ResultantAppState]
-        """
-        return self._install_state
-    
-    @install_state.setter
-    def install_state(self,value: Optional[resultant_app_state.ResultantAppState] = None) -> None:
-        """
-        Sets the installState property value. A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
-        Args:
-            value: Value to set for the install_state property.
-        """
-        self._install_state = value
-    
-    @property
-    def install_state_detail(self,) -> Optional[resultant_app_state_detail.ResultantAppStateDetail]:
-        """
-        Gets the installStateDetail property value. Enum indicating additional details regarding why an application has a particular install state.
-        Returns: Optional[resultant_app_state_detail.ResultantAppStateDetail]
-        """
-        return self._install_state_detail
-    
-    @install_state_detail.setter
-    def install_state_detail(self,value: Optional[resultant_app_state_detail.ResultantAppStateDetail] = None) -> None:
-        """
-        Sets the installStateDetail property value. Enum indicating additional details regarding why an application has a particular install state.
-        Args:
-            value: Value to set for the install_state_detail property.
-        """
-        self._install_state_detail = value
-    
-    @property
-    def last_sync_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSyncDateTime property value. Last sync date time
-        Returns: Optional[datetime]
-        """
-        return self._last_sync_date_time
-    
-    @last_sync_date_time.setter
-    def last_sync_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSyncDateTime property value. Last sync date time
-        Args:
-            value: Value to set for the last_sync_date_time property.
-        """
-        self._last_sync_date_time = value
-    
-    @property
-    def mobile_app_install_status_value(self,) -> Optional[resultant_app_state.ResultantAppState]:
-        """
-        Gets the mobileAppInstallStatusValue property value. A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
-        Returns: Optional[resultant_app_state.ResultantAppState]
-        """
-        return self._mobile_app_install_status_value
-    
-    @mobile_app_install_status_value.setter
-    def mobile_app_install_status_value(self,value: Optional[resultant_app_state.ResultantAppState] = None) -> None:
-        """
-        Sets the mobileAppInstallStatusValue property value. A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
-        Args:
-            value: Value to set for the mobile_app_install_status_value property.
-        """
-        self._mobile_app_install_status_value = value
-    
-    @property
-    def os_description(self,) -> Optional[str]:
-        """
-        Gets the osDescription property value. OS Description
-        Returns: Optional[str]
-        """
-        return self._os_description
-    
-    @os_description.setter
-    def os_description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the osDescription property value. OS Description
-        Args:
-            value: Value to set for the os_description property.
-        """
-        self._os_description = value
-    
-    @property
-    def os_version(self,) -> Optional[str]:
-        """
-        Gets the osVersion property value. OS Version
-        Returns: Optional[str]
-        """
-        return self._os_version
-    
-    @os_version.setter
-    def os_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the osVersion property value. OS Version
-        Args:
-            value: Value to set for the os_version property.
-        """
-        self._os_version = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -293,39 +100,5 @@ class MobileAppInstallStatus(entity.Entity):
         writer.write_str_value("osVersion", self.os_version)
         writer.write_str_value("userName", self.user_name)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
-    
-    @property
-    def user_name(self,) -> Optional[str]:
-        """
-        Gets the userName property value. Device User Name
-        Returns: Optional[str]
-        """
-        return self._user_name
-    
-    @user_name.setter
-    def user_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userName property value. Device User Name
-        Args:
-            value: Value to set for the user_name property.
-        """
-        self._user_name = value
-    
-    @property
-    def user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the userPrincipalName property value. User Principal Name
-        Returns: Optional[str]
-        """
-        return self._user_principal_name
-    
-    @user_principal_name.setter
-    def user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userPrincipalName property value. User Principal Name
-        Args:
-            value: Value to set for the user_principal_name property.
-        """
-        self._user_principal_name = value
     
 

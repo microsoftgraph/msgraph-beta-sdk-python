@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import detected_sensitive_content_base
 
+@dataclass
 class ExactMatchDetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitiveContentBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ExactMatchDetectedSensitiveContent and sets the default values.
-        """
-        super().__init__()
-        # The matches property
-        self._matches: Optional[List[sensitive_content_location.SensitiveContentLocation]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The matches property
+    matches: Optional[List[sensitive_content_location.SensitiveContentLocation]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchDetectedSensitiveContent:
@@ -43,23 +40,6 @@ class ExactMatchDetectedSensitiveContent(detected_sensitive_content_base.Detecte
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def matches(self,) -> Optional[List[sensitive_content_location.SensitiveContentLocation]]:
-        """
-        Gets the matches property value. The matches property
-        Returns: Optional[List[sensitive_content_location.SensitiveContentLocation]]
-        """
-        return self._matches
-    
-    @matches.setter
-    def matches(self,value: Optional[List[sensitive_content_location.SensitiveContentLocation]] = None) -> None:
-        """
-        Sets the matches property value. The matches property
-        Args:
-            value: Value to set for the matches property.
-        """
-        self._matches = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

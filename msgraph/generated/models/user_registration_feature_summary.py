@@ -1,45 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import included_user_roles, included_user_types, user_registration_feature_count
 
+@dataclass
 class UserRegistrationFeatureSummary(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new UserRegistrationFeatureSummary and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Total number of users accounts, excluding those that are blocked
-        self._total_user_count: Optional[int] = None
-        # Number of users registered or capable for Multi-Factor Authentication, Self-Service Password Reset and Passwordless Authentication.
-        self._user_registration_feature_counts: Optional[List[user_registration_feature_count.UserRegistrationFeatureCount]] = None
-        # User role type. Possible values are: all, privilegedAdmin, admin, user.
-        self._user_roles: Optional[included_user_roles.IncludedUserRoles] = None
-        # User type. Possible values are: all, member, guest.
-        self._user_types: Optional[included_user_types.IncludedUserTypes] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Total number of users accounts, excluding those that are blocked
+    total_user_count: Optional[int] = None
+    # Number of users registered or capable for Multi-Factor Authentication, Self-Service Password Reset and Passwordless Authentication.
+    user_registration_feature_counts: Optional[List[user_registration_feature_count.UserRegistrationFeatureCount]] = None
+    # User role type. Possible values are: all, privilegedAdmin, admin, user.
+    user_roles: Optional[included_user_roles.IncludedUserRoles] = None
+    # User type. Possible values are: all, member, guest.
+    user_types: Optional[included_user_types.IncludedUserTypes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserRegistrationFeatureSummary:
@@ -69,23 +50,6 @@ class UserRegistrationFeatureSummary(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -100,73 +64,5 @@ class UserRegistrationFeatureSummary(AdditionalDataHolder, Parsable):
         writer.write_enum_value("userRoles", self.user_roles)
         writer.write_enum_value("userTypes", self.user_types)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def total_user_count(self,) -> Optional[int]:
-        """
-        Gets the totalUserCount property value. Total number of users accounts, excluding those that are blocked
-        Returns: Optional[int]
-        """
-        return self._total_user_count
-    
-    @total_user_count.setter
-    def total_user_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalUserCount property value. Total number of users accounts, excluding those that are blocked
-        Args:
-            value: Value to set for the total_user_count property.
-        """
-        self._total_user_count = value
-    
-    @property
-    def user_registration_feature_counts(self,) -> Optional[List[user_registration_feature_count.UserRegistrationFeatureCount]]:
-        """
-        Gets the userRegistrationFeatureCounts property value. Number of users registered or capable for Multi-Factor Authentication, Self-Service Password Reset and Passwordless Authentication.
-        Returns: Optional[List[user_registration_feature_count.UserRegistrationFeatureCount]]
-        """
-        return self._user_registration_feature_counts
-    
-    @user_registration_feature_counts.setter
-    def user_registration_feature_counts(self,value: Optional[List[user_registration_feature_count.UserRegistrationFeatureCount]] = None) -> None:
-        """
-        Sets the userRegistrationFeatureCounts property value. Number of users registered or capable for Multi-Factor Authentication, Self-Service Password Reset and Passwordless Authentication.
-        Args:
-            value: Value to set for the user_registration_feature_counts property.
-        """
-        self._user_registration_feature_counts = value
-    
-    @property
-    def user_roles(self,) -> Optional[included_user_roles.IncludedUserRoles]:
-        """
-        Gets the userRoles property value. User role type. Possible values are: all, privilegedAdmin, admin, user.
-        Returns: Optional[included_user_roles.IncludedUserRoles]
-        """
-        return self._user_roles
-    
-    @user_roles.setter
-    def user_roles(self,value: Optional[included_user_roles.IncludedUserRoles] = None) -> None:
-        """
-        Sets the userRoles property value. User role type. Possible values are: all, privilegedAdmin, admin, user.
-        Args:
-            value: Value to set for the user_roles property.
-        """
-        self._user_roles = value
-    
-    @property
-    def user_types(self,) -> Optional[included_user_types.IncludedUserTypes]:
-        """
-        Gets the userTypes property value. User type. Possible values are: all, member, guest.
-        Returns: Optional[included_user_types.IncludedUserTypes]
-        """
-        return self._user_types
-    
-    @user_types.setter
-    def user_types(self,value: Optional[included_user_types.IncludedUserTypes] = None) -> None:
-        """
-        Sets the userTypes property value. User type. Possible values are: all, member, guest.
-        Args:
-            value: Value to set for the user_types property.
-        """
-        self._user_types = value
     
 

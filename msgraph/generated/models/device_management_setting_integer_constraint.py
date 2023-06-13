@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import device_management_constraint
 
+@dataclass
 class DeviceManagementSettingIntegerConstraint(device_management_constraint.DeviceManagementConstraint):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementSettingIntegerConstraint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementSettingIntegerConstraint"
-        # The maximum permitted value
-        self._maximum_value: Optional[int] = None
-        # The minimum permitted value
-        self._minimum_value: Optional[int] = None
+    odata_type = "#microsoft.graph.deviceManagementSettingIntegerConstraint"
+    # The maximum permitted value
+    maximum_value: Optional[int] = None
+    # The minimum permitted value
+    minimum_value: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingIntegerConstraint:
@@ -45,40 +42,6 @@ class DeviceManagementSettingIntegerConstraint(device_management_constraint.Devi
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def maximum_value(self,) -> Optional[int]:
-        """
-        Gets the maximumValue property value. The maximum permitted value
-        Returns: Optional[int]
-        """
-        return self._maximum_value
-    
-    @maximum_value.setter
-    def maximum_value(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumValue property value. The maximum permitted value
-        Args:
-            value: Value to set for the maximum_value property.
-        """
-        self._maximum_value = value
-    
-    @property
-    def minimum_value(self,) -> Optional[int]:
-        """
-        Gets the minimumValue property value. The minimum permitted value
-        Returns: Optional[int]
-        """
-        return self._minimum_value
-    
-    @minimum_value.setter
-    def minimum_value(self,value: Optional[int] = None) -> None:
-        """
-        Sets the minimumValue property value. The minimum permitted value
-        Args:
-            value: Value to set for the minimum_value property.
-        """
-        self._minimum_value = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

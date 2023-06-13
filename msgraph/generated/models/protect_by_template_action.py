@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import information_protection_action
 
+@dataclass
 class ProtectByTemplateAction(information_protection_action.InformationProtectionAction):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProtectByTemplateAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.protectByTemplateAction"
-        # The GUID of the Azure Information Protection template to apply to the information.
-        self._template_id: Optional[str] = None
+    odata_type = "#microsoft.graph.protectByTemplateAction"
+    # The GUID of the Azure Information Protection template to apply to the information.
+    template_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectByTemplateAction:
@@ -53,22 +50,5 @@ class ProtectByTemplateAction(information_protection_action.InformationProtectio
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("templateId", self.template_id)
-    
-    @property
-    def template_id(self,) -> Optional[str]:
-        """
-        Gets the templateId property value. The GUID of the Azure Information Protection template to apply to the information.
-        Returns: Optional[str]
-        """
-        return self._template_id
-    
-    @template_id.setter
-    def template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the templateId property value. The GUID of the Azure Information Protection template to apply to the information.
-        Args:
-            value: Value to set for the template_id property.
-        """
-        self._template_id = value
     
 

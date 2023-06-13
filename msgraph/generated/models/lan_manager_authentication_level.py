@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LanManagerAuthenticationLevel(Enum):
+class LanManagerAuthenticationLevel(str, Enum):
     # Send LM & NTLM responses
     LmAndNltm = "lmAndNltm",
     # Send LM & NTLM-use NTLMv2 session security if negotiated

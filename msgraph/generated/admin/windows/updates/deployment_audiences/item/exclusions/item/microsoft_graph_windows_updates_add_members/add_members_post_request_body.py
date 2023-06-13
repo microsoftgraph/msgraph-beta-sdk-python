@@ -1,54 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .........models.windows_updates import updatable_asset
 
+@dataclass
 class AddMembersPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new addMembersPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The assets property
-        self._assets: Optional[List[updatable_asset.UpdatableAsset]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def assets(self,) -> Optional[List[updatable_asset.UpdatableAsset]]:
-        """
-        Gets the assets property value. The assets property
-        Returns: Optional[List[updatable_asset.UpdatableAsset]]
-        """
-        return self._assets
-    
-    @assets.setter
-    def assets(self,value: Optional[List[updatable_asset.UpdatableAsset]] = None) -> None:
-        """
-        Sets the assets property value. The assets property
-        Args:
-            value: Value to set for the assets property.
-        """
-        self._assets = value
+    # The assets property
+    assets: Optional[List[updatable_asset.UpdatableAsset]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddMembersPostRequestBody:

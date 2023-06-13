@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_constraint
 
+@dataclass
 class DeviceManagementSettingFileConstraint(device_management_constraint.DeviceManagementConstraint):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementSettingFileConstraint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementSettingFileConstraint"
-        # Acceptable file extensions to upload for this setting
-        self._supported_extensions: Optional[List[str]] = None
+    odata_type = "#microsoft.graph.deviceManagementSettingFileConstraint"
+    # Acceptable file extensions to upload for this setting
+    supported_extensions: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingFileConstraint:
@@ -53,22 +50,5 @@ class DeviceManagementSettingFileConstraint(device_management_constraint.DeviceM
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("supportedExtensions", self.supported_extensions)
-    
-    @property
-    def supported_extensions(self,) -> Optional[List[str]]:
-        """
-        Gets the supportedExtensions property value. Acceptable file extensions to upload for this setting
-        Returns: Optional[List[str]]
-        """
-        return self._supported_extensions
-    
-    @supported_extensions.setter
-    def supported_extensions(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the supportedExtensions property value. Acceptable file extensions to upload for this setting
-        Args:
-            value: Value to set for the supported_extensions property.
-        """
-        self._supported_extensions = value
     
 

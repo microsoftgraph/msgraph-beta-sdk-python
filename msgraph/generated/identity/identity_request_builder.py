@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ..models.o_data_errors import o_data_error
     from .api_connectors import api_connectors_request_builder
     from .authentication_event_listeners import authentication_event_listeners_request_builder
+    from .authentication_events_flows import authentication_events_flows_request_builder
     from .b2c_user_flows import b2c_user_flows_request_builder
     from .b2x_user_flows import b2x_user_flows_request_builder
     from .conditional_access import conditional_access_request_builder
@@ -148,6 +149,15 @@ class IdentityRequestBuilder():
         from .authentication_event_listeners import authentication_event_listeners_request_builder
 
         return authentication_event_listeners_request_builder.AuthenticationEventListenersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def authentication_events_flows(self) -> authentication_events_flows_request_builder.AuthenticationEventsFlowsRequestBuilder:
+        """
+        Provides operations to manage the authenticationEventsFlows property of the microsoft.graph.identityContainer entity.
+        """
+        from .authentication_events_flows import authentication_events_flows_request_builder
+
+        return authentication_events_flows_request_builder.AuthenticationEventsFlowsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def b2c_user_flows(self) -> b2c_user_flows_request_builder.B2cUserFlowsRequestBuilder:

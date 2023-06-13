@@ -1,39 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import planner_relationship_based_user_type, planner_user_role_kind
 
+@dataclass
 class PlannerTaskConfigurationRoleBase(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerTaskConfigurationRoleBase and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The roleKind property
-        self._role_kind: Optional[planner_user_role_kind.PlannerUserRoleKind] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The roleKind property
+    role_kind: Optional[planner_user_role_kind.PlannerUserRoleKind] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskConfigurationRoleBase:
@@ -66,40 +47,6 @@ class PlannerTaskConfigurationRoleBase(AdditionalDataHolder, Parsable):
             "roleKind": lambda n : setattr(self, 'role_kind', n.get_enum_value(planner_user_role_kind.PlannerUserRoleKind)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def role_kind(self,) -> Optional[planner_user_role_kind.PlannerUserRoleKind]:
-        """
-        Gets the roleKind property value. The roleKind property
-        Returns: Optional[planner_user_role_kind.PlannerUserRoleKind]
-        """
-        return self._role_kind
-    
-    @role_kind.setter
-    def role_kind(self,value: Optional[planner_user_role_kind.PlannerUserRoleKind] = None) -> None:
-        """
-        Sets the roleKind property value. The roleKind property
-        Args:
-            value: Value to set for the role_kind property.
-        """
-        self._role_kind = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

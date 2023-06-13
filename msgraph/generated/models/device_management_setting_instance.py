@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,21 +8,17 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementSettingInstance(entity.Entity):
     """
     Base type for a setting instance
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementSettingInstance and sets the default values.
-        """
-        super().__init__()
-        # The ID of the setting definition for this instance
-        self._definition_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # JSON representation of the value
-        self._value_json: Optional[str] = None
+    # The ID of the setting definition for this instance
+    definition_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # JSON representation of the value
+    value_json: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingInstance:
@@ -62,23 +59,6 @@ class DeviceManagementSettingInstance(entity.Entity):
                 return device_management_string_setting_instance.DeviceManagementStringSettingInstance()
         return DeviceManagementSettingInstance()
     
-    @property
-    def definition_id(self,) -> Optional[str]:
-        """
-        Gets the definitionId property value. The ID of the setting definition for this instance
-        Returns: Optional[str]
-        """
-        return self._definition_id
-    
-    @definition_id.setter
-    def definition_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the definitionId property value. The ID of the setting definition for this instance
-        Args:
-            value: Value to set for the definition_id property.
-        """
-        self._definition_id = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -105,22 +85,5 @@ class DeviceManagementSettingInstance(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("definitionId", self.definition_id)
         writer.write_str_value("valueJson", self.value_json)
-    
-    @property
-    def value_json(self,) -> Optional[str]:
-        """
-        Gets the valueJson property value. JSON representation of the value
-        Returns: Optional[str]
-        """
-        return self._value_json
-    
-    @value_json.setter
-    def value_json(self,value: Optional[str] = None) -> None:
-        """
-        Sets the valueJson property value. JSON representation of the value
-        Args:
-            value: Value to set for the value_json property.
-        """
-        self._value_json = value
     
 

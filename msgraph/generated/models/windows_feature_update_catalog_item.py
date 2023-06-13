@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import windows_update_catalog_item
 
+@dataclass
 class WindowsFeatureUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateCatalogItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsFeatureUpdateCatalogItem and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsFeatureUpdateCatalogItem"
-        # The feature update version
-        self._version: Optional[str] = None
+    odata_type = "#microsoft.graph.windowsFeatureUpdateCatalogItem"
+    # The feature update version
+    version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsFeatureUpdateCatalogItem:
@@ -53,22 +50,5 @@ class WindowsFeatureUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateC
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("version", self.version)
-    
-    @property
-    def version(self,) -> Optional[str]:
-        """
-        Gets the version property value. The feature update version
-        Returns: Optional[str]
-        """
-        return self._version
-    
-    @version.setter
-    def version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the version property value. The feature update version
-        Args:
-            value: Value to set for the version property.
-        """
-        self._version = value
     
 

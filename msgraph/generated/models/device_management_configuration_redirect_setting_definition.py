@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,20 +8,16 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_definition
 
+@dataclass
 class DeviceManagementConfigurationRedirectSettingDefinition(device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationRedirectSettingDefinition and sets the default values.
-        """
-        super().__init__()
-        # A deep link that points to the specific location in the Intune console where feature support must be managed from.
-        self._deep_link: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A message that explains that clicking the link will redirect the user to a supported page to manage the settings.
-        self._redirect_message: Optional[str] = None
-        # Indicates the reason for redirecting the user to an alternative location in the console.  For example: WiFi profiles are not supported in the settings catalog and must be created with a template policy.
-        self._redirect_reason: Optional[str] = None
+    # A deep link that points to the specific location in the Intune console where feature support must be managed from.
+    deep_link: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # A message that explains that clicking the link will redirect the user to a supported page to manage the settings.
+    redirect_message: Optional[str] = None
+    # Indicates the reason for redirecting the user to an alternative location in the console.  For example: WiFi profiles are not supported in the settings catalog and must be created with a template policy.
+    redirect_reason: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationRedirectSettingDefinition:
@@ -33,23 +30,6 @@ class DeviceManagementConfigurationRedirectSettingDefinition(device_management_c
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceManagementConfigurationRedirectSettingDefinition()
-    
-    @property
-    def deep_link(self,) -> Optional[str]:
-        """
-        Gets the deepLink property value. A deep link that points to the specific location in the Intune console where feature support must be managed from.
-        Returns: Optional[str]
-        """
-        return self._deep_link
-    
-    @deep_link.setter
-    def deep_link(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deepLink property value. A deep link that points to the specific location in the Intune console where feature support must be managed from.
-        Args:
-            value: Value to set for the deep_link property.
-        """
-        self._deep_link = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -66,40 +46,6 @@ class DeviceManagementConfigurationRedirectSettingDefinition(device_management_c
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def redirect_message(self,) -> Optional[str]:
-        """
-        Gets the redirectMessage property value. A message that explains that clicking the link will redirect the user to a supported page to manage the settings.
-        Returns: Optional[str]
-        """
-        return self._redirect_message
-    
-    @redirect_message.setter
-    def redirect_message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the redirectMessage property value. A message that explains that clicking the link will redirect the user to a supported page to manage the settings.
-        Args:
-            value: Value to set for the redirect_message property.
-        """
-        self._redirect_message = value
-    
-    @property
-    def redirect_reason(self,) -> Optional[str]:
-        """
-        Gets the redirectReason property value. Indicates the reason for redirecting the user to an alternative location in the console.  For example: WiFi profiles are not supported in the settings catalog and must be created with a template policy.
-        Returns: Optional[str]
-        """
-        return self._redirect_reason
-    
-    @redirect_reason.setter
-    def redirect_reason(self,value: Optional[str] = None) -> None:
-        """
-        Sets the redirectReason property value. Indicates the reason for redirecting the user to an alternative location in the console.  For example: WiFi profiles are not supported in the settings catalog and must be created with a template policy.
-        Args:
-            value: Value to set for the redirect_reason property.
-        """
-        self._redirect_reason = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

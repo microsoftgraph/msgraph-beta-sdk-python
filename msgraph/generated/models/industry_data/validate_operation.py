@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,18 +9,14 @@ if TYPE_CHECKING:
 
 from .. import long_running_operation
 
+@dataclass
 class ValidateOperation(long_running_operation.LongRunningOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ValidateOperation and sets the default values.
-        """
-        super().__init__()
-        # Set of errors discovered through validation.
-        self._errors: Optional[List[public_error.PublicError]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Set of warnings discovered through validation.
-        self._warnings: Optional[List[public_error.PublicError]] = None
+    # Set of errors discovered through validation.
+    errors: Optional[List[public_error.PublicError]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Set of warnings discovered through validation.
+    warnings: Optional[List[public_error.PublicError]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ValidateOperation:
@@ -39,23 +36,6 @@ class ValidateOperation(long_running_operation.LongRunningOperation):
 
                 return file_validate_operation.FileValidateOperation()
         return ValidateOperation()
-    
-    @property
-    def errors(self,) -> Optional[List[public_error.PublicError]]:
-        """
-        Gets the errors property value. Set of errors discovered through validation.
-        Returns: Optional[List[public_error.PublicError]]
-        """
-        return self._errors
-    
-    @errors.setter
-    def errors(self,value: Optional[List[public_error.PublicError]] = None) -> None:
-        """
-        Sets the errors property value. Set of errors discovered through validation.
-        Args:
-            value: Value to set for the errors property.
-        """
-        self._errors = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -82,22 +62,5 @@ class ValidateOperation(long_running_operation.LongRunningOperation):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-    
-    @property
-    def warnings(self,) -> Optional[List[public_error.PublicError]]:
-        """
-        Gets the warnings property value. Set of warnings discovered through validation.
-        Returns: Optional[List[public_error.PublicError]]
-        """
-        return self._warnings
-    
-    @warnings.setter
-    def warnings(self,value: Optional[List[public_error.PublicError]] = None) -> None:
-        """
-        Sets the warnings property value. Set of warnings discovered through validation.
-        Args:
-            value: Value to set for the warnings property.
-        """
-        self._warnings = value
     
 

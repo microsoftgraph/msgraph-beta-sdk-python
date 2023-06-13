@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,33 +9,12 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class Ediscoveryroot(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Ediscoveryroot and sets the default values.
-        """
-        super().__init__()
-        # The cases property
-        self._cases: Optional[List[case.Case]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def cases(self,) -> Optional[List[case.Case]]:
-        """
-        Gets the cases property value. The cases property
-        Returns: Optional[List[case.Case]]
-        """
-        return self._cases
-    
-    @cases.setter
-    def cases(self,value: Optional[List[case.Case]] = None) -> None:
-        """
-        Sets the cases property value. The cases property
-        Args:
-            value: Value to set for the cases property.
-        """
-        self._cases = value
+    # The cases property
+    cases: Optional[List[case.Case]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Ediscoveryroot:

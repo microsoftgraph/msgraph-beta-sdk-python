@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -105,6 +105,7 @@ if TYPE_CHECKING:
     from .monitoring import monitoring_request_builder
     from .ndes_connectors import ndes_connectors_request_builder
     from .notification_message_templates import notification_message_templates_request_builder
+    from .privilege_management_elevations import privilege_management_elevations_request_builder
     from .remote_action_audits import remote_action_audits_request_builder
     from .remote_assistance_partners import remote_assistance_partners_request_builder
     from .remote_assistance_settings import remote_assistance_settings_request_builder
@@ -129,6 +130,7 @@ if TYPE_CHECKING:
     from .terms_and_conditions import terms_and_conditions_request_builder
     from .troubleshooting_events import troubleshooting_events_request_builder
     from .user_experience_analytics_anomaly import user_experience_analytics_anomaly_request_builder
+    from .user_experience_analytics_anomaly_correlation_group_overview import user_experience_analytics_anomaly_correlation_group_overview_request_builder
     from .user_experience_analytics_anomaly_device import user_experience_analytics_anomaly_device_request_builder
     from .user_experience_analytics_app_health_application_performance import user_experience_analytics_app_health_application_performance_request_builder
     from .user_experience_analytics_app_health_application_performance_by_app_version import user_experience_analytics_app_health_application_performance_by_app_version_request_builder
@@ -1178,6 +1180,15 @@ class DeviceManagementRequestBuilder():
         return notification_message_templates_request_builder.NotificationMessageTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def privilege_management_elevations(self) -> privilege_management_elevations_request_builder.PrivilegeManagementElevationsRequestBuilder:
+        """
+        Provides operations to manage the privilegeManagementElevations property of the microsoft.graph.deviceManagement entity.
+        """
+        from .privilege_management_elevations import privilege_management_elevations_request_builder
+
+        return privilege_management_elevations_request_builder.PrivilegeManagementElevationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def remote_action_audits(self) -> remote_action_audits_request_builder.RemoteActionAuditsRequestBuilder:
         """
         Provides operations to manage the remoteActionAudits property of the microsoft.graph.deviceManagement entity.
@@ -1383,6 +1394,15 @@ class DeviceManagementRequestBuilder():
         from .user_experience_analytics_anomaly import user_experience_analytics_anomaly_request_builder
 
         return user_experience_analytics_anomaly_request_builder.UserExperienceAnalyticsAnomalyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_experience_analytics_anomaly_correlation_group_overview(self) -> user_experience_analytics_anomaly_correlation_group_overview_request_builder.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsAnomalyCorrelationGroupOverview property of the microsoft.graph.deviceManagement entity.
+        """
+        from .user_experience_analytics_anomaly_correlation_group_overview import user_experience_analytics_anomaly_correlation_group_overview_request_builder
+
+        return user_experience_analytics_anomaly_correlation_group_overview_request_builder.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_anomaly_device(self) -> user_experience_analytics_anomaly_device_request_builder.UserExperienceAnalyticsAnomalyDeviceRequestBuilder:

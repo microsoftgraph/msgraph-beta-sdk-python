@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PlannerRoster(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerRoster and sets the default values.
-        """
-        super().__init__()
-        # Retrieves the members of the plannerRoster.
-        self._members: Optional[List[planner_roster_member.PlannerRosterMember]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Retrieves the plans contained by the plannerRoster.
-        self._plans: Optional[List[planner_plan.PlannerPlan]] = None
+    # Retrieves the members of the plannerRoster.
+    members: Optional[List[planner_roster_member.PlannerRosterMember]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Retrieves the plans contained by the plannerRoster.
+    plans: Optional[List[planner_plan.PlannerPlan]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerRoster:
@@ -46,40 +43,6 @@ class PlannerRoster(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def members(self,) -> Optional[List[planner_roster_member.PlannerRosterMember]]:
-        """
-        Gets the members property value. Retrieves the members of the plannerRoster.
-        Returns: Optional[List[planner_roster_member.PlannerRosterMember]]
-        """
-        return self._members
-    
-    @members.setter
-    def members(self,value: Optional[List[planner_roster_member.PlannerRosterMember]] = None) -> None:
-        """
-        Sets the members property value. Retrieves the members of the plannerRoster.
-        Args:
-            value: Value to set for the members property.
-        """
-        self._members = value
-    
-    @property
-    def plans(self,) -> Optional[List[planner_plan.PlannerPlan]]:
-        """
-        Gets the plans property value. Retrieves the plans contained by the plannerRoster.
-        Returns: Optional[List[planner_plan.PlannerPlan]]
-        """
-        return self._plans
-    
-    @plans.setter
-    def plans(self,value: Optional[List[planner_plan.PlannerPlan]] = None) -> None:
-        """
-        Sets the plans property value. Retrieves the plans contained by the plannerRoster.
-        Args:
-            value: Value to set for the plans property.
-        """
-        self._plans = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

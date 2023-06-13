@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,92 +9,37 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class WindowsDriverUpdateProfile(entity.Entity):
     """
     Windows Driver Update Profile
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsDriverUpdateProfile and sets the default values.
-        """
-        super().__init__()
-        # An enum type to represent approval type of a driver update profile.
-        self._approval_type: Optional[driver_update_profile_approval_type.DriverUpdateProfileApprovalType] = None
-        # The list of group assignments of the profile.
-        self._assignments: Optional[List[windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment]] = None
-        # The date time that the profile was created.
-        self._created_date_time: Optional[datetime] = None
-        # Deployment deferral settings in days, only applicable when ApprovalType is set to automatic approval.
-        self._deployment_deferral_in_days: Optional[int] = None
-        # The description of the profile which is specified by the user.
-        self._description: Optional[str] = None
-        # Number of devices reporting for this profile
-        self._device_reporting: Optional[int] = None
-        # The display name for the profile.
-        self._display_name: Optional[str] = None
-        # Driver inventories for this profile.
-        self._driver_inventories: Optional[List[windows_driver_update_inventory.WindowsDriverUpdateInventory]] = None
-        # Driver inventory sync status for this profile.
-        self._inventory_sync_status: Optional[windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus] = None
-        # The date time that the profile was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # Number of new driver updates available for this profile.
-        self._new_updates: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of Scope Tags for this Driver Update entity.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-    
-    @property
-    def approval_type(self,) -> Optional[driver_update_profile_approval_type.DriverUpdateProfileApprovalType]:
-        """
-        Gets the approvalType property value. An enum type to represent approval type of a driver update profile.
-        Returns: Optional[driver_update_profile_approval_type.DriverUpdateProfileApprovalType]
-        """
-        return self._approval_type
-    
-    @approval_type.setter
-    def approval_type(self,value: Optional[driver_update_profile_approval_type.DriverUpdateProfileApprovalType] = None) -> None:
-        """
-        Sets the approvalType property value. An enum type to represent approval type of a driver update profile.
-        Args:
-            value: Value to set for the approval_type property.
-        """
-        self._approval_type = value
-    
-    @property
-    def assignments(self,) -> Optional[List[windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment]]:
-        """
-        Gets the assignments property value. The list of group assignments of the profile.
-        Returns: Optional[List[windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The list of group assignments of the profile.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date time that the profile was created.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date time that the profile was created.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # An enum type to represent approval type of a driver update profile.
+    approval_type: Optional[driver_update_profile_approval_type.DriverUpdateProfileApprovalType] = None
+    # The list of group assignments of the profile.
+    assignments: Optional[List[windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment]] = None
+    # The date time that the profile was created.
+    created_date_time: Optional[datetime] = None
+    # Deployment deferral settings in days, only applicable when ApprovalType is set to automatic approval.
+    deployment_deferral_in_days: Optional[int] = None
+    # The description of the profile which is specified by the user.
+    description: Optional[str] = None
+    # Number of devices reporting for this profile
+    device_reporting: Optional[int] = None
+    # The display name for the profile.
+    display_name: Optional[str] = None
+    # Driver inventories for this profile.
+    driver_inventories: Optional[List[windows_driver_update_inventory.WindowsDriverUpdateInventory]] = None
+    # Driver inventory sync status for this profile.
+    inventory_sync_status: Optional[windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus] = None
+    # The date time that the profile was last modified.
+    last_modified_date_time: Optional[datetime] = None
+    # Number of new driver updates available for this profile.
+    new_updates: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # List of Scope Tags for this Driver Update entity.
+    role_scope_tag_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDriverUpdateProfile:
@@ -106,91 +52,6 @@ class WindowsDriverUpdateProfile(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return WindowsDriverUpdateProfile()
-    
-    @property
-    def deployment_deferral_in_days(self,) -> Optional[int]:
-        """
-        Gets the deploymentDeferralInDays property value. Deployment deferral settings in days, only applicable when ApprovalType is set to automatic approval.
-        Returns: Optional[int]
-        """
-        return self._deployment_deferral_in_days
-    
-    @deployment_deferral_in_days.setter
-    def deployment_deferral_in_days(self,value: Optional[int] = None) -> None:
-        """
-        Sets the deploymentDeferralInDays property value. Deployment deferral settings in days, only applicable when ApprovalType is set to automatic approval.
-        Args:
-            value: Value to set for the deployment_deferral_in_days property.
-        """
-        self._deployment_deferral_in_days = value
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description of the profile which is specified by the user.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description of the profile which is specified by the user.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def device_reporting(self,) -> Optional[int]:
-        """
-        Gets the deviceReporting property value. Number of devices reporting for this profile
-        Returns: Optional[int]
-        """
-        return self._device_reporting
-    
-    @device_reporting.setter
-    def device_reporting(self,value: Optional[int] = None) -> None:
-        """
-        Sets the deviceReporting property value. Number of devices reporting for this profile
-        Args:
-            value: Value to set for the device_reporting property.
-        """
-        self._device_reporting = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name for the profile.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name for the profile.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def driver_inventories(self,) -> Optional[List[windows_driver_update_inventory.WindowsDriverUpdateInventory]]:
-        """
-        Gets the driverInventories property value. Driver inventories for this profile.
-        Returns: Optional[List[windows_driver_update_inventory.WindowsDriverUpdateInventory]]
-        """
-        return self._driver_inventories
-    
-    @driver_inventories.setter
-    def driver_inventories(self,value: Optional[List[windows_driver_update_inventory.WindowsDriverUpdateInventory]] = None) -> None:
-        """
-        Sets the driverInventories property value. Driver inventories for this profile.
-        Args:
-            value: Value to set for the driver_inventories property.
-        """
-        self._driver_inventories = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -216,74 +77,6 @@ class WindowsDriverUpdateProfile(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def inventory_sync_status(self,) -> Optional[windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus]:
-        """
-        Gets the inventorySyncStatus property value. Driver inventory sync status for this profile.
-        Returns: Optional[windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus]
-        """
-        return self._inventory_sync_status
-    
-    @inventory_sync_status.setter
-    def inventory_sync_status(self,value: Optional[windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus] = None) -> None:
-        """
-        Sets the inventorySyncStatus property value. Driver inventory sync status for this profile.
-        Args:
-            value: Value to set for the inventory_sync_status property.
-        """
-        self._inventory_sync_status = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date time that the profile was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date time that the profile was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def new_updates(self,) -> Optional[int]:
-        """
-        Gets the newUpdates property value. Number of new driver updates available for this profile.
-        Returns: Optional[int]
-        """
-        return self._new_updates
-    
-    @new_updates.setter
-    def new_updates(self,value: Optional[int] = None) -> None:
-        """
-        Sets the newUpdates property value. Number of new driver updates available for this profile.
-        Args:
-            value: Value to set for the new_updates property.
-        """
-        self._new_updates = value
-    
-    @property
-    def role_scope_tag_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the roleScopeTagIds property value. List of Scope Tags for this Driver Update entity.
-        Returns: Optional[List[str]]
-        """
-        return self._role_scope_tag_ids
-    
-    @role_scope_tag_ids.setter
-    def role_scope_tag_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the roleScopeTagIds property value. List of Scope Tags for this Driver Update entity.
-        Args:
-            value: Value to set for the role_scope_tag_ids property.
-        """
-        self._role_scope_tag_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ReplyRestriction(Enum):
+class ReplyRestriction(str, Enum):
     Everyone = "everyone",
     AuthorAndModerators = "authorAndModerators",
     UnknownFutureValue = "unknownFutureValue",

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,86 +9,31 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class WindowsDriverUpdateInventory(entity.Entity):
     """
     A new entity to represent driver inventories.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsDriverUpdateInventory and sets the default values.
-        """
-        super().__init__()
-        # The number of devices for which this driver is applicable.
-        self._applicable_device_count: Optional[int] = None
-        # An enum type to represent approval status of a driver.
-        self._approval_status: Optional[driver_approval_status.DriverApprovalStatus] = None
-        # An enum type to represent which category a driver belongs to.
-        self._category: Optional[driver_category.DriverCategory] = None
-        # The date time when a driver should be deployed if approvalStatus is approved.
-        self._deploy_date_time: Optional[datetime] = None
-        # The class of the driver.
-        self._driver_class: Optional[str] = None
-        # The manufacturer of the driver.
-        self._manufacturer: Optional[str] = None
-        # The name of the driver.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The release date time of the driver.
-        self._release_date_time: Optional[datetime] = None
-        # The version of the driver.
-        self._version: Optional[str] = None
-    
-    @property
-    def applicable_device_count(self,) -> Optional[int]:
-        """
-        Gets the applicableDeviceCount property value. The number of devices for which this driver is applicable.
-        Returns: Optional[int]
-        """
-        return self._applicable_device_count
-    
-    @applicable_device_count.setter
-    def applicable_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the applicableDeviceCount property value. The number of devices for which this driver is applicable.
-        Args:
-            value: Value to set for the applicable_device_count property.
-        """
-        self._applicable_device_count = value
-    
-    @property
-    def approval_status(self,) -> Optional[driver_approval_status.DriverApprovalStatus]:
-        """
-        Gets the approvalStatus property value. An enum type to represent approval status of a driver.
-        Returns: Optional[driver_approval_status.DriverApprovalStatus]
-        """
-        return self._approval_status
-    
-    @approval_status.setter
-    def approval_status(self,value: Optional[driver_approval_status.DriverApprovalStatus] = None) -> None:
-        """
-        Sets the approvalStatus property value. An enum type to represent approval status of a driver.
-        Args:
-            value: Value to set for the approval_status property.
-        """
-        self._approval_status = value
-    
-    @property
-    def category(self,) -> Optional[driver_category.DriverCategory]:
-        """
-        Gets the category property value. An enum type to represent which category a driver belongs to.
-        Returns: Optional[driver_category.DriverCategory]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[driver_category.DriverCategory] = None) -> None:
-        """
-        Sets the category property value. An enum type to represent which category a driver belongs to.
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
+    # The number of devices for which this driver is applicable.
+    applicable_device_count: Optional[int] = None
+    # An enum type to represent approval status of a driver.
+    approval_status: Optional[driver_approval_status.DriverApprovalStatus] = None
+    # An enum type to represent which category a driver belongs to.
+    category: Optional[driver_category.DriverCategory] = None
+    # The date time when a driver should be deployed if approvalStatus is approved.
+    deploy_date_time: Optional[datetime] = None
+    # The class of the driver.
+    driver_class: Optional[str] = None
+    # The manufacturer of the driver.
+    manufacturer: Optional[str] = None
+    # The name of the driver.
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The release date time of the driver.
+    release_date_time: Optional[datetime] = None
+    # The version of the driver.
+    version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDriverUpdateInventory:
@@ -100,40 +46,6 @@ class WindowsDriverUpdateInventory(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return WindowsDriverUpdateInventory()
-    
-    @property
-    def deploy_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the deployDateTime property value. The date time when a driver should be deployed if approvalStatus is approved.
-        Returns: Optional[datetime]
-        """
-        return self._deploy_date_time
-    
-    @deploy_date_time.setter
-    def deploy_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the deployDateTime property value. The date time when a driver should be deployed if approvalStatus is approved.
-        Args:
-            value: Value to set for the deploy_date_time property.
-        """
-        self._deploy_date_time = value
-    
-    @property
-    def driver_class(self,) -> Optional[str]:
-        """
-        Gets the driverClass property value. The class of the driver.
-        Returns: Optional[str]
-        """
-        return self._driver_class
-    
-    @driver_class.setter
-    def driver_class(self,value: Optional[str] = None) -> None:
-        """
-        Sets the driverClass property value. The class of the driver.
-        Args:
-            value: Value to set for the driver_class property.
-        """
-        self._driver_class = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -157,57 +69,6 @@ class WindowsDriverUpdateInventory(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def manufacturer(self,) -> Optional[str]:
-        """
-        Gets the manufacturer property value. The manufacturer of the driver.
-        Returns: Optional[str]
-        """
-        return self._manufacturer
-    
-    @manufacturer.setter
-    def manufacturer(self,value: Optional[str] = None) -> None:
-        """
-        Sets the manufacturer property value. The manufacturer of the driver.
-        Args:
-            value: Value to set for the manufacturer property.
-        """
-        self._manufacturer = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name of the driver.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name of the driver.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def release_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the releaseDateTime property value. The release date time of the driver.
-        Returns: Optional[datetime]
-        """
-        return self._release_date_time
-    
-    @release_date_time.setter
-    def release_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the releaseDateTime property value. The release date time of the driver.
-        Args:
-            value: Value to set for the release_date_time property.
-        """
-        self._release_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -226,22 +87,5 @@ class WindowsDriverUpdateInventory(entity.Entity):
         writer.write_str_value("name", self.name)
         writer.write_datetime_value("releaseDateTime", self.release_date_time)
         writer.write_str_value("version", self.version)
-    
-    @property
-    def version(self,) -> Optional[str]:
-        """
-        Gets the version property value. The version of the driver.
-        Returns: Optional[str]
-        """
-        return self._version
-    
-    @version.setter
-    def version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the version property value. The version of the driver.
-        Args:
-            value: Value to set for the version property.
-        """
-        self._version = value
     
 

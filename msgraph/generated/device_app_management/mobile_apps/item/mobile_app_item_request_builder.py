@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -15,14 +15,10 @@ if TYPE_CHECKING:
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
     from .categories import categories_request_builder
-    from .device_statuses import device_statuses_request_builder
-    from .get_related_app_states_with_user_principal_name_with_device_id import get_related_app_states_with_user_principal_name_with_device_id_request_builder
     from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
     from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
-    from .install_summary import install_summary_request_builder
     from .relationships import relationships_request_builder
     from .update_relationships import update_relationships_request_builder
-    from .user_statuses import user_statuses_request_builder
 
 class MobileAppItemRequestBuilder():
     """
@@ -86,22 +82,6 @@ class MobileAppItemRequestBuilder():
         from ....models import mobile_app
 
         return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
-    
-    def get_related_app_states_with_user_principal_name_with_device_id(self,device_id: Optional[str] = None, user_principal_name: Optional[str] = None) -> get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder:
-        """
-        Provides operations to call the getRelatedAppStates method.
-        Args:
-            deviceId: Usage: deviceId='{deviceId}'
-            userPrincipalName: Usage: userPrincipalName='{userPrincipalName}'
-        Returns: get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder
-        """
-        if device_id is None:
-            raise Exception("device_id cannot be undefined")
-        if user_principal_name is None:
-            raise Exception("user_principal_name cannot be undefined")
-        from .get_related_app_states_with_user_principal_name_with_device_id import get_related_app_states_with_user_principal_name_with_device_id_request_builder
-
-        return get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, device_id, user_principal_name)
     
     async def patch(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
         """
@@ -211,15 +191,6 @@ class MobileAppItemRequestBuilder():
         return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
-        """
-        Provides operations to manage the deviceStatuses property of the microsoft.graph.mobileApp entity.
-        """
-        from .device_statuses import device_statuses_request_builder
-
-        return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def graph_managed_mobile_lob_app(self) -> graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder:
         """
         Casts the previous resource to managedMobileLobApp.
@@ -238,15 +209,6 @@ class MobileAppItemRequestBuilder():
         return graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def install_summary(self) -> install_summary_request_builder.InstallSummaryRequestBuilder:
-        """
-        Provides operations to manage the installSummary property of the microsoft.graph.mobileApp entity.
-        """
-        from .install_summary import install_summary_request_builder
-
-        return install_summary_request_builder.InstallSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def relationships(self) -> relationships_request_builder.RelationshipsRequestBuilder:
         """
         Provides operations to manage the relationships property of the microsoft.graph.mobileApp entity.
@@ -263,15 +225,6 @@ class MobileAppItemRequestBuilder():
         from .update_relationships import update_relationships_request_builder
 
         return update_relationships_request_builder.UpdateRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
-        """
-        Provides operations to manage the userStatuses property of the microsoft.graph.mobileApp entity.
-        """
-        from .user_statuses import user_statuses_request_builder
-
-        return user_statuses_request_builder.UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MobileAppItemRequestBuilderDeleteRequestConfiguration():

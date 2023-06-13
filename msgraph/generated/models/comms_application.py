@@ -1,58 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import call, online_meeting
 
+@dataclass
 class CommsApplication(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CommsApplication and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The calls property
-        self._calls: Optional[List[call.Call]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The onlineMeetings property
-        self._online_meetings: Optional[List[online_meeting.OnlineMeeting]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def calls(self,) -> Optional[List[call.Call]]:
-        """
-        Gets the calls property value. The calls property
-        Returns: Optional[List[call.Call]]
-        """
-        return self._calls
-    
-    @calls.setter
-    def calls(self,value: Optional[List[call.Call]] = None) -> None:
-        """
-        Sets the calls property value. The calls property
-        Args:
-            value: Value to set for the calls property.
-        """
-        self._calls = value
+    # The calls property
+    calls: Optional[List[call.Call]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The onlineMeetings property
+    online_meetings: Optional[List[online_meeting.OnlineMeeting]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CommsApplication:
@@ -79,40 +43,6 @@ class CommsApplication(AdditionalDataHolder, Parsable):
             "onlineMeetings": lambda n : setattr(self, 'online_meetings', n.get_collection_of_object_values(online_meeting.OnlineMeeting)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def online_meetings(self,) -> Optional[List[online_meeting.OnlineMeeting]]:
-        """
-        Gets the onlineMeetings property value. The onlineMeetings property
-        Returns: Optional[List[online_meeting.OnlineMeeting]]
-        """
-        return self._online_meetings
-    
-    @online_meetings.setter
-    def online_meetings(self,value: Optional[List[online_meeting.OnlineMeeting]] = None) -> None:
-        """
-        Sets the onlineMeetings property value. The onlineMeetings property
-        Args:
-            value: Value to set for the online_meetings property.
-        """
-        self._online_meetings = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

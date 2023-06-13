@@ -1,34 +1,15 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class GetHealthMetricsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new getHealthMetricsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The metricNames property
-        self._metric_names: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The metricNames property
+    metric_names: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetHealthMetricsPostRequestBody:
@@ -51,23 +32,6 @@ class GetHealthMetricsPostRequestBody(AdditionalDataHolder, Parsable):
             "metricNames": lambda n : setattr(self, 'metric_names', n.get_collection_of_primitive_values(str)),
         }
         return fields
-    
-    @property
-    def metric_names(self,) -> Optional[List[str]]:
-        """
-        Gets the metricNames property value. The metricNames property
-        Returns: Optional[List[str]]
-        """
-        return self._metric_names
-    
-    @metric_names.setter
-    def metric_names(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the metricNames property value. The metricNames property
-        Args:
-            value: Value to set for the metric_names property.
-        """
-        self._metric_names = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

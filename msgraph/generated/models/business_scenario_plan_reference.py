@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class BusinessScenarioPlanReference(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new BusinessScenarioPlanReference and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The title property of the plannerPlan.
-        self._title: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The title property of the plannerPlan.
+    title: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BusinessScenarioPlanReference:
@@ -54,22 +51,5 @@ class BusinessScenarioPlanReference(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("title", self.title)
-    
-    @property
-    def title(self,) -> Optional[str]:
-        """
-        Gets the title property value. The title property of the plannerPlan.
-        Returns: Optional[str]
-        """
-        return self._title
-    
-    @title.setter
-    def title(self,value: Optional[str] = None) -> None:
-        """
-        Sets the title property value. The title property of the plannerPlan.
-        Args:
-            value: Value to set for the title property.
-        """
-        self._title = value
     
 

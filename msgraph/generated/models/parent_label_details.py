@@ -1,70 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import label_details
 
+@dataclass
 class ParentLabelDetails(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new parentLabelDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The color that the user interface should display for the label, if configured.
-        self._color: Optional[str] = None
-        # The admin-defined description for the label.
-        self._description: Optional[str] = None
-        # The label ID is a globally unique identifier (GUID).
-        self._id: Optional[str] = None
-        # Indicates whether the label is active or not. Active labels should be hidden or disabled in user interfaces.
-        self._is_active: Optional[bool] = None
-        # The plaintext name of the label.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The parent property
-        self._parent: Optional[ParentLabelDetails] = None
-        # The sensitivity value of the label, where lower is less sensitive.
-        self._sensitivity: Optional[int] = None
-        # The tooltip that should be displayed for the label in a user interface.
-        self._tooltip: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def color(self,) -> Optional[str]:
-        """
-        Gets the color property value. The color that the user interface should display for the label, if configured.
-        Returns: Optional[str]
-        """
-        return self._color
-    
-    @color.setter
-    def color(self,value: Optional[str] = None) -> None:
-        """
-        Sets the color property value. The color that the user interface should display for the label, if configured.
-        Args:
-            value: Value to set for the color property.
-        """
-        self._color = value
+    # The color that the user interface should display for the label, if configured.
+    color: Optional[str] = None
+    # The admin-defined description for the label.
+    description: Optional[str] = None
+    # The label ID is a globally unique identifier (GUID).
+    id: Optional[str] = None
+    # Indicates whether the label is active or not. Active labels should be hidden or disabled in user interfaces.
+    is_active: Optional[bool] = None
+    # The plaintext name of the label.
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The parent property
+    parent: Optional[ParentLabelDetails] = None
+    # The sensitivity value of the label, where lower is less sensitive.
+    sensitivity: Optional[int] = None
+    # The tooltip that should be displayed for the label in a user interface.
+    tooltip: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ParentLabelDetails:
@@ -84,23 +48,6 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
 
                 return label_details.LabelDetails()
         return ParentLabelDetails()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The admin-defined description for the label.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The admin-defined description for the label.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -122,108 +69,6 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def id(self,) -> Optional[str]:
-        """
-        Gets the id property value. The label ID is a globally unique identifier (GUID).
-        Returns: Optional[str]
-        """
-        return self._id
-    
-    @id.setter
-    def id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the id property value. The label ID is a globally unique identifier (GUID).
-        Args:
-            value: Value to set for the id property.
-        """
-        self._id = value
-    
-    @property
-    def is_active(self,) -> Optional[bool]:
-        """
-        Gets the isActive property value. Indicates whether the label is active or not. Active labels should be hidden or disabled in user interfaces.
-        Returns: Optional[bool]
-        """
-        return self._is_active
-    
-    @is_active.setter
-    def is_active(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isActive property value. Indicates whether the label is active or not. Active labels should be hidden or disabled in user interfaces.
-        Args:
-            value: Value to set for the is_active property.
-        """
-        self._is_active = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The plaintext name of the label.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The plaintext name of the label.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def parent(self,) -> Optional[ParentLabelDetails]:
-        """
-        Gets the parent property value. The parent property
-        Returns: Optional[ParentLabelDetails]
-        """
-        return self._parent
-    
-    @parent.setter
-    def parent(self,value: Optional[ParentLabelDetails] = None) -> None:
-        """
-        Sets the parent property value. The parent property
-        Args:
-            value: Value to set for the parent property.
-        """
-        self._parent = value
-    
-    @property
-    def sensitivity(self,) -> Optional[int]:
-        """
-        Gets the sensitivity property value. The sensitivity value of the label, where lower is less sensitive.
-        Returns: Optional[int]
-        """
-        return self._sensitivity
-    
-    @sensitivity.setter
-    def sensitivity(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sensitivity property value. The sensitivity value of the label, where lower is less sensitive.
-        Args:
-            value: Value to set for the sensitivity property.
-        """
-        self._sensitivity = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -242,22 +87,5 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
         writer.write_int_value("sensitivity", self.sensitivity)
         writer.write_str_value("tooltip", self.tooltip)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def tooltip(self,) -> Optional[str]:
-        """
-        Gets the tooltip property value. The tooltip that should be displayed for the label in a user interface.
-        Returns: Optional[str]
-        """
-        return self._tooltip
-    
-    @tooltip.setter
-    def tooltip(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tooltip property value. The tooltip that should be displayed for the label in a user interface.
-        Args:
-            value: Value to set for the tooltip property.
-        """
-        self._tooltip = value
     
 

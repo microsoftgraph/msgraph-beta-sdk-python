@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import android_device_owner_global_proxy
 
+@dataclass
 class AndroidDeviceOwnerGlobalProxyAutoConfig(android_device_owner_global_proxy.AndroidDeviceOwnerGlobalProxy):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerGlobalProxyAutoConfig and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerGlobalProxyAutoConfig"
-        # The proxy auto-config URL
-        self._proxy_auto_config_u_r_l: Optional[str] = None
+    odata_type = "#microsoft.graph.androidDeviceOwnerGlobalProxyAutoConfig"
+    # The proxy auto-config URL
+    proxy_auto_config_u_r_l: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerGlobalProxyAutoConfig:
@@ -42,23 +39,6 @@ class AndroidDeviceOwnerGlobalProxyAutoConfig(android_device_owner_global_proxy.
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def proxy_auto_config_u_r_l(self,) -> Optional[str]:
-        """
-        Gets the proxyAutoConfigURL property value. The proxy auto-config URL
-        Returns: Optional[str]
-        """
-        return self._proxy_auto_config_u_r_l
-    
-    @proxy_auto_config_u_r_l.setter
-    def proxy_auto_config_u_r_l(self,value: Optional[str] = None) -> None:
-        """
-        Sets the proxyAutoConfigURL property value. The proxy auto-config URL
-        Args:
-            value: Value to set for the proxy_auto_config_u_r_l property.
-        """
-        self._proxy_auto_config_u_r_l = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

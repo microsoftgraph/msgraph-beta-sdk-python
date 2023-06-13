@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,21 +9,17 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PolicySetAssignment(entity.Entity):
     """
     A class containing the properties used for PolicySet Assignment.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new policySetAssignment and sets the default values.
-        """
-        super().__init__()
-        # Last modified time of the PolicySetAssignment.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The target group of PolicySetAssignment
-        self._target: Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget] = None
+    # Last modified time of the PolicySetAssignment.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The target group of PolicySetAssignment
+    target: Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PolicySetAssignment:
@@ -51,23 +48,6 @@ class PolicySetAssignment(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. Last modified time of the PolicySetAssignment.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. Last modified time of the PolicySetAssignment.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -79,22 +59,5 @@ class PolicySetAssignment(entity.Entity):
         super().serialize(writer)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_object_value("target", self.target)
-    
-    @property
-    def target(self,) -> Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget]:
-        """
-        Gets the target property value. The target group of PolicySetAssignment
-        Returns: Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget]
-        """
-        return self._target
-    
-    @target.setter
-    def target(self,value: Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget] = None) -> None:
-        """
-        Sets the target property value. The target group of PolicySetAssignment
-        Args:
-            value: Value to set for the target property.
-        """
-        self._target = value
     
 

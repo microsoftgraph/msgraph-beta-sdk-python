@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,58 +9,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class CustomCalloutExtension(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customCalloutExtension and sets the default values.
-        """
-        super().__init__()
-        # Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.
-        self._authentication_configuration: Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration] = None
-        # HTTP connection settings that define how long Azure AD can wait for a connection to a logic app, how many times you can retry a timed-out connection and the exception scenarios when retries are allowed.
-        self._client_configuration: Optional[custom_extension_client_configuration.CustomExtensionClientConfiguration] = None
-        # Description for the customCalloutExtension object.
-        self._description: Optional[str] = None
-        # Display name for the customCalloutExtension object.
-        self._display_name: Optional[str] = None
-        # The type and details for configuring the endpoint to call the logic app's workflow.
-        self._endpoint_configuration: Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def authentication_configuration(self,) -> Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration]:
-        """
-        Gets the authenticationConfiguration property value. Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.
-        Returns: Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration]
-        """
-        return self._authentication_configuration
-    
-    @authentication_configuration.setter
-    def authentication_configuration(self,value: Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration] = None) -> None:
-        """
-        Sets the authenticationConfiguration property value. Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.
-        Args:
-            value: Value to set for the authentication_configuration property.
-        """
-        self._authentication_configuration = value
-    
-    @property
-    def client_configuration(self,) -> Optional[custom_extension_client_configuration.CustomExtensionClientConfiguration]:
-        """
-        Gets the clientConfiguration property value. HTTP connection settings that define how long Azure AD can wait for a connection to a logic app, how many times you can retry a timed-out connection and the exception scenarios when retries are allowed.
-        Returns: Optional[custom_extension_client_configuration.CustomExtensionClientConfiguration]
-        """
-        return self._client_configuration
-    
-    @client_configuration.setter
-    def client_configuration(self,value: Optional[custom_extension_client_configuration.CustomExtensionClientConfiguration] = None) -> None:
-        """
-        Sets the clientConfiguration property value. HTTP connection settings that define how long Azure AD can wait for a connection to a logic app, how many times you can retry a timed-out connection and the exception scenarios when retries are allowed.
-        Args:
-            value: Value to set for the client_configuration property.
-        """
-        self._client_configuration = value
+    # Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.
+    authentication_configuration: Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration] = None
+    # HTTP connection settings that define how long Azure AD can wait for a connection to a logic app, how many times you can retry a timed-out connection and the exception scenarios when retries are allowed.
+    client_configuration: Optional[custom_extension_client_configuration.CustomExtensionClientConfiguration] = None
+    # Description for the customCalloutExtension object.
+    description: Optional[str] = None
+    # Display name for the customCalloutExtension object.
+    display_name: Optional[str] = None
+    # The type and details for configuring the endpoint to call the logic app's workflow.
+    endpoint_configuration: Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomCalloutExtension:
@@ -99,57 +62,6 @@ class CustomCalloutExtension(entity.Entity):
 
                 return on_token_issuance_start_custom_extension.OnTokenIssuanceStartCustomExtension()
         return CustomCalloutExtension()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Description for the customCalloutExtension object.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Description for the customCalloutExtension object.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Display name for the customCalloutExtension object.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Display name for the customCalloutExtension object.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def endpoint_configuration(self,) -> Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration]:
-        """
-        Gets the endpointConfiguration property value. The type and details for configuring the endpoint to call the logic app's workflow.
-        Returns: Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration]
-        """
-        return self._endpoint_configuration
-    
-    @endpoint_configuration.setter
-    def endpoint_configuration(self,value: Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration] = None) -> None:
-        """
-        Sets the endpointConfiguration property value. The type and details for configuring the endpoint to call the logic app's workflow.
-        Args:
-            value: Value to set for the endpoint_configuration property.
-        """
-        self._endpoint_configuration = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

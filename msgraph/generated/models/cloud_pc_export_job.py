@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,30 +9,26 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class CloudPcExportJob(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CloudPcExportJob and sets the default values.
-        """
-        super().__init__()
-        # The date and time when the export job expires.
-        self._expiration_date_time: Optional[datetime] = None
-        # The status of the export job. The possible values are: notStarted, inProgress, completed, unknownFutureValue. Read-only.
-        self._export_job_status: Optional[cloud_pc_export_job_status.CloudPcExportJobStatus] = None
-        # The storage account URL of the exported report. It can be used to download the file.
-        self._export_url: Optional[str] = None
-        # The filter applied on the report.
-        self._filter: Optional[str] = None
-        # The format of the exported report.
-        self._format: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, or unknownFutureValue.
-        self._report_name: Optional[cloud_pc_report_name.CloudPcReportName] = None
-        # The date and time when the export job was requested.
-        self._request_date_time: Optional[datetime] = None
-        # The selected columns of the report.
-        self._select: Optional[List[str]] = None
+    # The date and time when the export job expires.
+    expiration_date_time: Optional[datetime] = None
+    # The status of the export job. The possible values are: notStarted, inProgress, completed, unknownFutureValue. Read-only.
+    export_job_status: Optional[cloud_pc_export_job_status.CloudPcExportJobStatus] = None
+    # The storage account URL of the exported report. It can be used to download the file.
+    export_url: Optional[str] = None
+    # The filter applied on the report.
+    filter: Optional[str] = None
+    # The format of the exported report.
+    format: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, or unknownFutureValue.
+    report_name: Optional[cloud_pc_report_name.CloudPcReportName] = None
+    # The date and time when the export job was requested.
+    request_date_time: Optional[datetime] = None
+    # The selected columns of the report.
+    select: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcExportJob:
@@ -44,91 +41,6 @@ class CloudPcExportJob(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return CloudPcExportJob()
-    
-    @property
-    def expiration_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the expirationDateTime property value. The date and time when the export job expires.
-        Returns: Optional[datetime]
-        """
-        return self._expiration_date_time
-    
-    @expiration_date_time.setter
-    def expiration_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the expirationDateTime property value. The date and time when the export job expires.
-        Args:
-            value: Value to set for the expiration_date_time property.
-        """
-        self._expiration_date_time = value
-    
-    @property
-    def export_job_status(self,) -> Optional[cloud_pc_export_job_status.CloudPcExportJobStatus]:
-        """
-        Gets the exportJobStatus property value. The status of the export job. The possible values are: notStarted, inProgress, completed, unknownFutureValue. Read-only.
-        Returns: Optional[cloud_pc_export_job_status.CloudPcExportJobStatus]
-        """
-        return self._export_job_status
-    
-    @export_job_status.setter
-    def export_job_status(self,value: Optional[cloud_pc_export_job_status.CloudPcExportJobStatus] = None) -> None:
-        """
-        Sets the exportJobStatus property value. The status of the export job. The possible values are: notStarted, inProgress, completed, unknownFutureValue. Read-only.
-        Args:
-            value: Value to set for the export_job_status property.
-        """
-        self._export_job_status = value
-    
-    @property
-    def export_url(self,) -> Optional[str]:
-        """
-        Gets the exportUrl property value. The storage account URL of the exported report. It can be used to download the file.
-        Returns: Optional[str]
-        """
-        return self._export_url
-    
-    @export_url.setter
-    def export_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the exportUrl property value. The storage account URL of the exported report. It can be used to download the file.
-        Args:
-            value: Value to set for the export_url property.
-        """
-        self._export_url = value
-    
-    @property
-    def filter(self,) -> Optional[str]:
-        """
-        Gets the filter property value. The filter applied on the report.
-        Returns: Optional[str]
-        """
-        return self._filter
-    
-    @filter.setter
-    def filter(self,value: Optional[str] = None) -> None:
-        """
-        Sets the filter property value. The filter applied on the report.
-        Args:
-            value: Value to set for the filter property.
-        """
-        self._filter = value
-    
-    @property
-    def format(self,) -> Optional[str]:
-        """
-        Gets the format property value. The format of the exported report.
-        Returns: Optional[str]
-        """
-        return self._format
-    
-    @format.setter
-    def format(self,value: Optional[str] = None) -> None:
-        """
-        Sets the format property value. The format of the exported report.
-        Args:
-            value: Value to set for the format property.
-        """
-        self._format = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -150,57 +62,6 @@ class CloudPcExportJob(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def report_name(self,) -> Optional[cloud_pc_report_name.CloudPcReportName]:
-        """
-        Gets the reportName property value. The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, or unknownFutureValue.
-        Returns: Optional[cloud_pc_report_name.CloudPcReportName]
-        """
-        return self._report_name
-    
-    @report_name.setter
-    def report_name(self,value: Optional[cloud_pc_report_name.CloudPcReportName] = None) -> None:
-        """
-        Sets the reportName property value. The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, or unknownFutureValue.
-        Args:
-            value: Value to set for the report_name property.
-        """
-        self._report_name = value
-    
-    @property
-    def request_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the requestDateTime property value. The date and time when the export job was requested.
-        Returns: Optional[datetime]
-        """
-        return self._request_date_time
-    
-    @request_date_time.setter
-    def request_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the requestDateTime property value. The date and time when the export job was requested.
-        Args:
-            value: Value to set for the request_date_time property.
-        """
-        self._request_date_time = value
-    
-    @property
-    def select(self,) -> Optional[List[str]]:
-        """
-        Gets the select property value. The selected columns of the report.
-        Returns: Optional[List[str]]
-        """
-        return self._select
-    
-    @select.setter
-    def select(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the select property value. The selected columns of the report.
-        Args:
-            value: Value to set for the select property.
-        """
-        self._select = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

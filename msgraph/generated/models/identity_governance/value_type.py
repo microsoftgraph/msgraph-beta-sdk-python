@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ValueType(Enum):
+class ValueType(str, Enum):
     Enum = "enum",
     String = "string",
     Int = "int",

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,56 +8,18 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MeetingRegistrationQuestion(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new meetingRegistrationQuestion and sets the default values.
-        """
-        super().__init__()
-        # Answer input type of the custom registration question.
-        self._answer_input_type: Optional[answer_input_type.AnswerInputType] = None
-        # Answer options when answerInputType is radioButton.
-        self._answer_options: Optional[List[str]] = None
-        # Display name of the custom registration question.
-        self._display_name: Optional[str] = None
-        # Indicates whether the question is required. Default value is false.
-        self._is_required: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def answer_input_type(self,) -> Optional[answer_input_type.AnswerInputType]:
-        """
-        Gets the answerInputType property value. Answer input type of the custom registration question.
-        Returns: Optional[answer_input_type.AnswerInputType]
-        """
-        return self._answer_input_type
-    
-    @answer_input_type.setter
-    def answer_input_type(self,value: Optional[answer_input_type.AnswerInputType] = None) -> None:
-        """
-        Sets the answerInputType property value. Answer input type of the custom registration question.
-        Args:
-            value: Value to set for the answer_input_type property.
-        """
-        self._answer_input_type = value
-    
-    @property
-    def answer_options(self,) -> Optional[List[str]]:
-        """
-        Gets the answerOptions property value. Answer options when answerInputType is radioButton.
-        Returns: Optional[List[str]]
-        """
-        return self._answer_options
-    
-    @answer_options.setter
-    def answer_options(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the answerOptions property value. Answer options when answerInputType is radioButton.
-        Args:
-            value: Value to set for the answer_options property.
-        """
-        self._answer_options = value
+    # Answer input type of the custom registration question.
+    answer_input_type: Optional[answer_input_type.AnswerInputType] = None
+    # Answer options when answerInputType is radioButton.
+    answer_options: Optional[List[str]] = None
+    # Display name of the custom registration question.
+    display_name: Optional[str] = None
+    # Indicates whether the question is required. Default value is false.
+    is_required: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingRegistrationQuestion:
@@ -69,23 +32,6 @@ class MeetingRegistrationQuestion(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return MeetingRegistrationQuestion()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Display name of the custom registration question.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Display name of the custom registration question.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -103,23 +49,6 @@ class MeetingRegistrationQuestion(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_required(self,) -> Optional[bool]:
-        """
-        Gets the isRequired property value. Indicates whether the question is required. Default value is false.
-        Returns: Optional[bool]
-        """
-        return self._is_required
-    
-    @is_required.setter
-    def is_required(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isRequired property value. Indicates whether the question is required. Default value is false.
-        Args:
-            value: Value to set for the is_required property.
-        """
-        self._is_required = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

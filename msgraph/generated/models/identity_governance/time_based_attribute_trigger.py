@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import workflow_execution_trigger
 
+@dataclass
 class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrigger):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TimeBasedAttributeTrigger and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger"
-        # How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -180 and 180 days.
-        self._offset_in_days: Optional[int] = None
-        # The timeBasedAttribute property
-        self._time_based_attribute: Optional[workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute] = None
+    odata_type = "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger"
+    # How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -180 and 180 days.
+    offset_in_days: Optional[int] = None
+    # The timeBasedAttribute property
+    time_based_attribute: Optional[workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TimeBasedAttributeTrigger:
@@ -46,23 +43,6 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
         fields.update(super_fields)
         return fields
     
-    @property
-    def offset_in_days(self,) -> Optional[int]:
-        """
-        Gets the offsetInDays property value. How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -180 and 180 days.
-        Returns: Optional[int]
-        """
-        return self._offset_in_days
-    
-    @offset_in_days.setter
-    def offset_in_days(self,value: Optional[int] = None) -> None:
-        """
-        Sets the offsetInDays property value. How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -180 and 180 days.
-        Args:
-            value: Value to set for the offset_in_days property.
-        """
-        self._offset_in_days = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -74,22 +54,5 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
         super().serialize(writer)
         writer.write_int_value("offsetInDays", self.offset_in_days)
         writer.write_enum_value("timeBasedAttribute", self.time_based_attribute)
-    
-    @property
-    def time_based_attribute(self,) -> Optional[workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute]:
-        """
-        Gets the timeBasedAttribute property value. The timeBasedAttribute property
-        Returns: Optional[workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute]
-        """
-        return self._time_based_attribute
-    
-    @time_based_attribute.setter
-    def time_based_attribute(self,value: Optional[workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute] = None) -> None:
-        """
-        Sets the timeBasedAttribute property value. The timeBasedAttribute property
-        Args:
-            value: Value to set for the time_based_attribute property.
-        """
-        self._time_based_attribute = value
     
 

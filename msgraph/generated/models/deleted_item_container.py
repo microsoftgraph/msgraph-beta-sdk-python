@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,16 +9,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeletedItemContainer(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deletedItemContainer and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Deleted workflows that end up in the deletedItemsContainer.
-        self._workflows: Optional[List[workflow.Workflow]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Deleted workflows that end up in the deletedItemsContainer.
+    workflows: Optional[List[workflow.Workflow]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeletedItemContainer:
@@ -56,22 +53,5 @@ class DeletedItemContainer(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("workflows", self.workflows)
-    
-    @property
-    def workflows(self,) -> Optional[List[workflow.Workflow]]:
-        """
-        Gets the workflows property value. Deleted workflows that end up in the deletedItemsContainer.
-        Returns: Optional[List[workflow.Workflow]]
-        """
-        return self._workflows
-    
-    @workflows.setter
-    def workflows(self,value: Optional[List[workflow.Workflow]] = None) -> None:
-        """
-        Sets the workflows property value. Deleted workflows that end up in the deletedItemsContainer.
-        Args:
-            value: Value to set for the workflows property.
-        """
-        self._workflows = value
     
 

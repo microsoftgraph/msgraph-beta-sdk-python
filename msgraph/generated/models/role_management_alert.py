@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,73 +8,18 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class RoleManagementAlert(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RoleManagementAlert and sets the default values.
-        """
-        super().__init__()
-        # The alertConfigurations property
-        self._alert_configurations: Optional[List[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]] = None
-        # The alertDefinitions property
-        self._alert_definitions: Optional[List[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]] = None
-        # The alerts property
-        self._alerts: Optional[List[unified_role_management_alert.UnifiedRoleManagementAlert]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The operations property
-        self._operations: Optional[List[long_running_operation.LongRunningOperation]] = None
-    
-    @property
-    def alert_configurations(self,) -> Optional[List[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]]:
-        """
-        Gets the alertConfigurations property value. The alertConfigurations property
-        Returns: Optional[List[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]]
-        """
-        return self._alert_configurations
-    
-    @alert_configurations.setter
-    def alert_configurations(self,value: Optional[List[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]] = None) -> None:
-        """
-        Sets the alertConfigurations property value. The alertConfigurations property
-        Args:
-            value: Value to set for the alert_configurations property.
-        """
-        self._alert_configurations = value
-    
-    @property
-    def alert_definitions(self,) -> Optional[List[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]]:
-        """
-        Gets the alertDefinitions property value. The alertDefinitions property
-        Returns: Optional[List[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]]
-        """
-        return self._alert_definitions
-    
-    @alert_definitions.setter
-    def alert_definitions(self,value: Optional[List[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]] = None) -> None:
-        """
-        Sets the alertDefinitions property value. The alertDefinitions property
-        Args:
-            value: Value to set for the alert_definitions property.
-        """
-        self._alert_definitions = value
-    
-    @property
-    def alerts(self,) -> Optional[List[unified_role_management_alert.UnifiedRoleManagementAlert]]:
-        """
-        Gets the alerts property value. The alerts property
-        Returns: Optional[List[unified_role_management_alert.UnifiedRoleManagementAlert]]
-        """
-        return self._alerts
-    
-    @alerts.setter
-    def alerts(self,value: Optional[List[unified_role_management_alert.UnifiedRoleManagementAlert]] = None) -> None:
-        """
-        Sets the alerts property value. The alerts property
-        Args:
-            value: Value to set for the alerts property.
-        """
-        self._alerts = value
+    # The alertConfigurations property
+    alert_configurations: Optional[List[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]] = None
+    # The alertDefinitions property
+    alert_definitions: Optional[List[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]] = None
+    # The alerts property
+    alerts: Optional[List[unified_role_management_alert.UnifiedRoleManagementAlert]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The operations property
+    operations: Optional[List[long_running_operation.LongRunningOperation]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RoleManagementAlert:
@@ -103,23 +49,6 @@ class RoleManagementAlert(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def operations(self,) -> Optional[List[long_running_operation.LongRunningOperation]]:
-        """
-        Gets the operations property value. The operations property
-        Returns: Optional[List[long_running_operation.LongRunningOperation]]
-        """
-        return self._operations
-    
-    @operations.setter
-    def operations(self,value: Optional[List[long_running_operation.LongRunningOperation]] = None) -> None:
-        """
-        Sets the operations property value. The operations property
-        Args:
-            value: Value to set for the operations property.
-        """
-        self._operations = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

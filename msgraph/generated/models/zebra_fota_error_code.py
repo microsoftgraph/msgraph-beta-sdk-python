@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ZebraFotaErrorCode(Enum):
+class ZebraFotaErrorCode(str, Enum):
     # Default error code indicating success (no error).
     Success = "success",
     # This error indicates that no devices were found in the selected Azure Active Directory (AAD) security group(s) when creating a deployment. E.g.: a user selects one or more security groups that doesn't include any devices

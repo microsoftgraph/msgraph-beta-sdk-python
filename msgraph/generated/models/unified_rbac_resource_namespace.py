@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UnifiedRbacResourceNamespace(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRbacResourceNamespace and sets the default values.
-        """
-        super().__init__()
-        # Name of the resource namespace. Typically, the same name as the id property, such as microsoft.aad.b2c. Required. Supports $filter (eq, startsWith).
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Operations that an authorized principal are allowed to perform.
-        self._resource_actions: Optional[List[unified_rbac_resource_action.UnifiedRbacResourceAction]] = None
+    # Name of the resource namespace. Typically, the same name as the id property, such as microsoft.aad.b2c. Required. Supports $filter (eq, startsWith).
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Operations that an authorized principal are allowed to perform.
+    resource_actions: Optional[List[unified_rbac_resource_action.UnifiedRbacResourceAction]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRbacResourceNamespace:
@@ -46,40 +43,6 @@ class UnifiedRbacResourceNamespace(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. Name of the resource namespace. Typically, the same name as the id property, such as microsoft.aad.b2c. Required. Supports $filter (eq, startsWith).
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. Name of the resource namespace. Typically, the same name as the id property, such as microsoft.aad.b2c. Required. Supports $filter (eq, startsWith).
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def resource_actions(self,) -> Optional[List[unified_rbac_resource_action.UnifiedRbacResourceAction]]:
-        """
-        Gets the resourceActions property value. Operations that an authorized principal are allowed to perform.
-        Returns: Optional[List[unified_rbac_resource_action.UnifiedRbacResourceAction]]
-        """
-        return self._resource_actions
-    
-    @resource_actions.setter
-    def resource_actions(self,value: Optional[List[unified_rbac_resource_action.UnifiedRbacResourceAction]] = None) -> None:
-        """
-        Sets the resourceActions property value. Operations that an authorized principal are allowed to perform.
-        Args:
-            value: Value to set for the resource_actions property.
-        """
-        self._resource_actions = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

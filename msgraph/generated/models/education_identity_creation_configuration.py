@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import education_identity_synchronization_configuration
 
+@dataclass
 class EducationIdentityCreationConfiguration(education_identity_synchronization_configuration.EducationIdentitySynchronizationConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EducationIdentityCreationConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.educationIdentityCreationConfiguration"
-        # The userDomains property
-        self._user_domains: Optional[List[education_identity_domain.EducationIdentityDomain]] = None
+    odata_type = "#microsoft.graph.educationIdentityCreationConfiguration"
+    # The userDomains property
+    user_domains: Optional[List[education_identity_domain.EducationIdentityDomain]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationIdentityCreationConfiguration:
@@ -53,22 +50,5 @@ class EducationIdentityCreationConfiguration(education_identity_synchronization_
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("userDomains", self.user_domains)
-    
-    @property
-    def user_domains(self,) -> Optional[List[education_identity_domain.EducationIdentityDomain]]:
-        """
-        Gets the userDomains property value. The userDomains property
-        Returns: Optional[List[education_identity_domain.EducationIdentityDomain]]
-        """
-        return self._user_domains
-    
-    @user_domains.setter
-    def user_domains(self,value: Optional[List[education_identity_domain.EducationIdentityDomain]] = None) -> None:
-        """
-        Sets the userDomains property value. The userDomains property
-        Args:
-            value: Value to set for the user_domains property.
-        """
-        self._user_domains = value
     
 

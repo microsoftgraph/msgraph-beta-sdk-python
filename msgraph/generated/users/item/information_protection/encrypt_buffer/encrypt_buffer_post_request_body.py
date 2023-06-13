@@ -1,54 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
+@dataclass
 class EncryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new encryptBufferPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The buffer property
-        self._buffer: Optional[bytes] = None
-        # The labelId property
-        self._label_id: Optional[UUID] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def buffer(self,) -> Optional[bytes]:
-        """
-        Gets the buffer property value. The buffer property
-        Returns: Optional[bytes]
-        """
-        return self._buffer
-    
-    @buffer.setter
-    def buffer(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the buffer property value. The buffer property
-        Args:
-            value: Value to set for the buffer property.
-        """
-        self._buffer = value
+    # The buffer property
+    buffer: Optional[bytes] = None
+    # The labelId property
+    label_id: Optional[UUID] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EncryptBufferPostRequestBody:
@@ -72,23 +36,6 @@ class EncryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
             "labelId": lambda n : setattr(self, 'label_id', n.get_uuid_value()),
         }
         return fields
-    
-    @property
-    def label_id(self,) -> Optional[UUID]:
-        """
-        Gets the labelId property value. The labelId property
-        Returns: Optional[UUID]
-        """
-        return self._label_id
-    
-    @label_id.setter
-    def label_id(self,value: Optional[UUID] = None) -> None:
-        """
-        Sets the labelId property value. The labelId property
-        Args:
-            value: Value to set for the label_id property.
-        """
-        self._label_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

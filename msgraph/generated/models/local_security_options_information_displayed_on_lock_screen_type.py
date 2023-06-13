@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LocalSecurityOptionsInformationDisplayedOnLockScreenType(Enum):
+class LocalSecurityOptionsInformationDisplayedOnLockScreenType(str, Enum):
     # Not Configured
     NotConfigured = "notConfigured",
     # User display name, domain and user names

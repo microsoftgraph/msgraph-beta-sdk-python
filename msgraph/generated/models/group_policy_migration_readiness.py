@@ -1,6 +1,6 @@
 from enum import Enum
 
-class GroupPolicyMigrationReadiness(Enum):
+class GroupPolicyMigrationReadiness(str, Enum):
     # No Intune coverage
     None_ = "none",
     # Partial Intune coverage

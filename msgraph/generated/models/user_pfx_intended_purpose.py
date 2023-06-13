@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserPfxIntendedPurpose(Enum):
+class UserPfxIntendedPurpose(str, Enum):
     # No roles/usages assigned.
     Unassigned = "unassigned",
     # Valid for S/MIME encryption.

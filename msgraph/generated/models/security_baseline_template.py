@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,36 +8,15 @@ if TYPE_CHECKING:
 
 from . import device_management_template
 
+@dataclass
 class SecurityBaselineTemplate(device_management_template.DeviceManagementTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SecurityBaselineTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.securityBaselineTemplate"
-        # The security baseline per category device state summary
-        self._category_device_state_summaries: Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]] = None
-        # The security baseline device state summary
-        self._device_state_summary: Optional[security_baseline_state_summary.SecurityBaselineStateSummary] = None
-        # The security baseline device states
-        self._device_states: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None
-    
-    @property
-    def category_device_state_summaries(self,) -> Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]]:
-        """
-        Gets the categoryDeviceStateSummaries property value. The security baseline per category device state summary
-        Returns: Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]]
-        """
-        return self._category_device_state_summaries
-    
-    @category_device_state_summaries.setter
-    def category_device_state_summaries(self,value: Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]] = None) -> None:
-        """
-        Sets the categoryDeviceStateSummaries property value. The security baseline per category device state summary
-        Args:
-            value: Value to set for the category_device_state_summaries property.
-        """
-        self._category_device_state_summaries = value
+    odata_type = "#microsoft.graph.securityBaselineTemplate"
+    # The security baseline per category device state summary
+    category_device_state_summaries: Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]] = None
+    # The security baseline device state summary
+    device_state_summary: Optional[security_baseline_state_summary.SecurityBaselineStateSummary] = None
+    # The security baseline device states
+    device_states: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SecurityBaselineTemplate:
@@ -49,40 +29,6 @@ class SecurityBaselineTemplate(device_management_template.DeviceManagementTempla
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return SecurityBaselineTemplate()
-    
-    @property
-    def device_state_summary(self,) -> Optional[security_baseline_state_summary.SecurityBaselineStateSummary]:
-        """
-        Gets the deviceStateSummary property value. The security baseline device state summary
-        Returns: Optional[security_baseline_state_summary.SecurityBaselineStateSummary]
-        """
-        return self._device_state_summary
-    
-    @device_state_summary.setter
-    def device_state_summary(self,value: Optional[security_baseline_state_summary.SecurityBaselineStateSummary] = None) -> None:
-        """
-        Sets the deviceStateSummary property value. The security baseline device state summary
-        Args:
-            value: Value to set for the device_state_summary property.
-        """
-        self._device_state_summary = value
-    
-    @property
-    def device_states(self,) -> Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]]:
-        """
-        Gets the deviceStates property value. The security baseline device states
-        Returns: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]]
-        """
-        return self._device_states
-    
-    @device_states.setter
-    def device_states(self,value: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None) -> None:
-        """
-        Sets the deviceStates property value. The security baseline device states
-        Args:
-            value: Value to set for the device_states property.
-        """
-        self._device_states = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

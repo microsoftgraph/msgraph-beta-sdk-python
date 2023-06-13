@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import windows_kiosk_user
 
+@dataclass
 class WindowsKioskActiveDirectoryGroup(windows_kiosk_user.WindowsKioskUser):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsKioskActiveDirectoryGroup and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsKioskActiveDirectoryGroup"
-        # The name of the AD group that will be locked to this kiosk configuration
-        self._group_name: Optional[str] = None
+    odata_type = "#microsoft.graph.windowsKioskActiveDirectoryGroup"
+    # The name of the AD group that will be locked to this kiosk configuration
+    group_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskActiveDirectoryGroup:
@@ -42,23 +39,6 @@ class WindowsKioskActiveDirectoryGroup(windows_kiosk_user.WindowsKioskUser):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group_name(self,) -> Optional[str]:
-        """
-        Gets the groupName property value. The name of the AD group that will be locked to this kiosk configuration
-        Returns: Optional[str]
-        """
-        return self._group_name
-    
-    @group_name.setter
-    def group_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the groupName property value. The name of the AD group that will be locked to this kiosk configuration
-        Args:
-            value: Value to set for the group_name property.
-        """
-        self._group_name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

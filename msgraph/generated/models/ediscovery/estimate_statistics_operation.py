@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,28 +8,24 @@ if TYPE_CHECKING:
 
 from . import case_operation
 
+@dataclass
 class EstimateStatisticsOperation(case_operation.CaseOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new estimateStatisticsOperation and sets the default values.
-        """
-        super().__init__()
-        # The estimated count of items for the sourceCollection that matched the content query.
-        self._indexed_item_count: Optional[int] = None
-        # The estimated size of items for the sourceCollection that matched the content query.
-        self._indexed_items_size: Optional[int] = None
-        # The number of mailboxes that had search hits.
-        self._mailbox_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The number of mailboxes that had search hits.
-        self._site_count: Optional[int] = None
-        # eDiscovery collection, commonly known as a search.
-        self._source_collection: Optional[source_collection.SourceCollection] = None
-        # The estimated count of unindexed items for the collection.
-        self._unindexed_item_count: Optional[int] = None
-        # The estimated size of unindexed items for the collection.
-        self._unindexed_items_size: Optional[int] = None
+    # The estimated count of items for the sourceCollection that matched the content query.
+    indexed_item_count: Optional[int] = None
+    # The estimated size of items for the sourceCollection that matched the content query.
+    indexed_items_size: Optional[int] = None
+    # The number of mailboxes that had search hits.
+    mailbox_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The number of mailboxes that had search hits.
+    site_count: Optional[int] = None
+    # eDiscovery collection, commonly known as a search.
+    source_collection: Optional[source_collection.SourceCollection] = None
+    # The estimated count of unindexed items for the collection.
+    unindexed_item_count: Optional[int] = None
+    # The estimated size of unindexed items for the collection.
+    unindexed_items_size: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EstimateStatisticsOperation:
@@ -62,57 +59,6 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         fields.update(super_fields)
         return fields
     
-    @property
-    def indexed_item_count(self,) -> Optional[int]:
-        """
-        Gets the indexedItemCount property value. The estimated count of items for the sourceCollection that matched the content query.
-        Returns: Optional[int]
-        """
-        return self._indexed_item_count
-    
-    @indexed_item_count.setter
-    def indexed_item_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the indexedItemCount property value. The estimated count of items for the sourceCollection that matched the content query.
-        Args:
-            value: Value to set for the indexed_item_count property.
-        """
-        self._indexed_item_count = value
-    
-    @property
-    def indexed_items_size(self,) -> Optional[int]:
-        """
-        Gets the indexedItemsSize property value. The estimated size of items for the sourceCollection that matched the content query.
-        Returns: Optional[int]
-        """
-        return self._indexed_items_size
-    
-    @indexed_items_size.setter
-    def indexed_items_size(self,value: Optional[int] = None) -> None:
-        """
-        Sets the indexedItemsSize property value. The estimated size of items for the sourceCollection that matched the content query.
-        Args:
-            value: Value to set for the indexed_items_size property.
-        """
-        self._indexed_items_size = value
-    
-    @property
-    def mailbox_count(self,) -> Optional[int]:
-        """
-        Gets the mailboxCount property value. The number of mailboxes that had search hits.
-        Returns: Optional[int]
-        """
-        return self._mailbox_count
-    
-    @mailbox_count.setter
-    def mailbox_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the mailboxCount property value. The number of mailboxes that had search hits.
-        Args:
-            value: Value to set for the mailbox_count property.
-        """
-        self._mailbox_count = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -129,73 +75,5 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         writer.write_object_value("sourceCollection", self.source_collection)
         writer.write_int_value("unindexedItemsSize", self.unindexed_items_size)
         writer.write_int_value("unindexedItemCount", self.unindexed_item_count)
-    
-    @property
-    def site_count(self,) -> Optional[int]:
-        """
-        Gets the siteCount property value. The number of mailboxes that had search hits.
-        Returns: Optional[int]
-        """
-        return self._site_count
-    
-    @site_count.setter
-    def site_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the siteCount property value. The number of mailboxes that had search hits.
-        Args:
-            value: Value to set for the site_count property.
-        """
-        self._site_count = value
-    
-    @property
-    def source_collection(self,) -> Optional[source_collection.SourceCollection]:
-        """
-        Gets the sourceCollection property value. eDiscovery collection, commonly known as a search.
-        Returns: Optional[source_collection.SourceCollection]
-        """
-        return self._source_collection
-    
-    @source_collection.setter
-    def source_collection(self,value: Optional[source_collection.SourceCollection] = None) -> None:
-        """
-        Sets the sourceCollection property value. eDiscovery collection, commonly known as a search.
-        Args:
-            value: Value to set for the source_collection property.
-        """
-        self._source_collection = value
-    
-    @property
-    def unindexed_item_count(self,) -> Optional[int]:
-        """
-        Gets the unindexedItemCount property value. The estimated count of unindexed items for the collection.
-        Returns: Optional[int]
-        """
-        return self._unindexed_item_count
-    
-    @unindexed_item_count.setter
-    def unindexed_item_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the unindexedItemCount property value. The estimated count of unindexed items for the collection.
-        Args:
-            value: Value to set for the unindexed_item_count property.
-        """
-        self._unindexed_item_count = value
-    
-    @property
-    def unindexed_items_size(self,) -> Optional[int]:
-        """
-        Gets the unindexedItemsSize property value. The estimated size of unindexed items for the collection.
-        Returns: Optional[int]
-        """
-        return self._unindexed_items_size
-    
-    @unindexed_items_size.setter
-    def unindexed_items_size(self,value: Optional[int] = None) -> None:
-        """
-        Sets the unindexedItemsSize property value. The estimated size of unindexed items for the collection.
-        Args:
-            value: Value to set for the unindexed_items_size property.
-        """
-        self._unindexed_items_size = value
     
 

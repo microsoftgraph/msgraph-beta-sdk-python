@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import mobile_app
 
+@dataclass
 class WindowsStoreApp(mobile_app.MobileApp):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsStoreApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsStoreApp"
-        # The Windows app store URL.
-        self._app_store_url: Optional[str] = None
-    
-    @property
-    def app_store_url(self,) -> Optional[str]:
-        """
-        Gets the appStoreUrl property value. The Windows app store URL.
-        Returns: Optional[str]
-        """
-        return self._app_store_url
-    
-    @app_store_url.setter
-    def app_store_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appStoreUrl property value. The Windows app store URL.
-        Args:
-            value: Value to set for the app_store_url property.
-        """
-        self._app_store_url = value
+    odata_type = "#microsoft.graph.windowsStoreApp"
+    # The Windows app store URL.
+    app_store_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsStoreApp:

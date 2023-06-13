@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsOverview(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsOverview and sets the default values.
-        """
-        super().__init__()
-        # The user experience analytics insights.
-        self._insights: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The user experience analytics insights.
+    insights: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsOverview:
@@ -43,23 +40,6 @@ class UserExperienceAnalyticsOverview(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def insights(self,) -> Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]]:
-        """
-        Gets the insights property value. The user experience analytics insights.
-        Returns: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]]
-        """
-        return self._insights
-    
-    @insights.setter
-    def insights(self,value: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None) -> None:
-        """
-        Sets the insights property value. The user experience analytics insights.
-        Args:
-            value: Value to set for the insights property.
-        """
-        self._insights = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

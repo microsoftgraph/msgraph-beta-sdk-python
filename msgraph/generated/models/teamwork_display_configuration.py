@@ -1,64 +1,28 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import teamwork_configured_peripheral, teamwork_display_screen_configuration
 
+@dataclass
 class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkDisplayConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The list of configured displays. Applicable only for Microsoft Teams Rooms devices.
-        self._configured_displays: Optional[List[teamwork_configured_peripheral.TeamworkConfiguredPeripheral]] = None
-        # Total number of connected displays, including the inbuilt display. Applicable only for Teams Rooms devices.
-        self._display_count: Optional[int] = None
-        # Configuration for the inbuilt display. Not applicable for Teams Rooms devices.
-        self._in_built_display_screen_configuration: Optional[teamwork_display_screen_configuration.TeamworkDisplayScreenConfiguration] = None
-        # True if content duplication is allowed. Applicable only for Teams Rooms devices.
-        self._is_content_duplication_allowed: Optional[bool] = None
-        # True if dual display mode is enabled. If isDualDisplayModeEnabled is true, then the content will be displayed on both front of room screens instead of just the one screen, when it is shared via the HDMI ingest module on the Microsoft Teams Rooms device. Applicable only for Teams Rooms devices.
-        self._is_dual_display_mode_enabled: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def configured_displays(self,) -> Optional[List[teamwork_configured_peripheral.TeamworkConfiguredPeripheral]]:
-        """
-        Gets the configuredDisplays property value. The list of configured displays. Applicable only for Microsoft Teams Rooms devices.
-        Returns: Optional[List[teamwork_configured_peripheral.TeamworkConfiguredPeripheral]]
-        """
-        return self._configured_displays
-    
-    @configured_displays.setter
-    def configured_displays(self,value: Optional[List[teamwork_configured_peripheral.TeamworkConfiguredPeripheral]] = None) -> None:
-        """
-        Sets the configuredDisplays property value. The list of configured displays. Applicable only for Microsoft Teams Rooms devices.
-        Args:
-            value: Value to set for the configured_displays property.
-        """
-        self._configured_displays = value
+    # The list of configured displays. Applicable only for Microsoft Teams Rooms devices.
+    configured_displays: Optional[List[teamwork_configured_peripheral.TeamworkConfiguredPeripheral]] = None
+    # Total number of connected displays, including the inbuilt display. Applicable only for Teams Rooms devices.
+    display_count: Optional[int] = None
+    # Configuration for the inbuilt display. Not applicable for Teams Rooms devices.
+    in_built_display_screen_configuration: Optional[teamwork_display_screen_configuration.TeamworkDisplayScreenConfiguration] = None
+    # True if content duplication is allowed. Applicable only for Teams Rooms devices.
+    is_content_duplication_allowed: Optional[bool] = None
+    # True if dual display mode is enabled. If isDualDisplayModeEnabled is true, then the content will be displayed on both front of room screens instead of just the one screen, when it is shared via the HDMI ingest module on the Microsoft Teams Rooms device. Applicable only for Teams Rooms devices.
+    is_dual_display_mode_enabled: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDisplayConfiguration:
@@ -71,23 +35,6 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TeamworkDisplayConfiguration()
-    
-    @property
-    def display_count(self,) -> Optional[int]:
-        """
-        Gets the displayCount property value. Total number of connected displays, including the inbuilt display. Applicable only for Teams Rooms devices.
-        Returns: Optional[int]
-        """
-        return self._display_count
-    
-    @display_count.setter
-    def display_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the displayCount property value. Total number of connected displays, including the inbuilt display. Applicable only for Teams Rooms devices.
-        Args:
-            value: Value to set for the display_count property.
-        """
-        self._display_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -105,74 +52,6 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def in_built_display_screen_configuration(self,) -> Optional[teamwork_display_screen_configuration.TeamworkDisplayScreenConfiguration]:
-        """
-        Gets the inBuiltDisplayScreenConfiguration property value. Configuration for the inbuilt display. Not applicable for Teams Rooms devices.
-        Returns: Optional[teamwork_display_screen_configuration.TeamworkDisplayScreenConfiguration]
-        """
-        return self._in_built_display_screen_configuration
-    
-    @in_built_display_screen_configuration.setter
-    def in_built_display_screen_configuration(self,value: Optional[teamwork_display_screen_configuration.TeamworkDisplayScreenConfiguration] = None) -> None:
-        """
-        Sets the inBuiltDisplayScreenConfiguration property value. Configuration for the inbuilt display. Not applicable for Teams Rooms devices.
-        Args:
-            value: Value to set for the in_built_display_screen_configuration property.
-        """
-        self._in_built_display_screen_configuration = value
-    
-    @property
-    def is_content_duplication_allowed(self,) -> Optional[bool]:
-        """
-        Gets the isContentDuplicationAllowed property value. True if content duplication is allowed. Applicable only for Teams Rooms devices.
-        Returns: Optional[bool]
-        """
-        return self._is_content_duplication_allowed
-    
-    @is_content_duplication_allowed.setter
-    def is_content_duplication_allowed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isContentDuplicationAllowed property value. True if content duplication is allowed. Applicable only for Teams Rooms devices.
-        Args:
-            value: Value to set for the is_content_duplication_allowed property.
-        """
-        self._is_content_duplication_allowed = value
-    
-    @property
-    def is_dual_display_mode_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isDualDisplayModeEnabled property value. True if dual display mode is enabled. If isDualDisplayModeEnabled is true, then the content will be displayed on both front of room screens instead of just the one screen, when it is shared via the HDMI ingest module on the Microsoft Teams Rooms device. Applicable only for Teams Rooms devices.
-        Returns: Optional[bool]
-        """
-        return self._is_dual_display_mode_enabled
-    
-    @is_dual_display_mode_enabled.setter
-    def is_dual_display_mode_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isDualDisplayModeEnabled property value. True if dual display mode is enabled. If isDualDisplayModeEnabled is true, then the content will be displayed on both front of room screens instead of just the one screen, when it is shared via the HDMI ingest module on the Microsoft Teams Rooms device. Applicable only for Teams Rooms devices.
-        Args:
-            value: Value to set for the is_dual_display_mode_enabled property.
-        """
-        self._is_dual_display_mode_enabled = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

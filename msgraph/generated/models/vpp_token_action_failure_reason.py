@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VppTokenActionFailureReason(Enum):
+class VppTokenActionFailureReason(str, Enum):
     # None.
     None_ = "none",
     # There was an error on Apple's service.

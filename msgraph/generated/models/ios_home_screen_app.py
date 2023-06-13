@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,34 +8,13 @@ if TYPE_CHECKING:
 
 from . import ios_home_screen_item
 
+@dataclass
 class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosHomeScreenApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosHomeScreenApp"
-        # BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
-        self._bundle_i_d: Optional[str] = None
-        # When true, the bundle ID will be handled as a URL for a web clip.
-        self._is_web_clip: Optional[bool] = None
-    
-    @property
-    def bundle_i_d(self,) -> Optional[str]:
-        """
-        Gets the bundleID property value. BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
-        Returns: Optional[str]
-        """
-        return self._bundle_i_d
-    
-    @bundle_i_d.setter
-    def bundle_i_d(self,value: Optional[str] = None) -> None:
-        """
-        Sets the bundleID property value. BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
-        Args:
-            value: Value to set for the bundle_i_d property.
-        """
-        self._bundle_i_d = value
+    odata_type = "#microsoft.graph.iosHomeScreenApp"
+    # BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
+    bundle_i_d: Optional[str] = None
+    # When true, the bundle ID will be handled as a URL for a web clip.
+    is_web_clip: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosHomeScreenApp:
@@ -62,23 +42,6 @@ class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_web_clip(self,) -> Optional[bool]:
-        """
-        Gets the isWebClip property value. When true, the bundle ID will be handled as a URL for a web clip.
-        Returns: Optional[bool]
-        """
-        return self._is_web_clip
-    
-    @is_web_clip.setter
-    def is_web_clip(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isWebClip property value. When true, the bundle ID will be handled as a URL for a web clip.
-        Args:
-            value: Value to set for the is_web_clip property.
-        """
-        self._is_web_clip = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

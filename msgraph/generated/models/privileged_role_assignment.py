@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,26 +9,22 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PrivilegedRoleAssignment(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedRoleAssignment and sets the default values.
-        """
-        super().__init__()
-        # The expirationDateTime property
-        self._expiration_date_time: Optional[datetime] = None
-        # The isElevated property
-        self._is_elevated: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The resultMessage property
-        self._result_message: Optional[str] = None
-        # The roleId property
-        self._role_id: Optional[str] = None
-        # The roleInfo property
-        self._role_info: Optional[privileged_role.PrivilegedRole] = None
-        # The userId property
-        self._user_id: Optional[str] = None
+    # The expirationDateTime property
+    expiration_date_time: Optional[datetime] = None
+    # The isElevated property
+    is_elevated: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The resultMessage property
+    result_message: Optional[str] = None
+    # The roleId property
+    role_id: Optional[str] = None
+    # The roleInfo property
+    role_info: Optional[privileged_role.PrivilegedRole] = None
+    # The userId property
+    user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedRoleAssignment:
@@ -40,23 +37,6 @@ class PrivilegedRoleAssignment(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PrivilegedRoleAssignment()
-    
-    @property
-    def expiration_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the expirationDateTime property value. The expirationDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._expiration_date_time
-    
-    @expiration_date_time.setter
-    def expiration_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the expirationDateTime property value. The expirationDateTime property
-        Args:
-            value: Value to set for the expiration_date_time property.
-        """
-        self._expiration_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -77,74 +57,6 @@ class PrivilegedRoleAssignment(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_elevated(self,) -> Optional[bool]:
-        """
-        Gets the isElevated property value. The isElevated property
-        Returns: Optional[bool]
-        """
-        return self._is_elevated
-    
-    @is_elevated.setter
-    def is_elevated(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isElevated property value. The isElevated property
-        Args:
-            value: Value to set for the is_elevated property.
-        """
-        self._is_elevated = value
-    
-    @property
-    def result_message(self,) -> Optional[str]:
-        """
-        Gets the resultMessage property value. The resultMessage property
-        Returns: Optional[str]
-        """
-        return self._result_message
-    
-    @result_message.setter
-    def result_message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the resultMessage property value. The resultMessage property
-        Args:
-            value: Value to set for the result_message property.
-        """
-        self._result_message = value
-    
-    @property
-    def role_id(self,) -> Optional[str]:
-        """
-        Gets the roleId property value. The roleId property
-        Returns: Optional[str]
-        """
-        return self._role_id
-    
-    @role_id.setter
-    def role_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the roleId property value. The roleId property
-        Args:
-            value: Value to set for the role_id property.
-        """
-        self._role_id = value
-    
-    @property
-    def role_info(self,) -> Optional[privileged_role.PrivilegedRole]:
-        """
-        Gets the roleInfo property value. The roleInfo property
-        Returns: Optional[privileged_role.PrivilegedRole]
-        """
-        return self._role_info
-    
-    @role_info.setter
-    def role_info(self,value: Optional[privileged_role.PrivilegedRole] = None) -> None:
-        """
-        Sets the roleInfo property value. The roleInfo property
-        Args:
-            value: Value to set for the role_info property.
-        """
-        self._role_info = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -160,22 +72,5 @@ class PrivilegedRoleAssignment(entity.Entity):
         writer.write_str_value("roleId", self.role_id)
         writer.write_object_value("roleInfo", self.role_info)
         writer.write_str_value("userId", self.user_id)
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The userId property
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The userId property
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
     
 

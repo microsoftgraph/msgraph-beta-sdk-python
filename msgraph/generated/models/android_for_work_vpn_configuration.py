@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,84 +8,29 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidForWorkVpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidForWorkVpnConfiguration"
-        # VPN Authentication Method.
-        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
-        # Connection name displayed to the user.
-        self._connection_name: Optional[str] = None
-        # Android For Work VPN connection type.
-        self._connection_type: Optional[android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType] = None
-        # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-        self._custom_data: Optional[List[key_value.KeyValue]] = None
-        # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-        self._custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Fingerprint is a string that will be used to verify the VPN server can be trusted, which is only applicable when connection type is Check Point Capsule VPN.
-        self._fingerprint: Optional[str] = None
-        # Identity certificate for client authentication when authentication method is certificate.
-        self._identity_certificate: Optional[android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase] = None
-        # Realm when connection type is set to Pulse Secure.
-        self._realm: Optional[str] = None
-        # Role when connection type is set to Pulse Secure.
-        self._role: Optional[str] = None
-        # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        self._servers: Optional[List[vpn_server.VpnServer]] = None
-    
-    @property
-    def authentication_method(self,) -> Optional[vpn_authentication_method.VpnAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. VPN Authentication Method.
-        Returns: Optional[vpn_authentication_method.VpnAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. VPN Authentication Method.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
-    @property
-    def connection_name(self,) -> Optional[str]:
-        """
-        Gets the connectionName property value. Connection name displayed to the user.
-        Returns: Optional[str]
-        """
-        return self._connection_name
-    
-    @connection_name.setter
-    def connection_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the connectionName property value. Connection name displayed to the user.
-        Args:
-            value: Value to set for the connection_name property.
-        """
-        self._connection_name = value
-    
-    @property
-    def connection_type(self,) -> Optional[android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType]:
-        """
-        Gets the connectionType property value. Android For Work VPN connection type.
-        Returns: Optional[android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType]
-        """
-        return self._connection_type
-    
-    @connection_type.setter
-    def connection_type(self,value: Optional[android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType] = None) -> None:
-        """
-        Sets the connectionType property value. Android For Work VPN connection type.
-        Args:
-            value: Value to set for the connection_type property.
-        """
-        self._connection_type = value
+    odata_type = "#microsoft.graph.androidForWorkVpnConfiguration"
+    # VPN Authentication Method.
+    authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
+    # Connection name displayed to the user.
+    connection_name: Optional[str] = None
+    # Android For Work VPN connection type.
+    connection_type: Optional[android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType] = None
+    # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
+    custom_data: Optional[List[key_value.KeyValue]] = None
+    # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
+    custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
+    # Fingerprint is a string that will be used to verify the VPN server can be trusted, which is only applicable when connection type is Check Point Capsule VPN.
+    fingerprint: Optional[str] = None
+    # Identity certificate for client authentication when authentication method is certificate.
+    identity_certificate: Optional[android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase] = None
+    # Realm when connection type is set to Pulse Secure.
+    realm: Optional[str] = None
+    # Role when connection type is set to Pulse Secure.
+    role: Optional[str] = None
+    # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
+    servers: Optional[List[vpn_server.VpnServer]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkVpnConfiguration:
@@ -97,57 +43,6 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AndroidForWorkVpnConfiguration()
-    
-    @property
-    def custom_data(self,) -> Optional[List[key_value.KeyValue]]:
-        """
-        Gets the customData property value. Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-        Returns: Optional[List[key_value.KeyValue]]
-        """
-        return self._custom_data
-    
-    @custom_data.setter
-    def custom_data(self,value: Optional[List[key_value.KeyValue]] = None) -> None:
-        """
-        Sets the customData property value. Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-        Args:
-            value: Value to set for the custom_data property.
-        """
-        self._custom_data = value
-    
-    @property
-    def custom_key_value_data(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the customKeyValueData property value. Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._custom_key_value_data
-    
-    @custom_key_value_data.setter
-    def custom_key_value_data(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the customKeyValueData property value. Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-        Args:
-            value: Value to set for the custom_key_value_data property.
-        """
-        self._custom_key_value_data = value
-    
-    @property
-    def fingerprint(self,) -> Optional[str]:
-        """
-        Gets the fingerprint property value. Fingerprint is a string that will be used to verify the VPN server can be trusted, which is only applicable when connection type is Check Point Capsule VPN.
-        Returns: Optional[str]
-        """
-        return self._fingerprint
-    
-    @fingerprint.setter
-    def fingerprint(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fingerprint property value. Fingerprint is a string that will be used to verify the VPN server can be trusted, which is only applicable when connection type is Check Point Capsule VPN.
-        Args:
-            value: Value to set for the fingerprint property.
-        """
-        self._fingerprint = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -172,57 +67,6 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         fields.update(super_fields)
         return fields
     
-    @property
-    def identity_certificate(self,) -> Optional[android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase]:
-        """
-        Gets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Returns: Optional[android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase]
-        """
-        return self._identity_certificate
-    
-    @identity_certificate.setter
-    def identity_certificate(self,value: Optional[android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase] = None) -> None:
-        """
-        Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Args:
-            value: Value to set for the identity_certificate property.
-        """
-        self._identity_certificate = value
-    
-    @property
-    def realm(self,) -> Optional[str]:
-        """
-        Gets the realm property value. Realm when connection type is set to Pulse Secure.
-        Returns: Optional[str]
-        """
-        return self._realm
-    
-    @realm.setter
-    def realm(self,value: Optional[str] = None) -> None:
-        """
-        Sets the realm property value. Realm when connection type is set to Pulse Secure.
-        Args:
-            value: Value to set for the realm property.
-        """
-        self._realm = value
-    
-    @property
-    def role(self,) -> Optional[str]:
-        """
-        Gets the role property value. Role when connection type is set to Pulse Secure.
-        Returns: Optional[str]
-        """
-        return self._role
-    
-    @role.setter
-    def role(self,value: Optional[str] = None) -> None:
-        """
-        Sets the role property value. Role when connection type is set to Pulse Secure.
-        Args:
-            value: Value to set for the role property.
-        """
-        self._role = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -242,22 +86,5 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         writer.write_str_value("realm", self.realm)
         writer.write_str_value("role", self.role)
         writer.write_collection_of_object_values("servers", self.servers)
-    
-    @property
-    def servers(self,) -> Optional[List[vpn_server.VpnServer]]:
-        """
-        Gets the servers property value. List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[vpn_server.VpnServer]]
-        """
-        return self._servers
-    
-    @servers.setter
-    def servers(self,value: Optional[List[vpn_server.VpnServer]] = None) -> None:
-        """
-        Sets the servers property value. List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the servers property.
-        """
-        self._servers = value
     
 

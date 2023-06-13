@@ -1,39 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class DeviceManagementPriorityMetaData(AdditionalDataHolder, Parsable):
     """
     Priority metadata of the policy.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementPriorityMetaData and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Priority of the policy. Valid values 1 to 500
-        self._priority: Optional[int] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Priority of the policy. Valid values 1 to 500
+    priority: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementPriorityMetaData:
@@ -57,40 +38,6 @@ class DeviceManagementPriorityMetaData(AdditionalDataHolder, Parsable):
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def priority(self,) -> Optional[int]:
-        """
-        Gets the priority property value. Priority of the policy. Valid values 1 to 500
-        Returns: Optional[int]
-        """
-        return self._priority
-    
-    @priority.setter
-    def priority(self,value: Optional[int] = None) -> None:
-        """
-        Sets the priority property value. Priority of the policy. Valid values 1 to 500
-        Args:
-            value: Value to set for the priority property.
-        """
-        self._priority = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

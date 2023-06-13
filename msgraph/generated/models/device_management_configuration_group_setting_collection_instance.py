@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance
 
+@dataclass
 class DeviceManagementConfigurationGroupSettingCollectionInstance(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationGroupSettingCollectionInstance and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance"
-        # A collection of GroupSetting values
-        self._group_setting_collection_value: Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]] = None
+    odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance"
+    # A collection of GroupSetting values
+    group_setting_collection_value: Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingCollectionInstance:
@@ -42,23 +39,6 @@ class DeviceManagementConfigurationGroupSettingCollectionInstance(device_managem
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group_setting_collection_value(self,) -> Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]]:
-        """
-        Gets the groupSettingCollectionValue property value. A collection of GroupSetting values
-        Returns: Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]]
-        """
-        return self._group_setting_collection_value
-    
-    @group_setting_collection_value.setter
-    def group_setting_collection_value(self,value: Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]] = None) -> None:
-        """
-        Sets the groupSettingCollectionValue property value. A collection of GroupSetting values
-        Args:
-            value: Value to set for the group_setting_collection_value property.
-        """
-        self._group_setting_collection_value = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

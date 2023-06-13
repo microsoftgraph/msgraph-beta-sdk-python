@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import custom_extension_authentication_configuration
 
+@dataclass
 class AzureAdTokenAuthentication(custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AzureAdTokenAuthentication and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.azureAdTokenAuthentication"
-        # The appID of the Azure AD application to use to authenticate a logic app with a custom access package workflow extension.
-        self._resource_id: Optional[str] = None
+    odata_type = "#microsoft.graph.azureAdTokenAuthentication"
+    # The appID of the Azure AD application to use to authenticate a logic app with a custom access package workflow extension.
+    resource_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureAdTokenAuthentication:
@@ -42,23 +39,6 @@ class AzureAdTokenAuthentication(custom_extension_authentication_configuration.C
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def resource_id(self,) -> Optional[str]:
-        """
-        Gets the resourceId property value. The appID of the Azure AD application to use to authenticate a logic app with a custom access package workflow extension.
-        Returns: Optional[str]
-        """
-        return self._resource_id
-    
-    @resource_id.setter
-    def resource_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the resourceId property value. The appID of the Azure AD application to use to authenticate a logic app with a custom access package workflow extension.
-        Args:
-            value: Value to set for the resource_id property.
-        """
-        self._resource_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AppLogUploadState(Enum):
+class AppLogUploadState(str, Enum):
     # Default. Indicates that request is waiting to be processed or under processing.
     Pending = "pending",
     # Indicates that request is completed with file uploaded to Azure blob for download.

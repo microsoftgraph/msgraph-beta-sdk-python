@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,34 +8,13 @@ if TYPE_CHECKING:
 
 from . import dlp_evaluation_input
 
+@dataclass
 class DlpEvaluationWindowsDevicesInput(dlp_evaluation_input.DlpEvaluationInput):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DlpEvaluationWindowsDevicesInput and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.dlpEvaluationWindowsDevicesInput"
-        # The contentProperties property
-        self._content_properties: Optional[content_properties.ContentProperties] = None
-        # The sharedBy property
-        self._shared_by: Optional[str] = None
-    
-    @property
-    def content_properties(self,) -> Optional[content_properties.ContentProperties]:
-        """
-        Gets the contentProperties property value. The contentProperties property
-        Returns: Optional[content_properties.ContentProperties]
-        """
-        return self._content_properties
-    
-    @content_properties.setter
-    def content_properties(self,value: Optional[content_properties.ContentProperties] = None) -> None:
-        """
-        Sets the contentProperties property value. The contentProperties property
-        Args:
-            value: Value to set for the content_properties property.
-        """
-        self._content_properties = value
+    odata_type = "#microsoft.graph.dlpEvaluationWindowsDevicesInput"
+    # The contentProperties property
+    content_properties: Optional[content_properties.ContentProperties] = None
+    # The sharedBy property
+    shared_by: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DlpEvaluationWindowsDevicesInput:
@@ -74,22 +54,5 @@ class DlpEvaluationWindowsDevicesInput(dlp_evaluation_input.DlpEvaluationInput):
         super().serialize(writer)
         writer.write_object_value("contentProperties", self.content_properties)
         writer.write_str_value("sharedBy", self.shared_by)
-    
-    @property
-    def shared_by(self,) -> Optional[str]:
-        """
-        Gets the sharedBy property value. The sharedBy property
-        Returns: Optional[str]
-        """
-        return self._shared_by
-    
-    @shared_by.setter
-    def shared_by(self,value: Optional[str] = None) -> None:
-        """
-        Sets the sharedBy property value. The sharedBy property
-        Args:
-            value: Value to set for the shared_by property.
-        """
-        self._shared_by = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import time
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -6,44 +7,24 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from . import day_of_week
 
+@dataclass
 class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
     """
     Custom update time window
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customUpdateTimeWindow and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The endDay property
-        self._end_day: Optional[day_of_week.DayOfWeek] = None
-        # End time of the time window
-        self._end_time: Optional[time] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The startDay property
-        self._start_day: Optional[day_of_week.DayOfWeek] = None
-        # Start time of the time window
-        self._start_time: Optional[time] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The endDay property
+    end_day: Optional[day_of_week.DayOfWeek] = None
+    # End time of the time window
+    end_time: Optional[time] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The startDay property
+    start_day: Optional[day_of_week.DayOfWeek] = None
+    # Start time of the time window
+    start_time: Optional[time] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomUpdateTimeWindow:
@@ -56,40 +37,6 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return CustomUpdateTimeWindow()
-    
-    @property
-    def end_day(self,) -> Optional[day_of_week.DayOfWeek]:
-        """
-        Gets the endDay property value. The endDay property
-        Returns: Optional[day_of_week.DayOfWeek]
-        """
-        return self._end_day
-    
-    @end_day.setter
-    def end_day(self,value: Optional[day_of_week.DayOfWeek] = None) -> None:
-        """
-        Sets the endDay property value. The endDay property
-        Args:
-            value: Value to set for the end_day property.
-        """
-        self._end_day = value
-    
-    @property
-    def end_time(self,) -> Optional[time]:
-        """
-        Gets the endTime property value. End time of the time window
-        Returns: Optional[time]
-        """
-        return self._end_time
-    
-    @end_time.setter
-    def end_time(self,value: Optional[time] = None) -> None:
-        """
-        Sets the endTime property value. End time of the time window
-        Args:
-            value: Value to set for the end_time property.
-        """
-        self._end_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -107,23 +54,6 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -138,39 +68,5 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         writer.write_enum_value("startDay", self.start_day)
         writer.write_time_value("startTime", self.start_time)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def start_day(self,) -> Optional[day_of_week.DayOfWeek]:
-        """
-        Gets the startDay property value. The startDay property
-        Returns: Optional[day_of_week.DayOfWeek]
-        """
-        return self._start_day
-    
-    @start_day.setter
-    def start_day(self,value: Optional[day_of_week.DayOfWeek] = None) -> None:
-        """
-        Sets the startDay property value. The startDay property
-        Args:
-            value: Value to set for the start_day property.
-        """
-        self._start_day = value
-    
-    @property
-    def start_time(self,) -> Optional[time]:
-        """
-        Gets the startTime property value. Start time of the time window
-        Returns: Optional[time]
-        """
-        return self._start_time
-    
-    @start_time.setter
-    def start_time(self,value: Optional[time] = None) -> None:
-        """
-        Sets the startTime property value. Start time of the time window
-        Args:
-            value: Value to set for the start_time property.
-        """
-        self._start_time = value
     
 

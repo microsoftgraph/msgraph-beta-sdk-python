@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DirectoryRoleAccessReviewPolicy(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DirectoryRoleAccessReviewPolicy and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The settings property
-        self._settings: Optional[access_review_schedule_settings.AccessReviewScheduleSettings] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The settings property
+    settings: Optional[access_review_schedule_settings.AccessReviewScheduleSettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DirectoryRoleAccessReviewPolicy:
@@ -54,22 +51,5 @@ class DirectoryRoleAccessReviewPolicy(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("settings", self.settings)
-    
-    @property
-    def settings(self,) -> Optional[access_review_schedule_settings.AccessReviewScheduleSettings]:
-        """
-        Gets the settings property value. The settings property
-        Returns: Optional[access_review_schedule_settings.AccessReviewScheduleSettings]
-        """
-        return self._settings
-    
-    @settings.setter
-    def settings(self,value: Optional[access_review_schedule_settings.AccessReviewScheduleSettings] = None) -> None:
-        """
-        Sets the settings property value. The settings property
-        Args:
-            value: Value to set for the settings property.
-        """
-        self._settings = value
     
 

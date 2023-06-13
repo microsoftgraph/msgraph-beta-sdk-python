@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -39,7 +39,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an azureDataLakeConnector object.
+        Delete an industryDataConnector object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_connector.IndustryDataConnector]:
         """
-        Read the properties and relationships of an industryDataConnector object.
+        Read the properties and relationships of an azureDataLakeConnector object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[industry_data_connector.IndustryDataConnector]
@@ -105,7 +105,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an azureDataLakeConnector object.
+        Delete an industryDataConnector object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an industryDataConnector object.
+        Read the properties and relationships of an azureDataLakeConnector object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class IndustryDataConnectorItemRequestBuilder():
     @dataclass
     class IndustryDataConnectorItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an industryDataConnector object.
+        Read the properties and relationships of an azureDataLakeConnector object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -6,56 +7,19 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from . import item_body
 
+@dataclass
 class TimeCardEvent(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new timeCardEvent and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Indicates whether the entry was recorded at the approved location.
-        self._at_approved_location: Optional[bool] = None
-        # The time the entry is recorded.
-        self._date_time: Optional[datetime] = None
-        # Notes about the timeCardEvent.
-        self._notes: Optional[item_body.ItemBody] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def at_approved_location(self,) -> Optional[bool]:
-        """
-        Gets the atApprovedLocation property value. Indicates whether the entry was recorded at the approved location.
-        Returns: Optional[bool]
-        """
-        return self._at_approved_location
-    
-    @at_approved_location.setter
-    def at_approved_location(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the atApprovedLocation property value. Indicates whether the entry was recorded at the approved location.
-        Args:
-            value: Value to set for the at_approved_location property.
-        """
-        self._at_approved_location = value
+    # Indicates whether the entry was recorded at the approved location.
+    at_approved_location: Optional[bool] = None
+    # The time the entry is recorded.
+    date_time: Optional[datetime] = None
+    # Notes about the timeCardEvent.
+    notes: Optional[item_body.ItemBody] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TimeCardEvent:
@@ -68,23 +32,6 @@ class TimeCardEvent(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TimeCardEvent()
-    
-    @property
-    def date_time(self,) -> Optional[datetime]:
-        """
-        Gets the dateTime property value. The time the entry is recorded.
-        Returns: Optional[datetime]
-        """
-        return self._date_time
-    
-    @date_time.setter
-    def date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the dateTime property value. The time the entry is recorded.
-        Args:
-            value: Value to set for the date_time property.
-        """
-        self._date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -100,40 +47,6 @@ class TimeCardEvent(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def notes(self,) -> Optional[item_body.ItemBody]:
-        """
-        Gets the notes property value. Notes about the timeCardEvent.
-        Returns: Optional[item_body.ItemBody]
-        """
-        return self._notes
-    
-    @notes.setter
-    def notes(self,value: Optional[item_body.ItemBody] = None) -> None:
-        """
-        Sets the notes property value. Notes about the timeCardEvent.
-        Args:
-            value: Value to set for the notes property.
-        """
-        self._notes = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

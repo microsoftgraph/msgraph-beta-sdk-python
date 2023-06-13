@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class Windows81WifiImportConfiguration(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows81WifiImportConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows81WifiImportConfiguration"
-        # Payload. (UTF8 encoded byte array). This is the XML file saved on the device you used to connect to the Wi-Fi endpoint.
-        self._payload: Optional[bytes] = None
-        # Payload file name (.xml).
-        self._payload_file_name: Optional[str] = None
-        # Profile name displayed in the UI.
-        self._profile_name: Optional[str] = None
+    odata_type = "#microsoft.graph.windows81WifiImportConfiguration"
+    # Payload. (UTF8 encoded byte array). This is the XML file saved on the device you used to connect to the Wi-Fi endpoint.
+    payload: Optional[bytes] = None
+    # Payload file name (.xml).
+    payload_file_name: Optional[str] = None
+    # Profile name displayed in the UI.
+    profile_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows81WifiImportConfiguration:
@@ -48,57 +45,6 @@ class Windows81WifiImportConfiguration(device_configuration.DeviceConfiguration)
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def payload(self,) -> Optional[bytes]:
-        """
-        Gets the payload property value. Payload. (UTF8 encoded byte array). This is the XML file saved on the device you used to connect to the Wi-Fi endpoint.
-        Returns: Optional[bytes]
-        """
-        return self._payload
-    
-    @payload.setter
-    def payload(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the payload property value. Payload. (UTF8 encoded byte array). This is the XML file saved on the device you used to connect to the Wi-Fi endpoint.
-        Args:
-            value: Value to set for the payload property.
-        """
-        self._payload = value
-    
-    @property
-    def payload_file_name(self,) -> Optional[str]:
-        """
-        Gets the payloadFileName property value. Payload file name (.xml).
-        Returns: Optional[str]
-        """
-        return self._payload_file_name
-    
-    @payload_file_name.setter
-    def payload_file_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the payloadFileName property value. Payload file name (.xml).
-        Args:
-            value: Value to set for the payload_file_name property.
-        """
-        self._payload_file_name = value
-    
-    @property
-    def profile_name(self,) -> Optional[str]:
-        """
-        Gets the profileName property value. Profile name displayed in the UI.
-        Returns: Optional[str]
-        """
-        return self._profile_name
-    
-    @profile_name.setter
-    def profile_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the profileName property value. Profile name displayed in the UI.
-        Args:
-            value: Value to set for the profile_name property.
-        """
-        self._profile_name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,17 +9,13 @@ if TYPE_CHECKING:
 
 from . import unified_role_management_alert_configuration
 
+@dataclass
 class SequentialActivationRenewalsAlertConfiguration(unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SequentialActivationRenewalsAlertConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.sequentialActivationRenewalsAlertConfiguration"
-        # The sequentialActivationCounterThreshold property
-        self._sequential_activation_counter_threshold: Optional[int] = None
-        # The timeIntervalBetweenActivations property
-        self._time_interval_between_activations: Optional[timedelta] = None
+    odata_type = "#microsoft.graph.sequentialActivationRenewalsAlertConfiguration"
+    # The sequentialActivationCounterThreshold property
+    sequential_activation_counter_threshold: Optional[int] = None
+    # The timeIntervalBetweenActivations property
+    time_interval_between_activations: Optional[timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SequentialActivationRenewalsAlertConfiguration:
@@ -47,23 +44,6 @@ class SequentialActivationRenewalsAlertConfiguration(unified_role_management_ale
         fields.update(super_fields)
         return fields
     
-    @property
-    def sequential_activation_counter_threshold(self,) -> Optional[int]:
-        """
-        Gets the sequentialActivationCounterThreshold property value. The sequentialActivationCounterThreshold property
-        Returns: Optional[int]
-        """
-        return self._sequential_activation_counter_threshold
-    
-    @sequential_activation_counter_threshold.setter
-    def sequential_activation_counter_threshold(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sequentialActivationCounterThreshold property value. The sequentialActivationCounterThreshold property
-        Args:
-            value: Value to set for the sequential_activation_counter_threshold property.
-        """
-        self._sequential_activation_counter_threshold = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -75,22 +55,5 @@ class SequentialActivationRenewalsAlertConfiguration(unified_role_management_ale
         super().serialize(writer)
         writer.write_int_value("sequentialActivationCounterThreshold", self.sequential_activation_counter_threshold)
         writer.write_timedelta_value("timeIntervalBetweenActivations", self.time_interval_between_activations)
-    
-    @property
-    def time_interval_between_activations(self,) -> Optional[timedelta]:
-        """
-        Gets the timeIntervalBetweenActivations property value. The timeIntervalBetweenActivations property
-        Returns: Optional[timedelta]
-        """
-        return self._time_interval_between_activations
-    
-    @time_interval_between_activations.setter
-    def time_interval_between_activations(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the timeIntervalBetweenActivations property value. The timeIntervalBetweenActivations property
-        Args:
-            value: Value to set for the time_interval_between_activations property.
-        """
-        self._time_interval_between_activations = value
     
 

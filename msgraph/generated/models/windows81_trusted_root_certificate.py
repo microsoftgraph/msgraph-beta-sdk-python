@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,36 +8,15 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class Windows81TrustedRootCertificate(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windows81TrustedRootCertificate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows81TrustedRootCertificate"
-        # File name to display in UI.
-        self._cert_file_name: Optional[str] = None
-        # Possible values for the Certificate Destination Store.
-        self._destination_store: Optional[certificate_destination_store.CertificateDestinationStore] = None
-        # Trusted Root Certificate
-        self._trusted_root_certificate: Optional[bytes] = None
-    
-    @property
-    def cert_file_name(self,) -> Optional[str]:
-        """
-        Gets the certFileName property value. File name to display in UI.
-        Returns: Optional[str]
-        """
-        return self._cert_file_name
-    
-    @cert_file_name.setter
-    def cert_file_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the certFileName property value. File name to display in UI.
-        Args:
-            value: Value to set for the cert_file_name property.
-        """
-        self._cert_file_name = value
+    odata_type = "#microsoft.graph.windows81TrustedRootCertificate"
+    # File name to display in UI.
+    cert_file_name: Optional[str] = None
+    # Possible values for the Certificate Destination Store.
+    destination_store: Optional[certificate_destination_store.CertificateDestinationStore] = None
+    # Trusted Root Certificate
+    trusted_root_certificate: Optional[bytes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows81TrustedRootCertificate:
@@ -49,23 +29,6 @@ class Windows81TrustedRootCertificate(device_configuration.DeviceConfiguration):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Windows81TrustedRootCertificate()
-    
-    @property
-    def destination_store(self,) -> Optional[certificate_destination_store.CertificateDestinationStore]:
-        """
-        Gets the destinationStore property value. Possible values for the Certificate Destination Store.
-        Returns: Optional[certificate_destination_store.CertificateDestinationStore]
-        """
-        return self._destination_store
-    
-    @destination_store.setter
-    def destination_store(self,value: Optional[certificate_destination_store.CertificateDestinationStore] = None) -> None:
-        """
-        Sets the destinationStore property value. Possible values for the Certificate Destination Store.
-        Args:
-            value: Value to set for the destination_store property.
-        """
-        self._destination_store = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -95,22 +58,5 @@ class Windows81TrustedRootCertificate(device_configuration.DeviceConfiguration):
         writer.write_str_value("certFileName", self.cert_file_name)
         writer.write_enum_value("destinationStore", self.destination_store)
         writer.write_object_value("trustedRootCertificate", self.trusted_root_certificate)
-    
-    @property
-    def trusted_root_certificate(self,) -> Optional[bytes]:
-        """
-        Gets the trustedRootCertificate property value. Trusted Root Certificate
-        Returns: Optional[bytes]
-        """
-        return self._trusted_root_certificate
-    
-    @trusted_root_certificate.setter
-    def trusted_root_certificate(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the trustedRootCertificate property value. Trusted Root Certificate
-        Args:
-            value: Value to set for the trusted_root_certificate property.
-        """
-        self._trusted_root_certificate = value
     
 

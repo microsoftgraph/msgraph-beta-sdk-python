@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IndicatorSource(Enum):
+class IndicatorSource(str, Enum):
     MicrosoftDefenderThreatIntelligence = "microsoftDefenderThreatIntelligence",
     OpenSourceIntelligence = "openSourceIntelligence",
     Public = "public",

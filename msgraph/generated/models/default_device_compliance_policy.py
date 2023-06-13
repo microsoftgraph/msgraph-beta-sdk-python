@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,13 +8,9 @@ if TYPE_CHECKING:
 
 from . import device_compliance_policy
 
+@dataclass
 class DefaultDeviceCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DefaultDeviceCompliancePolicy and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.defaultDeviceCompliancePolicy"
+    odata_type = "#microsoft.graph.defaultDeviceCompliancePolicy"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DefaultDeviceCompliancePolicy:

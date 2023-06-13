@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,29 +9,25 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MacOSSoftwareUpdateStateSummary(entity.Entity):
     """
     MacOS software update state summary for a device and user
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSSoftwareUpdateStateSummary and sets the default values.
-        """
-        super().__init__()
-        # Human readable name of the software update
-        self._display_name: Optional[str] = None
-        # Last date time the report for this device and product key was updated.
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Product key of the software update.
-        self._product_key: Optional[str] = None
-        # MacOS Software Update State
-        self._state: Optional[mac_o_s_software_update_state.MacOSSoftwareUpdateState] = None
-        # MacOS Software Update Category
-        self._update_category: Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory] = None
-        # Version of the software update
-        self._update_version: Optional[str] = None
+    # Human readable name of the software update
+    display_name: Optional[str] = None
+    # Last date time the report for this device and product key was updated.
+    last_updated_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Product key of the software update.
+    product_key: Optional[str] = None
+    # MacOS Software Update State
+    state: Optional[mac_o_s_software_update_state.MacOSSoftwareUpdateState] = None
+    # MacOS Software Update Category
+    update_category: Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory] = None
+    # Version of the software update
+    update_version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSoftwareUpdateStateSummary:
@@ -43,23 +40,6 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return MacOSSoftwareUpdateStateSummary()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Human readable name of the software update
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Human readable name of the software update
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -80,40 +60,6 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_updated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastUpdatedDateTime property value. Last date time the report for this device and product key was updated.
-        Returns: Optional[datetime]
-        """
-        return self._last_updated_date_time
-    
-    @last_updated_date_time.setter
-    def last_updated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastUpdatedDateTime property value. Last date time the report for this device and product key was updated.
-        Args:
-            value: Value to set for the last_updated_date_time property.
-        """
-        self._last_updated_date_time = value
-    
-    @property
-    def product_key(self,) -> Optional[str]:
-        """
-        Gets the productKey property value. Product key of the software update.
-        Returns: Optional[str]
-        """
-        return self._product_key
-    
-    @product_key.setter
-    def product_key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the productKey property value. Product key of the software update.
-        Args:
-            value: Value to set for the product_key property.
-        """
-        self._product_key = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -129,56 +75,5 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         writer.write_enum_value("state", self.state)
         writer.write_enum_value("updateCategory", self.update_category)
         writer.write_str_value("updateVersion", self.update_version)
-    
-    @property
-    def state(self,) -> Optional[mac_o_s_software_update_state.MacOSSoftwareUpdateState]:
-        """
-        Gets the state property value. MacOS Software Update State
-        Returns: Optional[mac_o_s_software_update_state.MacOSSoftwareUpdateState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[mac_o_s_software_update_state.MacOSSoftwareUpdateState] = None) -> None:
-        """
-        Sets the state property value. MacOS Software Update State
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
-    
-    @property
-    def update_category(self,) -> Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory]:
-        """
-        Gets the updateCategory property value. MacOS Software Update Category
-        Returns: Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory]
-        """
-        return self._update_category
-    
-    @update_category.setter
-    def update_category(self,value: Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory] = None) -> None:
-        """
-        Sets the updateCategory property value. MacOS Software Update Category
-        Args:
-            value: Value to set for the update_category property.
-        """
-        self._update_category = value
-    
-    @property
-    def update_version(self,) -> Optional[str]:
-        """
-        Gets the updateVersion property value. Version of the software update
-        Returns: Optional[str]
-        """
-        return self._update_version
-    
-    @update_version.setter
-    def update_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the updateVersion property value. Version of the software update
-        Args:
-            value: Value to set for the update_version property.
-        """
-        self._update_version = value
     
 

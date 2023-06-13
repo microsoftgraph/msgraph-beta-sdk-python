@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,16 +9,12 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class LabelsRoot(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new labelsRoot and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The retentionLabels property
-        self._retention_labels: Optional[List[retention_label.RetentionLabel]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The retentionLabels property
+    retention_labels: Optional[List[retention_label.RetentionLabel]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LabelsRoot:
@@ -45,23 +42,6 @@ class LabelsRoot(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def retention_labels(self,) -> Optional[List[retention_label.RetentionLabel]]:
-        """
-        Gets the retentionLabels property value. The retentionLabels property
-        Returns: Optional[List[retention_label.RetentionLabel]]
-        """
-        return self._retention_labels
-    
-    @retention_labels.setter
-    def retention_labels(self,value: Optional[List[retention_label.RetentionLabel]] = None) -> None:
-        """
-        Sets the retentionLabels property value. The retentionLabels property
-        Args:
-            value: Value to set for the retention_labels property.
-        """
-        self._retention_labels = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,32 +9,28 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class WindowsUpdateState(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsUpdateState and sets the default values.
-        """
-        super().__init__()
-        # Device display name.
-        self._device_display_name: Optional[str] = None
-        # The id of the device.
-        self._device_id: Optional[str] = None
-        # The current feature update version of the device.
-        self._feature_update_version: Optional[str] = None
-        # The date time that the Windows Update Agent did a successful scan.
-        self._last_scan_date_time: Optional[datetime] = None
-        # Last date time that the device sync with with Microsoft Intune.
-        self._last_sync_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The Quality Update Version of the device.
-        self._quality_update_version: Optional[str] = None
-        # Windows update for business configuration device states
-        self._status: Optional[windows_update_status.WindowsUpdateStatus] = None
-        # The id of the user.
-        self._user_id: Optional[str] = None
-        # User principal name.
-        self._user_principal_name: Optional[str] = None
+    # Device display name.
+    device_display_name: Optional[str] = None
+    # The id of the device.
+    device_id: Optional[str] = None
+    # The current feature update version of the device.
+    feature_update_version: Optional[str] = None
+    # The date time that the Windows Update Agent did a successful scan.
+    last_scan_date_time: Optional[datetime] = None
+    # Last date time that the device sync with with Microsoft Intune.
+    last_sync_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The Quality Update Version of the device.
+    quality_update_version: Optional[str] = None
+    # Windows update for business configuration device states
+    status: Optional[windows_update_status.WindowsUpdateStatus] = None
+    # The id of the user.
+    user_id: Optional[str] = None
+    # User principal name.
+    user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsUpdateState:
@@ -46,57 +43,6 @@ class WindowsUpdateState(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return WindowsUpdateState()
-    
-    @property
-    def device_display_name(self,) -> Optional[str]:
-        """
-        Gets the deviceDisplayName property value. Device display name.
-        Returns: Optional[str]
-        """
-        return self._device_display_name
-    
-    @device_display_name.setter
-    def device_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceDisplayName property value. Device display name.
-        Args:
-            value: Value to set for the device_display_name property.
-        """
-        self._device_display_name = value
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The id of the device.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The id of the device.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
-    @property
-    def feature_update_version(self,) -> Optional[str]:
-        """
-        Gets the featureUpdateVersion property value. The current feature update version of the device.
-        Returns: Optional[str]
-        """
-        return self._feature_update_version
-    
-    @feature_update_version.setter
-    def feature_update_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the featureUpdateVersion property value. The current feature update version of the device.
-        Args:
-            value: Value to set for the feature_update_version property.
-        """
-        self._feature_update_version = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -120,57 +66,6 @@ class WindowsUpdateState(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_scan_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastScanDateTime property value. The date time that the Windows Update Agent did a successful scan.
-        Returns: Optional[datetime]
-        """
-        return self._last_scan_date_time
-    
-    @last_scan_date_time.setter
-    def last_scan_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastScanDateTime property value. The date time that the Windows Update Agent did a successful scan.
-        Args:
-            value: Value to set for the last_scan_date_time property.
-        """
-        self._last_scan_date_time = value
-    
-    @property
-    def last_sync_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSyncDateTime property value. Last date time that the device sync with with Microsoft Intune.
-        Returns: Optional[datetime]
-        """
-        return self._last_sync_date_time
-    
-    @last_sync_date_time.setter
-    def last_sync_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSyncDateTime property value. Last date time that the device sync with with Microsoft Intune.
-        Args:
-            value: Value to set for the last_sync_date_time property.
-        """
-        self._last_sync_date_time = value
-    
-    @property
-    def quality_update_version(self,) -> Optional[str]:
-        """
-        Gets the qualityUpdateVersion property value. The Quality Update Version of the device.
-        Returns: Optional[str]
-        """
-        return self._quality_update_version
-    
-    @quality_update_version.setter
-    def quality_update_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the qualityUpdateVersion property value. The Quality Update Version of the device.
-        Args:
-            value: Value to set for the quality_update_version property.
-        """
-        self._quality_update_version = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -189,56 +84,5 @@ class WindowsUpdateState(entity.Entity):
         writer.write_enum_value("status", self.status)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
-    
-    @property
-    def status(self,) -> Optional[windows_update_status.WindowsUpdateStatus]:
-        """
-        Gets the status property value. Windows update for business configuration device states
-        Returns: Optional[windows_update_status.WindowsUpdateStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[windows_update_status.WindowsUpdateStatus] = None) -> None:
-        """
-        Sets the status property value. Windows update for business configuration device states
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The id of the user.
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The id of the user.
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
-    
-    @property
-    def user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the userPrincipalName property value. User principal name.
-        Returns: Optional[str]
-        """
-        return self._user_principal_name
-    
-    @user_principal_name.setter
-    def user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userPrincipalName property value. User principal name.
-        Args:
-            value: Value to set for the user_principal_name property.
-        """
-        self._user_principal_name = value
     
 

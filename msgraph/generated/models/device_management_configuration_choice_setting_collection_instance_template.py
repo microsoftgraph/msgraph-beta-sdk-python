@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,51 +8,13 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate"
-        # Linked policy may append values which are not present in the template.
-        self._allow_unmanaged_values: Optional[bool] = None
-        # Choice Setting Collection Value Template
-        self._choice_setting_collection_value_template: Optional[List[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]] = None
-    
-    @property
-    def allow_unmanaged_values(self,) -> Optional[bool]:
-        """
-        Gets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
-        Returns: Optional[bool]
-        """
-        return self._allow_unmanaged_values
-    
-    @allow_unmanaged_values.setter
-    def allow_unmanaged_values(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
-        Args:
-            value: Value to set for the allow_unmanaged_values property.
-        """
-        self._allow_unmanaged_values = value
-    
-    @property
-    def choice_setting_collection_value_template(self,) -> Optional[List[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]]:
-        """
-        Gets the choiceSettingCollectionValueTemplate property value. Choice Setting Collection Value Template
-        Returns: Optional[List[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]]
-        """
-        return self._choice_setting_collection_value_template
-    
-    @choice_setting_collection_value_template.setter
-    def choice_setting_collection_value_template(self,value: Optional[List[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]] = None) -> None:
-        """
-        Sets the choiceSettingCollectionValueTemplate property value. Choice Setting Collection Value Template
-        Args:
-            value: Value to set for the choice_setting_collection_value_template property.
-        """
-        self._choice_setting_collection_value_template = value
+    odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate"
+    # Linked policy may append values which are not present in the template.
+    allow_unmanaged_values: Optional[bool] = None
+    # Choice Setting Collection Value Template
+    choice_setting_collection_value_template: Optional[List[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate:

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,37 +8,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UsageRight(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new usageRight and sets the default values.
-        """
-        super().__init__()
-        # Product id corresponding to the usage right.
-        self._catalog_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Identifier of the service corresponding to the usage right.
-        self._service_identifier: Optional[str] = None
-        # The state property
-        self._state: Optional[usage_right_state.UsageRightState] = None
-    
-    @property
-    def catalog_id(self,) -> Optional[str]:
-        """
-        Gets the catalogId property value. Product id corresponding to the usage right.
-        Returns: Optional[str]
-        """
-        return self._catalog_id
-    
-    @catalog_id.setter
-    def catalog_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the catalogId property value. Product id corresponding to the usage right.
-        Args:
-            value: Value to set for the catalog_id property.
-        """
-        self._catalog_id = value
+    # Product id corresponding to the usage right.
+    catalog_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Identifier of the service corresponding to the usage right.
+    service_identifier: Optional[str] = None
+    # The state property
+    state: Optional[usage_right_state.UsageRightState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UsageRight:
@@ -79,39 +59,5 @@ class UsageRight(entity.Entity):
         writer.write_str_value("catalogId", self.catalog_id)
         writer.write_str_value("serviceIdentifier", self.service_identifier)
         writer.write_enum_value("state", self.state)
-    
-    @property
-    def service_identifier(self,) -> Optional[str]:
-        """
-        Gets the serviceIdentifier property value. Identifier of the service corresponding to the usage right.
-        Returns: Optional[str]
-        """
-        return self._service_identifier
-    
-    @service_identifier.setter
-    def service_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serviceIdentifier property value. Identifier of the service corresponding to the usage right.
-        Args:
-            value: Value to set for the service_identifier property.
-        """
-        self._service_identifier = value
-    
-    @property
-    def state(self,) -> Optional[usage_right_state.UsageRightState]:
-        """
-        Gets the state property value. The state property
-        Returns: Optional[usage_right_state.UsageRightState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[usage_right_state.UsageRightState] = None) -> None:
-        """
-        Sets the state property value. The state property
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 

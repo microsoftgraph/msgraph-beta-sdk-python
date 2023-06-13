@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import imported_device_identity
 
+@dataclass
 class ImportedDeviceIdentityResult(imported_device_identity.ImportedDeviceIdentity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ImportedDeviceIdentityResult and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Status of imported device identity
-        self._status: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Status of imported device identity
+    status: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ImportedDeviceIdentityResult:
@@ -54,22 +51,5 @@ class ImportedDeviceIdentityResult(imported_device_identity.ImportedDeviceIdenti
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_bool_value("status", self.status)
-    
-    @property
-    def status(self,) -> Optional[bool]:
-        """
-        Gets the status property value. Status of imported device identity
-        Returns: Optional[bool]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the status property value. Status of imported device identity
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

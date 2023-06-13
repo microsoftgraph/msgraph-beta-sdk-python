@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IosKioskModeAppType(Enum):
+class IosKioskModeAppType(str, Enum):
     # Device default value, no intent.
     NotConfigured = "notConfigured",
     # The app to be run comes from the app store.

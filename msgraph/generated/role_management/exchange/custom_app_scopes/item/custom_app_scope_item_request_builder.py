@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -37,7 +37,7 @@ class CustomAppScopeItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[CustomAppScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property customAppScopes for roleManagement
+        Delete a customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class CustomAppScopeItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomAppScopeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_app_scope.CustomAppScope]:
         """
-        Get customAppScopes from roleManagement
+        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_app_scope.CustomAppScope]
@@ -78,7 +78,7 @@ class CustomAppScopeItemRequestBuilder():
     
     async def patch(self,body: Optional[custom_app_scope.CustomAppScope] = None, request_configuration: Optional[CustomAppScopeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_app_scope.CustomAppScope]:
         """
-        Update the navigation property customAppScopes in roleManagement
+        Update an existing customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class CustomAppScopeItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[CustomAppScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property customAppScopes for roleManagement
+        Delete a customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class CustomAppScopeItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomAppScopeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get customAppScopes from roleManagement
+        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class CustomAppScopeItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[custom_app_scope.CustomAppScope] = None, request_configuration: Optional[CustomAppScopeItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property customAppScopes in roleManagement
+        Update an existing customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class CustomAppScopeItemRequestBuilder():
     @dataclass
     class CustomAppScopeItemRequestBuilderGetQueryParameters():
         """
-        Get customAppScopes from roleManagement
+        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

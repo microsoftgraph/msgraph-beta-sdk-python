@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,20 +8,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class OfficeGraphInsights(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new officeGraphInsights and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Access this property from the derived type itemInsights.
-        self._shared: Optional[List[shared_insight.SharedInsight]] = None
-        # Access this property from the derived type itemInsights.
-        self._trending: Optional[List[trending.Trending]] = None
-        # Access this property from the derived type itemInsights.
-        self._used: Optional[List[used_insight.UsedInsight]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Access this property from the derived type itemInsights.
+    shared: Optional[List[shared_insight.SharedInsight]] = None
+    # Access this property from the derived type itemInsights.
+    trending: Optional[List[trending.Trending]] = None
+    # Access this property from the derived type itemInsights.
+    used: Optional[List[used_insight.UsedInsight]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OfficeGraphInsights:
@@ -69,56 +66,5 @@ class OfficeGraphInsights(entity.Entity):
         writer.write_collection_of_object_values("shared", self.shared)
         writer.write_collection_of_object_values("trending", self.trending)
         writer.write_collection_of_object_values("used", self.used)
-    
-    @property
-    def shared(self,) -> Optional[List[shared_insight.SharedInsight]]:
-        """
-        Gets the shared property value. Access this property from the derived type itemInsights.
-        Returns: Optional[List[shared_insight.SharedInsight]]
-        """
-        return self._shared
-    
-    @shared.setter
-    def shared(self,value: Optional[List[shared_insight.SharedInsight]] = None) -> None:
-        """
-        Sets the shared property value. Access this property from the derived type itemInsights.
-        Args:
-            value: Value to set for the shared property.
-        """
-        self._shared = value
-    
-    @property
-    def trending(self,) -> Optional[List[trending.Trending]]:
-        """
-        Gets the trending property value. Access this property from the derived type itemInsights.
-        Returns: Optional[List[trending.Trending]]
-        """
-        return self._trending
-    
-    @trending.setter
-    def trending(self,value: Optional[List[trending.Trending]] = None) -> None:
-        """
-        Sets the trending property value. Access this property from the derived type itemInsights.
-        Args:
-            value: Value to set for the trending property.
-        """
-        self._trending = value
-    
-    @property
-    def used(self,) -> Optional[List[used_insight.UsedInsight]]:
-        """
-        Gets the used property value. Access this property from the derived type itemInsights.
-        Returns: Optional[List[used_insight.UsedInsight]]
-        """
-        return self._used
-    
-    @used.setter
-    def used(self,value: Optional[List[used_insight.UsedInsight]] = None) -> None:
-        """
-        Sets the used property value. Access this property from the derived type itemInsights.
-        Args:
-            value: Value to set for the used property.
-        """
-        self._used = value
     
 

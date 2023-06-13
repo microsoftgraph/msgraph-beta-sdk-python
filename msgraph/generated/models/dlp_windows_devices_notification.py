@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,34 +8,13 @@ if TYPE_CHECKING:
 
 from . import dlp_notification
 
+@dataclass
 class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DlpWindowsDevicesNotification and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.dlpWindowsDevicesNotification"
-        # The contentName property
-        self._content_name: Optional[str] = None
-        # The lastModfiedBy property
-        self._last_modfied_by: Optional[str] = None
-    
-    @property
-    def content_name(self,) -> Optional[str]:
-        """
-        Gets the contentName property value. The contentName property
-        Returns: Optional[str]
-        """
-        return self._content_name
-    
-    @content_name.setter
-    def content_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the contentName property value. The contentName property
-        Args:
-            value: Value to set for the content_name property.
-        """
-        self._content_name = value
+    odata_type = "#microsoft.graph.dlpWindowsDevicesNotification"
+    # The contentName property
+    content_name: Optional[str] = None
+    # The lastModfiedBy property
+    last_modfied_by: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DlpWindowsDevicesNotification:
@@ -62,23 +42,6 @@ class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_modfied_by(self,) -> Optional[str]:
-        """
-        Gets the lastModfiedBy property value. The lastModfiedBy property
-        Returns: Optional[str]
-        """
-        return self._last_modfied_by
-    
-    @last_modfied_by.setter
-    def last_modfied_by(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastModfiedBy property value. The lastModfiedBy property
-        Args:
-            value: Value to set for the last_modfied_by property.
-        """
-        self._last_modfied_by = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

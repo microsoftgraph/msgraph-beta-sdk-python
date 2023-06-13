@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import authentication_event_listener
 
+@dataclass
 class OnTokenIssuanceStartListener(authentication_event_listener.AuthenticationEventListener):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OnTokenIssuanceStartListener and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.onTokenIssuanceStartListener"
-        # The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
-        self._handler: Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler] = None
+    odata_type = "#microsoft.graph.onTokenIssuanceStartListener"
+    # The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
+    handler: Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnTokenIssuanceStartListener:
@@ -42,23 +39,6 @@ class OnTokenIssuanceStartListener(authentication_event_listener.AuthenticationE
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def handler(self,) -> Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler]:
-        """
-        Gets the handler property value. The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
-        Returns: Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler]
-        """
-        return self._handler
-    
-    @handler.setter
-    def handler(self,value: Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler] = None) -> None:
-        """
-        Sets the handler property value. The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
-        Args:
-            value: Value to set for the handler property.
-        """
-        self._handler = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

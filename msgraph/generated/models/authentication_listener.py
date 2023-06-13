@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AuthenticationListener(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new authenticationListener and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The priority of the listener. Determines the order of evaluation when an event has multiple listeners. The priority is evaluated from low to high.
-        self._priority: Optional[int] = None
-        # Filter based on the source of the authentication that is used to determine whether the listener is evaluated. This is currently limited to evaluations based on application the user is authenticating to.
-        self._source_filter: Optional[authentication_source_filter.AuthenticationSourceFilter] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The priority of the listener. Determines the order of evaluation when an event has multiple listeners. The priority is evaluated from low to high.
+    priority: Optional[int] = None
+    # Filter based on the source of the authentication that is used to determine whether the listener is evaluated. This is currently limited to evaluations based on application the user is authenticating to.
+    source_filter: Optional[authentication_source_filter.AuthenticationSourceFilter] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationListener:
@@ -54,23 +51,6 @@ class AuthenticationListener(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def priority(self,) -> Optional[int]:
-        """
-        Gets the priority property value. The priority of the listener. Determines the order of evaluation when an event has multiple listeners. The priority is evaluated from low to high.
-        Returns: Optional[int]
-        """
-        return self._priority
-    
-    @priority.setter
-    def priority(self,value: Optional[int] = None) -> None:
-        """
-        Sets the priority property value. The priority of the listener. Determines the order of evaluation when an event has multiple listeners. The priority is evaluated from low to high.
-        Args:
-            value: Value to set for the priority property.
-        """
-        self._priority = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -82,22 +62,5 @@ class AuthenticationListener(entity.Entity):
         super().serialize(writer)
         writer.write_int_value("priority", self.priority)
         writer.write_object_value("sourceFilter", self.source_filter)
-    
-    @property
-    def source_filter(self,) -> Optional[authentication_source_filter.AuthenticationSourceFilter]:
-        """
-        Gets the sourceFilter property value. Filter based on the source of the authentication that is used to determine whether the listener is evaluated. This is currently limited to evaluations based on application the user is authenticating to.
-        Returns: Optional[authentication_source_filter.AuthenticationSourceFilter]
-        """
-        return self._source_filter
-    
-    @source_filter.setter
-    def source_filter(self,value: Optional[authentication_source_filter.AuthenticationSourceFilter] = None) -> None:
-        """
-        Sets the sourceFilter property value. Filter based on the source of the authentication that is used to determine whether the listener is evaluated. This is currently limited to evaluations based on application the user is authenticating to.
-        Args:
-            value: Value to set for the source_filter property.
-        """
-        self._source_filter = value
     
 

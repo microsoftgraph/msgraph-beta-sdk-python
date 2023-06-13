@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import device_management_constraint
 
+@dataclass
 class DeviceManagementSettingProfileConstraint(device_management_constraint.DeviceManagementConstraint):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementSettingProfileConstraint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementSettingProfileConstraint"
-        # The source of the entity
-        self._source: Optional[str] = None
-        # A collection of types this entity carries
-        self._types: Optional[List[str]] = None
+    odata_type = "#microsoft.graph.deviceManagementSettingProfileConstraint"
+    # The source of the entity
+    source: Optional[str] = None
+    # A collection of types this entity carries
+    types: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingProfileConstraint:
@@ -57,39 +54,5 @@ class DeviceManagementSettingProfileConstraint(device_management_constraint.Devi
         super().serialize(writer)
         writer.write_str_value("source", self.source)
         writer.write_collection_of_primitive_values("types", self.types)
-    
-    @property
-    def source(self,) -> Optional[str]:
-        """
-        Gets the source property value. The source of the entity
-        Returns: Optional[str]
-        """
-        return self._source
-    
-    @source.setter
-    def source(self,value: Optional[str] = None) -> None:
-        """
-        Sets the source property value. The source of the entity
-        Args:
-            value: Value to set for the source property.
-        """
-        self._source = value
-    
-    @property
-    def types(self,) -> Optional[List[str]]:
-        """
-        Gets the types property value. A collection of types this entity carries
-        Returns: Optional[List[str]]
-        """
-        return self._types
-    
-    @types.setter
-    def types(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the types property value. A collection of types this entity carries
-        Args:
-            value: Value to set for the types property.
-        """
-        self._types = value
     
 
