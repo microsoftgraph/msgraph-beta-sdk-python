@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,13 +8,9 @@ if TYPE_CHECKING:
 
 from . import device_health_script_time_schedule
 
+@dataclass
 class DeviceHealthScriptDailySchedule(device_health_script_time_schedule.DeviceHealthScriptTimeSchedule):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceHealthScriptDailySchedule and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceHealthScriptDailySchedule"
+    odata_type = "#microsoft.graph.deviceHealthScriptDailySchedule"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptDailySchedule:
@@ -23,8 +20,8 @@ class DeviceHealthScriptDailySchedule(device_health_script_time_schedule.DeviceH
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DeviceHealthScriptDailySchedule
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceHealthScriptDailySchedule()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -32,6 +29,8 @@ class DeviceHealthScriptDailySchedule(device_health_script_time_schedule.DeviceH
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import device_health_script_time_schedule
+
         from . import device_health_script_time_schedule
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -46,8 +45,8 @@ class DeviceHealthScriptDailySchedule(device_health_script_time_schedule.DeviceH
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserMailboxSetting(Enum):
+class UserMailboxSetting(str, Enum):
     None_ = "none",
     JunkMailDeletion = "junkMailDeletion",
     IsFromAddressInAddressBook = "isFromAddressInAddressBook",

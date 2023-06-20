@@ -1,44 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class PersonNamePronounciation(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new personNamePronounciation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The first property
-        self._first: Optional[str] = None
-        # The last property
-        self._last: Optional[str] = None
-        # The maiden property
-        self._maiden: Optional[str] = None
-        # The middle property
-        self._middle: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The displayName property
+    display_name: Optional[str] = None
+    # The first property
+    first: Optional[str] = None
+    # The last property
+    last: Optional[str] = None
+    # The maiden property
+    maiden: Optional[str] = None
+    # The middle property
+    middle: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonNamePronounciation:
@@ -48,43 +29,9 @@ class PersonNamePronounciation(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: PersonNamePronounciation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return PersonNamePronounciation()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def first(self,) -> Optional[str]:
-        """
-        Gets the first property value. The first property
-        Returns: Optional[str]
-        """
-        return self._first
-    
-    @first.setter
-    def first(self,value: Optional[str] = None) -> None:
-        """
-        Sets the first property value. The first property
-        Args:
-            value: Value to set for the first property.
-        """
-        self._first = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -101,82 +48,14 @@ class PersonNamePronounciation(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def last(self,) -> Optional[str]:
-        """
-        Gets the last property value. The last property
-        Returns: Optional[str]
-        """
-        return self._last
-    
-    @last.setter
-    def last(self,value: Optional[str] = None) -> None:
-        """
-        Sets the last property value. The last property
-        Args:
-            value: Value to set for the last property.
-        """
-        self._last = value
-    
-    @property
-    def maiden(self,) -> Optional[str]:
-        """
-        Gets the maiden property value. The maiden property
-        Returns: Optional[str]
-        """
-        return self._maiden
-    
-    @maiden.setter
-    def maiden(self,value: Optional[str] = None) -> None:
-        """
-        Sets the maiden property value. The maiden property
-        Args:
-            value: Value to set for the maiden property.
-        """
-        self._maiden = value
-    
-    @property
-    def middle(self,) -> Optional[str]:
-        """
-        Gets the middle property value. The middle property
-        Returns: Optional[str]
-        """
-        return self._middle
-    
-    @middle.setter
-    def middle(self,value: Optional[str] = None) -> None:
-        """
-        Sets the middle property value. The middle property
-        Args:
-            value: Value to set for the middle property.
-        """
-        self._middle = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("first", self.first)
         writer.write_str_value("last", self.last)

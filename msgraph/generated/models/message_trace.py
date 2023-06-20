@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,30 +9,26 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MessageTrace(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MessageTrace and sets the default values.
-        """
-        super().__init__()
-        # The destinationIPAddress property
-        self._destination_i_p_address: Optional[str] = None
-        # The messageId property
-        self._message_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The receivedDateTime property
-        self._received_date_time: Optional[datetime] = None
-        # The recipients property
-        self._recipients: Optional[List[message_recipient.MessageRecipient]] = None
-        # The senderEmail property
-        self._sender_email: Optional[str] = None
-        # The size property
-        self._size: Optional[int] = None
-        # The sourceIPAddress property
-        self._source_i_p_address: Optional[str] = None
-        # The subject property
-        self._subject: Optional[str] = None
+    # The destinationIPAddress property
+    destination_i_p_address: Optional[str] = None
+    # The messageId property
+    message_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The receivedDateTime property
+    received_date_time: Optional[datetime] = None
+    # The recipients property
+    recipients: Optional[List[message_recipient.MessageRecipient]] = None
+    # The senderEmail property
+    sender_email: Optional[str] = None
+    # The size property
+    size: Optional[int] = None
+    # The sourceIPAddress property
+    source_i_p_address: Optional[str] = None
+    # The subject property
+    subject: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MessageTrace:
@@ -41,32 +38,17 @@ class MessageTrace(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: MessageTrace
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MessageTrace()
-    
-    @property
-    def destination_i_p_address(self,) -> Optional[str]:
-        """
-        Gets the destinationIPAddress property value. The destinationIPAddress property
-        Returns: Optional[str]
-        """
-        return self._destination_i_p_address
-    
-    @destination_i_p_address.setter
-    def destination_i_p_address(self,value: Optional[str] = None) -> None:
-        """
-        Sets the destinationIPAddress property value. The destinationIPAddress property
-        Args:
-            value: Value to set for the destination_i_p_address property.
-        """
-        self._destination_i_p_address = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity, message_recipient
+
         from . import entity, message_recipient
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -83,82 +65,14 @@ class MessageTrace(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def message_id(self,) -> Optional[str]:
-        """
-        Gets the messageId property value. The messageId property
-        Returns: Optional[str]
-        """
-        return self._message_id
-    
-    @message_id.setter
-    def message_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the messageId property value. The messageId property
-        Args:
-            value: Value to set for the message_id property.
-        """
-        self._message_id = value
-    
-    @property
-    def received_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the receivedDateTime property value. The receivedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._received_date_time
-    
-    @received_date_time.setter
-    def received_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the receivedDateTime property value. The receivedDateTime property
-        Args:
-            value: Value to set for the received_date_time property.
-        """
-        self._received_date_time = value
-    
-    @property
-    def recipients(self,) -> Optional[List[message_recipient.MessageRecipient]]:
-        """
-        Gets the recipients property value. The recipients property
-        Returns: Optional[List[message_recipient.MessageRecipient]]
-        """
-        return self._recipients
-    
-    @recipients.setter
-    def recipients(self,value: Optional[List[message_recipient.MessageRecipient]] = None) -> None:
-        """
-        Sets the recipients property value. The recipients property
-        Args:
-            value: Value to set for the recipients property.
-        """
-        self._recipients = value
-    
-    @property
-    def sender_email(self,) -> Optional[str]:
-        """
-        Gets the senderEmail property value. The senderEmail property
-        Returns: Optional[str]
-        """
-        return self._sender_email
-    
-    @sender_email.setter
-    def sender_email(self,value: Optional[str] = None) -> None:
-        """
-        Sets the senderEmail property value. The senderEmail property
-        Args:
-            value: Value to set for the sender_email property.
-        """
-        self._sender_email = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("destinationIPAddress", self.destination_i_p_address)
         writer.write_str_value("messageId", self.message_id)
@@ -168,56 +82,5 @@ class MessageTrace(entity.Entity):
         writer.write_int_value("size", self.size)
         writer.write_str_value("sourceIPAddress", self.source_i_p_address)
         writer.write_str_value("subject", self.subject)
-    
-    @property
-    def size(self,) -> Optional[int]:
-        """
-        Gets the size property value. The size property
-        Returns: Optional[int]
-        """
-        return self._size
-    
-    @size.setter
-    def size(self,value: Optional[int] = None) -> None:
-        """
-        Sets the size property value. The size property
-        Args:
-            value: Value to set for the size property.
-        """
-        self._size = value
-    
-    @property
-    def source_i_p_address(self,) -> Optional[str]:
-        """
-        Gets the sourceIPAddress property value. The sourceIPAddress property
-        Returns: Optional[str]
-        """
-        return self._source_i_p_address
-    
-    @source_i_p_address.setter
-    def source_i_p_address(self,value: Optional[str] = None) -> None:
-        """
-        Sets the sourceIPAddress property value. The sourceIPAddress property
-        Args:
-            value: Value to set for the source_i_p_address property.
-        """
-        self._source_i_p_address = value
-    
-    @property
-    def subject(self,) -> Optional[str]:
-        """
-        Gets the subject property value. The subject property
-        Returns: Optional[str]
-        """
-        return self._subject
-    
-    @subject.setter
-    def subject(self,value: Optional[str] = None) -> None:
-        """
-        Sets the subject property value. The subject property
-        Args:
-            value: Value to set for the subject property.
-        """
-        self._subject = value
     
 

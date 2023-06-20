@@ -1,6 +1,6 @@
 from enum import Enum
 
-class HorizontalSectionLayoutType(Enum):
+class HorizontalSectionLayoutType(str, Enum):
     None_ = "none",
     OneColumn = "oneColumn",
     TwoColumns = "twoColumns",

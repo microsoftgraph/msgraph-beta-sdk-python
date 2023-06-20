@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,24 +8,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PrivilegedRoleSummary(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedRoleSummary and sets the default values.
-        """
-        super().__init__()
-        # The elevatedCount property
-        self._elevated_count: Optional[int] = None
-        # The managedCount property
-        self._managed_count: Optional[int] = None
-        # The mfaEnabled property
-        self._mfa_enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[role_summary_status.RoleSummaryStatus] = None
-        # The usersCount property
-        self._users_count: Optional[int] = None
+    # The elevatedCount property
+    elevated_count: Optional[int] = None
+    # The managedCount property
+    managed_count: Optional[int] = None
+    # The mfaEnabled property
+    mfa_enabled: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The status property
+    status: Optional[role_summary_status.RoleSummaryStatus] = None
+    # The usersCount property
+    users_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedRoleSummary:
@@ -34,32 +31,17 @@ class PrivilegedRoleSummary(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: PrivilegedRoleSummary
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return PrivilegedRoleSummary()
-    
-    @property
-    def elevated_count(self,) -> Optional[int]:
-        """
-        Gets the elevatedCount property value. The elevatedCount property
-        Returns: Optional[int]
-        """
-        return self._elevated_count
-    
-    @elevated_count.setter
-    def elevated_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the elevatedCount property value. The elevatedCount property
-        Args:
-            value: Value to set for the elevated_count property.
-        """
-        self._elevated_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity, role_summary_status
+
         from . import entity, role_summary_status
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -73,87 +55,19 @@ class PrivilegedRoleSummary(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def managed_count(self,) -> Optional[int]:
-        """
-        Gets the managedCount property value. The managedCount property
-        Returns: Optional[int]
-        """
-        return self._managed_count
-    
-    @managed_count.setter
-    def managed_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the managedCount property value. The managedCount property
-        Args:
-            value: Value to set for the managed_count property.
-        """
-        self._managed_count = value
-    
-    @property
-    def mfa_enabled(self,) -> Optional[bool]:
-        """
-        Gets the mfaEnabled property value. The mfaEnabled property
-        Returns: Optional[bool]
-        """
-        return self._mfa_enabled
-    
-    @mfa_enabled.setter
-    def mfa_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the mfaEnabled property value. The mfaEnabled property
-        Args:
-            value: Value to set for the mfa_enabled property.
-        """
-        self._mfa_enabled = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("elevatedCount", self.elevated_count)
         writer.write_int_value("managedCount", self.managed_count)
         writer.write_bool_value("mfaEnabled", self.mfa_enabled)
         writer.write_enum_value("status", self.status)
         writer.write_int_value("usersCount", self.users_count)
-    
-    @property
-    def status(self,) -> Optional[role_summary_status.RoleSummaryStatus]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[role_summary_status.RoleSummaryStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[role_summary_status.RoleSummaryStatus] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def users_count(self,) -> Optional[int]:
-        """
-        Gets the usersCount property value. The usersCount property
-        Returns: Optional[int]
-        """
-        return self._users_count
-    
-    @users_count.setter
-    def users_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the usersCount property value. The usersCount property
-        Args:
-            value: Value to set for the users_count property.
-        """
-        self._users_count = value
     
 

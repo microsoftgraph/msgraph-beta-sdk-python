@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CompanyPortalAction(Enum):
+class CompanyPortalAction(str, Enum):
     # Unknown device action
     Unknown = "unknown",
     # Remove device from Company Portal

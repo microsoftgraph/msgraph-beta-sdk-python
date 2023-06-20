@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,13 +8,9 @@ if TYPE_CHECKING:
 
 from . import android_for_work_eas_email_profile_base
 
+@dataclass
 class AndroidForWorkGmailEasConfiguration(android_for_work_eas_email_profile_base.AndroidForWorkEasEmailProfileBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidForWorkGmailEasConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidForWorkGmailEasConfiguration"
+    odata_type = "#microsoft.graph.androidForWorkGmailEasConfiguration"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkGmailEasConfiguration:
@@ -23,8 +20,8 @@ class AndroidForWorkGmailEasConfiguration(android_for_work_eas_email_profile_bas
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AndroidForWorkGmailEasConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AndroidForWorkGmailEasConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -32,6 +29,8 @@ class AndroidForWorkGmailEasConfiguration(android_for_work_eas_email_profile_bas
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import android_for_work_eas_email_profile_base
+
         from . import android_for_work_eas_email_profile_base
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -46,8 +45,8 @@ class AndroidForWorkGmailEasConfiguration(android_for_work_eas_email_profile_bas
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

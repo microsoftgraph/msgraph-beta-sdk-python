@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,106 +10,34 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class ManagementTemplateStep(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managementTemplateStep and sets the default values.
-        """
-        super().__init__()
-        # The acceptedVersion property
-        self._accepted_version: Optional[management_template_step_version.ManagementTemplateStepVersion] = None
-        # The category property
-        self._category: Optional[management_category.ManagementCategory] = None
-        # The createdByUserId property
-        self._created_by_user_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastActionByUserId property
-        self._last_action_by_user_id: Optional[str] = None
-        # The lastActionDateTime property
-        self._last_action_date_time: Optional[datetime] = None
-        # The managementTemplate property
-        self._management_template: Optional[management_template.ManagementTemplate] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The portalLink property
-        self._portal_link: Optional[action_url.ActionUrl] = None
-        # The priority property
-        self._priority: Optional[int] = None
-        # The versions property
-        self._versions: Optional[List[management_template_step_version.ManagementTemplateStepVersion]] = None
-    
-    @property
-    def accepted_version(self,) -> Optional[management_template_step_version.ManagementTemplateStepVersion]:
-        """
-        Gets the acceptedVersion property value. The acceptedVersion property
-        Returns: Optional[management_template_step_version.ManagementTemplateStepVersion]
-        """
-        return self._accepted_version
-    
-    @accepted_version.setter
-    def accepted_version(self,value: Optional[management_template_step_version.ManagementTemplateStepVersion] = None) -> None:
-        """
-        Sets the acceptedVersion property value. The acceptedVersion property
-        Args:
-            value: Value to set for the accepted_version property.
-        """
-        self._accepted_version = value
-    
-    @property
-    def category(self,) -> Optional[management_category.ManagementCategory]:
-        """
-        Gets the category property value. The category property
-        Returns: Optional[management_category.ManagementCategory]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[management_category.ManagementCategory] = None) -> None:
-        """
-        Sets the category property value. The category property
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
-    
-    @property
-    def created_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the createdByUserId property value. The createdByUserId property
-        Returns: Optional[str]
-        """
-        return self._created_by_user_id
-    
-    @created_by_user_id.setter
-    def created_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the createdByUserId property value. The createdByUserId property
-        Args:
-            value: Value to set for the created_by_user_id property.
-        """
-        self._created_by_user_id = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The createdDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The createdDateTime property
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The acceptedVersion property
+    accepted_version: Optional[management_template_step_version.ManagementTemplateStepVersion] = None
+    # The category property
+    category: Optional[management_category.ManagementCategory] = None
+    # The createdByUserId property
+    created_by_user_id: Optional[str] = None
+    # The createdDateTime property
+    created_date_time: Optional[datetime] = None
+    # The description property
+    description: Optional[str] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The lastActionByUserId property
+    last_action_by_user_id: Optional[str] = None
+    # The lastActionDateTime property
+    last_action_date_time: Optional[datetime] = None
+    # The managementTemplate property
+    management_template: Optional[management_template.ManagementTemplate] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The portalLink property
+    portal_link: Optional[action_url.ActionUrl] = None
+    # The priority property
+    priority: Optional[int] = None
+    # The versions property
+    versions: Optional[List[management_template_step_version.ManagementTemplateStepVersion]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementTemplateStep:
@@ -118,49 +47,18 @@ class ManagementTemplateStep(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ManagementTemplateStep
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ManagementTemplateStep()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description property
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description property
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import management_category, management_template, management_template_step_version
+        from .. import action_url, entity
+
         from . import management_category, management_template, management_template_step_version
         from .. import action_url, entity
 
@@ -182,99 +80,14 @@ class ManagementTemplateStep(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_action_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the lastActionByUserId property value. The lastActionByUserId property
-        Returns: Optional[str]
-        """
-        return self._last_action_by_user_id
-    
-    @last_action_by_user_id.setter
-    def last_action_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastActionByUserId property value. The lastActionByUserId property
-        Args:
-            value: Value to set for the last_action_by_user_id property.
-        """
-        self._last_action_by_user_id = value
-    
-    @property
-    def last_action_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastActionDateTime property value. The lastActionDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_action_date_time
-    
-    @last_action_date_time.setter
-    def last_action_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastActionDateTime property value. The lastActionDateTime property
-        Args:
-            value: Value to set for the last_action_date_time property.
-        """
-        self._last_action_date_time = value
-    
-    @property
-    def management_template(self,) -> Optional[management_template.ManagementTemplate]:
-        """
-        Gets the managementTemplate property value. The managementTemplate property
-        Returns: Optional[management_template.ManagementTemplate]
-        """
-        return self._management_template
-    
-    @management_template.setter
-    def management_template(self,value: Optional[management_template.ManagementTemplate] = None) -> None:
-        """
-        Sets the managementTemplate property value. The managementTemplate property
-        Args:
-            value: Value to set for the management_template property.
-        """
-        self._management_template = value
-    
-    @property
-    def portal_link(self,) -> Optional[action_url.ActionUrl]:
-        """
-        Gets the portalLink property value. The portalLink property
-        Returns: Optional[action_url.ActionUrl]
-        """
-        return self._portal_link
-    
-    @portal_link.setter
-    def portal_link(self,value: Optional[action_url.ActionUrl] = None) -> None:
-        """
-        Sets the portalLink property value. The portalLink property
-        Args:
-            value: Value to set for the portal_link property.
-        """
-        self._portal_link = value
-    
-    @property
-    def priority(self,) -> Optional[int]:
-        """
-        Gets the priority property value. The priority property
-        Returns: Optional[int]
-        """
-        return self._priority
-    
-    @priority.setter
-    def priority(self,value: Optional[int] = None) -> None:
-        """
-        Sets the priority property value. The priority property
-        Args:
-            value: Value to set for the priority property.
-        """
-        self._priority = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("acceptedVersion", self.accepted_version)
         writer.write_enum_value("category", self.category)
@@ -288,22 +101,5 @@ class ManagementTemplateStep(entity.Entity):
         writer.write_object_value("portalLink", self.portal_link)
         writer.write_int_value("priority", self.priority)
         writer.write_collection_of_object_values("versions", self.versions)
-    
-    @property
-    def versions(self,) -> Optional[List[management_template_step_version.ManagementTemplateStepVersion]]:
-        """
-        Gets the versions property value. The versions property
-        Returns: Optional[List[management_template_step_version.ManagementTemplateStepVersion]]
-        """
-        return self._versions
-    
-    @versions.setter
-    def versions(self,value: Optional[List[management_template_step_version.ManagementTemplateStepVersion]] = None) -> None:
-        """
-        Sets the versions property value. The versions property
-        Args:
-            value: Value to set for the versions property.
-        """
-        self._versions = value
     
 

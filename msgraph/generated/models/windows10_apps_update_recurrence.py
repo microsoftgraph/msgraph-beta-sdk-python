@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Windows10AppsUpdateRecurrence(Enum):
+class Windows10AppsUpdateRecurrence(str, Enum):
     # Default value, specifies a single occurence.
     None_ = "none",
     # Daily.

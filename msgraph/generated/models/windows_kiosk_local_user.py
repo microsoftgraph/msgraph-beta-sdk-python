@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import windows_kiosk_user
 
+@dataclass
 class WindowsKioskLocalUser(windows_kiosk_user.WindowsKioskUser):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsKioskLocalUser and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsKioskLocalUser"
-        # The local user that will be locked to this kiosk configuration
-        self._user_name: Optional[str] = None
+    odata_type = "#microsoft.graph.windowsKioskLocalUser"
+    # The local user that will be locked to this kiosk configuration
+    user_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskLocalUser:
@@ -25,8 +22,8 @@ class WindowsKioskLocalUser(windows_kiosk_user.WindowsKioskUser):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: WindowsKioskLocalUser
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WindowsKioskLocalUser()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,6 +31,8 @@ class WindowsKioskLocalUser(windows_kiosk_user.WindowsKioskUser):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import windows_kiosk_user
+
         from . import windows_kiosk_user
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -49,26 +48,9 @@ class WindowsKioskLocalUser(windows_kiosk_user.WindowsKioskUser):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("userName", self.user_name)
-    
-    @property
-    def user_name(self,) -> Optional[str]:
-        """
-        Gets the userName property value. The local user that will be locked to this kiosk configuration
-        Returns: Optional[str]
-        """
-        return self._user_name
-    
-    @user_name.setter
-    def user_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userName property value. The local user that will be locked to this kiosk configuration
-        Args:
-            value: Value to set for the user_name property.
-        """
-        self._user_name = value
     
 

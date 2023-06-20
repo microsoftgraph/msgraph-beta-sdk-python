@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DriveItemSourceApplication(Enum):
+class DriveItemSourceApplication(str, Enum):
     Teams = "teams",
     Yammer = "yammer",
     SharePoint = "sharePoint",

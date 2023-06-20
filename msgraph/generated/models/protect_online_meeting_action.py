@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,57 +8,19 @@ if TYPE_CHECKING:
 
 from . import label_action_base
 
+@dataclass
 class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProtectOnlineMeetingAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.protectOnlineMeetingAction"
-        # The allowedForwarders property
-        self._allowed_forwarders: Optional[online_meeting_forwarders.OnlineMeetingForwarders] = None
-        # The allowedPresenters property
-        self._allowed_presenters: Optional[online_meeting_presenters.OnlineMeetingPresenters] = None
-        # The isCopyToClipboardEnabled property
-        self._is_copy_to_clipboard_enabled: Optional[bool] = None
-        # The isLobbyEnabled property
-        self._is_lobby_enabled: Optional[bool] = None
-        # The lobbyBypassSettings property
-        self._lobby_bypass_settings: Optional[lobby_bypass_settings.LobbyBypassSettings] = None
-    
-    @property
-    def allowed_forwarders(self,) -> Optional[online_meeting_forwarders.OnlineMeetingForwarders]:
-        """
-        Gets the allowedForwarders property value. The allowedForwarders property
-        Returns: Optional[online_meeting_forwarders.OnlineMeetingForwarders]
-        """
-        return self._allowed_forwarders
-    
-    @allowed_forwarders.setter
-    def allowed_forwarders(self,value: Optional[online_meeting_forwarders.OnlineMeetingForwarders] = None) -> None:
-        """
-        Sets the allowedForwarders property value. The allowedForwarders property
-        Args:
-            value: Value to set for the allowed_forwarders property.
-        """
-        self._allowed_forwarders = value
-    
-    @property
-    def allowed_presenters(self,) -> Optional[online_meeting_presenters.OnlineMeetingPresenters]:
-        """
-        Gets the allowedPresenters property value. The allowedPresenters property
-        Returns: Optional[online_meeting_presenters.OnlineMeetingPresenters]
-        """
-        return self._allowed_presenters
-    
-    @allowed_presenters.setter
-    def allowed_presenters(self,value: Optional[online_meeting_presenters.OnlineMeetingPresenters] = None) -> None:
-        """
-        Sets the allowedPresenters property value. The allowedPresenters property
-        Args:
-            value: Value to set for the allowed_presenters property.
-        """
-        self._allowed_presenters = value
+    odata_type = "#microsoft.graph.protectOnlineMeetingAction"
+    # The allowedForwarders property
+    allowed_forwarders: Optional[online_meeting_forwarders.OnlineMeetingForwarders] = None
+    # The allowedPresenters property
+    allowed_presenters: Optional[online_meeting_presenters.OnlineMeetingPresenters] = None
+    # The isCopyToClipboardEnabled property
+    is_copy_to_clipboard_enabled: Optional[bool] = None
+    # The isLobbyEnabled property
+    is_lobby_enabled: Optional[bool] = None
+    # The lobbyBypassSettings property
+    lobby_bypass_settings: Optional[lobby_bypass_settings.LobbyBypassSettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectOnlineMeetingAction:
@@ -67,8 +30,8 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ProtectOnlineMeetingAction
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ProtectOnlineMeetingAction()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -76,6 +39,8 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import label_action_base, lobby_bypass_settings, online_meeting_forwarders, online_meeting_presenters
+
         from . import label_action_base, lobby_bypass_settings, online_meeting_forwarders, online_meeting_presenters
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -89,65 +54,14 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_copy_to_clipboard_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isCopyToClipboardEnabled property value. The isCopyToClipboardEnabled property
-        Returns: Optional[bool]
-        """
-        return self._is_copy_to_clipboard_enabled
-    
-    @is_copy_to_clipboard_enabled.setter
-    def is_copy_to_clipboard_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isCopyToClipboardEnabled property value. The isCopyToClipboardEnabled property
-        Args:
-            value: Value to set for the is_copy_to_clipboard_enabled property.
-        """
-        self._is_copy_to_clipboard_enabled = value
-    
-    @property
-    def is_lobby_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isLobbyEnabled property value. The isLobbyEnabled property
-        Returns: Optional[bool]
-        """
-        return self._is_lobby_enabled
-    
-    @is_lobby_enabled.setter
-    def is_lobby_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isLobbyEnabled property value. The isLobbyEnabled property
-        Args:
-            value: Value to set for the is_lobby_enabled property.
-        """
-        self._is_lobby_enabled = value
-    
-    @property
-    def lobby_bypass_settings(self,) -> Optional[lobby_bypass_settings.LobbyBypassSettings]:
-        """
-        Gets the lobbyBypassSettings property value. The lobbyBypassSettings property
-        Returns: Optional[lobby_bypass_settings.LobbyBypassSettings]
-        """
-        return self._lobby_bypass_settings
-    
-    @lobby_bypass_settings.setter
-    def lobby_bypass_settings(self,value: Optional[lobby_bypass_settings.LobbyBypassSettings] = None) -> None:
-        """
-        Sets the lobbyBypassSettings property value. The lobbyBypassSettings property
-        Args:
-            value: Value to set for the lobby_bypass_settings property.
-        """
-        self._lobby_bypass_settings = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("allowedForwarders", self.allowed_forwarders)
         writer.write_enum_value("allowedPresenters", self.allowed_presenters)

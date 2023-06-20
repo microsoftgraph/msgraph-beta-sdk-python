@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AndroidDeviceComplianceLocalActionBase(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceComplianceLocalActionBase and sets the default values.
-        """
-        super().__init__()
-        # Number of minutes to wait till a local action is enforced. Valid values 0 to 2147483647
-        self._grace_period_in_minutes: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # Number of minutes to wait till a local action is enforced. Valid values 0 to 2147483647
+    grace_period_in_minutes: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceComplianceLocalActionBase:
@@ -26,19 +23,20 @@ class AndroidDeviceComplianceLocalActionBase(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AndroidDeviceComplianceLocalActionBase
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.androidDeviceComplianceLocalActionLockDevice":
-                from . import android_device_compliance_local_action_lock_device
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceComplianceLocalActionLockDevice".casefold():
+            from . import android_device_compliance_local_action_lock_device
 
-                return android_device_compliance_local_action_lock_device.AndroidDeviceComplianceLocalActionLockDevice()
-            if mapping_value == "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode":
-                from . import android_device_compliance_local_action_lock_device_with_passcode
+            return android_device_compliance_local_action_lock_device.AndroidDeviceComplianceLocalActionLockDevice()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode".casefold():
+            from . import android_device_compliance_local_action_lock_device_with_passcode
 
-                return android_device_compliance_local_action_lock_device_with_passcode.AndroidDeviceComplianceLocalActionLockDeviceWithPasscode()
+            return android_device_compliance_local_action_lock_device_with_passcode.AndroidDeviceComplianceLocalActionLockDeviceWithPasscode()
         return AndroidDeviceComplianceLocalActionBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -48,6 +46,8 @@ class AndroidDeviceComplianceLocalActionBase(entity.Entity):
         """
         from . import android_device_compliance_local_action_lock_device, android_device_compliance_local_action_lock_device_with_passcode, entity
 
+        from . import android_device_compliance_local_action_lock_device, android_device_compliance_local_action_lock_device_with_passcode, entity
+
         fields: Dict[str, Callable[[Any], None]] = {
             "gracePeriodInMinutes": lambda n : setattr(self, 'grace_period_in_minutes', n.get_int_value()),
         }
@@ -55,31 +55,14 @@ class AndroidDeviceComplianceLocalActionBase(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def grace_period_in_minutes(self,) -> Optional[int]:
-        """
-        Gets the gracePeriodInMinutes property value. Number of minutes to wait till a local action is enforced. Valid values 0 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._grace_period_in_minutes
-    
-    @grace_period_in_minutes.setter
-    def grace_period_in_minutes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the gracePeriodInMinutes property value. Number of minutes to wait till a local action is enforced. Valid values 0 to 2147483647
-        Args:
-            value: Value to set for the grace_period_in_minutes property.
-        """
-        self._grace_period_in_minutes = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("gracePeriodInMinutes", self.grace_period_in_minutes)
     

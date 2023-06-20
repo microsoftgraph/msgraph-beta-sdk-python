@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import mark_content
 
+@dataclass
 class AddWatermark(mark_content.MarkContent):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AddWatermark and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.addWatermark"
-        # The orientation property
-        self._orientation: Optional[page_orientation.PageOrientation] = None
+    odata_type = "#microsoft.graph.addWatermark"
+    # The orientation property
+    orientation: Optional[page_orientation.PageOrientation] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddWatermark:
@@ -25,8 +22,8 @@ class AddWatermark(mark_content.MarkContent):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AddWatermark
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AddWatermark()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,6 +33,8 @@ class AddWatermark(mark_content.MarkContent):
         """
         from . import mark_content, page_orientation
 
+        from . import mark_content, page_orientation
+
         fields: Dict[str, Callable[[Any], None]] = {
             "orientation": lambda n : setattr(self, 'orientation', n.get_enum_value(page_orientation.PageOrientation)),
         }
@@ -43,31 +42,14 @@ class AddWatermark(mark_content.MarkContent):
         fields.update(super_fields)
         return fields
     
-    @property
-    def orientation(self,) -> Optional[page_orientation.PageOrientation]:
-        """
-        Gets the orientation property value. The orientation property
-        Returns: Optional[page_orientation.PageOrientation]
-        """
-        return self._orientation
-    
-    @orientation.setter
-    def orientation(self,value: Optional[page_orientation.PageOrientation] = None) -> None:
-        """
-        Sets the orientation property value. The orientation property
-        Args:
-            value: Value to set for the orientation property.
-        """
-        self._orientation = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("orientation", self.orientation)
     

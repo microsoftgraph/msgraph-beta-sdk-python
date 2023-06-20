@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -32,7 +32,6 @@ if TYPE_CHECKING:
     from .get_cloud_pc_review_status import get_cloud_pc_review_status_request_builder
     from .get_file_vault_key import get_file_vault_key_request_builder
     from .get_non_compliant_settings import get_non_compliant_settings_request_builder
-    from .get_oem_warranty import get_oem_warranty_request_builder
     from .initiate_mobile_device_management_key_recovery import initiate_mobile_device_management_key_recovery_request_builder
     from .initiate_on_demand_proactive_remediation import initiate_on_demand_proactive_remediation_request_builder
     from .locate_device import locate_device_request_builder
@@ -81,10 +80,10 @@ class ManagedDeviceItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/me/managedDevices/{managedDevice%2Did}{?%24select,%24expand}"
 
@@ -141,8 +140,8 @@ class ManagedDeviceItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[managed_device.ManagedDevice]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
@@ -200,8 +199,8 @@ class ManagedDeviceItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -392,15 +391,6 @@ class ManagedDeviceItemRequestBuilder():
         from .get_non_compliant_settings import get_non_compliant_settings_request_builder
 
         return get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_oem_warranty(self) -> get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder:
-        """
-        Provides operations to call the getOemWarranty method.
-        """
-        from .get_oem_warranty import get_oem_warranty_request_builder
-
-        return get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def initiate_mobile_device_management_key_recovery(self) -> initiate_mobile_device_management_key_recovery_request_builder.InitiateMobileDeviceManagementKeyRecoveryRequestBuilder:
@@ -750,8 +740,8 @@ class ManagedDeviceItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

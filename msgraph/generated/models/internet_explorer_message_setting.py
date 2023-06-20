@@ -1,6 +1,6 @@
 from enum import Enum
 
-class InternetExplorerMessageSetting(Enum):
+class InternetExplorerMessageSetting(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Disabled.

@@ -1,112 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
+@dataclass
 class AttackSimulationInfo(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new attackSimulationInfo and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The date and time of the attack simulation.
-        self._attack_sim_date_time: Optional[datetime] = None
-        # The duration (in time) for the attack simulation.
-        self._attack_sim_duration_time: Optional[timedelta] = None
-        # The activity ID for the attack simulation.
-        self._attack_sim_id: Optional[UUID] = None
-        # The unique identifier for the user who got the attack simulation email.
-        self._attack_sim_user_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def attack_sim_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the attackSimDateTime property value. The date and time of the attack simulation.
-        Returns: Optional[datetime]
-        """
-        return self._attack_sim_date_time
-    
-    @attack_sim_date_time.setter
-    def attack_sim_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the attackSimDateTime property value. The date and time of the attack simulation.
-        Args:
-            value: Value to set for the attack_sim_date_time property.
-        """
-        self._attack_sim_date_time = value
-    
-    @property
-    def attack_sim_duration_time(self,) -> Optional[timedelta]:
-        """
-        Gets the attackSimDurationTime property value. The duration (in time) for the attack simulation.
-        Returns: Optional[timedelta]
-        """
-        return self._attack_sim_duration_time
-    
-    @attack_sim_duration_time.setter
-    def attack_sim_duration_time(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the attackSimDurationTime property value. The duration (in time) for the attack simulation.
-        Args:
-            value: Value to set for the attack_sim_duration_time property.
-        """
-        self._attack_sim_duration_time = value
-    
-    @property
-    def attack_sim_id(self,) -> Optional[UUID]:
-        """
-        Gets the attackSimId property value. The activity ID for the attack simulation.
-        Returns: Optional[UUID]
-        """
-        return self._attack_sim_id
-    
-    @attack_sim_id.setter
-    def attack_sim_id(self,value: Optional[UUID] = None) -> None:
-        """
-        Sets the attackSimId property value. The activity ID for the attack simulation.
-        Args:
-            value: Value to set for the attack_sim_id property.
-        """
-        self._attack_sim_id = value
-    
-    @property
-    def attack_sim_user_id(self,) -> Optional[str]:
-        """
-        Gets the attackSimUserId property value. The unique identifier for the user who got the attack simulation email.
-        Returns: Optional[str]
-        """
-        return self._attack_sim_user_id
-    
-    @attack_sim_user_id.setter
-    def attack_sim_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the attackSimUserId property value. The unique identifier for the user who got the attack simulation email.
-        Args:
-            value: Value to set for the attack_sim_user_id property.
-        """
-        self._attack_sim_user_id = value
+    # The date and time of the attack simulation.
+    attack_sim_date_time: Optional[datetime] = None
+    # The duration (in time) for the attack simulation.
+    attack_sim_duration_time: Optional[timedelta] = None
+    # The activity ID for the attack simulation.
+    attack_sim_id: Optional[UUID] = None
+    # The unique identifier for the user who got the attack simulation email.
+    attack_sim_user_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AttackSimulationInfo:
@@ -116,8 +29,8 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AttackSimulationInfo
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AttackSimulationInfo()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -134,31 +47,14 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_datetime_value("attackSimDateTime", self.attack_sim_date_time)
         writer.write_timedelta_value("attackSimDurationTime", self.attack_sim_duration_time)
         writer.write_uuid_value("attackSimId", self.attack_sim_id)

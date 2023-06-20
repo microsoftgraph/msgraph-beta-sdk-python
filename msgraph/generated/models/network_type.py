@@ -1,6 +1,6 @@
 from enum import Enum
 
-class NetworkType(Enum):
+class NetworkType(str, Enum):
     Intranet = "intranet",
     Extranet = "extranet",
     NamedNetwork = "namedNetwork",

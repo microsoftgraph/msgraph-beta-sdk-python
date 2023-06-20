@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,83 +9,28 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class TeamworkDeviceOperation(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TeamworkDeviceOperation and sets the default values.
-        """
-        super().__init__()
-        # Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
-        self._completed_date_time: Optional[datetime] = None
-        # Identity of the user who created the device operation.
-        self._created_by: Optional[identity_set.IdentitySet] = None
-        # The UTC date and time when the device operation was created.
-        self._created_date_time: Optional[datetime] = None
-        # Error details are available only in case of a failed status.
-        self._error: Optional[operation_error.OperationError] = None
-        # Identity of the user who last modified the device operation.
-        self._last_action_by: Optional[identity_set.IdentitySet] = None
-        # The UTC date and time when the device operation was last modified.
-        self._last_action_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The operationType property
-        self._operation_type: Optional[teamwork_device_operation_type.TeamworkDeviceOperationType] = None
-        # Time at which the operation was started.
-        self._started_date_time: Optional[datetime] = None
-        # The current status of the async operation, for example, Queued, Scheduled, InProgress,  Successful, Cancelled, and Failed.
-        self._status: Optional[str] = None
-    
-    @property
-    def completed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completedDateTime property value. Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
-        Returns: Optional[datetime]
-        """
-        return self._completed_date_time
-    
-    @completed_date_time.setter
-    def completed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completedDateTime property value. Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
-        Args:
-            value: Value to set for the completed_date_time property.
-        """
-        self._completed_date_time = value
-    
-    @property
-    def created_by(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the createdBy property value. Identity of the user who created the device operation.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._created_by
-    
-    @created_by.setter
-    def created_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the createdBy property value. Identity of the user who created the device operation.
-        Args:
-            value: Value to set for the created_by property.
-        """
-        self._created_by = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The UTC date and time when the device operation was created.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The UTC date and time when the device operation was created.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
+    completed_date_time: Optional[datetime] = None
+    # Identity of the user who created the device operation.
+    created_by: Optional[identity_set.IdentitySet] = None
+    # The UTC date and time when the device operation was created.
+    created_date_time: Optional[datetime] = None
+    # Error details are available only in case of a failed status.
+    error: Optional[operation_error.OperationError] = None
+    # Identity of the user who last modified the device operation.
+    last_action_by: Optional[identity_set.IdentitySet] = None
+    # The UTC date and time when the device operation was last modified.
+    last_action_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The operationType property
+    operation_type: Optional[teamwork_device_operation_type.TeamworkDeviceOperationType] = None
+    # Time at which the operation was started.
+    started_date_time: Optional[datetime] = None
+    # The current status of the async operation, for example, Queued, Scheduled, InProgress,  Successful, Cancelled, and Failed.
+    status: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDeviceOperation:
@@ -94,32 +40,17 @@ class TeamworkDeviceOperation(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: TeamworkDeviceOperation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return TeamworkDeviceOperation()
-    
-    @property
-    def error(self,) -> Optional[operation_error.OperationError]:
-        """
-        Gets the error property value. Error details are available only in case of a failed status.
-        Returns: Optional[operation_error.OperationError]
-        """
-        return self._error
-    
-    @error.setter
-    def error(self,value: Optional[operation_error.OperationError] = None) -> None:
-        """
-        Sets the error property value. Error details are available only in case of a failed status.
-        Args:
-            value: Value to set for the error property.
-        """
-        self._error = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity, identity_set, operation_error, teamwork_device_operation_type
+
         from . import entity, identity_set, operation_error, teamwork_device_operation_type
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -137,65 +68,14 @@ class TeamworkDeviceOperation(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_action_by(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the lastActionBy property value. Identity of the user who last modified the device operation.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._last_action_by
-    
-    @last_action_by.setter
-    def last_action_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the lastActionBy property value. Identity of the user who last modified the device operation.
-        Args:
-            value: Value to set for the last_action_by property.
-        """
-        self._last_action_by = value
-    
-    @property
-    def last_action_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastActionDateTime property value. The UTC date and time when the device operation was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_action_date_time
-    
-    @last_action_date_time.setter
-    def last_action_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastActionDateTime property value. The UTC date and time when the device operation was last modified.
-        Args:
-            value: Value to set for the last_action_date_time property.
-        """
-        self._last_action_date_time = value
-    
-    @property
-    def operation_type(self,) -> Optional[teamwork_device_operation_type.TeamworkDeviceOperationType]:
-        """
-        Gets the operationType property value. The operationType property
-        Returns: Optional[teamwork_device_operation_type.TeamworkDeviceOperationType]
-        """
-        return self._operation_type
-    
-    @operation_type.setter
-    def operation_type(self,value: Optional[teamwork_device_operation_type.TeamworkDeviceOperationType] = None) -> None:
-        """
-        Sets the operationType property value. The operationType property
-        Args:
-            value: Value to set for the operation_type property.
-        """
-        self._operation_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("completedDateTime", self.completed_date_time)
         writer.write_object_value("createdBy", self.created_by)
@@ -206,39 +86,5 @@ class TeamworkDeviceOperation(entity.Entity):
         writer.write_enum_value("operationType", self.operation_type)
         writer.write_datetime_value("startedDateTime", self.started_date_time)
         writer.write_str_value("status", self.status)
-    
-    @property
-    def started_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the startedDateTime property value. Time at which the operation was started.
-        Returns: Optional[datetime]
-        """
-        return self._started_date_time
-    
-    @started_date_time.setter
-    def started_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the startedDateTime property value. Time at which the operation was started.
-        Args:
-            value: Value to set for the started_date_time property.
-        """
-        self._started_date_time = value
-    
-    @property
-    def status(self,) -> Optional[str]:
-        """
-        Gets the status property value. The current status of the async operation, for example, Queued, Scheduled, InProgress,  Successful, Cancelled, and Failed.
-        Returns: Optional[str]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[str] = None) -> None:
-        """
-        Sets the status property value. The current status of the async operation, for example, Queued, Scheduled, InProgress,  Successful, Cancelled, and Failed.
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

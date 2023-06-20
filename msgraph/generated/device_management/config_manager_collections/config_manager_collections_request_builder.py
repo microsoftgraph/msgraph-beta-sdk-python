@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,10 +27,10 @@ class ConfigManagerCollectionsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/configManagerCollections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -45,8 +45,8 @@ class ConfigManagerCollectionsRequestBuilder():
             config_manager_collection_id: Unique identifier of the item
         Returns: config_manager_collection_item_request_builder.ConfigManagerCollectionItemRequestBuilder
         """
-        if config_manager_collection_id is None:
-            raise Exception("config_manager_collection_id cannot be undefined")
+        if not config_manager_collection_id:
+            raise TypeError("config_manager_collection_id cannot be null.")
         from .item import config_manager_collection_item_request_builder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
@@ -82,8 +82,8 @@ class ConfigManagerCollectionsRequestBuilder():
             policyId: Usage: policyId='{policyId}'
         Returns: get_policy_summary_with_policy_id_request_builder.GetPolicySummaryWithPolicyIdRequestBuilder
         """
-        if policy_id is None:
-            raise Exception("policy_id cannot be undefined")
+        if not policy_id:
+            raise TypeError("policy_id cannot be null.")
         from .get_policy_summary_with_policy_id import get_policy_summary_with_policy_id_request_builder
 
         return get_policy_summary_with_policy_id_request_builder.GetPolicySummaryWithPolicyIdRequestBuilder(self.request_adapter, self.path_parameters, policy_id)
@@ -96,8 +96,8 @@ class ConfigManagerCollectionsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[config_manager_collection.ConfigManagerCollection]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
@@ -139,8 +139,8 @@ class ConfigManagerCollectionsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -173,8 +173,8 @@ class ConfigManagerCollectionsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

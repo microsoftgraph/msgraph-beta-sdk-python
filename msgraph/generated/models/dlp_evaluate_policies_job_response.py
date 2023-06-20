@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import job_response_base
 
+@dataclass
 class DlpEvaluatePoliciesJobResponse(job_response_base.JobResponseBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DlpEvaluatePoliciesJobResponse and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The result property
-        self._result: Optional[dlp_policies_job_result.DlpPoliciesJobResult] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The result property
+    result: Optional[dlp_policies_job_result.DlpPoliciesJobResult] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DlpEvaluatePoliciesJobResponse:
@@ -26,8 +23,8 @@ class DlpEvaluatePoliciesJobResponse(job_response_base.JobResponseBase):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DlpEvaluatePoliciesJobResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DlpEvaluatePoliciesJobResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,6 +34,8 @@ class DlpEvaluatePoliciesJobResponse(job_response_base.JobResponseBase):
         """
         from . import dlp_policies_job_result, job_response_base
 
+        from . import dlp_policies_job_result, job_response_base
+
         fields: Dict[str, Callable[[Any], None]] = {
             "result": lambda n : setattr(self, 'result', n.get_object_value(dlp_policies_job_result.DlpPoliciesJobResult)),
         }
@@ -44,31 +43,14 @@ class DlpEvaluatePoliciesJobResponse(job_response_base.JobResponseBase):
         fields.update(super_fields)
         return fields
     
-    @property
-    def result(self,) -> Optional[dlp_policies_job_result.DlpPoliciesJobResult]:
-        """
-        Gets the result property value. The result property
-        Returns: Optional[dlp_policies_job_result.DlpPoliciesJobResult]
-        """
-        return self._result
-    
-    @result.setter
-    def result(self,value: Optional[dlp_policies_job_result.DlpPoliciesJobResult] = None) -> None:
-        """
-        Sets the result property value. The result property
-        Args:
-            value: Value to set for the result property.
-        """
-        self._result = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("result", self.result)
     

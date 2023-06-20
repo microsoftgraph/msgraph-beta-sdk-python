@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ZebraFotaDeploymentState(Enum):
+class ZebraFotaDeploymentState(str, Enum):
     # Deployment is created but Zebra has not confirmed its creation.
     PendingCreation = "pendingCreation",
     # Deployment was not successfully created with Zebra.

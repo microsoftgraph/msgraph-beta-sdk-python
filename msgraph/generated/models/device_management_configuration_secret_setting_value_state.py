@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationSecretSettingValueState(Enum):
+class DeviceManagementConfigurationSecretSettingValueState(str, Enum):
     # default invalid value
     Invalid = "invalid",
     # secret value is not encrypted

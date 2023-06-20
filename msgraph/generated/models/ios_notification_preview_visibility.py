@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IosNotificationPreviewVisibility(Enum):
+class IosNotificationPreviewVisibility(str, Enum):
     # Notification preview settings will not be overwritten.
     NotConfigured = "notConfigured",
     # Always show notification previews.

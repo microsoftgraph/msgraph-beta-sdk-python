@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -13,8 +13,6 @@ if TYPE_CHECKING:
     from ...models import mobile_app, mobile_app_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .get_mobile_app_count_with_status import get_mobile_app_count_with_status_request_builder
-    from .get_top_mobile_apps_with_status_with_count import get_top_mobile_apps_with_status_with_count_request_builder
     from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
     from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
     from .has_payload_links import has_payload_links_request_builder
@@ -32,10 +30,10 @@ class MobileAppsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceAppManagement/mobileApps{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -50,8 +48,8 @@ class MobileAppsRequestBuilder():
             mobile_app_id: Unique identifier of the item
         Returns: mobile_app_item_request_builder.MobileAppItemRequestBuilder
         """
-        if mobile_app_id is None:
-            raise Exception("mobile_app_id cannot be undefined")
+        if not mobile_app_id:
+            raise TypeError("mobile_app_id cannot be null.")
         from .item import mobile_app_item_request_builder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
@@ -80,35 +78,6 @@ class MobileAppsRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, mobile_app_collection_response.MobileAppCollectionResponse, error_mapping)
     
-    def get_mobile_app_count_with_status(self,status: Optional[str] = None) -> get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder:
-        """
-        Provides operations to call the getMobileAppCount method.
-        Args:
-            status: Usage: status='{status}'
-        Returns: get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder
-        """
-        if status is None:
-            raise Exception("status cannot be undefined")
-        from .get_mobile_app_count_with_status import get_mobile_app_count_with_status_request_builder
-
-        return get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder(self.request_adapter, self.path_parameters, status)
-    
-    def get_top_mobile_apps_with_status_with_count(self,count: Optional[int] = None, status: Optional[str] = None) -> get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder:
-        """
-        Provides operations to call the getTopMobileApps method.
-        Args:
-            count: Usage: count={count}
-            status: Usage: status='{status}'
-        Returns: get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder
-        """
-        if count is None:
-            raise Exception("count cannot be undefined")
-        if status is None:
-            raise Exception("status cannot be undefined")
-        from .get_top_mobile_apps_with_status_with_count import get_top_mobile_apps_with_status_with_count_request_builder
-
-        return get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder(self.request_adapter, self.path_parameters, count, status)
-    
     async def post(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
         """
         Create new navigation property to mobileApps for deviceAppManagement
@@ -117,8 +86,8 @@ class MobileAppsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[mobile_app.MobileApp]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
@@ -160,8 +129,8 @@ class MobileAppsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -230,8 +199,8 @@ class MobileAppsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

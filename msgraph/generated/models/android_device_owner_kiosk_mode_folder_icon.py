@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerKioskModeFolderIcon(Enum):
+class AndroidDeviceOwnerKioskModeFolderIcon(str, Enum):
     # Not configured; this value is ignored.
     NotConfigured = "notConfigured",
     # Folder icon appears as dark square.

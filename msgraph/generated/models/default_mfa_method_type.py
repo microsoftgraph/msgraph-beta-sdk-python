@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DefaultMfaMethodType(Enum):
+class DefaultMfaMethodType(str, Enum):
     None_ = "none",
     MobilePhone = "mobilePhone",
     AlternateMobilePhone = "alternateMobilePhone",

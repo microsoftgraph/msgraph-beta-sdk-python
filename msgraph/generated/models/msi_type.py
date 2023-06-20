@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MsiType(Enum):
+class MsiType(str, Enum):
     None_ = "none",
     UserAssigned = "userAssigned",
     SystemAssigned = "systemAssigned",

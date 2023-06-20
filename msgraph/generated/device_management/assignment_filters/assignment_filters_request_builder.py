@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,10 +30,10 @@ class AssignmentFiltersRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/assignmentFilters{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -48,8 +48,8 @@ class AssignmentFiltersRequestBuilder():
             device_and_app_management_assignment_filter_id: Unique identifier of the item
         Returns: device_and_app_management_assignment_filter_item_request_builder.DeviceAndAppManagementAssignmentFilterItemRequestBuilder
         """
-        if device_and_app_management_assignment_filter_id is None:
-            raise Exception("device_and_app_management_assignment_filter_id cannot be undefined")
+        if not device_and_app_management_assignment_filter_id:
+            raise TypeError("device_and_app_management_assignment_filter_id cannot be null.")
         from .item import device_and_app_management_assignment_filter_item_request_builder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
@@ -85,8 +85,8 @@ class AssignmentFiltersRequestBuilder():
             platform: Usage: platform='{platform}'
         Returns: get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder
         """
-        if platform is None:
-            raise Exception("platform cannot be undefined")
+        if not platform:
+            raise TypeError("platform cannot be null.")
         from .get_platform_supported_properties_with_platform import get_platform_supported_properties_with_platform_request_builder
 
         return get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, self.path_parameters, platform)
@@ -99,8 +99,8 @@ class AssignmentFiltersRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
@@ -142,8 +142,8 @@ class AssignmentFiltersRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -203,8 +203,8 @@ class AssignmentFiltersRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

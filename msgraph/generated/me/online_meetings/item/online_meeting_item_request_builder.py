@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -15,9 +15,11 @@ if TYPE_CHECKING:
     from .alternative_recording import alternative_recording_request_builder
     from .attendance_reports import attendance_reports_request_builder
     from .attendee_report import attendee_report_request_builder
+    from .broadcast_recording import broadcast_recording_request_builder
     from .get_virtual_appointment_join_web_url import get_virtual_appointment_join_web_url_request_builder
     from .meeting_attendance_report import meeting_attendance_report_request_builder
     from .recording import recording_request_builder
+    from .recordings import recordings_request_builder
     from .registration import registration_request_builder
     from .transcripts import transcripts_request_builder
     from .virtual_appointment import virtual_appointment_request_builder
@@ -33,10 +35,10 @@ class OnlineMeetingItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/me/onlineMeetings/{onlineMeeting%2Did}{?%24select,%24expand}"
 
@@ -93,8 +95,8 @@ class OnlineMeetingItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[online_meeting.OnlineMeeting]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
@@ -152,8 +154,8 @@ class OnlineMeetingItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -193,6 +195,15 @@ class OnlineMeetingItemRequestBuilder():
         return attendee_report_request_builder.AttendeeReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def broadcast_recording(self) -> broadcast_recording_request_builder.BroadcastRecordingRequestBuilder:
+        """
+        Provides operations to manage the media for the user entity.
+        """
+        from .broadcast_recording import broadcast_recording_request_builder
+
+        return broadcast_recording_request_builder.BroadcastRecordingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_virtual_appointment_join_web_url(self) -> get_virtual_appointment_join_web_url_request_builder.GetVirtualAppointmentJoinWebUrlRequestBuilder:
         """
         Provides operations to call the getVirtualAppointmentJoinWebUrl method.
@@ -218,6 +229,15 @@ class OnlineMeetingItemRequestBuilder():
         from .recording import recording_request_builder
 
         return recording_request_builder.RecordingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def recordings(self) -> recordings_request_builder.RecordingsRequestBuilder:
+        """
+        Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.
+        """
+        from .recordings import recordings_request_builder
+
+        return recordings_request_builder.RecordingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def registration(self) -> registration_request_builder.RegistrationRequestBuilder:
@@ -270,8 +290,8 @@ class OnlineMeetingItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

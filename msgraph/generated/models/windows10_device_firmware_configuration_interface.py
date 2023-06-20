@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,140 +8,51 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10DeviceFirmwareConfigurationInterface and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10DeviceFirmwareConfigurationInterface"
-        # Possible values of a property
-        self._bluetooth: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._boot_from_built_in_network_adapters: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._boot_from_external_media: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._cameras: Optional[enablement.Enablement] = None
-        # Defines the permission level granted to users to enable them change Uefi settings
-        self._change_uefi_settings_permission: Optional[change_uefi_settings_permission.ChangeUefiSettingsPermission] = None
-        # Possible values of a property
-        self._front_camera: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._infrared_camera: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._microphone: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._microphones_and_speakers: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._near_field_communication: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._radios: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._rear_camera: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._sd_card: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._simultaneous_multi_threading: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._usb_type_a_port: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._virtualization_of_cpu_and_i_o: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._wake_on_l_a_n: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._wake_on_power: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._wi_fi: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._windows_platform_binary_table: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._wireless_wide_area_network: Optional[enablement.Enablement] = None
-    
-    @property
-    def bluetooth(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the bluetooth property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._bluetooth
-    
-    @bluetooth.setter
-    def bluetooth(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the bluetooth property value. Possible values of a property
-        Args:
-            value: Value to set for the bluetooth property.
-        """
-        self._bluetooth = value
-    
-    @property
-    def boot_from_built_in_network_adapters(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the bootFromBuiltInNetworkAdapters property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._boot_from_built_in_network_adapters
-    
-    @boot_from_built_in_network_adapters.setter
-    def boot_from_built_in_network_adapters(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the bootFromBuiltInNetworkAdapters property value. Possible values of a property
-        Args:
-            value: Value to set for the boot_from_built_in_network_adapters property.
-        """
-        self._boot_from_built_in_network_adapters = value
-    
-    @property
-    def boot_from_external_media(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the bootFromExternalMedia property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._boot_from_external_media
-    
-    @boot_from_external_media.setter
-    def boot_from_external_media(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the bootFromExternalMedia property value. Possible values of a property
-        Args:
-            value: Value to set for the boot_from_external_media property.
-        """
-        self._boot_from_external_media = value
-    
-    @property
-    def cameras(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the cameras property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._cameras
-    
-    @cameras.setter
-    def cameras(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the cameras property value. Possible values of a property
-        Args:
-            value: Value to set for the cameras property.
-        """
-        self._cameras = value
-    
-    @property
-    def change_uefi_settings_permission(self,) -> Optional[change_uefi_settings_permission.ChangeUefiSettingsPermission]:
-        """
-        Gets the changeUefiSettingsPermission property value. Defines the permission level granted to users to enable them change Uefi settings
-        Returns: Optional[change_uefi_settings_permission.ChangeUefiSettingsPermission]
-        """
-        return self._change_uefi_settings_permission
-    
-    @change_uefi_settings_permission.setter
-    def change_uefi_settings_permission(self,value: Optional[change_uefi_settings_permission.ChangeUefiSettingsPermission] = None) -> None:
-        """
-        Sets the changeUefiSettingsPermission property value. Defines the permission level granted to users to enable them change Uefi settings
-        Args:
-            value: Value to set for the change_uefi_settings_permission property.
-        """
-        self._change_uefi_settings_permission = value
+    odata_type = "#microsoft.graph.windows10DeviceFirmwareConfigurationInterface"
+    # Possible values of a property
+    bluetooth: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    boot_from_built_in_network_adapters: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    boot_from_external_media: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    cameras: Optional[enablement.Enablement] = None
+    # Defines the permission level granted to users to enable them change Uefi settings
+    change_uefi_settings_permission: Optional[change_uefi_settings_permission.ChangeUefiSettingsPermission] = None
+    # Possible values of a property
+    front_camera: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    infrared_camera: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    microphone: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    microphones_and_speakers: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    near_field_communication: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    radios: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    rear_camera: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    sd_card: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    simultaneous_multi_threading: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    usb_type_a_port: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    virtualization_of_cpu_and_i_o: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    wake_on_l_a_n: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    wake_on_power: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    wi_fi: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    windows_platform_binary_table: Optional[enablement.Enablement] = None
+    # Possible values of a property
+    wireless_wide_area_network: Optional[enablement.Enablement] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10DeviceFirmwareConfigurationInterface:
@@ -150,32 +62,17 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: Windows10DeviceFirmwareConfigurationInterface
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Windows10DeviceFirmwareConfigurationInterface()
-    
-    @property
-    def front_camera(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the frontCamera property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._front_camera
-    
-    @front_camera.setter
-    def front_camera(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the frontCamera property value. Possible values of a property
-        Args:
-            value: Value to set for the front_camera property.
-        """
-        self._front_camera = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import change_uefi_settings_permission, device_configuration, enablement
+
         from . import change_uefi_settings_permission, device_configuration, enablement
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -197,132 +94,13 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
             "virtualizationOfCpuAndIO": lambda n : setattr(self, 'virtualization_of_cpu_and_i_o', n.get_enum_value(enablement.Enablement)),
             "wakeOnLAN": lambda n : setattr(self, 'wake_on_l_a_n', n.get_enum_value(enablement.Enablement)),
             "wakeOnPower": lambda n : setattr(self, 'wake_on_power', n.get_enum_value(enablement.Enablement)),
+            "wiFi": lambda n : setattr(self, 'wi_fi', n.get_enum_value(enablement.Enablement)),
             "windowsPlatformBinaryTable": lambda n : setattr(self, 'windows_platform_binary_table', n.get_enum_value(enablement.Enablement)),
             "wirelessWideAreaNetwork": lambda n : setattr(self, 'wireless_wide_area_network', n.get_enum_value(enablement.Enablement)),
-            "wiFi": lambda n : setattr(self, 'wi_fi', n.get_enum_value(enablement.Enablement)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def infrared_camera(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the infraredCamera property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._infrared_camera
-    
-    @infrared_camera.setter
-    def infrared_camera(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the infraredCamera property value. Possible values of a property
-        Args:
-            value: Value to set for the infrared_camera property.
-        """
-        self._infrared_camera = value
-    
-    @property
-    def microphone(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the microphone property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._microphone
-    
-    @microphone.setter
-    def microphone(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the microphone property value. Possible values of a property
-        Args:
-            value: Value to set for the microphone property.
-        """
-        self._microphone = value
-    
-    @property
-    def microphones_and_speakers(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the microphonesAndSpeakers property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._microphones_and_speakers
-    
-    @microphones_and_speakers.setter
-    def microphones_and_speakers(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the microphonesAndSpeakers property value. Possible values of a property
-        Args:
-            value: Value to set for the microphones_and_speakers property.
-        """
-        self._microphones_and_speakers = value
-    
-    @property
-    def near_field_communication(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the nearFieldCommunication property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._near_field_communication
-    
-    @near_field_communication.setter
-    def near_field_communication(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the nearFieldCommunication property value. Possible values of a property
-        Args:
-            value: Value to set for the near_field_communication property.
-        """
-        self._near_field_communication = value
-    
-    @property
-    def radios(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the radios property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._radios
-    
-    @radios.setter
-    def radios(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the radios property value. Possible values of a property
-        Args:
-            value: Value to set for the radios property.
-        """
-        self._radios = value
-    
-    @property
-    def rear_camera(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the rearCamera property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._rear_camera
-    
-    @rear_camera.setter
-    def rear_camera(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the rearCamera property value. Possible values of a property
-        Args:
-            value: Value to set for the rear_camera property.
-        """
-        self._rear_camera = value
-    
-    @property
-    def sd_card(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the sdCard property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._sd_card
-    
-    @sd_card.setter
-    def sd_card(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the sdCard property value. Possible values of a property
-        Args:
-            value: Value to set for the sd_card property.
-        """
-        self._sd_card = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -330,8 +108,8 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("bluetooth", self.bluetooth)
         writer.write_enum_value("bootFromBuiltInNetworkAdapters", self.boot_from_built_in_network_adapters)
@@ -351,144 +129,8 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         writer.write_enum_value("virtualizationOfCpuAndIO", self.virtualization_of_cpu_and_i_o)
         writer.write_enum_value("wakeOnLAN", self.wake_on_l_a_n)
         writer.write_enum_value("wakeOnPower", self.wake_on_power)
+        writer.write_enum_value("wiFi", self.wi_fi)
         writer.write_enum_value("windowsPlatformBinaryTable", self.windows_platform_binary_table)
         writer.write_enum_value("wirelessWideAreaNetwork", self.wireless_wide_area_network)
-        writer.write_enum_value("wiFi", self.wi_fi)
-    
-    @property
-    def simultaneous_multi_threading(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the simultaneousMultiThreading property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._simultaneous_multi_threading
-    
-    @simultaneous_multi_threading.setter
-    def simultaneous_multi_threading(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the simultaneousMultiThreading property value. Possible values of a property
-        Args:
-            value: Value to set for the simultaneous_multi_threading property.
-        """
-        self._simultaneous_multi_threading = value
-    
-    @property
-    def usb_type_a_port(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the usbTypeAPort property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._usb_type_a_port
-    
-    @usb_type_a_port.setter
-    def usb_type_a_port(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the usbTypeAPort property value. Possible values of a property
-        Args:
-            value: Value to set for the usb_type_a_port property.
-        """
-        self._usb_type_a_port = value
-    
-    @property
-    def virtualization_of_cpu_and_i_o(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the virtualizationOfCpuAndIO property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._virtualization_of_cpu_and_i_o
-    
-    @virtualization_of_cpu_and_i_o.setter
-    def virtualization_of_cpu_and_i_o(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the virtualizationOfCpuAndIO property value. Possible values of a property
-        Args:
-            value: Value to set for the virtualization_of_cpu_and_i_o property.
-        """
-        self._virtualization_of_cpu_and_i_o = value
-    
-    @property
-    def wake_on_l_a_n(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the wakeOnLAN property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._wake_on_l_a_n
-    
-    @wake_on_l_a_n.setter
-    def wake_on_l_a_n(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the wakeOnLAN property value. Possible values of a property
-        Args:
-            value: Value to set for the wake_on_l_a_n property.
-        """
-        self._wake_on_l_a_n = value
-    
-    @property
-    def wake_on_power(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the wakeOnPower property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._wake_on_power
-    
-    @wake_on_power.setter
-    def wake_on_power(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the wakeOnPower property value. Possible values of a property
-        Args:
-            value: Value to set for the wake_on_power property.
-        """
-        self._wake_on_power = value
-    
-    @property
-    def wi_fi(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the wiFi property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._wi_fi
-    
-    @wi_fi.setter
-    def wi_fi(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the wiFi property value. Possible values of a property
-        Args:
-            value: Value to set for the wi_fi property.
-        """
-        self._wi_fi = value
-    
-    @property
-    def windows_platform_binary_table(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the windowsPlatformBinaryTable property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._windows_platform_binary_table
-    
-    @windows_platform_binary_table.setter
-    def windows_platform_binary_table(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the windowsPlatformBinaryTable property value. Possible values of a property
-        Args:
-            value: Value to set for the windows_platform_binary_table property.
-        """
-        self._windows_platform_binary_table = value
-    
-    @property
-    def wireless_wide_area_network(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the wirelessWideAreaNetwork property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._wireless_wide_area_network
-    
-    @wireless_wide_area_network.setter
-    def wireless_wide_area_network(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the wirelessWideAreaNetwork property value. Possible values of a property
-        Args:
-            value: Value to set for the wireless_wide_area_network property.
-        """
-        self._wireless_wide_area_network = value
     
 

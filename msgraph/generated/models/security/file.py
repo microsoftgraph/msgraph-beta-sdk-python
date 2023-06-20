@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,55 +10,34 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class File(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new file and sets the default values.
-        """
-        super().__init__()
-        # The content property
-        self._content: Optional[bytes] = None
-        # The dateTime property
-        self._date_time: Optional[datetime] = None
-        # The extension property
-        self._extension: Optional[str] = None
-        # The extractedTextContent property
-        self._extracted_text_content: Optional[bytes] = None
-        # The mediaType property
-        self._media_type: Optional[str] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The otherProperties property
-        self._other_properties: Optional[string_value_dictionary.StringValueDictionary] = None
-        # The processingStatus property
-        self._processing_status: Optional[file_processing_status.FileProcessingStatus] = None
-        # The senderOrAuthors property
-        self._sender_or_authors: Optional[List[str]] = None
-        # The size property
-        self._size: Optional[int] = None
-        # The sourceType property
-        self._source_type: Optional[source_type.SourceType] = None
-        # The subjectTitle property
-        self._subject_title: Optional[str] = None
-    
-    @property
-    def content(self,) -> Optional[bytes]:
-        """
-        Gets the content property value. The content property
-        Returns: Optional[bytes]
-        """
-        return self._content
-    
-    @content.setter
-    def content(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the content property value. The content property
-        Args:
-            value: Value to set for the content property.
-        """
-        self._content = value
+    # The content property
+    content: Optional[bytes] = None
+    # The dateTime property
+    date_time: Optional[datetime] = None
+    # The extension property
+    extension: Optional[str] = None
+    # The extractedTextContent property
+    extracted_text_content: Optional[bytes] = None
+    # The mediaType property
+    media_type: Optional[str] = None
+    # The name property
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The otherProperties property
+    other_properties: Optional[string_value_dictionary.StringValueDictionary] = None
+    # The processingStatus property
+    processing_status: Optional[file_processing_status.FileProcessingStatus] = None
+    # The senderOrAuthors property
+    sender_or_authors: Optional[List[str]] = None
+    # The size property
+    size: Optional[int] = None
+    # The sourceType property
+    source_type: Optional[source_type.SourceType] = None
+    # The subjectTitle property
+    subject_title: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> File:
@@ -67,73 +47,26 @@ class File(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: File
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.security.ediscoveryFile":
-                from . import ediscovery_file
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ediscoveryFile".casefold():
+            from . import ediscovery_file
 
-                return ediscovery_file.EdiscoveryFile()
+            return ediscovery_file.EdiscoveryFile()
         return File()
-    
-    @property
-    def date_time(self,) -> Optional[datetime]:
-        """
-        Gets the dateTime property value. The dateTime property
-        Returns: Optional[datetime]
-        """
-        return self._date_time
-    
-    @date_time.setter
-    def date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the dateTime property value. The dateTime property
-        Args:
-            value: Value to set for the date_time property.
-        """
-        self._date_time = value
-    
-    @property
-    def extension(self,) -> Optional[str]:
-        """
-        Gets the extension property value. The extension property
-        Returns: Optional[str]
-        """
-        return self._extension
-    
-    @extension.setter
-    def extension(self,value: Optional[str] = None) -> None:
-        """
-        Sets the extension property value. The extension property
-        Args:
-            value: Value to set for the extension property.
-        """
-        self._extension = value
-    
-    @property
-    def extracted_text_content(self,) -> Optional[bytes]:
-        """
-        Gets the extractedTextContent property value. The extractedTextContent property
-        Returns: Optional[bytes]
-        """
-        return self._extracted_text_content
-    
-    @extracted_text_content.setter
-    def extracted_text_content(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the extractedTextContent property value. The extractedTextContent property
-        Args:
-            value: Value to set for the extracted_text_content property.
-        """
-        self._extracted_text_content = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import ediscovery_file, file_processing_status, source_type, string_value_dictionary
+        from .. import entity
+
         from . import ediscovery_file, file_processing_status, source_type, string_value_dictionary
         from .. import entity
 
@@ -155,99 +88,14 @@ class File(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def media_type(self,) -> Optional[str]:
-        """
-        Gets the mediaType property value. The mediaType property
-        Returns: Optional[str]
-        """
-        return self._media_type
-    
-    @media_type.setter
-    def media_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the mediaType property value. The mediaType property
-        Args:
-            value: Value to set for the media_type property.
-        """
-        self._media_type = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name property
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name property
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def other_properties(self,) -> Optional[string_value_dictionary.StringValueDictionary]:
-        """
-        Gets the otherProperties property value. The otherProperties property
-        Returns: Optional[string_value_dictionary.StringValueDictionary]
-        """
-        return self._other_properties
-    
-    @other_properties.setter
-    def other_properties(self,value: Optional[string_value_dictionary.StringValueDictionary] = None) -> None:
-        """
-        Sets the otherProperties property value. The otherProperties property
-        Args:
-            value: Value to set for the other_properties property.
-        """
-        self._other_properties = value
-    
-    @property
-    def processing_status(self,) -> Optional[file_processing_status.FileProcessingStatus]:
-        """
-        Gets the processingStatus property value. The processingStatus property
-        Returns: Optional[file_processing_status.FileProcessingStatus]
-        """
-        return self._processing_status
-    
-    @processing_status.setter
-    def processing_status(self,value: Optional[file_processing_status.FileProcessingStatus] = None) -> None:
-        """
-        Sets the processingStatus property value. The processingStatus property
-        Args:
-            value: Value to set for the processing_status property.
-        """
-        self._processing_status = value
-    
-    @property
-    def sender_or_authors(self,) -> Optional[List[str]]:
-        """
-        Gets the senderOrAuthors property value. The senderOrAuthors property
-        Returns: Optional[List[str]]
-        """
-        return self._sender_or_authors
-    
-    @sender_or_authors.setter
-    def sender_or_authors(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the senderOrAuthors property value. The senderOrAuthors property
-        Args:
-            value: Value to set for the sender_or_authors property.
-        """
-        self._sender_or_authors = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("content", self.content)
         writer.write_datetime_value("dateTime", self.date_time)
@@ -261,56 +109,5 @@ class File(entity.Entity):
         writer.write_int_value("size", self.size)
         writer.write_enum_value("sourceType", self.source_type)
         writer.write_str_value("subjectTitle", self.subject_title)
-    
-    @property
-    def size(self,) -> Optional[int]:
-        """
-        Gets the size property value. The size property
-        Returns: Optional[int]
-        """
-        return self._size
-    
-    @size.setter
-    def size(self,value: Optional[int] = None) -> None:
-        """
-        Sets the size property value. The size property
-        Args:
-            value: Value to set for the size property.
-        """
-        self._size = value
-    
-    @property
-    def source_type(self,) -> Optional[source_type.SourceType]:
-        """
-        Gets the sourceType property value. The sourceType property
-        Returns: Optional[source_type.SourceType]
-        """
-        return self._source_type
-    
-    @source_type.setter
-    def source_type(self,value: Optional[source_type.SourceType] = None) -> None:
-        """
-        Sets the sourceType property value. The sourceType property
-        Args:
-            value: Value to set for the source_type property.
-        """
-        self._source_type = value
-    
-    @property
-    def subject_title(self,) -> Optional[str]:
-        """
-        Gets the subjectTitle property value. The subjectTitle property
-        Returns: Optional[str]
-        """
-        return self._subject_title
-    
-    @subject_title.setter
-    def subject_title(self,value: Optional[str] = None) -> None:
-        """
-        Sets the subjectTitle property value. The subjectTitle property
-        Args:
-            value: Value to set for the subject_title property.
-        """
-        self._subject_title = value
     
 

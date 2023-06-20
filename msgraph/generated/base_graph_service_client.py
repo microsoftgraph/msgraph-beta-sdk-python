@@ -29,7 +29,6 @@ if TYPE_CHECKING:
     from .authentication_methods_policy import authentication_methods_policy_request_builder
     from .booking_businesses import booking_businesses_request_builder
     from .booking_currencies import booking_currencies_request_builder
-    from .branding import branding_request_builder
     from .business_flow_templates import business_flow_templates_request_builder
     from .certificate_based_auth_configuration import certificate_based_auth_configuration_request_builder
     from .chats import chats_request_builder
@@ -79,6 +78,7 @@ if TYPE_CHECKING:
     from .message_traces import message_traces_request_builder
     from .mobility_management_policies import mobility_management_policies_request_builder
     from .monitoring import monitoring_request_builder
+    from .network_access import network_access_request_builder
     from .oauth2_permission_grants import oauth2_permission_grants_request_builder
     from .on_premises_publishing_profiles import on_premises_publishing_profiles_request_builder
     from .organization import organization_request_builder
@@ -134,8 +134,8 @@ class BaseGraphServiceClient():
         Args:
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Path parameters for the request
         self.path_parameters: Dict[str, Any] = {}
 
@@ -321,15 +321,6 @@ class BaseGraphServiceClient():
         from .booking_currencies import booking_currencies_request_builder
 
         return booking_currencies_request_builder.BookingCurrenciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def branding(self) -> branding_request_builder.BrandingRequestBuilder:
-        """
-        Provides operations to manage the organizationalBranding singleton.
-        """
-        from .branding import branding_request_builder
-
-        return branding_request_builder.BrandingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def business_flow_templates(self) -> business_flow_templates_request_builder.BusinessFlowTemplatesRequestBuilder:
@@ -771,6 +762,15 @@ class BaseGraphServiceClient():
         from .monitoring import monitoring_request_builder
 
         return monitoring_request_builder.MonitoringRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def network_access(self) -> network_access_request_builder.NetworkAccessRequestBuilder:
+        """
+        Provides operations to manage the networkAccessRoot singleton.
+        """
+        from .network_access import network_access_request_builder
+
+        return network_access_request_builder.NetworkAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def oauth2_permission_grants(self) -> oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder:

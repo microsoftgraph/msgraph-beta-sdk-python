@@ -1,6 +1,6 @@
 from enum import Enum
 
-class OwnerType(Enum):
+class OwnerType(str, Enum):
     # Unknown.
     Unknown = "unknown",
     # Owned by company.

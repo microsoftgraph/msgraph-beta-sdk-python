@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import access_package_resource_attribute_source
 
+@dataclass
 class AccessPackageResourceAttributeQuestion(access_package_resource_attribute_source.AccessPackageResourceAttributeSource):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AccessPackageResourceAttributeQuestion and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.accessPackageResourceAttributeQuestion"
-        # The question asked in order to get the value of the attribute
-        self._question: Optional[access_package_question.AccessPackageQuestion] = None
+    odata_type = "#microsoft.graph.accessPackageResourceAttributeQuestion"
+    # The question asked in order to get the value of the attribute
+    question: Optional[access_package_question.AccessPackageQuestion] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageResourceAttributeQuestion:
@@ -25,8 +22,8 @@ class AccessPackageResourceAttributeQuestion(access_package_resource_attribute_s
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AccessPackageResourceAttributeQuestion
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AccessPackageResourceAttributeQuestion()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,6 +33,8 @@ class AccessPackageResourceAttributeQuestion(access_package_resource_attribute_s
         """
         from . import access_package_question, access_package_resource_attribute_source
 
+        from . import access_package_question, access_package_resource_attribute_source
+
         fields: Dict[str, Callable[[Any], None]] = {
             "question": lambda n : setattr(self, 'question', n.get_object_value(access_package_question.AccessPackageQuestion)),
         }
@@ -43,31 +42,14 @@ class AccessPackageResourceAttributeQuestion(access_package_resource_attribute_s
         fields.update(super_fields)
         return fields
     
-    @property
-    def question(self,) -> Optional[access_package_question.AccessPackageQuestion]:
-        """
-        Gets the question property value. The question asked in order to get the value of the attribute
-        Returns: Optional[access_package_question.AccessPackageQuestion]
-        """
-        return self._question
-    
-    @question.setter
-    def question(self,value: Optional[access_package_question.AccessPackageQuestion] = None) -> None:
-        """
-        Sets the question property value. The question asked in order to get the value of the attribute
-        Args:
-            value: Value to set for the question property.
-        """
-        self._question = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("question", self.question)
     

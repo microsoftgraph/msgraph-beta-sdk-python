@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceAppManagementTaskStatus(Enum):
+class DeviceAppManagementTaskStatus(str, Enum):
     # State is undefined.
     Unknown = "unknown",
     # The task is ready for review.

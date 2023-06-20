@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -25,10 +25,10 @@ class PostponeRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/directory/impactedResources/{impactedResource%2Did}/postpone"
 
@@ -38,14 +38,14 @@ class PostponeRequestBuilder():
     
     async def post(self,body: Optional[postpone_post_request_body.PostponePostRequestBody] = None, request_configuration: Optional[PostponeRequestBuilderPostRequestConfiguration] = None) -> Optional[impacted_resource.ImpactedResource]:
         """
-        Invoke action postpone
+        Postpone action on an impactedResource object to a specified future date and time by marking its **status** as `postponed`. On the specified date and time, Azure AD will automatically mark the status of the **impactedResource** object to `active`.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[impacted_resource.ImpactedResource]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
@@ -63,14 +63,14 @@ class PostponeRequestBuilder():
     
     def to_post_request_information(self,body: Optional[postpone_post_request_body.PostponePostRequestBody] = None, request_configuration: Optional[PostponeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action postpone
+        Postpone action on an impactedResource object to a specified future date and time by marking its **status** as `postponed`. On the specified date and time, Azure AD will automatically mark the status of the **impactedResource** object to `active`.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ConnectionOperation(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ConnectionOperation and sets the default values.
-        """
-        super().__init__()
-        # The error property
-        self._error: Optional[public_error.PublicError] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[connection_operation_status.ConnectionOperationStatus] = None
+    # The error property
+    error: Optional[public_error.PublicError] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The status property
+    status: Optional[connection_operation_status.ConnectionOperationStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConnectionOperation:
@@ -28,32 +25,17 @@ class ConnectionOperation(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ConnectionOperation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ConnectionOperation()
-    
-    @property
-    def error(self,) -> Optional[public_error.PublicError]:
-        """
-        Gets the error property value. The error property
-        Returns: Optional[public_error.PublicError]
-        """
-        return self._error
-    
-    @error.setter
-    def error(self,value: Optional[public_error.PublicError] = None) -> None:
-        """
-        Sets the error property value. The error property
-        Args:
-            value: Value to set for the error property.
-        """
-        self._error = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import connection_operation_status, entity, public_error
+
         from . import connection_operation_status, entity, public_error
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -70,27 +52,10 @@ class ConnectionOperation(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("error", self.error)
         writer.write_enum_value("status", self.status)
-    
-    @property
-    def status(self,) -> Optional[connection_operation_status.ConnectionOperationStatus]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[connection_operation_status.ConnectionOperationStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[connection_operation_status.ConnectionOperationStatus] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,72 +8,51 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ComanagementEligibleDevice(entity.Entity):
     """
     Device Co-Management eligibility state
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new comanagementEligibleDevice and sets the default values.
-        """
-        super().__init__()
-        # Device registration status.
-        self._client_registration_status: Optional[device_registration_state.DeviceRegistrationState] = None
-        # DeviceName
-        self._device_name: Optional[str] = None
-        # Device type.
-        self._device_type: Optional[device_type.DeviceType] = None
-        # EntitySource
-        self._entity_source: Optional[int] = None
-        # Management agent type.
-        self._management_agents: Optional[management_agent_type.ManagementAgentType] = None
-        # Management state of device in Microsoft Intune.
-        self._management_state: Optional[management_state.ManagementState] = None
-        # Manufacturer
-        self._manufacturer: Optional[str] = None
-        # MDMStatus
-        self._mdm_status: Optional[str] = None
-        # Model
-        self._model: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # OSDescription
-        self._os_description: Optional[str] = None
-        # OSVersion
-        self._os_version: Optional[str] = None
-        # Owner type of device.
-        self._owner_type: Optional[owner_type.OwnerType] = None
-        # ReferenceId
-        self._reference_id: Optional[str] = None
-        # SerialNumber
-        self._serial_number: Optional[str] = None
-        # The status property
-        self._status: Optional[comanagement_eligible_type.ComanagementEligibleType] = None
-        # UPN
-        self._upn: Optional[str] = None
-        # UserEmail
-        self._user_email: Optional[str] = None
-        # UserId
-        self._user_id: Optional[str] = None
-        # UserName
-        self._user_name: Optional[str] = None
-    
-    @property
-    def client_registration_status(self,) -> Optional[device_registration_state.DeviceRegistrationState]:
-        """
-        Gets the clientRegistrationStatus property value. Device registration status.
-        Returns: Optional[device_registration_state.DeviceRegistrationState]
-        """
-        return self._client_registration_status
-    
-    @client_registration_status.setter
-    def client_registration_status(self,value: Optional[device_registration_state.DeviceRegistrationState] = None) -> None:
-        """
-        Sets the clientRegistrationStatus property value. Device registration status.
-        Args:
-            value: Value to set for the client_registration_status property.
-        """
-        self._client_registration_status = value
+    # Device registration status.
+    client_registration_status: Optional[device_registration_state.DeviceRegistrationState] = None
+    # DeviceName
+    device_name: Optional[str] = None
+    # Device type.
+    device_type: Optional[device_type.DeviceType] = None
+    # EntitySource
+    entity_source: Optional[int] = None
+    # Management agent type.
+    management_agents: Optional[management_agent_type.ManagementAgentType] = None
+    # Management state of device in Microsoft Intune.
+    management_state: Optional[management_state.ManagementState] = None
+    # Manufacturer
+    manufacturer: Optional[str] = None
+    # MDMStatus
+    mdm_status: Optional[str] = None
+    # Model
+    model: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # OSDescription
+    os_description: Optional[str] = None
+    # OSVersion
+    os_version: Optional[str] = None
+    # Owner type of device.
+    owner_type: Optional[owner_type.OwnerType] = None
+    # ReferenceId
+    reference_id: Optional[str] = None
+    # SerialNumber
+    serial_number: Optional[str] = None
+    # The status property
+    status: Optional[comanagement_eligible_type.ComanagementEligibleType] = None
+    # UPN
+    upn: Optional[str] = None
+    # UserEmail
+    user_email: Optional[str] = None
+    # UserId
+    user_id: Optional[str] = None
+    # UserName
+    user_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ComanagementEligibleDevice:
@@ -82,66 +62,17 @@ class ComanagementEligibleDevice(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ComanagementEligibleDevice
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ComanagementEligibleDevice()
-    
-    @property
-    def device_name(self,) -> Optional[str]:
-        """
-        Gets the deviceName property value. DeviceName
-        Returns: Optional[str]
-        """
-        return self._device_name
-    
-    @device_name.setter
-    def device_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceName property value. DeviceName
-        Args:
-            value: Value to set for the device_name property.
-        """
-        self._device_name = value
-    
-    @property
-    def device_type(self,) -> Optional[device_type.DeviceType]:
-        """
-        Gets the deviceType property value. Device type.
-        Returns: Optional[device_type.DeviceType]
-        """
-        return self._device_type
-    
-    @device_type.setter
-    def device_type(self,value: Optional[device_type.DeviceType] = None) -> None:
-        """
-        Sets the deviceType property value. Device type.
-        Args:
-            value: Value to set for the device_type property.
-        """
-        self._device_type = value
-    
-    @property
-    def entity_source(self,) -> Optional[int]:
-        """
-        Gets the entitySource property value. EntitySource
-        Returns: Optional[int]
-        """
-        return self._entity_source
-    
-    @entity_source.setter
-    def entity_source(self,value: Optional[int] = None) -> None:
-        """
-        Sets the entitySource property value. EntitySource
-        Args:
-            value: Value to set for the entity_source property.
-        """
-        self._entity_source = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import comanagement_eligible_type, device_registration_state, device_type, entity, management_agent_type, management_state, owner_type
+
         from . import comanagement_eligible_type, device_registration_state, device_type, entity, management_agent_type, management_state, owner_type
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -169,184 +100,14 @@ class ComanagementEligibleDevice(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def management_agents(self,) -> Optional[management_agent_type.ManagementAgentType]:
-        """
-        Gets the managementAgents property value. Management agent type.
-        Returns: Optional[management_agent_type.ManagementAgentType]
-        """
-        return self._management_agents
-    
-    @management_agents.setter
-    def management_agents(self,value: Optional[management_agent_type.ManagementAgentType] = None) -> None:
-        """
-        Sets the managementAgents property value. Management agent type.
-        Args:
-            value: Value to set for the management_agents property.
-        """
-        self._management_agents = value
-    
-    @property
-    def management_state(self,) -> Optional[management_state.ManagementState]:
-        """
-        Gets the managementState property value. Management state of device in Microsoft Intune.
-        Returns: Optional[management_state.ManagementState]
-        """
-        return self._management_state
-    
-    @management_state.setter
-    def management_state(self,value: Optional[management_state.ManagementState] = None) -> None:
-        """
-        Sets the managementState property value. Management state of device in Microsoft Intune.
-        Args:
-            value: Value to set for the management_state property.
-        """
-        self._management_state = value
-    
-    @property
-    def manufacturer(self,) -> Optional[str]:
-        """
-        Gets the manufacturer property value. Manufacturer
-        Returns: Optional[str]
-        """
-        return self._manufacturer
-    
-    @manufacturer.setter
-    def manufacturer(self,value: Optional[str] = None) -> None:
-        """
-        Sets the manufacturer property value. Manufacturer
-        Args:
-            value: Value to set for the manufacturer property.
-        """
-        self._manufacturer = value
-    
-    @property
-    def mdm_status(self,) -> Optional[str]:
-        """
-        Gets the mdmStatus property value. MDMStatus
-        Returns: Optional[str]
-        """
-        return self._mdm_status
-    
-    @mdm_status.setter
-    def mdm_status(self,value: Optional[str] = None) -> None:
-        """
-        Sets the mdmStatus property value. MDMStatus
-        Args:
-            value: Value to set for the mdm_status property.
-        """
-        self._mdm_status = value
-    
-    @property
-    def model(self,) -> Optional[str]:
-        """
-        Gets the model property value. Model
-        Returns: Optional[str]
-        """
-        return self._model
-    
-    @model.setter
-    def model(self,value: Optional[str] = None) -> None:
-        """
-        Sets the model property value. Model
-        Args:
-            value: Value to set for the model property.
-        """
-        self._model = value
-    
-    @property
-    def os_description(self,) -> Optional[str]:
-        """
-        Gets the osDescription property value. OSDescription
-        Returns: Optional[str]
-        """
-        return self._os_description
-    
-    @os_description.setter
-    def os_description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the osDescription property value. OSDescription
-        Args:
-            value: Value to set for the os_description property.
-        """
-        self._os_description = value
-    
-    @property
-    def os_version(self,) -> Optional[str]:
-        """
-        Gets the osVersion property value. OSVersion
-        Returns: Optional[str]
-        """
-        return self._os_version
-    
-    @os_version.setter
-    def os_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the osVersion property value. OSVersion
-        Args:
-            value: Value to set for the os_version property.
-        """
-        self._os_version = value
-    
-    @property
-    def owner_type(self,) -> Optional[owner_type.OwnerType]:
-        """
-        Gets the ownerType property value. Owner type of device.
-        Returns: Optional[owner_type.OwnerType]
-        """
-        return self._owner_type
-    
-    @owner_type.setter
-    def owner_type(self,value: Optional[owner_type.OwnerType] = None) -> None:
-        """
-        Sets the ownerType property value. Owner type of device.
-        Args:
-            value: Value to set for the owner_type property.
-        """
-        self._owner_type = value
-    
-    @property
-    def reference_id(self,) -> Optional[str]:
-        """
-        Gets the referenceId property value. ReferenceId
-        Returns: Optional[str]
-        """
-        return self._reference_id
-    
-    @reference_id.setter
-    def reference_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the referenceId property value. ReferenceId
-        Args:
-            value: Value to set for the reference_id property.
-        """
-        self._reference_id = value
-    
-    @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. SerialNumber
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. SerialNumber
-        Args:
-            value: Value to set for the serial_number property.
-        """
-        self._serial_number = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("clientRegistrationStatus", self.client_registration_status)
         writer.write_str_value("deviceName", self.device_name)
@@ -367,90 +128,5 @@ class ComanagementEligibleDevice(entity.Entity):
         writer.write_str_value("userEmail", self.user_email)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userName", self.user_name)
-    
-    @property
-    def status(self,) -> Optional[comanagement_eligible_type.ComanagementEligibleType]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[comanagement_eligible_type.ComanagementEligibleType]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[comanagement_eligible_type.ComanagementEligibleType] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def upn(self,) -> Optional[str]:
-        """
-        Gets the upn property value. UPN
-        Returns: Optional[str]
-        """
-        return self._upn
-    
-    @upn.setter
-    def upn(self,value: Optional[str] = None) -> None:
-        """
-        Sets the upn property value. UPN
-        Args:
-            value: Value to set for the upn property.
-        """
-        self._upn = value
-    
-    @property
-    def user_email(self,) -> Optional[str]:
-        """
-        Gets the userEmail property value. UserEmail
-        Returns: Optional[str]
-        """
-        return self._user_email
-    
-    @user_email.setter
-    def user_email(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userEmail property value. UserEmail
-        Args:
-            value: Value to set for the user_email property.
-        """
-        self._user_email = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. UserId
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. UserId
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
-    
-    @property
-    def user_name(self,) -> Optional[str]:
-        """
-        Gets the userName property value. UserName
-        Returns: Optional[str]
-        """
-        return self._user_name
-    
-    @user_name.setter
-    def user_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userName property value. UserName
-        Args:
-            value: Value to set for the user_name property.
-        """
-        self._user_name = value
     
 

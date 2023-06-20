@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import comms_operation
 
+@dataclass
 class MuteParticipantsOperation(comms_operation.CommsOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MuteParticipantsOperation and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The participants property
-        self._participants: Optional[List[str]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The participants property
+    participants: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MuteParticipantsOperation:
@@ -26,8 +23,8 @@ class MuteParticipantsOperation(comms_operation.CommsOperation):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: MuteParticipantsOperation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MuteParticipantsOperation()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,6 +34,8 @@ class MuteParticipantsOperation(comms_operation.CommsOperation):
         """
         from . import comms_operation
 
+        from . import comms_operation
+
         fields: Dict[str, Callable[[Any], None]] = {
             "participants": lambda n : setattr(self, 'participants', n.get_collection_of_primitive_values(str)),
         }
@@ -44,31 +43,14 @@ class MuteParticipantsOperation(comms_operation.CommsOperation):
         fields.update(super_fields)
         return fields
     
-    @property
-    def participants(self,) -> Optional[List[str]]:
-        """
-        Gets the participants property value. The participants property
-        Returns: Optional[List[str]]
-        """
-        return self._participants
-    
-    @participants.setter
-    def participants(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the participants property value. The participants property
-        Args:
-            value: Value to set for the participants property.
-        """
-        self._participants = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("participants", self.participants)
     

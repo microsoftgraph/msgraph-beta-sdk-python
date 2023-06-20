@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerAppAutoUpdatePolicyType(Enum):
+class AndroidDeviceOwnerAppAutoUpdatePolicyType(str, Enum):
     # Not configured; this value is ignored.
     NotConfigured = "notConfigured",
     # The user can control auto-updates.

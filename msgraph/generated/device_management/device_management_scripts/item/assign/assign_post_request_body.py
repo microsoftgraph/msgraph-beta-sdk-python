@@ -1,39 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import device_management_script_assignment, device_management_script_group_assignment
 
+@dataclass
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The deviceManagementScriptAssignments property
-        self._device_management_script_assignments: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]] = None
-        # The deviceManagementScriptGroupAssignments property
-        self._device_management_script_group_assignments: Optional[List[device_management_script_group_assignment.DeviceManagementScriptGroupAssignment]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The deviceManagementScriptAssignments property
+    device_management_script_assignments: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]] = None
+    # The deviceManagementScriptGroupAssignments property
+    device_management_script_group_assignments: Optional[List[device_management_script_group_assignment.DeviceManagementScriptGroupAssignment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignPostRequestBody:
@@ -43,49 +24,17 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AssignPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AssignPostRequestBody()
-    
-    @property
-    def device_management_script_assignments(self,) -> Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]]:
-        """
-        Gets the deviceManagementScriptAssignments property value. The deviceManagementScriptAssignments property
-        Returns: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]]
-        """
-        return self._device_management_script_assignments
-    
-    @device_management_script_assignments.setter
-    def device_management_script_assignments(self,value: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]] = None) -> None:
-        """
-        Sets the deviceManagementScriptAssignments property value. The deviceManagementScriptAssignments property
-        Args:
-            value: Value to set for the device_management_script_assignments property.
-        """
-        self._device_management_script_assignments = value
-    
-    @property
-    def device_management_script_group_assignments(self,) -> Optional[List[device_management_script_group_assignment.DeviceManagementScriptGroupAssignment]]:
-        """
-        Gets the deviceManagementScriptGroupAssignments property value. The deviceManagementScriptGroupAssignments property
-        Returns: Optional[List[device_management_script_group_assignment.DeviceManagementScriptGroupAssignment]]
-        """
-        return self._device_management_script_group_assignments
-    
-    @device_management_script_group_assignments.setter
-    def device_management_script_group_assignments(self,value: Optional[List[device_management_script_group_assignment.DeviceManagementScriptGroupAssignment]] = None) -> None:
-        """
-        Sets the deviceManagementScriptGroupAssignments property value. The deviceManagementScriptGroupAssignments property
-        Args:
-            value: Value to set for the device_management_script_group_assignments property.
-        """
-        self._device_management_script_group_assignments = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .....models import device_management_script_assignment, device_management_script_group_assignment
+
         from .....models import device_management_script_assignment, device_management_script_group_assignment
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -100,8 +49,8 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("deviceManagementScriptAssignments", self.device_management_script_assignments)
         writer.write_collection_of_object_values("deviceManagementScriptGroupAssignments", self.device_management_script_group_assignments)
         writer.write_additional_data_value(self.additional_data)

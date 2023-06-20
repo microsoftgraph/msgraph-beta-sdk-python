@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import add_content_footer_action, add_content_header_action, add_watermark_action, apply_label_action, custom_action, justify_action, metadata_action, protect_adhoc_action, protect_by_template_action, protect_do_not_forward_action, recommend_label_action, remove_content_footer_action, remove_content_header_action, remove_protection_action, remove_watermark_action
 
+@dataclass
 class InformationProtectionAction(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new informationProtectionAction and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InformationProtectionAction:
@@ -41,71 +22,72 @@ class InformationProtectionAction(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: InformationProtectionAction
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.security.addContentFooterAction":
-                from . import add_content_footer_action
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.addContentFooterAction".casefold():
+            from . import add_content_footer_action
 
-                return add_content_footer_action.AddContentFooterAction()
-            if mapping_value == "#microsoft.graph.security.addContentHeaderAction":
-                from . import add_content_header_action
+            return add_content_footer_action.AddContentFooterAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.addContentHeaderAction".casefold():
+            from . import add_content_header_action
 
-                return add_content_header_action.AddContentHeaderAction()
-            if mapping_value == "#microsoft.graph.security.addWatermarkAction":
-                from . import add_watermark_action
+            return add_content_header_action.AddContentHeaderAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.addWatermarkAction".casefold():
+            from . import add_watermark_action
 
-                return add_watermark_action.AddWatermarkAction()
-            if mapping_value == "#microsoft.graph.security.applyLabelAction":
-                from . import apply_label_action
+            return add_watermark_action.AddWatermarkAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.applyLabelAction".casefold():
+            from . import apply_label_action
 
-                return apply_label_action.ApplyLabelAction()
-            if mapping_value == "#microsoft.graph.security.customAction":
-                from . import custom_action
+            return apply_label_action.ApplyLabelAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.customAction".casefold():
+            from . import custom_action
 
-                return custom_action.CustomAction()
-            if mapping_value == "#microsoft.graph.security.justifyAction":
-                from . import justify_action
+            return custom_action.CustomAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.justifyAction".casefold():
+            from . import justify_action
 
-                return justify_action.JustifyAction()
-            if mapping_value == "#microsoft.graph.security.metadataAction":
-                from . import metadata_action
+            return justify_action.JustifyAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.metadataAction".casefold():
+            from . import metadata_action
 
-                return metadata_action.MetadataAction()
-            if mapping_value == "#microsoft.graph.security.protectAdhocAction":
-                from . import protect_adhoc_action
+            return metadata_action.MetadataAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.protectAdhocAction".casefold():
+            from . import protect_adhoc_action
 
-                return protect_adhoc_action.ProtectAdhocAction()
-            if mapping_value == "#microsoft.graph.security.protectByTemplateAction":
-                from . import protect_by_template_action
+            return protect_adhoc_action.ProtectAdhocAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.protectByTemplateAction".casefold():
+            from . import protect_by_template_action
 
-                return protect_by_template_action.ProtectByTemplateAction()
-            if mapping_value == "#microsoft.graph.security.protectDoNotForwardAction":
-                from . import protect_do_not_forward_action
+            return protect_by_template_action.ProtectByTemplateAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.protectDoNotForwardAction".casefold():
+            from . import protect_do_not_forward_action
 
-                return protect_do_not_forward_action.ProtectDoNotForwardAction()
-            if mapping_value == "#microsoft.graph.security.recommendLabelAction":
-                from . import recommend_label_action
+            return protect_do_not_forward_action.ProtectDoNotForwardAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.recommendLabelAction".casefold():
+            from . import recommend_label_action
 
-                return recommend_label_action.RecommendLabelAction()
-            if mapping_value == "#microsoft.graph.security.removeContentFooterAction":
-                from . import remove_content_footer_action
+            return recommend_label_action.RecommendLabelAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.removeContentFooterAction".casefold():
+            from . import remove_content_footer_action
 
-                return remove_content_footer_action.RemoveContentFooterAction()
-            if mapping_value == "#microsoft.graph.security.removeContentHeaderAction":
-                from . import remove_content_header_action
+            return remove_content_footer_action.RemoveContentFooterAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.removeContentHeaderAction".casefold():
+            from . import remove_content_header_action
 
-                return remove_content_header_action.RemoveContentHeaderAction()
-            if mapping_value == "#microsoft.graph.security.removeProtectionAction":
-                from . import remove_protection_action
+            return remove_content_header_action.RemoveContentHeaderAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.removeProtectionAction".casefold():
+            from . import remove_protection_action
 
-                return remove_protection_action.RemoveProtectionAction()
-            if mapping_value == "#microsoft.graph.security.removeWatermarkAction":
-                from . import remove_watermark_action
+            return remove_protection_action.RemoveProtectionAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.removeWatermarkAction".casefold():
+            from . import remove_watermark_action
 
-                return remove_watermark_action.RemoveWatermarkAction()
+            return remove_watermark_action.RemoveWatermarkAction()
         return InformationProtectionAction()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -115,27 +97,12 @@ class InformationProtectionAction(AdditionalDataHolder, Parsable):
         """
         from . import add_content_footer_action, add_content_header_action, add_watermark_action, apply_label_action, custom_action, justify_action, metadata_action, protect_adhoc_action, protect_by_template_action, protect_do_not_forward_action, recommend_label_action, remove_content_footer_action, remove_content_header_action, remove_protection_action, remove_watermark_action
 
+        from . import add_content_footer_action, add_content_header_action, add_watermark_action, apply_label_action, custom_action, justify_action, metadata_action, protect_adhoc_action, protect_by_template_action, protect_do_not_forward_action, recommend_label_action, remove_content_footer_action, remove_content_header_action, remove_protection_action, remove_watermark_action
+
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -143,8 +110,8 @@ class InformationProtectionAction(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,85 +9,33 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceAppManagementTask(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceAppManagementTask and sets the default values.
-        """
-        super().__init__()
-        # The name or email of the admin this task is assigned to.
-        self._assigned_to: Optional[str] = None
-        # Device app management task category.
-        self._category: Optional[device_app_management_task_category.DeviceAppManagementTaskCategory] = None
-        # The created date.
-        self._created_date_time: Optional[datetime] = None
-        # The email address of the creator.
-        self._creator: Optional[str] = None
-        # Notes from the creator.
-        self._creator_notes: Optional[str] = None
-        # The description.
-        self._description: Optional[str] = None
-        # The name.
-        self._display_name: Optional[str] = None
-        # The due date.
-        self._due_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Device app management task priority.
-        self._priority: Optional[device_app_management_task_priority.DeviceAppManagementTaskPriority] = None
-        # Device app management task status.
-        self._status: Optional[device_app_management_task_status.DeviceAppManagementTaskStatus] = None
-    
-    @property
-    def assigned_to(self,) -> Optional[str]:
-        """
-        Gets the assignedTo property value. The name or email of the admin this task is assigned to.
-        Returns: Optional[str]
-        """
-        return self._assigned_to
-    
-    @assigned_to.setter
-    def assigned_to(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assignedTo property value. The name or email of the admin this task is assigned to.
-        Args:
-            value: Value to set for the assigned_to property.
-        """
-        self._assigned_to = value
-    
-    @property
-    def category(self,) -> Optional[device_app_management_task_category.DeviceAppManagementTaskCategory]:
-        """
-        Gets the category property value. Device app management task category.
-        Returns: Optional[device_app_management_task_category.DeviceAppManagementTaskCategory]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[device_app_management_task_category.DeviceAppManagementTaskCategory] = None) -> None:
-        """
-        Sets the category property value. Device app management task category.
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The created date.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The created date.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    """
+    A device app management task.
+    """
+    # The name or email of the admin this task is assigned to.
+    assigned_to: Optional[str] = None
+    # Device app management task category.
+    category: Optional[device_app_management_task_category.DeviceAppManagementTaskCategory] = None
+    # The created date.
+    created_date_time: Optional[datetime] = None
+    # The email address of the creator.
+    creator: Optional[str] = None
+    # Notes from the creator.
+    creator_notes: Optional[str] = None
+    # The description.
+    description: Optional[str] = None
+    # The name.
+    display_name: Optional[str] = None
+    # The due date.
+    due_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Device app management task priority.
+    priority: Optional[device_app_management_task_priority.DeviceAppManagementTaskPriority] = None
+    # Device app management task status.
+    status: Optional[device_app_management_task_status.DeviceAppManagementTaskStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceAppManagementTask:
@@ -96,115 +45,33 @@ class DeviceAppManagementTask(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DeviceAppManagementTask
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.appVulnerabilityTask":
-                from . import app_vulnerability_task
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appVulnerabilityTask".casefold():
+            from . import app_vulnerability_task
 
-                return app_vulnerability_task.AppVulnerabilityTask()
-            if mapping_value == "#microsoft.graph.securityConfigurationTask":
-                from . import security_configuration_task
+            return app_vulnerability_task.AppVulnerabilityTask()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityConfigurationTask".casefold():
+            from . import security_configuration_task
 
-                return security_configuration_task.SecurityConfigurationTask()
-            if mapping_value == "#microsoft.graph.unmanagedDeviceDiscoveryTask":
-                from . import unmanaged_device_discovery_task
+            return security_configuration_task.SecurityConfigurationTask()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unmanagedDeviceDiscoveryTask".casefold():
+            from . import unmanaged_device_discovery_task
 
-                return unmanaged_device_discovery_task.UnmanagedDeviceDiscoveryTask()
+            return unmanaged_device_discovery_task.UnmanagedDeviceDiscoveryTask()
         return DeviceAppManagementTask()
-    
-    @property
-    def creator(self,) -> Optional[str]:
-        """
-        Gets the creator property value. The email address of the creator.
-        Returns: Optional[str]
-        """
-        return self._creator
-    
-    @creator.setter
-    def creator(self,value: Optional[str] = None) -> None:
-        """
-        Sets the creator property value. The email address of the creator.
-        Args:
-            value: Value to set for the creator property.
-        """
-        self._creator = value
-    
-    @property
-    def creator_notes(self,) -> Optional[str]:
-        """
-        Gets the creatorNotes property value. Notes from the creator.
-        Returns: Optional[str]
-        """
-        return self._creator_notes
-    
-    @creator_notes.setter
-    def creator_notes(self,value: Optional[str] = None) -> None:
-        """
-        Sets the creatorNotes property value. Notes from the creator.
-        Args:
-            value: Value to set for the creator_notes property.
-        """
-        self._creator_notes = value
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The name.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The name.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def due_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the dueDateTime property value. The due date.
-        Returns: Optional[datetime]
-        """
-        return self._due_date_time
-    
-    @due_date_time.setter
-    def due_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the dueDateTime property value. The due date.
-        Args:
-            value: Value to set for the due_date_time property.
-        """
-        self._due_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import app_vulnerability_task, device_app_management_task_category, device_app_management_task_priority, device_app_management_task_status, entity, security_configuration_task, unmanaged_device_discovery_task
+
         from . import app_vulnerability_task, device_app_management_task_category, device_app_management_task_priority, device_app_management_task_status, entity, security_configuration_task, unmanaged_device_discovery_task
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -223,31 +90,14 @@ class DeviceAppManagementTask(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def priority(self,) -> Optional[device_app_management_task_priority.DeviceAppManagementTaskPriority]:
-        """
-        Gets the priority property value. Device app management task priority.
-        Returns: Optional[device_app_management_task_priority.DeviceAppManagementTaskPriority]
-        """
-        return self._priority
-    
-    @priority.setter
-    def priority(self,value: Optional[device_app_management_task_priority.DeviceAppManagementTaskPriority] = None) -> None:
-        """
-        Sets the priority property value. Device app management task priority.
-        Args:
-            value: Value to set for the priority property.
-        """
-        self._priority = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("assignedTo", self.assigned_to)
         writer.write_enum_value("category", self.category)
@@ -259,22 +109,5 @@ class DeviceAppManagementTask(entity.Entity):
         writer.write_datetime_value("dueDateTime", self.due_date_time)
         writer.write_enum_value("priority", self.priority)
         writer.write_enum_value("status", self.status)
-    
-    @property
-    def status(self,) -> Optional[device_app_management_task_status.DeviceAppManagementTaskStatus]:
-        """
-        Gets the status property value. Device app management task status.
-        Returns: Optional[device_app_management_task_status.DeviceAppManagementTaskStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[device_app_management_task_status.DeviceAppManagementTaskStatus] = None) -> None:
-        """
-        Sets the status property value. Device app management task status.
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

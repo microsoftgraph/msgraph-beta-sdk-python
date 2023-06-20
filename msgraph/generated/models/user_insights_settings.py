@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserInsightsSettings(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userInsightsSettings and sets the default values.
-        """
-        super().__init__()
-        # true if user's itemInsights and meeting hours insights are enabled; false if user's itemInsights and meeting hours insights are disabled. Default is true. Optional.
-        self._is_enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # true if user's itemInsights and meeting hours insights are enabled; false if user's itemInsights and meeting hours insights are disabled. Default is true. Optional.
+    is_enabled: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserInsightsSettings:
@@ -26,8 +23,8 @@ class UserInsightsSettings(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: UserInsightsSettings
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UserInsightsSettings()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,6 +34,8 @@ class UserInsightsSettings(entity.Entity):
         """
         from . import entity
 
+        from . import entity
+
         fields: Dict[str, Callable[[Any], None]] = {
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
         }
@@ -44,31 +43,14 @@ class UserInsightsSettings(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isEnabled property value. true if user's itemInsights and meeting hours insights are enabled; false if user's itemInsights and meeting hours insights are disabled. Default is true. Optional.
-        Returns: Optional[bool]
-        """
-        return self._is_enabled
-    
-    @is_enabled.setter
-    def is_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEnabled property value. true if user's itemInsights and meeting hours insights are enabled; false if user's itemInsights and meeting hours insights are disabled. Default is true. Optional.
-        Args:
-            value: Value to set for the is_enabled property.
-        """
-        self._is_enabled = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("isEnabled", self.is_enabled)
     

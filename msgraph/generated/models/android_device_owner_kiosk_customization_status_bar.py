@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerKioskCustomizationStatusBar(Enum):
+class AndroidDeviceOwnerKioskCustomizationStatusBar(str, Enum):
     # Not configured; this value defaults to STATUS_BAR_UNSPECIFIED.
     NotConfigured = "notConfigured",
     # System info and notifications are shown on the status bar in kiosk mode.

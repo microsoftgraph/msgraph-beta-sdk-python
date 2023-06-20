@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SensitiveTypeSource(Enum):
+class SensitiveTypeSource(str, Enum):
     OutOfBox = "outOfBox",
     Tenant = "tenant",
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationGroupSettingInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate"
-        # Group Setting Value Template
-        self._group_setting_value_template: Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate] = None
+    odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate"
+    # Group Setting Value Template
+    group_setting_value_template: Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingInstanceTemplate:
@@ -25,8 +22,8 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_managemen
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationGroupSettingInstanceTemplate
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationGroupSettingInstanceTemplate()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,6 +33,8 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_managemen
         """
         from . import device_management_configuration_group_setting_value_template, device_management_configuration_setting_instance_template
 
+        from . import device_management_configuration_group_setting_value_template, device_management_configuration_setting_instance_template
+
         fields: Dict[str, Callable[[Any], None]] = {
             "groupSettingValueTemplate": lambda n : setattr(self, 'group_setting_value_template', n.get_object_value(device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate)),
         }
@@ -43,31 +42,14 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_managemen
         fields.update(super_fields)
         return fields
     
-    @property
-    def group_setting_value_template(self,) -> Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]:
-        """
-        Gets the groupSettingValueTemplate property value. Group Setting Value Template
-        Returns: Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate]
-        """
-        return self._group_setting_value_template
-    
-    @group_setting_value_template.setter
-    def group_setting_value_template(self,value: Optional[device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate] = None) -> None:
-        """
-        Sets the groupSettingValueTemplate property value. Group Setting Value Template
-        Args:
-            value: Value to set for the group_setting_value_template property.
-        """
-        self._group_setting_value_template = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("groupSettingValueTemplate", self.group_setting_value_template)
     

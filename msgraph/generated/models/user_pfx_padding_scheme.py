@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserPfxPaddingScheme(Enum):
+class UserPfxPaddingScheme(str, Enum):
     # Unknown padding Scheme.
     None_ = "none",
     # Pkcs1 is no longer supported

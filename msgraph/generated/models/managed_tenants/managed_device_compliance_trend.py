@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,83 +8,28 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class ManagedDeviceComplianceTrend(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedDeviceComplianceTrend and sets the default values.
-        """
-        super().__init__()
-        # The number of devices with a compliant status. Required. Read-only.
-        self._compliant_device_count: Optional[int] = None
-        # The number of devices manged by Configuration Manager. Required. Read-only.
-        self._config_manager_device_count: Optional[int] = None
-        # The date and time compliance snapshot was performed. Required. Read-only.
-        self._count_date_time: Optional[str] = None
-        # The number of devices with an error status. Required. Read-only.
-        self._error_device_count: Optional[int] = None
-        # The number of devices that are in a grace period status. Required. Read-only.
-        self._in_grace_period_device_count: Optional[int] = None
-        # The number of devices that are in a non-compliant status. Required. Read-only.
-        self._noncompliant_device_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The display name for the managed tenant. Optional. Read-only.
-        self._tenant_display_name: Optional[str] = None
-        # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        self._tenant_id: Optional[str] = None
-        # The number of devices in an unknown status. Required. Read-only.
-        self._unknown_device_count: Optional[int] = None
-    
-    @property
-    def compliant_device_count(self,) -> Optional[int]:
-        """
-        Gets the compliantDeviceCount property value. The number of devices with a compliant status. Required. Read-only.
-        Returns: Optional[int]
-        """
-        return self._compliant_device_count
-    
-    @compliant_device_count.setter
-    def compliant_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the compliantDeviceCount property value. The number of devices with a compliant status. Required. Read-only.
-        Args:
-            value: Value to set for the compliant_device_count property.
-        """
-        self._compliant_device_count = value
-    
-    @property
-    def config_manager_device_count(self,) -> Optional[int]:
-        """
-        Gets the configManagerDeviceCount property value. The number of devices manged by Configuration Manager. Required. Read-only.
-        Returns: Optional[int]
-        """
-        return self._config_manager_device_count
-    
-    @config_manager_device_count.setter
-    def config_manager_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the configManagerDeviceCount property value. The number of devices manged by Configuration Manager. Required. Read-only.
-        Args:
-            value: Value to set for the config_manager_device_count property.
-        """
-        self._config_manager_device_count = value
-    
-    @property
-    def count_date_time(self,) -> Optional[str]:
-        """
-        Gets the countDateTime property value. The date and time compliance snapshot was performed. Required. Read-only.
-        Returns: Optional[str]
-        """
-        return self._count_date_time
-    
-    @count_date_time.setter
-    def count_date_time(self,value: Optional[str] = None) -> None:
-        """
-        Sets the countDateTime property value. The date and time compliance snapshot was performed. Required. Read-only.
-        Args:
-            value: Value to set for the count_date_time property.
-        """
-        self._count_date_time = value
+    # The number of devices with a compliant status. Required. Read-only.
+    compliant_device_count: Optional[int] = None
+    # The number of devices manged by Configuration Manager. Required. Read-only.
+    config_manager_device_count: Optional[int] = None
+    # The date and time compliance snapshot was performed. Required. Read-only.
+    count_date_time: Optional[str] = None
+    # The number of devices with an error status. Required. Read-only.
+    error_device_count: Optional[int] = None
+    # The number of devices that are in a grace period status. Required. Read-only.
+    in_grace_period_device_count: Optional[int] = None
+    # The number of devices that are in a non-compliant status. Required. Read-only.
+    noncompliant_device_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The display name for the managed tenant. Optional. Read-only.
+    tenant_display_name: Optional[str] = None
+    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    tenant_id: Optional[str] = None
+    # The number of devices in an unknown status. Required. Read-only.
+    unknown_device_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedDeviceComplianceTrend:
@@ -93,32 +39,17 @@ class ManagedDeviceComplianceTrend(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ManagedDeviceComplianceTrend
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ManagedDeviceComplianceTrend()
-    
-    @property
-    def error_device_count(self,) -> Optional[int]:
-        """
-        Gets the errorDeviceCount property value. The number of devices with an error status. Required. Read-only.
-        Returns: Optional[int]
-        """
-        return self._error_device_count
-    
-    @error_device_count.setter
-    def error_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the errorDeviceCount property value. The number of devices with an error status. Required. Read-only.
-        Args:
-            value: Value to set for the error_device_count property.
-        """
-        self._error_device_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .. import entity
+
         from .. import entity
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -136,48 +67,14 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def in_grace_period_device_count(self,) -> Optional[int]:
-        """
-        Gets the inGracePeriodDeviceCount property value. The number of devices that are in a grace period status. Required. Read-only.
-        Returns: Optional[int]
-        """
-        return self._in_grace_period_device_count
-    
-    @in_grace_period_device_count.setter
-    def in_grace_period_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the inGracePeriodDeviceCount property value. The number of devices that are in a grace period status. Required. Read-only.
-        Args:
-            value: Value to set for the in_grace_period_device_count property.
-        """
-        self._in_grace_period_device_count = value
-    
-    @property
-    def noncompliant_device_count(self,) -> Optional[int]:
-        """
-        Gets the noncompliantDeviceCount property value. The number of devices that are in a non-compliant status. Required. Read-only.
-        Returns: Optional[int]
-        """
-        return self._noncompliant_device_count
-    
-    @noncompliant_device_count.setter
-    def noncompliant_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the noncompliantDeviceCount property value. The number of devices that are in a non-compliant status. Required. Read-only.
-        Args:
-            value: Value to set for the noncompliant_device_count property.
-        """
-        self._noncompliant_device_count = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("compliantDeviceCount", self.compliant_device_count)
         writer.write_int_value("configManagerDeviceCount", self.config_manager_device_count)
@@ -188,56 +85,5 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         writer.write_str_value("tenantDisplayName", self.tenant_display_name)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_int_value("unknownDeviceCount", self.unknown_device_count)
-    
-    @property
-    def tenant_display_name(self,) -> Optional[str]:
-        """
-        Gets the tenantDisplayName property value. The display name for the managed tenant. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._tenant_display_name
-    
-    @tenant_display_name.setter
-    def tenant_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantDisplayName property value. The display name for the managed tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the tenant_display_name property.
-        """
-        self._tenant_display_name = value
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
-    
-    @property
-    def unknown_device_count(self,) -> Optional[int]:
-        """
-        Gets the unknownDeviceCount property value. The number of devices in an unknown status. Required. Read-only.
-        Returns: Optional[int]
-        """
-        return self._unknown_device_count
-    
-    @unknown_device_count.setter
-    def unknown_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the unknownDeviceCount property value. The number of devices in an unknown status. Required. Read-only.
-        Args:
-            value: Value to set for the unknown_device_count property.
-        """
-        self._unknown_device_count = value
     
 

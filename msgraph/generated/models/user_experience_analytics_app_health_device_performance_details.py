@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,82 +9,27 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
     """
     The user experience analytics device performance entity contains device performance details.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAppHealthDevicePerformanceDetails and sets the default values.
-        """
-        super().__init__()
-        # The friendly name of the application for which the event occurred.
-        self._app_display_name: Optional[str] = None
-        # The publisher of the application.
-        self._app_publisher: Optional[str] = None
-        # The version of the application.
-        self._app_version: Optional[str] = None
-        # The name of the device.
-        self._device_display_name: Optional[str] = None
-        # The id of the device.
-        self._device_id: Optional[str] = None
-        # The time the event occurred.
-        self._event_date_time: Optional[datetime] = None
-        # The type of the event.
-        self._event_type: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def app_display_name(self,) -> Optional[str]:
-        """
-        Gets the appDisplayName property value. The friendly name of the application for which the event occurred.
-        Returns: Optional[str]
-        """
-        return self._app_display_name
-    
-    @app_display_name.setter
-    def app_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appDisplayName property value. The friendly name of the application for which the event occurred.
-        Args:
-            value: Value to set for the app_display_name property.
-        """
-        self._app_display_name = value
-    
-    @property
-    def app_publisher(self,) -> Optional[str]:
-        """
-        Gets the appPublisher property value. The publisher of the application.
-        Returns: Optional[str]
-        """
-        return self._app_publisher
-    
-    @app_publisher.setter
-    def app_publisher(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appPublisher property value. The publisher of the application.
-        Args:
-            value: Value to set for the app_publisher property.
-        """
-        self._app_publisher = value
-    
-    @property
-    def app_version(self,) -> Optional[str]:
-        """
-        Gets the appVersion property value. The version of the application.
-        Returns: Optional[str]
-        """
-        return self._app_version
-    
-    @app_version.setter
-    def app_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appVersion property value. The version of the application.
-        Args:
-            value: Value to set for the app_version property.
-        """
-        self._app_version = value
+    # The friendly name of the application for which the event occurred.
+    app_display_name: Optional[str] = None
+    # The publisher of the application.
+    app_publisher: Optional[str] = None
+    # The version of the application.
+    app_version: Optional[str] = None
+    # The name of the device.
+    device_display_name: Optional[str] = None
+    # The id of the device.
+    device_id: Optional[str] = None
+    # The time the event occurred.
+    event_date_time: Optional[datetime] = None
+    # The type of the event.
+    event_type: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAppHealthDevicePerformanceDetails:
@@ -93,83 +39,17 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: UserExperienceAnalyticsAppHealthDevicePerformanceDetails
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsAppHealthDevicePerformanceDetails()
-    
-    @property
-    def device_display_name(self,) -> Optional[str]:
-        """
-        Gets the deviceDisplayName property value. The name of the device.
-        Returns: Optional[str]
-        """
-        return self._device_display_name
-    
-    @device_display_name.setter
-    def device_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceDisplayName property value. The name of the device.
-        Args:
-            value: Value to set for the device_display_name property.
-        """
-        self._device_display_name = value
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The id of the device.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The id of the device.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
-    @property
-    def event_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the eventDateTime property value. The time the event occurred.
-        Returns: Optional[datetime]
-        """
-        return self._event_date_time
-    
-    @event_date_time.setter
-    def event_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the eventDateTime property value. The time the event occurred.
-        Args:
-            value: Value to set for the event_date_time property.
-        """
-        self._event_date_time = value
-    
-    @property
-    def event_type(self,) -> Optional[str]:
-        """
-        Gets the eventType property value. The type of the event.
-        Returns: Optional[str]
-        """
-        return self._event_type
-    
-    @event_type.setter
-    def event_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the eventType property value. The type of the event.
-        Args:
-            value: Value to set for the event_type property.
-        """
-        self._event_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity
+
         from . import entity
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -191,8 +71,8 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appPublisher", self.app_publisher)

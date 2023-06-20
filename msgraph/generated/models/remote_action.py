@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RemoteAction(Enum):
+class RemoteAction(str, Enum):
     # Indicate user initiates an unknown action.
     Unknown = "unknown",
     # Indicate user initiates an action to factory reset a device. 

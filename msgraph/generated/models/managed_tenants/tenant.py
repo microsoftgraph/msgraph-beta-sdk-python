@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,60 +10,22 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class Tenant(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new tenant and sets the default values.
-        """
-        super().__init__()
-        # The relationship details for the tenant with the managing entity.
-        self._contract: Optional[tenant_contract.TenantContract] = None
-        # The date and time the tenant was created in the multi-tenant management platform. Optional. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # The display name for the tenant. Required. Read-only.
-        self._display_name: Optional[str] = None
-        # The date and time the tenant was last updated within the multi-tenant management platform. Optional. Read-only.
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        self._tenant_id: Optional[str] = None
-        # The onboarding status information for the tenant. Optional. Read-only.
-        self._tenant_status_information: Optional[tenant_status_information.TenantStatusInformation] = None
-    
-    @property
-    def contract(self,) -> Optional[tenant_contract.TenantContract]:
-        """
-        Gets the contract property value. The relationship details for the tenant with the managing entity.
-        Returns: Optional[tenant_contract.TenantContract]
-        """
-        return self._contract
-    
-    @contract.setter
-    def contract(self,value: Optional[tenant_contract.TenantContract] = None) -> None:
-        """
-        Sets the contract property value. The relationship details for the tenant with the managing entity.
-        Args:
-            value: Value to set for the contract property.
-        """
-        self._contract = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time the tenant was created in the multi-tenant management platform. Optional. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time the tenant was created in the multi-tenant management platform. Optional. Read-only.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The relationship details for the tenant with the managing entity.
+    contract: Optional[tenant_contract.TenantContract] = None
+    # The date and time the tenant was created in the multi-tenant management platform. Optional. Read-only.
+    created_date_time: Optional[datetime] = None
+    # The display name for the tenant. Required. Read-only.
+    display_name: Optional[str] = None
+    # The date and time the tenant was last updated within the multi-tenant management platform. Optional. Read-only.
+    last_updated_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    tenant_id: Optional[str] = None
+    # The onboarding status information for the tenant. Optional. Read-only.
+    tenant_status_information: Optional[tenant_status_information.TenantStatusInformation] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Tenant:
@@ -72,32 +35,18 @@ class Tenant(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: Tenant
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Tenant()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name for the tenant. Required. Read-only.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name for the tenant. Required. Read-only.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import tenant_contract, tenant_status_information
+        from .. import entity
+
         from . import tenant_contract, tenant_status_information
         from .. import entity
 
@@ -113,31 +62,14 @@ class Tenant(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_updated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastUpdatedDateTime property value. The date and time the tenant was last updated within the multi-tenant management platform. Optional. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._last_updated_date_time
-    
-    @last_updated_date_time.setter
-    def last_updated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastUpdatedDateTime property value. The date and time the tenant was last updated within the multi-tenant management platform. Optional. Read-only.
-        Args:
-            value: Value to set for the last_updated_date_time property.
-        """
-        self._last_updated_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("contract", self.contract)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
@@ -145,39 +77,5 @@ class Tenant(entity.Entity):
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_object_value("tenantStatusInformation", self.tenant_status_information)
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
-    
-    @property
-    def tenant_status_information(self,) -> Optional[tenant_status_information.TenantStatusInformation]:
-        """
-        Gets the tenantStatusInformation property value. The onboarding status information for the tenant. Optional. Read-only.
-        Returns: Optional[tenant_status_information.TenantStatusInformation]
-        """
-        return self._tenant_status_information
-    
-    @tenant_status_information.setter
-    def tenant_status_information(self,value: Optional[tenant_status_information.TenantStatusInformation] = None) -> None:
-        """
-        Sets the tenantStatusInformation property value. The onboarding status information for the tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the tenant_status_information property.
-        """
-        self._tenant_status_information = value
     
 

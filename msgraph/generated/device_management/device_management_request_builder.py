@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -105,6 +105,7 @@ if TYPE_CHECKING:
     from .monitoring import monitoring_request_builder
     from .ndes_connectors import ndes_connectors_request_builder
     from .notification_message_templates import notification_message_templates_request_builder
+    from .privilege_management_elevations import privilege_management_elevations_request_builder
     from .remote_action_audits import remote_action_audits_request_builder
     from .remote_assistance_partners import remote_assistance_partners_request_builder
     from .remote_assistance_settings import remote_assistance_settings_request_builder
@@ -129,6 +130,7 @@ if TYPE_CHECKING:
     from .terms_and_conditions import terms_and_conditions_request_builder
     from .troubleshooting_events import troubleshooting_events_request_builder
     from .user_experience_analytics_anomaly import user_experience_analytics_anomaly_request_builder
+    from .user_experience_analytics_anomaly_correlation_group_overview import user_experience_analytics_anomaly_correlation_group_overview_request_builder
     from .user_experience_analytics_anomaly_device import user_experience_analytics_anomaly_device_request_builder
     from .user_experience_analytics_app_health_application_performance import user_experience_analytics_app_health_application_performance_request_builder
     from .user_experience_analytics_app_health_application_performance_by_app_version import user_experience_analytics_app_health_application_performance_by_app_version_request_builder
@@ -201,10 +203,10 @@ class DeviceManagementRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement{?%24select,%24expand}"
 
@@ -241,8 +243,8 @@ class DeviceManagementRequestBuilder():
             scope: Usage: scope='{scope}'
         Returns: get_effective_permissions_with_scope_request_builder.GetEffectivePermissionsWithScopeRequestBuilder
         """
-        if scope is None:
-            raise Exception("scope cannot be undefined")
+        if not scope:
+            raise TypeError("scope cannot be null.")
         from .get_effective_permissions_with_scope import get_effective_permissions_with_scope_request_builder
 
         return get_effective_permissions_with_scope_request_builder.GetEffectivePermissionsWithScopeRequestBuilder(self.request_adapter, self.path_parameters, scope)
@@ -254,8 +256,8 @@ class DeviceManagementRequestBuilder():
             ids: Usage: ids={ids}
         Returns: get_role_scope_tags_by_ids_with_ids_request_builder.GetRoleScopeTagsByIdsWithIdsRequestBuilder
         """
-        if ids is None:
-            raise Exception("ids cannot be undefined")
+        if not ids:
+            raise TypeError("ids cannot be null.")
         from .get_role_scope_tags_by_ids_with_ids import get_role_scope_tags_by_ids_with_ids_request_builder
 
         return get_role_scope_tags_by_ids_with_ids_request_builder.GetRoleScopeTagsByIdsWithIdsRequestBuilder(self.request_adapter, self.path_parameters, ids)
@@ -267,8 +269,8 @@ class DeviceManagementRequestBuilder():
             resource: Usage: resource='{resource}'
         Returns: get_role_scope_tags_by_resource_with_resource_request_builder.GetRoleScopeTagsByResourceWithResourceRequestBuilder
         """
-        if resource is None:
-            raise Exception("resource cannot be undefined")
+        if not resource:
+            raise TypeError("resource cannot be null.")
         from .get_role_scope_tags_by_resource_with_resource import get_role_scope_tags_by_resource_with_resource_request_builder
 
         return get_role_scope_tags_by_resource_with_resource_request_builder.GetRoleScopeTagsByResourceWithResourceRequestBuilder(self.request_adapter, self.path_parameters, resource)
@@ -280,8 +282,8 @@ class DeviceManagementRequestBuilder():
             enrollmentType: Usage: enrollmentType='{enrollmentType}'
         Returns: get_suggested_enrollment_limit_with_enrollment_type_request_builder.GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder
         """
-        if enrollment_type is None:
-            raise Exception("enrollment_type cannot be undefined")
+        if not enrollment_type:
+            raise TypeError("enrollment_type cannot be null.")
         from .get_suggested_enrollment_limit_with_enrollment_type import get_suggested_enrollment_limit_with_enrollment_type_request_builder
 
         return get_suggested_enrollment_limit_with_enrollment_type_request_builder.GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(self.request_adapter, self.path_parameters, enrollment_type)
@@ -294,8 +296,8 @@ class DeviceManagementRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[device_management.DeviceManagement]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
@@ -318,8 +320,8 @@ class DeviceManagementRequestBuilder():
             resource: Usage: resource='{resource}'
         Returns: scoped_for_resource_with_resource_request_builder.ScopedForResourceWithResourceRequestBuilder
         """
-        if resource is None:
-            raise Exception("resource cannot be undefined")
+        if not resource:
+            raise TypeError("resource cannot be null.")
         from .scoped_for_resource_with_resource import scoped_for_resource_with_resource_request_builder
 
         return scoped_for_resource_with_resource_request_builder.ScopedForResourceWithResourceRequestBuilder(self.request_adapter, self.path_parameters, resource)
@@ -350,8 +352,8 @@ class DeviceManagementRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -370,8 +372,8 @@ class DeviceManagementRequestBuilder():
             domainName: Usage: domainName='{domainName}'
         Returns: verify_windows_enrollment_auto_discovery_with_domain_name_request_builder.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder
         """
-        if domain_name is None:
-            raise Exception("domain_name cannot be undefined")
+        if not domain_name:
+            raise TypeError("domain_name cannot be null.")
         from .verify_windows_enrollment_auto_discovery_with_domain_name import verify_windows_enrollment_auto_discovery_with_domain_name_request_builder
 
         return verify_windows_enrollment_auto_discovery_with_domain_name_request_builder.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(self.request_adapter, self.path_parameters, domain_name)
@@ -1178,6 +1180,15 @@ class DeviceManagementRequestBuilder():
         return notification_message_templates_request_builder.NotificationMessageTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def privilege_management_elevations(self) -> privilege_management_elevations_request_builder.PrivilegeManagementElevationsRequestBuilder:
+        """
+        Provides operations to manage the privilegeManagementElevations property of the microsoft.graph.deviceManagement entity.
+        """
+        from .privilege_management_elevations import privilege_management_elevations_request_builder
+
+        return privilege_management_elevations_request_builder.PrivilegeManagementElevationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def remote_action_audits(self) -> remote_action_audits_request_builder.RemoteActionAuditsRequestBuilder:
         """
         Provides operations to manage the remoteActionAudits property of the microsoft.graph.deviceManagement entity.
@@ -1383,6 +1394,15 @@ class DeviceManagementRequestBuilder():
         from .user_experience_analytics_anomaly import user_experience_analytics_anomaly_request_builder
 
         return user_experience_analytics_anomaly_request_builder.UserExperienceAnalyticsAnomalyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_experience_analytics_anomaly_correlation_group_overview(self) -> user_experience_analytics_anomaly_correlation_group_overview_request_builder.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsAnomalyCorrelationGroupOverview property of the microsoft.graph.deviceManagement entity.
+        """
+        from .user_experience_analytics_anomaly_correlation_group_overview import user_experience_analytics_anomaly_correlation_group_overview_request_builder
+
+        return user_experience_analytics_anomaly_correlation_group_overview_request_builder.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_anomaly_device(self) -> user_experience_analytics_anomaly_device_request_builder.UserExperienceAnalyticsAnomalyDeviceRequestBuilder:
@@ -1927,8 +1947,8 @@ class DeviceManagementRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

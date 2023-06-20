@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SecureAssessmentAccountType(Enum):
+class SecureAssessmentAccountType(str, Enum):
     # Indicates an Azure AD account in format of AzureAD/username@tenant.com.
     AzureADAccount = "azureADAccount",
     # Indicates a domain account in format of domain/user or user@domain.com.

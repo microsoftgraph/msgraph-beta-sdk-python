@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ..models.o_data_errors import o_data_error
     from .administrative_units import administrative_units_request_builder
     from .attribute_sets import attribute_sets_request_builder
+    from .certificate_authorities import certificate_authorities_request_builder
     from .custom_security_attribute_definitions import custom_security_attribute_definitions_request_builder
     from .deleted_items import deleted_items_request_builder
     from .feature_rollout_policies import feature_rollout_policies_request_builder
@@ -24,6 +25,7 @@ if TYPE_CHECKING:
     from .outbound_shared_user_profiles import outbound_shared_user_profiles_request_builder
     from .recommendations import recommendations_request_builder
     from .shared_email_domains import shared_email_domains_request_builder
+    from .subscriptions import subscriptions_request_builder
 
 class DirectoryRequestBuilder():
     """
@@ -36,10 +38,10 @@ class DirectoryRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/directory{?%24select,%24expand}"
 
@@ -77,8 +79,8 @@ class DirectoryRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[directory.Directory]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
@@ -120,8 +122,8 @@ class DirectoryRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -150,6 +152,15 @@ class DirectoryRequestBuilder():
         from .attribute_sets import attribute_sets_request_builder
 
         return attribute_sets_request_builder.AttributeSetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def certificate_authorities(self) -> certificate_authorities_request_builder.CertificateAuthoritiesRequestBuilder:
+        """
+        Provides operations to manage the certificateAuthorities property of the microsoft.graph.directory entity.
+        """
+        from .certificate_authorities import certificate_authorities_request_builder
+
+        return certificate_authorities_request_builder.CertificateAuthoritiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def custom_security_attribute_definitions(self) -> custom_security_attribute_definitions_request_builder.CustomSecurityAttributeDefinitionsRequestBuilder:
@@ -241,6 +252,15 @@ class DirectoryRequestBuilder():
 
         return shared_email_domains_request_builder.SharedEmailDomainsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def subscriptions(self) -> subscriptions_request_builder.SubscriptionsRequestBuilder:
+        """
+        Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.
+        """
+        from .subscriptions import subscriptions_request_builder
+
+        return subscriptions_request_builder.SubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DirectoryRequestBuilderGetQueryParameters():
         """
@@ -253,8 +273,8 @@ class DirectoryRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

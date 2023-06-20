@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationWindowsSkus(Enum):
+class DeviceManagementConfigurationWindowsSkus(str, Enum):
     Unknown = "unknown",
     WindowsHome = "windowsHome",
     WindowsProfessional = "windowsProfessional",

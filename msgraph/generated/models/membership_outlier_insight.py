@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,61 +8,23 @@ if TYPE_CHECKING:
 
 from . import governance_insight
 
+@dataclass
 class MembershipOutlierInsight(governance_insight.GovernanceInsight):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MembershipOutlierInsight and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.membershipOutlierInsight"
-        # Navigation link to the container directory object. For example, to a group.
-        self._container: Optional[directory_object.DirectoryObject] = None
-        # Indicates the identifier of the container, for example, a group ID.
-        self._container_id: Optional[str] = None
-        # Navigation link to a member object who modified the record. For example, to a user.
-        self._last_modified_by: Optional[user.User] = None
-        # Navigation link to a member object. For example, to a user.
-        self._member: Optional[directory_object.DirectoryObject] = None
-        # Indicates the identifier of the user.
-        self._member_id: Optional[str] = None
-        # The outlierContainerType property
-        self._outlier_container_type: Optional[outlier_container_type.OutlierContainerType] = None
-        # The outlierMemberType property
-        self._outlier_member_type: Optional[outlier_member_type.OutlierMemberType] = None
-    
-    @property
-    def container(self,) -> Optional[directory_object.DirectoryObject]:
-        """
-        Gets the container property value. Navigation link to the container directory object. For example, to a group.
-        Returns: Optional[directory_object.DirectoryObject]
-        """
-        return self._container
-    
-    @container.setter
-    def container(self,value: Optional[directory_object.DirectoryObject] = None) -> None:
-        """
-        Sets the container property value. Navigation link to the container directory object. For example, to a group.
-        Args:
-            value: Value to set for the container property.
-        """
-        self._container = value
-    
-    @property
-    def container_id(self,) -> Optional[str]:
-        """
-        Gets the containerId property value. Indicates the identifier of the container, for example, a group ID.
-        Returns: Optional[str]
-        """
-        return self._container_id
-    
-    @container_id.setter
-    def container_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the containerId property value. Indicates the identifier of the container, for example, a group ID.
-        Args:
-            value: Value to set for the container_id property.
-        """
-        self._container_id = value
+    odata_type = "#microsoft.graph.membershipOutlierInsight"
+    # Navigation link to the container directory object. For example, to a group.
+    container: Optional[directory_object.DirectoryObject] = None
+    # Indicates the identifier of the container, for example, a group ID.
+    container_id: Optional[str] = None
+    # Navigation link to a member object who modified the record. For example, to a user.
+    last_modified_by: Optional[user.User] = None
+    # Navigation link to a member object. For example, to a user.
+    member: Optional[directory_object.DirectoryObject] = None
+    # Indicates the identifier of the user.
+    member_id: Optional[str] = None
+    # The outlierContainerType property
+    outlier_container_type: Optional[outlier_container_type.OutlierContainerType] = None
+    # The outlierMemberType property
+    outlier_member_type: Optional[outlier_member_type.OutlierMemberType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MembershipOutlierInsight:
@@ -71,8 +34,8 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: MembershipOutlierInsight
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MembershipOutlierInsight()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -80,6 +43,8 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import directory_object, governance_insight, outlier_container_type, outlier_member_type, user
+
         from . import directory_object, governance_insight, outlier_container_type, outlier_member_type, user
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -95,99 +60,14 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_modified_by(self,) -> Optional[user.User]:
-        """
-        Gets the lastModifiedBy property value. Navigation link to a member object who modified the record. For example, to a user.
-        Returns: Optional[user.User]
-        """
-        return self._last_modified_by
-    
-    @last_modified_by.setter
-    def last_modified_by(self,value: Optional[user.User] = None) -> None:
-        """
-        Sets the lastModifiedBy property value. Navigation link to a member object who modified the record. For example, to a user.
-        Args:
-            value: Value to set for the last_modified_by property.
-        """
-        self._last_modified_by = value
-    
-    @property
-    def member(self,) -> Optional[directory_object.DirectoryObject]:
-        """
-        Gets the member property value. Navigation link to a member object. For example, to a user.
-        Returns: Optional[directory_object.DirectoryObject]
-        """
-        return self._member
-    
-    @member.setter
-    def member(self,value: Optional[directory_object.DirectoryObject] = None) -> None:
-        """
-        Sets the member property value. Navigation link to a member object. For example, to a user.
-        Args:
-            value: Value to set for the member property.
-        """
-        self._member = value
-    
-    @property
-    def member_id(self,) -> Optional[str]:
-        """
-        Gets the memberId property value. Indicates the identifier of the user.
-        Returns: Optional[str]
-        """
-        return self._member_id
-    
-    @member_id.setter
-    def member_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the memberId property value. Indicates the identifier of the user.
-        Args:
-            value: Value to set for the member_id property.
-        """
-        self._member_id = value
-    
-    @property
-    def outlier_container_type(self,) -> Optional[outlier_container_type.OutlierContainerType]:
-        """
-        Gets the outlierContainerType property value. The outlierContainerType property
-        Returns: Optional[outlier_container_type.OutlierContainerType]
-        """
-        return self._outlier_container_type
-    
-    @outlier_container_type.setter
-    def outlier_container_type(self,value: Optional[outlier_container_type.OutlierContainerType] = None) -> None:
-        """
-        Sets the outlierContainerType property value. The outlierContainerType property
-        Args:
-            value: Value to set for the outlier_container_type property.
-        """
-        self._outlier_container_type = value
-    
-    @property
-    def outlier_member_type(self,) -> Optional[outlier_member_type.OutlierMemberType]:
-        """
-        Gets the outlierMemberType property value. The outlierMemberType property
-        Returns: Optional[outlier_member_type.OutlierMemberType]
-        """
-        return self._outlier_member_type
-    
-    @outlier_member_type.setter
-    def outlier_member_type(self,value: Optional[outlier_member_type.OutlierMemberType] = None) -> None:
-        """
-        Sets the outlierMemberType property value. The outlierMemberType property
-        Args:
-            value: Value to set for the outlier_member_type property.
-        """
-        self._outlier_member_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("container", self.container)
         writer.write_str_value("containerId", self.container_id)

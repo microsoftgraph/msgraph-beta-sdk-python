@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,10 +26,10 @@ class CustomAppScopesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/roleManagement/exchange/customAppScopes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -44,8 +44,8 @@ class CustomAppScopesRequestBuilder():
             custom_app_scope_id: Unique identifier of the item
         Returns: custom_app_scope_item_request_builder.CustomAppScopeItemRequestBuilder
         """
-        if custom_app_scope_id is None:
-            raise Exception("custom_app_scope_id cannot be undefined")
+        if not custom_app_scope_id:
+            raise TypeError("custom_app_scope_id cannot be null.")
         from .item import custom_app_scope_item_request_builder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
@@ -54,7 +54,7 @@ class CustomAppScopesRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomAppScopesRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_app_scope_collection_response.CustomAppScopeCollectionResponse]:
         """
-        Get customAppScopes from roleManagement
+        Get a list of customAppScope objects for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_app_scope_collection_response.CustomAppScopeCollectionResponse]
@@ -76,14 +76,14 @@ class CustomAppScopesRequestBuilder():
     
     async def post(self,body: Optional[custom_app_scope.CustomAppScope] = None, request_configuration: Optional[CustomAppScopesRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_app_scope.CustomAppScope]:
         """
-        Create new navigation property to customAppScopes for roleManagement
+        Create a new customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_app_scope.CustomAppScope]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
@@ -101,7 +101,7 @@ class CustomAppScopesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomAppScopesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get customAppScopes from roleManagement
+        Get a list of customAppScope objects for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,14 +119,14 @@ class CustomAppScopesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[custom_app_scope.CustomAppScope] = None, request_configuration: Optional[CustomAppScopesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to customAppScopes for roleManagement
+        Create a new customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -150,7 +150,7 @@ class CustomAppScopesRequestBuilder():
     @dataclass
     class CustomAppScopesRequestBuilderGetQueryParameters():
         """
-        Get customAppScopes from roleManagement
+        Get a list of customAppScope objects for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -159,8 +159,8 @@ class CustomAppScopesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

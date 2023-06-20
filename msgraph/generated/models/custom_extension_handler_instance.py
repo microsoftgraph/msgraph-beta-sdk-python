@@ -1,45 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import access_package_custom_extension_handler_status, access_package_custom_extension_stage
 
+@dataclass
 class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customExtensionHandlerInstance and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Identifier of the customAccessPackageWorkflowExtension triggered at this instance.
-        self._custom_extension_id: Optional[str] = None
-        # The unique run ID for the logic app.
-        self._external_correlation_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Indicates the stage of the request workflow when the access package custom extension runs. The possible values are: assignmentRequestCreated, assignmentRequestApproved, assignmentRequestGranted, assignmentRequestRemoved, assignmentFourteenDaysBeforeExpiration, assignmentOneDayBeforeExpiration, unknownFutureValue.
-        self._stage: Optional[access_package_custom_extension_stage.AccessPackageCustomExtensionStage] = None
-        # Status of the request to run the access package custom extension workflow that is associated with the logic app. The possible values are: requestSent, requestReceived, unknownFutureValue.
-        self._status: Optional[access_package_custom_extension_handler_status.AccessPackageCustomExtensionHandlerStatus] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Identifier of the customAccessPackageWorkflowExtension triggered at this instance.
+    custom_extension_id: Optional[str] = None
+    # The unique run ID for the logic app.
+    external_correlation_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Indicates the stage of the request workflow when the access package custom extension runs. The possible values are: assignmentRequestCreated, assignmentRequestApproved, assignmentRequestGranted, assignmentRequestRemoved, assignmentFourteenDaysBeforeExpiration, assignmentOneDayBeforeExpiration, unknownFutureValue.
+    stage: Optional[access_package_custom_extension_stage.AccessPackageCustomExtensionStage] = None
+    # Status of the request to run the access package custom extension workflow that is associated with the logic app. The possible values are: requestSent, requestReceived, unknownFutureValue.
+    status: Optional[access_package_custom_extension_handler_status.AccessPackageCustomExtensionHandlerStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomExtensionHandlerInstance:
@@ -49,49 +30,17 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: CustomExtensionHandlerInstance
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CustomExtensionHandlerInstance()
-    
-    @property
-    def custom_extension_id(self,) -> Optional[str]:
-        """
-        Gets the customExtensionId property value. Identifier of the customAccessPackageWorkflowExtension triggered at this instance.
-        Returns: Optional[str]
-        """
-        return self._custom_extension_id
-    
-    @custom_extension_id.setter
-    def custom_extension_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the customExtensionId property value. Identifier of the customAccessPackageWorkflowExtension triggered at this instance.
-        Args:
-            value: Value to set for the custom_extension_id property.
-        """
-        self._custom_extension_id = value
-    
-    @property
-    def external_correlation_id(self,) -> Optional[str]:
-        """
-        Gets the externalCorrelationId property value. The unique run ID for the logic app.
-        Returns: Optional[str]
-        """
-        return self._external_correlation_id
-    
-    @external_correlation_id.setter
-    def external_correlation_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the externalCorrelationId property value. The unique run ID for the logic app.
-        Args:
-            value: Value to set for the external_correlation_id property.
-        """
-        self._external_correlation_id = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import access_package_custom_extension_handler_status, access_package_custom_extension_stage
+
         from . import access_package_custom_extension_handler_status, access_package_custom_extension_stage
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -103,70 +52,19 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("customExtensionId", self.custom_extension_id)
         writer.write_str_value("externalCorrelationId", self.external_correlation_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("stage", self.stage)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def stage(self,) -> Optional[access_package_custom_extension_stage.AccessPackageCustomExtensionStage]:
-        """
-        Gets the stage property value. Indicates the stage of the request workflow when the access package custom extension runs. The possible values are: assignmentRequestCreated, assignmentRequestApproved, assignmentRequestGranted, assignmentRequestRemoved, assignmentFourteenDaysBeforeExpiration, assignmentOneDayBeforeExpiration, unknownFutureValue.
-        Returns: Optional[access_package_custom_extension_stage.AccessPackageCustomExtensionStage]
-        """
-        return self._stage
-    
-    @stage.setter
-    def stage(self,value: Optional[access_package_custom_extension_stage.AccessPackageCustomExtensionStage] = None) -> None:
-        """
-        Sets the stage property value. Indicates the stage of the request workflow when the access package custom extension runs. The possible values are: assignmentRequestCreated, assignmentRequestApproved, assignmentRequestGranted, assignmentRequestRemoved, assignmentFourteenDaysBeforeExpiration, assignmentOneDayBeforeExpiration, unknownFutureValue.
-        Args:
-            value: Value to set for the stage property.
-        """
-        self._stage = value
-    
-    @property
-    def status(self,) -> Optional[access_package_custom_extension_handler_status.AccessPackageCustomExtensionHandlerStatus]:
-        """
-        Gets the status property value. Status of the request to run the access package custom extension workflow that is associated with the logic app. The possible values are: requestSent, requestReceived, unknownFutureValue.
-        Returns: Optional[access_package_custom_extension_handler_status.AccessPackageCustomExtensionHandlerStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[access_package_custom_extension_handler_status.AccessPackageCustomExtensionHandlerStatus] = None) -> None:
-        """
-        Sets the status property value. Status of the request to run the access package custom extension workflow that is associated with the logic app. The possible values are: requestSent, requestReceived, unknownFutureValue.
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

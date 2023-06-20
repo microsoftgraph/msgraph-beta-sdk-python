@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,32 +9,11 @@ if TYPE_CHECKING:
 
 from . import activity_statistics
 
+@dataclass
 class CallActivityStatistics(activity_statistics.ActivityStatistics):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CallActivityStatistics and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.callActivityStatistics"
-        # Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        self._after_hours: Optional[timedelta] = None
-    
-    @property
-    def after_hours(self,) -> Optional[timedelta]:
-        """
-        Gets the afterHours property value. Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        Returns: Optional[timedelta]
-        """
-        return self._after_hours
-    
-    @after_hours.setter
-    def after_hours(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the afterHours property value. Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        Args:
-            value: Value to set for the after_hours property.
-        """
-        self._after_hours = value
+    odata_type = "#microsoft.graph.callActivityStatistics"
+    # Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
+    after_hours: Optional[timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CallActivityStatistics:
@@ -43,8 +23,8 @@ class CallActivityStatistics(activity_statistics.ActivityStatistics):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: CallActivityStatistics
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CallActivityStatistics()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -52,6 +32,8 @@ class CallActivityStatistics(activity_statistics.ActivityStatistics):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import activity_statistics
+
         from . import activity_statistics
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -67,8 +49,8 @@ class CallActivityStatistics(activity_statistics.ActivityStatistics):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_timedelta_value("afterHours", self.after_hours)
     

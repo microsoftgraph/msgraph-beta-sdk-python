@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,34 +9,30 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class GroupPolicyDefinitionFile(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new groupPolicyDefinitionFile and sets the default values.
-        """
-        super().__init__()
-        # The group policy definitions associated with the file.
-        self._definitions: Optional[List[group_policy_definition.GroupPolicyDefinition]] = None
-        # The localized description of the policy settings in the ADMX file. The default value is empty.
-        self._description: Optional[str] = None
-        # The localized friendly name of the ADMX file.
-        self._display_name: Optional[str] = None
-        # The file name of the ADMX file without the path. For example: edge.admx
-        self._file_name: Optional[str] = None
-        # The supported language codes for the ADMX file.
-        self._language_codes: Optional[List[str]] = None
-        # The date and time the entity was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Type of Group Policy File or Definition.
-        self._policy_type: Optional[group_policy_type.GroupPolicyType] = None
-        # The revision version associated with the file.
-        self._revision: Optional[str] = None
-        # Specifies the URI used to identify the namespace within the ADMX file.
-        self._target_namespace: Optional[str] = None
-        # Specifies the logical name that refers to the namespace within the ADMX file.
-        self._target_prefix: Optional[str] = None
+    # The group policy definitions associated with the file.
+    definitions: Optional[List[group_policy_definition.GroupPolicyDefinition]] = None
+    # The localized description of the policy settings in the ADMX file. The default value is empty.
+    description: Optional[str] = None
+    # The localized friendly name of the ADMX file.
+    display_name: Optional[str] = None
+    # The file name of the ADMX file without the path. For example: edge.admx
+    file_name: Optional[str] = None
+    # The supported language codes for the ADMX file.
+    language_codes: Optional[List[str]] = None
+    # The date and time the entity was last modified.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Type of Group Policy File or Definition.
+    policy_type: Optional[group_policy_type.GroupPolicyType] = None
+    # The revision version associated with the file.
+    revision: Optional[str] = None
+    # Specifies the URI used to identify the namespace within the ADMX file.
+    target_namespace: Optional[str] = None
+    # Specifies the logical name that refers to the namespace within the ADMX file.
+    target_prefix: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyDefinitionFile:
@@ -45,90 +42,25 @@ class GroupPolicyDefinitionFile(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: GroupPolicyDefinitionFile
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.groupPolicyUploadedDefinitionFile":
-                from . import group_policy_uploaded_definition_file
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyUploadedDefinitionFile".casefold():
+            from . import group_policy_uploaded_definition_file
 
-                return group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile()
+            return group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile()
         return GroupPolicyDefinitionFile()
-    
-    @property
-    def definitions(self,) -> Optional[List[group_policy_definition.GroupPolicyDefinition]]:
-        """
-        Gets the definitions property value. The group policy definitions associated with the file.
-        Returns: Optional[List[group_policy_definition.GroupPolicyDefinition]]
-        """
-        return self._definitions
-    
-    @definitions.setter
-    def definitions(self,value: Optional[List[group_policy_definition.GroupPolicyDefinition]] = None) -> None:
-        """
-        Sets the definitions property value. The group policy definitions associated with the file.
-        Args:
-            value: Value to set for the definitions property.
-        """
-        self._definitions = value
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The localized description of the policy settings in the ADMX file. The default value is empty.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The localized description of the policy settings in the ADMX file. The default value is empty.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The localized friendly name of the ADMX file.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The localized friendly name of the ADMX file.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def file_name(self,) -> Optional[str]:
-        """
-        Gets the fileName property value. The file name of the ADMX file without the path. For example: edge.admx
-        Returns: Optional[str]
-        """
-        return self._file_name
-    
-    @file_name.setter
-    def file_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fileName property value. The file name of the ADMX file without the path. For example: edge.admx
-        Args:
-            value: Value to set for the file_name property.
-        """
-        self._file_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity, group_policy_definition, group_policy_type, group_policy_uploaded_definition_file
+
         from . import entity, group_policy_definition, group_policy_type, group_policy_uploaded_definition_file
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -147,82 +79,14 @@ class GroupPolicyDefinitionFile(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def language_codes(self,) -> Optional[List[str]]:
-        """
-        Gets the languageCodes property value. The supported language codes for the ADMX file.
-        Returns: Optional[List[str]]
-        """
-        return self._language_codes
-    
-    @language_codes.setter
-    def language_codes(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the languageCodes property value. The supported language codes for the ADMX file.
-        Args:
-            value: Value to set for the language_codes property.
-        """
-        self._language_codes = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date and time the entity was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def policy_type(self,) -> Optional[group_policy_type.GroupPolicyType]:
-        """
-        Gets the policyType property value. Type of Group Policy File or Definition.
-        Returns: Optional[group_policy_type.GroupPolicyType]
-        """
-        return self._policy_type
-    
-    @policy_type.setter
-    def policy_type(self,value: Optional[group_policy_type.GroupPolicyType] = None) -> None:
-        """
-        Sets the policyType property value. Type of Group Policy File or Definition.
-        Args:
-            value: Value to set for the policy_type property.
-        """
-        self._policy_type = value
-    
-    @property
-    def revision(self,) -> Optional[str]:
-        """
-        Gets the revision property value. The revision version associated with the file.
-        Returns: Optional[str]
-        """
-        return self._revision
-    
-    @revision.setter
-    def revision(self,value: Optional[str] = None) -> None:
-        """
-        Sets the revision property value. The revision version associated with the file.
-        Args:
-            value: Value to set for the revision property.
-        """
-        self._revision = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("definitions", self.definitions)
         writer.write_str_value("description", self.description)
@@ -234,39 +98,5 @@ class GroupPolicyDefinitionFile(entity.Entity):
         writer.write_str_value("revision", self.revision)
         writer.write_str_value("targetNamespace", self.target_namespace)
         writer.write_str_value("targetPrefix", self.target_prefix)
-    
-    @property
-    def target_namespace(self,) -> Optional[str]:
-        """
-        Gets the targetNamespace property value. Specifies the URI used to identify the namespace within the ADMX file.
-        Returns: Optional[str]
-        """
-        return self._target_namespace
-    
-    @target_namespace.setter
-    def target_namespace(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetNamespace property value. Specifies the URI used to identify the namespace within the ADMX file.
-        Args:
-            value: Value to set for the target_namespace property.
-        """
-        self._target_namespace = value
-    
-    @property
-    def target_prefix(self,) -> Optional[str]:
-        """
-        Gets the targetPrefix property value. Specifies the logical name that refers to the namespace within the ADMX file.
-        Returns: Optional[str]
-        """
-        return self._target_prefix
-    
-    @target_prefix.setter
-    def target_prefix(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetPrefix property value. Specifies the logical name that refers to the namespace within the ADMX file.
-        Args:
-            value: Value to set for the target_prefix property.
-        """
-        self._target_prefix = value
     
 

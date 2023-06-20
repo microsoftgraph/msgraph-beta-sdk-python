@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,35 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class CloudPcProvisioningPolicyAssignment(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcProvisioningPolicyAssignment and sets the default values.
-        """
-        super().__init__()
-        # The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
-        self._assigned_users: Optional[List[user.User]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The assignment target for the provisioning policy. Currently, the only target supported for this policy is a user group. For details, see cloudPcManagementGroupAssignmentTarget.
-        self._target: Optional[cloud_pc_management_assignment_target.CloudPcManagementAssignmentTarget] = None
-    
-    @property
-    def assigned_users(self,) -> Optional[List[user.User]]:
-        """
-        Gets the assignedUsers property value. The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
-        Returns: Optional[List[user.User]]
-        """
-        return self._assigned_users
-    
-    @assigned_users.setter
-    def assigned_users(self,value: Optional[List[user.User]] = None) -> None:
-        """
-        Sets the assignedUsers property value. The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
-        Args:
-            value: Value to set for the assigned_users property.
-        """
-        self._assigned_users = value
+    # The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
+    assigned_users: Optional[List[user.User]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The assignment target for the provisioning policy. Currently, the only target supported for this policy is a user group. For details, see cloudPcManagementGroupAssignmentTarget.
+    target: Optional[cloud_pc_management_assignment_target.CloudPcManagementAssignmentTarget] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcProvisioningPolicyAssignment:
@@ -45,8 +25,8 @@ class CloudPcProvisioningPolicyAssignment(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: CloudPcProvisioningPolicyAssignment
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CloudPcProvisioningPolicyAssignment()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -54,6 +34,8 @@ class CloudPcProvisioningPolicyAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import cloud_pc_management_assignment_target, entity, user
+
         from . import cloud_pc_management_assignment_target, entity, user
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -70,27 +52,10 @@ class CloudPcProvisioningPolicyAssignment(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("assignedUsers", self.assigned_users)
         writer.write_object_value("target", self.target)
-    
-    @property
-    def target(self,) -> Optional[cloud_pc_management_assignment_target.CloudPcManagementAssignmentTarget]:
-        """
-        Gets the target property value. The assignment target for the provisioning policy. Currently, the only target supported for this policy is a user group. For details, see cloudPcManagementGroupAssignmentTarget.
-        Returns: Optional[cloud_pc_management_assignment_target.CloudPcManagementAssignmentTarget]
-        """
-        return self._target
-    
-    @target.setter
-    def target(self,value: Optional[cloud_pc_management_assignment_target.CloudPcManagementAssignmentTarget] = None) -> None:
-        """
-        Sets the target property value. The assignment target for the provisioning policy. Currently, the only target supported for this policy is a user group. For details, see cloudPcManagementGroupAssignmentTarget.
-        Args:
-            value: Value to set for the target property.
-        """
-        self._target = value
     
 

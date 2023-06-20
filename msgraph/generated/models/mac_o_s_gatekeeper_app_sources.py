@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSGatekeeperAppSources(Enum):
+class MacOSGatekeeperAppSources(str, Enum):
     # Device default value, no intent.
     NotConfigured = "notConfigured",
     # Only apps from the Mac AppStore can be run.

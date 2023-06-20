@@ -1,6 +1,6 @@
 from enum import Enum
 
-class GroupPolicySettingType(Enum):
+class GroupPolicySettingType(str, Enum):
     # GroupPolicySettingType unknown
     Unknown = "unknown",
     # Policy setting type

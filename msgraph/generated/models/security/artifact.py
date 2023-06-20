@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,14 +9,10 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class Artifact(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new artifact and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Artifact:
@@ -25,43 +22,44 @@ class Artifact(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: Artifact
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.security.host":
-                from . import host
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.host".casefold():
+            from . import host
 
-                return host.Host()
-            if mapping_value == "#microsoft.graph.security.hostComponent":
-                from . import host_component
+            return host.Host()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostComponent".casefold():
+            from . import host_component
 
-                return host_component.HostComponent()
-            if mapping_value == "#microsoft.graph.security.hostCookie":
-                from . import host_cookie
+            return host_component.HostComponent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostCookie".casefold():
+            from . import host_cookie
 
-                return host_cookie.HostCookie()
-            if mapping_value == "#microsoft.graph.security.hostname":
-                from . import hostname
+            return host_cookie.HostCookie()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostname".casefold():
+            from . import hostname
 
-                return hostname.Hostname()
-            if mapping_value == "#microsoft.graph.security.hostTracker":
-                from . import host_tracker
+            return hostname.Hostname()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostTracker".casefold():
+            from . import host_tracker
 
-                return host_tracker.HostTracker()
-            if mapping_value == "#microsoft.graph.security.ipAddress":
-                from . import ip_address
+            return host_tracker.HostTracker()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ipAddress".casefold():
+            from . import ip_address
 
-                return ip_address.IpAddress()
-            if mapping_value == "#microsoft.graph.security.passiveDnsRecord":
-                from . import passive_dns_record
+            return ip_address.IpAddress()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.passiveDnsRecord".casefold():
+            from . import passive_dns_record
 
-                return passive_dns_record.PassiveDnsRecord()
-            if mapping_value == "#microsoft.graph.security.unclassifiedArtifact":
-                from . import unclassified_artifact
+            return passive_dns_record.PassiveDnsRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.unclassifiedArtifact".casefold():
+            from . import unclassified_artifact
 
-                return unclassified_artifact.UnclassifiedArtifact()
+            return unclassified_artifact.UnclassifiedArtifact()
         return Artifact()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -69,6 +67,9 @@ class Artifact(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import host, hostname, host_component, host_cookie, host_tracker, ip_address, passive_dns_record, unclassified_artifact
+        from .. import entity
+
         from . import host, hostname, host_component, host_cookie, host_tracker, ip_address, passive_dns_record, unclassified_artifact
         from .. import entity
 
@@ -84,8 +85,8 @@ class Artifact(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

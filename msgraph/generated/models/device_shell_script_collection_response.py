@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,14 +8,10 @@ if TYPE_CHECKING:
 
 from . import base_collection_pagination_count_response
 
+@dataclass
 class DeviceShellScriptCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceShellScriptCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[device_shell_script.DeviceShellScript]] = None
+    # The value property
+    value: Optional[List[device_shell_script.DeviceShellScript]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceShellScriptCollectionResponse:
@@ -24,8 +21,8 @@ class DeviceShellScriptCollectionResponse(base_collection_pagination_count_respo
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DeviceShellScriptCollectionResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceShellScriptCollectionResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -33,6 +30,8 @@ class DeviceShellScriptCollectionResponse(base_collection_pagination_count_respo
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import base_collection_pagination_count_response, device_shell_script
+
         from . import base_collection_pagination_count_response, device_shell_script
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -48,26 +47,9 @@ class DeviceShellScriptCollectionResponse(base_collection_pagination_count_respo
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[device_shell_script.DeviceShellScript]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[device_shell_script.DeviceShellScript]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[device_shell_script.DeviceShellScript]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

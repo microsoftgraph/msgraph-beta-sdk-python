@@ -1,60 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models import governance_schedule
 
+@dataclass
 class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateRequestPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The assignmentState property
-        self._assignment_state: Optional[str] = None
-        # The decision property
-        self._decision: Optional[str] = None
-        # The reason property
-        self._reason: Optional[str] = None
-        # The schedule property
-        self._schedule: Optional[governance_schedule.GovernanceSchedule] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def assignment_state(self,) -> Optional[str]:
-        """
-        Gets the assignmentState property value. The assignmentState property
-        Returns: Optional[str]
-        """
-        return self._assignment_state
-    
-    @assignment_state.setter
-    def assignment_state(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assignmentState property value. The assignmentState property
-        Args:
-            value: Value to set for the assignment_state property.
-        """
-        self._assignment_state = value
+    # The assignmentState property
+    assignment_state: Optional[str] = None
+    # The decision property
+    decision: Optional[str] = None
+    # The reason property
+    reason: Optional[str] = None
+    # The schedule property
+    schedule: Optional[governance_schedule.GovernanceSchedule] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateRequestPostRequestBody:
@@ -64,32 +28,17 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: UpdateRequestPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UpdateRequestPostRequestBody()
-    
-    @property
-    def decision(self,) -> Optional[str]:
-        """
-        Gets the decision property value. The decision property
-        Returns: Optional[str]
-        """
-        return self._decision
-    
-    @decision.setter
-    def decision(self,value: Optional[str] = None) -> None:
-        """
-        Sets the decision property value. The decision property
-        Args:
-            value: Value to set for the decision property.
-        """
-        self._decision = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from ....models import governance_schedule
+
         from ....models import governance_schedule
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -100,48 +49,14 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def reason(self,) -> Optional[str]:
-        """
-        Gets the reason property value. The reason property
-        Returns: Optional[str]
-        """
-        return self._reason
-    
-    @reason.setter
-    def reason(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reason property value. The reason property
-        Args:
-            value: Value to set for the reason property.
-        """
-        self._reason = value
-    
-    @property
-    def schedule(self,) -> Optional[governance_schedule.GovernanceSchedule]:
-        """
-        Gets the schedule property value. The schedule property
-        Returns: Optional[governance_schedule.GovernanceSchedule]
-        """
-        return self._schedule
-    
-    @schedule.setter
-    def schedule(self,value: Optional[governance_schedule.GovernanceSchedule] = None) -> None:
-        """
-        Sets the schedule property value. The schedule property
-        Args:
-            value: Value to set for the schedule property.
-        """
-        self._schedule = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("assignmentState", self.assignment_state)
         writer.write_str_value("decision", self.decision)
         writer.write_str_value("reason", self.reason)

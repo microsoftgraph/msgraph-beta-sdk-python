@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import virtual_endpoint
     from ...models.o_data_errors import o_data_error
     from .audit_events import audit_events_request_builder
+    from .bulk_actions import bulk_actions_request_builder
     from .cloud_p_cs import cloud_p_cs_request_builder
     from .cross_cloud_government_organization_mapping import cross_cloud_government_organization_mapping_request_builder
     from .device_images import device_images_request_builder
@@ -40,10 +41,10 @@ class VirtualEndpointRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/virtualEndpoint{?%24select,%24expand}"
 
@@ -100,8 +101,8 @@ class VirtualEndpointRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[virtual_endpoint.VirtualEndpoint]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
@@ -159,8 +160,8 @@ class VirtualEndpointRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -180,6 +181,15 @@ class VirtualEndpointRequestBuilder():
         from .audit_events import audit_events_request_builder
 
         return audit_events_request_builder.AuditEventsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def bulk_actions(self) -> bulk_actions_request_builder.BulkActionsRequestBuilder:
+        """
+        Provides operations to manage the bulkActions property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .bulk_actions import bulk_actions_request_builder
+
+        return bulk_actions_request_builder.BulkActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def cloud_p_cs(self) -> cloud_p_cs_request_builder.CloudPCsRequestBuilder:
@@ -340,8 +350,8 @@ class VirtualEndpointRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

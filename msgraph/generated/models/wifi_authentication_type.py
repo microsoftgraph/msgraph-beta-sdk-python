@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WifiAuthenticationType(Enum):
+class WifiAuthenticationType(str, Enum):
     # None
     None_ = "none",
     # User Authentication

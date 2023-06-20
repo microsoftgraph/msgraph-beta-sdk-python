@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,78 +10,40 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class StrongAuthenticationPhoneAppDetail(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new StrongAuthenticationPhoneAppDetail and sets the default values.
-        """
-        super().__init__()
-        # The authenticationType property
-        self._authentication_type: Optional[str] = None
-        # The authenticatorFlavor property
-        self._authenticator_flavor: Optional[str] = None
-        # The deviceId property
-        self._device_id: Optional[UUID] = None
-        # The deviceName property
-        self._device_name: Optional[str] = None
-        # The deviceTag property
-        self._device_tag: Optional[str] = None
-        # The deviceToken property
-        self._device_token: Optional[str] = None
-        # The hashFunction property
-        self._hash_function: Optional[str] = None
-        # The lastAuthenticatedDateTime property
-        self._last_authenticated_date_time: Optional[datetime] = None
-        # The notificationType property
-        self._notification_type: Optional[str] = None
-        # The oathSecretKey property
-        self._oath_secret_key: Optional[str] = None
-        # The oathTokenMetadata property
-        self._oath_token_metadata: Optional[oath_token_metadata.OathTokenMetadata] = None
-        # The oathTokenTimeDriftInSeconds property
-        self._oath_token_time_drift_in_seconds: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The phoneAppVersion property
-        self._phone_app_version: Optional[str] = None
-        # The tenantDeviceId property
-        self._tenant_device_id: Optional[str] = None
-        # The tokenGenerationIntervalInSeconds property
-        self._token_generation_interval_in_seconds: Optional[int] = None
-    
-    @property
-    def authentication_type(self,) -> Optional[str]:
-        """
-        Gets the authenticationType property value. The authenticationType property
-        Returns: Optional[str]
-        """
-        return self._authentication_type
-    
-    @authentication_type.setter
-    def authentication_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the authenticationType property value. The authenticationType property
-        Args:
-            value: Value to set for the authentication_type property.
-        """
-        self._authentication_type = value
-    
-    @property
-    def authenticator_flavor(self,) -> Optional[str]:
-        """
-        Gets the authenticatorFlavor property value. The authenticatorFlavor property
-        Returns: Optional[str]
-        """
-        return self._authenticator_flavor
-    
-    @authenticator_flavor.setter
-    def authenticator_flavor(self,value: Optional[str] = None) -> None:
-        """
-        Sets the authenticatorFlavor property value. The authenticatorFlavor property
-        Args:
-            value: Value to set for the authenticator_flavor property.
-        """
-        self._authenticator_flavor = value
+    # The authenticationType property
+    authentication_type: Optional[str] = None
+    # The authenticatorFlavor property
+    authenticator_flavor: Optional[str] = None
+    # The deviceId property
+    device_id: Optional[UUID] = None
+    # The deviceName property
+    device_name: Optional[str] = None
+    # The deviceTag property
+    device_tag: Optional[str] = None
+    # The deviceToken property
+    device_token: Optional[str] = None
+    # The hashFunction property
+    hash_function: Optional[str] = None
+    # The lastAuthenticatedDateTime property
+    last_authenticated_date_time: Optional[datetime] = None
+    # The notificationType property
+    notification_type: Optional[str] = None
+    # The oathSecretKey property
+    oath_secret_key: Optional[str] = None
+    # The oathTokenMetadata property
+    oath_token_metadata: Optional[oath_token_metadata.OathTokenMetadata] = None
+    # The oathTokenTimeDriftInSeconds property
+    oath_token_time_drift_in_seconds: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The phoneAppVersion property
+    phone_app_version: Optional[str] = None
+    # The tenantDeviceId property
+    tenant_device_id: Optional[str] = None
+    # The tokenGenerationIntervalInSeconds property
+    token_generation_interval_in_seconds: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> StrongAuthenticationPhoneAppDetail:
@@ -90,83 +53,17 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: StrongAuthenticationPhoneAppDetail
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return StrongAuthenticationPhoneAppDetail()
-    
-    @property
-    def device_id(self,) -> Optional[UUID]:
-        """
-        Gets the deviceId property value. The deviceId property
-        Returns: Optional[UUID]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[UUID] = None) -> None:
-        """
-        Sets the deviceId property value. The deviceId property
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
-    @property
-    def device_name(self,) -> Optional[str]:
-        """
-        Gets the deviceName property value. The deviceName property
-        Returns: Optional[str]
-        """
-        return self._device_name
-    
-    @device_name.setter
-    def device_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceName property value. The deviceName property
-        Args:
-            value: Value to set for the device_name property.
-        """
-        self._device_name = value
-    
-    @property
-    def device_tag(self,) -> Optional[str]:
-        """
-        Gets the deviceTag property value. The deviceTag property
-        Returns: Optional[str]
-        """
-        return self._device_tag
-    
-    @device_tag.setter
-    def device_tag(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceTag property value. The deviceTag property
-        Args:
-            value: Value to set for the device_tag property.
-        """
-        self._device_tag = value
-    
-    @property
-    def device_token(self,) -> Optional[str]:
-        """
-        Gets the deviceToken property value. The deviceToken property
-        Returns: Optional[str]
-        """
-        return self._device_token
-    
-    @device_token.setter
-    def device_token(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceToken property value. The deviceToken property
-        Args:
-            value: Value to set for the device_token property.
-        """
-        self._device_token = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity, oath_token_metadata
+
         from . import entity, oath_token_metadata
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -190,133 +87,14 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def hash_function(self,) -> Optional[str]:
-        """
-        Gets the hashFunction property value. The hashFunction property
-        Returns: Optional[str]
-        """
-        return self._hash_function
-    
-    @hash_function.setter
-    def hash_function(self,value: Optional[str] = None) -> None:
-        """
-        Sets the hashFunction property value. The hashFunction property
-        Args:
-            value: Value to set for the hash_function property.
-        """
-        self._hash_function = value
-    
-    @property
-    def last_authenticated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastAuthenticatedDateTime property value. The lastAuthenticatedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_authenticated_date_time
-    
-    @last_authenticated_date_time.setter
-    def last_authenticated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastAuthenticatedDateTime property value. The lastAuthenticatedDateTime property
-        Args:
-            value: Value to set for the last_authenticated_date_time property.
-        """
-        self._last_authenticated_date_time = value
-    
-    @property
-    def notification_type(self,) -> Optional[str]:
-        """
-        Gets the notificationType property value. The notificationType property
-        Returns: Optional[str]
-        """
-        return self._notification_type
-    
-    @notification_type.setter
-    def notification_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the notificationType property value. The notificationType property
-        Args:
-            value: Value to set for the notification_type property.
-        """
-        self._notification_type = value
-    
-    @property
-    def oath_secret_key(self,) -> Optional[str]:
-        """
-        Gets the oathSecretKey property value. The oathSecretKey property
-        Returns: Optional[str]
-        """
-        return self._oath_secret_key
-    
-    @oath_secret_key.setter
-    def oath_secret_key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the oathSecretKey property value. The oathSecretKey property
-        Args:
-            value: Value to set for the oath_secret_key property.
-        """
-        self._oath_secret_key = value
-    
-    @property
-    def oath_token_metadata(self,) -> Optional[oath_token_metadata.OathTokenMetadata]:
-        """
-        Gets the oathTokenMetadata property value. The oathTokenMetadata property
-        Returns: Optional[oath_token_metadata.OathTokenMetadata]
-        """
-        return self._oath_token_metadata
-    
-    @oath_token_metadata.setter
-    def oath_token_metadata(self,value: Optional[oath_token_metadata.OathTokenMetadata] = None) -> None:
-        """
-        Sets the oathTokenMetadata property value. The oathTokenMetadata property
-        Args:
-            value: Value to set for the oath_token_metadata property.
-        """
-        self._oath_token_metadata = value
-    
-    @property
-    def oath_token_time_drift_in_seconds(self,) -> Optional[int]:
-        """
-        Gets the oathTokenTimeDriftInSeconds property value. The oathTokenTimeDriftInSeconds property
-        Returns: Optional[int]
-        """
-        return self._oath_token_time_drift_in_seconds
-    
-    @oath_token_time_drift_in_seconds.setter
-    def oath_token_time_drift_in_seconds(self,value: Optional[int] = None) -> None:
-        """
-        Sets the oathTokenTimeDriftInSeconds property value. The oathTokenTimeDriftInSeconds property
-        Args:
-            value: Value to set for the oath_token_time_drift_in_seconds property.
-        """
-        self._oath_token_time_drift_in_seconds = value
-    
-    @property
-    def phone_app_version(self,) -> Optional[str]:
-        """
-        Gets the phoneAppVersion property value. The phoneAppVersion property
-        Returns: Optional[str]
-        """
-        return self._phone_app_version
-    
-    @phone_app_version.setter
-    def phone_app_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the phoneAppVersion property value. The phoneAppVersion property
-        Args:
-            value: Value to set for the phone_app_version property.
-        """
-        self._phone_app_version = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("authenticationType", self.authentication_type)
         writer.write_str_value("authenticatorFlavor", self.authenticator_flavor)
@@ -333,39 +111,5 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         writer.write_str_value("phoneAppVersion", self.phone_app_version)
         writer.write_str_value("tenantDeviceId", self.tenant_device_id)
         writer.write_int_value("tokenGenerationIntervalInSeconds", self.token_generation_interval_in_seconds)
-    
-    @property
-    def tenant_device_id(self,) -> Optional[str]:
-        """
-        Gets the tenantDeviceId property value. The tenantDeviceId property
-        Returns: Optional[str]
-        """
-        return self._tenant_device_id
-    
-    @tenant_device_id.setter
-    def tenant_device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantDeviceId property value. The tenantDeviceId property
-        Args:
-            value: Value to set for the tenant_device_id property.
-        """
-        self._tenant_device_id = value
-    
-    @property
-    def token_generation_interval_in_seconds(self,) -> Optional[int]:
-        """
-        Gets the tokenGenerationIntervalInSeconds property value. The tokenGenerationIntervalInSeconds property
-        Returns: Optional[int]
-        """
-        return self._token_generation_interval_in_seconds
-    
-    @token_generation_interval_in_seconds.setter
-    def token_generation_interval_in_seconds(self,value: Optional[int] = None) -> None:
-        """
-        Sets the tokenGenerationIntervalInSeconds property value. The tokenGenerationIntervalInSeconds property
-        Args:
-            value: Value to set for the token_generation_interval_in_seconds property.
-        """
-        self._token_generation_interval_in_seconds = value
     
 

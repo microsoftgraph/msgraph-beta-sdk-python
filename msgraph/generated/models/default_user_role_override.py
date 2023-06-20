@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DefaultUserRoleOverride(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new defaultUserRoleOverride and sets the default values.
-        """
-        super().__init__()
-        # The isDefault property
-        self._is_default: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The rolePermissions property
-        self._role_permissions: Optional[List[unified_role_permission.UnifiedRolePermission]] = None
+    # The isDefault property
+    is_default: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The rolePermissions property
+    role_permissions: Optional[List[unified_role_permission.UnifiedRolePermission]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DefaultUserRoleOverride:
@@ -28,8 +25,8 @@ class DefaultUserRoleOverride(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DefaultUserRoleOverride
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DefaultUserRoleOverride()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,6 +34,8 @@ class DefaultUserRoleOverride(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity, unified_role_permission
+
         from . import entity, unified_role_permission
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -47,48 +46,14 @@ class DefaultUserRoleOverride(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_default(self,) -> Optional[bool]:
-        """
-        Gets the isDefault property value. The isDefault property
-        Returns: Optional[bool]
-        """
-        return self._is_default
-    
-    @is_default.setter
-    def is_default(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isDefault property value. The isDefault property
-        Args:
-            value: Value to set for the is_default property.
-        """
-        self._is_default = value
-    
-    @property
-    def role_permissions(self,) -> Optional[List[unified_role_permission.UnifiedRolePermission]]:
-        """
-        Gets the rolePermissions property value. The rolePermissions property
-        Returns: Optional[List[unified_role_permission.UnifiedRolePermission]]
-        """
-        return self._role_permissions
-    
-    @role_permissions.setter
-    def role_permissions(self,value: Optional[List[unified_role_permission.UnifiedRolePermission]] = None) -> None:
-        """
-        Sets the rolePermissions property value. The rolePermissions property
-        Args:
-            value: Value to set for the role_permissions property.
-        """
-        self._role_permissions = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("isDefault", self.is_default)
         writer.write_collection_of_object_values("rolePermissions", self.role_permissions)

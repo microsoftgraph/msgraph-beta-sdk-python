@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,118 +9,29 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.Entity):
     """
-    The user experience analytics application performance entity contains app performance by app version device id.
+    The user experience analytics application performance entity contains application performance by application version device id.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId and sets the default values.
-        """
-        super().__init__()
-        # The number of crashes for the app. Valid values -2147483648 to 2147483647
-        self._app_crash_count: Optional[int] = None
-        # The friendly name of the application.
-        self._app_display_name: Optional[str] = None
-        # The name of the application.
-        self._app_name: Optional[str] = None
-        # The publisher of the application.
-        self._app_publisher: Optional[str] = None
-        # The version of the application.
-        self._app_version: Optional[str] = None
-        # The name of the device.
-        self._device_display_name: Optional[str] = None
-        # The id of the device.
-        self._device_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The date and time when the statistics were last computed.
-        self._processed_date_time: Optional[datetime] = None
-    
-    @property
-    def app_crash_count(self,) -> Optional[int]:
-        """
-        Gets the appCrashCount property value. The number of crashes for the app. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._app_crash_count
-    
-    @app_crash_count.setter
-    def app_crash_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the appCrashCount property value. The number of crashes for the app. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the app_crash_count property.
-        """
-        self._app_crash_count = value
-    
-    @property
-    def app_display_name(self,) -> Optional[str]:
-        """
-        Gets the appDisplayName property value. The friendly name of the application.
-        Returns: Optional[str]
-        """
-        return self._app_display_name
-    
-    @app_display_name.setter
-    def app_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appDisplayName property value. The friendly name of the application.
-        Args:
-            value: Value to set for the app_display_name property.
-        """
-        self._app_display_name = value
-    
-    @property
-    def app_name(self,) -> Optional[str]:
-        """
-        Gets the appName property value. The name of the application.
-        Returns: Optional[str]
-        """
-        return self._app_name
-    
-    @app_name.setter
-    def app_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appName property value. The name of the application.
-        Args:
-            value: Value to set for the app_name property.
-        """
-        self._app_name = value
-    
-    @property
-    def app_publisher(self,) -> Optional[str]:
-        """
-        Gets the appPublisher property value. The publisher of the application.
-        Returns: Optional[str]
-        """
-        return self._app_publisher
-    
-    @app_publisher.setter
-    def app_publisher(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appPublisher property value. The publisher of the application.
-        Args:
-            value: Value to set for the app_publisher property.
-        """
-        self._app_publisher = value
-    
-    @property
-    def app_version(self,) -> Optional[str]:
-        """
-        Gets the appVersion property value. The version of the application.
-        Returns: Optional[str]
-        """
-        return self._app_version
-    
-    @app_version.setter
-    def app_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appVersion property value. The version of the application.
-        Args:
-            value: Value to set for the app_version property.
-        """
-        self._app_version = value
+    # The number of crashes for the app. Valid values -2147483648 to 2147483647
+    app_crash_count: Optional[int] = None
+    # The friendly name of the application.
+    app_display_name: Optional[str] = None
+    # The name of the application.
+    app_name: Optional[str] = None
+    # The publisher of the application.
+    app_publisher: Optional[str] = None
+    # The version of the application.
+    app_version: Optional[str] = None
+    # The name of the device.
+    device_display_name: Optional[str] = None
+    # The id of the device.
+    device_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The date and time when the statistics were last computed.
+    processed_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId:
@@ -129,49 +41,17 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId()
-    
-    @property
-    def device_display_name(self,) -> Optional[str]:
-        """
-        Gets the deviceDisplayName property value. The name of the device.
-        Returns: Optional[str]
-        """
-        return self._device_display_name
-    
-    @device_display_name.setter
-    def device_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceDisplayName property value. The name of the device.
-        Args:
-            value: Value to set for the device_display_name property.
-        """
-        self._device_display_name = value
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The id of the device.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The id of the device.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity
+
         from . import entity
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -188,31 +68,14 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         fields.update(super_fields)
         return fields
     
-    @property
-    def processed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the processedDateTime property value. The date and time when the statistics were last computed.
-        Returns: Optional[datetime]
-        """
-        return self._processed_date_time
-    
-    @processed_date_time.setter
-    def processed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the processedDateTime property value. The date and time when the statistics were last computed.
-        Args:
-            value: Value to set for the processed_date_time property.
-        """
-        self._processed_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("appCrashCount", self.app_crash_count)
         writer.write_str_value("appDisplayName", self.app_display_name)

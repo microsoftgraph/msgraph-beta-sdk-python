@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcDeviceImageStatusDetails(Enum):
+class CloudPcDeviceImageStatusDetails(str, Enum):
     InternalServerError = "internalServerError",
     SourceImageNotFound = "sourceImageNotFound",
     OsVersionNotSupported = "osVersionNotSupported",

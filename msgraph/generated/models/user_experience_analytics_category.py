@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsCategory(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsCategory and sets the default values.
-        """
-        super().__init__()
-        # The insights for the user experience analytics category.
-        self._insights: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None
-        # The metric values for the user experience analytics category.
-        self._metric_values: Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The insights for the user experience analytics category.
+    insights: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None
+    # The metric values for the user experience analytics category.
+    metric_values: Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsCategory:
@@ -28,8 +25,8 @@ class UserExperienceAnalyticsCategory(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: UserExperienceAnalyticsCategory
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsCategory()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,6 +34,8 @@ class UserExperienceAnalyticsCategory(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import entity, user_experience_analytics_insight, user_experience_analytics_metric
+
         from . import entity, user_experience_analytics_insight, user_experience_analytics_metric
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -47,48 +46,14 @@ class UserExperienceAnalyticsCategory(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def insights(self,) -> Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]]:
-        """
-        Gets the insights property value. The insights for the user experience analytics category.
-        Returns: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]]
-        """
-        return self._insights
-    
-    @insights.setter
-    def insights(self,value: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None) -> None:
-        """
-        Sets the insights property value. The insights for the user experience analytics category.
-        Args:
-            value: Value to set for the insights property.
-        """
-        self._insights = value
-    
-    @property
-    def metric_values(self,) -> Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]]:
-        """
-        Gets the metricValues property value. The metric values for the user experience analytics category.
-        Returns: Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]]
-        """
-        return self._metric_values
-    
-    @metric_values.setter
-    def metric_values(self,value: Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]] = None) -> None:
-        """
-        Sets the metricValues property value. The metric values for the user experience analytics category.
-        Args:
-            value: Value to set for the metric_values property.
-        """
-        self._metric_values = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("insights", self.insights)
         writer.write_collection_of_object_values("metricValues", self.metric_values)

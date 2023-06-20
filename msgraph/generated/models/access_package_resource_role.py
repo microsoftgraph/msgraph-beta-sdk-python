@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,41 +8,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AccessPackageResourceRole(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageResourceRole and sets the default values.
-        """
-        super().__init__()
-        # The accessPackageResource property
-        self._access_package_resource: Optional[access_package_resource.AccessPackageResource] = None
-        # A description for the resource role.
-        self._description: Optional[str] = None
-        # The display name of the resource role such as the role defined by the application.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The unique identifier of the resource role in the origin system. For a SharePoint Online site, the originId will be the sequence number of the role in the site.
-        self._origin_id: Optional[str] = None
-        # The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
-        self._origin_system: Optional[str] = None
-    
-    @property
-    def access_package_resource(self,) -> Optional[access_package_resource.AccessPackageResource]:
-        """
-        Gets the accessPackageResource property value. The accessPackageResource property
-        Returns: Optional[access_package_resource.AccessPackageResource]
-        """
-        return self._access_package_resource
-    
-    @access_package_resource.setter
-    def access_package_resource(self,value: Optional[access_package_resource.AccessPackageResource] = None) -> None:
-        """
-        Sets the accessPackageResource property value. The accessPackageResource property
-        Args:
-            value: Value to set for the access_package_resource property.
-        """
-        self._access_package_resource = value
+    # The accessPackageResource property
+    access_package_resource: Optional[access_package_resource.AccessPackageResource] = None
+    # A description for the resource role.
+    description: Optional[str] = None
+    # The display name of the resource role such as the role defined by the application.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The unique identifier of the resource role in the origin system. For a SharePoint Online site, the originId will be the sequence number of the role in the site.
+    origin_id: Optional[str] = None
+    # The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
+    origin_system: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageResourceRole:
@@ -51,49 +31,17 @@ class AccessPackageResourceRole(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AccessPackageResourceRole
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AccessPackageResourceRole()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. A description for the resource role.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. A description for the resource role.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name of the resource role such as the role defined by the application.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name of the resource role such as the role defined by the application.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import access_package_resource, entity
+
         from . import access_package_resource, entity
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -107,48 +55,14 @@ class AccessPackageResourceRole(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def origin_id(self,) -> Optional[str]:
-        """
-        Gets the originId property value. The unique identifier of the resource role in the origin system. For a SharePoint Online site, the originId will be the sequence number of the role in the site.
-        Returns: Optional[str]
-        """
-        return self._origin_id
-    
-    @origin_id.setter
-    def origin_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the originId property value. The unique identifier of the resource role in the origin system. For a SharePoint Online site, the originId will be the sequence number of the role in the site.
-        Args:
-            value: Value to set for the origin_id property.
-        """
-        self._origin_id = value
-    
-    @property
-    def origin_system(self,) -> Optional[str]:
-        """
-        Gets the originSystem property value. The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
-        Returns: Optional[str]
-        """
-        return self._origin_system
-    
-    @origin_system.setter
-    def origin_system(self,value: Optional[str] = None) -> None:
-        """
-        Sets the originSystem property value. The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
-        Args:
-            value: Value to set for the origin_system property.
-        """
-        self._origin_system = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("accessPackageResource", self.access_package_resource)
         writer.write_str_value("description", self.description)

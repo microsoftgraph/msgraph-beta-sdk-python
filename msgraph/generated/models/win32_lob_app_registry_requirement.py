@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,38 +8,17 @@ if TYPE_CHECKING:
 
 from . import win32_lob_app_requirement
 
+@dataclass
 class Win32LobAppRegistryRequirement(win32_lob_app_requirement.Win32LobAppRequirement):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Win32LobAppRegistryRequirement and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.win32LobAppRegistryRequirement"
-        # A value indicating whether this registry path is for checking 32-bit app on 64-bit system
-        self._check32_bit_on64_system: Optional[bool] = None
-        # Contains all supported registry data detection type.
-        self._detection_type: Optional[win32_lob_app_registry_detection_type.Win32LobAppRegistryDetectionType] = None
-        # The registry key path to detect Win32 Line of Business (LoB) app
-        self._key_path: Optional[str] = None
-        # The registry value name
-        self._value_name: Optional[str] = None
-    
-    @property
-    def check32_bit_on64_system(self,) -> Optional[bool]:
-        """
-        Gets the check32BitOn64System property value. A value indicating whether this registry path is for checking 32-bit app on 64-bit system
-        Returns: Optional[bool]
-        """
-        return self._check32_bit_on64_system
-    
-    @check32_bit_on64_system.setter
-    def check32_bit_on64_system(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the check32BitOn64System property value. A value indicating whether this registry path is for checking 32-bit app on 64-bit system
-        Args:
-            value: Value to set for the check32_bit_on64_system property.
-        """
-        self._check32_bit_on64_system = value
+    odata_type = "#microsoft.graph.win32LobAppRegistryRequirement"
+    # A value indicating whether this registry path is for checking 32-bit app on 64-bit system
+    check32_bit_on64_system: Optional[bool] = None
+    # Contains all supported registry data detection type.
+    detection_type: Optional[win32_lob_app_registry_detection_type.Win32LobAppRegistryDetectionType] = None
+    # The registry key path to detect Win32 Line of Business (LoB) app
+    key_path: Optional[str] = None
+    # The registry value name
+    value_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Win32LobAppRegistryRequirement:
@@ -48,32 +28,17 @@ class Win32LobAppRegistryRequirement(win32_lob_app_requirement.Win32LobAppRequir
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: Win32LobAppRegistryRequirement
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Win32LobAppRegistryRequirement()
-    
-    @property
-    def detection_type(self,) -> Optional[win32_lob_app_registry_detection_type.Win32LobAppRegistryDetectionType]:
-        """
-        Gets the detectionType property value. Contains all supported registry data detection type.
-        Returns: Optional[win32_lob_app_registry_detection_type.Win32LobAppRegistryDetectionType]
-        """
-        return self._detection_type
-    
-    @detection_type.setter
-    def detection_type(self,value: Optional[win32_lob_app_registry_detection_type.Win32LobAppRegistryDetectionType] = None) -> None:
-        """
-        Sets the detectionType property value. Contains all supported registry data detection type.
-        Args:
-            value: Value to set for the detection_type property.
-        """
-        self._detection_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import win32_lob_app_registry_detection_type, win32_lob_app_requirement
+
         from . import win32_lob_app_registry_detection_type, win32_lob_app_requirement
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -86,52 +51,18 @@ class Win32LobAppRegistryRequirement(win32_lob_app_requirement.Win32LobAppRequir
         fields.update(super_fields)
         return fields
     
-    @property
-    def key_path(self,) -> Optional[str]:
-        """
-        Gets the keyPath property value. The registry key path to detect Win32 Line of Business (LoB) app
-        Returns: Optional[str]
-        """
-        return self._key_path
-    
-    @key_path.setter
-    def key_path(self,value: Optional[str] = None) -> None:
-        """
-        Sets the keyPath property value. The registry key path to detect Win32 Line of Business (LoB) app
-        Args:
-            value: Value to set for the key_path property.
-        """
-        self._key_path = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("check32BitOn64System", self.check32_bit_on64_system)
         writer.write_enum_value("detectionType", self.detection_type)
         writer.write_str_value("keyPath", self.key_path)
         writer.write_str_value("valueName", self.value_name)
-    
-    @property
-    def value_name(self,) -> Optional[str]:
-        """
-        Gets the valueName property value. The registry value name
-        Returns: Optional[str]
-        """
-        return self._value_name
-    
-    @value_name.setter
-    def value_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the valueName property value. The registry value name
-        Args:
-            value: Value to set for the value_name property.
-        """
-        self._value_name = value
     
 
