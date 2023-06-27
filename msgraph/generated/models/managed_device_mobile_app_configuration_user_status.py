@@ -1,34 +1,32 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import compliance_status, entity
+    from .compliance_status import ComplianceStatus
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class ManagedDeviceMobileAppConfigurationUserStatus(entity.Entity):
+@dataclass
+class ManagedDeviceMobileAppConfigurationUserStatus(Entity):
     """
     Contains properties, inherited properties and actions for an MDM mobile app configuration status for a user.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedDeviceMobileAppConfigurationUserStatus and sets the default values.
-        """
-        super().__init__()
-        # Devices count for that user.
-        self._devices_count: Optional[int] = None
-        # Last modified date time of the policy report.
-        self._last_reported_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[compliance_status.ComplianceStatus] = None
-        # User name of the DevicePolicyStatus.
-        self._user_display_name: Optional[str] = None
-        # UserPrincipalName.
-        self._user_principal_name: Optional[str] = None
+    # Devices count for that user.
+    devices_count: Optional[int] = None
+    # Last modified date time of the policy report.
+    last_reported_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The status property
+    status: Optional[ComplianceStatus] = None
+    # User name of the DevicePolicyStatus.
+    user_display_name: Optional[str] = None
+    # UserPrincipalName.
+    user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedDeviceMobileAppConfigurationUserStatus:
@@ -38,38 +36,25 @@ class ManagedDeviceMobileAppConfigurationUserStatus(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ManagedDeviceMobileAppConfigurationUserStatus
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ManagedDeviceMobileAppConfigurationUserStatus()
-    
-    @property
-    def devices_count(self,) -> Optional[int]:
-        """
-        Gets the devicesCount property value. Devices count for that user.
-        Returns: Optional[int]
-        """
-        return self._devices_count
-    
-    @devices_count.setter
-    def devices_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the devicesCount property value. Devices count for that user.
-        Args:
-            value: Value to set for the devices_count property.
-        """
-        self._devices_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import compliance_status, entity
+        from .compliance_status import ComplianceStatus
+        from .entity import Entity
+
+        from .compliance_status import ComplianceStatus
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "devicesCount": lambda n : setattr(self, 'devices_count', n.get_int_value()),
             "lastReportedDateTime": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(compliance_status.ComplianceStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(ComplianceStatus)),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
@@ -77,87 +62,19 @@ class ManagedDeviceMobileAppConfigurationUserStatus(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_reported_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastReportedDateTime property value. Last modified date time of the policy report.
-        Returns: Optional[datetime]
-        """
-        return self._last_reported_date_time
-    
-    @last_reported_date_time.setter
-    def last_reported_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastReportedDateTime property value. Last modified date time of the policy report.
-        Args:
-            value: Value to set for the last_reported_date_time property.
-        """
-        self._last_reported_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("devicesCount", self.devices_count)
-        writer.write_datetime_value("lastReportedDateTime", self.last_reported_date_time)
+        writer.write_datetime_value()("lastReportedDateTime", self.last_reported_date_time)
         writer.write_enum_value("status", self.status)
         writer.write_str_value("userDisplayName", self.user_display_name)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
-    
-    @property
-    def status(self,) -> Optional[compliance_status.ComplianceStatus]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[compliance_status.ComplianceStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[compliance_status.ComplianceStatus] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def user_display_name(self,) -> Optional[str]:
-        """
-        Gets the userDisplayName property value. User name of the DevicePolicyStatus.
-        Returns: Optional[str]
-        """
-        return self._user_display_name
-    
-    @user_display_name.setter
-    def user_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userDisplayName property value. User name of the DevicePolicyStatus.
-        Args:
-            value: Value to set for the user_display_name property.
-        """
-        self._user_display_name = value
-    
-    @property
-    def user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the userPrincipalName property value. UserPrincipalName.
-        Returns: Optional[str]
-        """
-        return self._user_principal_name
-    
-    @user_principal_name.setter
-    def user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userPrincipalName property value. UserPrincipalName.
-        Args:
-            value: Value to set for the user_principal_name property.
-        """
-        self._user_principal_name = value
     
 

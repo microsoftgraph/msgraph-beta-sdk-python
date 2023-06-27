@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import deleted_item_container
-    from ....models.o_data_errors import o_data_error
-    from .workflows import workflows_request_builder
+    from ....models.deleted_item_container import DeletedItemContainer
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .workflows.workflows_request_builder import WorkflowsRequestBuilder
 
 class DeletedItemsRequestBuilder():
     """
@@ -25,10 +25,10 @@ class DeletedItemsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems{?%24select,%24expand}"
 
@@ -45,37 +45,37 @@ class DeletedItemsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeletedItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[deleted_item_container.DeletedItemContainer]:
+    async def get(self,request_configuration: Optional[DeletedItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeletedItemContainer]:
         """
         Deleted workflows in your lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[deleted_item_container.DeletedItemContainer]
+        Returns: Optional[DeletedItemContainer]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import deleted_item_container
+        from ....models.deleted_item_container import DeletedItemContainer
 
-        return await self.request_adapter.send_async(request_info, deleted_item_container.DeletedItemContainer, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeletedItemContainer, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeletedItemsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -112,13 +112,13 @@ class DeletedItemsRequestBuilder():
         return request_info
     
     @property
-    def workflows(self) -> workflows_request_builder.WorkflowsRequestBuilder:
+    def workflows(self) -> WorkflowsRequestBuilder:
         """
         Provides operations to manage the workflows property of the microsoft.graph.deletedItemContainer entity.
         """
-        from .workflows import workflows_request_builder
+        from .workflows.workflows_request_builder import WorkflowsRequestBuilder
 
-        return workflows_request_builder.WorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
+        return WorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeletedItemsRequestBuilderDeleteRequestConfiguration():
@@ -144,8 +144,8 @@ class DeletedItemsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

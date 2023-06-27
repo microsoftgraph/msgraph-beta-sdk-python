@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import setting_state_device_summary, setting_state_device_summary_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import setting_state_device_summary_item_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.setting_state_device_summary import SettingStateDeviceSummary
+    from .....models.setting_state_device_summary_collection_response import SettingStateDeviceSummaryCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.setting_state_device_summary_item_request_builder import SettingStateDeviceSummaryItemRequestBuilder
 
 class DeviceSettingStateSummariesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class DeviceSettingStateSummariesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/deviceSettingStateSummaries{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class DeviceSettingStateSummariesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_setting_state_device_summary_id(self,setting_state_device_summary_id: str) -> setting_state_device_summary_item_request_builder.SettingStateDeviceSummaryItemRequestBuilder:
+    def by_setting_state_device_summary_id(self,setting_state_device_summary_id: str) -> SettingStateDeviceSummaryItemRequestBuilder:
         """
         Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceConfiguration entity.
         Args:
             setting_state_device_summary_id: Unique identifier of the item
-        Returns: setting_state_device_summary_item_request_builder.SettingStateDeviceSummaryItemRequestBuilder
+        Returns: SettingStateDeviceSummaryItemRequestBuilder
         """
-        if setting_state_device_summary_id is None:
-            raise Exception("setting_state_device_summary_id cannot be undefined")
-        from .item import setting_state_device_summary_item_request_builder
+        if not setting_state_device_summary_id:
+            raise TypeError("setting_state_device_summary_id cannot be null.")
+        from .item.setting_state_device_summary_item_request_builder import SettingStateDeviceSummaryItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["settingStateDeviceSummary%2Did"] = setting_state_device_summary_id
-        return setting_state_device_summary_item_request_builder.SettingStateDeviceSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return SettingStateDeviceSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceSettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[setting_state_device_summary_collection_response.SettingStateDeviceSummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceSettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[SettingStateDeviceSummaryCollectionResponse]:
         """
         Device Configuration Setting State Device Summary
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[setting_state_device_summary_collection_response.SettingStateDeviceSummaryCollectionResponse]
+        Returns: Optional[SettingStateDeviceSummaryCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import setting_state_device_summary_collection_response
+        from .....models.setting_state_device_summary_collection_response import SettingStateDeviceSummaryCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, setting_state_device_summary_collection_response.SettingStateDeviceSummaryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SettingStateDeviceSummaryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[setting_state_device_summary.SettingStateDeviceSummary] = None, request_configuration: Optional[DeviceSettingStateSummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[setting_state_device_summary.SettingStateDeviceSummary]:
+    async def post(self,body: Optional[SettingStateDeviceSummary] = None, request_configuration: Optional[DeviceSettingStateSummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[SettingStateDeviceSummary]:
         """
         Create new navigation property to deviceSettingStateSummaries for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[setting_state_device_summary.SettingStateDeviceSummary]
+        Returns: Optional[SettingStateDeviceSummary]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import setting_state_device_summary
+        from .....models.setting_state_device_summary import SettingStateDeviceSummary
 
-        return await self.request_adapter.send_async(request_info, setting_state_device_summary.SettingStateDeviceSummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, SettingStateDeviceSummary, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceSettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class DeviceSettingStateSummariesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[setting_state_device_summary.SettingStateDeviceSummary] = None, request_configuration: Optional[DeviceSettingStateSummariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SettingStateDeviceSummary] = None, request_configuration: Optional[DeviceSettingStateSummariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceSettingStateSummaries for deviceManagement
         Args:
@@ -125,8 +126,8 @@ class DeviceSettingStateSummariesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class DeviceSettingStateSummariesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceSettingStateSummariesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class DeviceSettingStateSummariesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

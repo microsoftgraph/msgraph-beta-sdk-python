@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import authentication_strength_policy
-    from ......models.o_data_errors import o_data_error
-    from .combination_configurations import combination_configurations_request_builder
-    from .update_allowed_combinations import update_allowed_combinations_request_builder
-    from .usage import usage_request_builder
+    from ......models.authentication_strength_policy import AuthenticationStrengthPolicy
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .combination_configurations.combination_configurations_request_builder import CombinationConfigurationsRequestBuilder
+    from .update_allowed_combinations.update_allowed_combinations_request_builder import UpdateAllowedCombinationsRequestBuilder
+    from .usage.usage_request_builder import UsageRequestBuilder
 
 class AuthenticationStrengthPolicyItemRequestBuilder():
     """
@@ -27,10 +27,10 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identity/conditionalAccess/authenticationStrengths/policies/{authenticationStrengthPolicy%2Did}{?%24select,%24expand}"
 
@@ -47,62 +47,62 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
+    async def get(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthenticationStrengthPolicy]:
         """
         A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[authentication_strength_policy.AuthenticationStrengthPolicy]
+        Returns: Optional[AuthenticationStrengthPolicy]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import authentication_strength_policy
+        from ......models.authentication_strength_policy import AuthenticationStrengthPolicy
 
-        return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, AuthenticationStrengthPolicy, error_mapping)
     
-    async def patch(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
+    async def patch(self,body: Optional[AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AuthenticationStrengthPolicy]:
         """
         Update the navigation property policies in identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[authentication_strength_policy.AuthenticationStrengthPolicy]
+        Returns: Optional[AuthenticationStrengthPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import authentication_strength_policy
+        from ......models.authentication_strength_policy import AuthenticationStrengthPolicy
 
-        return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, AuthenticationStrengthPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -138,7 +138,7 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property policies in identity
         Args:
@@ -146,8 +146,8 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,31 +160,31 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         return request_info
     
     @property
-    def combination_configurations(self) -> combination_configurations_request_builder.CombinationConfigurationsRequestBuilder:
+    def combination_configurations(self) -> CombinationConfigurationsRequestBuilder:
         """
         Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
         """
-        from .combination_configurations import combination_configurations_request_builder
+        from .combination_configurations.combination_configurations_request_builder import CombinationConfigurationsRequestBuilder
 
-        return combination_configurations_request_builder.CombinationConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CombinationConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_allowed_combinations(self) -> update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder:
+    def update_allowed_combinations(self) -> UpdateAllowedCombinationsRequestBuilder:
         """
         Provides operations to call the updateAllowedCombinations method.
         """
-        from .update_allowed_combinations import update_allowed_combinations_request_builder
+        from .update_allowed_combinations.update_allowed_combinations_request_builder import UpdateAllowedCombinationsRequestBuilder
 
-        return update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateAllowedCombinationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def usage(self) -> usage_request_builder.UsageRequestBuilder:
+    def usage(self) -> UsageRequestBuilder:
         """
         Provides operations to call the usage method.
         """
-        from .usage import usage_request_builder
+        from .usage.usage_request_builder import UsageRequestBuilder
 
-        return usage_request_builder.UsageRequestBuilder(self.request_adapter, self.path_parameters)
+        return UsageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration():
@@ -210,8 +210,8 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

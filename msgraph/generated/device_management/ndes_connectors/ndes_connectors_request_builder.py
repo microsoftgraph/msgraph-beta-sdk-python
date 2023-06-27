@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import ndes_connector, ndes_connector_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import ndes_connector_item_request_builder
+    from ...models.ndes_connector import NdesConnector
+    from ...models.ndes_connector_collection_response import NdesConnectorCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.ndes_connector_item_request_builder import NdesConnectorItemRequestBuilder
 
 class NdesConnectorsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class NdesConnectorsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/ndesConnectors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class NdesConnectorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_ndes_connector_id(self,ndes_connector_id: str) -> ndes_connector_item_request_builder.NdesConnectorItemRequestBuilder:
+    def by_ndes_connector_id(self,ndes_connector_id: str) -> NdesConnectorItemRequestBuilder:
         """
         Provides operations to manage the ndesConnectors property of the microsoft.graph.deviceManagement entity.
         Args:
             ndes_connector_id: Unique identifier of the item
-        Returns: ndes_connector_item_request_builder.NdesConnectorItemRequestBuilder
+        Returns: NdesConnectorItemRequestBuilder
         """
-        if ndes_connector_id is None:
-            raise Exception("ndes_connector_id cannot be undefined")
-        from .item import ndes_connector_item_request_builder
+        if not ndes_connector_id:
+            raise TypeError("ndes_connector_id cannot be null.")
+        from .item.ndes_connector_item_request_builder import NdesConnectorItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["ndesConnector%2Did"] = ndes_connector_id
-        return ndes_connector_item_request_builder.NdesConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return NdesConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ndes_connector_collection_response.NdesConnectorCollectionResponse]:
+    async def get(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[NdesConnectorCollectionResponse]:
         """
         The collection of Ndes connectors for this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ndes_connector_collection_response.NdesConnectorCollectionResponse]
+        Returns: Optional[NdesConnectorCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import ndes_connector_collection_response
+        from ...models.ndes_connector_collection_response import NdesConnectorCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, ndes_connector_collection_response.NdesConnectorCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, NdesConnectorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ndes_connector.NdesConnector] = None, request_configuration: Optional[NdesConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[ndes_connector.NdesConnector]:
+    async def post(self,body: Optional[NdesConnector] = None, request_configuration: Optional[NdesConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[NdesConnector]:
         """
         Create new navigation property to ndesConnectors for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ndes_connector.NdesConnector]
+        Returns: Optional[NdesConnector]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import ndes_connector
+        from ...models.ndes_connector import NdesConnector
 
-        return await self.request_adapter.send_async(request_info, ndes_connector.NdesConnector, error_mapping)
+        return await self.request_adapter.send_async(request_info, NdesConnector, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class NdesConnectorsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[ndes_connector.NdesConnector] = None, request_configuration: Optional[NdesConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[NdesConnector] = None, request_configuration: Optional[NdesConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to ndesConnectors for deviceManagement
         Args:
@@ -125,8 +126,8 @@ class NdesConnectorsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class NdesConnectorsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NdesConnectorsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class NdesConnectorsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

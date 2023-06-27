@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.managed_tenants import app_performance, app_performance_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import app_performance_item_request_builder
+    from ....models.managed_tenants.app_performance import AppPerformance
+    from ....models.managed_tenants.app_performance_collection_response import AppPerformanceCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.app_performance_item_request_builder import AppPerformanceItemRequestBuilder
 
 class AppPerformancesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class AppPerformancesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/appPerformances{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class AppPerformancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_app_performance_id(self,app_performance_id: str) -> app_performance_item_request_builder.AppPerformanceItemRequestBuilder:
+    def by_app_performance_id(self,app_performance_id: str) -> AppPerformanceItemRequestBuilder:
         """
         Provides operations to manage the appPerformances property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             app_performance_id: Unique identifier of the item
-        Returns: app_performance_item_request_builder.AppPerformanceItemRequestBuilder
+        Returns: AppPerformanceItemRequestBuilder
         """
-        if app_performance_id is None:
-            raise Exception("app_performance_id cannot be undefined")
-        from .item import app_performance_item_request_builder
+        if not app_performance_id:
+            raise TypeError("app_performance_id cannot be null.")
+        from .item.app_performance_item_request_builder import AppPerformanceItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["appPerformance%2Did"] = app_performance_id
-        return app_performance_item_request_builder.AppPerformanceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AppPerformanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AppPerformancesRequestBuilderGetRequestConfiguration] = None) -> Optional[app_performance_collection_response.AppPerformanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[AppPerformancesRequestBuilderGetRequestConfiguration] = None) -> Optional[AppPerformanceCollectionResponse]:
         """
         Get appPerformances from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[app_performance_collection_response.AppPerformanceCollectionResponse]
+        Returns: Optional[AppPerformanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.managed_tenants import app_performance_collection_response
+        from ....models.managed_tenants.app_performance_collection_response import AppPerformanceCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, app_performance_collection_response.AppPerformanceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AppPerformanceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[app_performance.AppPerformance] = None, request_configuration: Optional[AppPerformancesRequestBuilderPostRequestConfiguration] = None) -> Optional[app_performance.AppPerformance]:
+    async def post(self,body: Optional[AppPerformance] = None, request_configuration: Optional[AppPerformancesRequestBuilderPostRequestConfiguration] = None) -> Optional[AppPerformance]:
         """
         Create new navigation property to appPerformances for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[app_performance.AppPerformance]
+        Returns: Optional[AppPerformance]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.managed_tenants import app_performance
+        from ....models.managed_tenants.app_performance import AppPerformance
 
-        return await self.request_adapter.send_async(request_info, app_performance.AppPerformance, error_mapping)
+        return await self.request_adapter.send_async(request_info, AppPerformance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AppPerformancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class AppPerformancesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[app_performance.AppPerformance] = None, request_configuration: Optional[AppPerformancesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AppPerformance] = None, request_configuration: Optional[AppPerformancesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to appPerformances for tenantRelationships
         Args:
@@ -125,8 +126,8 @@ class AppPerformancesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class AppPerformancesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AppPerformancesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class AppPerformancesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

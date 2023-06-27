@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import device_and_app_management_role_assignment, device_and_app_management_role_assignment_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import device_and_app_management_role_assignment_item_request_builder
+    from ...models.device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
+    from ...models.device_and_app_management_role_assignment_collection_response import DeviceAndAppManagementRoleAssignmentCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.device_and_app_management_role_assignment_item_request_builder import DeviceAndAppManagementRoleAssignmentItemRequestBuilder
 
 class RoleAssignmentsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class RoleAssignmentsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/roleAssignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class RoleAssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_device_and_app_management_role_assignment_id(self,device_and_app_management_role_assignment_id: str) -> device_and_app_management_role_assignment_item_request_builder.DeviceAndAppManagementRoleAssignmentItemRequestBuilder:
+    def by_device_and_app_management_role_assignment_id(self,device_and_app_management_role_assignment_id: str) -> DeviceAndAppManagementRoleAssignmentItemRequestBuilder:
         """
         Provides operations to manage the roleAssignments property of the microsoft.graph.deviceManagement entity.
         Args:
             device_and_app_management_role_assignment_id: Unique identifier of the item
-        Returns: device_and_app_management_role_assignment_item_request_builder.DeviceAndAppManagementRoleAssignmentItemRequestBuilder
+        Returns: DeviceAndAppManagementRoleAssignmentItemRequestBuilder
         """
-        if device_and_app_management_role_assignment_id is None:
-            raise Exception("device_and_app_management_role_assignment_id cannot be undefined")
-        from .item import device_and_app_management_role_assignment_item_request_builder
+        if not device_and_app_management_role_assignment_id:
+            raise TypeError("device_and_app_management_role_assignment_id cannot be null.")
+        from .item.device_and_app_management_role_assignment_item_request_builder import DeviceAndAppManagementRoleAssignmentItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceAndAppManagementRoleAssignment%2Did"] = device_and_app_management_role_assignment_id
-        return device_and_app_management_role_assignment_item_request_builder.DeviceAndAppManagementRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceAndAppManagementRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_and_app_management_role_assignment_collection_response.DeviceAndAppManagementRoleAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceAndAppManagementRoleAssignmentCollectionResponse]:
         """
         The Role Assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_and_app_management_role_assignment_collection_response.DeviceAndAppManagementRoleAssignmentCollectionResponse]
+        Returns: Optional[DeviceAndAppManagementRoleAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_and_app_management_role_assignment_collection_response
+        from ...models.device_and_app_management_role_assignment_collection_response import DeviceAndAppManagementRoleAssignmentCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment_collection_response.DeviceAndAppManagementRoleAssignmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceAndAppManagementRoleAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]:
+    async def post(self,body: Optional[DeviceAndAppManagementRoleAssignment] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceAndAppManagementRoleAssignment]:
         """
         Create new navigation property to roleAssignments for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]
+        Returns: Optional[DeviceAndAppManagementRoleAssignment]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_and_app_management_role_assignment
+        from ...models.device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceAndAppManagementRoleAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class RoleAssignmentsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceAndAppManagementRoleAssignment] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to roleAssignments for deviceManagement
         Args:
@@ -125,8 +126,8 @@ class RoleAssignmentsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class RoleAssignmentsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RoleAssignmentsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class RoleAssignmentsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

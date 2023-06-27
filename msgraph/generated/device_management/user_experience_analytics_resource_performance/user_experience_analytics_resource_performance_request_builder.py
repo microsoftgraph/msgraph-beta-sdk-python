@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import user_experience_analytics_resource_performance, user_experience_analytics_resource_performance_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import user_experience_analytics_resource_performance_item_request_builder
-    from .summarize_device_resource_performance_with_summarize_by import summarize_device_resource_performance_with_summarize_by_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.user_experience_analytics_resource_performance import UserExperienceAnalyticsResourcePerformance
+    from ...models.user_experience_analytics_resource_performance_collection_response import UserExperienceAnalyticsResourcePerformanceCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.user_experience_analytics_resource_performance_item_request_builder import UserExperienceAnalyticsResourcePerformanceItemRequestBuilder
+    from .summarize_device_resource_performance_with_summarize_by.summarize_device_resource_performance_with_summarize_by_request_builder import SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder
 
 class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
     """
@@ -27,10 +28,10 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/userExperienceAnalyticsResourcePerformance{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,80 +39,80 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_user_experience_analytics_resource_performance_id(self,user_experience_analytics_resource_performance_id: str) -> user_experience_analytics_resource_performance_item_request_builder.UserExperienceAnalyticsResourcePerformanceItemRequestBuilder:
+    def by_user_experience_analytics_resource_performance_id(self,user_experience_analytics_resource_performance_id: str) -> UserExperienceAnalyticsResourcePerformanceItemRequestBuilder:
         """
         Provides operations to manage the userExperienceAnalyticsResourcePerformance property of the microsoft.graph.deviceManagement entity.
         Args:
             user_experience_analytics_resource_performance_id: Unique identifier of the item
-        Returns: user_experience_analytics_resource_performance_item_request_builder.UserExperienceAnalyticsResourcePerformanceItemRequestBuilder
+        Returns: UserExperienceAnalyticsResourcePerformanceItemRequestBuilder
         """
-        if user_experience_analytics_resource_performance_id is None:
-            raise Exception("user_experience_analytics_resource_performance_id cannot be undefined")
-        from .item import user_experience_analytics_resource_performance_item_request_builder
+        if not user_experience_analytics_resource_performance_id:
+            raise TypeError("user_experience_analytics_resource_performance_id cannot be null.")
+        from .item.user_experience_analytics_resource_performance_item_request_builder import UserExperienceAnalyticsResourcePerformanceItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userExperienceAnalyticsResourcePerformance%2Did"] = user_experience_analytics_resource_performance_id
-        return user_experience_analytics_resource_performance_item_request_builder.UserExperienceAnalyticsResourcePerformanceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return UserExperienceAnalyticsResourcePerformanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_resource_performance_collection_response.UserExperienceAnalyticsResourcePerformanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsResourcePerformanceCollectionResponse]:
         """
         User experience analytics resource performance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_experience_analytics_resource_performance_collection_response.UserExperienceAnalyticsResourcePerformanceCollectionResponse]
+        Returns: Optional[UserExperienceAnalyticsResourcePerformanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import user_experience_analytics_resource_performance_collection_response
+        from ...models.user_experience_analytics_resource_performance_collection_response import UserExperienceAnalyticsResourcePerformanceCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_resource_performance_collection_response.UserExperienceAnalyticsResourcePerformanceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsResourcePerformanceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance] = None, request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance]:
+    async def post(self,body: Optional[UserExperienceAnalyticsResourcePerformance] = None, request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderPostRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsResourcePerformance]:
         """
         Create new navigation property to userExperienceAnalyticsResourcePerformance for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance]
+        Returns: Optional[UserExperienceAnalyticsResourcePerformance]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import user_experience_analytics_resource_performance
+        from ...models.user_experience_analytics_resource_performance import UserExperienceAnalyticsResourcePerformance
 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsResourcePerformance, error_mapping)
     
-    def summarize_device_resource_performance_with_summarize_by(self,summarize_by: Optional[str] = None) -> summarize_device_resource_performance_with_summarize_by_request_builder.SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder:
+    def summarize_device_resource_performance_with_summarize_by(self,summarize_by: Optional[str] = None) -> SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder:
         """
         Provides operations to call the summarizeDeviceResourcePerformance method.
         Args:
             summarizeBy: Usage: summarizeBy='{summarizeBy}'
-        Returns: summarize_device_resource_performance_with_summarize_by_request_builder.SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder
+        Returns: SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder
         """
-        if summarize_by is None:
-            raise Exception("summarize_by cannot be undefined")
-        from .summarize_device_resource_performance_with_summarize_by import summarize_device_resource_performance_with_summarize_by_request_builder
+        if not summarize_by:
+            raise TypeError("summarize_by cannot be null.")
+        from .summarize_device_resource_performance_with_summarize_by.summarize_device_resource_performance_with_summarize_by_request_builder import SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder
 
-        return summarize_device_resource_performance_with_summarize_by_request_builder.SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(self.request_adapter, self.path_parameters, summarize_by)
+        return SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(self.request_adapter, self.path_parameters, summarize_by)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -131,7 +132,7 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance] = None, request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UserExperienceAnalyticsResourcePerformance] = None, request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to userExperienceAnalyticsResourcePerformance for deviceManagement
         Args:
@@ -139,8 +140,8 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -153,13 +154,13 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UserExperienceAnalyticsResourcePerformanceRequestBuilderGetQueryParameters():
@@ -173,8 +174,8 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

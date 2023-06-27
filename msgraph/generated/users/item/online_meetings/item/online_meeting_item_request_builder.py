@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,17 +10,19 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import online_meeting
-    from .....models.o_data_errors import o_data_error
-    from .alternative_recording import alternative_recording_request_builder
-    from .attendance_reports import attendance_reports_request_builder
-    from .attendee_report import attendee_report_request_builder
-    from .get_virtual_appointment_join_web_url import get_virtual_appointment_join_web_url_request_builder
-    from .meeting_attendance_report import meeting_attendance_report_request_builder
-    from .recording import recording_request_builder
-    from .registration import registration_request_builder
-    from .transcripts import transcripts_request_builder
-    from .virtual_appointment import virtual_appointment_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.online_meeting import OnlineMeeting
+    from .alternative_recording.alternative_recording_request_builder import AlternativeRecordingRequestBuilder
+    from .attendance_reports.attendance_reports_request_builder import AttendanceReportsRequestBuilder
+    from .attendee_report.attendee_report_request_builder import AttendeeReportRequestBuilder
+    from .broadcast_recording.broadcast_recording_request_builder import BroadcastRecordingRequestBuilder
+    from .get_virtual_appointment_join_web_url.get_virtual_appointment_join_web_url_request_builder import GetVirtualAppointmentJoinWebUrlRequestBuilder
+    from .meeting_attendance_report.meeting_attendance_report_request_builder import MeetingAttendanceReportRequestBuilder
+    from .recording.recording_request_builder import RecordingRequestBuilder
+    from .recordings.recordings_request_builder import RecordingsRequestBuilder
+    from .registration.registration_request_builder import RegistrationRequestBuilder
+    from .transcripts.transcripts_request_builder import TranscriptsRequestBuilder
+    from .virtual_appointment.virtual_appointment_request_builder import VirtualAppointmentRequestBuilder
 
 class OnlineMeetingItemRequestBuilder():
     """
@@ -33,10 +35,10 @@ class OnlineMeetingItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}{?%24select,%24expand}"
 
@@ -53,62 +55,62 @@ class OnlineMeetingItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OnlineMeetingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[online_meeting.OnlineMeeting]:
+    async def get(self,request_configuration: Optional[OnlineMeetingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[OnlineMeeting]:
         """
-        Get onlineMeetings from users
+        Information about a meeting, including the URL used to join a meeting, the attendees' list, and the description.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[online_meeting.OnlineMeeting]
+        Returns: Optional[OnlineMeeting]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import online_meeting
+        from .....models.online_meeting import OnlineMeeting
 
-        return await self.request_adapter.send_async(request_info, online_meeting.OnlineMeeting, error_mapping)
+        return await self.request_adapter.send_async(request_info, OnlineMeeting, error_mapping)
     
-    async def patch(self,body: Optional[online_meeting.OnlineMeeting] = None, request_configuration: Optional[OnlineMeetingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[online_meeting.OnlineMeeting]:
+    async def patch(self,body: Optional[OnlineMeeting] = None, request_configuration: Optional[OnlineMeetingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[OnlineMeeting]:
         """
         Update the properties of the specified onlineMeeting object. Please see Request body section for the list of properties that support updating.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[online_meeting.OnlineMeeting]
+        Returns: Optional[OnlineMeeting]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import online_meeting
+        from .....models.online_meeting import OnlineMeeting
 
-        return await self.request_adapter.send_async(request_info, online_meeting.OnlineMeeting, error_mapping)
+        return await self.request_adapter.send_async(request_info, OnlineMeeting, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OnlineMeetingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -128,7 +130,7 @@ class OnlineMeetingItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OnlineMeetingItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get onlineMeetings from users
+        Information about a meeting, including the URL used to join a meeting, the attendees' list, and the description.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +146,7 @@ class OnlineMeetingItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[online_meeting.OnlineMeeting] = None, request_configuration: Optional[OnlineMeetingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[OnlineMeeting] = None, request_configuration: Optional[OnlineMeetingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of the specified onlineMeeting object. Please see Request body section for the list of properties that support updating.
         Args:
@@ -152,8 +154,8 @@ class OnlineMeetingItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -166,85 +168,103 @@ class OnlineMeetingItemRequestBuilder():
         return request_info
     
     @property
-    def alternative_recording(self) -> alternative_recording_request_builder.AlternativeRecordingRequestBuilder:
+    def alternative_recording(self) -> AlternativeRecordingRequestBuilder:
         """
         Provides operations to manage the media for the user entity.
         """
-        from .alternative_recording import alternative_recording_request_builder
+        from .alternative_recording.alternative_recording_request_builder import AlternativeRecordingRequestBuilder
 
-        return alternative_recording_request_builder.AlternativeRecordingRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlternativeRecordingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def attendance_reports(self) -> attendance_reports_request_builder.AttendanceReportsRequestBuilder:
+    def attendance_reports(self) -> AttendanceReportsRequestBuilder:
         """
         Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.
         """
-        from .attendance_reports import attendance_reports_request_builder
+        from .attendance_reports.attendance_reports_request_builder import AttendanceReportsRequestBuilder
 
-        return attendance_reports_request_builder.AttendanceReportsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AttendanceReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def attendee_report(self) -> attendee_report_request_builder.AttendeeReportRequestBuilder:
+    def attendee_report(self) -> AttendeeReportRequestBuilder:
         """
         Provides operations to manage the media for the user entity.
         """
-        from .attendee_report import attendee_report_request_builder
+        from .attendee_report.attendee_report_request_builder import AttendeeReportRequestBuilder
 
-        return attendee_report_request_builder.AttendeeReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return AttendeeReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_virtual_appointment_join_web_url(self) -> get_virtual_appointment_join_web_url_request_builder.GetVirtualAppointmentJoinWebUrlRequestBuilder:
+    def broadcast_recording(self) -> BroadcastRecordingRequestBuilder:
+        """
+        Provides operations to manage the media for the user entity.
+        """
+        from .broadcast_recording.broadcast_recording_request_builder import BroadcastRecordingRequestBuilder
+
+        return BroadcastRecordingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_virtual_appointment_join_web_url(self) -> GetVirtualAppointmentJoinWebUrlRequestBuilder:
         """
         Provides operations to call the getVirtualAppointmentJoinWebUrl method.
         """
-        from .get_virtual_appointment_join_web_url import get_virtual_appointment_join_web_url_request_builder
+        from .get_virtual_appointment_join_web_url.get_virtual_appointment_join_web_url_request_builder import GetVirtualAppointmentJoinWebUrlRequestBuilder
 
-        return get_virtual_appointment_join_web_url_request_builder.GetVirtualAppointmentJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetVirtualAppointmentJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def meeting_attendance_report(self) -> meeting_attendance_report_request_builder.MeetingAttendanceReportRequestBuilder:
+    def meeting_attendance_report(self) -> MeetingAttendanceReportRequestBuilder:
         """
         Provides operations to manage the meetingAttendanceReport property of the microsoft.graph.onlineMeeting entity.
         """
-        from .meeting_attendance_report import meeting_attendance_report_request_builder
+        from .meeting_attendance_report.meeting_attendance_report_request_builder import MeetingAttendanceReportRequestBuilder
 
-        return meeting_attendance_report_request_builder.MeetingAttendanceReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return MeetingAttendanceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def recording(self) -> recording_request_builder.RecordingRequestBuilder:
+    def recording(self) -> RecordingRequestBuilder:
         """
         Provides operations to manage the media for the user entity.
         """
-        from .recording import recording_request_builder
+        from .recording.recording_request_builder import RecordingRequestBuilder
 
-        return recording_request_builder.RecordingRequestBuilder(self.request_adapter, self.path_parameters)
+        return RecordingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def registration(self) -> registration_request_builder.RegistrationRequestBuilder:
+    def recordings(self) -> RecordingsRequestBuilder:
+        """
+        Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.
+        """
+        from .recordings.recordings_request_builder import RecordingsRequestBuilder
+
+        return RecordingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def registration(self) -> RegistrationRequestBuilder:
         """
         Provides operations to manage the registration property of the microsoft.graph.onlineMeeting entity.
         """
-        from .registration import registration_request_builder
+        from .registration.registration_request_builder import RegistrationRequestBuilder
 
-        return registration_request_builder.RegistrationRequestBuilder(self.request_adapter, self.path_parameters)
+        return RegistrationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def transcripts(self) -> transcripts_request_builder.TranscriptsRequestBuilder:
+    def transcripts(self) -> TranscriptsRequestBuilder:
         """
         Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
         """
-        from .transcripts import transcripts_request_builder
+        from .transcripts.transcripts_request_builder import TranscriptsRequestBuilder
 
-        return transcripts_request_builder.TranscriptsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TranscriptsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def virtual_appointment(self) -> virtual_appointment_request_builder.VirtualAppointmentRequestBuilder:
+    def virtual_appointment(self) -> VirtualAppointmentRequestBuilder:
         """
         Provides operations to manage the virtualAppointment property of the microsoft.graph.onlineMeeting entity.
         """
-        from .virtual_appointment import virtual_appointment_request_builder
+        from .virtual_appointment.virtual_appointment_request_builder import VirtualAppointmentRequestBuilder
 
-        return virtual_appointment_request_builder.VirtualAppointmentRequestBuilder(self.request_adapter, self.path_parameters)
+        return VirtualAppointmentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class OnlineMeetingItemRequestBuilderDeleteRequestConfiguration():
@@ -261,7 +281,7 @@ class OnlineMeetingItemRequestBuilder():
     @dataclass
     class OnlineMeetingItemRequestBuilderGetQueryParameters():
         """
-        Get onlineMeetings from users
+        Information about a meeting, including the URL used to join a meeting, the attendees' list, and the description.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -270,8 +290,8 @@ class OnlineMeetingItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

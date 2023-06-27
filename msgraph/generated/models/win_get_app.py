@@ -1,25 +1,23 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import mobile_app, win_get_app_install_experience
+    from .mobile_app import MobileApp
+    from .win_get_app_install_experience import WinGetAppInstallExperience
 
-from . import mobile_app
+from .mobile_app import MobileApp
 
-class WinGetApp(mobile_app.MobileApp):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WinGetApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.winGetApp"
-        # The install experience settings associated with this application, which are used to ensure the desired install experiences on the target device are taken into account. This includes the account type (System or User) that actions should be run as on target devices. Required at creation time.
-        self._install_experience: Optional[win_get_app_install_experience.WinGetAppInstallExperience] = None
-        # Hash of package metadata properties used to validate that the application matches the metadata in the source repository.
-        self._manifest_hash: Optional[str] = None
-        # The PackageIdentifier from the WinGet source repository REST API. This also maps to the Id when using the WinGet client command line application. Required at creation time, cannot be modified on existing objects.
-        self._package_identifier: Optional[str] = None
+@dataclass
+class WinGetApp(MobileApp):
+    odata_type = "#microsoft.graph.winGetApp"
+    # The install experience settings associated with this application, which are used to ensure the desired install experiences on the target device are taken into account. This includes the account type (System or User) that actions should be run as on target devices. Required at creation time.
+    install_experience: Optional[WinGetAppInstallExperience] = None
+    # Hash of package metadata properties used to validate that the application matches the metadata in the source repository.
+    manifest_hash: Optional[str] = None
+    # The PackageIdentifier from the WinGet source repository REST API. This also maps to the Id when using the WinGet client command line application. Required at creation time, cannot be modified on existing objects.
+    package_identifier: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WinGetApp:
@@ -29,8 +27,8 @@ class WinGetApp(mobile_app.MobileApp):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: WinGetApp
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WinGetApp()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -38,10 +36,14 @@ class WinGetApp(mobile_app.MobileApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import mobile_app, win_get_app_install_experience
+        from .mobile_app import MobileApp
+        from .win_get_app_install_experience import WinGetAppInstallExperience
+
+        from .mobile_app import MobileApp
+        from .win_get_app_install_experience import WinGetAppInstallExperience
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "installExperience": lambda n : setattr(self, 'install_experience', n.get_object_value(win_get_app_install_experience.WinGetAppInstallExperience)),
+            "installExperience": lambda n : setattr(self, 'install_experience', n.get_object_value(WinGetAppInstallExperience)),
             "manifestHash": lambda n : setattr(self, 'manifest_hash', n.get_str_value()),
             "packageIdentifier": lambda n : setattr(self, 'package_identifier', n.get_str_value()),
         }
@@ -49,65 +51,14 @@ class WinGetApp(mobile_app.MobileApp):
         fields.update(super_fields)
         return fields
     
-    @property
-    def install_experience(self,) -> Optional[win_get_app_install_experience.WinGetAppInstallExperience]:
-        """
-        Gets the installExperience property value. The install experience settings associated with this application, which are used to ensure the desired install experiences on the target device are taken into account. This includes the account type (System or User) that actions should be run as on target devices. Required at creation time.
-        Returns: Optional[win_get_app_install_experience.WinGetAppInstallExperience]
-        """
-        return self._install_experience
-    
-    @install_experience.setter
-    def install_experience(self,value: Optional[win_get_app_install_experience.WinGetAppInstallExperience] = None) -> None:
-        """
-        Sets the installExperience property value. The install experience settings associated with this application, which are used to ensure the desired install experiences on the target device are taken into account. This includes the account type (System or User) that actions should be run as on target devices. Required at creation time.
-        Args:
-            value: Value to set for the install_experience property.
-        """
-        self._install_experience = value
-    
-    @property
-    def manifest_hash(self,) -> Optional[str]:
-        """
-        Gets the manifestHash property value. Hash of package metadata properties used to validate that the application matches the metadata in the source repository.
-        Returns: Optional[str]
-        """
-        return self._manifest_hash
-    
-    @manifest_hash.setter
-    def manifest_hash(self,value: Optional[str] = None) -> None:
-        """
-        Sets the manifestHash property value. Hash of package metadata properties used to validate that the application matches the metadata in the source repository.
-        Args:
-            value: Value to set for the manifest_hash property.
-        """
-        self._manifest_hash = value
-    
-    @property
-    def package_identifier(self,) -> Optional[str]:
-        """
-        Gets the packageIdentifier property value. The PackageIdentifier from the WinGet source repository REST API. This also maps to the Id when using the WinGet client command line application. Required at creation time, cannot be modified on existing objects.
-        Returns: Optional[str]
-        """
-        return self._package_identifier
-    
-    @package_identifier.setter
-    def package_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the packageIdentifier property value. The PackageIdentifier from the WinGet source repository REST API. This also maps to the Id when using the WinGet client command line application. Required at creation time, cannot be modified on existing objects.
-        Args:
-            value: Value to set for the package_identifier property.
-        """
-        self._package_identifier = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("installExperience", self.install_experience)
         writer.write_str_value("manifestHash", self.manifest_hash)

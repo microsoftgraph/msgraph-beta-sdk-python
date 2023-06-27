@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import get_global_script_highest_available_version_response
-    from .....models.o_data_errors import o_data_error
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .get_global_script_highest_available_version_response import GetGlobalScriptHighestAvailableVersionResponse
 
 class GetGlobalScriptHighestAvailableVersionRequestBuilder():
     """
@@ -24,10 +24,10 @@ class GetGlobalScriptHighestAvailableVersionRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/deviceHealthScripts/{deviceHealthScript%2Did}/getGlobalScriptHighestAvailableVersion"
 
@@ -35,27 +35,27 @@ class GetGlobalScriptHighestAvailableVersionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[get_global_script_highest_available_version_response.GetGlobalScriptHighestAvailableVersionResponse]:
+    async def post(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[GetGlobalScriptHighestAvailableVersionResponse]:
         """
         Update the Proprietary Device Health Script
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[get_global_script_highest_available_version_response.GetGlobalScriptHighestAvailableVersionResponse]
+        Returns: Optional[GetGlobalScriptHighestAvailableVersionResponse]
         """
         request_info = self.to_post_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from . import get_global_script_highest_available_version_response
+        from .get_global_script_highest_available_version_response import GetGlobalScriptHighestAvailableVersionResponse
 
-        return await self.request_adapter.send_async(request_info, get_global_script_highest_available_version_response.GetGlobalScriptHighestAvailableVersionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetGlobalScriptHighestAvailableVersionResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

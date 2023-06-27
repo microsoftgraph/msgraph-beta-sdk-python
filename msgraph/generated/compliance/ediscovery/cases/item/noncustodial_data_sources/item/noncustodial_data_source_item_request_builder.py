@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models.ediscovery import noncustodial_data_source
-    from .......models.o_data_errors import o_data_error
-    from .data_source import data_source_request_builder
-    from .last_index_operation import last_index_operation_request_builder
-    from .microsoft_graph_ediscovery_apply_hold import microsoft_graph_ediscovery_apply_hold_request_builder
-    from .microsoft_graph_ediscovery_release import microsoft_graph_ediscovery_release_request_builder
-    from .microsoft_graph_ediscovery_remove_hold import microsoft_graph_ediscovery_remove_hold_request_builder
-    from .microsoft_graph_ediscovery_update_index import microsoft_graph_ediscovery_update_index_request_builder
+    from .......models.ediscovery.noncustodial_data_source import NoncustodialDataSource
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .data_source.data_source_request_builder import DataSourceRequestBuilder
+    from .last_index_operation.last_index_operation_request_builder import LastIndexOperationRequestBuilder
+    from .microsoft_graph_ediscovery_apply_hold.microsoft_graph_ediscovery_apply_hold_request_builder import MicrosoftGraphEdiscoveryApplyHoldRequestBuilder
+    from .microsoft_graph_ediscovery_release.microsoft_graph_ediscovery_release_request_builder import MicrosoftGraphEdiscoveryReleaseRequestBuilder
+    from .microsoft_graph_ediscovery_remove_hold.microsoft_graph_ediscovery_remove_hold_request_builder import MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder
+    from .microsoft_graph_ediscovery_update_index.microsoft_graph_ediscovery_update_index_request_builder import MicrosoftGraphEdiscoveryUpdateIndexRequestBuilder
 
 class NoncustodialDataSourceItemRequestBuilder():
     """
@@ -30,10 +30,10 @@ class NoncustodialDataSourceItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/noncustodialDataSources/{noncustodialDataSource%2Did}{?%24select,%24expand}"
 
@@ -50,62 +50,62 @@ class NoncustodialDataSourceItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[noncustodial_data_source.NoncustodialDataSource]:
+    async def get(self,request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[NoncustodialDataSource]:
         """
         Read the properties and relationships of a noncustodialDataSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[noncustodial_data_source.NoncustodialDataSource]
+        Returns: Optional[NoncustodialDataSource]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.ediscovery import noncustodial_data_source
+        from .......models.ediscovery.noncustodial_data_source import NoncustodialDataSource
 
-        return await self.request_adapter.send_async(request_info, noncustodial_data_source.NoncustodialDataSource, error_mapping)
+        return await self.request_adapter.send_async(request_info, NoncustodialDataSource, error_mapping)
     
-    async def patch(self,body: Optional[noncustodial_data_source.NoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[noncustodial_data_source.NoncustodialDataSource]:
+    async def patch(self,body: Optional[NoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[NoncustodialDataSource]:
         """
         Update the navigation property noncustodialDataSources in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[noncustodial_data_source.NoncustodialDataSource]
+        Returns: Optional[NoncustodialDataSource]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.ediscovery import noncustodial_data_source
+        from .......models.ediscovery.noncustodial_data_source import NoncustodialDataSource
 
-        return await self.request_adapter.send_async(request_info, noncustodial_data_source.NoncustodialDataSource, error_mapping)
+        return await self.request_adapter.send_async(request_info, NoncustodialDataSource, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -141,7 +141,7 @@ class NoncustodialDataSourceItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[noncustodial_data_source.NoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[NoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property noncustodialDataSources in compliance
         Args:
@@ -149,8 +149,8 @@ class NoncustodialDataSourceItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -163,58 +163,58 @@ class NoncustodialDataSourceItemRequestBuilder():
         return request_info
     
     @property
-    def data_source(self) -> data_source_request_builder.DataSourceRequestBuilder:
+    def data_source(self) -> DataSourceRequestBuilder:
         """
         Provides operations to manage the dataSource property of the microsoft.graph.ediscovery.noncustodialDataSource entity.
         """
-        from .data_source import data_source_request_builder
+        from .data_source.data_source_request_builder import DataSourceRequestBuilder
 
-        return data_source_request_builder.DataSourceRequestBuilder(self.request_adapter, self.path_parameters)
+        return DataSourceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def last_index_operation(self) -> last_index_operation_request_builder.LastIndexOperationRequestBuilder:
+    def last_index_operation(self) -> LastIndexOperationRequestBuilder:
         """
         Provides operations to manage the lastIndexOperation property of the microsoft.graph.ediscovery.dataSourceContainer entity.
         """
-        from .last_index_operation import last_index_operation_request_builder
+        from .last_index_operation.last_index_operation_request_builder import LastIndexOperationRequestBuilder
 
-        return last_index_operation_request_builder.LastIndexOperationRequestBuilder(self.request_adapter, self.path_parameters)
+        return LastIndexOperationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_ediscovery_apply_hold(self) -> microsoft_graph_ediscovery_apply_hold_request_builder.MicrosoftGraphEdiscoveryApplyHoldRequestBuilder:
+    def microsoft_graph_ediscovery_apply_hold(self) -> MicrosoftGraphEdiscoveryApplyHoldRequestBuilder:
         """
         Provides operations to call the applyHold method.
         """
-        from .microsoft_graph_ediscovery_apply_hold import microsoft_graph_ediscovery_apply_hold_request_builder
+        from .microsoft_graph_ediscovery_apply_hold.microsoft_graph_ediscovery_apply_hold_request_builder import MicrosoftGraphEdiscoveryApplyHoldRequestBuilder
 
-        return microsoft_graph_ediscovery_apply_hold_request_builder.MicrosoftGraphEdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphEdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_ediscovery_release(self) -> microsoft_graph_ediscovery_release_request_builder.MicrosoftGraphEdiscoveryReleaseRequestBuilder:
+    def microsoft_graph_ediscovery_release(self) -> MicrosoftGraphEdiscoveryReleaseRequestBuilder:
         """
         Provides operations to call the release method.
         """
-        from .microsoft_graph_ediscovery_release import microsoft_graph_ediscovery_release_request_builder
+        from .microsoft_graph_ediscovery_release.microsoft_graph_ediscovery_release_request_builder import MicrosoftGraphEdiscoveryReleaseRequestBuilder
 
-        return microsoft_graph_ediscovery_release_request_builder.MicrosoftGraphEdiscoveryReleaseRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphEdiscoveryReleaseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_ediscovery_remove_hold(self) -> microsoft_graph_ediscovery_remove_hold_request_builder.MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder:
+    def microsoft_graph_ediscovery_remove_hold(self) -> MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
-        from .microsoft_graph_ediscovery_remove_hold import microsoft_graph_ediscovery_remove_hold_request_builder
+        from .microsoft_graph_ediscovery_remove_hold.microsoft_graph_ediscovery_remove_hold_request_builder import MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder
 
-        return microsoft_graph_ediscovery_remove_hold_request_builder.MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_ediscovery_update_index(self) -> microsoft_graph_ediscovery_update_index_request_builder.MicrosoftGraphEdiscoveryUpdateIndexRequestBuilder:
+    def microsoft_graph_ediscovery_update_index(self) -> MicrosoftGraphEdiscoveryUpdateIndexRequestBuilder:
         """
         Provides operations to call the updateIndex method.
         """
-        from .microsoft_graph_ediscovery_update_index import microsoft_graph_ediscovery_update_index_request_builder
+        from .microsoft_graph_ediscovery_update_index.microsoft_graph_ediscovery_update_index_request_builder import MicrosoftGraphEdiscoveryUpdateIndexRequestBuilder
 
-        return microsoft_graph_ediscovery_update_index_request_builder.MicrosoftGraphEdiscoveryUpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphEdiscoveryUpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NoncustodialDataSourceItemRequestBuilderDeleteRequestConfiguration():
@@ -240,8 +240,8 @@ class NoncustodialDataSourceItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

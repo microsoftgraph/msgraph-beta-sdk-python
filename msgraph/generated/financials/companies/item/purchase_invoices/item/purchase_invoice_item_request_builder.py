@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import purchase_invoice
-    from ......models.o_data_errors import o_data_error
-    from .currency import currency_request_builder
-    from .post import post_request_builder
-    from .purchase_invoice_lines import purchase_invoice_lines_request_builder
-    from .vendor import vendor_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.purchase_invoice import PurchaseInvoice
+    from .currency.currency_request_builder import CurrencyRequestBuilder
+    from .post.post_request_builder import PostRequestBuilder
+    from .purchase_invoice_lines.purchase_invoice_lines_request_builder import PurchaseInvoiceLinesRequestBuilder
+    from .vendor.vendor_request_builder import VendorRequestBuilder
 
 class PurchaseInvoiceItemRequestBuilder():
     """
@@ -28,10 +28,10 @@ class PurchaseInvoiceItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/purchaseInvoices/{purchaseInvoice%2Did}{?%24select,%24expand}"
 
@@ -39,52 +39,52 @@ class PurchaseInvoiceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PurchaseInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[purchase_invoice.PurchaseInvoice]:
+    async def get(self,request_configuration: Optional[PurchaseInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PurchaseInvoice]:
         """
         Get purchaseInvoices from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[purchase_invoice.PurchaseInvoice]
+        Returns: Optional[PurchaseInvoice]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import purchase_invoice
+        from ......models.purchase_invoice import PurchaseInvoice
 
-        return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, error_mapping)
+        return await self.request_adapter.send_async(request_info, PurchaseInvoice, error_mapping)
     
-    async def patch(self,body: Optional[purchase_invoice.PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[purchase_invoice.PurchaseInvoice]:
+    async def patch(self,body: Optional[PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PurchaseInvoice]:
         """
         Update the navigation property purchaseInvoices in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[purchase_invoice.PurchaseInvoice]
+        Returns: Optional[PurchaseInvoice]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import purchase_invoice
+        from ......models.purchase_invoice import PurchaseInvoice
 
-        return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, error_mapping)
+        return await self.request_adapter.send_async(request_info, PurchaseInvoice, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PurchaseInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -104,7 +104,7 @@ class PurchaseInvoiceItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[purchase_invoice.PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property purchaseInvoices in financials
         Args:
@@ -112,8 +112,8 @@ class PurchaseInvoiceItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -126,40 +126,40 @@ class PurchaseInvoiceItemRequestBuilder():
         return request_info
     
     @property
-    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
+    def currency(self) -> CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.purchaseInvoice entity.
         """
-        from .currency import currency_request_builder
+        from .currency.currency_request_builder import CurrencyRequestBuilder
 
-        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
+        return CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def post_path(self) -> post_request_builder.PostRequestBuilder:
+    def post_path(self) -> PostRequestBuilder:
         """
         Provides operations to call the post method.
         """
-        from .post import post_request_builder
+        from .post.post_request_builder import PostRequestBuilder
 
-        return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
+        return PostRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def purchase_invoice_lines(self) -> purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder:
+    def purchase_invoice_lines(self) -> PurchaseInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.purchaseInvoice entity.
         """
-        from .purchase_invoice_lines import purchase_invoice_lines_request_builder
+        from .purchase_invoice_lines.purchase_invoice_lines_request_builder import PurchaseInvoiceLinesRequestBuilder
 
-        return purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return PurchaseInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def vendor(self) -> vendor_request_builder.VendorRequestBuilder:
+    def vendor(self) -> VendorRequestBuilder:
         """
         Provides operations to manage the vendor property of the microsoft.graph.purchaseInvoice entity.
         """
-        from .vendor import vendor_request_builder
+        from .vendor.vendor_request_builder import VendorRequestBuilder
 
-        return vendor_request_builder.VendorRequestBuilder(self.request_adapter, self.path_parameters)
+        return VendorRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PurchaseInvoiceItemRequestBuilderGetQueryParameters():
@@ -173,8 +173,8 @@ class PurchaseInvoiceItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

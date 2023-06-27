@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import access_package_assignment_resource_role, access_package_assignment_resource_role_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import access_package_assignment_resource_role_item_request_builder
-    from .my import my_request_builder
+    from ....models.access_package_assignment_resource_role import AccessPackageAssignmentResourceRole
+    from ....models.access_package_assignment_resource_role_collection_response import AccessPackageAssignmentResourceRoleCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.access_package_assignment_resource_role_item_request_builder import AccessPackageAssignmentResourceRoleItemRequestBuilder
+    from .my.my_request_builder import MyRequestBuilder
 
 class AccessPackageAssignmentResourceRolesRequestBuilder():
     """
@@ -27,10 +28,10 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,67 +39,67 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_access_package_assignment_resource_role_id(self,access_package_assignment_resource_role_id: str) -> access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder:
+    def by_access_package_assignment_resource_role_id(self,access_package_assignment_resource_role_id: str) -> AccessPackageAssignmentResourceRoleItemRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentResourceRoles property of the microsoft.graph.entitlementManagement entity.
         Args:
             access_package_assignment_resource_role_id: Unique identifier of the item
-        Returns: access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder
+        Returns: AccessPackageAssignmentResourceRoleItemRequestBuilder
         """
-        if access_package_assignment_resource_role_id is None:
-            raise Exception("access_package_assignment_resource_role_id cannot be undefined")
-        from .item import access_package_assignment_resource_role_item_request_builder
+        if not access_package_assignment_resource_role_id:
+            raise TypeError("access_package_assignment_resource_role_id cannot be null.")
+        from .item.access_package_assignment_resource_role_item_request_builder import AccessPackageAssignmentResourceRoleItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["accessPackageAssignmentResourceRole%2Did"] = access_package_assignment_resource_role_id
-        return access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AccessPackageAssignmentResourceRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRoleCollectionResponse]:
         """
         Retrieve a list of accessPackageAssignmentResourceRole objects.  The resulting list includes all the resource roles of all assignments that the caller has access to read, across all catalogs and access packages.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse]
+        Returns: Optional[AccessPackageAssignmentResourceRoleCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import access_package_assignment_resource_role_collection_response
+        from ....models.access_package_assignment_resource_role_collection_response import AccessPackageAssignmentResourceRoleCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessPackageAssignmentResourceRoleCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]:
+    async def post(self,body: Optional[AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderPostRequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRole]:
         """
         Create new navigation property to accessPackageAssignmentResourceRoles for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]
+        Returns: Optional[AccessPackageAssignmentResourceRole]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import access_package_assignment_resource_role
+        from ....models.access_package_assignment_resource_role import AccessPackageAssignmentResourceRole
 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role.AccessPackageAssignmentResourceRole, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessPackageAssignmentResourceRole, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -118,7 +119,7 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to accessPackageAssignmentResourceRoles for identityGovernance
         Args:
@@ -126,8 +127,8 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +141,22 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def my(self) -> my_request_builder.MyRequestBuilder:
+    def my(self) -> MyRequestBuilder:
         """
         Provides operations to call the My method.
         """
-        from .my import my_request_builder
+        from .my.my_request_builder import MyRequestBuilder
 
-        return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
+        return MyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AccessPackageAssignmentResourceRolesRequestBuilderGetQueryParameters():
@@ -169,8 +170,8 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

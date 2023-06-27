@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import education_assignment
-    from .......models.o_data_errors import o_data_error
+    from .......models.education_assignment import EducationAssignment
+    from .......models.o_data_errors.o_data_error import ODataError
 
 class ActivateRequestBuilder():
     """
@@ -24,10 +24,10 @@ class ActivateRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/activate"
 
@@ -35,27 +35,27 @@ class ActivateRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[ActivateRequestBuilderPostRequestConfiguration] = None) -> Optional[education_assignment.EducationAssignment]:
+    async def post(self,request_configuration: Optional[ActivateRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationAssignment]:
         """
         Activate an `inactive` educationAssignment to signal that the assignment has further action items for teachers and students. This action can only be performed by a teacher on currently inactive assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_assignment.EducationAssignment]
+        Returns: Optional[EducationAssignment]
         """
         request_info = self.to_post_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import education_assignment
+        from .......models.education_assignment import EducationAssignment
 
-        return await self.request_adapter.send_async(request_info, education_assignment.EducationAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationAssignment, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ActivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

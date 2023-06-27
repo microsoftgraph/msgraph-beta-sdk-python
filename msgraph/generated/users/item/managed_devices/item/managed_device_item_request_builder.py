@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,65 +10,64 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import managed_device
-    from .....models.o_data_errors import o_data_error
-    from .activate_device_esim import activate_device_esim_request_builder
-    from .assignment_filter_evaluation_status_details import assignment_filter_evaluation_status_details_request_builder
-    from .bypass_activation_lock import bypass_activation_lock_request_builder
-    from .clean_windows_device import clean_windows_device_request_builder
-    from .create_device_log_collection_request import create_device_log_collection_request_request_builder
-    from .delete_user_from_shared_apple_device import delete_user_from_shared_apple_device_request_builder
-    from .deprovision import deprovision_request_builder
-    from .detected_apps import detected_apps_request_builder
-    from .device_category import device_category_request_builder
-    from .device_compliance_policy_states import device_compliance_policy_states_request_builder
-    from .device_configuration_states import device_configuration_states_request_builder
-    from .device_health_script_states import device_health_script_states_request_builder
-    from .disable import disable_request_builder
-    from .disable_lost_mode import disable_lost_mode_request_builder
-    from .enable_lost_mode import enable_lost_mode_request_builder
-    from .enroll_now_action import enroll_now_action_request_builder
-    from .get_cloud_pc_remote_action_results import get_cloud_pc_remote_action_results_request_builder
-    from .get_cloud_pc_review_status import get_cloud_pc_review_status_request_builder
-    from .get_file_vault_key import get_file_vault_key_request_builder
-    from .get_non_compliant_settings import get_non_compliant_settings_request_builder
-    from .get_oem_warranty import get_oem_warranty_request_builder
-    from .initiate_mobile_device_management_key_recovery import initiate_mobile_device_management_key_recovery_request_builder
-    from .initiate_on_demand_proactive_remediation import initiate_on_demand_proactive_remediation_request_builder
-    from .locate_device import locate_device_request_builder
-    from .log_collection_requests import log_collection_requests_request_builder
-    from .logout_shared_apple_device_active_user import logout_shared_apple_device_active_user_request_builder
-    from .managed_device_mobile_app_configuration_states import managed_device_mobile_app_configuration_states_request_builder
-    from .override_compliance_state import override_compliance_state_request_builder
-    from .play_lost_mode_sound import play_lost_mode_sound_request_builder
-    from .reboot_now import reboot_now_request_builder
-    from .recover_passcode import recover_passcode_request_builder
-    from .reenable import reenable_request_builder
-    from .remote_lock import remote_lock_request_builder
-    from .remove_device_firmware_configuration_interface_management import remove_device_firmware_configuration_interface_management_request_builder
-    from .reprovision_cloud_pc import reprovision_cloud_pc_request_builder
-    from .request_remote_assistance import request_remote_assistance_request_builder
-    from .reset_passcode import reset_passcode_request_builder
-    from .resize_cloud_pc import resize_cloud_pc_request_builder
-    from .restore_cloud_pc import restore_cloud_pc_request_builder
-    from .retire import retire_request_builder
-    from .revoke_apple_vpp_licenses import revoke_apple_vpp_licenses_request_builder
-    from .rotate_bit_locker_keys import rotate_bit_locker_keys_request_builder
-    from .rotate_file_vault_key import rotate_file_vault_key_request_builder
-    from .rotate_local_admin_password import rotate_local_admin_password_request_builder
-    from .security_baseline_states import security_baseline_states_request_builder
-    from .send_custom_notification_to_company_portal import send_custom_notification_to_company_portal_request_builder
-    from .set_cloud_pc_review_status import set_cloud_pc_review_status_request_builder
-    from .set_device_name import set_device_name_request_builder
-    from .shut_down import shut_down_request_builder
-    from .sync_device import sync_device_request_builder
-    from .trigger_configuration_manager_action import trigger_configuration_manager_action_request_builder
-    from .update_windows_device_account import update_windows_device_account_request_builder
-    from .users import users_request_builder
-    from .windows_defender_scan import windows_defender_scan_request_builder
-    from .windows_defender_update_signatures import windows_defender_update_signatures_request_builder
-    from .windows_protection_state import windows_protection_state_request_builder
-    from .wipe import wipe_request_builder
+    from .....models.managed_device import ManagedDevice
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .activate_device_esim.activate_device_esim_request_builder import ActivateDeviceEsimRequestBuilder
+    from .assignment_filter_evaluation_status_details.assignment_filter_evaluation_status_details_request_builder import AssignmentFilterEvaluationStatusDetailsRequestBuilder
+    from .bypass_activation_lock.bypass_activation_lock_request_builder import BypassActivationLockRequestBuilder
+    from .clean_windows_device.clean_windows_device_request_builder import CleanWindowsDeviceRequestBuilder
+    from .create_device_log_collection_request.create_device_log_collection_request_request_builder import CreateDeviceLogCollectionRequestRequestBuilder
+    from .delete_user_from_shared_apple_device.delete_user_from_shared_apple_device_request_builder import DeleteUserFromSharedAppleDeviceRequestBuilder
+    from .deprovision.deprovision_request_builder import DeprovisionRequestBuilder
+    from .detected_apps.detected_apps_request_builder import DetectedAppsRequestBuilder
+    from .device_category.device_category_request_builder import DeviceCategoryRequestBuilder
+    from .device_compliance_policy_states.device_compliance_policy_states_request_builder import DeviceCompliancePolicyStatesRequestBuilder
+    from .device_configuration_states.device_configuration_states_request_builder import DeviceConfigurationStatesRequestBuilder
+    from .device_health_script_states.device_health_script_states_request_builder import DeviceHealthScriptStatesRequestBuilder
+    from .disable.disable_request_builder import DisableRequestBuilder
+    from .disable_lost_mode.disable_lost_mode_request_builder import DisableLostModeRequestBuilder
+    from .enable_lost_mode.enable_lost_mode_request_builder import EnableLostModeRequestBuilder
+    from .enroll_now_action.enroll_now_action_request_builder import EnrollNowActionRequestBuilder
+    from .get_cloud_pc_remote_action_results.get_cloud_pc_remote_action_results_request_builder import GetCloudPcRemoteActionResultsRequestBuilder
+    from .get_cloud_pc_review_status.get_cloud_pc_review_status_request_builder import GetCloudPcReviewStatusRequestBuilder
+    from .get_file_vault_key.get_file_vault_key_request_builder import GetFileVaultKeyRequestBuilder
+    from .get_non_compliant_settings.get_non_compliant_settings_request_builder import GetNonCompliantSettingsRequestBuilder
+    from .initiate_mobile_device_management_key_recovery.initiate_mobile_device_management_key_recovery_request_builder import InitiateMobileDeviceManagementKeyRecoveryRequestBuilder
+    from .initiate_on_demand_proactive_remediation.initiate_on_demand_proactive_remediation_request_builder import InitiateOnDemandProactiveRemediationRequestBuilder
+    from .locate_device.locate_device_request_builder import LocateDeviceRequestBuilder
+    from .log_collection_requests.log_collection_requests_request_builder import LogCollectionRequestsRequestBuilder
+    from .logout_shared_apple_device_active_user.logout_shared_apple_device_active_user_request_builder import LogoutSharedAppleDeviceActiveUserRequestBuilder
+    from .managed_device_mobile_app_configuration_states.managed_device_mobile_app_configuration_states_request_builder import ManagedDeviceMobileAppConfigurationStatesRequestBuilder
+    from .override_compliance_state.override_compliance_state_request_builder import OverrideComplianceStateRequestBuilder
+    from .play_lost_mode_sound.play_lost_mode_sound_request_builder import PlayLostModeSoundRequestBuilder
+    from .reboot_now.reboot_now_request_builder import RebootNowRequestBuilder
+    from .recover_passcode.recover_passcode_request_builder import RecoverPasscodeRequestBuilder
+    from .reenable.reenable_request_builder import ReenableRequestBuilder
+    from .remote_lock.remote_lock_request_builder import RemoteLockRequestBuilder
+    from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_request_builder import RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder
+    from .reprovision_cloud_pc.reprovision_cloud_pc_request_builder import ReprovisionCloudPcRequestBuilder
+    from .request_remote_assistance.request_remote_assistance_request_builder import RequestRemoteAssistanceRequestBuilder
+    from .reset_passcode.reset_passcode_request_builder import ResetPasscodeRequestBuilder
+    from .resize_cloud_pc.resize_cloud_pc_request_builder import ResizeCloudPcRequestBuilder
+    from .restore_cloud_pc.restore_cloud_pc_request_builder import RestoreCloudPcRequestBuilder
+    from .retire.retire_request_builder import RetireRequestBuilder
+    from .revoke_apple_vpp_licenses.revoke_apple_vpp_licenses_request_builder import RevokeAppleVppLicensesRequestBuilder
+    from .rotate_bit_locker_keys.rotate_bit_locker_keys_request_builder import RotateBitLockerKeysRequestBuilder
+    from .rotate_file_vault_key.rotate_file_vault_key_request_builder import RotateFileVaultKeyRequestBuilder
+    from .rotate_local_admin_password.rotate_local_admin_password_request_builder import RotateLocalAdminPasswordRequestBuilder
+    from .security_baseline_states.security_baseline_states_request_builder import SecurityBaselineStatesRequestBuilder
+    from .send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder import SendCustomNotificationToCompanyPortalRequestBuilder
+    from .set_cloud_pc_review_status.set_cloud_pc_review_status_request_builder import SetCloudPcReviewStatusRequestBuilder
+    from .set_device_name.set_device_name_request_builder import SetDeviceNameRequestBuilder
+    from .shut_down.shut_down_request_builder import ShutDownRequestBuilder
+    from .sync_device.sync_device_request_builder import SyncDeviceRequestBuilder
+    from .trigger_configuration_manager_action.trigger_configuration_manager_action_request_builder import TriggerConfigurationManagerActionRequestBuilder
+    from .update_windows_device_account.update_windows_device_account_request_builder import UpdateWindowsDeviceAccountRequestBuilder
+    from .users.users_request_builder import UsersRequestBuilder
+    from .windows_defender_scan.windows_defender_scan_request_builder import WindowsDefenderScanRequestBuilder
+    from .windows_defender_update_signatures.windows_defender_update_signatures_request_builder import WindowsDefenderUpdateSignaturesRequestBuilder
+    from .windows_protection_state.windows_protection_state_request_builder import WindowsProtectionStateRequestBuilder
+    from .wipe.wipe_request_builder import WipeRequestBuilder
 
 class ManagedDeviceItemRequestBuilder():
     """
@@ -81,10 +80,10 @@ class ManagedDeviceItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}{?%24select,%24expand}"
 
@@ -101,62 +100,62 @@ class ManagedDeviceItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
+    async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedDevice]:
         """
         The managed devices associated with the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_device.ManagedDevice]
+        Returns: Optional[ManagedDevice]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import managed_device
+        from .....models.managed_device import ManagedDevice
 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedDevice, error_mapping)
     
-    async def patch(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
+    async def patch(self,body: Optional[ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ManagedDevice]:
         """
         Update the navigation property managedDevices in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_device.ManagedDevice]
+        Returns: Optional[ManagedDevice]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import managed_device
+        from .....models.managed_device import ManagedDevice
 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedDevice, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -192,7 +191,7 @@ class ManagedDeviceItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property managedDevices in users
         Args:
@@ -200,8 +199,8 @@ class ManagedDeviceItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -214,517 +213,508 @@ class ManagedDeviceItemRequestBuilder():
         return request_info
     
     @property
-    def activate_device_esim(self) -> activate_device_esim_request_builder.ActivateDeviceEsimRequestBuilder:
+    def activate_device_esim(self) -> ActivateDeviceEsimRequestBuilder:
         """
         Provides operations to call the activateDeviceEsim method.
         """
-        from .activate_device_esim import activate_device_esim_request_builder
+        from .activate_device_esim.activate_device_esim_request_builder import ActivateDeviceEsimRequestBuilder
 
-        return activate_device_esim_request_builder.ActivateDeviceEsimRequestBuilder(self.request_adapter, self.path_parameters)
+        return ActivateDeviceEsimRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignment_filter_evaluation_status_details(self) -> assignment_filter_evaluation_status_details_request_builder.AssignmentFilterEvaluationStatusDetailsRequestBuilder:
+    def assignment_filter_evaluation_status_details(self) -> AssignmentFilterEvaluationStatusDetailsRequestBuilder:
         """
         Provides operations to manage the assignmentFilterEvaluationStatusDetails property of the microsoft.graph.managedDevice entity.
         """
-        from .assignment_filter_evaluation_status_details import assignment_filter_evaluation_status_details_request_builder
+        from .assignment_filter_evaluation_status_details.assignment_filter_evaluation_status_details_request_builder import AssignmentFilterEvaluationStatusDetailsRequestBuilder
 
-        return assignment_filter_evaluation_status_details_request_builder.AssignmentFilterEvaluationStatusDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentFilterEvaluationStatusDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def bypass_activation_lock(self) -> bypass_activation_lock_request_builder.BypassActivationLockRequestBuilder:
+    def bypass_activation_lock(self) -> BypassActivationLockRequestBuilder:
         """
         Provides operations to call the bypassActivationLock method.
         """
-        from .bypass_activation_lock import bypass_activation_lock_request_builder
+        from .bypass_activation_lock.bypass_activation_lock_request_builder import BypassActivationLockRequestBuilder
 
-        return bypass_activation_lock_request_builder.BypassActivationLockRequestBuilder(self.request_adapter, self.path_parameters)
+        return BypassActivationLockRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def clean_windows_device(self) -> clean_windows_device_request_builder.CleanWindowsDeviceRequestBuilder:
+    def clean_windows_device(self) -> CleanWindowsDeviceRequestBuilder:
         """
         Provides operations to call the cleanWindowsDevice method.
         """
-        from .clean_windows_device import clean_windows_device_request_builder
+        from .clean_windows_device.clean_windows_device_request_builder import CleanWindowsDeviceRequestBuilder
 
-        return clean_windows_device_request_builder.CleanWindowsDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return CleanWindowsDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_device_log_collection_request(self) -> create_device_log_collection_request_request_builder.CreateDeviceLogCollectionRequestRequestBuilder:
+    def create_device_log_collection_request(self) -> CreateDeviceLogCollectionRequestRequestBuilder:
         """
         Provides operations to call the createDeviceLogCollectionRequest method.
         """
-        from .create_device_log_collection_request import create_device_log_collection_request_request_builder
+        from .create_device_log_collection_request.create_device_log_collection_request_request_builder import CreateDeviceLogCollectionRequestRequestBuilder
 
-        return create_device_log_collection_request_request_builder.CreateDeviceLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreateDeviceLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delete_user_from_shared_apple_device(self) -> delete_user_from_shared_apple_device_request_builder.DeleteUserFromSharedAppleDeviceRequestBuilder:
+    def delete_user_from_shared_apple_device(self) -> DeleteUserFromSharedAppleDeviceRequestBuilder:
         """
         Provides operations to call the deleteUserFromSharedAppleDevice method.
         """
-        from .delete_user_from_shared_apple_device import delete_user_from_shared_apple_device_request_builder
+        from .delete_user_from_shared_apple_device.delete_user_from_shared_apple_device_request_builder import DeleteUserFromSharedAppleDeviceRequestBuilder
 
-        return delete_user_from_shared_apple_device_request_builder.DeleteUserFromSharedAppleDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeleteUserFromSharedAppleDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def deprovision(self) -> deprovision_request_builder.DeprovisionRequestBuilder:
+    def deprovision(self) -> DeprovisionRequestBuilder:
         """
         Provides operations to call the deprovision method.
         """
-        from .deprovision import deprovision_request_builder
+        from .deprovision.deprovision_request_builder import DeprovisionRequestBuilder
 
-        return deprovision_request_builder.DeprovisionRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeprovisionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def detected_apps(self) -> detected_apps_request_builder.DetectedAppsRequestBuilder:
+    def detected_apps(self) -> DetectedAppsRequestBuilder:
         """
         Provides operations to manage the detectedApps property of the microsoft.graph.managedDevice entity.
         """
-        from .detected_apps import detected_apps_request_builder
+        from .detected_apps.detected_apps_request_builder import DetectedAppsRequestBuilder
 
-        return detected_apps_request_builder.DetectedAppsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DetectedAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_category(self) -> device_category_request_builder.DeviceCategoryRequestBuilder:
+    def device_category(self) -> DeviceCategoryRequestBuilder:
         """
         Provides operations to manage the deviceCategory property of the microsoft.graph.managedDevice entity.
         """
-        from .device_category import device_category_request_builder
+        from .device_category.device_category_request_builder import DeviceCategoryRequestBuilder
 
-        return device_category_request_builder.DeviceCategoryRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceCategoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_compliance_policy_states(self) -> device_compliance_policy_states_request_builder.DeviceCompliancePolicyStatesRequestBuilder:
+    def device_compliance_policy_states(self) -> DeviceCompliancePolicyStatesRequestBuilder:
         """
         Provides operations to manage the deviceCompliancePolicyStates property of the microsoft.graph.managedDevice entity.
         """
-        from .device_compliance_policy_states import device_compliance_policy_states_request_builder
+        from .device_compliance_policy_states.device_compliance_policy_states_request_builder import DeviceCompliancePolicyStatesRequestBuilder
 
-        return device_compliance_policy_states_request_builder.DeviceCompliancePolicyStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceCompliancePolicyStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_configuration_states(self) -> device_configuration_states_request_builder.DeviceConfigurationStatesRequestBuilder:
+    def device_configuration_states(self) -> DeviceConfigurationStatesRequestBuilder:
         """
         Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.
         """
-        from .device_configuration_states import device_configuration_states_request_builder
+        from .device_configuration_states.device_configuration_states_request_builder import DeviceConfigurationStatesRequestBuilder
 
-        return device_configuration_states_request_builder.DeviceConfigurationStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceConfigurationStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_health_script_states(self) -> device_health_script_states_request_builder.DeviceHealthScriptStatesRequestBuilder:
+    def device_health_script_states(self) -> DeviceHealthScriptStatesRequestBuilder:
         """
         Provides operations to manage the deviceHealthScriptStates property of the microsoft.graph.managedDevice entity.
         """
-        from .device_health_script_states import device_health_script_states_request_builder
+        from .device_health_script_states.device_health_script_states_request_builder import DeviceHealthScriptStatesRequestBuilder
 
-        return device_health_script_states_request_builder.DeviceHealthScriptStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceHealthScriptStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def disable(self) -> disable_request_builder.DisableRequestBuilder:
+    def disable(self) -> DisableRequestBuilder:
         """
         Provides operations to call the disable method.
         """
-        from .disable import disable_request_builder
+        from .disable.disable_request_builder import DisableRequestBuilder
 
-        return disable_request_builder.DisableRequestBuilder(self.request_adapter, self.path_parameters)
+        return DisableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def disable_lost_mode(self) -> disable_lost_mode_request_builder.DisableLostModeRequestBuilder:
+    def disable_lost_mode(self) -> DisableLostModeRequestBuilder:
         """
         Provides operations to call the disableLostMode method.
         """
-        from .disable_lost_mode import disable_lost_mode_request_builder
+        from .disable_lost_mode.disable_lost_mode_request_builder import DisableLostModeRequestBuilder
 
-        return disable_lost_mode_request_builder.DisableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
+        return DisableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enable_lost_mode(self) -> enable_lost_mode_request_builder.EnableLostModeRequestBuilder:
+    def enable_lost_mode(self) -> EnableLostModeRequestBuilder:
         """
         Provides operations to call the enableLostMode method.
         """
-        from .enable_lost_mode import enable_lost_mode_request_builder
+        from .enable_lost_mode.enable_lost_mode_request_builder import EnableLostModeRequestBuilder
 
-        return enable_lost_mode_request_builder.EnableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
+        return EnableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enroll_now_action(self) -> enroll_now_action_request_builder.EnrollNowActionRequestBuilder:
+    def enroll_now_action(self) -> EnrollNowActionRequestBuilder:
         """
         Provides operations to call the enrollNowAction method.
         """
-        from .enroll_now_action import enroll_now_action_request_builder
+        from .enroll_now_action.enroll_now_action_request_builder import EnrollNowActionRequestBuilder
 
-        return enroll_now_action_request_builder.EnrollNowActionRequestBuilder(self.request_adapter, self.path_parameters)
+        return EnrollNowActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_cloud_pc_remote_action_results(self) -> get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder:
+    def get_cloud_pc_remote_action_results(self) -> GetCloudPcRemoteActionResultsRequestBuilder:
         """
         Provides operations to call the getCloudPcRemoteActionResults method.
         """
-        from .get_cloud_pc_remote_action_results import get_cloud_pc_remote_action_results_request_builder
+        from .get_cloud_pc_remote_action_results.get_cloud_pc_remote_action_results_request_builder import GetCloudPcRemoteActionResultsRequestBuilder
 
-        return get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_cloud_pc_review_status(self) -> get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder:
+    def get_cloud_pc_review_status(self) -> GetCloudPcReviewStatusRequestBuilder:
         """
         Provides operations to call the getCloudPcReviewStatus method.
         """
-        from .get_cloud_pc_review_status import get_cloud_pc_review_status_request_builder
+        from .get_cloud_pc_review_status.get_cloud_pc_review_status_request_builder import GetCloudPcReviewStatusRequestBuilder
 
-        return get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_file_vault_key(self) -> get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder:
+    def get_file_vault_key(self) -> GetFileVaultKeyRequestBuilder:
         """
         Provides operations to call the getFileVaultKey method.
         """
-        from .get_file_vault_key import get_file_vault_key_request_builder
+        from .get_file_vault_key.get_file_vault_key_request_builder import GetFileVaultKeyRequestBuilder
 
-        return get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_non_compliant_settings(self) -> get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder:
+    def get_non_compliant_settings(self) -> GetNonCompliantSettingsRequestBuilder:
         """
         Provides operations to call the getNonCompliantSettings method.
         """
-        from .get_non_compliant_settings import get_non_compliant_settings_request_builder
+        from .get_non_compliant_settings.get_non_compliant_settings_request_builder import GetNonCompliantSettingsRequestBuilder
 
-        return get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_oem_warranty(self) -> get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder:
-        """
-        Provides operations to call the getOemWarranty method.
-        """
-        from .get_oem_warranty import get_oem_warranty_request_builder
-
-        return get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def initiate_mobile_device_management_key_recovery(self) -> initiate_mobile_device_management_key_recovery_request_builder.InitiateMobileDeviceManagementKeyRecoveryRequestBuilder:
+    def initiate_mobile_device_management_key_recovery(self) -> InitiateMobileDeviceManagementKeyRecoveryRequestBuilder:
         """
         Provides operations to call the initiateMobileDeviceManagementKeyRecovery method.
         """
-        from .initiate_mobile_device_management_key_recovery import initiate_mobile_device_management_key_recovery_request_builder
+        from .initiate_mobile_device_management_key_recovery.initiate_mobile_device_management_key_recovery_request_builder import InitiateMobileDeviceManagementKeyRecoveryRequestBuilder
 
-        return initiate_mobile_device_management_key_recovery_request_builder.InitiateMobileDeviceManagementKeyRecoveryRequestBuilder(self.request_adapter, self.path_parameters)
+        return InitiateMobileDeviceManagementKeyRecoveryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def initiate_on_demand_proactive_remediation(self) -> initiate_on_demand_proactive_remediation_request_builder.InitiateOnDemandProactiveRemediationRequestBuilder:
+    def initiate_on_demand_proactive_remediation(self) -> InitiateOnDemandProactiveRemediationRequestBuilder:
         """
         Provides operations to call the initiateOnDemandProactiveRemediation method.
         """
-        from .initiate_on_demand_proactive_remediation import initiate_on_demand_proactive_remediation_request_builder
+        from .initiate_on_demand_proactive_remediation.initiate_on_demand_proactive_remediation_request_builder import InitiateOnDemandProactiveRemediationRequestBuilder
 
-        return initiate_on_demand_proactive_remediation_request_builder.InitiateOnDemandProactiveRemediationRequestBuilder(self.request_adapter, self.path_parameters)
+        return InitiateOnDemandProactiveRemediationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def locate_device(self) -> locate_device_request_builder.LocateDeviceRequestBuilder:
+    def locate_device(self) -> LocateDeviceRequestBuilder:
         """
         Provides operations to call the locateDevice method.
         """
-        from .locate_device import locate_device_request_builder
+        from .locate_device.locate_device_request_builder import LocateDeviceRequestBuilder
 
-        return locate_device_request_builder.LocateDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return LocateDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def log_collection_requests(self) -> log_collection_requests_request_builder.LogCollectionRequestsRequestBuilder:
+    def log_collection_requests(self) -> LogCollectionRequestsRequestBuilder:
         """
         Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
         """
-        from .log_collection_requests import log_collection_requests_request_builder
+        from .log_collection_requests.log_collection_requests_request_builder import LogCollectionRequestsRequestBuilder
 
-        return log_collection_requests_request_builder.LogCollectionRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return LogCollectionRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def logout_shared_apple_device_active_user(self) -> logout_shared_apple_device_active_user_request_builder.LogoutSharedAppleDeviceActiveUserRequestBuilder:
+    def logout_shared_apple_device_active_user(self) -> LogoutSharedAppleDeviceActiveUserRequestBuilder:
         """
         Provides operations to call the logoutSharedAppleDeviceActiveUser method.
         """
-        from .logout_shared_apple_device_active_user import logout_shared_apple_device_active_user_request_builder
+        from .logout_shared_apple_device_active_user.logout_shared_apple_device_active_user_request_builder import LogoutSharedAppleDeviceActiveUserRequestBuilder
 
-        return logout_shared_apple_device_active_user_request_builder.LogoutSharedAppleDeviceActiveUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return LogoutSharedAppleDeviceActiveUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_device_mobile_app_configuration_states(self) -> managed_device_mobile_app_configuration_states_request_builder.ManagedDeviceMobileAppConfigurationStatesRequestBuilder:
+    def managed_device_mobile_app_configuration_states(self) -> ManagedDeviceMobileAppConfigurationStatesRequestBuilder:
         """
         Provides operations to manage the managedDeviceMobileAppConfigurationStates property of the microsoft.graph.managedDevice entity.
         """
-        from .managed_device_mobile_app_configuration_states import managed_device_mobile_app_configuration_states_request_builder
+        from .managed_device_mobile_app_configuration_states.managed_device_mobile_app_configuration_states_request_builder import ManagedDeviceMobileAppConfigurationStatesRequestBuilder
 
-        return managed_device_mobile_app_configuration_states_request_builder.ManagedDeviceMobileAppConfigurationStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedDeviceMobileAppConfigurationStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def override_compliance_state(self) -> override_compliance_state_request_builder.OverrideComplianceStateRequestBuilder:
+    def override_compliance_state(self) -> OverrideComplianceStateRequestBuilder:
         """
         Provides operations to call the overrideComplianceState method.
         """
-        from .override_compliance_state import override_compliance_state_request_builder
+        from .override_compliance_state.override_compliance_state_request_builder import OverrideComplianceStateRequestBuilder
 
-        return override_compliance_state_request_builder.OverrideComplianceStateRequestBuilder(self.request_adapter, self.path_parameters)
+        return OverrideComplianceStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def play_lost_mode_sound(self) -> play_lost_mode_sound_request_builder.PlayLostModeSoundRequestBuilder:
+    def play_lost_mode_sound(self) -> PlayLostModeSoundRequestBuilder:
         """
         Provides operations to call the playLostModeSound method.
         """
-        from .play_lost_mode_sound import play_lost_mode_sound_request_builder
+        from .play_lost_mode_sound.play_lost_mode_sound_request_builder import PlayLostModeSoundRequestBuilder
 
-        return play_lost_mode_sound_request_builder.PlayLostModeSoundRequestBuilder(self.request_adapter, self.path_parameters)
+        return PlayLostModeSoundRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reboot_now(self) -> reboot_now_request_builder.RebootNowRequestBuilder:
+    def reboot_now(self) -> RebootNowRequestBuilder:
         """
         Provides operations to call the rebootNow method.
         """
-        from .reboot_now import reboot_now_request_builder
+        from .reboot_now.reboot_now_request_builder import RebootNowRequestBuilder
 
-        return reboot_now_request_builder.RebootNowRequestBuilder(self.request_adapter, self.path_parameters)
+        return RebootNowRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def recover_passcode(self) -> recover_passcode_request_builder.RecoverPasscodeRequestBuilder:
+    def recover_passcode(self) -> RecoverPasscodeRequestBuilder:
         """
         Provides operations to call the recoverPasscode method.
         """
-        from .recover_passcode import recover_passcode_request_builder
+        from .recover_passcode.recover_passcode_request_builder import RecoverPasscodeRequestBuilder
 
-        return recover_passcode_request_builder.RecoverPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
+        return RecoverPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reenable(self) -> reenable_request_builder.ReenableRequestBuilder:
+    def reenable(self) -> ReenableRequestBuilder:
         """
         Provides operations to call the reenable method.
         """
-        from .reenable import reenable_request_builder
+        from .reenable.reenable_request_builder import ReenableRequestBuilder
 
-        return reenable_request_builder.ReenableRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReenableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remote_lock(self) -> remote_lock_request_builder.RemoteLockRequestBuilder:
+    def remote_lock(self) -> RemoteLockRequestBuilder:
         """
         Provides operations to call the remoteLock method.
         """
-        from .remote_lock import remote_lock_request_builder
+        from .remote_lock.remote_lock_request_builder import RemoteLockRequestBuilder
 
-        return remote_lock_request_builder.RemoteLockRequestBuilder(self.request_adapter, self.path_parameters)
+        return RemoteLockRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_device_firmware_configuration_interface_management(self) -> remove_device_firmware_configuration_interface_management_request_builder.RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder:
+    def remove_device_firmware_configuration_interface_management(self) -> RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder:
         """
         Provides operations to call the removeDeviceFirmwareConfigurationInterfaceManagement method.
         """
-        from .remove_device_firmware_configuration_interface_management import remove_device_firmware_configuration_interface_management_request_builder
+        from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_request_builder import RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder
 
-        return remove_device_firmware_configuration_interface_management_request_builder.RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reprovision_cloud_pc(self) -> reprovision_cloud_pc_request_builder.ReprovisionCloudPcRequestBuilder:
+    def reprovision_cloud_pc(self) -> ReprovisionCloudPcRequestBuilder:
         """
         Provides operations to call the reprovisionCloudPc method.
         """
-        from .reprovision_cloud_pc import reprovision_cloud_pc_request_builder
+        from .reprovision_cloud_pc.reprovision_cloud_pc_request_builder import ReprovisionCloudPcRequestBuilder
 
-        return reprovision_cloud_pc_request_builder.ReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def request_remote_assistance(self) -> request_remote_assistance_request_builder.RequestRemoteAssistanceRequestBuilder:
+    def request_remote_assistance(self) -> RequestRemoteAssistanceRequestBuilder:
         """
         Provides operations to call the requestRemoteAssistance method.
         """
-        from .request_remote_assistance import request_remote_assistance_request_builder
+        from .request_remote_assistance.request_remote_assistance_request_builder import RequestRemoteAssistanceRequestBuilder
 
-        return request_remote_assistance_request_builder.RequestRemoteAssistanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return RequestRemoteAssistanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reset_passcode(self) -> reset_passcode_request_builder.ResetPasscodeRequestBuilder:
+    def reset_passcode(self) -> ResetPasscodeRequestBuilder:
         """
         Provides operations to call the resetPasscode method.
         """
-        from .reset_passcode import reset_passcode_request_builder
+        from .reset_passcode.reset_passcode_request_builder import ResetPasscodeRequestBuilder
 
-        return reset_passcode_request_builder.ResetPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResetPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def resize_cloud_pc(self) -> resize_cloud_pc_request_builder.ResizeCloudPcRequestBuilder:
+    def resize_cloud_pc(self) -> ResizeCloudPcRequestBuilder:
         """
         Provides operations to call the resizeCloudPc method.
         """
-        from .resize_cloud_pc import resize_cloud_pc_request_builder
+        from .resize_cloud_pc.resize_cloud_pc_request_builder import ResizeCloudPcRequestBuilder
 
-        return resize_cloud_pc_request_builder.ResizeCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResizeCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore_cloud_pc(self) -> restore_cloud_pc_request_builder.RestoreCloudPcRequestBuilder:
+    def restore_cloud_pc(self) -> RestoreCloudPcRequestBuilder:
         """
         Provides operations to call the restoreCloudPc method.
         """
-        from .restore_cloud_pc import restore_cloud_pc_request_builder
+        from .restore_cloud_pc.restore_cloud_pc_request_builder import RestoreCloudPcRequestBuilder
 
-        return restore_cloud_pc_request_builder.RestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
+        return RestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def retire(self) -> retire_request_builder.RetireRequestBuilder:
+    def retire(self) -> RetireRequestBuilder:
         """
         Provides operations to call the retire method.
         """
-        from .retire import retire_request_builder
+        from .retire.retire_request_builder import RetireRequestBuilder
 
-        return retire_request_builder.RetireRequestBuilder(self.request_adapter, self.path_parameters)
+        return RetireRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def revoke_apple_vpp_licenses(self) -> revoke_apple_vpp_licenses_request_builder.RevokeAppleVppLicensesRequestBuilder:
+    def revoke_apple_vpp_licenses(self) -> RevokeAppleVppLicensesRequestBuilder:
         """
         Provides operations to call the revokeAppleVppLicenses method.
         """
-        from .revoke_apple_vpp_licenses import revoke_apple_vpp_licenses_request_builder
+        from .revoke_apple_vpp_licenses.revoke_apple_vpp_licenses_request_builder import RevokeAppleVppLicensesRequestBuilder
 
-        return revoke_apple_vpp_licenses_request_builder.RevokeAppleVppLicensesRequestBuilder(self.request_adapter, self.path_parameters)
+        return RevokeAppleVppLicensesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def rotate_bit_locker_keys(self) -> rotate_bit_locker_keys_request_builder.RotateBitLockerKeysRequestBuilder:
+    def rotate_bit_locker_keys(self) -> RotateBitLockerKeysRequestBuilder:
         """
         Provides operations to call the rotateBitLockerKeys method.
         """
-        from .rotate_bit_locker_keys import rotate_bit_locker_keys_request_builder
+        from .rotate_bit_locker_keys.rotate_bit_locker_keys_request_builder import RotateBitLockerKeysRequestBuilder
 
-        return rotate_bit_locker_keys_request_builder.RotateBitLockerKeysRequestBuilder(self.request_adapter, self.path_parameters)
+        return RotateBitLockerKeysRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def rotate_file_vault_key(self) -> rotate_file_vault_key_request_builder.RotateFileVaultKeyRequestBuilder:
+    def rotate_file_vault_key(self) -> RotateFileVaultKeyRequestBuilder:
         """
         Provides operations to call the rotateFileVaultKey method.
         """
-        from .rotate_file_vault_key import rotate_file_vault_key_request_builder
+        from .rotate_file_vault_key.rotate_file_vault_key_request_builder import RotateFileVaultKeyRequestBuilder
 
-        return rotate_file_vault_key_request_builder.RotateFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
+        return RotateFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def rotate_local_admin_password(self) -> rotate_local_admin_password_request_builder.RotateLocalAdminPasswordRequestBuilder:
+    def rotate_local_admin_password(self) -> RotateLocalAdminPasswordRequestBuilder:
         """
         Provides operations to call the rotateLocalAdminPassword method.
         """
-        from .rotate_local_admin_password import rotate_local_admin_password_request_builder
+        from .rotate_local_admin_password.rotate_local_admin_password_request_builder import RotateLocalAdminPasswordRequestBuilder
 
-        return rotate_local_admin_password_request_builder.RotateLocalAdminPasswordRequestBuilder(self.request_adapter, self.path_parameters)
+        return RotateLocalAdminPasswordRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security_baseline_states(self) -> security_baseline_states_request_builder.SecurityBaselineStatesRequestBuilder:
+    def security_baseline_states(self) -> SecurityBaselineStatesRequestBuilder:
         """
         Provides operations to manage the securityBaselineStates property of the microsoft.graph.managedDevice entity.
         """
-        from .security_baseline_states import security_baseline_states_request_builder
+        from .security_baseline_states.security_baseline_states_request_builder import SecurityBaselineStatesRequestBuilder
 
-        return security_baseline_states_request_builder.SecurityBaselineStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SecurityBaselineStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send_custom_notification_to_company_portal(self) -> send_custom_notification_to_company_portal_request_builder.SendCustomNotificationToCompanyPortalRequestBuilder:
+    def send_custom_notification_to_company_portal(self) -> SendCustomNotificationToCompanyPortalRequestBuilder:
         """
         Provides operations to call the sendCustomNotificationToCompanyPortal method.
         """
-        from .send_custom_notification_to_company_portal import send_custom_notification_to_company_portal_request_builder
+        from .send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder import SendCustomNotificationToCompanyPortalRequestBuilder
 
-        return send_custom_notification_to_company_portal_request_builder.SendCustomNotificationToCompanyPortalRequestBuilder(self.request_adapter, self.path_parameters)
+        return SendCustomNotificationToCompanyPortalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_cloud_pc_review_status(self) -> set_cloud_pc_review_status_request_builder.SetCloudPcReviewStatusRequestBuilder:
+    def set_cloud_pc_review_status(self) -> SetCloudPcReviewStatusRequestBuilder:
         """
         Provides operations to call the setCloudPcReviewStatus method.
         """
-        from .set_cloud_pc_review_status import set_cloud_pc_review_status_request_builder
+        from .set_cloud_pc_review_status.set_cloud_pc_review_status_request_builder import SetCloudPcReviewStatusRequestBuilder
 
-        return set_cloud_pc_review_status_request_builder.SetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_device_name(self) -> set_device_name_request_builder.SetDeviceNameRequestBuilder:
+    def set_device_name(self) -> SetDeviceNameRequestBuilder:
         """
         Provides operations to call the setDeviceName method.
         """
-        from .set_device_name import set_device_name_request_builder
+        from .set_device_name.set_device_name_request_builder import SetDeviceNameRequestBuilder
 
-        return set_device_name_request_builder.SetDeviceNameRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetDeviceNameRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def shut_down(self) -> shut_down_request_builder.ShutDownRequestBuilder:
+    def shut_down(self) -> ShutDownRequestBuilder:
         """
         Provides operations to call the shutDown method.
         """
-        from .shut_down import shut_down_request_builder
+        from .shut_down.shut_down_request_builder import ShutDownRequestBuilder
 
-        return shut_down_request_builder.ShutDownRequestBuilder(self.request_adapter, self.path_parameters)
+        return ShutDownRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sync_device(self) -> sync_device_request_builder.SyncDeviceRequestBuilder:
+    def sync_device(self) -> SyncDeviceRequestBuilder:
         """
         Provides operations to call the syncDevice method.
         """
-        from .sync_device import sync_device_request_builder
+        from .sync_device.sync_device_request_builder import SyncDeviceRequestBuilder
 
-        return sync_device_request_builder.SyncDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return SyncDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def trigger_configuration_manager_action(self) -> trigger_configuration_manager_action_request_builder.TriggerConfigurationManagerActionRequestBuilder:
+    def trigger_configuration_manager_action(self) -> TriggerConfigurationManagerActionRequestBuilder:
         """
         Provides operations to call the triggerConfigurationManagerAction method.
         """
-        from .trigger_configuration_manager_action import trigger_configuration_manager_action_request_builder
+        from .trigger_configuration_manager_action.trigger_configuration_manager_action_request_builder import TriggerConfigurationManagerActionRequestBuilder
 
-        return trigger_configuration_manager_action_request_builder.TriggerConfigurationManagerActionRequestBuilder(self.request_adapter, self.path_parameters)
+        return TriggerConfigurationManagerActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_windows_device_account(self) -> update_windows_device_account_request_builder.UpdateWindowsDeviceAccountRequestBuilder:
+    def update_windows_device_account(self) -> UpdateWindowsDeviceAccountRequestBuilder:
         """
         Provides operations to call the updateWindowsDeviceAccount method.
         """
-        from .update_windows_device_account import update_windows_device_account_request_builder
+        from .update_windows_device_account.update_windows_device_account_request_builder import UpdateWindowsDeviceAccountRequestBuilder
 
-        return update_windows_device_account_request_builder.UpdateWindowsDeviceAccountRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateWindowsDeviceAccountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def users(self) -> users_request_builder.UsersRequestBuilder:
+    def users(self) -> UsersRequestBuilder:
         """
         Provides operations to manage the users property of the microsoft.graph.managedDevice entity.
         """
-        from .users import users_request_builder
+        from .users.users_request_builder import UsersRequestBuilder
 
-        return users_request_builder.UsersRequestBuilder(self.request_adapter, self.path_parameters)
+        return UsersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_defender_scan(self) -> windows_defender_scan_request_builder.WindowsDefenderScanRequestBuilder:
+    def windows_defender_scan(self) -> WindowsDefenderScanRequestBuilder:
         """
         Provides operations to call the windowsDefenderScan method.
         """
-        from .windows_defender_scan import windows_defender_scan_request_builder
+        from .windows_defender_scan.windows_defender_scan_request_builder import WindowsDefenderScanRequestBuilder
 
-        return windows_defender_scan_request_builder.WindowsDefenderScanRequestBuilder(self.request_adapter, self.path_parameters)
+        return WindowsDefenderScanRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_defender_update_signatures(self) -> windows_defender_update_signatures_request_builder.WindowsDefenderUpdateSignaturesRequestBuilder:
+    def windows_defender_update_signatures(self) -> WindowsDefenderUpdateSignaturesRequestBuilder:
         """
         Provides operations to call the windowsDefenderUpdateSignatures method.
         """
-        from .windows_defender_update_signatures import windows_defender_update_signatures_request_builder
+        from .windows_defender_update_signatures.windows_defender_update_signatures_request_builder import WindowsDefenderUpdateSignaturesRequestBuilder
 
-        return windows_defender_update_signatures_request_builder.WindowsDefenderUpdateSignaturesRequestBuilder(self.request_adapter, self.path_parameters)
+        return WindowsDefenderUpdateSignaturesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_protection_state(self) -> windows_protection_state_request_builder.WindowsProtectionStateRequestBuilder:
+    def windows_protection_state(self) -> WindowsProtectionStateRequestBuilder:
         """
         Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.
         """
-        from .windows_protection_state import windows_protection_state_request_builder
+        from .windows_protection_state.windows_protection_state_request_builder import WindowsProtectionStateRequestBuilder
 
-        return windows_protection_state_request_builder.WindowsProtectionStateRequestBuilder(self.request_adapter, self.path_parameters)
+        return WindowsProtectionStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def wipe(self) -> wipe_request_builder.WipeRequestBuilder:
+    def wipe(self) -> WipeRequestBuilder:
         """
         Provides operations to call the wipe method.
         """
-        from .wipe import wipe_request_builder
+        from .wipe.wipe_request_builder import WipeRequestBuilder
 
-        return wipe_request_builder.WipeRequestBuilder(self.request_adapter, self.path_parameters)
+        return WipeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ManagedDeviceItemRequestBuilderDeleteRequestConfiguration():
@@ -750,8 +740,8 @@ class ManagedDeviceItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

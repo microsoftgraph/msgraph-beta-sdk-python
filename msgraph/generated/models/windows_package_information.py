@@ -1,71 +1,36 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import windows_architecture, windows_minimum_operating_system
+    from .windows_architecture import WindowsArchitecture
+    from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
+@dataclass
 class WindowsPackageInformation(AdditionalDataHolder, Parsable):
     """
     Contains properties for the package information for a Windows line of business app. Used as property within windowsPhone81AppXBundle object, which is also being deprecated. This complex type will be deprecated in February 2023.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsPackageInformation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Contains properties for Windows architecture.
-        self._applicable_architecture: Optional[windows_architecture.WindowsArchitecture] = None
-        # The Display Name.
-        self._display_name: Optional[str] = None
-        # The Identity Name.
-        self._identity_name: Optional[str] = None
-        # The Identity Publisher.
-        self._identity_publisher: Optional[str] = None
-        # The Identity Resource Identifier.
-        self._identity_resource_identifier: Optional[str] = None
-        # The Identity Version.
-        self._identity_version: Optional[str] = None
-        # The value for the minimum applicable operating system.
-        self._minimum_supported_operating_system: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def applicable_architecture(self,) -> Optional[windows_architecture.WindowsArchitecture]:
-        """
-        Gets the applicableArchitecture property value. Contains properties for Windows architecture.
-        Returns: Optional[windows_architecture.WindowsArchitecture]
-        """
-        return self._applicable_architecture
-    
-    @applicable_architecture.setter
-    def applicable_architecture(self,value: Optional[windows_architecture.WindowsArchitecture] = None) -> None:
-        """
-        Sets the applicableArchitecture property value. Contains properties for Windows architecture.
-        Args:
-            value: Value to set for the applicable_architecture property.
-        """
-        self._applicable_architecture = value
+    # Contains properties for Windows architecture.
+    applicable_architecture: Optional[WindowsArchitecture] = None
+    # The Display Name.
+    display_name: Optional[str] = None
+    # The Identity Name.
+    identity_name: Optional[str] = None
+    # The Identity Publisher.
+    identity_publisher: Optional[str] = None
+    # The Identity Resource Identifier.
+    identity_resource_identifier: Optional[str] = None
+    # The Identity Version.
+    identity_version: Optional[str] = None
+    # The value for the minimum applicable operating system.
+    minimum_supported_operating_system: Optional[WindowsMinimumOperatingSystem] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPackageInformation:
@@ -75,147 +40,32 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: WindowsPackageInformation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WindowsPackageInformation()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The Display Name.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The Display Name.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import windows_architecture, windows_minimum_operating_system
+        from .windows_architecture import WindowsArchitecture
+        from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
+
+        from .windows_architecture import WindowsArchitecture
+        from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableArchitecture": lambda n : setattr(self, 'applicable_architecture', n.get_enum_value(windows_architecture.WindowsArchitecture)),
+            "applicableArchitecture": lambda n : setattr(self, 'applicable_architecture', n.get_enum_value(WindowsArchitecture)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
             "identityPublisher": lambda n : setattr(self, 'identity_publisher', n.get_str_value()),
             "identityResourceIdentifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),
             "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
-            "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(windows_minimum_operating_system.WindowsMinimumOperatingSystem)),
+            "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(WindowsMinimumOperatingSystem)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def identity_name(self,) -> Optional[str]:
-        """
-        Gets the identityName property value. The Identity Name.
-        Returns: Optional[str]
-        """
-        return self._identity_name
-    
-    @identity_name.setter
-    def identity_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityName property value. The Identity Name.
-        Args:
-            value: Value to set for the identity_name property.
-        """
-        self._identity_name = value
-    
-    @property
-    def identity_publisher(self,) -> Optional[str]:
-        """
-        Gets the identityPublisher property value. The Identity Publisher.
-        Returns: Optional[str]
-        """
-        return self._identity_publisher
-    
-    @identity_publisher.setter
-    def identity_publisher(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityPublisher property value. The Identity Publisher.
-        Args:
-            value: Value to set for the identity_publisher property.
-        """
-        self._identity_publisher = value
-    
-    @property
-    def identity_resource_identifier(self,) -> Optional[str]:
-        """
-        Gets the identityResourceIdentifier property value. The Identity Resource Identifier.
-        Returns: Optional[str]
-        """
-        return self._identity_resource_identifier
-    
-    @identity_resource_identifier.setter
-    def identity_resource_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityResourceIdentifier property value. The Identity Resource Identifier.
-        Args:
-            value: Value to set for the identity_resource_identifier property.
-        """
-        self._identity_resource_identifier = value
-    
-    @property
-    def identity_version(self,) -> Optional[str]:
-        """
-        Gets the identityVersion property value. The Identity Version.
-        Returns: Optional[str]
-        """
-        return self._identity_version
-    
-    @identity_version.setter
-    def identity_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityVersion property value. The Identity Version.
-        Args:
-            value: Value to set for the identity_version property.
-        """
-        self._identity_version = value
-    
-    @property
-    def minimum_supported_operating_system(self,) -> Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem]:
-        """
-        Gets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
-        Returns: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem]
-        """
-        return self._minimum_supported_operating_system
-    
-    @minimum_supported_operating_system.setter
-    def minimum_supported_operating_system(self,value: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem] = None) -> None:
-        """
-        Sets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
-        Args:
-            value: Value to set for the minimum_supported_operating_system property.
-        """
-        self._minimum_supported_operating_system = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -223,8 +73,8 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_enum_value("applicableArchitecture", self.applicable_architecture)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("identityName", self.identity_name)

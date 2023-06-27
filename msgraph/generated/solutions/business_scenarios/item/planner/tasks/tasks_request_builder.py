@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import business_scenario_task, business_scenario_task_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import business_scenario_task_item_request_builder
+    from ......models.business_scenario_task import BusinessScenarioTask
+    from ......models.business_scenario_task_collection_response import BusinessScenarioTaskCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.business_scenario_task_item_request_builder import BusinessScenarioTaskItemRequestBuilder
 
 class TasksRequestBuilder():
     """
@@ -26,10 +27,10 @@ class TasksRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/solutions/businessScenarios/{businessScenario%2Did}/planner/tasks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class TasksRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_business_scenario_task_id(self,business_scenario_task_id: str) -> business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder:
+    def by_business_scenario_task_id(self,business_scenario_task_id: str) -> BusinessScenarioTaskItemRequestBuilder:
         """
         Provides operations to manage the tasks property of the microsoft.graph.businessScenarioPlanner entity.
         Args:
             business_scenario_task_id: Unique identifier of the item
-        Returns: business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder
+        Returns: BusinessScenarioTaskItemRequestBuilder
         """
-        if business_scenario_task_id is None:
-            raise Exception("business_scenario_task_id cannot be undefined")
-        from .item import business_scenario_task_item_request_builder
+        if not business_scenario_task_id:
+            raise TypeError("business_scenario_task_id cannot be null.")
+        from .item.business_scenario_task_item_request_builder import BusinessScenarioTaskItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["businessScenarioTask%2Did"] = business_scenario_task_id
-        return business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return BusinessScenarioTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_task_collection_response.BusinessScenarioTaskCollectionResponse]:
+    async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[BusinessScenarioTaskCollectionResponse]:
         """
         Get a list of the businessScenarioTask objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[business_scenario_task_collection_response.BusinessScenarioTaskCollectionResponse]
+        Returns: Optional[BusinessScenarioTaskCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import business_scenario_task_collection_response
+        from ......models.business_scenario_task_collection_response import BusinessScenarioTaskCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, business_scenario_task_collection_response.BusinessScenarioTaskCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, BusinessScenarioTaskCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[business_scenario_task.BusinessScenarioTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> Optional[business_scenario_task.BusinessScenarioTask]:
+    async def post(self,body: Optional[BusinessScenarioTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> Optional[BusinessScenarioTask]:
         """
         Create a new businessScenarioTask object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[business_scenario_task.BusinessScenarioTask]
+        Returns: Optional[BusinessScenarioTask]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import business_scenario_task
+        from ......models.business_scenario_task import BusinessScenarioTask
 
-        return await self.request_adapter.send_async(request_info, business_scenario_task.BusinessScenarioTask, error_mapping)
+        return await self.request_adapter.send_async(request_info, BusinessScenarioTask, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class TasksRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[business_scenario_task.BusinessScenarioTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[BusinessScenarioTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new businessScenarioTask object.
         Args:
@@ -125,8 +126,8 @@ class TasksRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class TasksRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class TasksRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

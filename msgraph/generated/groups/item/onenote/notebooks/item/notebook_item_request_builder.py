@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import notebook
-    from ......models.o_data_errors import o_data_error
-    from .copy_notebook import copy_notebook_request_builder
-    from .section_groups import section_groups_request_builder
-    from .sections import sections_request_builder
+    from ......models.notebook import Notebook
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .copy_notebook.copy_notebook_request_builder import CopyNotebookRequestBuilder
+    from .section_groups.section_groups_request_builder import SectionGroupsRequestBuilder
+    from .sections.sections_request_builder import SectionsRequestBuilder
 
 class NotebookItemRequestBuilder():
     """
@@ -27,10 +27,10 @@ class NotebookItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/groups/{group%2Did}/onenote/notebooks/{notebook%2Did}{?%24select,%24expand}"
 
@@ -47,62 +47,62 @@ class NotebookItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[NotebookItemRequestBuilderGetRequestConfiguration] = None) -> Optional[notebook.Notebook]:
+    async def get(self,request_configuration: Optional[NotebookItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Notebook]:
         """
         Retrieve the properties and relationships of a notebook object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[notebook.Notebook]
+        Returns: Optional[Notebook]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import notebook
+        from ......models.notebook import Notebook
 
-        return await self.request_adapter.send_async(request_info, notebook.Notebook, error_mapping)
+        return await self.request_adapter.send_async(request_info, Notebook, error_mapping)
     
-    async def patch(self,body: Optional[notebook.Notebook] = None, request_configuration: Optional[NotebookItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[notebook.Notebook]:
+    async def patch(self,body: Optional[Notebook] = None, request_configuration: Optional[NotebookItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Notebook]:
         """
         Update the navigation property notebooks in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[notebook.Notebook]
+        Returns: Optional[Notebook]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import notebook
+        from ......models.notebook import Notebook
 
-        return await self.request_adapter.send_async(request_info, notebook.Notebook, error_mapping)
+        return await self.request_adapter.send_async(request_info, Notebook, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[NotebookItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -138,7 +138,7 @@ class NotebookItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[notebook.Notebook] = None, request_configuration: Optional[NotebookItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Notebook] = None, request_configuration: Optional[NotebookItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property notebooks in groups
         Args:
@@ -146,8 +146,8 @@ class NotebookItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,31 +160,31 @@ class NotebookItemRequestBuilder():
         return request_info
     
     @property
-    def copy_notebook(self) -> copy_notebook_request_builder.CopyNotebookRequestBuilder:
+    def copy_notebook(self) -> CopyNotebookRequestBuilder:
         """
         Provides operations to call the copyNotebook method.
         """
-        from .copy_notebook import copy_notebook_request_builder
+        from .copy_notebook.copy_notebook_request_builder import CopyNotebookRequestBuilder
 
-        return copy_notebook_request_builder.CopyNotebookRequestBuilder(self.request_adapter, self.path_parameters)
+        return CopyNotebookRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def section_groups(self) -> section_groups_request_builder.SectionGroupsRequestBuilder:
+    def section_groups(self) -> SectionGroupsRequestBuilder:
         """
         Provides operations to manage the sectionGroups property of the microsoft.graph.notebook entity.
         """
-        from .section_groups import section_groups_request_builder
+        from .section_groups.section_groups_request_builder import SectionGroupsRequestBuilder
 
-        return section_groups_request_builder.SectionGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SectionGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sections(self) -> sections_request_builder.SectionsRequestBuilder:
+    def sections(self) -> SectionsRequestBuilder:
         """
         Provides operations to manage the sections property of the microsoft.graph.notebook entity.
         """
-        from .sections import sections_request_builder
+        from .sections.sections_request_builder import SectionsRequestBuilder
 
-        return sections_request_builder.SectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NotebookItemRequestBuilderDeleteRequestConfiguration():
@@ -210,8 +210,8 @@ class NotebookItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

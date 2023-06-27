@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import person_annual_event, person_annual_event_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import person_annual_event_item_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.person_annual_event import PersonAnnualEvent
+    from .....models.person_annual_event_collection_response import PersonAnnualEventCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.person_annual_event_item_request_builder import PersonAnnualEventItemRequestBuilder
 
 class AnniversariesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class AnniversariesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/users/{user%2Did}/profile/anniversaries{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class AnniversariesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_person_annual_event_id(self,person_annual_event_id: str) -> person_annual_event_item_request_builder.PersonAnnualEventItemRequestBuilder:
+    def by_person_annual_event_id(self,person_annual_event_id: str) -> PersonAnnualEventItemRequestBuilder:
         """
         Provides operations to manage the anniversaries property of the microsoft.graph.profile entity.
         Args:
             person_annual_event_id: Unique identifier of the item
-        Returns: person_annual_event_item_request_builder.PersonAnnualEventItemRequestBuilder
+        Returns: PersonAnnualEventItemRequestBuilder
         """
-        if person_annual_event_id is None:
-            raise Exception("person_annual_event_id cannot be undefined")
-        from .item import person_annual_event_item_request_builder
+        if not person_annual_event_id:
+            raise TypeError("person_annual_event_id cannot be null.")
+        from .item.person_annual_event_item_request_builder import PersonAnnualEventItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["personAnnualEvent%2Did"] = person_annual_event_id
-        return person_annual_event_item_request_builder.PersonAnnualEventItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return PersonAnnualEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AnniversariesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annual_event_collection_response.PersonAnnualEventCollectionResponse]:
+    async def get(self,request_configuration: Optional[AnniversariesRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonAnnualEventCollectionResponse]:
         """
         Retrieve a list of personAnniversary objects for the given user from their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[person_annual_event_collection_response.PersonAnnualEventCollectionResponse]
+        Returns: Optional[PersonAnnualEventCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import person_annual_event_collection_response
+        from .....models.person_annual_event_collection_response import PersonAnnualEventCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, person_annual_event_collection_response.PersonAnnualEventCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, PersonAnnualEventCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[person_annual_event.PersonAnnualEvent] = None, request_configuration: Optional[AnniversariesRequestBuilderPostRequestConfiguration] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
+    async def post(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[AnniversariesRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonAnnualEvent]:
         """
         Use this API to create a new personAnniversary object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[person_annual_event.PersonAnnualEvent]
+        Returns: Optional[PersonAnnualEvent]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import person_annual_event
+        from .....models.person_annual_event import PersonAnnualEvent
 
-        return await self.request_adapter.send_async(request_info, person_annual_event.PersonAnnualEvent, error_mapping)
+        return await self.request_adapter.send_async(request_info, PersonAnnualEvent, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AnniversariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class AnniversariesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[person_annual_event.PersonAnnualEvent] = None, request_configuration: Optional[AnniversariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[AnniversariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Use this API to create a new personAnniversary object in a user's profile.
         Args:
@@ -125,8 +126,8 @@ class AnniversariesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class AnniversariesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AnniversariesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class AnniversariesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

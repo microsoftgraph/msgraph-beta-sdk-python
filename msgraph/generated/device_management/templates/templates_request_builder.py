@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import device_management_template, device_management_template_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .import_office365_device_configuration_policies import import_office365_device_configuration_policies_request_builder
-    from .item import device_management_template_item_request_builder
+    from ...models.device_management_template import DeviceManagementTemplate
+    from ...models.device_management_template_collection_response import DeviceManagementTemplateCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .import_office365_device_configuration_policies.import_office365_device_configuration_policies_request_builder import ImportOffice365DeviceConfigurationPoliciesRequestBuilder
+    from .item.device_management_template_item_request_builder import DeviceManagementTemplateItemRequestBuilder
 
 class TemplatesRequestBuilder():
     """
@@ -27,10 +28,10 @@ class TemplatesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/templates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,67 +39,67 @@ class TemplatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_device_management_template_id(self,device_management_template_id: str) -> device_management_template_item_request_builder.DeviceManagementTemplateItemRequestBuilder:
+    def by_device_management_template_id(self,device_management_template_id: str) -> DeviceManagementTemplateItemRequestBuilder:
         """
         Provides operations to manage the templates property of the microsoft.graph.deviceManagement entity.
         Args:
             device_management_template_id: Unique identifier of the item
-        Returns: device_management_template_item_request_builder.DeviceManagementTemplateItemRequestBuilder
+        Returns: DeviceManagementTemplateItemRequestBuilder
         """
-        if device_management_template_id is None:
-            raise Exception("device_management_template_id cannot be undefined")
-        from .item import device_management_template_item_request_builder
+        if not device_management_template_id:
+            raise TypeError("device_management_template_id cannot be null.")
+        from .item.device_management_template_item_request_builder import DeviceManagementTemplateItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementTemplate%2Did"] = device_management_template_id
-        return device_management_template_item_request_builder.DeviceManagementTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceManagementTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_template_collection_response.DeviceManagementTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementTemplateCollectionResponse]:
         """
         The available templates
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_template_collection_response.DeviceManagementTemplateCollectionResponse]
+        Returns: Optional[DeviceManagementTemplateCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_management_template_collection_response
+        from ...models.device_management_template_collection_response import DeviceManagementTemplateCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, device_management_template_collection_response.DeviceManagementTemplateCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementTemplateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[TemplatesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
+    async def post(self,body: Optional[DeviceManagementTemplate] = None, request_configuration: Optional[TemplatesRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceManagementTemplate]:
         """
         Create new navigation property to templates for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_template.DeviceManagementTemplate]
+        Returns: Optional[DeviceManagementTemplate]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_management_template
+        from ...models.device_management_template import DeviceManagementTemplate
 
-        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementTemplate, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -118,7 +119,7 @@ class TemplatesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[TemplatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceManagementTemplate] = None, request_configuration: Optional[TemplatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to templates for deviceManagement
         Args:
@@ -126,8 +127,8 @@ class TemplatesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +141,22 @@ class TemplatesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def import_office365_device_configuration_policies(self) -> import_office365_device_configuration_policies_request_builder.ImportOffice365DeviceConfigurationPoliciesRequestBuilder:
+    def import_office365_device_configuration_policies(self) -> ImportOffice365DeviceConfigurationPoliciesRequestBuilder:
         """
         Provides operations to call the importOffice365DeviceConfigurationPolicies method.
         """
-        from .import_office365_device_configuration_policies import import_office365_device_configuration_policies_request_builder
+        from .import_office365_device_configuration_policies.import_office365_device_configuration_policies_request_builder import ImportOffice365DeviceConfigurationPoliciesRequestBuilder
 
-        return import_office365_device_configuration_policies_request_builder.ImportOffice365DeviceConfigurationPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ImportOffice365DeviceConfigurationPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TemplatesRequestBuilderGetQueryParameters():
@@ -169,8 +170,8 @@ class TemplatesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

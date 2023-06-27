@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.identity_governance import task_report
-    from ........models.o_data_errors import o_data_error
-    from .task import task_request_builder
-    from .task_definition import task_definition_request_builder
-    from .task_processing_results import task_processing_results_request_builder
+    from ........models.identity_governance.task_report import TaskReport
+    from ........models.o_data_errors.o_data_error import ODataError
+    from .task.task_request_builder import TaskRequestBuilder
+    from .task_definition.task_definition_request_builder import TaskDefinitionRequestBuilder
+    from .task_processing_results.task_processing_results_request_builder import TaskProcessingResultsRequestBuilder
 
 class TaskReportItemRequestBuilder():
     """
@@ -27,10 +27,10 @@ class TaskReportItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/taskReports/{taskReport%2Did}{?%24select,%24expand}"
 
@@ -38,27 +38,27 @@ class TaskReportItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TaskReportItemRequestBuilderGetRequestConfiguration] = None) -> Optional[task_report.TaskReport]:
+    async def get(self,request_configuration: Optional[TaskReportItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TaskReport]:
         """
         Represents the aggregation of task execution data for tasks within a workflow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[task_report.TaskReport]
+        Returns: Optional[TaskReport]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ........models.o_data_errors import o_data_error
+        from ........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ........models.identity_governance import task_report
+        from ........models.identity_governance.task_report import TaskReport
 
-        return await self.request_adapter.send_async(request_info, task_report.TaskReport, error_mapping)
+        return await self.request_adapter.send_async(request_info, TaskReport, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaskReportItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -79,31 +79,31 @@ class TaskReportItemRequestBuilder():
         return request_info
     
     @property
-    def task(self) -> task_request_builder.TaskRequestBuilder:
+    def task(self) -> TaskRequestBuilder:
         """
         Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskReport entity.
         """
-        from .task import task_request_builder
+        from .task.task_request_builder import TaskRequestBuilder
 
-        return task_request_builder.TaskRequestBuilder(self.request_adapter, self.path_parameters)
+        return TaskRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def task_definition(self) -> task_definition_request_builder.TaskDefinitionRequestBuilder:
+    def task_definition(self) -> TaskDefinitionRequestBuilder:
         """
         Provides operations to manage the taskDefinition property of the microsoft.graph.identityGovernance.taskReport entity.
         """
-        from .task_definition import task_definition_request_builder
+        from .task_definition.task_definition_request_builder import TaskDefinitionRequestBuilder
 
-        return task_definition_request_builder.TaskDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+        return TaskDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def task_processing_results(self) -> task_processing_results_request_builder.TaskProcessingResultsRequestBuilder:
+    def task_processing_results(self) -> TaskProcessingResultsRequestBuilder:
         """
         Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.
         """
-        from .task_processing_results import task_processing_results_request_builder
+        from .task_processing_results.task_processing_results_request_builder import TaskProcessingResultsRequestBuilder
 
-        return task_processing_results_request_builder.TaskProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TaskProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TaskReportItemRequestBuilderGetQueryParameters():
@@ -117,8 +117,8 @@ class TaskReportItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

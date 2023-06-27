@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import todo_task
-    from .......models.o_data_errors import o_data_error
-    from .attachments import attachments_request_builder
-    from .attachment_sessions import attachment_sessions_request_builder
-    from .checklist_items import checklist_items_request_builder
-    from .extensions import extensions_request_builder
-    from .linked_resources import linked_resources_request_builder
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .......models.todo_task import TodoTask
+    from .attachments.attachments_request_builder import AttachmentsRequestBuilder
+    from .attachment_sessions.attachment_sessions_request_builder import AttachmentSessionsRequestBuilder
+    from .checklist_items.checklist_items_request_builder import ChecklistItemsRequestBuilder
+    from .extensions.extensions_request_builder import ExtensionsRequestBuilder
+    from .linked_resources.linked_resources_request_builder import LinkedResourcesRequestBuilder
 
 class TodoTaskItemRequestBuilder():
     """
@@ -29,10 +29,10 @@ class TodoTaskItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/me/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}{?%24select,%24expand}"
 
@@ -49,62 +49,62 @@ class TodoTaskItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TodoTaskItemRequestBuilderGetRequestConfiguration] = None) -> Optional[todo_task.TodoTask]:
+    async def get(self,request_configuration: Optional[TodoTaskItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TodoTask]:
         """
         Read the properties and relationships of a todoTask object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[todo_task.TodoTask]
+        Returns: Optional[TodoTask]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import todo_task
+        from .......models.todo_task import TodoTask
 
-        return await self.request_adapter.send_async(request_info, todo_task.TodoTask, error_mapping)
+        return await self.request_adapter.send_async(request_info, TodoTask, error_mapping)
     
-    async def patch(self,body: Optional[todo_task.TodoTask] = None, request_configuration: Optional[TodoTaskItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[todo_task.TodoTask]:
+    async def patch(self,body: Optional[TodoTask] = None, request_configuration: Optional[TodoTaskItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[TodoTask]:
         """
         Update the properties of a todoTask object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[todo_task.TodoTask]
+        Returns: Optional[TodoTask]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import todo_task
+        from .......models.todo_task import TodoTask
 
-        return await self.request_adapter.send_async(request_info, todo_task.TodoTask, error_mapping)
+        return await self.request_adapter.send_async(request_info, TodoTask, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TodoTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -140,7 +140,7 @@ class TodoTaskItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[todo_task.TodoTask] = None, request_configuration: Optional[TodoTaskItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[TodoTask] = None, request_configuration: Optional[TodoTaskItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a todoTask object.
         Args:
@@ -148,8 +148,8 @@ class TodoTaskItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,49 +162,49 @@ class TodoTaskItemRequestBuilder():
         return request_info
     
     @property
-    def attachments(self) -> attachments_request_builder.AttachmentsRequestBuilder:
+    def attachments(self) -> AttachmentsRequestBuilder:
         """
         Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.
         """
-        from .attachments import attachments_request_builder
+        from .attachments.attachments_request_builder import AttachmentsRequestBuilder
 
-        return attachments_request_builder.AttachmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AttachmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def attachment_sessions(self) -> attachment_sessions_request_builder.AttachmentSessionsRequestBuilder:
+    def attachment_sessions(self) -> AttachmentSessionsRequestBuilder:
         """
         Provides operations to manage the attachmentSessions property of the microsoft.graph.todoTask entity.
         """
-        from .attachment_sessions import attachment_sessions_request_builder
+        from .attachment_sessions.attachment_sessions_request_builder import AttachmentSessionsRequestBuilder
 
-        return attachment_sessions_request_builder.AttachmentSessionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AttachmentSessionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def checklist_items(self) -> checklist_items_request_builder.ChecklistItemsRequestBuilder:
+    def checklist_items(self) -> ChecklistItemsRequestBuilder:
         """
         Provides operations to manage the checklistItems property of the microsoft.graph.todoTask entity.
         """
-        from .checklist_items import checklist_items_request_builder
+        from .checklist_items.checklist_items_request_builder import ChecklistItemsRequestBuilder
 
-        return checklist_items_request_builder.ChecklistItemsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ChecklistItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def extensions(self) -> extensions_request_builder.ExtensionsRequestBuilder:
+    def extensions(self) -> ExtensionsRequestBuilder:
         """
         Provides operations to manage the extensions property of the microsoft.graph.todoTask entity.
         """
-        from .extensions import extensions_request_builder
+        from .extensions.extensions_request_builder import ExtensionsRequestBuilder
 
-        return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def linked_resources(self) -> linked_resources_request_builder.LinkedResourcesRequestBuilder:
+    def linked_resources(self) -> LinkedResourcesRequestBuilder:
         """
         Provides operations to manage the linkedResources property of the microsoft.graph.todoTask entity.
         """
-        from .linked_resources import linked_resources_request_builder
+        from .linked_resources.linked_resources_request_builder import LinkedResourcesRequestBuilder
 
-        return linked_resources_request_builder.LinkedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return LinkedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TodoTaskItemRequestBuilderDeleteRequestConfiguration():
@@ -230,8 +230,8 @@ class TodoTaskItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

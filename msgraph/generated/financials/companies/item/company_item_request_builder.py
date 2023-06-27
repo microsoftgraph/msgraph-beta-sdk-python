@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,43 +10,43 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import company
-    from ....models.o_data_errors import o_data_error
-    from .accounts import accounts_request_builder
-    from .aged_accounts_payable import aged_accounts_payable_request_builder
-    from .aged_accounts_receivable import aged_accounts_receivable_request_builder
-    from .company_information import company_information_request_builder
-    from .countries_regions import countries_regions_request_builder
-    from .currencies import currencies_request_builder
-    from .customer_payment_journals import customer_payment_journals_request_builder
-    from .customer_payments import customer_payments_request_builder
-    from .customers import customers_request_builder
-    from .dimensions import dimensions_request_builder
-    from .dimension_values import dimension_values_request_builder
-    from .employees import employees_request_builder
-    from .general_ledger_entries import general_ledger_entries_request_builder
-    from .item_categories import item_categories_request_builder
-    from .items import items_request_builder
-    from .journal_lines import journal_lines_request_builder
-    from .journals import journals_request_builder
-    from .payment_methods import payment_methods_request_builder
-    from .payment_terms import payment_terms_request_builder
-    from .picture import picture_request_builder
-    from .purchase_invoice_lines import purchase_invoice_lines_request_builder
-    from .purchase_invoices import purchase_invoices_request_builder
-    from .sales_credit_memo_lines import sales_credit_memo_lines_request_builder
-    from .sales_credit_memos import sales_credit_memos_request_builder
-    from .sales_invoice_lines import sales_invoice_lines_request_builder
-    from .sales_invoices import sales_invoices_request_builder
-    from .sales_order_lines import sales_order_lines_request_builder
-    from .sales_orders import sales_orders_request_builder
-    from .sales_quote_lines import sales_quote_lines_request_builder
-    from .sales_quotes import sales_quotes_request_builder
-    from .shipment_methods import shipment_methods_request_builder
-    from .tax_areas import tax_areas_request_builder
-    from .tax_groups import tax_groups_request_builder
-    from .units_of_measure import units_of_measure_request_builder
-    from .vendors import vendors_request_builder
+    from ....models.company import Company
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .accounts.accounts_request_builder import AccountsRequestBuilder
+    from .aged_accounts_payable.aged_accounts_payable_request_builder import AgedAccountsPayableRequestBuilder
+    from .aged_accounts_receivable.aged_accounts_receivable_request_builder import AgedAccountsReceivableRequestBuilder
+    from .company_information.company_information_request_builder import CompanyInformationRequestBuilder
+    from .countries_regions.countries_regions_request_builder import CountriesRegionsRequestBuilder
+    from .currencies.currencies_request_builder import CurrenciesRequestBuilder
+    from .customer_payment_journals.customer_payment_journals_request_builder import CustomerPaymentJournalsRequestBuilder
+    from .customer_payments.customer_payments_request_builder import CustomerPaymentsRequestBuilder
+    from .customers.customers_request_builder import CustomersRequestBuilder
+    from .dimensions.dimensions_request_builder import DimensionsRequestBuilder
+    from .dimension_values.dimension_values_request_builder import DimensionValuesRequestBuilder
+    from .employees.employees_request_builder import EmployeesRequestBuilder
+    from .general_ledger_entries.general_ledger_entries_request_builder import GeneralLedgerEntriesRequestBuilder
+    from .item_categories.item_categories_request_builder import ItemCategoriesRequestBuilder
+    from .items.items_request_builder import ItemsRequestBuilder
+    from .journal_lines.journal_lines_request_builder import JournalLinesRequestBuilder
+    from .journals.journals_request_builder import JournalsRequestBuilder
+    from .payment_methods.payment_methods_request_builder import PaymentMethodsRequestBuilder
+    from .payment_terms.payment_terms_request_builder import PaymentTermsRequestBuilder
+    from .picture.picture_request_builder import PictureRequestBuilder
+    from .purchase_invoice_lines.purchase_invoice_lines_request_builder import PurchaseInvoiceLinesRequestBuilder
+    from .purchase_invoices.purchase_invoices_request_builder import PurchaseInvoicesRequestBuilder
+    from .sales_credit_memo_lines.sales_credit_memo_lines_request_builder import SalesCreditMemoLinesRequestBuilder
+    from .sales_credit_memos.sales_credit_memos_request_builder import SalesCreditMemosRequestBuilder
+    from .sales_invoice_lines.sales_invoice_lines_request_builder import SalesInvoiceLinesRequestBuilder
+    from .sales_invoices.sales_invoices_request_builder import SalesInvoicesRequestBuilder
+    from .sales_order_lines.sales_order_lines_request_builder import SalesOrderLinesRequestBuilder
+    from .sales_orders.sales_orders_request_builder import SalesOrdersRequestBuilder
+    from .sales_quote_lines.sales_quote_lines_request_builder import SalesQuoteLinesRequestBuilder
+    from .sales_quotes.sales_quotes_request_builder import SalesQuotesRequestBuilder
+    from .shipment_methods.shipment_methods_request_builder import ShipmentMethodsRequestBuilder
+    from .tax_areas.tax_areas_request_builder import TaxAreasRequestBuilder
+    from .tax_groups.tax_groups_request_builder import TaxGroupsRequestBuilder
+    from .units_of_measure.units_of_measure_request_builder import UnitsOfMeasureRequestBuilder
+    from .vendors.vendors_request_builder import VendorsRequestBuilder
 
 class CompanyItemRequestBuilder():
     """
@@ -59,10 +59,10 @@ class CompanyItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}{?%24select,%24expand}"
 
@@ -70,27 +70,27 @@ class CompanyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[company.Company]:
+    async def get(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Company]:
         """
         Get companies from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[company.Company]
+        Returns: Optional[Company]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import company
+        from ....models.company import Company
 
-        return await self.request_adapter.send_async(request_info, company.Company, error_mapping)
+        return await self.request_adapter.send_async(request_info, Company, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -111,319 +111,319 @@ class CompanyItemRequestBuilder():
         return request_info
     
     @property
-    def accounts(self) -> accounts_request_builder.AccountsRequestBuilder:
+    def accounts(self) -> AccountsRequestBuilder:
         """
         Provides operations to manage the accounts property of the microsoft.graph.company entity.
         """
-        from .accounts import accounts_request_builder
+        from .accounts.accounts_request_builder import AccountsRequestBuilder
 
-        return accounts_request_builder.AccountsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccountsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def aged_accounts_payable(self) -> aged_accounts_payable_request_builder.AgedAccountsPayableRequestBuilder:
+    def aged_accounts_payable(self) -> AgedAccountsPayableRequestBuilder:
         """
         Provides operations to manage the agedAccountsPayable property of the microsoft.graph.company entity.
         """
-        from .aged_accounts_payable import aged_accounts_payable_request_builder
+        from .aged_accounts_payable.aged_accounts_payable_request_builder import AgedAccountsPayableRequestBuilder
 
-        return aged_accounts_payable_request_builder.AgedAccountsPayableRequestBuilder(self.request_adapter, self.path_parameters)
+        return AgedAccountsPayableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def aged_accounts_receivable(self) -> aged_accounts_receivable_request_builder.AgedAccountsReceivableRequestBuilder:
+    def aged_accounts_receivable(self) -> AgedAccountsReceivableRequestBuilder:
         """
         Provides operations to manage the agedAccountsReceivable property of the microsoft.graph.company entity.
         """
-        from .aged_accounts_receivable import aged_accounts_receivable_request_builder
+        from .aged_accounts_receivable.aged_accounts_receivable_request_builder import AgedAccountsReceivableRequestBuilder
 
-        return aged_accounts_receivable_request_builder.AgedAccountsReceivableRequestBuilder(self.request_adapter, self.path_parameters)
+        return AgedAccountsReceivableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def company_information(self) -> company_information_request_builder.CompanyInformationRequestBuilder:
+    def company_information(self) -> CompanyInformationRequestBuilder:
         """
         Provides operations to manage the companyInformation property of the microsoft.graph.company entity.
         """
-        from .company_information import company_information_request_builder
+        from .company_information.company_information_request_builder import CompanyInformationRequestBuilder
 
-        return company_information_request_builder.CompanyInformationRequestBuilder(self.request_adapter, self.path_parameters)
+        return CompanyInformationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def countries_regions(self) -> countries_regions_request_builder.CountriesRegionsRequestBuilder:
+    def countries_regions(self) -> CountriesRegionsRequestBuilder:
         """
         Provides operations to manage the countriesRegions property of the microsoft.graph.company entity.
         """
-        from .countries_regions import countries_regions_request_builder
+        from .countries_regions.countries_regions_request_builder import CountriesRegionsRequestBuilder
 
-        return countries_regions_request_builder.CountriesRegionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountriesRegionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def currencies(self) -> currencies_request_builder.CurrenciesRequestBuilder:
+    def currencies(self) -> CurrenciesRequestBuilder:
         """
         Provides operations to manage the currencies property of the microsoft.graph.company entity.
         """
-        from .currencies import currencies_request_builder
+        from .currencies.currencies_request_builder import CurrenciesRequestBuilder
 
-        return currencies_request_builder.CurrenciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CurrenciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def customer_payment_journals(self) -> customer_payment_journals_request_builder.CustomerPaymentJournalsRequestBuilder:
+    def customer_payment_journals(self) -> CustomerPaymentJournalsRequestBuilder:
         """
         Provides operations to manage the customerPaymentJournals property of the microsoft.graph.company entity.
         """
-        from .customer_payment_journals import customer_payment_journals_request_builder
+        from .customer_payment_journals.customer_payment_journals_request_builder import CustomerPaymentJournalsRequestBuilder
 
-        return customer_payment_journals_request_builder.CustomerPaymentJournalsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomerPaymentJournalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def customer_payments(self) -> customer_payments_request_builder.CustomerPaymentsRequestBuilder:
+    def customer_payments(self) -> CustomerPaymentsRequestBuilder:
         """
         Provides operations to manage the customerPayments property of the microsoft.graph.company entity.
         """
-        from .customer_payments import customer_payments_request_builder
+        from .customer_payments.customer_payments_request_builder import CustomerPaymentsRequestBuilder
 
-        return customer_payments_request_builder.CustomerPaymentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomerPaymentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def customers(self) -> customers_request_builder.CustomersRequestBuilder:
+    def customers(self) -> CustomersRequestBuilder:
         """
         Provides operations to manage the customers property of the microsoft.graph.company entity.
         """
-        from .customers import customers_request_builder
+        from .customers.customers_request_builder import CustomersRequestBuilder
 
-        return customers_request_builder.CustomersRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def dimensions(self) -> dimensions_request_builder.DimensionsRequestBuilder:
+    def dimensions(self) -> DimensionsRequestBuilder:
         """
         Provides operations to manage the dimensions property of the microsoft.graph.company entity.
         """
-        from .dimensions import dimensions_request_builder
+        from .dimensions.dimensions_request_builder import DimensionsRequestBuilder
 
-        return dimensions_request_builder.DimensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DimensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def dimension_values(self) -> dimension_values_request_builder.DimensionValuesRequestBuilder:
+    def dimension_values(self) -> DimensionValuesRequestBuilder:
         """
         Provides operations to manage the dimensionValues property of the microsoft.graph.company entity.
         """
-        from .dimension_values import dimension_values_request_builder
+        from .dimension_values.dimension_values_request_builder import DimensionValuesRequestBuilder
 
-        return dimension_values_request_builder.DimensionValuesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DimensionValuesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def employees(self) -> employees_request_builder.EmployeesRequestBuilder:
+    def employees(self) -> EmployeesRequestBuilder:
         """
         Provides operations to manage the employees property of the microsoft.graph.company entity.
         """
-        from .employees import employees_request_builder
+        from .employees.employees_request_builder import EmployeesRequestBuilder
 
-        return employees_request_builder.EmployeesRequestBuilder(self.request_adapter, self.path_parameters)
+        return EmployeesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def general_ledger_entries(self) -> general_ledger_entries_request_builder.GeneralLedgerEntriesRequestBuilder:
+    def general_ledger_entries(self) -> GeneralLedgerEntriesRequestBuilder:
         """
         Provides operations to manage the generalLedgerEntries property of the microsoft.graph.company entity.
         """
-        from .general_ledger_entries import general_ledger_entries_request_builder
+        from .general_ledger_entries.general_ledger_entries_request_builder import GeneralLedgerEntriesRequestBuilder
 
-        return general_ledger_entries_request_builder.GeneralLedgerEntriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return GeneralLedgerEntriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def item_categories(self) -> item_categories_request_builder.ItemCategoriesRequestBuilder:
+    def item_categories(self) -> ItemCategoriesRequestBuilder:
         """
         Provides operations to manage the itemCategories property of the microsoft.graph.company entity.
         """
-        from .item_categories import item_categories_request_builder
+        from .item_categories.item_categories_request_builder import ItemCategoriesRequestBuilder
 
-        return item_categories_request_builder.ItemCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ItemCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def items(self) -> items_request_builder.ItemsRequestBuilder:
+    def items(self) -> ItemsRequestBuilder:
         """
         Provides operations to manage the items property of the microsoft.graph.company entity.
         """
-        from .items import items_request_builder
+        from .items.items_request_builder import ItemsRequestBuilder
 
-        return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def journal_lines(self) -> journal_lines_request_builder.JournalLinesRequestBuilder:
+    def journal_lines(self) -> JournalLinesRequestBuilder:
         """
         Provides operations to manage the journalLines property of the microsoft.graph.company entity.
         """
-        from .journal_lines import journal_lines_request_builder
+        from .journal_lines.journal_lines_request_builder import JournalLinesRequestBuilder
 
-        return journal_lines_request_builder.JournalLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return JournalLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def journals(self) -> journals_request_builder.JournalsRequestBuilder:
+    def journals(self) -> JournalsRequestBuilder:
         """
         Provides operations to manage the journals property of the microsoft.graph.company entity.
         """
-        from .journals import journals_request_builder
+        from .journals.journals_request_builder import JournalsRequestBuilder
 
-        return journals_request_builder.JournalsRequestBuilder(self.request_adapter, self.path_parameters)
+        return JournalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payment_methods(self) -> payment_methods_request_builder.PaymentMethodsRequestBuilder:
+    def payment_methods(self) -> PaymentMethodsRequestBuilder:
         """
         Provides operations to manage the paymentMethods property of the microsoft.graph.company entity.
         """
-        from .payment_methods import payment_methods_request_builder
+        from .payment_methods.payment_methods_request_builder import PaymentMethodsRequestBuilder
 
-        return payment_methods_request_builder.PaymentMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PaymentMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payment_terms(self) -> payment_terms_request_builder.PaymentTermsRequestBuilder:
+    def payment_terms(self) -> PaymentTermsRequestBuilder:
         """
         Provides operations to manage the paymentTerms property of the microsoft.graph.company entity.
         """
-        from .payment_terms import payment_terms_request_builder
+        from .payment_terms.payment_terms_request_builder import PaymentTermsRequestBuilder
 
-        return payment_terms_request_builder.PaymentTermsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PaymentTermsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def picture(self) -> picture_request_builder.PictureRequestBuilder:
+    def picture(self) -> PictureRequestBuilder:
         """
         Provides operations to manage the picture property of the microsoft.graph.company entity.
         """
-        from .picture import picture_request_builder
+        from .picture.picture_request_builder import PictureRequestBuilder
 
-        return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
+        return PictureRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def purchase_invoice_lines(self) -> purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder:
+    def purchase_invoice_lines(self) -> PurchaseInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.company entity.
         """
-        from .purchase_invoice_lines import purchase_invoice_lines_request_builder
+        from .purchase_invoice_lines.purchase_invoice_lines_request_builder import PurchaseInvoiceLinesRequestBuilder
 
-        return purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return PurchaseInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def purchase_invoices(self) -> purchase_invoices_request_builder.PurchaseInvoicesRequestBuilder:
+    def purchase_invoices(self) -> PurchaseInvoicesRequestBuilder:
         """
         Provides operations to manage the purchaseInvoices property of the microsoft.graph.company entity.
         """
-        from .purchase_invoices import purchase_invoices_request_builder
+        from .purchase_invoices.purchase_invoices_request_builder import PurchaseInvoicesRequestBuilder
 
-        return purchase_invoices_request_builder.PurchaseInvoicesRequestBuilder(self.request_adapter, self.path_parameters)
+        return PurchaseInvoicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_credit_memo_lines(self) -> sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder:
+    def sales_credit_memo_lines(self) -> SalesCreditMemoLinesRequestBuilder:
         """
         Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.company entity.
         """
-        from .sales_credit_memo_lines import sales_credit_memo_lines_request_builder
+        from .sales_credit_memo_lines.sales_credit_memo_lines_request_builder import SalesCreditMemoLinesRequestBuilder
 
-        return sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesCreditMemoLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_credit_memos(self) -> sales_credit_memos_request_builder.SalesCreditMemosRequestBuilder:
+    def sales_credit_memos(self) -> SalesCreditMemosRequestBuilder:
         """
         Provides operations to manage the salesCreditMemos property of the microsoft.graph.company entity.
         """
-        from .sales_credit_memos import sales_credit_memos_request_builder
+        from .sales_credit_memos.sales_credit_memos_request_builder import SalesCreditMemosRequestBuilder
 
-        return sales_credit_memos_request_builder.SalesCreditMemosRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesCreditMemosRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_invoice_lines(self) -> sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder:
+    def sales_invoice_lines(self) -> SalesInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the salesInvoiceLines property of the microsoft.graph.company entity.
         """
-        from .sales_invoice_lines import sales_invoice_lines_request_builder
+        from .sales_invoice_lines.sales_invoice_lines_request_builder import SalesInvoiceLinesRequestBuilder
 
-        return sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_invoices(self) -> sales_invoices_request_builder.SalesInvoicesRequestBuilder:
+    def sales_invoices(self) -> SalesInvoicesRequestBuilder:
         """
         Provides operations to manage the salesInvoices property of the microsoft.graph.company entity.
         """
-        from .sales_invoices import sales_invoices_request_builder
+        from .sales_invoices.sales_invoices_request_builder import SalesInvoicesRequestBuilder
 
-        return sales_invoices_request_builder.SalesInvoicesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesInvoicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_order_lines(self) -> sales_order_lines_request_builder.SalesOrderLinesRequestBuilder:
+    def sales_order_lines(self) -> SalesOrderLinesRequestBuilder:
         """
         Provides operations to manage the salesOrderLines property of the microsoft.graph.company entity.
         """
-        from .sales_order_lines import sales_order_lines_request_builder
+        from .sales_order_lines.sales_order_lines_request_builder import SalesOrderLinesRequestBuilder
 
-        return sales_order_lines_request_builder.SalesOrderLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesOrderLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_orders(self) -> sales_orders_request_builder.SalesOrdersRequestBuilder:
+    def sales_orders(self) -> SalesOrdersRequestBuilder:
         """
         Provides operations to manage the salesOrders property of the microsoft.graph.company entity.
         """
-        from .sales_orders import sales_orders_request_builder
+        from .sales_orders.sales_orders_request_builder import SalesOrdersRequestBuilder
 
-        return sales_orders_request_builder.SalesOrdersRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesOrdersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_quote_lines(self) -> sales_quote_lines_request_builder.SalesQuoteLinesRequestBuilder:
+    def sales_quote_lines(self) -> SalesQuoteLinesRequestBuilder:
         """
         Provides operations to manage the salesQuoteLines property of the microsoft.graph.company entity.
         """
-        from .sales_quote_lines import sales_quote_lines_request_builder
+        from .sales_quote_lines.sales_quote_lines_request_builder import SalesQuoteLinesRequestBuilder
 
-        return sales_quote_lines_request_builder.SalesQuoteLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesQuoteLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_quotes(self) -> sales_quotes_request_builder.SalesQuotesRequestBuilder:
+    def sales_quotes(self) -> SalesQuotesRequestBuilder:
         """
         Provides operations to manage the salesQuotes property of the microsoft.graph.company entity.
         """
-        from .sales_quotes import sales_quotes_request_builder
+        from .sales_quotes.sales_quotes_request_builder import SalesQuotesRequestBuilder
 
-        return sales_quotes_request_builder.SalesQuotesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesQuotesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def shipment_methods(self) -> shipment_methods_request_builder.ShipmentMethodsRequestBuilder:
+    def shipment_methods(self) -> ShipmentMethodsRequestBuilder:
         """
         Provides operations to manage the shipmentMethods property of the microsoft.graph.company entity.
         """
-        from .shipment_methods import shipment_methods_request_builder
+        from .shipment_methods.shipment_methods_request_builder import ShipmentMethodsRequestBuilder
 
-        return shipment_methods_request_builder.ShipmentMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ShipmentMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tax_areas(self) -> tax_areas_request_builder.TaxAreasRequestBuilder:
+    def tax_areas(self) -> TaxAreasRequestBuilder:
         """
         Provides operations to manage the taxAreas property of the microsoft.graph.company entity.
         """
-        from .tax_areas import tax_areas_request_builder
+        from .tax_areas.tax_areas_request_builder import TaxAreasRequestBuilder
 
-        return tax_areas_request_builder.TaxAreasRequestBuilder(self.request_adapter, self.path_parameters)
+        return TaxAreasRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tax_groups(self) -> tax_groups_request_builder.TaxGroupsRequestBuilder:
+    def tax_groups(self) -> TaxGroupsRequestBuilder:
         """
         Provides operations to manage the taxGroups property of the microsoft.graph.company entity.
         """
-        from .tax_groups import tax_groups_request_builder
+        from .tax_groups.tax_groups_request_builder import TaxGroupsRequestBuilder
 
-        return tax_groups_request_builder.TaxGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TaxGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def units_of_measure(self) -> units_of_measure_request_builder.UnitsOfMeasureRequestBuilder:
+    def units_of_measure(self) -> UnitsOfMeasureRequestBuilder:
         """
         Provides operations to manage the unitsOfMeasure property of the microsoft.graph.company entity.
         """
-        from .units_of_measure import units_of_measure_request_builder
+        from .units_of_measure.units_of_measure_request_builder import UnitsOfMeasureRequestBuilder
 
-        return units_of_measure_request_builder.UnitsOfMeasureRequestBuilder(self.request_adapter, self.path_parameters)
+        return UnitsOfMeasureRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def vendors(self) -> vendors_request_builder.VendorsRequestBuilder:
+    def vendors(self) -> VendorsRequestBuilder:
         """
         Provides operations to manage the vendors property of the microsoft.graph.company entity.
         """
-        from .vendors import vendors_request_builder
+        from .vendors.vendors_request_builder import VendorsRequestBuilder
 
-        return vendors_request_builder.VendorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return VendorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CompanyItemRequestBuilderGetQueryParameters():
@@ -437,8 +437,8 @@ class CompanyItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

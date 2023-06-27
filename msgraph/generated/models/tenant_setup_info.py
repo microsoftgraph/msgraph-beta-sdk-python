@@ -1,32 +1,31 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, privileged_role_settings, setup_status
+    from .entity import Entity
+    from .privileged_role_settings import PrivilegedRoleSettings
+    from .setup_status import SetupStatus
 
-from . import entity
+from .entity import Entity
 
-class TenantSetupInfo(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TenantSetupInfo and sets the default values.
-        """
-        super().__init__()
-        # The defaultRolesSettings property
-        self._default_roles_settings: Optional[privileged_role_settings.PrivilegedRoleSettings] = None
-        # The firstTimeSetup property
-        self._first_time_setup: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The relevantRolesSettings property
-        self._relevant_roles_settings: Optional[List[str]] = None
-        # The setupStatus property
-        self._setup_status: Optional[setup_status.SetupStatus] = None
-        # The skipSetup property
-        self._skip_setup: Optional[bool] = None
-        # The userRolesActions property
-        self._user_roles_actions: Optional[str] = None
+@dataclass
+class TenantSetupInfo(Entity):
+    # The defaultRolesSettings property
+    default_roles_settings: Optional[PrivilegedRoleSettings] = None
+    # The firstTimeSetup property
+    first_time_setup: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The relevantRolesSettings property
+    relevant_roles_settings: Optional[List[str]] = None
+    # The setupStatus property
+    setup_status: Optional[SetupStatus] = None
+    # The skipSetup property
+    skip_setup: Optional[bool] = None
+    # The userRolesActions property
+    user_roles_actions: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantSetupInfo:
@@ -36,56 +35,28 @@ class TenantSetupInfo(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: TenantSetupInfo
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return TenantSetupInfo()
-    
-    @property
-    def default_roles_settings(self,) -> Optional[privileged_role_settings.PrivilegedRoleSettings]:
-        """
-        Gets the defaultRolesSettings property value. The defaultRolesSettings property
-        Returns: Optional[privileged_role_settings.PrivilegedRoleSettings]
-        """
-        return self._default_roles_settings
-    
-    @default_roles_settings.setter
-    def default_roles_settings(self,value: Optional[privileged_role_settings.PrivilegedRoleSettings] = None) -> None:
-        """
-        Sets the defaultRolesSettings property value. The defaultRolesSettings property
-        Args:
-            value: Value to set for the default_roles_settings property.
-        """
-        self._default_roles_settings = value
-    
-    @property
-    def first_time_setup(self,) -> Optional[bool]:
-        """
-        Gets the firstTimeSetup property value. The firstTimeSetup property
-        Returns: Optional[bool]
-        """
-        return self._first_time_setup
-    
-    @first_time_setup.setter
-    def first_time_setup(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the firstTimeSetup property value. The firstTimeSetup property
-        Args:
-            value: Value to set for the first_time_setup property.
-        """
-        self._first_time_setup = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, privileged_role_settings, setup_status
+        from .entity import Entity
+        from .privileged_role_settings import PrivilegedRoleSettings
+        from .setup_status import SetupStatus
+
+        from .entity import Entity
+        from .privileged_role_settings import PrivilegedRoleSettings
+        from .setup_status import SetupStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "defaultRolesSettings": lambda n : setattr(self, 'default_roles_settings', n.get_object_value(privileged_role_settings.PrivilegedRoleSettings)),
+            "defaultRolesSettings": lambda n : setattr(self, 'default_roles_settings', n.get_object_value(PrivilegedRoleSettings)),
             "firstTimeSetup": lambda n : setattr(self, 'first_time_setup', n.get_bool_value()),
             "relevantRolesSettings": lambda n : setattr(self, 'relevant_roles_settings', n.get_collection_of_primitive_values(str)),
-            "setupStatus": lambda n : setattr(self, 'setup_status', n.get_enum_value(setup_status.SetupStatus)),
+            "setupStatus": lambda n : setattr(self, 'setup_status', n.get_enum_value(SetupStatus)),
             "skipSetup": lambda n : setattr(self, 'skip_setup', n.get_bool_value()),
             "userRolesActions": lambda n : setattr(self, 'user_roles_actions', n.get_str_value()),
         }
@@ -93,31 +64,14 @@ class TenantSetupInfo(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def relevant_roles_settings(self,) -> Optional[List[str]]:
-        """
-        Gets the relevantRolesSettings property value. The relevantRolesSettings property
-        Returns: Optional[List[str]]
-        """
-        return self._relevant_roles_settings
-    
-    @relevant_roles_settings.setter
-    def relevant_roles_settings(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the relevantRolesSettings property value. The relevantRolesSettings property
-        Args:
-            value: Value to set for the relevant_roles_settings property.
-        """
-        self._relevant_roles_settings = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("defaultRolesSettings", self.default_roles_settings)
         writer.write_bool_value("firstTimeSetup", self.first_time_setup)
@@ -125,56 +79,5 @@ class TenantSetupInfo(entity.Entity):
         writer.write_enum_value("setupStatus", self.setup_status)
         writer.write_bool_value("skipSetup", self.skip_setup)
         writer.write_str_value("userRolesActions", self.user_roles_actions)
-    
-    @property
-    def setup_status(self,) -> Optional[setup_status.SetupStatus]:
-        """
-        Gets the setupStatus property value. The setupStatus property
-        Returns: Optional[setup_status.SetupStatus]
-        """
-        return self._setup_status
-    
-    @setup_status.setter
-    def setup_status(self,value: Optional[setup_status.SetupStatus] = None) -> None:
-        """
-        Sets the setupStatus property value. The setupStatus property
-        Args:
-            value: Value to set for the setup_status property.
-        """
-        self._setup_status = value
-    
-    @property
-    def skip_setup(self,) -> Optional[bool]:
-        """
-        Gets the skipSetup property value. The skipSetup property
-        Returns: Optional[bool]
-        """
-        return self._skip_setup
-    
-    @skip_setup.setter
-    def skip_setup(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the skipSetup property value. The skipSetup property
-        Args:
-            value: Value to set for the skip_setup property.
-        """
-        self._skip_setup = value
-    
-    @property
-    def user_roles_actions(self,) -> Optional[str]:
-        """
-        Gets the userRolesActions property value. The userRolesActions property
-        Returns: Optional[str]
-        """
-        return self._user_roles_actions
-    
-    @user_roles_actions.setter
-    def user_roles_actions(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userRolesActions property value. The userRolesActions property
-        Args:
-            value: Value to set for the user_roles_actions property.
-        """
-        self._user_roles_actions = value
     
 

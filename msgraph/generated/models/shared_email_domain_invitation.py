@@ -1,27 +1,24 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class SharedEmailDomainInvitation(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sharedEmailDomainInvitation and sets the default values.
-        """
-        super().__init__()
-        # The expiryTime property
-        self._expiry_time: Optional[datetime] = None
-        # The invitationDomain property
-        self._invitation_domain: Optional[str] = None
-        # The invitationStatus property
-        self._invitation_status: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+@dataclass
+class SharedEmailDomainInvitation(Entity):
+    # The expiryTime property
+    expiry_time: Optional[datetime.datetime] = None
+    # The invitationDomain property
+    invitation_domain: Optional[str] = None
+    # The invitationStatus property
+    invitation_status: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SharedEmailDomainInvitation:
@@ -31,33 +28,18 @@ class SharedEmailDomainInvitation(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: SharedEmailDomainInvitation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return SharedEmailDomainInvitation()
-    
-    @property
-    def expiry_time(self,) -> Optional[datetime]:
-        """
-        Gets the expiryTime property value. The expiryTime property
-        Returns: Optional[datetime]
-        """
-        return self._expiry_time
-    
-    @expiry_time.setter
-    def expiry_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the expiryTime property value. The expiryTime property
-        Args:
-            value: Value to set for the expiry_time property.
-        """
-        self._expiry_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity
+        from .entity import Entity
+
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "expiryTime": lambda n : setattr(self, 'expiry_time', n.get_datetime_value()),
@@ -68,50 +50,16 @@ class SharedEmailDomainInvitation(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def invitation_domain(self,) -> Optional[str]:
-        """
-        Gets the invitationDomain property value. The invitationDomain property
-        Returns: Optional[str]
-        """
-        return self._invitation_domain
-    
-    @invitation_domain.setter
-    def invitation_domain(self,value: Optional[str] = None) -> None:
-        """
-        Sets the invitationDomain property value. The invitationDomain property
-        Args:
-            value: Value to set for the invitation_domain property.
-        """
-        self._invitation_domain = value
-    
-    @property
-    def invitation_status(self,) -> Optional[str]:
-        """
-        Gets the invitationStatus property value. The invitationStatus property
-        Returns: Optional[str]
-        """
-        return self._invitation_status
-    
-    @invitation_status.setter
-    def invitation_status(self,value: Optional[str] = None) -> None:
-        """
-        Sets the invitationStatus property value. The invitationStatus property
-        Args:
-            value: Value to set for the invitation_status property.
-        """
-        self._invitation_status = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_datetime_value("expiryTime", self.expiry_time)
+        writer.write_datetime_value()("expiryTime", self.expiry_time)
         writer.write_str_value("invitationDomain", self.invitation_domain)
         writer.write_str_value("invitationStatus", self.invitation_status)
     

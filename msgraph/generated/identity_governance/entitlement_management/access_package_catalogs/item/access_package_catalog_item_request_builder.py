@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import access_package_catalog
-    from .....models.o_data_errors import o_data_error
-    from .access_package_custom_workflow_extensions import access_package_custom_workflow_extensions_request_builder
-    from .access_package_resource_roles import access_package_resource_roles_request_builder
-    from .access_package_resources import access_package_resources_request_builder
-    from .access_package_resource_scopes import access_package_resource_scopes_request_builder
-    from .access_packages import access_packages_request_builder
-    from .custom_access_package_workflow_extensions import custom_access_package_workflow_extensions_request_builder
+    from .....models.access_package_catalog import AccessPackageCatalog
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .access_package_custom_workflow_extensions.access_package_custom_workflow_extensions_request_builder import AccessPackageCustomWorkflowExtensionsRequestBuilder
+    from .access_package_resource_roles.access_package_resource_roles_request_builder import AccessPackageResourceRolesRequestBuilder
+    from .access_package_resources.access_package_resources_request_builder import AccessPackageResourcesRequestBuilder
+    from .access_package_resource_scopes.access_package_resource_scopes_request_builder import AccessPackageResourceScopesRequestBuilder
+    from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
+    from .custom_access_package_workflow_extensions.custom_access_package_workflow_extensions_request_builder import CustomAccessPackageWorkflowExtensionsRequestBuilder
 
 class AccessPackageCatalogItemRequestBuilder():
     """
@@ -30,10 +30,10 @@ class AccessPackageCatalogItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}{?%24select,%24expand}"
 
@@ -50,62 +50,62 @@ class AccessPackageCatalogItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
+    async def get(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageCatalog]:
         """
         Retrieve the properties and relationships of an accessPackageCatalog object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_package_catalog.AccessPackageCatalog]
+        Returns: Optional[AccessPackageCatalog]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import access_package_catalog
+        from .....models.access_package_catalog import AccessPackageCatalog
 
-        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessPackageCatalog, error_mapping)
     
-    async def patch(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
+    async def patch(self,body: Optional[AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AccessPackageCatalog]:
         """
         Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_package_catalog.AccessPackageCatalog]
+        Returns: Optional[AccessPackageCatalog]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import access_package_catalog
+        from .....models.access_package_catalog import AccessPackageCatalog
 
-        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessPackageCatalog, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -141,7 +141,7 @@ class AccessPackageCatalogItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
         Args:
@@ -149,8 +149,8 @@ class AccessPackageCatalogItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -163,58 +163,58 @@ class AccessPackageCatalogItemRequestBuilder():
         return request_info
     
     @property
-    def access_package_custom_workflow_extensions(self) -> access_package_custom_workflow_extensions_request_builder.AccessPackageCustomWorkflowExtensionsRequestBuilder:
+    def access_package_custom_workflow_extensions(self) -> AccessPackageCustomWorkflowExtensionsRequestBuilder:
         """
         Provides operations to manage the accessPackageCustomWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
         """
-        from .access_package_custom_workflow_extensions import access_package_custom_workflow_extensions_request_builder
+        from .access_package_custom_workflow_extensions.access_package_custom_workflow_extensions_request_builder import AccessPackageCustomWorkflowExtensionsRequestBuilder
 
-        return access_package_custom_workflow_extensions_request_builder.AccessPackageCustomWorkflowExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageCustomWorkflowExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_resource_roles(self) -> access_package_resource_roles_request_builder.AccessPackageResourceRolesRequestBuilder:
+    def access_package_resource_roles(self) -> AccessPackageResourceRolesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRoles property of the microsoft.graph.accessPackageCatalog entity.
         """
-        from .access_package_resource_roles import access_package_resource_roles_request_builder
+        from .access_package_resource_roles.access_package_resource_roles_request_builder import AccessPackageResourceRolesRequestBuilder
 
-        return access_package_resource_roles_request_builder.AccessPackageResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_resources(self) -> access_package_resources_request_builder.AccessPackageResourcesRequestBuilder:
+    def access_package_resources(self) -> AccessPackageResourcesRequestBuilder:
         """
         Provides operations to manage the accessPackageResources property of the microsoft.graph.accessPackageCatalog entity.
         """
-        from .access_package_resources import access_package_resources_request_builder
+        from .access_package_resources.access_package_resources_request_builder import AccessPackageResourcesRequestBuilder
 
-        return access_package_resources_request_builder.AccessPackageResourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_resource_scopes(self) -> access_package_resource_scopes_request_builder.AccessPackageResourceScopesRequestBuilder:
+    def access_package_resource_scopes(self) -> AccessPackageResourceScopesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceScopes property of the microsoft.graph.accessPackageCatalog entity.
         """
-        from .access_package_resource_scopes import access_package_resource_scopes_request_builder
+        from .access_package_resource_scopes.access_package_resource_scopes_request_builder import AccessPackageResourceScopesRequestBuilder
 
-        return access_package_resource_scopes_request_builder.AccessPackageResourceScopesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageResourceScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_packages(self) -> access_packages_request_builder.AccessPackagesRequestBuilder:
+    def access_packages(self) -> AccessPackagesRequestBuilder:
         """
         Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.
         """
-        from .access_packages import access_packages_request_builder
+        from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
 
-        return access_packages_request_builder.AccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def custom_access_package_workflow_extensions(self) -> custom_access_package_workflow_extensions_request_builder.CustomAccessPackageWorkflowExtensionsRequestBuilder:
+    def custom_access_package_workflow_extensions(self) -> CustomAccessPackageWorkflowExtensionsRequestBuilder:
         """
         Provides operations to manage the customAccessPackageWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
         """
-        from .custom_access_package_workflow_extensions import custom_access_package_workflow_extensions_request_builder
+        from .custom_access_package_workflow_extensions.custom_access_package_workflow_extensions_request_builder import CustomAccessPackageWorkflowExtensionsRequestBuilder
 
-        return custom_access_package_workflow_extensions_request_builder.CustomAccessPackageWorkflowExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomAccessPackageWorkflowExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AccessPackageCatalogItemRequestBuilderDeleteRequestConfiguration():
@@ -240,8 +240,8 @@ class AccessPackageCatalogItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

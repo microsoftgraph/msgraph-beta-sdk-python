@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import mobility_management_policy, mobility_management_policy_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import mobility_management_policy_item_request_builder
+    from ...models.mobility_management_policy import MobilityManagementPolicy
+    from ...models.mobility_management_policy_collection_response import MobilityManagementPolicyCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.mobility_management_policy_item_request_builder import MobilityManagementPolicyItemRequestBuilder
 
 class MobileDeviceManagementPoliciesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class MobileDeviceManagementPoliciesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/policies/mobileDeviceManagementPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class MobileDeviceManagementPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_mobility_management_policy_id(self,mobility_management_policy_id: str) -> mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder:
+    def by_mobility_management_policy_id(self,mobility_management_policy_id: str) -> MobilityManagementPolicyItemRequestBuilder:
         """
         Provides operations to manage the mobileDeviceManagementPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             mobility_management_policy_id: Unique identifier of the item
-        Returns: mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder
+        Returns: MobilityManagementPolicyItemRequestBuilder
         """
-        if mobility_management_policy_id is None:
-            raise Exception("mobility_management_policy_id cannot be undefined")
-        from .item import mobility_management_policy_item_request_builder
+        if not mobility_management_policy_id:
+            raise TypeError("mobility_management_policy_id cannot be null.")
+        from .item.mobility_management_policy_item_request_builder import MobilityManagementPolicyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["mobilityManagementPolicy%2Did"] = mobility_management_policy_id
-        return mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return MobilityManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[mobility_management_policy_collection_response.MobilityManagementPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[MobilityManagementPolicyCollectionResponse]:
         """
         Get a list of the mobilityManagementPolicy objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobility_management_policy_collection_response.MobilityManagementPolicyCollectionResponse]
+        Returns: Optional[MobilityManagementPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import mobility_management_policy_collection_response
+        from ...models.mobility_management_policy_collection_response import MobilityManagementPolicyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, mobility_management_policy_collection_response.MobilityManagementPolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobilityManagementPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
+    async def post(self,body: Optional[MobilityManagementPolicy] = None, request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[MobilityManagementPolicy]:
         """
         Create new navigation property to mobileDeviceManagementPolicies for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobility_management_policy.MobilityManagementPolicy]
+        Returns: Optional[MobilityManagementPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import mobility_management_policy
+        from ...models.mobility_management_policy import MobilityManagementPolicy
 
-        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobilityManagementPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class MobileDeviceManagementPoliciesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MobilityManagementPolicy] = None, request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to mobileDeviceManagementPolicies for policies
         Args:
@@ -125,8 +126,8 @@ class MobileDeviceManagementPoliciesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class MobileDeviceManagementPoliciesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MobileDeviceManagementPoliciesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class MobileDeviceManagementPoliciesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

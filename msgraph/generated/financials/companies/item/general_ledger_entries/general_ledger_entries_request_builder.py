@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import general_ledger_entry_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import general_ledger_entry_item_request_builder
+    from .....models.general_ledger_entry_collection_response import GeneralLedgerEntryCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.general_ledger_entry_item_request_builder import GeneralLedgerEntryItemRequestBuilder
 
 class GeneralLedgerEntriesRequestBuilder():
     """
@@ -26,10 +26,10 @@ class GeneralLedgerEntriesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/generalLedgerEntries{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,42 +37,42 @@ class GeneralLedgerEntriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_general_ledger_entry_id(self,general_ledger_entry_id: str) -> general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder:
+    def by_general_ledger_entry_id(self,general_ledger_entry_id: str) -> GeneralLedgerEntryItemRequestBuilder:
         """
         Provides operations to manage the generalLedgerEntries property of the microsoft.graph.company entity.
         Args:
             general_ledger_entry_id: Unique identifier of the item
-        Returns: general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder
+        Returns: GeneralLedgerEntryItemRequestBuilder
         """
-        if general_ledger_entry_id is None:
-            raise Exception("general_ledger_entry_id cannot be undefined")
-        from .item import general_ledger_entry_item_request_builder
+        if not general_ledger_entry_id:
+            raise TypeError("general_ledger_entry_id cannot be null.")
+        from .item.general_ledger_entry_item_request_builder import GeneralLedgerEntryItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["generalLedgerEntry%2Did"] = general_ledger_entry_id
-        return general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return GeneralLedgerEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GeneralLedgerEntriesRequestBuilderGetRequestConfiguration] = None) -> Optional[general_ledger_entry_collection_response.GeneralLedgerEntryCollectionResponse]:
+    async def get(self,request_configuration: Optional[GeneralLedgerEntriesRequestBuilderGetRequestConfiguration] = None) -> Optional[GeneralLedgerEntryCollectionResponse]:
         """
         Get generalLedgerEntries from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[general_ledger_entry_collection_response.GeneralLedgerEntryCollectionResponse]
+        Returns: Optional[GeneralLedgerEntryCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import general_ledger_entry_collection_response
+        from .....models.general_ledger_entry_collection_response import GeneralLedgerEntryCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, general_ledger_entry_collection_response.GeneralLedgerEntryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GeneralLedgerEntryCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GeneralLedgerEntriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -93,13 +93,13 @@ class GeneralLedgerEntriesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GeneralLedgerEntriesRequestBuilderGetQueryParameters():
@@ -113,8 +113,8 @@ class GeneralLedgerEntriesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

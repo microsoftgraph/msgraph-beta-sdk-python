@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import service_health, service_health_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import service_health_item_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.service_health import ServiceHealth
+    from ....models.service_health_collection_response import ServiceHealthCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.service_health_item_request_builder import ServiceHealthItemRequestBuilder
 
 class HealthOverviewsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class HealthOverviewsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/admin/serviceAnnouncement/healthOverviews{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class HealthOverviewsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_service_health_id(self,service_health_id: str) -> service_health_item_request_builder.ServiceHealthItemRequestBuilder:
+    def by_service_health_id(self,service_health_id: str) -> ServiceHealthItemRequestBuilder:
         """
         Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.
         Args:
             service_health_id: Unique identifier of the item
-        Returns: service_health_item_request_builder.ServiceHealthItemRequestBuilder
+        Returns: ServiceHealthItemRequestBuilder
         """
-        if service_health_id is None:
-            raise Exception("service_health_id cannot be undefined")
-        from .item import service_health_item_request_builder
+        if not service_health_id:
+            raise TypeError("service_health_id cannot be null.")
+        from .item.service_health_item_request_builder import ServiceHealthItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["serviceHealth%2Did"] = service_health_id
-        return service_health_item_request_builder.ServiceHealthItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ServiceHealthItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[HealthOverviewsRequestBuilderGetRequestConfiguration] = None) -> Optional[service_health_collection_response.ServiceHealthCollectionResponse]:
+    async def get(self,request_configuration: Optional[HealthOverviewsRequestBuilderGetRequestConfiguration] = None) -> Optional[ServiceHealthCollectionResponse]:
         """
         Retrieve the serviceHealth resources from the **healthOverviews** navigation property. This operation provides the health report of all subscribed services for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[service_health_collection_response.ServiceHealthCollectionResponse]
+        Returns: Optional[ServiceHealthCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import service_health_collection_response
+        from ....models.service_health_collection_response import ServiceHealthCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, service_health_collection_response.ServiceHealthCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ServiceHealthCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[service_health.ServiceHealth] = None, request_configuration: Optional[HealthOverviewsRequestBuilderPostRequestConfiguration] = None) -> Optional[service_health.ServiceHealth]:
+    async def post(self,body: Optional[ServiceHealth] = None, request_configuration: Optional[HealthOverviewsRequestBuilderPostRequestConfiguration] = None) -> Optional[ServiceHealth]:
         """
         Create new navigation property to healthOverviews for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[service_health.ServiceHealth]
+        Returns: Optional[ServiceHealth]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import service_health
+        from ....models.service_health import ServiceHealth
 
-        return await self.request_adapter.send_async(request_info, service_health.ServiceHealth, error_mapping)
+        return await self.request_adapter.send_async(request_info, ServiceHealth, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[HealthOverviewsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class HealthOverviewsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[service_health.ServiceHealth] = None, request_configuration: Optional[HealthOverviewsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ServiceHealth] = None, request_configuration: Optional[HealthOverviewsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to healthOverviews for admin
         Args:
@@ -125,8 +126,8 @@ class HealthOverviewsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class HealthOverviewsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class HealthOverviewsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class HealthOverviewsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

@@ -1,19 +1,16 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_health_script_run_schedule
+    from .device_health_script_run_schedule import DeviceHealthScriptRunSchedule
 
-from . import device_health_script_run_schedule
+from .device_health_script_run_schedule import DeviceHealthScriptRunSchedule
 
-class DeviceHealthScriptHourlySchedule(device_health_script_run_schedule.DeviceHealthScriptRunSchedule):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceHealthScriptHourlySchedule and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceHealthScriptHourlySchedule"
+@dataclass
+class DeviceHealthScriptHourlySchedule(DeviceHealthScriptRunSchedule):
+    odata_type = "#microsoft.graph.deviceHealthScriptHourlySchedule"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptHourlySchedule:
@@ -23,8 +20,8 @@ class DeviceHealthScriptHourlySchedule(device_health_script_run_schedule.DeviceH
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DeviceHealthScriptHourlySchedule
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceHealthScriptHourlySchedule()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -32,7 +29,9 @@ class DeviceHealthScriptHourlySchedule(device_health_script_run_schedule.DeviceH
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_health_script_run_schedule
+        from .device_health_script_run_schedule import DeviceHealthScriptRunSchedule
+
+        from .device_health_script_run_schedule import DeviceHealthScriptRunSchedule
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -46,8 +45,8 @@ class DeviceHealthScriptHourlySchedule(device_health_script_run_schedule.DeviceH
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

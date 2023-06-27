@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import privileged_access_group_assignment_schedule_request, privileged_access_group_assignment_schedule_request_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
-    from .item import privileged_access_group_assignment_schedule_request_item_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.privileged_access_group_assignment_schedule_request import PrivilegedAccessGroupAssignmentScheduleRequest
+    from .....models.privileged_access_group_assignment_schedule_request_collection_response import PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder import FilterByCurrentUserWithOnRequestBuilder
+    from .item.privileged_access_group_assignment_schedule_request_item_request_builder import PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder
 
 class AssignmentScheduleRequestsRequestBuilder():
     """
@@ -27,10 +28,10 @@ class AssignmentScheduleRequestsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,80 +39,80 @@ class AssignmentScheduleRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_privileged_access_group_assignment_schedule_request_id(self,privileged_access_group_assignment_schedule_request_id: str) -> privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder:
+    def by_privileged_access_group_assignment_schedule_request_id(self,privileged_access_group_assignment_schedule_request_id: str) -> PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder:
         """
         Provides operations to manage the assignmentScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
         Args:
             privileged_access_group_assignment_schedule_request_id: Unique identifier of the item
-        Returns: privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder
+        Returns: PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder
         """
-        if privileged_access_group_assignment_schedule_request_id is None:
-            raise Exception("privileged_access_group_assignment_schedule_request_id cannot be undefined")
-        from .item import privileged_access_group_assignment_schedule_request_item_request_builder
+        if not privileged_access_group_assignment_schedule_request_id:
+            raise TypeError("privileged_access_group_assignment_schedule_request_id cannot be null.")
+        from .item.privileged_access_group_assignment_schedule_request_item_request_builder import PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["privilegedAccessGroupAssignmentScheduleRequest%2Did"] = privileged_access_group_assignment_schedule_request_id
-        return privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
+    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
         Args:
             on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
+        Returns: FilterByCurrentUserWithOnRequestBuilder
         """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+        if not on:
+            raise TypeError("on cannot be null.")
+        from .filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder import FilterByCurrentUserWithOnRequestBuilder
 
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+        return FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]:
         """
         Get a list of the privilegedAccessGroupAssignmentScheduleRequest objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]
+        Returns: Optional[PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import privileged_access_group_assignment_schedule_request_collection_response
+        from .....models.privileged_access_group_assignment_schedule_request_collection_response import PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
+    async def post(self,body: Optional[PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[PrivilegedAccessGroupAssignmentScheduleRequest]:
         """
         Create a new privilegedAccessGroupAssignmentScheduleRequest object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]
+        Returns: Optional[PrivilegedAccessGroupAssignmentScheduleRequest]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import privileged_access_group_assignment_schedule_request
+        from .....models.privileged_access_group_assignment_schedule_request import PrivilegedAccessGroupAssignmentScheduleRequest
 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrivilegedAccessGroupAssignmentScheduleRequest, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -131,7 +132,7 @@ class AssignmentScheduleRequestsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new privilegedAccessGroupAssignmentScheduleRequest object.
         Args:
@@ -139,8 +140,8 @@ class AssignmentScheduleRequestsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -153,13 +154,13 @@ class AssignmentScheduleRequestsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AssignmentScheduleRequestsRequestBuilderGetQueryParameters():
@@ -173,8 +174,8 @@ class AssignmentScheduleRequestsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.industry_data import inbound_flow
-    from .....models.o_data_errors import o_data_error
-    from .data_connector import data_connector_request_builder
-    from .year import year_request_builder
+    from .....models.industry_data.inbound_flow import InboundFlow
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .data_connector.data_connector_request_builder import DataConnectorRequestBuilder
+    from .year.year_request_builder import YearRequestBuilder
 
 class InboundFlowItemRequestBuilder():
     """
@@ -26,10 +26,10 @@ class InboundFlowItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/external/industryData/inboundFlows/{inboundFlow%2Did}{?%24select,%24expand}"
 
@@ -39,73 +39,73 @@ class InboundFlowItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[InboundFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an inboundFileFlow object.
+        Delete an inboundFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[InboundFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[inbound_flow.InboundFlow]:
+    async def get(self,request_configuration: Optional[InboundFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[InboundFlow]:
         """
         Read the properties and relationships of an inboundFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[inbound_flow.InboundFlow]
+        Returns: Optional[InboundFlow]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.industry_data import inbound_flow
+        from .....models.industry_data.inbound_flow import InboundFlow
 
-        return await self.request_adapter.send_async(request_info, inbound_flow.InboundFlow, error_mapping)
+        return await self.request_adapter.send_async(request_info, InboundFlow, error_mapping)
     
-    async def patch(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[inbound_flow.InboundFlow]:
+    async def patch(self,body: Optional[InboundFlow] = None, request_configuration: Optional[InboundFlowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[InboundFlow]:
         """
         Update the properties of an inboundFlow object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[inbound_flow.InboundFlow]
+        Returns: Optional[InboundFlow]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.industry_data import inbound_flow
+        from .....models.industry_data.inbound_flow import InboundFlow
 
-        return await self.request_adapter.send_async(request_info, inbound_flow.InboundFlow, error_mapping)
+        return await self.request_adapter.send_async(request_info, InboundFlow, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[InboundFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an inboundFileFlow object.
+        Delete an inboundFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class InboundFlowItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[InboundFlow] = None, request_configuration: Optional[InboundFlowItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of an inboundFlow object.
         Args:
@@ -145,8 +145,8 @@ class InboundFlowItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,22 +159,22 @@ class InboundFlowItemRequestBuilder():
         return request_info
     
     @property
-    def data_connector(self) -> data_connector_request_builder.DataConnectorRequestBuilder:
+    def data_connector(self) -> DataConnectorRequestBuilder:
         """
         Provides operations to manage the dataConnector property of the microsoft.graph.industryData.inboundFlow entity.
         """
-        from .data_connector import data_connector_request_builder
+        from .data_connector.data_connector_request_builder import DataConnectorRequestBuilder
 
-        return data_connector_request_builder.DataConnectorRequestBuilder(self.request_adapter, self.path_parameters)
+        return DataConnectorRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def year(self) -> year_request_builder.YearRequestBuilder:
+    def year(self) -> YearRequestBuilder:
         """
         Provides operations to manage the year property of the microsoft.graph.industryData.inboundFlow entity.
         """
-        from .year import year_request_builder
+        from .year.year_request_builder import YearRequestBuilder
 
-        return year_request_builder.YearRequestBuilder(self.request_adapter, self.path_parameters)
+        return YearRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class InboundFlowItemRequestBuilderDeleteRequestConfiguration():
@@ -200,8 +200,8 @@ class InboundFlowItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

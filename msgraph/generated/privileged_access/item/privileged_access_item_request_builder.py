@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import privileged_access
-    from ...models.o_data_errors import o_data_error
-    from .resources import resources_request_builder
-    from .role_assignment_requests import role_assignment_requests_request_builder
-    from .role_assignments import role_assignments_request_builder
-    from .role_definitions import role_definitions_request_builder
-    from .role_settings import role_settings_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.privileged_access import PrivilegedAccess
+    from .resources.resources_request_builder import ResourcesRequestBuilder
+    from .role_assignment_requests.role_assignment_requests_request_builder import RoleAssignmentRequestsRequestBuilder
+    from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
+    from .role_definitions.role_definitions_request_builder import RoleDefinitionsRequestBuilder
+    from .role_settings.role_settings_request_builder import RoleSettingsRequestBuilder
 
 class PrivilegedAccessItemRequestBuilder():
     """
@@ -29,10 +29,10 @@ class PrivilegedAccessItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/privilegedAccess/{privilegedAccess%2Did}{?%24select,%24expand}"
 
@@ -49,62 +49,62 @@ class PrivilegedAccessItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access.PrivilegedAccess]:
+    async def get(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedAccess]:
         """
         Get entity from privilegedAccess by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[privileged_access.PrivilegedAccess]
+        Returns: Optional[PrivilegedAccess]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import privileged_access
+        from ...models.privileged_access import PrivilegedAccess
 
-        return await self.request_adapter.send_async(request_info, privileged_access.PrivilegedAccess, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrivilegedAccess, error_mapping)
     
-    async def patch(self,body: Optional[privileged_access.PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_access.PrivilegedAccess]:
+    async def patch(self,body: Optional[PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PrivilegedAccess]:
         """
         Update entity in privilegedAccess
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[privileged_access.PrivilegedAccess]
+        Returns: Optional[PrivilegedAccess]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import privileged_access
+        from ...models.privileged_access import PrivilegedAccess
 
-        return await self.request_adapter.send_async(request_info, privileged_access.PrivilegedAccess, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrivilegedAccess, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -140,7 +140,7 @@ class PrivilegedAccessItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[privileged_access.PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update entity in privilegedAccess
         Args:
@@ -148,8 +148,8 @@ class PrivilegedAccessItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,49 +162,49 @@ class PrivilegedAccessItemRequestBuilder():
         return request_info
     
     @property
-    def resources(self) -> resources_request_builder.ResourcesRequestBuilder:
+    def resources(self) -> ResourcesRequestBuilder:
         """
         Provides operations to manage the resources property of the microsoft.graph.privilegedAccess entity.
         """
-        from .resources import resources_request_builder
+        from .resources.resources_request_builder import ResourcesRequestBuilder
 
-        return resources_request_builder.ResourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_assignment_requests(self) -> role_assignment_requests_request_builder.RoleAssignmentRequestsRequestBuilder:
+    def role_assignment_requests(self) -> RoleAssignmentRequestsRequestBuilder:
         """
         Provides operations to manage the roleAssignmentRequests property of the microsoft.graph.privilegedAccess entity.
         """
-        from .role_assignment_requests import role_assignment_requests_request_builder
+        from .role_assignment_requests.role_assignment_requests_request_builder import RoleAssignmentRequestsRequestBuilder
 
-        return role_assignment_requests_request_builder.RoleAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_assignments(self) -> role_assignments_request_builder.RoleAssignmentsRequestBuilder:
+    def role_assignments(self) -> RoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the roleAssignments property of the microsoft.graph.privilegedAccess entity.
         """
-        from .role_assignments import role_assignments_request_builder
+        from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
 
-        return role_assignments_request_builder.RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_definitions(self) -> role_definitions_request_builder.RoleDefinitionsRequestBuilder:
+    def role_definitions(self) -> RoleDefinitionsRequestBuilder:
         """
         Provides operations to manage the roleDefinitions property of the microsoft.graph.privilegedAccess entity.
         """
-        from .role_definitions import role_definitions_request_builder
+        from .role_definitions.role_definitions_request_builder import RoleDefinitionsRequestBuilder
 
-        return role_definitions_request_builder.RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_settings(self) -> role_settings_request_builder.RoleSettingsRequestBuilder:
+    def role_settings(self) -> RoleSettingsRequestBuilder:
         """
         Provides operations to manage the roleSettings property of the microsoft.graph.privilegedAccess entity.
         """
-        from .role_settings import role_settings_request_builder
+        from .role_settings.role_settings_request_builder import RoleSettingsRequestBuilder
 
-        return role_settings_request_builder.RoleSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PrivilegedAccessItemRequestBuilderDeleteRequestConfiguration():
@@ -230,8 +230,8 @@ class PrivilegedAccessItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

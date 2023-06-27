@@ -1,24 +1,23 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, horizontal_section, vertical_section
+    from .entity import Entity
+    from .horizontal_section import HorizontalSection
+    from .vertical_section import VerticalSection
 
-from . import entity
+from .entity import Entity
 
-class CanvasLayout(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new canvasLayout and sets the default values.
-        """
-        super().__init__()
-        # Collection of horizontal sections on the SharePoint page.
-        self._horizontal_sections: Optional[List[horizontal_section.HorizontalSection]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Vertical section on the SharePoint page.
-        self._vertical_section: Optional[vertical_section.VerticalSection] = None
+@dataclass
+class CanvasLayout(Entity):
+    # Collection of horizontal sections on the SharePoint page.
+    horizontal_sections: Optional[List[HorizontalSection]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Vertical section on the SharePoint page.
+    vertical_section: Optional[VerticalSection] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CanvasLayout:
@@ -28,8 +27,8 @@ class CanvasLayout(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: CanvasLayout
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CanvasLayout()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,32 +36,21 @@ class CanvasLayout(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, horizontal_section, vertical_section
+        from .entity import Entity
+        from .horizontal_section import HorizontalSection
+        from .vertical_section import VerticalSection
+
+        from .entity import Entity
+        from .horizontal_section import HorizontalSection
+        from .vertical_section import VerticalSection
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "horizontalSections": lambda n : setattr(self, 'horizontal_sections', n.get_collection_of_object_values(horizontal_section.HorizontalSection)),
-            "verticalSection": lambda n : setattr(self, 'vertical_section', n.get_object_value(vertical_section.VerticalSection)),
+            "horizontalSections": lambda n : setattr(self, 'horizontal_sections', n.get_collection_of_object_values(HorizontalSection)),
+            "verticalSection": lambda n : setattr(self, 'vertical_section', n.get_object_value(VerticalSection)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def horizontal_sections(self,) -> Optional[List[horizontal_section.HorizontalSection]]:
-        """
-        Gets the horizontalSections property value. Collection of horizontal sections on the SharePoint page.
-        Returns: Optional[List[horizontal_section.HorizontalSection]]
-        """
-        return self._horizontal_sections
-    
-    @horizontal_sections.setter
-    def horizontal_sections(self,value: Optional[List[horizontal_section.HorizontalSection]] = None) -> None:
-        """
-        Sets the horizontalSections property value. Collection of horizontal sections on the SharePoint page.
-        Args:
-            value: Value to set for the horizontal_sections property.
-        """
-        self._horizontal_sections = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -70,27 +58,10 @@ class CanvasLayout(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("horizontalSections", self.horizontal_sections)
         writer.write_object_value("verticalSection", self.vertical_section)
-    
-    @property
-    def vertical_section(self,) -> Optional[vertical_section.VerticalSection]:
-        """
-        Gets the verticalSection property value. Vertical section on the SharePoint page.
-        Returns: Optional[vertical_section.VerticalSection]
-        """
-        return self._vertical_section
-    
-    @vertical_section.setter
-    def vertical_section(self,value: Optional[vertical_section.VerticalSection] = None) -> None:
-        """
-        Sets the verticalSection property value. Vertical section on the SharePoint page.
-        Args:
-            value: Value to set for the vertical_section property.
-        """
-        self._vertical_section = value
     
 

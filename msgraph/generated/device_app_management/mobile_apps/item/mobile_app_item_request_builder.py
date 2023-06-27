@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,19 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import mobile_app
-    from ....models.o_data_errors import o_data_error
-    from .assign import assign_request_builder
-    from .assignments import assignments_request_builder
-    from .categories import categories_request_builder
-    from .device_statuses import device_statuses_request_builder
-    from .get_related_app_states_with_user_principal_name_with_device_id import get_related_app_states_with_user_principal_name_with_device_id_request_builder
-    from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
-    from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
-    from .install_summary import install_summary_request_builder
-    from .relationships import relationships_request_builder
-    from .update_relationships import update_relationships_request_builder
-    from .user_statuses import user_statuses_request_builder
+    from ....models.mobile_app import MobileApp
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .assign.assign_request_builder import AssignRequestBuilder
+    from .assignments.assignments_request_builder import AssignmentsRequestBuilder
+    from .categories.categories_request_builder import CategoriesRequestBuilder
+    from .graph_managed_mobile_lob_app.graph_managed_mobile_lob_app_request_builder import GraphManagedMobileLobAppRequestBuilder
+    from .graph_mobile_lob_app.graph_mobile_lob_app_request_builder import GraphMobileLobAppRequestBuilder
+    from .relationships.relationships_request_builder import RelationshipsRequestBuilder
+    from .update_relationships.update_relationships_request_builder import UpdateRelationshipsRequestBuilder
 
 class MobileAppItemRequestBuilder():
     """
@@ -35,10 +31,10 @@ class MobileAppItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24select,%24expand}"
 
@@ -55,78 +51,62 @@ class MobileAppItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MobileAppItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
+    async def get(self,request_configuration: Optional[MobileAppItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MobileApp]:
         """
         The mobile apps.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobile_app.MobileApp]
+        Returns: Optional[MobileApp]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import mobile_app
+        from ....models.mobile_app import MobileApp
 
-        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobileApp, error_mapping)
     
-    def get_related_app_states_with_user_principal_name_with_device_id(self,device_id: Optional[str] = None, user_principal_name: Optional[str] = None) -> get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder:
-        """
-        Provides operations to call the getRelatedAppStates method.
-        Args:
-            deviceId: Usage: deviceId='{deviceId}'
-            userPrincipalName: Usage: userPrincipalName='{userPrincipalName}'
-        Returns: get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder
-        """
-        if device_id is None:
-            raise Exception("device_id cannot be undefined")
-        if user_principal_name is None:
-            raise Exception("user_principal_name cannot be undefined")
-        from .get_related_app_states_with_user_principal_name_with_device_id import get_related_app_states_with_user_principal_name_with_device_id_request_builder
-
-        return get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, device_id, user_principal_name)
-    
-    async def patch(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
+    async def patch(self,body: Optional[MobileApp] = None, request_configuration: Optional[MobileAppItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[MobileApp]:
         """
         Update the navigation property mobileApps in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobile_app.MobileApp]
+        Returns: Optional[MobileApp]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import mobile_app
+        from ....models.mobile_app import MobileApp
 
-        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobileApp, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MobileAppItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -162,7 +142,7 @@ class MobileAppItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MobileApp] = None, request_configuration: Optional[MobileAppItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property mobileApps in deviceAppManagement
         Args:
@@ -170,8 +150,8 @@ class MobileAppItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -184,94 +164,67 @@ class MobileAppItemRequestBuilder():
         return request_info
     
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+    def assign(self) -> AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
-        from .assign import assign_request_builder
+        from .assign.assign_request_builder import AssignRequestBuilder
 
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+    def assignments(self) -> AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
         """
-        from .assignments import assignments_request_builder
+        from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
+    def categories(self) -> CategoriesRequestBuilder:
         """
         Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
         """
-        from .categories import categories_request_builder
+        from .categories.categories_request_builder import CategoriesRequestBuilder
 
-        return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
-        """
-        Provides operations to manage the deviceStatuses property of the microsoft.graph.mobileApp entity.
-        """
-        from .device_statuses import device_statuses_request_builder
-
-        return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def graph_managed_mobile_lob_app(self) -> graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder:
+    def graph_managed_mobile_lob_app(self) -> GraphManagedMobileLobAppRequestBuilder:
         """
         Casts the previous resource to managedMobileLobApp.
         """
-        from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
+        from .graph_managed_mobile_lob_app.graph_managed_mobile_lob_app_request_builder import GraphManagedMobileLobAppRequestBuilder
 
-        return graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_mobile_lob_app(self) -> graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder:
+    def graph_mobile_lob_app(self) -> GraphMobileLobAppRequestBuilder:
         """
         Casts the previous resource to mobileLobApp.
         """
-        from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
+        from .graph_mobile_lob_app.graph_mobile_lob_app_request_builder import GraphMobileLobAppRequestBuilder
 
-        return graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def install_summary(self) -> install_summary_request_builder.InstallSummaryRequestBuilder:
-        """
-        Provides operations to manage the installSummary property of the microsoft.graph.mobileApp entity.
-        """
-        from .install_summary import install_summary_request_builder
-
-        return install_summary_request_builder.InstallSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def relationships(self) -> relationships_request_builder.RelationshipsRequestBuilder:
+    def relationships(self) -> RelationshipsRequestBuilder:
         """
         Provides operations to manage the relationships property of the microsoft.graph.mobileApp entity.
         """
-        from .relationships import relationships_request_builder
+        from .relationships.relationships_request_builder import RelationshipsRequestBuilder
 
-        return relationships_request_builder.RelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_relationships(self) -> update_relationships_request_builder.UpdateRelationshipsRequestBuilder:
+    def update_relationships(self) -> UpdateRelationshipsRequestBuilder:
         """
         Provides operations to call the updateRelationships method.
         """
-        from .update_relationships import update_relationships_request_builder
+        from .update_relationships.update_relationships_request_builder import UpdateRelationshipsRequestBuilder
 
-        return update_relationships_request_builder.UpdateRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
-        """
-        Provides operations to manage the userStatuses property of the microsoft.graph.mobileApp entity.
-        """
-        from .user_statuses import user_statuses_request_builder
-
-        return user_statuses_request_builder.UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MobileAppItemRequestBuilderDeleteRequestConfiguration():
@@ -297,8 +250,8 @@ class MobileAppItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

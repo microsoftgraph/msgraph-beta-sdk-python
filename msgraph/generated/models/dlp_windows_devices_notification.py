@@ -1,40 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import dlp_notification
+    from .dlp_notification import DlpNotification
 
-from . import dlp_notification
+from .dlp_notification import DlpNotification
 
-class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DlpWindowsDevicesNotification and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.dlpWindowsDevicesNotification"
-        # The contentName property
-        self._content_name: Optional[str] = None
-        # The lastModfiedBy property
-        self._last_modfied_by: Optional[str] = None
-    
-    @property
-    def content_name(self,) -> Optional[str]:
-        """
-        Gets the contentName property value. The contentName property
-        Returns: Optional[str]
-        """
-        return self._content_name
-    
-    @content_name.setter
-    def content_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the contentName property value. The contentName property
-        Args:
-            value: Value to set for the content_name property.
-        """
-        self._content_name = value
+@dataclass
+class DlpWindowsDevicesNotification(DlpNotification):
+    odata_type = "#microsoft.graph.dlpWindowsDevicesNotification"
+    # The contentName property
+    content_name: Optional[str] = None
+    # The lastModfiedBy property
+    last_modfied_by: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DlpWindowsDevicesNotification:
@@ -44,8 +24,8 @@ class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DlpWindowsDevicesNotification
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DlpWindowsDevicesNotification()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -53,7 +33,9 @@ class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import dlp_notification
+        from .dlp_notification import DlpNotification
+
+        from .dlp_notification import DlpNotification
 
         fields: Dict[str, Callable[[Any], None]] = {
             "contentName": lambda n : setattr(self, 'content_name', n.get_str_value()),
@@ -63,31 +45,14 @@ class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_modfied_by(self,) -> Optional[str]:
-        """
-        Gets the lastModfiedBy property value. The lastModfiedBy property
-        Returns: Optional[str]
-        """
-        return self._last_modfied_by
-    
-    @last_modfied_by.setter
-    def last_modfied_by(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastModfiedBy property value. The lastModfiedBy property
-        Args:
-            value: Value to set for the last_modfied_by property.
-        """
-        self._last_modfied_by = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("contentName", self.content_name)
         writer.write_str_value("lastModfiedBy", self.last_modfied_by)

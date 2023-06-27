@@ -1,23 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import intended_purpose, managed_device_certificate_state, windows_certificate_profile_base
+    from .intended_purpose import IntendedPurpose
+    from .managed_device_certificate_state import ManagedDeviceCertificateState
+    from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
-from . import windows_certificate_profile_base
+from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
-class Windows10ImportedPFXCertificateProfile(windows_certificate_profile_base.WindowsCertificateProfileBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10ImportedPFXCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10ImportedPFXCertificateProfile"
-        # PFX Import Options.
-        self._intended_purpose: Optional[intended_purpose.IntendedPurpose] = None
-        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
+@dataclass
+class Windows10ImportedPFXCertificateProfile(WindowsCertificateProfileBase):
+    odata_type = "#microsoft.graph.windows10ImportedPFXCertificateProfile"
+    # PFX Import Options.
+    intended_purpose: Optional[IntendedPurpose] = None
+    # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
+    managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10ImportedPFXCertificateProfile:
@@ -27,8 +26,8 @@ class Windows10ImportedPFXCertificateProfile(windows_certificate_profile_base.Wi
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: Windows10ImportedPFXCertificateProfile
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Windows10ImportedPFXCertificateProfile()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,49 +35,21 @@ class Windows10ImportedPFXCertificateProfile(windows_certificate_profile_base.Wi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import intended_purpose, managed_device_certificate_state, windows_certificate_profile_base
+        from .intended_purpose import IntendedPurpose
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+        from .windows_certificate_profile_base import WindowsCertificateProfileBase
+
+        from .intended_purpose import IntendedPurpose
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+        from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(intended_purpose.IntendedPurpose)),
-            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
+            "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(IntendedPurpose)),
+            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def intended_purpose(self,) -> Optional[intended_purpose.IntendedPurpose]:
-        """
-        Gets the intendedPurpose property value. PFX Import Options.
-        Returns: Optional[intended_purpose.IntendedPurpose]
-        """
-        return self._intended_purpose
-    
-    @intended_purpose.setter
-    def intended_purpose(self,value: Optional[intended_purpose.IntendedPurpose] = None) -> None:
-        """
-        Sets the intendedPurpose property value. PFX Import Options.
-        Args:
-            value: Value to set for the intended_purpose property.
-        """
-        self._intended_purpose = value
-    
-    @property
-    def managed_device_certificate_states(self,) -> Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]]:
-        """
-        Gets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        Returns: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]]
-        """
-        return self._managed_device_certificate_states
-    
-    @managed_device_certificate_states.setter
-    def managed_device_certificate_states(self,value: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None) -> None:
-        """
-        Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        Args:
-            value: Value to set for the managed_device_certificate_states property.
-        """
-        self._managed_device_certificate_states = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -86,8 +57,8 @@ class Windows10ImportedPFXCertificateProfile(windows_certificate_profile_base.Wi
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("intendedPurpose", self.intended_purpose)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)

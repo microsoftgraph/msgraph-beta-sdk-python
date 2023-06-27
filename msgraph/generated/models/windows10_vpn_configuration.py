@@ -1,120 +1,77 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import cryptography_suite, extended_key_usage, vpn_dns_rule, vpn_route, vpn_traffic_rule, windows10_associated_apps, windows10_vpn_authentication_method, windows10_vpn_connection_type, windows10_vpn_profile_target, windows10_vpn_proxy_server, windows_certificate_profile_base, windows_vpn_configuration
+    from .cryptography_suite import CryptographySuite
+    from .extended_key_usage import ExtendedKeyUsage
+    from .vpn_dns_rule import VpnDnsRule
+    from .vpn_route import VpnRoute
+    from .vpn_traffic_rule import VpnTrafficRule
+    from .windows10_associated_apps import Windows10AssociatedApps
+    from .windows10_vpn_authentication_method import Windows10VpnAuthenticationMethod
+    from .windows10_vpn_connection_type import Windows10VpnConnectionType
+    from .windows10_vpn_profile_target import Windows10VpnProfileTarget
+    from .windows10_vpn_proxy_server import Windows10VpnProxyServer
+    from .windows_certificate_profile_base import WindowsCertificateProfileBase
+    from .windows_vpn_configuration import WindowsVpnConfiguration
 
-from . import windows_vpn_configuration
+from .windows_vpn_configuration import WindowsVpnConfiguration
 
-class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10VpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10VpnConfiguration"
-        # Associated Apps. This collection can contain a maximum of 10000 elements.
-        self._associated_apps: Optional[List[windows10_associated_apps.Windows10AssociatedApps]] = None
-        # Windows 10 VPN connection types.
-        self._authentication_method: Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod] = None
-        # VPN connection types.
-        self._connection_type: Optional[windows10_vpn_connection_type.Windows10VpnConnectionType] = None
-        # Cryptography Suite security settings for IKEv2 VPN in Windows10 and above
-        self._cryptography_suite: Optional[cryptography_suite.CryptographySuite] = None
-        # DNS rules. This collection can contain a maximum of 1000 elements.
-        self._dns_rules: Optional[List[vpn_dns_rule.VpnDnsRule]] = None
-        # Specify DNS suffixes to add to the DNS search list to properly route short names.
-        self._dns_suffixes: Optional[List[str]] = None
-        # Extensible Authentication Protocol (EAP) XML. (UTF8 encoded byte array)
-        self._eap_xml: Optional[bytes] = None
-        # Enable Always On mode.
-        self._enable_always_on: Optional[bool] = None
-        # Enable conditional access.
-        self._enable_conditional_access: Optional[bool] = None
-        # Enable device tunnel.
-        self._enable_device_tunnel: Optional[bool] = None
-        # Enable IP address registration with internal DNS.
-        self._enable_dns_registration: Optional[bool] = None
-        # Enable single sign-on (SSO) with alternate certificate.
-        self._enable_single_sign_on_with_alternate_certificate: Optional[bool] = None
-        # Enable split tunneling.
-        self._enable_split_tunneling: Optional[bool] = None
-        # Identity certificate for client authentication when authentication method is certificate.
-        self._identity_certificate: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase] = None
-        # ID of the Microsoft Tunnel site associated with the VPN profile.
-        self._microsoft_tunnel_site_id: Optional[str] = None
-        # Only associated Apps can use connection (per-app VPN).
-        self._only_associated_apps_can_use_connection: Optional[bool] = None
-        # Profile target type. Possible values are: user, device, autoPilotDevice.
-        self._profile_target: Optional[windows10_vpn_profile_target.Windows10VpnProfileTarget] = None
-        # Proxy Server.
-        self._proxy_server: Optional[windows10_vpn_proxy_server.Windows10VpnProxyServer] = None
-        # Remember user credentials.
-        self._remember_user_credentials: Optional[bool] = None
-        # Routes (optional for third-party providers). This collection can contain a maximum of 1000 elements.
-        self._routes: Optional[List[vpn_route.VpnRoute]] = None
-        # Single sign-on Extended Key Usage (EKU).
-        self._single_sign_on_eku: Optional[extended_key_usage.ExtendedKeyUsage] = None
-        # Single sign-on issuer hash.
-        self._single_sign_on_issuer_hash: Optional[str] = None
-        # Traffic rules. This collection can contain a maximum of 1000 elements.
-        self._traffic_rules: Optional[List[vpn_traffic_rule.VpnTrafficRule]] = None
-        # Trusted Network Domains
-        self._trusted_network_domains: Optional[List[str]] = None
-        # Windows Information Protection (WIP) domain to associate with this connection.
-        self._windows_information_protection_domain: Optional[str] = None
-    
-    @property
-    def associated_apps(self,) -> Optional[List[windows10_associated_apps.Windows10AssociatedApps]]:
-        """
-        Gets the associatedApps property value. Associated Apps. This collection can contain a maximum of 10000 elements.
-        Returns: Optional[List[windows10_associated_apps.Windows10AssociatedApps]]
-        """
-        return self._associated_apps
-    
-    @associated_apps.setter
-    def associated_apps(self,value: Optional[List[windows10_associated_apps.Windows10AssociatedApps]] = None) -> None:
-        """
-        Sets the associatedApps property value. Associated Apps. This collection can contain a maximum of 10000 elements.
-        Args:
-            value: Value to set for the associated_apps property.
-        """
-        self._associated_apps = value
-    
-    @property
-    def authentication_method(self,) -> Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Windows 10 VPN connection types.
-        Returns: Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Windows 10 VPN connection types.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
-    @property
-    def connection_type(self,) -> Optional[windows10_vpn_connection_type.Windows10VpnConnectionType]:
-        """
-        Gets the connectionType property value. VPN connection types.
-        Returns: Optional[windows10_vpn_connection_type.Windows10VpnConnectionType]
-        """
-        return self._connection_type
-    
-    @connection_type.setter
-    def connection_type(self,value: Optional[windows10_vpn_connection_type.Windows10VpnConnectionType] = None) -> None:
-        """
-        Sets the connectionType property value. VPN connection types.
-        Args:
-            value: Value to set for the connection_type property.
-        """
-        self._connection_type = value
+@dataclass
+class Windows10VpnConfiguration(WindowsVpnConfiguration):
+    odata_type = "#microsoft.graph.windows10VpnConfiguration"
+    # Associated Apps. This collection can contain a maximum of 10000 elements.
+    associated_apps: Optional[List[Windows10AssociatedApps]] = None
+    # Windows 10 VPN connection types.
+    authentication_method: Optional[Windows10VpnAuthenticationMethod] = None
+    # VPN connection types.
+    connection_type: Optional[Windows10VpnConnectionType] = None
+    # Cryptography Suite security settings for IKEv2 VPN in Windows10 and above
+    cryptography_suite: Optional[CryptographySuite] = None
+    # DNS rules. This collection can contain a maximum of 1000 elements.
+    dns_rules: Optional[List[VpnDnsRule]] = None
+    # Specify DNS suffixes to add to the DNS search list to properly route short names.
+    dns_suffixes: Optional[List[str]] = None
+    # Extensible Authentication Protocol (EAP) XML. (UTF8 encoded byte array)
+    eap_xml: Optional[bytes] = None
+    # Enable Always On mode.
+    enable_always_on: Optional[bool] = None
+    # Enable conditional access.
+    enable_conditional_access: Optional[bool] = None
+    # Enable device tunnel.
+    enable_device_tunnel: Optional[bool] = None
+    # Enable IP address registration with internal DNS.
+    enable_dns_registration: Optional[bool] = None
+    # Enable single sign-on (SSO) with alternate certificate.
+    enable_single_sign_on_with_alternate_certificate: Optional[bool] = None
+    # Enable split tunneling.
+    enable_split_tunneling: Optional[bool] = None
+    # Identity certificate for client authentication when authentication method is certificate.
+    identity_certificate: Optional[WindowsCertificateProfileBase] = None
+    # ID of the Microsoft Tunnel site associated with the VPN profile.
+    microsoft_tunnel_site_id: Optional[str] = None
+    # Only associated Apps can use connection (per-app VPN).
+    only_associated_apps_can_use_connection: Optional[bool] = None
+    # Profile target type. Possible values are: user, device, autoPilotDevice.
+    profile_target: Optional[Windows10VpnProfileTarget] = None
+    # Proxy Server.
+    proxy_server: Optional[Windows10VpnProxyServer] = None
+    # Remember user credentials.
+    remember_user_credentials: Optional[bool] = None
+    # Routes (optional for third-party providers). This collection can contain a maximum of 1000 elements.
+    routes: Optional[List[VpnRoute]] = None
+    # Single sign-on Extended Key Usage (EKU).
+    single_sign_on_eku: Optional[ExtendedKeyUsage] = None
+    # Single sign-on issuer hash.
+    single_sign_on_issuer_hash: Optional[str] = None
+    # Traffic rules. This collection can contain a maximum of 1000 elements.
+    traffic_rules: Optional[List[VpnTrafficRule]] = None
+    # Trusted Network Domains
+    trusted_network_domains: Optional[List[str]] = None
+    # Windows Information Protection (WIP) domain to associate with this connection.
+    windows_information_protection_domain: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10VpnConfiguration:
@@ -124,193 +81,47 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: Windows10VpnConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Windows10VpnConfiguration()
-    
-    @property
-    def cryptography_suite(self,) -> Optional[cryptography_suite.CryptographySuite]:
-        """
-        Gets the cryptographySuite property value. Cryptography Suite security settings for IKEv2 VPN in Windows10 and above
-        Returns: Optional[cryptography_suite.CryptographySuite]
-        """
-        return self._cryptography_suite
-    
-    @cryptography_suite.setter
-    def cryptography_suite(self,value: Optional[cryptography_suite.CryptographySuite] = None) -> None:
-        """
-        Sets the cryptographySuite property value. Cryptography Suite security settings for IKEv2 VPN in Windows10 and above
-        Args:
-            value: Value to set for the cryptography_suite property.
-        """
-        self._cryptography_suite = value
-    
-    @property
-    def dns_rules(self,) -> Optional[List[vpn_dns_rule.VpnDnsRule]]:
-        """
-        Gets the dnsRules property value. DNS rules. This collection can contain a maximum of 1000 elements.
-        Returns: Optional[List[vpn_dns_rule.VpnDnsRule]]
-        """
-        return self._dns_rules
-    
-    @dns_rules.setter
-    def dns_rules(self,value: Optional[List[vpn_dns_rule.VpnDnsRule]] = None) -> None:
-        """
-        Sets the dnsRules property value. DNS rules. This collection can contain a maximum of 1000 elements.
-        Args:
-            value: Value to set for the dns_rules property.
-        """
-        self._dns_rules = value
-    
-    @property
-    def dns_suffixes(self,) -> Optional[List[str]]:
-        """
-        Gets the dnsSuffixes property value. Specify DNS suffixes to add to the DNS search list to properly route short names.
-        Returns: Optional[List[str]]
-        """
-        return self._dns_suffixes
-    
-    @dns_suffixes.setter
-    def dns_suffixes(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the dnsSuffixes property value. Specify DNS suffixes to add to the DNS search list to properly route short names.
-        Args:
-            value: Value to set for the dns_suffixes property.
-        """
-        self._dns_suffixes = value
-    
-    @property
-    def eap_xml(self,) -> Optional[bytes]:
-        """
-        Gets the eapXml property value. Extensible Authentication Protocol (EAP) XML. (UTF8 encoded byte array)
-        Returns: Optional[bytes]
-        """
-        return self._eap_xml
-    
-    @eap_xml.setter
-    def eap_xml(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the eapXml property value. Extensible Authentication Protocol (EAP) XML. (UTF8 encoded byte array)
-        Args:
-            value: Value to set for the eap_xml property.
-        """
-        self._eap_xml = value
-    
-    @property
-    def enable_always_on(self,) -> Optional[bool]:
-        """
-        Gets the enableAlwaysOn property value. Enable Always On mode.
-        Returns: Optional[bool]
-        """
-        return self._enable_always_on
-    
-    @enable_always_on.setter
-    def enable_always_on(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enableAlwaysOn property value. Enable Always On mode.
-        Args:
-            value: Value to set for the enable_always_on property.
-        """
-        self._enable_always_on = value
-    
-    @property
-    def enable_conditional_access(self,) -> Optional[bool]:
-        """
-        Gets the enableConditionalAccess property value. Enable conditional access.
-        Returns: Optional[bool]
-        """
-        return self._enable_conditional_access
-    
-    @enable_conditional_access.setter
-    def enable_conditional_access(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enableConditionalAccess property value. Enable conditional access.
-        Args:
-            value: Value to set for the enable_conditional_access property.
-        """
-        self._enable_conditional_access = value
-    
-    @property
-    def enable_device_tunnel(self,) -> Optional[bool]:
-        """
-        Gets the enableDeviceTunnel property value. Enable device tunnel.
-        Returns: Optional[bool]
-        """
-        return self._enable_device_tunnel
-    
-    @enable_device_tunnel.setter
-    def enable_device_tunnel(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enableDeviceTunnel property value. Enable device tunnel.
-        Args:
-            value: Value to set for the enable_device_tunnel property.
-        """
-        self._enable_device_tunnel = value
-    
-    @property
-    def enable_dns_registration(self,) -> Optional[bool]:
-        """
-        Gets the enableDnsRegistration property value. Enable IP address registration with internal DNS.
-        Returns: Optional[bool]
-        """
-        return self._enable_dns_registration
-    
-    @enable_dns_registration.setter
-    def enable_dns_registration(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enableDnsRegistration property value. Enable IP address registration with internal DNS.
-        Args:
-            value: Value to set for the enable_dns_registration property.
-        """
-        self._enable_dns_registration = value
-    
-    @property
-    def enable_single_sign_on_with_alternate_certificate(self,) -> Optional[bool]:
-        """
-        Gets the enableSingleSignOnWithAlternateCertificate property value. Enable single sign-on (SSO) with alternate certificate.
-        Returns: Optional[bool]
-        """
-        return self._enable_single_sign_on_with_alternate_certificate
-    
-    @enable_single_sign_on_with_alternate_certificate.setter
-    def enable_single_sign_on_with_alternate_certificate(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enableSingleSignOnWithAlternateCertificate property value. Enable single sign-on (SSO) with alternate certificate.
-        Args:
-            value: Value to set for the enable_single_sign_on_with_alternate_certificate property.
-        """
-        self._enable_single_sign_on_with_alternate_certificate = value
-    
-    @property
-    def enable_split_tunneling(self,) -> Optional[bool]:
-        """
-        Gets the enableSplitTunneling property value. Enable split tunneling.
-        Returns: Optional[bool]
-        """
-        return self._enable_split_tunneling
-    
-    @enable_split_tunneling.setter
-    def enable_split_tunneling(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enableSplitTunneling property value. Enable split tunneling.
-        Args:
-            value: Value to set for the enable_split_tunneling property.
-        """
-        self._enable_split_tunneling = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import cryptography_suite, extended_key_usage, vpn_dns_rule, vpn_route, vpn_traffic_rule, windows10_associated_apps, windows10_vpn_authentication_method, windows10_vpn_connection_type, windows10_vpn_profile_target, windows10_vpn_proxy_server, windows_certificate_profile_base, windows_vpn_configuration
+        from .cryptography_suite import CryptographySuite
+        from .extended_key_usage import ExtendedKeyUsage
+        from .vpn_dns_rule import VpnDnsRule
+        from .vpn_route import VpnRoute
+        from .vpn_traffic_rule import VpnTrafficRule
+        from .windows10_associated_apps import Windows10AssociatedApps
+        from .windows10_vpn_authentication_method import Windows10VpnAuthenticationMethod
+        from .windows10_vpn_connection_type import Windows10VpnConnectionType
+        from .windows10_vpn_profile_target import Windows10VpnProfileTarget
+        from .windows10_vpn_proxy_server import Windows10VpnProxyServer
+        from .windows_certificate_profile_base import WindowsCertificateProfileBase
+        from .windows_vpn_configuration import WindowsVpnConfiguration
+
+        from .cryptography_suite import CryptographySuite
+        from .extended_key_usage import ExtendedKeyUsage
+        from .vpn_dns_rule import VpnDnsRule
+        from .vpn_route import VpnRoute
+        from .vpn_traffic_rule import VpnTrafficRule
+        from .windows10_associated_apps import Windows10AssociatedApps
+        from .windows10_vpn_authentication_method import Windows10VpnAuthenticationMethod
+        from .windows10_vpn_connection_type import Windows10VpnConnectionType
+        from .windows10_vpn_profile_target import Windows10VpnProfileTarget
+        from .windows10_vpn_proxy_server import Windows10VpnProxyServer
+        from .windows_certificate_profile_base import WindowsCertificateProfileBase
+        from .windows_vpn_configuration import WindowsVpnConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "associatedApps": lambda n : setattr(self, 'associated_apps', n.get_collection_of_object_values(windows10_associated_apps.Windows10AssociatedApps)),
-            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod)),
-            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(windows10_vpn_connection_type.Windows10VpnConnectionType)),
-            "cryptographySuite": lambda n : setattr(self, 'cryptography_suite', n.get_object_value(cryptography_suite.CryptographySuite)),
-            "dnsRules": lambda n : setattr(self, 'dns_rules', n.get_collection_of_object_values(vpn_dns_rule.VpnDnsRule)),
+            "associatedApps": lambda n : setattr(self, 'associated_apps', n.get_collection_of_object_values(Windows10AssociatedApps)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(Windows10VpnAuthenticationMethod)),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(Windows10VpnConnectionType)),
+            "cryptographySuite": lambda n : setattr(self, 'cryptography_suite', n.get_object_value(CryptographySuite)),
+            "dnsRules": lambda n : setattr(self, 'dns_rules', n.get_collection_of_object_values(VpnDnsRule)),
             "dnsSuffixes": lambda n : setattr(self, 'dns_suffixes', n.get_collection_of_primitive_values(str)),
             "eapXml": lambda n : setattr(self, 'eap_xml', n.get_bytes_value()),
             "enableAlwaysOn": lambda n : setattr(self, 'enable_always_on', n.get_bool_value()),
@@ -319,16 +130,16 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
             "enableDnsRegistration": lambda n : setattr(self, 'enable_dns_registration', n.get_bool_value()),
             "enableSingleSignOnWithAlternateCertificate": lambda n : setattr(self, 'enable_single_sign_on_with_alternate_certificate', n.get_bool_value()),
             "enableSplitTunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
-            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(windows_certificate_profile_base.WindowsCertificateProfileBase)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(WindowsCertificateProfileBase)),
             "microsoftTunnelSiteId": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
             "onlyAssociatedAppsCanUseConnection": lambda n : setattr(self, 'only_associated_apps_can_use_connection', n.get_bool_value()),
-            "profileTarget": lambda n : setattr(self, 'profile_target', n.get_enum_value(windows10_vpn_profile_target.Windows10VpnProfileTarget)),
-            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(windows10_vpn_proxy_server.Windows10VpnProxyServer)),
+            "profileTarget": lambda n : setattr(self, 'profile_target', n.get_enum_value(Windows10VpnProfileTarget)),
+            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(Windows10VpnProxyServer)),
             "rememberUserCredentials": lambda n : setattr(self, 'remember_user_credentials', n.get_bool_value()),
-            "routes": lambda n : setattr(self, 'routes', n.get_collection_of_object_values(vpn_route.VpnRoute)),
-            "singleSignOnEku": lambda n : setattr(self, 'single_sign_on_eku', n.get_object_value(extended_key_usage.ExtendedKeyUsage)),
+            "routes": lambda n : setattr(self, 'routes', n.get_collection_of_object_values(VpnRoute)),
+            "singleSignOnEku": lambda n : setattr(self, 'single_sign_on_eku', n.get_object_value(ExtendedKeyUsage)),
             "singleSignOnIssuerHash": lambda n : setattr(self, 'single_sign_on_issuer_hash', n.get_str_value()),
-            "trafficRules": lambda n : setattr(self, 'traffic_rules', n.get_collection_of_object_values(vpn_traffic_rule.VpnTrafficRule)),
+            "trafficRules": lambda n : setattr(self, 'traffic_rules', n.get_collection_of_object_values(VpnTrafficRule)),
             "trustedNetworkDomains": lambda n : setattr(self, 'trusted_network_domains', n.get_collection_of_primitive_values(str)),
             "windowsInformationProtectionDomain": lambda n : setattr(self, 'windows_information_protection_domain', n.get_str_value()),
         }
@@ -336,133 +147,14 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         fields.update(super_fields)
         return fields
     
-    @property
-    def identity_certificate(self,) -> Optional[windows_certificate_profile_base.WindowsCertificateProfileBase]:
-        """
-        Gets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Returns: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase]
-        """
-        return self._identity_certificate
-    
-    @identity_certificate.setter
-    def identity_certificate(self,value: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase] = None) -> None:
-        """
-        Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Args:
-            value: Value to set for the identity_certificate property.
-        """
-        self._identity_certificate = value
-    
-    @property
-    def microsoft_tunnel_site_id(self,) -> Optional[str]:
-        """
-        Gets the microsoftTunnelSiteId property value. ID of the Microsoft Tunnel site associated with the VPN profile.
-        Returns: Optional[str]
-        """
-        return self._microsoft_tunnel_site_id
-    
-    @microsoft_tunnel_site_id.setter
-    def microsoft_tunnel_site_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the microsoftTunnelSiteId property value. ID of the Microsoft Tunnel site associated with the VPN profile.
-        Args:
-            value: Value to set for the microsoft_tunnel_site_id property.
-        """
-        self._microsoft_tunnel_site_id = value
-    
-    @property
-    def only_associated_apps_can_use_connection(self,) -> Optional[bool]:
-        """
-        Gets the onlyAssociatedAppsCanUseConnection property value. Only associated Apps can use connection (per-app VPN).
-        Returns: Optional[bool]
-        """
-        return self._only_associated_apps_can_use_connection
-    
-    @only_associated_apps_can_use_connection.setter
-    def only_associated_apps_can_use_connection(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the onlyAssociatedAppsCanUseConnection property value. Only associated Apps can use connection (per-app VPN).
-        Args:
-            value: Value to set for the only_associated_apps_can_use_connection property.
-        """
-        self._only_associated_apps_can_use_connection = value
-    
-    @property
-    def profile_target(self,) -> Optional[windows10_vpn_profile_target.Windows10VpnProfileTarget]:
-        """
-        Gets the profileTarget property value. Profile target type. Possible values are: user, device, autoPilotDevice.
-        Returns: Optional[windows10_vpn_profile_target.Windows10VpnProfileTarget]
-        """
-        return self._profile_target
-    
-    @profile_target.setter
-    def profile_target(self,value: Optional[windows10_vpn_profile_target.Windows10VpnProfileTarget] = None) -> None:
-        """
-        Sets the profileTarget property value. Profile target type. Possible values are: user, device, autoPilotDevice.
-        Args:
-            value: Value to set for the profile_target property.
-        """
-        self._profile_target = value
-    
-    @property
-    def proxy_server(self,) -> Optional[windows10_vpn_proxy_server.Windows10VpnProxyServer]:
-        """
-        Gets the proxyServer property value. Proxy Server.
-        Returns: Optional[windows10_vpn_proxy_server.Windows10VpnProxyServer]
-        """
-        return self._proxy_server
-    
-    @proxy_server.setter
-    def proxy_server(self,value: Optional[windows10_vpn_proxy_server.Windows10VpnProxyServer] = None) -> None:
-        """
-        Sets the proxyServer property value. Proxy Server.
-        Args:
-            value: Value to set for the proxy_server property.
-        """
-        self._proxy_server = value
-    
-    @property
-    def remember_user_credentials(self,) -> Optional[bool]:
-        """
-        Gets the rememberUserCredentials property value. Remember user credentials.
-        Returns: Optional[bool]
-        """
-        return self._remember_user_credentials
-    
-    @remember_user_credentials.setter
-    def remember_user_credentials(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the rememberUserCredentials property value. Remember user credentials.
-        Args:
-            value: Value to set for the remember_user_credentials property.
-        """
-        self._remember_user_credentials = value
-    
-    @property
-    def routes(self,) -> Optional[List[vpn_route.VpnRoute]]:
-        """
-        Gets the routes property value. Routes (optional for third-party providers). This collection can contain a maximum of 1000 elements.
-        Returns: Optional[List[vpn_route.VpnRoute]]
-        """
-        return self._routes
-    
-    @routes.setter
-    def routes(self,value: Optional[List[vpn_route.VpnRoute]] = None) -> None:
-        """
-        Sets the routes property value. Routes (optional for third-party providers). This collection can contain a maximum of 1000 elements.
-        Args:
-            value: Value to set for the routes property.
-        """
-        self._routes = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("associatedApps", self.associated_apps)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
@@ -470,7 +162,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         writer.write_object_value("cryptographySuite", self.cryptography_suite)
         writer.write_collection_of_object_values("dnsRules", self.dns_rules)
         writer.write_collection_of_primitive_values("dnsSuffixes", self.dns_suffixes)
-        writer.write_object_value("eapXml", self.eap_xml)
+        writer.write_bytes_value("eapXml", self.eap_xml)
         writer.write_bool_value("enableAlwaysOn", self.enable_always_on)
         writer.write_bool_value("enableConditionalAccess", self.enable_conditional_access)
         writer.write_bool_value("enableDeviceTunnel", self.enable_device_tunnel)
@@ -489,90 +181,5 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         writer.write_collection_of_object_values("trafficRules", self.traffic_rules)
         writer.write_collection_of_primitive_values("trustedNetworkDomains", self.trusted_network_domains)
         writer.write_str_value("windowsInformationProtectionDomain", self.windows_information_protection_domain)
-    
-    @property
-    def single_sign_on_eku(self,) -> Optional[extended_key_usage.ExtendedKeyUsage]:
-        """
-        Gets the singleSignOnEku property value. Single sign-on Extended Key Usage (EKU).
-        Returns: Optional[extended_key_usage.ExtendedKeyUsage]
-        """
-        return self._single_sign_on_eku
-    
-    @single_sign_on_eku.setter
-    def single_sign_on_eku(self,value: Optional[extended_key_usage.ExtendedKeyUsage] = None) -> None:
-        """
-        Sets the singleSignOnEku property value. Single sign-on Extended Key Usage (EKU).
-        Args:
-            value: Value to set for the single_sign_on_eku property.
-        """
-        self._single_sign_on_eku = value
-    
-    @property
-    def single_sign_on_issuer_hash(self,) -> Optional[str]:
-        """
-        Gets the singleSignOnIssuerHash property value. Single sign-on issuer hash.
-        Returns: Optional[str]
-        """
-        return self._single_sign_on_issuer_hash
-    
-    @single_sign_on_issuer_hash.setter
-    def single_sign_on_issuer_hash(self,value: Optional[str] = None) -> None:
-        """
-        Sets the singleSignOnIssuerHash property value. Single sign-on issuer hash.
-        Args:
-            value: Value to set for the single_sign_on_issuer_hash property.
-        """
-        self._single_sign_on_issuer_hash = value
-    
-    @property
-    def traffic_rules(self,) -> Optional[List[vpn_traffic_rule.VpnTrafficRule]]:
-        """
-        Gets the trafficRules property value. Traffic rules. This collection can contain a maximum of 1000 elements.
-        Returns: Optional[List[vpn_traffic_rule.VpnTrafficRule]]
-        """
-        return self._traffic_rules
-    
-    @traffic_rules.setter
-    def traffic_rules(self,value: Optional[List[vpn_traffic_rule.VpnTrafficRule]] = None) -> None:
-        """
-        Sets the trafficRules property value. Traffic rules. This collection can contain a maximum of 1000 elements.
-        Args:
-            value: Value to set for the traffic_rules property.
-        """
-        self._traffic_rules = value
-    
-    @property
-    def trusted_network_domains(self,) -> Optional[List[str]]:
-        """
-        Gets the trustedNetworkDomains property value. Trusted Network Domains
-        Returns: Optional[List[str]]
-        """
-        return self._trusted_network_domains
-    
-    @trusted_network_domains.setter
-    def trusted_network_domains(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the trustedNetworkDomains property value. Trusted Network Domains
-        Args:
-            value: Value to set for the trusted_network_domains property.
-        """
-        self._trusted_network_domains = value
-    
-    @property
-    def windows_information_protection_domain(self,) -> Optional[str]:
-        """
-        Gets the windowsInformationProtectionDomain property value. Windows Information Protection (WIP) domain to associate with this connection.
-        Returns: Optional[str]
-        """
-        return self._windows_information_protection_domain
-    
-    @windows_information_protection_domain.setter
-    def windows_information_protection_domain(self,value: Optional[str] = None) -> None:
-        """
-        Sets the windowsInformationProtectionDomain property value. Windows Information Protection (WIP) domain to associate with this connection.
-        Args:
-            value: Value to set for the windows_information_protection_domain property.
-        """
-        self._windows_information_protection_domain = value
     
 

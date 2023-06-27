@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AuthenticationMethodFeature(Enum):
+class AuthenticationMethodFeature(str, Enum):
     SsprRegistered = "ssprRegistered",
     SsprEnabled = "ssprEnabled",
     SsprCapable = "ssprCapable",

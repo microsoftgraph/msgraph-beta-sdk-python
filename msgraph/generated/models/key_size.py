@@ -1,6 +1,6 @@
 from enum import Enum
 
-class KeySize(Enum):
+class KeySize(str, Enum):
     # 1024 Bits.
     Size1024 = "size1024",
     # 2048 Bits.

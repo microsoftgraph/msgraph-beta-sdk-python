@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,16 +10,16 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import access_package
-    from ......models.o_data_errors import o_data_error
-    from .access_package_assignment_policies import access_package_assignment_policies_request_builder
-    from .access_package_catalog import access_package_catalog_request_builder
-    from .access_package_resource_role_scopes import access_package_resource_role_scopes_request_builder
-    from .access_packages_incompatible_with import access_packages_incompatible_with_request_builder
-    from .get_applicable_policy_requirements import get_applicable_policy_requirements_request_builder
-    from .incompatible_access_packages import incompatible_access_packages_request_builder
-    from .incompatible_groups import incompatible_groups_request_builder
-    from .move_to_catalog import move_to_catalog_request_builder
+    from ......models.access_package import AccessPackage
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .access_package_assignment_policies.access_package_assignment_policies_request_builder import AccessPackageAssignmentPoliciesRequestBuilder
+    from .access_package_catalog.access_package_catalog_request_builder import AccessPackageCatalogRequestBuilder
+    from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
+    from .access_packages_incompatible_with.access_packages_incompatible_with_request_builder import AccessPackagesIncompatibleWithRequestBuilder
+    from .get_applicable_policy_requirements.get_applicable_policy_requirements_request_builder import GetApplicablePolicyRequirementsRequestBuilder
+    from .incompatible_access_packages.incompatible_access_packages_request_builder import IncompatibleAccessPackagesRequestBuilder
+    from .incompatible_groups.incompatible_groups_request_builder import IncompatibleGroupsRequestBuilder
+    from .move_to_catalog.move_to_catalog_request_builder import MoveToCatalogRequestBuilder
 
 class AccessPackageRequestBuilder():
     """
@@ -32,10 +32,10 @@ class AccessPackageRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignments/{accessPackageAssignment%2Did}/accessPackage{?%24select,%24expand}"
 
@@ -52,62 +52,62 @@ class AccessPackageRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessPackageRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package.AccessPackage]:
+    async def get(self,request_configuration: Optional[AccessPackageRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackage]:
         """
         Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_package.AccessPackage]
+        Returns: Optional[AccessPackage]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import access_package
+        from ......models.access_package import AccessPackage
 
-        return await self.request_adapter.send_async(request_info, access_package.AccessPackage, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessPackage, error_mapping)
     
-    async def patch(self,body: Optional[access_package.AccessPackage] = None, request_configuration: Optional[AccessPackageRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package.AccessPackage]:
+    async def patch(self,body: Optional[AccessPackage] = None, request_configuration: Optional[AccessPackageRequestBuilderPatchRequestConfiguration] = None) -> Optional[AccessPackage]:
         """
         Update the navigation property accessPackage in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_package.AccessPackage]
+        Returns: Optional[AccessPackage]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import access_package
+        from ......models.access_package import AccessPackage
 
-        return await self.request_adapter.send_async(request_info, access_package.AccessPackage, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessPackage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -143,7 +143,7 @@ class AccessPackageRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[access_package.AccessPackage] = None, request_configuration: Optional[AccessPackageRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AccessPackage] = None, request_configuration: Optional[AccessPackageRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property accessPackage in identityGovernance
         Args:
@@ -151,8 +151,8 @@ class AccessPackageRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -165,76 +165,76 @@ class AccessPackageRequestBuilder():
         return request_info
     
     @property
-    def access_package_assignment_policies(self) -> access_package_assignment_policies_request_builder.AccessPackageAssignmentPoliciesRequestBuilder:
+    def access_package_assignment_policies(self) -> AccessPackageAssignmentPoliciesRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentPolicies property of the microsoft.graph.accessPackage entity.
         """
-        from .access_package_assignment_policies import access_package_assignment_policies_request_builder
+        from .access_package_assignment_policies.access_package_assignment_policies_request_builder import AccessPackageAssignmentPoliciesRequestBuilder
 
-        return access_package_assignment_policies_request_builder.AccessPackageAssignmentPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_catalog(self) -> access_package_catalog_request_builder.AccessPackageCatalogRequestBuilder:
+    def access_package_catalog(self) -> AccessPackageCatalogRequestBuilder:
         """
         Provides operations to manage the accessPackageCatalog property of the microsoft.graph.accessPackage entity.
         """
-        from .access_package_catalog import access_package_catalog_request_builder
+        from .access_package_catalog.access_package_catalog_request_builder import AccessPackageCatalogRequestBuilder
 
-        return access_package_catalog_request_builder.AccessPackageCatalogRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageCatalogRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_resource_role_scopes(self) -> access_package_resource_role_scopes_request_builder.AccessPackageResourceRoleScopesRequestBuilder:
+    def access_package_resource_role_scopes(self) -> AccessPackageResourceRoleScopesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRoleScopes property of the microsoft.graph.accessPackage entity.
         """
-        from .access_package_resource_role_scopes import access_package_resource_role_scopes_request_builder
+        from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
 
-        return access_package_resource_role_scopes_request_builder.AccessPackageResourceRoleScopesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageResourceRoleScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_packages_incompatible_with(self) -> access_packages_incompatible_with_request_builder.AccessPackagesIncompatibleWithRequestBuilder:
+    def access_packages_incompatible_with(self) -> AccessPackagesIncompatibleWithRequestBuilder:
         """
         Provides operations to manage the accessPackagesIncompatibleWith property of the microsoft.graph.accessPackage entity.
         """
-        from .access_packages_incompatible_with import access_packages_incompatible_with_request_builder
+        from .access_packages_incompatible_with.access_packages_incompatible_with_request_builder import AccessPackagesIncompatibleWithRequestBuilder
 
-        return access_packages_incompatible_with_request_builder.AccessPackagesIncompatibleWithRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackagesIncompatibleWithRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_applicable_policy_requirements(self) -> get_applicable_policy_requirements_request_builder.GetApplicablePolicyRequirementsRequestBuilder:
+    def get_applicable_policy_requirements(self) -> GetApplicablePolicyRequirementsRequestBuilder:
         """
         Provides operations to call the getApplicablePolicyRequirements method.
         """
-        from .get_applicable_policy_requirements import get_applicable_policy_requirements_request_builder
+        from .get_applicable_policy_requirements.get_applicable_policy_requirements_request_builder import GetApplicablePolicyRequirementsRequestBuilder
 
-        return get_applicable_policy_requirements_request_builder.GetApplicablePolicyRequirementsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetApplicablePolicyRequirementsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def incompatible_access_packages(self) -> incompatible_access_packages_request_builder.IncompatibleAccessPackagesRequestBuilder:
+    def incompatible_access_packages(self) -> IncompatibleAccessPackagesRequestBuilder:
         """
         Provides operations to manage the incompatibleAccessPackages property of the microsoft.graph.accessPackage entity.
         """
-        from .incompatible_access_packages import incompatible_access_packages_request_builder
+        from .incompatible_access_packages.incompatible_access_packages_request_builder import IncompatibleAccessPackagesRequestBuilder
 
-        return incompatible_access_packages_request_builder.IncompatibleAccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return IncompatibleAccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def incompatible_groups(self) -> incompatible_groups_request_builder.IncompatibleGroupsRequestBuilder:
+    def incompatible_groups(self) -> IncompatibleGroupsRequestBuilder:
         """
         Provides operations to manage the incompatibleGroups property of the microsoft.graph.accessPackage entity.
         """
-        from .incompatible_groups import incompatible_groups_request_builder
+        from .incompatible_groups.incompatible_groups_request_builder import IncompatibleGroupsRequestBuilder
 
-        return incompatible_groups_request_builder.IncompatibleGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return IncompatibleGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def move_to_catalog(self) -> move_to_catalog_request_builder.MoveToCatalogRequestBuilder:
+    def move_to_catalog(self) -> MoveToCatalogRequestBuilder:
         """
         Provides operations to call the moveToCatalog method.
         """
-        from .move_to_catalog import move_to_catalog_request_builder
+        from .move_to_catalog.move_to_catalog_request_builder import MoveToCatalogRequestBuilder
 
-        return move_to_catalog_request_builder.MoveToCatalogRequestBuilder(self.request_adapter, self.path_parameters)
+        return MoveToCatalogRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AccessPackageRequestBuilderDeleteRequestConfiguration():
@@ -260,8 +260,8 @@ class AccessPackageRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

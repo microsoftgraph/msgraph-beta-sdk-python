@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import device_health_script_policy_state, device_health_script_policy_state_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .with_id_with_policy_id_with_device_id import with_id_with_policy_id_with_device_id_request_builder
+    from ......models.device_health_script_policy_state import DeviceHealthScriptPolicyState
+    from ......models.device_health_script_policy_state_collection_response import DeviceHealthScriptPolicyStateCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .with_id_with_policy_id_with_device_id.with_id_with_policy_id_with_device_id_request_builder import WithIdWithPolicyIdWithDeviceIdRequestBuilder
 
 class DeviceHealthScriptStatesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class DeviceHealthScriptStatesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/deviceHealthScriptStates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,52 +38,52 @@ class DeviceHealthScriptStatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_health_script_policy_state_collection_response.DeviceHealthScriptPolicyStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceHealthScriptPolicyStateCollectionResponse]:
         """
         Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_health_script_policy_state_collection_response.DeviceHealthScriptPolicyStateCollectionResponse]
+        Returns: Optional[DeviceHealthScriptPolicyStateCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import device_health_script_policy_state_collection_response
+        from ......models.device_health_script_policy_state_collection_response import DeviceHealthScriptPolicyStateCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, device_health_script_policy_state_collection_response.DeviceHealthScriptPolicyStateCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceHealthScriptPolicyStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState] = None, request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState]:
+    async def post(self,body: Optional[DeviceHealthScriptPolicyState] = None, request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceHealthScriptPolicyState]:
         """
         Create new navigation property to deviceHealthScriptStates for users
         Args:
             body: Contains properties for policy run state of the device health script.
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState]
+        Returns: Optional[DeviceHealthScriptPolicyState]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import device_health_script_policy_state
+        from ......models.device_health_script_policy_state import DeviceHealthScriptPolicyState
 
-        return await self.request_adapter.send_async(request_info, device_health_script_policy_state.DeviceHealthScriptPolicyState, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceHealthScriptPolicyState, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -102,7 +103,7 @@ class DeviceHealthScriptStatesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState] = None, request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceHealthScriptPolicyState] = None, request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceHealthScriptStates for users
         Args:
@@ -110,8 +111,8 @@ class DeviceHealthScriptStatesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -123,33 +124,33 @@ class DeviceHealthScriptStatesRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_id_with_policy_id_with_device_id(self,device_id: Optional[str] = None, id: Optional[str] = None, policy_id: Optional[str] = None) -> with_id_with_policy_id_with_device_id_request_builder.WithIdWithPolicyIdWithDeviceIdRequestBuilder:
+    def with_id_with_policy_id_with_device_id(self,device_id: Optional[str] = None, id: Optional[str] = None, policy_id: Optional[str] = None) -> WithIdWithPolicyIdWithDeviceIdRequestBuilder:
         """
         Provides operations to manage the deviceHealthScriptStates property of the microsoft.graph.managedDevice entity.
         Args:
             deviceId: Property in multi-part unique identifier of deviceHealthScriptPolicyState
             id: Property in multi-part unique identifier of deviceHealthScriptPolicyState
             policyId: Property in multi-part unique identifier of deviceHealthScriptPolicyState
-        Returns: with_id_with_policy_id_with_device_id_request_builder.WithIdWithPolicyIdWithDeviceIdRequestBuilder
+        Returns: WithIdWithPolicyIdWithDeviceIdRequestBuilder
         """
-        if device_id is None:
-            raise Exception("device_id cannot be undefined")
-        if id is None:
-            raise Exception("id cannot be undefined")
-        if policy_id is None:
-            raise Exception("policy_id cannot be undefined")
-        from .with_id_with_policy_id_with_device_id import with_id_with_policy_id_with_device_id_request_builder
+        if not device_id:
+            raise TypeError("device_id cannot be null.")
+        if not id:
+            raise TypeError("id cannot be null.")
+        if not policy_id:
+            raise TypeError("policy_id cannot be null.")
+        from .with_id_with_policy_id_with_device_id.with_id_with_policy_id_with_device_id_request_builder import WithIdWithPolicyIdWithDeviceIdRequestBuilder
 
-        return with_id_with_policy_id_with_device_id_request_builder.WithIdWithPolicyIdWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, device_id, id, policy_id)
+        return WithIdWithPolicyIdWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, device_id, id, policy_id)
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceHealthScriptStatesRequestBuilderGetQueryParameters():
@@ -163,8 +164,8 @@ class DeviceHealthScriptStatesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

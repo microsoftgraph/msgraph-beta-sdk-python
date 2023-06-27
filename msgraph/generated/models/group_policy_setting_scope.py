@@ -1,6 +1,6 @@
 from enum import Enum
 
-class GroupPolicySettingScope(Enum):
+class GroupPolicySettingScope(str, Enum):
     # Device scope unknown
     Unknown = "unknown",
     # Device scope

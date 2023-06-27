@@ -1,62 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, open_id_connect_provider
+    from .entity import Entity
+    from .open_id_connect_provider import OpenIdConnectProvider
 
-from . import entity
+from .entity import Entity
 
-class IdentityProvider(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new identityProvider and sets the default values.
-        """
-        super().__init__()
-        # The client ID for the application obtained when registering the application with the identity provider. This is a required field.  Required. Not nullable.
-        self._client_id: Optional[str] = None
-        # The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation will return ****. This is a required field. Required. Not nullable.
-        self._client_secret: Optional[str] = None
-        # The display name of the identity provider. Not nullable.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The identity provider type is a required field. For B2B scenario: Google, Facebook. For B2C scenario: Microsoft, Google, Amazon, LinkedIn, Facebook, GitHub, Twitter, Weibo,QQ, WeChat, OpenIDConnect. Not nullable.
-        self._type: Optional[str] = None
-    
-    @property
-    def client_id(self,) -> Optional[str]:
-        """
-        Gets the clientId property value. The client ID for the application obtained when registering the application with the identity provider. This is a required field.  Required. Not nullable.
-        Returns: Optional[str]
-        """
-        return self._client_id
-    
-    @client_id.setter
-    def client_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the clientId property value. The client ID for the application obtained when registering the application with the identity provider. This is a required field.  Required. Not nullable.
-        Args:
-            value: Value to set for the client_id property.
-        """
-        self._client_id = value
-    
-    @property
-    def client_secret(self,) -> Optional[str]:
-        """
-        Gets the clientSecret property value. The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation will return ****. This is a required field. Required. Not nullable.
-        Returns: Optional[str]
-        """
-        return self._client_secret
-    
-    @client_secret.setter
-    def client_secret(self,value: Optional[str] = None) -> None:
-        """
-        Sets the clientSecret property value. The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation will return ****. This is a required field. Required. Not nullable.
-        Args:
-            value: Value to set for the client_secret property.
-        """
-        self._client_secret = value
+@dataclass
+class IdentityProvider(Entity):
+    # The client ID for the application obtained when registering the application with the identity provider. This is a required field.  Required. Not nullable.
+    client_id: Optional[str] = None
+    # The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation will return ****. This is a required field. Required. Not nullable.
+    client_secret: Optional[str] = None
+    # The display name of the identity provider. Not nullable.
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The identity provider type is a required field. For B2B scenario: Google, Facebook. For B2C scenario: Microsoft, Google, Amazon, LinkedIn, Facebook, GitHub, Twitter, Weibo,QQ, WeChat, OpenIDConnect. Not nullable.
+    type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IdentityProvider:
@@ -66,15 +30,16 @@ class IdentityProvider(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: IdentityProvider
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.openIdConnectProvider":
-                from . import open_id_connect_provider
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.openIdConnectProvider".casefold():
+            from .open_id_connect_provider import OpenIdConnectProvider
 
-                return open_id_connect_provider.OpenIdConnectProvider()
+            return OpenIdConnectProvider()
         return IdentityProvider()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -82,7 +47,11 @@ class IdentityProvider(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, open_id_connect_provider
+        from .entity import Entity
+        from .open_id_connect_provider import OpenIdConnectProvider
+
+        from .entity import Entity
+        from .open_id_connect_provider import OpenIdConnectProvider
 
         fields: Dict[str, Callable[[Any], None]] = {
             "clientId": lambda n : setattr(self, 'client_id', n.get_str_value()),
@@ -94,52 +63,18 @@ class IdentityProvider(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The display name of the identity provider. Not nullable.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The display name of the identity provider. Not nullable.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("clientId", self.client_id)
         writer.write_str_value("clientSecret", self.client_secret)
         writer.write_str_value("name", self.name)
         writer.write_str_value("type", self.type)
-    
-    @property
-    def type(self,) -> Optional[str]:
-        """
-        Gets the type property value. The identity provider type is a required field. For B2B scenario: Google, Facebook. For B2C scenario: Microsoft, Google, Amazon, LinkedIn, Facebook, GitHub, Twitter, Weibo,QQ, WeChat, OpenIDConnect. Not nullable.
-        Returns: Optional[str]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the type property value. The identity provider type is a required field. For B2B scenario: Google, Facebook. For B2C scenario: Microsoft, Google, Amazon, LinkedIn, Facebook, GitHub, Twitter, Weibo,QQ, WeChat, OpenIDConnect. Not nullable.
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
     
 

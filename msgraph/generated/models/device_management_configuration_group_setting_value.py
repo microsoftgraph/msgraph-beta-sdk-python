@@ -1,38 +1,19 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_configuration_setting_instance, device_management_configuration_setting_value
+    from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+    from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
 
-from . import device_management_configuration_setting_value
+from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
 
-class DeviceManagementConfigurationGroupSettingValue(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationGroupSettingValue and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingValue"
-        # Collection of child setting instances contained within this GroupSetting
-        self._children: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None
-    
-    @property
-    def children(self,) -> Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]]:
-        """
-        Gets the children property value. Collection of child setting instances contained within this GroupSetting
-        Returns: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]]
-        """
-        return self._children
-    
-    @children.setter
-    def children(self,value: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None) -> None:
-        """
-        Sets the children property value. Collection of child setting instances contained within this GroupSetting
-        Args:
-            value: Value to set for the children property.
-        """
-        self._children = value
+@dataclass
+class DeviceManagementConfigurationGroupSettingValue(DeviceManagementConfigurationSettingValue):
+    odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingValue"
+    # Collection of child setting instances contained within this GroupSetting
+    children: Optional[List[DeviceManagementConfigurationSettingInstance]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingValue:
@@ -42,8 +23,8 @@ class DeviceManagementConfigurationGroupSettingValue(device_management_configura
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationGroupSettingValue
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationGroupSettingValue()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -51,10 +32,14 @@ class DeviceManagementConfigurationGroupSettingValue(device_management_configura
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_configuration_setting_instance, device_management_configuration_setting_value
+        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+        from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
+
+        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+        from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance)),
+            "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(DeviceManagementConfigurationSettingInstance)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,8 +51,8 @@ class DeviceManagementConfigurationGroupSettingValue(device_management_configura
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("children", self.children)
     

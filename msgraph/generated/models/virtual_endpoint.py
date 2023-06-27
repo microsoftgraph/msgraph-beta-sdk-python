@@ -1,84 +1,65 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import cloud_pc_audit_event, cloud_pc_cross_cloud_government_organization_mapping, cloud_pc_device_image, cloud_pc_external_partner_setting, cloud_pc_gallery_image, cloud_pc_on_premises_connection, cloud_pc_organization_settings, cloud_pc_provisioning_policy, cloud_pc_reports, cloud_pc_service_plan, cloud_pc_shared_use_service_plan, cloud_pc_snapshot, cloud_pc_supported_region, cloud_pc_user_setting, cloud_p_c, entity
+    from .cloud_p_c import CloudPC
+    from .cloud_pc_audit_event import CloudPcAuditEvent
+    from .cloud_pc_bulk_action import CloudPcBulkAction
+    from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
+    from .cloud_pc_device_image import CloudPcDeviceImage
+    from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
+    from .cloud_pc_gallery_image import CloudPcGalleryImage
+    from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
+    from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+    from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
+    from .cloud_pc_reports import CloudPcReports
+    from .cloud_pc_service_plan import CloudPcServicePlan
+    from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
+    from .cloud_pc_snapshot import CloudPcSnapshot
+    from .cloud_pc_supported_region import CloudPcSupportedRegion
+    from .cloud_pc_user_setting import CloudPcUserSetting
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class VirtualEndpoint(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new virtualEndpoint and sets the default values.
-        """
-        super().__init__()
-        # Cloud PC audit event.
-        self._audit_events: Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]] = None
-        # Cloud managed virtual desktops.
-        self._cloud_p_cs: Optional[List[cloud_p_c.CloudPC]] = None
-        # Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
-        self._cross_cloud_government_organization_mapping: Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping] = None
-        # The image resource on Cloud PC.
-        self._device_images: Optional[List[cloud_pc_device_image.CloudPcDeviceImage]] = None
-        # The external partner settings on a Cloud PC.
-        self._external_partner_settings: Optional[List[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]] = None
-        # The gallery image resource on Cloud PC.
-        self._gallery_images: Optional[List[cloud_pc_gallery_image.CloudPcGalleryImage]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
-        self._on_premises_connections: Optional[List[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]] = None
-        # The Cloud PC organization settings for a tenant.
-        self._organization_settings: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings] = None
-        # Cloud PC provisioning policy.
-        self._provisioning_policies: Optional[List[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]] = None
-        # Cloud PC related reports.
-        self._reports: Optional[cloud_pc_reports.CloudPcReports] = None
-        # Cloud PC service plans.
-        self._service_plans: Optional[List[cloud_pc_service_plan.CloudPcServicePlan]] = None
-        # Cloud PC shared-use service plans.
-        self._shared_use_service_plans: Optional[List[cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan]] = None
-        # Cloud PC snapshots.
-        self._snapshots: Optional[List[cloud_pc_snapshot.CloudPcSnapshot]] = None
-        # Cloud PC supported regions.
-        self._supported_regions: Optional[List[cloud_pc_supported_region.CloudPcSupportedRegion]] = None
-        # Cloud PC user settings.
-        self._user_settings: Optional[List[cloud_pc_user_setting.CloudPcUserSetting]] = None
-    
-    @property
-    def audit_events(self,) -> Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]]:
-        """
-        Gets the auditEvents property value. Cloud PC audit event.
-        Returns: Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]]
-        """
-        return self._audit_events
-    
-    @audit_events.setter
-    def audit_events(self,value: Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]] = None) -> None:
-        """
-        Sets the auditEvents property value. Cloud PC audit event.
-        Args:
-            value: Value to set for the audit_events property.
-        """
-        self._audit_events = value
-    
-    @property
-    def cloud_p_cs(self,) -> Optional[List[cloud_p_c.CloudPC]]:
-        """
-        Gets the cloudPCs property value. Cloud managed virtual desktops.
-        Returns: Optional[List[cloud_p_c.CloudPC]]
-        """
-        return self._cloud_p_cs
-    
-    @cloud_p_cs.setter
-    def cloud_p_cs(self,value: Optional[List[cloud_p_c.CloudPC]] = None) -> None:
-        """
-        Sets the cloudPCs property value. Cloud managed virtual desktops.
-        Args:
-            value: Value to set for the cloud_p_cs property.
-        """
-        self._cloud_p_cs = value
+@dataclass
+class VirtualEndpoint(Entity):
+    # Cloud PC audit event.
+    audit_events: Optional[List[CloudPcAuditEvent]] = None
+    # The bulkActions property
+    bulk_actions: Optional[List[CloudPcBulkAction]] = None
+    # Cloud managed virtual desktops.
+    cloud_p_cs: Optional[List[CloudPC]] = None
+    # Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
+    cross_cloud_government_organization_mapping: Optional[CloudPcCrossCloudGovernmentOrganizationMapping] = None
+    # The image resource on Cloud PC.
+    device_images: Optional[List[CloudPcDeviceImage]] = None
+    # The external partner settings on a Cloud PC.
+    external_partner_settings: Optional[List[CloudPcExternalPartnerSetting]] = None
+    # The gallery image resource on Cloud PC.
+    gallery_images: Optional[List[CloudPcGalleryImage]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
+    on_premises_connections: Optional[List[CloudPcOnPremisesConnection]] = None
+    # The Cloud PC organization settings for a tenant.
+    organization_settings: Optional[CloudPcOrganizationSettings] = None
+    # Cloud PC provisioning policy.
+    provisioning_policies: Optional[List[CloudPcProvisioningPolicy]] = None
+    # Cloud PC related reports.
+    reports: Optional[CloudPcReports] = None
+    # Cloud PC service plans.
+    service_plans: Optional[List[CloudPcServicePlan]] = None
+    # Cloud PC shared-use service plans.
+    shared_use_service_plans: Optional[List[CloudPcSharedUseServicePlan]] = None
+    # Cloud PC snapshots.
+    snapshots: Optional[List[CloudPcSnapshot]] = None
+    # Cloud PC supported regions.
+    supported_regions: Optional[List[CloudPcSupportedRegion]] = None
+    # Cloud PC user settings.
+    user_settings: Optional[List[CloudPcUserSetting]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VirtualEndpoint:
@@ -88,173 +69,72 @@ class VirtualEndpoint(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: VirtualEndpoint
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return VirtualEndpoint()
-    
-    @property
-    def cross_cloud_government_organization_mapping(self,) -> Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]:
-        """
-        Gets the crossCloudGovernmentOrganizationMapping property value. Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
-        Returns: Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]
-        """
-        return self._cross_cloud_government_organization_mapping
-    
-    @cross_cloud_government_organization_mapping.setter
-    def cross_cloud_government_organization_mapping(self,value: Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping] = None) -> None:
-        """
-        Sets the crossCloudGovernmentOrganizationMapping property value. Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
-        Args:
-            value: Value to set for the cross_cloud_government_organization_mapping property.
-        """
-        self._cross_cloud_government_organization_mapping = value
-    
-    @property
-    def device_images(self,) -> Optional[List[cloud_pc_device_image.CloudPcDeviceImage]]:
-        """
-        Gets the deviceImages property value. The image resource on Cloud PC.
-        Returns: Optional[List[cloud_pc_device_image.CloudPcDeviceImage]]
-        """
-        return self._device_images
-    
-    @device_images.setter
-    def device_images(self,value: Optional[List[cloud_pc_device_image.CloudPcDeviceImage]] = None) -> None:
-        """
-        Sets the deviceImages property value. The image resource on Cloud PC.
-        Args:
-            value: Value to set for the device_images property.
-        """
-        self._device_images = value
-    
-    @property
-    def external_partner_settings(self,) -> Optional[List[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]]:
-        """
-        Gets the externalPartnerSettings property value. The external partner settings on a Cloud PC.
-        Returns: Optional[List[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]]
-        """
-        return self._external_partner_settings
-    
-    @external_partner_settings.setter
-    def external_partner_settings(self,value: Optional[List[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]] = None) -> None:
-        """
-        Sets the externalPartnerSettings property value. The external partner settings on a Cloud PC.
-        Args:
-            value: Value to set for the external_partner_settings property.
-        """
-        self._external_partner_settings = value
-    
-    @property
-    def gallery_images(self,) -> Optional[List[cloud_pc_gallery_image.CloudPcGalleryImage]]:
-        """
-        Gets the galleryImages property value. The gallery image resource on Cloud PC.
-        Returns: Optional[List[cloud_pc_gallery_image.CloudPcGalleryImage]]
-        """
-        return self._gallery_images
-    
-    @gallery_images.setter
-    def gallery_images(self,value: Optional[List[cloud_pc_gallery_image.CloudPcGalleryImage]] = None) -> None:
-        """
-        Sets the galleryImages property value. The gallery image resource on Cloud PC.
-        Args:
-            value: Value to set for the gallery_images property.
-        """
-        self._gallery_images = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import cloud_pc_audit_event, cloud_pc_cross_cloud_government_organization_mapping, cloud_pc_device_image, cloud_pc_external_partner_setting, cloud_pc_gallery_image, cloud_pc_on_premises_connection, cloud_pc_organization_settings, cloud_pc_provisioning_policy, cloud_pc_reports, cloud_pc_service_plan, cloud_pc_shared_use_service_plan, cloud_pc_snapshot, cloud_pc_supported_region, cloud_pc_user_setting, cloud_p_c, entity
+        from .cloud_p_c import CloudPC
+        from .cloud_pc_audit_event import CloudPcAuditEvent
+        from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
+        from .cloud_pc_device_image import CloudPcDeviceImage
+        from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
+        from .cloud_pc_gallery_image import CloudPcGalleryImage
+        from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
+        from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+        from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
+        from .cloud_pc_reports import CloudPcReports
+        from .cloud_pc_service_plan import CloudPcServicePlan
+        from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
+        from .cloud_pc_snapshot import CloudPcSnapshot
+        from .cloud_pc_supported_region import CloudPcSupportedRegion
+        from .cloud_pc_user_setting import CloudPcUserSetting
+        from .entity import Entity
+
+        from .cloud_p_c import CloudPC
+        from .cloud_pc_audit_event import CloudPcAuditEvent
+        from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
+        from .cloud_pc_device_image import CloudPcDeviceImage
+        from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
+        from .cloud_pc_gallery_image import CloudPcGalleryImage
+        from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
+        from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+        from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
+        from .cloud_pc_reports import CloudPcReports
+        from .cloud_pc_service_plan import CloudPcServicePlan
+        from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
+        from .cloud_pc_snapshot import CloudPcSnapshot
+        from .cloud_pc_supported_region import CloudPcSupportedRegion
+        from .cloud_pc_user_setting import CloudPcUserSetting
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "auditEvents": lambda n : setattr(self, 'audit_events', n.get_collection_of_object_values(cloud_pc_audit_event.CloudPcAuditEvent)),
-            "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(cloud_p_c.CloudPC)),
-            "crossCloudGovernmentOrganizationMapping": lambda n : setattr(self, 'cross_cloud_government_organization_mapping', n.get_object_value(cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping)),
-            "deviceImages": lambda n : setattr(self, 'device_images', n.get_collection_of_object_values(cloud_pc_device_image.CloudPcDeviceImage)),
-            "externalPartnerSettings": lambda n : setattr(self, 'external_partner_settings', n.get_collection_of_object_values(cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting)),
-            "galleryImages": lambda n : setattr(self, 'gallery_images', n.get_collection_of_object_values(cloud_pc_gallery_image.CloudPcGalleryImage)),
-            "onPremisesConnections": lambda n : setattr(self, 'on_premises_connections', n.get_collection_of_object_values(cloud_pc_on_premises_connection.CloudPcOnPremisesConnection)),
-            "organizationSettings": lambda n : setattr(self, 'organization_settings', n.get_object_value(cloud_pc_organization_settings.CloudPcOrganizationSettings)),
-            "provisioningPolicies": lambda n : setattr(self, 'provisioning_policies', n.get_collection_of_object_values(cloud_pc_provisioning_policy.CloudPcProvisioningPolicy)),
-            "reports": lambda n : setattr(self, 'reports', n.get_object_value(cloud_pc_reports.CloudPcReports)),
-            "servicePlans": lambda n : setattr(self, 'service_plans', n.get_collection_of_object_values(cloud_pc_service_plan.CloudPcServicePlan)),
-            "sharedUseServicePlans": lambda n : setattr(self, 'shared_use_service_plans', n.get_collection_of_object_values(cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan)),
-            "snapshots": lambda n : setattr(self, 'snapshots', n.get_collection_of_object_values(cloud_pc_snapshot.CloudPcSnapshot)),
-            "supportedRegions": lambda n : setattr(self, 'supported_regions', n.get_collection_of_object_values(cloud_pc_supported_region.CloudPcSupportedRegion)),
-            "userSettings": lambda n : setattr(self, 'user_settings', n.get_collection_of_object_values(cloud_pc_user_setting.CloudPcUserSetting)),
+            "auditEvents": lambda n : setattr(self, 'audit_events', n.get_collection_of_object_values(CloudPcAuditEvent)),
+            "bulkActions": lambda n : setattr(self, 'bulk_actions', n.get_collection_of_object_values(CloudPcBulkAction)),
+            "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(CloudPC)),
+            "crossCloudGovernmentOrganizationMapping": lambda n : setattr(self, 'cross_cloud_government_organization_mapping', n.get_object_value(CloudPcCrossCloudGovernmentOrganizationMapping)),
+            "deviceImages": lambda n : setattr(self, 'device_images', n.get_collection_of_object_values(CloudPcDeviceImage)),
+            "externalPartnerSettings": lambda n : setattr(self, 'external_partner_settings', n.get_collection_of_object_values(CloudPcExternalPartnerSetting)),
+            "galleryImages": lambda n : setattr(self, 'gallery_images', n.get_collection_of_object_values(CloudPcGalleryImage)),
+            "onPremisesConnections": lambda n : setattr(self, 'on_premises_connections', n.get_collection_of_object_values(CloudPcOnPremisesConnection)),
+            "organizationSettings": lambda n : setattr(self, 'organization_settings', n.get_object_value(CloudPcOrganizationSettings)),
+            "provisioningPolicies": lambda n : setattr(self, 'provisioning_policies', n.get_collection_of_object_values(CloudPcProvisioningPolicy)),
+            "reports": lambda n : setattr(self, 'reports', n.get_object_value(CloudPcReports)),
+            "servicePlans": lambda n : setattr(self, 'service_plans', n.get_collection_of_object_values(CloudPcServicePlan)),
+            "sharedUseServicePlans": lambda n : setattr(self, 'shared_use_service_plans', n.get_collection_of_object_values(CloudPcSharedUseServicePlan)),
+            "snapshots": lambda n : setattr(self, 'snapshots', n.get_collection_of_object_values(CloudPcSnapshot)),
+            "supportedRegions": lambda n : setattr(self, 'supported_regions', n.get_collection_of_object_values(CloudPcSupportedRegion)),
+            "userSettings": lambda n : setattr(self, 'user_settings', n.get_collection_of_object_values(CloudPcUserSetting)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def on_premises_connections(self,) -> Optional[List[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]]:
-        """
-        Gets the onPremisesConnections property value. A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
-        Returns: Optional[List[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]]
-        """
-        return self._on_premises_connections
-    
-    @on_premises_connections.setter
-    def on_premises_connections(self,value: Optional[List[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]] = None) -> None:
-        """
-        Sets the onPremisesConnections property value. A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
-        Args:
-            value: Value to set for the on_premises_connections property.
-        """
-        self._on_premises_connections = value
-    
-    @property
-    def organization_settings(self,) -> Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]:
-        """
-        Gets the organizationSettings property value. The Cloud PC organization settings for a tenant.
-        Returns: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]
-        """
-        return self._organization_settings
-    
-    @organization_settings.setter
-    def organization_settings(self,value: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings] = None) -> None:
-        """
-        Sets the organizationSettings property value. The Cloud PC organization settings for a tenant.
-        Args:
-            value: Value to set for the organization_settings property.
-        """
-        self._organization_settings = value
-    
-    @property
-    def provisioning_policies(self,) -> Optional[List[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]]:
-        """
-        Gets the provisioningPolicies property value. Cloud PC provisioning policy.
-        Returns: Optional[List[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]]
-        """
-        return self._provisioning_policies
-    
-    @provisioning_policies.setter
-    def provisioning_policies(self,value: Optional[List[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]] = None) -> None:
-        """
-        Sets the provisioningPolicies property value. Cloud PC provisioning policy.
-        Args:
-            value: Value to set for the provisioning_policies property.
-        """
-        self._provisioning_policies = value
-    
-    @property
-    def reports(self,) -> Optional[cloud_pc_reports.CloudPcReports]:
-        """
-        Gets the reports property value. Cloud PC related reports.
-        Returns: Optional[cloud_pc_reports.CloudPcReports]
-        """
-        return self._reports
-    
-    @reports.setter
-    def reports(self,value: Optional[cloud_pc_reports.CloudPcReports] = None) -> None:
-        """
-        Sets the reports property value. Cloud PC related reports.
-        Args:
-            value: Value to set for the reports property.
-        """
-        self._reports = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -262,10 +142,11 @@ class VirtualEndpoint(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("auditEvents", self.audit_events)
+        writer.write_collection_of_object_values("bulkActions", self.bulk_actions)
         writer.write_collection_of_object_values("cloudPCs", self.cloud_p_cs)
         writer.write_object_value("crossCloudGovernmentOrganizationMapping", self.cross_cloud_government_organization_mapping)
         writer.write_collection_of_object_values("deviceImages", self.device_images)
@@ -280,90 +161,5 @@ class VirtualEndpoint(entity.Entity):
         writer.write_collection_of_object_values("snapshots", self.snapshots)
         writer.write_collection_of_object_values("supportedRegions", self.supported_regions)
         writer.write_collection_of_object_values("userSettings", self.user_settings)
-    
-    @property
-    def service_plans(self,) -> Optional[List[cloud_pc_service_plan.CloudPcServicePlan]]:
-        """
-        Gets the servicePlans property value. Cloud PC service plans.
-        Returns: Optional[List[cloud_pc_service_plan.CloudPcServicePlan]]
-        """
-        return self._service_plans
-    
-    @service_plans.setter
-    def service_plans(self,value: Optional[List[cloud_pc_service_plan.CloudPcServicePlan]] = None) -> None:
-        """
-        Sets the servicePlans property value. Cloud PC service plans.
-        Args:
-            value: Value to set for the service_plans property.
-        """
-        self._service_plans = value
-    
-    @property
-    def shared_use_service_plans(self,) -> Optional[List[cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan]]:
-        """
-        Gets the sharedUseServicePlans property value. Cloud PC shared-use service plans.
-        Returns: Optional[List[cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan]]
-        """
-        return self._shared_use_service_plans
-    
-    @shared_use_service_plans.setter
-    def shared_use_service_plans(self,value: Optional[List[cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan]] = None) -> None:
-        """
-        Sets the sharedUseServicePlans property value. Cloud PC shared-use service plans.
-        Args:
-            value: Value to set for the shared_use_service_plans property.
-        """
-        self._shared_use_service_plans = value
-    
-    @property
-    def snapshots(self,) -> Optional[List[cloud_pc_snapshot.CloudPcSnapshot]]:
-        """
-        Gets the snapshots property value. Cloud PC snapshots.
-        Returns: Optional[List[cloud_pc_snapshot.CloudPcSnapshot]]
-        """
-        return self._snapshots
-    
-    @snapshots.setter
-    def snapshots(self,value: Optional[List[cloud_pc_snapshot.CloudPcSnapshot]] = None) -> None:
-        """
-        Sets the snapshots property value. Cloud PC snapshots.
-        Args:
-            value: Value to set for the snapshots property.
-        """
-        self._snapshots = value
-    
-    @property
-    def supported_regions(self,) -> Optional[List[cloud_pc_supported_region.CloudPcSupportedRegion]]:
-        """
-        Gets the supportedRegions property value. Cloud PC supported regions.
-        Returns: Optional[List[cloud_pc_supported_region.CloudPcSupportedRegion]]
-        """
-        return self._supported_regions
-    
-    @supported_regions.setter
-    def supported_regions(self,value: Optional[List[cloud_pc_supported_region.CloudPcSupportedRegion]] = None) -> None:
-        """
-        Sets the supportedRegions property value. Cloud PC supported regions.
-        Args:
-            value: Value to set for the supported_regions property.
-        """
-        self._supported_regions = value
-    
-    @property
-    def user_settings(self,) -> Optional[List[cloud_pc_user_setting.CloudPcUserSetting]]:
-        """
-        Gets the userSettings property value. Cloud PC user settings.
-        Returns: Optional[List[cloud_pc_user_setting.CloudPcUserSetting]]
-        """
-        return self._user_settings
-    
-    @user_settings.setter
-    def user_settings(self,value: Optional[List[cloud_pc_user_setting.CloudPcUserSetting]] = None) -> None:
-        """
-        Sets the userSettings property value. Cloud PC user settings.
-        Args:
-            value: Value to set for the user_settings property.
-        """
-        self._user_settings = value
     
 

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,18 +10,18 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import dep_onboarding_setting
-    from ....models.o_data_errors import o_data_error
-    from .default_ios_enrollment_profile import default_ios_enrollment_profile_request_builder
-    from .default_mac_os_enrollment_profile import default_mac_os_enrollment_profile_request_builder
-    from .enrollment_profiles import enrollment_profiles_request_builder
-    from .generate_encryption_public_key import generate_encryption_public_key_request_builder
-    from .get_encryption_public_key import get_encryption_public_key_request_builder
-    from .imported_apple_device_identities import imported_apple_device_identities_request_builder
-    from .share_for_school_data_sync_service import share_for_school_data_sync_service_request_builder
-    from .sync_with_apple_device_enrollment_program import sync_with_apple_device_enrollment_program_request_builder
-    from .unshare_for_school_data_sync_service import unshare_for_school_data_sync_service_request_builder
-    from .upload_dep_token import upload_dep_token_request_builder
+    from ....models.dep_onboarding_setting import DepOnboardingSetting
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .default_ios_enrollment_profile.default_ios_enrollment_profile_request_builder import DefaultIosEnrollmentProfileRequestBuilder
+    from .default_mac_os_enrollment_profile.default_mac_os_enrollment_profile_request_builder import DefaultMacOsEnrollmentProfileRequestBuilder
+    from .enrollment_profiles.enrollment_profiles_request_builder import EnrollmentProfilesRequestBuilder
+    from .generate_encryption_public_key.generate_encryption_public_key_request_builder import GenerateEncryptionPublicKeyRequestBuilder
+    from .get_encryption_public_key.get_encryption_public_key_request_builder import GetEncryptionPublicKeyRequestBuilder
+    from .imported_apple_device_identities.imported_apple_device_identities_request_builder import ImportedAppleDeviceIdentitiesRequestBuilder
+    from .share_for_school_data_sync_service.share_for_school_data_sync_service_request_builder import ShareForSchoolDataSyncServiceRequestBuilder
+    from .sync_with_apple_device_enrollment_program.sync_with_apple_device_enrollment_program_request_builder import SyncWithAppleDeviceEnrollmentProgramRequestBuilder
+    from .unshare_for_school_data_sync_service.unshare_for_school_data_sync_service_request_builder import UnshareForSchoolDataSyncServiceRequestBuilder
+    from .upload_dep_token.upload_dep_token_request_builder import UploadDepTokenRequestBuilder
 
 class DepOnboardingSettingItemRequestBuilder():
     """
@@ -34,10 +34,10 @@ class DepOnboardingSettingItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/depOnboardingSettings/{depOnboardingSetting%2Did}{?%24select,%24expand}"
 
@@ -54,62 +54,62 @@ class DepOnboardingSettingItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
+    async def get(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DepOnboardingSetting]:
         """
         This collections of multiple DEP tokens per-tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[dep_onboarding_setting.DepOnboardingSetting]
+        Returns: Optional[DepOnboardingSetting]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import dep_onboarding_setting
+        from ....models.dep_onboarding_setting import DepOnboardingSetting
 
-        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, error_mapping)
+        return await self.request_adapter.send_async(request_info, DepOnboardingSetting, error_mapping)
     
-    async def patch(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
+    async def patch(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DepOnboardingSetting]:
         """
         Update the navigation property depOnboardingSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[dep_onboarding_setting.DepOnboardingSetting]
+        Returns: Optional[DepOnboardingSetting]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import dep_onboarding_setting
+        from ....models.dep_onboarding_setting import DepOnboardingSetting
 
-        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, error_mapping)
+        return await self.request_adapter.send_async(request_info, DepOnboardingSetting, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -145,7 +145,7 @@ class DepOnboardingSettingItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property depOnboardingSettings in deviceManagement
         Args:
@@ -153,8 +153,8 @@ class DepOnboardingSettingItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -167,94 +167,94 @@ class DepOnboardingSettingItemRequestBuilder():
         return request_info
     
     @property
-    def default_ios_enrollment_profile(self) -> default_ios_enrollment_profile_request_builder.DefaultIosEnrollmentProfileRequestBuilder:
+    def default_ios_enrollment_profile(self) -> DefaultIosEnrollmentProfileRequestBuilder:
         """
         Provides operations to manage the defaultIosEnrollmentProfile property of the microsoft.graph.depOnboardingSetting entity.
         """
-        from .default_ios_enrollment_profile import default_ios_enrollment_profile_request_builder
+        from .default_ios_enrollment_profile.default_ios_enrollment_profile_request_builder import DefaultIosEnrollmentProfileRequestBuilder
 
-        return default_ios_enrollment_profile_request_builder.DefaultIosEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
+        return DefaultIosEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def default_mac_os_enrollment_profile(self) -> default_mac_os_enrollment_profile_request_builder.DefaultMacOsEnrollmentProfileRequestBuilder:
+    def default_mac_os_enrollment_profile(self) -> DefaultMacOsEnrollmentProfileRequestBuilder:
         """
         Provides operations to manage the defaultMacOsEnrollmentProfile property of the microsoft.graph.depOnboardingSetting entity.
         """
-        from .default_mac_os_enrollment_profile import default_mac_os_enrollment_profile_request_builder
+        from .default_mac_os_enrollment_profile.default_mac_os_enrollment_profile_request_builder import DefaultMacOsEnrollmentProfileRequestBuilder
 
-        return default_mac_os_enrollment_profile_request_builder.DefaultMacOsEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
+        return DefaultMacOsEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enrollment_profiles(self) -> enrollment_profiles_request_builder.EnrollmentProfilesRequestBuilder:
+    def enrollment_profiles(self) -> EnrollmentProfilesRequestBuilder:
         """
         Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
         """
-        from .enrollment_profiles import enrollment_profiles_request_builder
+        from .enrollment_profiles.enrollment_profiles_request_builder import EnrollmentProfilesRequestBuilder
 
-        return enrollment_profiles_request_builder.EnrollmentProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return EnrollmentProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def generate_encryption_public_key(self) -> generate_encryption_public_key_request_builder.GenerateEncryptionPublicKeyRequestBuilder:
+    def generate_encryption_public_key(self) -> GenerateEncryptionPublicKeyRequestBuilder:
         """
         Provides operations to call the generateEncryptionPublicKey method.
         """
-        from .generate_encryption_public_key import generate_encryption_public_key_request_builder
+        from .generate_encryption_public_key.generate_encryption_public_key_request_builder import GenerateEncryptionPublicKeyRequestBuilder
 
-        return generate_encryption_public_key_request_builder.GenerateEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
+        return GenerateEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_encryption_public_key(self) -> get_encryption_public_key_request_builder.GetEncryptionPublicKeyRequestBuilder:
+    def get_encryption_public_key(self) -> GetEncryptionPublicKeyRequestBuilder:
         """
         Provides operations to call the getEncryptionPublicKey method.
         """
-        from .get_encryption_public_key import get_encryption_public_key_request_builder
+        from .get_encryption_public_key.get_encryption_public_key_request_builder import GetEncryptionPublicKeyRequestBuilder
 
-        return get_encryption_public_key_request_builder.GetEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def imported_apple_device_identities(self) -> imported_apple_device_identities_request_builder.ImportedAppleDeviceIdentitiesRequestBuilder:
+    def imported_apple_device_identities(self) -> ImportedAppleDeviceIdentitiesRequestBuilder:
         """
         Provides operations to manage the importedAppleDeviceIdentities property of the microsoft.graph.depOnboardingSetting entity.
         """
-        from .imported_apple_device_identities import imported_apple_device_identities_request_builder
+        from .imported_apple_device_identities.imported_apple_device_identities_request_builder import ImportedAppleDeviceIdentitiesRequestBuilder
 
-        return imported_apple_device_identities_request_builder.ImportedAppleDeviceIdentitiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ImportedAppleDeviceIdentitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def share_for_school_data_sync_service(self) -> share_for_school_data_sync_service_request_builder.ShareForSchoolDataSyncServiceRequestBuilder:
+    def share_for_school_data_sync_service(self) -> ShareForSchoolDataSyncServiceRequestBuilder:
         """
         Provides operations to call the shareForSchoolDataSyncService method.
         """
-        from .share_for_school_data_sync_service import share_for_school_data_sync_service_request_builder
+        from .share_for_school_data_sync_service.share_for_school_data_sync_service_request_builder import ShareForSchoolDataSyncServiceRequestBuilder
 
-        return share_for_school_data_sync_service_request_builder.ShareForSchoolDataSyncServiceRequestBuilder(self.request_adapter, self.path_parameters)
+        return ShareForSchoolDataSyncServiceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sync_with_apple_device_enrollment_program(self) -> sync_with_apple_device_enrollment_program_request_builder.SyncWithAppleDeviceEnrollmentProgramRequestBuilder:
+    def sync_with_apple_device_enrollment_program(self) -> SyncWithAppleDeviceEnrollmentProgramRequestBuilder:
         """
         Provides operations to call the syncWithAppleDeviceEnrollmentProgram method.
         """
-        from .sync_with_apple_device_enrollment_program import sync_with_apple_device_enrollment_program_request_builder
+        from .sync_with_apple_device_enrollment_program.sync_with_apple_device_enrollment_program_request_builder import SyncWithAppleDeviceEnrollmentProgramRequestBuilder
 
-        return sync_with_apple_device_enrollment_program_request_builder.SyncWithAppleDeviceEnrollmentProgramRequestBuilder(self.request_adapter, self.path_parameters)
+        return SyncWithAppleDeviceEnrollmentProgramRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unshare_for_school_data_sync_service(self) -> unshare_for_school_data_sync_service_request_builder.UnshareForSchoolDataSyncServiceRequestBuilder:
+    def unshare_for_school_data_sync_service(self) -> UnshareForSchoolDataSyncServiceRequestBuilder:
         """
         Provides operations to call the unshareForSchoolDataSyncService method.
         """
-        from .unshare_for_school_data_sync_service import unshare_for_school_data_sync_service_request_builder
+        from .unshare_for_school_data_sync_service.unshare_for_school_data_sync_service_request_builder import UnshareForSchoolDataSyncServiceRequestBuilder
 
-        return unshare_for_school_data_sync_service_request_builder.UnshareForSchoolDataSyncServiceRequestBuilder(self.request_adapter, self.path_parameters)
+        return UnshareForSchoolDataSyncServiceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_dep_token(self) -> upload_dep_token_request_builder.UploadDepTokenRequestBuilder:
+    def upload_dep_token(self) -> UploadDepTokenRequestBuilder:
         """
         Provides operations to call the uploadDepToken method.
         """
-        from .upload_dep_token import upload_dep_token_request_builder
+        from .upload_dep_token.upload_dep_token_request_builder import UploadDepTokenRequestBuilder
 
-        return upload_dep_token_request_builder.UploadDepTokenRequestBuilder(self.request_adapter, self.path_parameters)
+        return UploadDepTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DepOnboardingSettingItemRequestBuilderDeleteRequestConfiguration():
@@ -280,8 +280,8 @@ class DepOnboardingSettingItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import unified_role_management_alert, unified_role_management_alert_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import unified_role_management_alert_item_request_builder
-    from .refresh import refresh_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.unified_role_management_alert import UnifiedRoleManagementAlert
+    from ....models.unified_role_management_alert_collection_response import UnifiedRoleManagementAlertCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.unified_role_management_alert_item_request_builder import UnifiedRoleManagementAlertItemRequestBuilder
+    from .refresh.refresh_request_builder import RefreshRequestBuilder
 
 class AlertsRequestBuilder():
     """
@@ -27,10 +28,10 @@ class AlertsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/roleManagementAlerts/alerts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,71 +39,71 @@ class AlertsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_unified_role_management_alert_id(self,unified_role_management_alert_id: str) -> unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder:
+    def by_unified_role_management_alert_id(self,unified_role_management_alert_id: str) -> UnifiedRoleManagementAlertItemRequestBuilder:
         """
         Provides operations to manage the alerts property of the microsoft.graph.roleManagementAlert entity.
         Args:
             unified_role_management_alert_id: Unique identifier of the item
-        Returns: unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder
+        Returns: UnifiedRoleManagementAlertItemRequestBuilder
         """
-        if unified_role_management_alert_id is None:
-            raise Exception("unified_role_management_alert_id cannot be undefined")
-        from .item import unified_role_management_alert_item_request_builder
+        if not unified_role_management_alert_id:
+            raise TypeError("unified_role_management_alert_id cannot be null.")
+        from .item.unified_role_management_alert_item_request_builder import UnifiedRoleManagementAlertItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["unifiedRoleManagementAlert%2Did"] = unified_role_management_alert_id
-        return unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return UnifiedRoleManagementAlertItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_alert_collection_response.UnifiedRoleManagementAlertCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertCollectionResponse]:
         """
-        Get alerts from identityGovernance
+        Get a list of the unifiedRoleManagementAlert objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[unified_role_management_alert_collection_response.UnifiedRoleManagementAlertCollectionResponse]
+        Returns: Optional[UnifiedRoleManagementAlertCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import unified_role_management_alert_collection_response
+        from ....models.unified_role_management_alert_collection_response import UnifiedRoleManagementAlertCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, unified_role_management_alert_collection_response.UnifiedRoleManagementAlertCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlertCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[unified_role_management_alert.UnifiedRoleManagementAlert] = None, request_configuration: Optional[AlertsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_management_alert.UnifiedRoleManagementAlert]:
+    async def post(self,body: Optional[UnifiedRoleManagementAlert] = None, request_configuration: Optional[AlertsRequestBuilderPostRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlert]:
         """
         Create new navigation property to alerts for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[unified_role_management_alert.UnifiedRoleManagementAlert]
+        Returns: Optional[UnifiedRoleManagementAlert]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import unified_role_management_alert
+        from ....models.unified_role_management_alert import UnifiedRoleManagementAlert
 
-        return await self.request_adapter.send_async(request_info, unified_role_management_alert.UnifiedRoleManagementAlert, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlert, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get alerts from identityGovernance
+        Get a list of the unifiedRoleManagementAlert objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -118,7 +119,7 @@ class AlertsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[unified_role_management_alert.UnifiedRoleManagementAlert] = None, request_configuration: Optional[AlertsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UnifiedRoleManagementAlert] = None, request_configuration: Optional[AlertsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to alerts for identityGovernance
         Args:
@@ -126,8 +127,8 @@ class AlertsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,27 +141,27 @@ class AlertsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def refresh(self) -> refresh_request_builder.RefreshRequestBuilder:
+    def refresh(self) -> RefreshRequestBuilder:
         """
         Provides operations to call the refresh method.
         """
-        from .refresh import refresh_request_builder
+        from .refresh.refresh_request_builder import RefreshRequestBuilder
 
-        return refresh_request_builder.RefreshRequestBuilder(self.request_adapter, self.path_parameters)
+        return RefreshRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertsRequestBuilderGetQueryParameters():
         """
-        Get alerts from identityGovernance
+        Get a list of the unifiedRoleManagementAlert objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -169,8 +170,8 @@ class AlertsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

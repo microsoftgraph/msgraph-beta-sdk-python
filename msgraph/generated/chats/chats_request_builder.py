@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import chat, chat_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .all_messages import all_messages_request_builder
-    from .count import count_request_builder
-    from .get_all_messages import get_all_messages_request_builder
-    from .item import chat_item_request_builder
+    from ..models.chat import Chat
+    from ..models.chat_collection_response import ChatCollectionResponse
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .all_messages.all_messages_request_builder import AllMessagesRequestBuilder
+    from .count.count_request_builder import CountRequestBuilder
+    from .get_all_messages.get_all_messages_request_builder import GetAllMessagesRequestBuilder
+    from .item.chat_item_request_builder import ChatItemRequestBuilder
 
 class ChatsRequestBuilder():
     """
@@ -28,10 +29,10 @@ class ChatsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/chats{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -39,67 +40,67 @@ class ChatsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_chat_id(self,chat_id: str) -> chat_item_request_builder.ChatItemRequestBuilder:
+    def by_chat_id(self,chat_id: str) -> ChatItemRequestBuilder:
         """
         Provides operations to manage the collection of chat entities.
         Args:
             chat_id: Unique identifier of the item
-        Returns: chat_item_request_builder.ChatItemRequestBuilder
+        Returns: ChatItemRequestBuilder
         """
-        if chat_id is None:
-            raise Exception("chat_id cannot be undefined")
-        from .item import chat_item_request_builder
+        if not chat_id:
+            raise TypeError("chat_id cannot be null.")
+        from .item.chat_item_request_builder import ChatItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["chat%2Did"] = chat_id
-        return chat_item_request_builder.ChatItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ChatItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ChatsRequestBuilderGetRequestConfiguration] = None) -> Optional[chat_collection_response.ChatCollectionResponse]:
+    async def get(self,request_configuration: Optional[ChatsRequestBuilderGetRequestConfiguration] = None) -> Optional[ChatCollectionResponse]:
         """
         Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[chat_collection_response.ChatCollectionResponse]
+        Returns: Optional[ChatCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import chat_collection_response
+        from ..models.chat_collection_response import ChatCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, chat_collection_response.ChatCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ChatCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[chat.Chat] = None, request_configuration: Optional[ChatsRequestBuilderPostRequestConfiguration] = None) -> Optional[chat.Chat]:
+    async def post(self,body: Optional[Chat] = None, request_configuration: Optional[ChatsRequestBuilderPostRequestConfiguration] = None) -> Optional[Chat]:
         """
         Create a new chat object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[chat.Chat]
+        Returns: Optional[Chat]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import chat
+        from ..models.chat import Chat
 
-        return await self.request_adapter.send_async(request_info, chat.Chat, error_mapping)
+        return await self.request_adapter.send_async(request_info, Chat, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ChatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -119,7 +120,7 @@ class ChatsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[chat.Chat] = None, request_configuration: Optional[ChatsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Chat] = None, request_configuration: Optional[ChatsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new chat object.
         Args:
@@ -127,8 +128,8 @@ class ChatsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -141,31 +142,31 @@ class ChatsRequestBuilder():
         return request_info
     
     @property
-    def all_messages(self) -> all_messages_request_builder.AllMessagesRequestBuilder:
+    def all_messages(self) -> AllMessagesRequestBuilder:
         """
         Provides operations to call the allMessages method.
         """
-        from .all_messages import all_messages_request_builder
+        from .all_messages.all_messages_request_builder import AllMessagesRequestBuilder
 
-        return all_messages_request_builder.AllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_all_messages(self) -> get_all_messages_request_builder.GetAllMessagesRequestBuilder:
+    def get_all_messages(self) -> GetAllMessagesRequestBuilder:
         """
         Provides operations to call the getAllMessages method.
         """
-        from .get_all_messages import get_all_messages_request_builder
+        from .get_all_messages.get_all_messages_request_builder import GetAllMessagesRequestBuilder
 
-        return get_all_messages_request_builder.GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ChatsRequestBuilderGetQueryParameters():
@@ -179,8 +180,8 @@ class ChatsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

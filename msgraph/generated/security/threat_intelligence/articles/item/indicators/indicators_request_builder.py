@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors import o_data_error
-    from ......models.security import article_indicator_collection_response
-    from .count import count_request_builder
-    from .item import article_indicator_item_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.security.article_indicator_collection_response import ArticleIndicatorCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.article_indicator_item_request_builder import ArticleIndicatorItemRequestBuilder
 
 class IndicatorsRequestBuilder():
     """
@@ -26,10 +26,10 @@ class IndicatorsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/security/threatIntelligence/articles/{article%2Did}/indicators{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,42 +37,42 @@ class IndicatorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_article_indicator_id(self,article_indicator_id: str) -> article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder:
+    def by_article_indicator_id(self,article_indicator_id: str) -> ArticleIndicatorItemRequestBuilder:
         """
         Provides operations to manage the indicators property of the microsoft.graph.security.article entity.
         Args:
             article_indicator_id: Unique identifier of the item
-        Returns: article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder
+        Returns: ArticleIndicatorItemRequestBuilder
         """
-        if article_indicator_id is None:
-            raise Exception("article_indicator_id cannot be undefined")
-        from .item import article_indicator_item_request_builder
+        if not article_indicator_id:
+            raise TypeError("article_indicator_id cannot be null.")
+        from .item.article_indicator_item_request_builder import ArticleIndicatorItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["articleIndicator%2Did"] = article_indicator_id
-        return article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ArticleIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[article_indicator_collection_response.ArticleIndicatorCollectionResponse]:
+    async def get(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ArticleIndicatorCollectionResponse]:
         """
         Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[article_indicator_collection_response.ArticleIndicatorCollectionResponse]
+        Returns: Optional[ArticleIndicatorCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.security import article_indicator_collection_response
+        from ......models.security.article_indicator_collection_response import ArticleIndicatorCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, article_indicator_collection_response.ArticleIndicatorCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ArticleIndicatorCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -93,13 +93,13 @@ class IndicatorsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class IndicatorsRequestBuilderGetQueryParameters():
@@ -113,8 +113,8 @@ class IndicatorsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

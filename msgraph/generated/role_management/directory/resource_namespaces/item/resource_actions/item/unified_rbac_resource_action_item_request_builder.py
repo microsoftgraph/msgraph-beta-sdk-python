@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import unified_rbac_resource_action
-    from .......models.o_data_errors import o_data_error
-    from .authentication_context import authentication_context_request_builder
-    from .resource_scope import resource_scope_request_builder
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .......models.unified_rbac_resource_action import UnifiedRbacResourceAction
+    from .authentication_context.authentication_context_request_builder import AuthenticationContextRequestBuilder
+    from .resource_scope.resource_scope_request_builder import ResourceScopeRequestBuilder
 
 class UnifiedRbacResourceActionItemRequestBuilder():
     """
@@ -26,10 +26,10 @@ class UnifiedRbacResourceActionItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}/resourceActions/{unifiedRbacResourceAction%2Did}{?%24select,%24expand}"
 
@@ -46,62 +46,62 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
+    async def get(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRbacResourceAction]:
         """
         Read the properties and relationships of an unifiedRbacResourceAction object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]
+        Returns: Optional[UnifiedRbacResourceAction]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import unified_rbac_resource_action
+        from .......models.unified_rbac_resource_action import UnifiedRbacResourceAction
 
-        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action.UnifiedRbacResourceAction, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRbacResourceAction, error_mapping)
     
-    async def patch(self,body: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction] = None, request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
+    async def patch(self,body: Optional[UnifiedRbacResourceAction] = None, request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UnifiedRbacResourceAction]:
         """
         Update the navigation property resourceActions in roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]
+        Returns: Optional[UnifiedRbacResourceAction]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import unified_rbac_resource_action
+        from .......models.unified_rbac_resource_action import UnifiedRbacResourceAction
 
-        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action.UnifiedRbacResourceAction, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRbacResourceAction, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -137,7 +137,7 @@ class UnifiedRbacResourceActionItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction] = None, request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UnifiedRbacResourceAction] = None, request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property resourceActions in roleManagement
         Args:
@@ -145,8 +145,8 @@ class UnifiedRbacResourceActionItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,22 +159,22 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         return request_info
     
     @property
-    def authentication_context(self) -> authentication_context_request_builder.AuthenticationContextRequestBuilder:
+    def authentication_context(self) -> AuthenticationContextRequestBuilder:
         """
         Provides operations to manage the authenticationContext property of the microsoft.graph.unifiedRbacResourceAction entity.
         """
-        from .authentication_context import authentication_context_request_builder
+        from .authentication_context.authentication_context_request_builder import AuthenticationContextRequestBuilder
 
-        return authentication_context_request_builder.AuthenticationContextRequestBuilder(self.request_adapter, self.path_parameters)
+        return AuthenticationContextRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def resource_scope(self) -> resource_scope_request_builder.ResourceScopeRequestBuilder:
+    def resource_scope(self) -> ResourceScopeRequestBuilder:
         """
         Provides operations to manage the resourceScope property of the microsoft.graph.unifiedRbacResourceAction entity.
         """
-        from .resource_scope import resource_scope_request_builder
+        from .resource_scope.resource_scope_request_builder import ResourceScopeRequestBuilder
 
-        return resource_scope_request_builder.ResourceScopeRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourceScopeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UnifiedRbacResourceActionItemRequestBuilderDeleteRequestConfiguration():
@@ -200,8 +200,8 @@ class UnifiedRbacResourceActionItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

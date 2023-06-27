@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import chrome_o_s_onboarding_settings, chrome_o_s_onboarding_settings_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .connect import connect_request_builder
-    from .count import count_request_builder
-    from .disconnect import disconnect_request_builder
-    from .item import chrome_o_s_onboarding_settings_item_request_builder
+    from ...models.chrome_o_s_onboarding_settings import ChromeOSOnboardingSettings
+    from ...models.chrome_o_s_onboarding_settings_collection_response import ChromeOSOnboardingSettingsCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .connect.connect_request_builder import ConnectRequestBuilder
+    from .count.count_request_builder import CountRequestBuilder
+    from .disconnect.disconnect_request_builder import DisconnectRequestBuilder
+    from .item.chrome_o_s_onboarding_settings_item_request_builder import ChromeOSOnboardingSettingsItemRequestBuilder
 
 class ChromeOSOnboardingSettingsRequestBuilder():
     """
@@ -28,10 +29,10 @@ class ChromeOSOnboardingSettingsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/chromeOSOnboardingSettings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -39,67 +40,67 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_chrome_o_s_onboarding_settings_id(self,chrome_o_s_onboarding_settings_id: str) -> chrome_o_s_onboarding_settings_item_request_builder.ChromeOSOnboardingSettingsItemRequestBuilder:
+    def by_chrome_o_s_onboarding_settings_id(self,chrome_o_s_onboarding_settings_id: str) -> ChromeOSOnboardingSettingsItemRequestBuilder:
         """
         Provides operations to manage the chromeOSOnboardingSettings property of the microsoft.graph.deviceManagement entity.
         Args:
             chrome_o_s_onboarding_settings_id: Unique identifier of the item
-        Returns: chrome_o_s_onboarding_settings_item_request_builder.ChromeOSOnboardingSettingsItemRequestBuilder
+        Returns: ChromeOSOnboardingSettingsItemRequestBuilder
         """
-        if chrome_o_s_onboarding_settings_id is None:
-            raise Exception("chrome_o_s_onboarding_settings_id cannot be undefined")
-        from .item import chrome_o_s_onboarding_settings_item_request_builder
+        if not chrome_o_s_onboarding_settings_id:
+            raise TypeError("chrome_o_s_onboarding_settings_id cannot be null.")
+        from .item.chrome_o_s_onboarding_settings_item_request_builder import ChromeOSOnboardingSettingsItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["chromeOSOnboardingSettings%2Did"] = chrome_o_s_onboarding_settings_id
-        return chrome_o_s_onboarding_settings_item_request_builder.ChromeOSOnboardingSettingsItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ChromeOSOnboardingSettingsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse]:
+    async def get(self,request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[ChromeOSOnboardingSettingsCollectionResponse]:
         """
         Collection of ChromeOSOnboardingSettings settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse]
+        Returns: Optional[ChromeOSOnboardingSettingsCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import chrome_o_s_onboarding_settings_collection_response
+        from ...models.chrome_o_s_onboarding_settings_collection_response import ChromeOSOnboardingSettingsCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ChromeOSOnboardingSettingsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings] = None, request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]:
+    async def post(self,body: Optional[ChromeOSOnboardingSettings] = None, request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[ChromeOSOnboardingSettings]:
         """
         Create new navigation property to chromeOSOnboardingSettings for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]
+        Returns: Optional[ChromeOSOnboardingSettings]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import chrome_o_s_onboarding_settings
+        from ...models.chrome_o_s_onboarding_settings import ChromeOSOnboardingSettings
 
-        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, ChromeOSOnboardingSettings, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -119,7 +120,7 @@ class ChromeOSOnboardingSettingsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings] = None, request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ChromeOSOnboardingSettings] = None, request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to chromeOSOnboardingSettings for deviceManagement
         Args:
@@ -127,8 +128,8 @@ class ChromeOSOnboardingSettingsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -141,31 +142,31 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         return request_info
     
     @property
-    def connect(self) -> connect_request_builder.ConnectRequestBuilder:
+    def connect(self) -> ConnectRequestBuilder:
         """
         Provides operations to call the connect method.
         """
-        from .connect import connect_request_builder
+        from .connect.connect_request_builder import ConnectRequestBuilder
 
-        return connect_request_builder.ConnectRequestBuilder(self.request_adapter, self.path_parameters)
+        return ConnectRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def disconnect(self) -> disconnect_request_builder.DisconnectRequestBuilder:
+    def disconnect(self) -> DisconnectRequestBuilder:
         """
         Provides operations to call the disconnect method.
         """
-        from .disconnect import disconnect_request_builder
+        from .disconnect.disconnect_request_builder import DisconnectRequestBuilder
 
-        return disconnect_request_builder.DisconnectRequestBuilder(self.request_adapter, self.path_parameters)
+        return DisconnectRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ChromeOSOnboardingSettingsRequestBuilderGetQueryParameters():
@@ -179,8 +180,8 @@ class ChromeOSOnboardingSettingsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

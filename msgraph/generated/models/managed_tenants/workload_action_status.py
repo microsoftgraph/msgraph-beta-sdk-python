@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WorkloadActionStatus(Enum):
+class WorkloadActionStatus(str, Enum):
     ToAddress = "toAddress",
     Completed = "completed",
     Error = "error",

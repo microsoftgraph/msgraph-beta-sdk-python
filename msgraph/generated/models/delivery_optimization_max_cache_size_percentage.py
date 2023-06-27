@@ -1,21 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import delivery_optimization_max_cache_size
+    from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
 
-from . import delivery_optimization_max_cache_size
+from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
 
-class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeliveryOptimizationMaxCacheSizePercentage and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage"
-        # Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
-        self._maximum_cache_size_percentage: Optional[int] = None
+@dataclass
+class DeliveryOptimizationMaxCacheSizePercentage(DeliveryOptimizationMaxCacheSize):
+    odata_type = "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage"
+    # Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
+    maximum_cache_size_percentage: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationMaxCacheSizePercentage:
@@ -25,8 +22,8 @@ class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: DeliveryOptimizationMaxCacheSizePercentage
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeliveryOptimizationMaxCacheSizePercentage()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,7 +31,9 @@ class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import delivery_optimization_max_cache_size
+        from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
+
+        from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
 
         fields: Dict[str, Callable[[Any], None]] = {
             "maximumCacheSizePercentage": lambda n : setattr(self, 'maximum_cache_size_percentage', n.get_int_value()),
@@ -43,31 +42,14 @@ class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache
         fields.update(super_fields)
         return fields
     
-    @property
-    def maximum_cache_size_percentage(self,) -> Optional[int]:
-        """
-        Gets the maximumCacheSizePercentage property value. Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
-        Returns: Optional[int]
-        """
-        return self._maximum_cache_size_percentage
-    
-    @maximum_cache_size_percentage.setter
-    def maximum_cache_size_percentage(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumCacheSizePercentage property value. Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
-        Args:
-            value: Value to set for the maximum_cache_size_percentage property.
-        """
-        self._maximum_cache_size_percentage = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("maximumCacheSizePercentage", self.maximum_cache_size_percentage)
     

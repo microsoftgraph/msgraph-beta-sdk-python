@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TenantOnboardingEligibilityReason(Enum):
+class TenantOnboardingEligibilityReason(str, Enum):
     None_ = "none",
     ContractType = "contractType",
     DelegatedAdminPrivileges = "delegatedAdminPrivileges",

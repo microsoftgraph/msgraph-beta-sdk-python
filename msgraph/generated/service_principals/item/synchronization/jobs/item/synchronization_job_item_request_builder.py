@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,15 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import synchronization_job
-    from ......models.o_data_errors import o_data_error
-    from .pause import pause_request_builder
-    from .provision_on_demand import provision_on_demand_request_builder
-    from .restart import restart_request_builder
-    from .schema import schema_request_builder
-    from .start import start_request_builder
-    from .stop import stop_request_builder
-    from .validate_credentials import validate_credentials_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.synchronization_job import SynchronizationJob
+    from .pause.pause_request_builder import PauseRequestBuilder
+    from .provision_on_demand.provision_on_demand_request_builder import ProvisionOnDemandRequestBuilder
+    from .restart.restart_request_builder import RestartRequestBuilder
+    from .schema.schema_request_builder import SchemaRequestBuilder
+    from .start.start_request_builder import StartRequestBuilder
+    from .validate_credentials.validate_credentials_request_builder import ValidateCredentialsRequestBuilder
 
 class SynchronizationJobItemRequestBuilder():
     """
@@ -31,10 +30,10 @@ class SynchronizationJobItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}{?%24select,%24expand}"
 
@@ -51,62 +50,62 @@ class SynchronizationJobItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_job.SynchronizationJob]:
+    async def get(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SynchronizationJob]:
         """
         Retrieve the existing synchronization job and its properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[synchronization_job.SynchronizationJob]
+        Returns: Optional[SynchronizationJob]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import synchronization_job
+        from ......models.synchronization_job import SynchronizationJob
 
-        return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, error_mapping)
+        return await self.request_adapter.send_async(request_info, SynchronizationJob, error_mapping)
     
-    async def patch(self,body: Optional[synchronization_job.SynchronizationJob] = None, request_configuration: Optional[SynchronizationJobItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization_job.SynchronizationJob]:
+    async def patch(self,body: Optional[SynchronizationJob] = None, request_configuration: Optional[SynchronizationJobItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SynchronizationJob]:
         """
         Update the navigation property jobs in servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[synchronization_job.SynchronizationJob]
+        Returns: Optional[SynchronizationJob]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import synchronization_job
+        from ......models.synchronization_job import SynchronizationJob
 
-        return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, error_mapping)
+        return await self.request_adapter.send_async(request_info, SynchronizationJob, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -142,7 +141,7 @@ class SynchronizationJobItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[synchronization_job.SynchronizationJob] = None, request_configuration: Optional[SynchronizationJobItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SynchronizationJob] = None, request_configuration: Optional[SynchronizationJobItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property jobs in servicePrincipals
         Args:
@@ -150,8 +149,8 @@ class SynchronizationJobItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -164,67 +163,58 @@ class SynchronizationJobItemRequestBuilder():
         return request_info
     
     @property
-    def pause(self) -> pause_request_builder.PauseRequestBuilder:
+    def pause(self) -> PauseRequestBuilder:
         """
         Provides operations to call the pause method.
         """
-        from .pause import pause_request_builder
+        from .pause.pause_request_builder import PauseRequestBuilder
 
-        return pause_request_builder.PauseRequestBuilder(self.request_adapter, self.path_parameters)
+        return PauseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def provision_on_demand(self) -> provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder:
+    def provision_on_demand(self) -> ProvisionOnDemandRequestBuilder:
         """
         Provides operations to call the provisionOnDemand method.
         """
-        from .provision_on_demand import provision_on_demand_request_builder
+        from .provision_on_demand.provision_on_demand_request_builder import ProvisionOnDemandRequestBuilder
 
-        return provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder(self.request_adapter, self.path_parameters)
+        return ProvisionOnDemandRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restart(self) -> restart_request_builder.RestartRequestBuilder:
+    def restart(self) -> RestartRequestBuilder:
         """
         Provides operations to call the restart method.
         """
-        from .restart import restart_request_builder
+        from .restart.restart_request_builder import RestartRequestBuilder
 
-        return restart_request_builder.RestartRequestBuilder(self.request_adapter, self.path_parameters)
+        return RestartRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def schema(self) -> schema_request_builder.SchemaRequestBuilder:
+    def schema(self) -> SchemaRequestBuilder:
         """
         Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.
         """
-        from .schema import schema_request_builder
+        from .schema.schema_request_builder import SchemaRequestBuilder
 
-        return schema_request_builder.SchemaRequestBuilder(self.request_adapter, self.path_parameters)
+        return SchemaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def start(self) -> start_request_builder.StartRequestBuilder:
+    def start(self) -> StartRequestBuilder:
         """
         Provides operations to call the start method.
         """
-        from .start import start_request_builder
+        from .start.start_request_builder import StartRequestBuilder
 
-        return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
+        return StartRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
-        """
-        Provides operations to call the stop method.
-        """
-        from .stop import stop_request_builder
-
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def validate_credentials(self) -> validate_credentials_request_builder.ValidateCredentialsRequestBuilder:
+    def validate_credentials(self) -> ValidateCredentialsRequestBuilder:
         """
         Provides operations to call the validateCredentials method.
         """
-        from .validate_credentials import validate_credentials_request_builder
+        from .validate_credentials.validate_credentials_request_builder import ValidateCredentialsRequestBuilder
 
-        return validate_credentials_request_builder.ValidateCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ValidateCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SynchronizationJobItemRequestBuilderDeleteRequestConfiguration():
@@ -250,8 +240,8 @@ class SynchronizationJobItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

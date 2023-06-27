@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import mobility_management_policy
-    from ....models.o_data_errors import o_data_error
-    from .included_groups import included_groups_request_builder
+    from ....models.mobility_management_policy import MobilityManagementPolicy
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .included_groups.included_groups_request_builder import IncludedGroupsRequestBuilder
 
 class MobilityManagementPolicyItemRequestBuilder():
     """
@@ -25,10 +25,10 @@ class MobilityManagementPolicyItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/policies/mobileAppManagementPolicies/{mobilityManagementPolicy%2Did}{?%24select,%24expand}"
 
@@ -45,62 +45,62 @@ class MobilityManagementPolicyItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
+    async def get(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MobilityManagementPolicy]:
         """
         Read the properties and relationships of a mobilityManagementPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobility_management_policy.MobilityManagementPolicy]
+        Returns: Optional[MobilityManagementPolicy]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import mobility_management_policy
+        from ....models.mobility_management_policy import MobilityManagementPolicy
 
-        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobilityManagementPolicy, error_mapping)
     
-    async def patch(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
+    async def patch(self,body: Optional[MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[MobilityManagementPolicy]:
         """
         Update the properties of a mobilityManagementPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobility_management_policy.MobilityManagementPolicy]
+        Returns: Optional[MobilityManagementPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import mobility_management_policy
+        from ....models.mobility_management_policy import MobilityManagementPolicy
 
-        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobilityManagementPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -136,7 +136,7 @@ class MobilityManagementPolicyItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a mobilityManagementPolicy object.
         Args:
@@ -144,8 +144,8 @@ class MobilityManagementPolicyItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,13 +158,13 @@ class MobilityManagementPolicyItemRequestBuilder():
         return request_info
     
     @property
-    def included_groups(self) -> included_groups_request_builder.IncludedGroupsRequestBuilder:
+    def included_groups(self) -> IncludedGroupsRequestBuilder:
         """
         Provides operations to manage the includedGroups property of the microsoft.graph.mobilityManagementPolicy entity.
         """
-        from .included_groups import included_groups_request_builder
+        from .included_groups.included_groups_request_builder import IncludedGroupsRequestBuilder
 
-        return included_groups_request_builder.IncludedGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return IncludedGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration():
@@ -190,8 +190,8 @@ class MobilityManagementPolicyItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

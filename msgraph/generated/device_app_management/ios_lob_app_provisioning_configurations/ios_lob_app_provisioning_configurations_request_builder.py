@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import ios_lob_app_provisioning_configuration, ios_lob_app_provisioning_configuration_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .has_payload_links import has_payload_links_request_builder
-    from .item import ios_lob_app_provisioning_configuration_item_request_builder
+    from ...models.ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
+    from ...models.ios_lob_app_provisioning_configuration_collection_response import IosLobAppProvisioningConfigurationCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
+    from .item.ios_lob_app_provisioning_configuration_item_request_builder import IosLobAppProvisioningConfigurationItemRequestBuilder
 
 class IosLobAppProvisioningConfigurationsRequestBuilder():
     """
@@ -27,10 +28,10 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceAppManagement/iosLobAppProvisioningConfigurations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,67 +39,67 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_ios_lob_app_provisioning_configuration_id(self,ios_lob_app_provisioning_configuration_id: str) -> ios_lob_app_provisioning_configuration_item_request_builder.IosLobAppProvisioningConfigurationItemRequestBuilder:
+    def by_ios_lob_app_provisioning_configuration_id(self,ios_lob_app_provisioning_configuration_id: str) -> IosLobAppProvisioningConfigurationItemRequestBuilder:
         """
         Provides operations to manage the iosLobAppProvisioningConfigurations property of the microsoft.graph.deviceAppManagement entity.
         Args:
             ios_lob_app_provisioning_configuration_id: Unique identifier of the item
-        Returns: ios_lob_app_provisioning_configuration_item_request_builder.IosLobAppProvisioningConfigurationItemRequestBuilder
+        Returns: IosLobAppProvisioningConfigurationItemRequestBuilder
         """
-        if ios_lob_app_provisioning_configuration_id is None:
-            raise Exception("ios_lob_app_provisioning_configuration_id cannot be undefined")
-        from .item import ios_lob_app_provisioning_configuration_item_request_builder
+        if not ios_lob_app_provisioning_configuration_id:
+            raise TypeError("ios_lob_app_provisioning_configuration_id cannot be null.")
+        from .item.ios_lob_app_provisioning_configuration_item_request_builder import IosLobAppProvisioningConfigurationItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["iosLobAppProvisioningConfiguration%2Did"] = ios_lob_app_provisioning_configuration_id
-        return ios_lob_app_provisioning_configuration_item_request_builder.IosLobAppProvisioningConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return IosLobAppProvisioningConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[ios_lob_app_provisioning_configuration_collection_response.IosLobAppProvisioningConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[IosLobAppProvisioningConfigurationCollectionResponse]:
         """
         The IOS Lob App Provisioning Configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ios_lob_app_provisioning_configuration_collection_response.IosLobAppProvisioningConfigurationCollectionResponse]
+        Returns: Optional[IosLobAppProvisioningConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import ios_lob_app_provisioning_configuration_collection_response
+        from ...models.ios_lob_app_provisioning_configuration_collection_response import IosLobAppProvisioningConfigurationCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration_collection_response.IosLobAppProvisioningConfigurationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, IosLobAppProvisioningConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration] = None, request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]:
+    async def post(self,body: Optional[IosLobAppProvisioningConfiguration] = None, request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[IosLobAppProvisioningConfiguration]:
         """
         Create new navigation property to iosLobAppProvisioningConfigurations for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]
+        Returns: Optional[IosLobAppProvisioningConfiguration]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import ios_lob_app_provisioning_configuration
+        from ...models.ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
 
-        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, IosLobAppProvisioningConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -118,7 +119,7 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration] = None, request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[IosLobAppProvisioningConfiguration] = None, request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to iosLobAppProvisioningConfigurations for deviceAppManagement
         Args:
@@ -126,8 +127,8 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +141,22 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def has_payload_links(self) -> HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        from .has_payload_links import has_payload_links_request_builder
+        from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
 
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class IosLobAppProvisioningConfigurationsRequestBuilderGetQueryParameters():
@@ -169,8 +170,8 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

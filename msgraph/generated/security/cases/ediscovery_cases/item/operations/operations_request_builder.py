@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors import o_data_error
-    from ......models.security import case_operation, case_operation_collection_response
-    from .count import count_request_builder
-    from .item import case_operation_item_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.security.case_operation import CaseOperation
+    from ......models.security.case_operation_collection_response import CaseOperationCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.case_operation_item_request_builder import CaseOperationItemRequestBuilder
 
 class OperationsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class OperationsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/operations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class OperationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_case_operation_id(self,case_operation_id: str) -> case_operation_item_request_builder.CaseOperationItemRequestBuilder:
+    def by_case_operation_id(self,case_operation_id: str) -> CaseOperationItemRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.
         Args:
             case_operation_id: Unique identifier of the item
-        Returns: case_operation_item_request_builder.CaseOperationItemRequestBuilder
+        Returns: CaseOperationItemRequestBuilder
         """
-        if case_operation_id is None:
-            raise Exception("case_operation_id cannot be undefined")
-        from .item import case_operation_item_request_builder
+        if not case_operation_id:
+            raise TypeError("case_operation_id cannot be null.")
+        from .item.case_operation_item_request_builder import CaseOperationItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["caseOperation%2Did"] = case_operation_id
-        return case_operation_item_request_builder.CaseOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return CaseOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[case_operation_collection_response.CaseOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[CaseOperationCollectionResponse]:
         """
         Get a list of the caseOperation objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[case_operation_collection_response.CaseOperationCollectionResponse]
+        Returns: Optional[CaseOperationCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.security import case_operation_collection_response
+        from ......models.security.case_operation_collection_response import CaseOperationCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, case_operation_collection_response.CaseOperationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, CaseOperationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[case_operation.CaseOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[case_operation.CaseOperation]:
+    async def post(self,body: Optional[CaseOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[CaseOperation]:
         """
         Create new navigation property to operations for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[case_operation.CaseOperation]
+        Returns: Optional[CaseOperation]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.security import case_operation
+        from ......models.security.case_operation import CaseOperation
 
-        return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, error_mapping)
+        return await self.request_adapter.send_async(request_info, CaseOperation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class OperationsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[case_operation.CaseOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CaseOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to operations for security
         Args:
@@ -125,8 +126,8 @@ class OperationsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class OperationsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class OperationsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class OperationsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

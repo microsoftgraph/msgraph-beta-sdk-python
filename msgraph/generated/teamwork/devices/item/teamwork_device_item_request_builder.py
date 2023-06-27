@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,15 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import teamwork_device
-    from ....models.o_data_errors import o_data_error
-    from .activity import activity_request_builder
-    from .configuration import configuration_request_builder
-    from .health import health_request_builder
-    from .operations import operations_request_builder
-    from .restart import restart_request_builder
-    from .run_diagnostics import run_diagnostics_request_builder
-    from .update_software import update_software_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.teamwork_device import TeamworkDevice
+    from .activity.activity_request_builder import ActivityRequestBuilder
+    from .configuration.configuration_request_builder import ConfigurationRequestBuilder
+    from .health.health_request_builder import HealthRequestBuilder
+    from .operations.operations_request_builder import OperationsRequestBuilder
+    from .restart.restart_request_builder import RestartRequestBuilder
+    from .run_diagnostics.run_diagnostics_request_builder import RunDiagnosticsRequestBuilder
+    from .update_software.update_software_request_builder import UpdateSoftwareRequestBuilder
 
 class TeamworkDeviceItemRequestBuilder():
     """
@@ -31,10 +31,10 @@ class TeamworkDeviceItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/teamwork/devices/{teamworkDevice%2Did}{?%24select,%24expand}"
 
@@ -51,62 +51,62 @@ class TeamworkDeviceItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device.TeamworkDevice]:
+    async def get(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamworkDevice]:
         """
         Get the properties of a Microsoft Teams-enabled device. For example, you can use this method to get the device type, hardware detail, activity state, and health status information for a device that's enabled for Teams.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[teamwork_device.TeamworkDevice]
+        Returns: Optional[TeamworkDevice]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import teamwork_device
+        from ....models.teamwork_device import TeamworkDevice
 
-        return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, TeamworkDevice, error_mapping)
     
-    async def patch(self,body: Optional[teamwork_device.TeamworkDevice] = None, request_configuration: Optional[TeamworkDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[teamwork_device.TeamworkDevice]:
+    async def patch(self,body: Optional[TeamworkDevice] = None, request_configuration: Optional[TeamworkDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[TeamworkDevice]:
         """
         Update the navigation property devices in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[teamwork_device.TeamworkDevice]
+        Returns: Optional[TeamworkDevice]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import teamwork_device
+        from ....models.teamwork_device import TeamworkDevice
 
-        return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, TeamworkDevice, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -142,7 +142,7 @@ class TeamworkDeviceItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[teamwork_device.TeamworkDevice] = None, request_configuration: Optional[TeamworkDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[TeamworkDevice] = None, request_configuration: Optional[TeamworkDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property devices in teamwork
         Args:
@@ -150,8 +150,8 @@ class TeamworkDeviceItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -164,67 +164,67 @@ class TeamworkDeviceItemRequestBuilder():
         return request_info
     
     @property
-    def activity(self) -> activity_request_builder.ActivityRequestBuilder:
+    def activity(self) -> ActivityRequestBuilder:
         """
         Provides operations to manage the activity property of the microsoft.graph.teamworkDevice entity.
         """
-        from .activity import activity_request_builder
+        from .activity.activity_request_builder import ActivityRequestBuilder
 
-        return activity_request_builder.ActivityRequestBuilder(self.request_adapter, self.path_parameters)
+        return ActivityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def configuration(self) -> configuration_request_builder.ConfigurationRequestBuilder:
+    def configuration(self) -> ConfigurationRequestBuilder:
         """
         Provides operations to manage the configuration property of the microsoft.graph.teamworkDevice entity.
         """
-        from .configuration import configuration_request_builder
+        from .configuration.configuration_request_builder import ConfigurationRequestBuilder
 
-        return configuration_request_builder.ConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+        return ConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def health(self) -> health_request_builder.HealthRequestBuilder:
+    def health(self) -> HealthRequestBuilder:
         """
         Provides operations to manage the health property of the microsoft.graph.teamworkDevice entity.
         """
-        from .health import health_request_builder
+        from .health.health_request_builder import HealthRequestBuilder
 
-        return health_request_builder.HealthRequestBuilder(self.request_adapter, self.path_parameters)
+        return HealthRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
+    def operations(self) -> OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.teamworkDevice entity.
         """
-        from .operations import operations_request_builder
+        from .operations.operations_request_builder import OperationsRequestBuilder
 
-        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restart(self) -> restart_request_builder.RestartRequestBuilder:
+    def restart(self) -> RestartRequestBuilder:
         """
         Provides operations to call the restart method.
         """
-        from .restart import restart_request_builder
+        from .restart.restart_request_builder import RestartRequestBuilder
 
-        return restart_request_builder.RestartRequestBuilder(self.request_adapter, self.path_parameters)
+        return RestartRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def run_diagnostics(self) -> run_diagnostics_request_builder.RunDiagnosticsRequestBuilder:
+    def run_diagnostics(self) -> RunDiagnosticsRequestBuilder:
         """
         Provides operations to call the runDiagnostics method.
         """
-        from .run_diagnostics import run_diagnostics_request_builder
+        from .run_diagnostics.run_diagnostics_request_builder import RunDiagnosticsRequestBuilder
 
-        return run_diagnostics_request_builder.RunDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RunDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_software(self) -> update_software_request_builder.UpdateSoftwareRequestBuilder:
+    def update_software(self) -> UpdateSoftwareRequestBuilder:
         """
         Provides operations to call the updateSoftware method.
         """
-        from .update_software import update_software_request_builder
+        from .update_software.update_software_request_builder import UpdateSoftwareRequestBuilder
 
-        return update_software_request_builder.UpdateSoftwareRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateSoftwareRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TeamworkDeviceItemRequestBuilderDeleteRequestConfiguration():
@@ -250,8 +250,8 @@ class TeamworkDeviceItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

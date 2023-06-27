@@ -1,24 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import education_grading_category, entity
+    from .education_grading_category import EducationGradingCategory
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class EducationAssignmentSettings(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EducationAssignmentSettings and sets the default values.
-        """
-        super().__init__()
-        # The gradingCategories property
-        self._grading_categories: Optional[List[education_grading_category.EducationGradingCategory]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Indicates whether turn-in celebration animation will be shown. If true, the animation will not be shown. The default value is false.
-        self._submission_animation_disabled: Optional[bool] = None
+@dataclass
+class EducationAssignmentSettings(Entity):
+    # The gradingCategories property
+    grading_categories: Optional[List[EducationGradingCategory]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Indicates whether turn-in celebration animation will be shown. If true, the animation will not be shown. The default value is false.
+    submission_animation_disabled: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationAssignmentSettings:
@@ -28,8 +26,8 @@ class EducationAssignmentSettings(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: EducationAssignmentSettings
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return EducationAssignmentSettings()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,32 +35,19 @@ class EducationAssignmentSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import education_grading_category, entity
+        from .education_grading_category import EducationGradingCategory
+        from .entity import Entity
+
+        from .education_grading_category import EducationGradingCategory
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "gradingCategories": lambda n : setattr(self, 'grading_categories', n.get_collection_of_object_values(education_grading_category.EducationGradingCategory)),
+            "gradingCategories": lambda n : setattr(self, 'grading_categories', n.get_collection_of_object_values(EducationGradingCategory)),
             "submissionAnimationDisabled": lambda n : setattr(self, 'submission_animation_disabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def grading_categories(self,) -> Optional[List[education_grading_category.EducationGradingCategory]]:
-        """
-        Gets the gradingCategories property value. The gradingCategories property
-        Returns: Optional[List[education_grading_category.EducationGradingCategory]]
-        """
-        return self._grading_categories
-    
-    @grading_categories.setter
-    def grading_categories(self,value: Optional[List[education_grading_category.EducationGradingCategory]] = None) -> None:
-        """
-        Sets the gradingCategories property value. The gradingCategories property
-        Args:
-            value: Value to set for the grading_categories property.
-        """
-        self._grading_categories = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -70,27 +55,10 @@ class EducationAssignmentSettings(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("gradingCategories", self.grading_categories)
         writer.write_bool_value("submissionAnimationDisabled", self.submission_animation_disabled)
-    
-    @property
-    def submission_animation_disabled(self,) -> Optional[bool]:
-        """
-        Gets the submissionAnimationDisabled property value. Indicates whether turn-in celebration animation will be shown. If true, the animation will not be shown. The default value is false.
-        Returns: Optional[bool]
-        """
-        return self._submission_animation_disabled
-    
-    @submission_animation_disabled.setter
-    def submission_animation_disabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the submissionAnimationDisabled property value. Indicates whether turn-in celebration animation will be shown. If true, the animation will not be shown. The default value is false.
-        Args:
-            value: Value to set for the submission_animation_disabled property.
-        """
-        self._submission_animation_disabled = value
     
 

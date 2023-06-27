@@ -1,38 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import identity
+    from .identity import Identity
 
-from . import identity
+from .identity import Identity
 
-class AzureCommunicationServicesUserIdentity(identity.Identity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AzureCommunicationServicesUserIdentity and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.azureCommunicationServicesUserIdentity"
-        # The Azure Communication Services resource ID associated with the user.
-        self._azure_communication_services_resource_id: Optional[str] = None
-    
-    @property
-    def azure_communication_services_resource_id(self,) -> Optional[str]:
-        """
-        Gets the azureCommunicationServicesResourceId property value. The Azure Communication Services resource ID associated with the user.
-        Returns: Optional[str]
-        """
-        return self._azure_communication_services_resource_id
-    
-    @azure_communication_services_resource_id.setter
-    def azure_communication_services_resource_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureCommunicationServicesResourceId property value. The Azure Communication Services resource ID associated with the user.
-        Args:
-            value: Value to set for the azure_communication_services_resource_id property.
-        """
-        self._azure_communication_services_resource_id = value
+@dataclass
+class AzureCommunicationServicesUserIdentity(Identity):
+    odata_type = "#microsoft.graph.azureCommunicationServicesUserIdentity"
+    # The Azure Communication Services resource ID associated with the user.
+    azure_communication_services_resource_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureCommunicationServicesUserIdentity:
@@ -42,8 +22,8 @@ class AzureCommunicationServicesUserIdentity(identity.Identity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AzureCommunicationServicesUserIdentity
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AzureCommunicationServicesUserIdentity()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -51,7 +31,9 @@ class AzureCommunicationServicesUserIdentity(identity.Identity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import identity
+        from .identity import Identity
+
+        from .identity import Identity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "azureCommunicationServicesResourceId": lambda n : setattr(self, 'azure_communication_services_resource_id', n.get_str_value()),
@@ -66,8 +48,8 @@ class AzureCommunicationServicesUserIdentity(identity.Identity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("azureCommunicationServicesResourceId", self.azure_communication_services_resource_id)
     

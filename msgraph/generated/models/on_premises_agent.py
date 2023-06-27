@@ -1,47 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import agent_status, entity, on_premises_agent_group, on_premises_publishing_type
+    from .agent_status import AgentStatus
+    from .entity import Entity
+    from .on_premises_agent_group import OnPremisesAgentGroup
+    from .on_premises_publishing_type import OnPremisesPublishingType
 
-from . import entity
+from .entity import Entity
 
-class OnPremisesAgent(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OnPremisesAgent and sets the default values.
-        """
-        super().__init__()
-        # List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
-        self._agent_groups: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]] = None
-        # The external IP address as detected by the service for the agent machine. Read-only
-        self._external_ip: Optional[str] = None
-        # The name of the machine that the aggent is running on. Read-only
-        self._machine_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[agent_status.AgentStatus] = None
-        # The supportedPublishingTypes property
-        self._supported_publishing_types: Optional[List[on_premises_publishing_type.OnPremisesPublishingType]] = None
-    
-    @property
-    def agent_groups(self,) -> Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]:
-        """
-        Gets the agentGroups property value. List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
-        Returns: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]
-        """
-        return self._agent_groups
-    
-    @agent_groups.setter
-    def agent_groups(self,value: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]] = None) -> None:
-        """
-        Sets the agentGroups property value. List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
-        Args:
-            value: Value to set for the agent_groups property.
-        """
-        self._agent_groups = value
+@dataclass
+class OnPremisesAgent(Entity):
+    # List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
+    agent_groups: Optional[List[OnPremisesAgentGroup]] = None
+    # The external IP address as detected by the service for the agent machine. Read-only
+    external_ip: Optional[str] = None
+    # The name of the machine that the aggent is running on. Read-only
+    machine_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The status property
+    status: Optional[AgentStatus] = None
+    # The supportedPublishingTypes property
+    supported_publishing_types: Optional[List[OnPremisesPublishingType]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesAgent:
@@ -51,61 +34,35 @@ class OnPremisesAgent(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: OnPremisesAgent
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return OnPremisesAgent()
-    
-    @property
-    def external_ip(self,) -> Optional[str]:
-        """
-        Gets the externalIp property value. The external IP address as detected by the service for the agent machine. Read-only
-        Returns: Optional[str]
-        """
-        return self._external_ip
-    
-    @external_ip.setter
-    def external_ip(self,value: Optional[str] = None) -> None:
-        """
-        Sets the externalIp property value. The external IP address as detected by the service for the agent machine. Read-only
-        Args:
-            value: Value to set for the external_ip property.
-        """
-        self._external_ip = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import agent_status, entity, on_premises_agent_group, on_premises_publishing_type
+        from .agent_status import AgentStatus
+        from .entity import Entity
+        from .on_premises_agent_group import OnPremisesAgentGroup
+        from .on_premises_publishing_type import OnPremisesPublishingType
+
+        from .agent_status import AgentStatus
+        from .entity import Entity
+        from .on_premises_agent_group import OnPremisesAgentGroup
+        from .on_premises_publishing_type import OnPremisesPublishingType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
+            "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(OnPremisesAgentGroup)),
             "externalIp": lambda n : setattr(self, 'external_ip', n.get_str_value()),
             "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(agent_status.AgentStatus)),
-            "supportedPublishingTypes": lambda n : setattr(self, 'supported_publishing_types', n.get_collection_of_enum_values(on_premises_publishing_type.OnPremisesPublishingType)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(AgentStatus)),
+            "supportedPublishingTypes": lambda n : setattr(self, 'supported_publishing_types', n.get_collection_of_enum_values(OnPremisesPublishingType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def machine_name(self,) -> Optional[str]:
-        """
-        Gets the machineName property value. The name of the machine that the aggent is running on. Read-only
-        Returns: Optional[str]
-        """
-        return self._machine_name
-    
-    @machine_name.setter
-    def machine_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the machineName property value. The name of the machine that the aggent is running on. Read-only
-        Args:
-            value: Value to set for the machine_name property.
-        """
-        self._machine_name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -113,47 +70,13 @@ class OnPremisesAgent(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("agentGroups", self.agent_groups)
         writer.write_str_value("externalIp", self.external_ip)
         writer.write_str_value("machineName", self.machine_name)
         writer.write_enum_value("status", self.status)
-        writer.write_enum_value("supportedPublishingTypes", self.supported_publishing_types)
-    
-    @property
-    def status(self,) -> Optional[agent_status.AgentStatus]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[agent_status.AgentStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[agent_status.AgentStatus] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def supported_publishing_types(self,) -> Optional[List[on_premises_publishing_type.OnPremisesPublishingType]]:
-        """
-        Gets the supportedPublishingTypes property value. The supportedPublishingTypes property
-        Returns: Optional[List[on_premises_publishing_type.OnPremisesPublishingType]]
-        """
-        return self._supported_publishing_types
-    
-    @supported_publishing_types.setter
-    def supported_publishing_types(self,value: Optional[List[on_premises_publishing_type.OnPremisesPublishingType]] = None) -> None:
-        """
-        Sets the supportedPublishingTypes property value. The supportedPublishingTypes property
-        Args:
-            value: Value to set for the supported_publishing_types property.
-        """
-        self._supported_publishing_types = value
+        writer.write_collection_of_enum_values("supportedPublishingTypes", self.supported_publishing_types)
     
 

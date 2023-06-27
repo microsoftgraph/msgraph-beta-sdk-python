@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,22 +10,22 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import entitlement_management
-    from ...models.o_data_errors import o_data_error
-    from .access_package_assignment_approvals import access_package_assignment_approvals_request_builder
-    from .access_package_assignment_policies import access_package_assignment_policies_request_builder
-    from .access_package_assignment_requests import access_package_assignment_requests_request_builder
-    from .access_package_assignment_resource_roles import access_package_assignment_resource_roles_request_builder
-    from .access_package_assignments import access_package_assignments_request_builder
-    from .access_package_catalogs import access_package_catalogs_request_builder
-    from .access_package_resource_environments import access_package_resource_environments_request_builder
-    from .access_package_resource_requests import access_package_resource_requests_request_builder
-    from .access_package_resource_role_scopes import access_package_resource_role_scopes_request_builder
-    from .access_package_resources import access_package_resources_request_builder
-    from .access_packages import access_packages_request_builder
-    from .connected_organizations import connected_organizations_request_builder
-    from .settings import settings_request_builder
-    from .subjects import subjects_request_builder
+    from ...models.entitlement_management import EntitlementManagement
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .access_package_assignment_approvals.access_package_assignment_approvals_request_builder import AccessPackageAssignmentApprovalsRequestBuilder
+    from .access_package_assignment_policies.access_package_assignment_policies_request_builder import AccessPackageAssignmentPoliciesRequestBuilder
+    from .access_package_assignment_requests.access_package_assignment_requests_request_builder import AccessPackageAssignmentRequestsRequestBuilder
+    from .access_package_assignment_resource_roles.access_package_assignment_resource_roles_request_builder import AccessPackageAssignmentResourceRolesRequestBuilder
+    from .access_package_assignments.access_package_assignments_request_builder import AccessPackageAssignmentsRequestBuilder
+    from .access_package_catalogs.access_package_catalogs_request_builder import AccessPackageCatalogsRequestBuilder
+    from .access_package_resource_environments.access_package_resource_environments_request_builder import AccessPackageResourceEnvironmentsRequestBuilder
+    from .access_package_resource_requests.access_package_resource_requests_request_builder import AccessPackageResourceRequestsRequestBuilder
+    from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
+    from .access_package_resources.access_package_resources_request_builder import AccessPackageResourcesRequestBuilder
+    from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
+    from .connected_organizations.connected_organizations_request_builder import ConnectedOrganizationsRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
+    from .subjects.subjects_request_builder import SubjectsRequestBuilder
 
 class EntitlementManagementRequestBuilder():
     """
@@ -38,10 +38,10 @@ class EntitlementManagementRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/entitlementManagement{?%24select,%24expand}"
 
@@ -58,62 +58,62 @@ class EntitlementManagementRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EntitlementManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[entitlement_management.EntitlementManagement]:
+    async def get(self,request_configuration: Optional[EntitlementManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[EntitlementManagement]:
         """
         Get entitlementManagement from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[entitlement_management.EntitlementManagement]
+        Returns: Optional[EntitlementManagement]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import entitlement_management
+        from ...models.entitlement_management import EntitlementManagement
 
-        return await self.request_adapter.send_async(request_info, entitlement_management.EntitlementManagement, error_mapping)
+        return await self.request_adapter.send_async(request_info, EntitlementManagement, error_mapping)
     
-    async def patch(self,body: Optional[entitlement_management.EntitlementManagement] = None, request_configuration: Optional[EntitlementManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[entitlement_management.EntitlementManagement]:
+    async def patch(self,body: Optional[EntitlementManagement] = None, request_configuration: Optional[EntitlementManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[EntitlementManagement]:
         """
         Update the navigation property entitlementManagement in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[entitlement_management.EntitlementManagement]
+        Returns: Optional[EntitlementManagement]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import entitlement_management
+        from ...models.entitlement_management import EntitlementManagement
 
-        return await self.request_adapter.send_async(request_info, entitlement_management.EntitlementManagement, error_mapping)
+        return await self.request_adapter.send_async(request_info, EntitlementManagement, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EntitlementManagementRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -149,7 +149,7 @@ class EntitlementManagementRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[entitlement_management.EntitlementManagement] = None, request_configuration: Optional[EntitlementManagementRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EntitlementManagement] = None, request_configuration: Optional[EntitlementManagementRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property entitlementManagement in identityGovernance
         Args:
@@ -157,8 +157,8 @@ class EntitlementManagementRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -171,130 +171,130 @@ class EntitlementManagementRequestBuilder():
         return request_info
     
     @property
-    def access_package_assignment_approvals(self) -> access_package_assignment_approvals_request_builder.AccessPackageAssignmentApprovalsRequestBuilder:
+    def access_package_assignment_approvals(self) -> AccessPackageAssignmentApprovalsRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentApprovals property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_assignment_approvals import access_package_assignment_approvals_request_builder
+        from .access_package_assignment_approvals.access_package_assignment_approvals_request_builder import AccessPackageAssignmentApprovalsRequestBuilder
 
-        return access_package_assignment_approvals_request_builder.AccessPackageAssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_assignment_policies(self) -> access_package_assignment_policies_request_builder.AccessPackageAssignmentPoliciesRequestBuilder:
+    def access_package_assignment_policies(self) -> AccessPackageAssignmentPoliciesRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentPolicies property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_assignment_policies import access_package_assignment_policies_request_builder
+        from .access_package_assignment_policies.access_package_assignment_policies_request_builder import AccessPackageAssignmentPoliciesRequestBuilder
 
-        return access_package_assignment_policies_request_builder.AccessPackageAssignmentPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_assignment_requests(self) -> access_package_assignment_requests_request_builder.AccessPackageAssignmentRequestsRequestBuilder:
+    def access_package_assignment_requests(self) -> AccessPackageAssignmentRequestsRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentRequests property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_assignment_requests import access_package_assignment_requests_request_builder
+        from .access_package_assignment_requests.access_package_assignment_requests_request_builder import AccessPackageAssignmentRequestsRequestBuilder
 
-        return access_package_assignment_requests_request_builder.AccessPackageAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_assignment_resource_roles(self) -> access_package_assignment_resource_roles_request_builder.AccessPackageAssignmentResourceRolesRequestBuilder:
+    def access_package_assignment_resource_roles(self) -> AccessPackageAssignmentResourceRolesRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentResourceRoles property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_assignment_resource_roles import access_package_assignment_resource_roles_request_builder
+        from .access_package_assignment_resource_roles.access_package_assignment_resource_roles_request_builder import AccessPackageAssignmentResourceRolesRequestBuilder
 
-        return access_package_assignment_resource_roles_request_builder.AccessPackageAssignmentResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_assignments(self) -> access_package_assignments_request_builder.AccessPackageAssignmentsRequestBuilder:
+    def access_package_assignments(self) -> AccessPackageAssignmentsRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignments property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_assignments import access_package_assignments_request_builder
+        from .access_package_assignments.access_package_assignments_request_builder import AccessPackageAssignmentsRequestBuilder
 
-        return access_package_assignments_request_builder.AccessPackageAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_catalogs(self) -> access_package_catalogs_request_builder.AccessPackageCatalogsRequestBuilder:
+    def access_package_catalogs(self) -> AccessPackageCatalogsRequestBuilder:
         """
         Provides operations to manage the accessPackageCatalogs property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_catalogs import access_package_catalogs_request_builder
+        from .access_package_catalogs.access_package_catalogs_request_builder import AccessPackageCatalogsRequestBuilder
 
-        return access_package_catalogs_request_builder.AccessPackageCatalogsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageCatalogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_resource_environments(self) -> access_package_resource_environments_request_builder.AccessPackageResourceEnvironmentsRequestBuilder:
+    def access_package_resource_environments(self) -> AccessPackageResourceEnvironmentsRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceEnvironments property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_resource_environments import access_package_resource_environments_request_builder
+        from .access_package_resource_environments.access_package_resource_environments_request_builder import AccessPackageResourceEnvironmentsRequestBuilder
 
-        return access_package_resource_environments_request_builder.AccessPackageResourceEnvironmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageResourceEnvironmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_resource_requests(self) -> access_package_resource_requests_request_builder.AccessPackageResourceRequestsRequestBuilder:
+    def access_package_resource_requests(self) -> AccessPackageResourceRequestsRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRequests property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_resource_requests import access_package_resource_requests_request_builder
+        from .access_package_resource_requests.access_package_resource_requests_request_builder import AccessPackageResourceRequestsRequestBuilder
 
-        return access_package_resource_requests_request_builder.AccessPackageResourceRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageResourceRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_resource_role_scopes(self) -> access_package_resource_role_scopes_request_builder.AccessPackageResourceRoleScopesRequestBuilder:
+    def access_package_resource_role_scopes(self) -> AccessPackageResourceRoleScopesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRoleScopes property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_resource_role_scopes import access_package_resource_role_scopes_request_builder
+        from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
 
-        return access_package_resource_role_scopes_request_builder.AccessPackageResourceRoleScopesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageResourceRoleScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_resources(self) -> access_package_resources_request_builder.AccessPackageResourcesRequestBuilder:
+    def access_package_resources(self) -> AccessPackageResourcesRequestBuilder:
         """
         Provides operations to manage the accessPackageResources property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_package_resources import access_package_resources_request_builder
+        from .access_package_resources.access_package_resources_request_builder import AccessPackageResourcesRequestBuilder
 
-        return access_package_resources_request_builder.AccessPackageResourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_packages(self) -> access_packages_request_builder.AccessPackagesRequestBuilder:
+    def access_packages(self) -> AccessPackagesRequestBuilder:
         """
         Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
         """
-        from .access_packages import access_packages_request_builder
+        from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
 
-        return access_packages_request_builder.AccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def connected_organizations(self) -> connected_organizations_request_builder.ConnectedOrganizationsRequestBuilder:
+    def connected_organizations(self) -> ConnectedOrganizationsRequestBuilder:
         """
         Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.
         """
-        from .connected_organizations import connected_organizations_request_builder
+        from .connected_organizations.connected_organizations_request_builder import ConnectedOrganizationsRequestBuilder
 
-        return connected_organizations_request_builder.ConnectedOrganizationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ConnectedOrganizationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+    def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.entitlementManagement entity.
         """
-        from .settings import settings_request_builder
+        from .settings.settings_request_builder import SettingsRequestBuilder
 
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def subjects(self) -> subjects_request_builder.SubjectsRequestBuilder:
+    def subjects(self) -> SubjectsRequestBuilder:
         """
         Provides operations to manage the subjects property of the microsoft.graph.entitlementManagement entity.
         """
-        from .subjects import subjects_request_builder
+        from .subjects.subjects_request_builder import SubjectsRequestBuilder
 
-        return subjects_request_builder.SubjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EntitlementManagementRequestBuilderDeleteRequestConfiguration():
@@ -320,8 +320,8 @@ class EntitlementManagementRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

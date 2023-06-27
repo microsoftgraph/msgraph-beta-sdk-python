@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,15 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import user_experience_analytics_baseline
-    from ....models.o_data_errors import o_data_error
-    from .app_health_metrics import app_health_metrics_request_builder
-    from .battery_health_metrics import battery_health_metrics_request_builder
-    from .best_practices_metrics import best_practices_metrics_request_builder
-    from .device_boot_performance_metrics import device_boot_performance_metrics_request_builder
-    from .reboot_analytics_metrics import reboot_analytics_metrics_request_builder
-    from .resource_performance_metrics import resource_performance_metrics_request_builder
-    from .work_from_anywhere_metrics import work_from_anywhere_metrics_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.user_experience_analytics_baseline import UserExperienceAnalyticsBaseline
+    from .app_health_metrics.app_health_metrics_request_builder import AppHealthMetricsRequestBuilder
+    from .battery_health_metrics.battery_health_metrics_request_builder import BatteryHealthMetricsRequestBuilder
+    from .best_practices_metrics.best_practices_metrics_request_builder import BestPracticesMetricsRequestBuilder
+    from .device_boot_performance_metrics.device_boot_performance_metrics_request_builder import DeviceBootPerformanceMetricsRequestBuilder
+    from .reboot_analytics_metrics.reboot_analytics_metrics_request_builder import RebootAnalyticsMetricsRequestBuilder
+    from .resource_performance_metrics.resource_performance_metrics_request_builder import ResourcePerformanceMetricsRequestBuilder
+    from .work_from_anywhere_metrics.work_from_anywhere_metrics_request_builder import WorkFromAnywhereMetricsRequestBuilder
 
 class UserExperienceAnalyticsBaselineItemRequestBuilder():
     """
@@ -31,10 +31,10 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}{?%24select,%24expand}"
 
@@ -51,62 +51,62 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsBaseline]:
         """
         User experience analytics baselines
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]
+        Returns: Optional[UserExperienceAnalyticsBaseline]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import user_experience_analytics_baseline
+        from ....models.user_experience_analytics_baseline import UserExperienceAnalyticsBaseline
 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsBaseline, error_mapping)
     
-    async def patch(self,body: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
+    async def patch(self,body: Optional[UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsBaseline]:
         """
         Update the navigation property userExperienceAnalyticsBaselines in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]
+        Returns: Optional[UserExperienceAnalyticsBaseline]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import user_experience_analytics_baseline
+        from ....models.user_experience_analytics_baseline import UserExperienceAnalyticsBaseline
 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsBaseline, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -142,7 +142,7 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property userExperienceAnalyticsBaselines in deviceManagement
         Args:
@@ -150,8 +150,8 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -164,67 +164,67 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         return request_info
     
     @property
-    def app_health_metrics(self) -> app_health_metrics_request_builder.AppHealthMetricsRequestBuilder:
+    def app_health_metrics(self) -> AppHealthMetricsRequestBuilder:
         """
         Provides operations to manage the appHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
-        from .app_health_metrics import app_health_metrics_request_builder
+        from .app_health_metrics.app_health_metrics_request_builder import AppHealthMetricsRequestBuilder
 
-        return app_health_metrics_request_builder.AppHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def battery_health_metrics(self) -> battery_health_metrics_request_builder.BatteryHealthMetricsRequestBuilder:
+    def battery_health_metrics(self) -> BatteryHealthMetricsRequestBuilder:
         """
         Provides operations to manage the batteryHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
-        from .battery_health_metrics import battery_health_metrics_request_builder
+        from .battery_health_metrics.battery_health_metrics_request_builder import BatteryHealthMetricsRequestBuilder
 
-        return battery_health_metrics_request_builder.BatteryHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return BatteryHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def best_practices_metrics(self) -> best_practices_metrics_request_builder.BestPracticesMetricsRequestBuilder:
+    def best_practices_metrics(self) -> BestPracticesMetricsRequestBuilder:
         """
         Provides operations to manage the bestPracticesMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
-        from .best_practices_metrics import best_practices_metrics_request_builder
+        from .best_practices_metrics.best_practices_metrics_request_builder import BestPracticesMetricsRequestBuilder
 
-        return best_practices_metrics_request_builder.BestPracticesMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return BestPracticesMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_boot_performance_metrics(self) -> device_boot_performance_metrics_request_builder.DeviceBootPerformanceMetricsRequestBuilder:
+    def device_boot_performance_metrics(self) -> DeviceBootPerformanceMetricsRequestBuilder:
         """
         Provides operations to manage the deviceBootPerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
-        from .device_boot_performance_metrics import device_boot_performance_metrics_request_builder
+        from .device_boot_performance_metrics.device_boot_performance_metrics_request_builder import DeviceBootPerformanceMetricsRequestBuilder
 
-        return device_boot_performance_metrics_request_builder.DeviceBootPerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceBootPerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reboot_analytics_metrics(self) -> reboot_analytics_metrics_request_builder.RebootAnalyticsMetricsRequestBuilder:
+    def reboot_analytics_metrics(self) -> RebootAnalyticsMetricsRequestBuilder:
         """
         Provides operations to manage the rebootAnalyticsMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
-        from .reboot_analytics_metrics import reboot_analytics_metrics_request_builder
+        from .reboot_analytics_metrics.reboot_analytics_metrics_request_builder import RebootAnalyticsMetricsRequestBuilder
 
-        return reboot_analytics_metrics_request_builder.RebootAnalyticsMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RebootAnalyticsMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def resource_performance_metrics(self) -> resource_performance_metrics_request_builder.ResourcePerformanceMetricsRequestBuilder:
+    def resource_performance_metrics(self) -> ResourcePerformanceMetricsRequestBuilder:
         """
         Provides operations to manage the resourcePerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
-        from .resource_performance_metrics import resource_performance_metrics_request_builder
+        from .resource_performance_metrics.resource_performance_metrics_request_builder import ResourcePerformanceMetricsRequestBuilder
 
-        return resource_performance_metrics_request_builder.ResourcePerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourcePerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def work_from_anywhere_metrics(self) -> work_from_anywhere_metrics_request_builder.WorkFromAnywhereMetricsRequestBuilder:
+    def work_from_anywhere_metrics(self) -> WorkFromAnywhereMetricsRequestBuilder:
         """
         Provides operations to manage the workFromAnywhereMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
-        from .work_from_anywhere_metrics import work_from_anywhere_metrics_request_builder
+        from .work_from_anywhere_metrics.work_from_anywhere_metrics_request_builder import WorkFromAnywhereMetricsRequestBuilder
 
-        return work_from_anywhere_metrics_request_builder.WorkFromAnywhereMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return WorkFromAnywhereMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UserExperienceAnalyticsBaselineItemRequestBuilderDeleteRequestConfiguration():
@@ -250,8 +250,8 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

@@ -1,22 +1,19 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import group_policy_presentation_value
+    from .group_policy_presentation_value import GroupPolicyPresentationValue
 
-from . import group_policy_presentation_value
+from .group_policy_presentation_value import GroupPolicyPresentationValue
 
-class GroupPolicyPresentationValueBoolean(group_policy_presentation_value.GroupPolicyPresentationValue):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GroupPolicyPresentationValueBoolean and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # An boolean value for the associated presentation.
-        self._value: Optional[bool] = None
+@dataclass
+class GroupPolicyPresentationValueBoolean(GroupPolicyPresentationValue):
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # An boolean value for the associated presentation.
+    value: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyPresentationValueBoolean:
@@ -26,8 +23,8 @@ class GroupPolicyPresentationValueBoolean(group_policy_presentation_value.GroupP
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: GroupPolicyPresentationValueBoolean
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return GroupPolicyPresentationValueBoolean()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -35,7 +32,9 @@ class GroupPolicyPresentationValueBoolean(group_policy_presentation_value.GroupP
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import group_policy_presentation_value
+        from .group_policy_presentation_value import GroupPolicyPresentationValue
+
+        from .group_policy_presentation_value import GroupPolicyPresentationValue
 
         fields: Dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_bool_value()),
@@ -50,26 +49,9 @@ class GroupPolicyPresentationValueBoolean(group_policy_presentation_value.GroupP
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[bool]:
-        """
-        Gets the value property value. An boolean value for the associated presentation.
-        Returns: Optional[bool]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the value property value. An boolean value for the associated presentation.
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

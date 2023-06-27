@@ -1,19 +1,16 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import conditional_access_external_tenants
+    from .conditional_access_external_tenants import ConditionalAccessExternalTenants
 
-from . import conditional_access_external_tenants
+from .conditional_access_external_tenants import ConditionalAccessExternalTenants
 
-class ConditionalAccessAllExternalTenants(conditional_access_external_tenants.ConditionalAccessExternalTenants):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ConditionalAccessAllExternalTenants and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.conditionalAccessAllExternalTenants"
+@dataclass
+class ConditionalAccessAllExternalTenants(ConditionalAccessExternalTenants):
+    odata_type = "#microsoft.graph.conditionalAccessAllExternalTenants"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConditionalAccessAllExternalTenants:
@@ -23,8 +20,8 @@ class ConditionalAccessAllExternalTenants(conditional_access_external_tenants.Co
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ConditionalAccessAllExternalTenants
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ConditionalAccessAllExternalTenants()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -32,7 +29,9 @@ class ConditionalAccessAllExternalTenants(conditional_access_external_tenants.Co
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import conditional_access_external_tenants
+        from .conditional_access_external_tenants import ConditionalAccessExternalTenants
+
+        from .conditional_access_external_tenants import ConditionalAccessExternalTenants
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -46,8 +45,8 @@ class ConditionalAccessAllExternalTenants(conditional_access_external_tenants.Co
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

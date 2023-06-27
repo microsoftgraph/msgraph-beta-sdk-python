@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import policy_set
-    from ....models.o_data_errors import o_data_error
-    from .assignments import assignments_request_builder
-    from .items import items_request_builder
-    from .update import update_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.policy_set import PolicySet
+    from .assignments.assignments_request_builder import AssignmentsRequestBuilder
+    from .items.items_request_builder import ItemsRequestBuilder
+    from .update.update_request_builder import UpdateRequestBuilder
 
 class PolicySetItemRequestBuilder():
     """
@@ -27,10 +27,10 @@ class PolicySetItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceAppManagement/policySets/{policySet%2Did}{?%24select,%24expand}"
 
@@ -47,62 +47,62 @@ class PolicySetItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PolicySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[policy_set.PolicySet]:
+    async def get(self,request_configuration: Optional[PolicySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PolicySet]:
         """
         The PolicySet of Policies and Applications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[policy_set.PolicySet]
+        Returns: Optional[PolicySet]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import policy_set
+        from ....models.policy_set import PolicySet
 
-        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
+        return await self.request_adapter.send_async(request_info, PolicySet, error_mapping)
     
-    async def patch(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[policy_set.PolicySet]:
+    async def patch(self,body: Optional[PolicySet] = None, request_configuration: Optional[PolicySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PolicySet]:
         """
         Update the navigation property policySets in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[policy_set.PolicySet]
+        Returns: Optional[PolicySet]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import policy_set
+        from ....models.policy_set import PolicySet
 
-        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
+        return await self.request_adapter.send_async(request_info, PolicySet, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PolicySetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -138,7 +138,7 @@ class PolicySetItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PolicySet] = None, request_configuration: Optional[PolicySetItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property policySets in deviceAppManagement
         Args:
@@ -146,8 +146,8 @@ class PolicySetItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,31 +160,31 @@ class PolicySetItemRequestBuilder():
         return request_info
     
     @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+    def assignments(self) -> AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.policySet entity.
         """
-        from .assignments import assignments_request_builder
+        from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def items(self) -> items_request_builder.ItemsRequestBuilder:
+    def items(self) -> ItemsRequestBuilder:
         """
         Provides operations to manage the items property of the microsoft.graph.policySet entity.
         """
-        from .items import items_request_builder
+        from .items.items_request_builder import ItemsRequestBuilder
 
-        return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update(self) -> update_request_builder.UpdateRequestBuilder:
+    def update(self) -> UpdateRequestBuilder:
         """
         Provides operations to call the update method.
         """
-        from .update import update_request_builder
+        from .update.update_request_builder import UpdateRequestBuilder
 
-        return update_request_builder.UpdateRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PolicySetItemRequestBuilderDeleteRequestConfiguration():
@@ -210,8 +210,8 @@ class PolicySetItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models.o_data_errors import o_data_error
-    from .......models.security import ediscovery_hold_policy
-    from .site_sources import site_sources_request_builder
-    from .user_sources import user_sources_request_builder
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .......models.security.ediscovery_hold_policy import EdiscoveryHoldPolicy
+    from .site_sources.site_sources_request_builder import SiteSourcesRequestBuilder
+    from .user_sources.user_sources_request_builder import UserSourcesRequestBuilder
 
 class EdiscoveryHoldPolicyItemRequestBuilder():
     """
@@ -26,10 +26,10 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/legalHolds/{ediscoveryHoldPolicy%2Did}{?%24select,%24expand}"
 
@@ -46,62 +46,62 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]:
+    async def get(self,request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EdiscoveryHoldPolicy]:
         """
         Returns a list of case eDiscoveryHoldPolicy objects for this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]
+        Returns: Optional[EdiscoveryHoldPolicy]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.security import ediscovery_hold_policy
+        from .......models.security.ediscovery_hold_policy import EdiscoveryHoldPolicy
 
-        return await self.request_adapter.send_async(request_info, ediscovery_hold_policy.EdiscoveryHoldPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, EdiscoveryHoldPolicy, error_mapping)
     
-    async def patch(self,body: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy] = None, request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]:
+    async def patch(self,body: Optional[EdiscoveryHoldPolicy] = None, request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EdiscoveryHoldPolicy]:
         """
         Update the navigation property legalHolds in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]
+        Returns: Optional[EdiscoveryHoldPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.security import ediscovery_hold_policy
+        from .......models.security.ediscovery_hold_policy import EdiscoveryHoldPolicy
 
-        return await self.request_adapter.send_async(request_info, ediscovery_hold_policy.EdiscoveryHoldPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, EdiscoveryHoldPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -137,7 +137,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy] = None, request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EdiscoveryHoldPolicy] = None, request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property legalHolds in security
         Args:
@@ -145,8 +145,8 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,22 +159,22 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
         return request_info
     
     @property
-    def site_sources(self) -> site_sources_request_builder.SiteSourcesRequestBuilder:
+    def site_sources(self) -> SiteSourcesRequestBuilder:
         """
         Provides operations to manage the siteSources property of the microsoft.graph.security.ediscoveryHoldPolicy entity.
         """
-        from .site_sources import site_sources_request_builder
+        from .site_sources.site_sources_request_builder import SiteSourcesRequestBuilder
 
-        return site_sources_request_builder.SiteSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SiteSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_sources(self) -> user_sources_request_builder.UserSourcesRequestBuilder:
+    def user_sources(self) -> UserSourcesRequestBuilder:
         """
         Provides operations to manage the userSources property of the microsoft.graph.security.ediscoveryHoldPolicy entity.
         """
-        from .user_sources import user_sources_request_builder
+        from .user_sources.user_sources_request_builder import UserSourcesRequestBuilder
 
-        return user_sources_request_builder.UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EdiscoveryHoldPolicyItemRequestBuilderDeleteRequestConfiguration():
@@ -200,8 +200,8 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

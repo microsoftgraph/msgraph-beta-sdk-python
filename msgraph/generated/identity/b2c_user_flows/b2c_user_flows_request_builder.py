@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import b2c_identity_user_flow, b2c_identity_user_flow_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import b2c_identity_user_flow_item_request_builder
+    from ...models.b2c_identity_user_flow import B2cIdentityUserFlow
+    from ...models.b2c_identity_user_flow_collection_response import B2cIdentityUserFlowCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.b2c_identity_user_flow_item_request_builder import B2cIdentityUserFlowItemRequestBuilder
 
 class B2cUserFlowsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class B2cUserFlowsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identity/b2cUserFlows{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class B2cUserFlowsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_b2c_identity_user_flow_id(self,b2c_identity_user_flow_id: str) -> b2c_identity_user_flow_item_request_builder.B2cIdentityUserFlowItemRequestBuilder:
+    def by_b2c_identity_user_flow_id(self,b2c_identity_user_flow_id: str) -> B2cIdentityUserFlowItemRequestBuilder:
         """
         Provides operations to manage the b2cUserFlows property of the microsoft.graph.identityContainer entity.
         Args:
             b2c_identity_user_flow_id: Unique identifier of the item
-        Returns: b2c_identity_user_flow_item_request_builder.B2cIdentityUserFlowItemRequestBuilder
+        Returns: B2cIdentityUserFlowItemRequestBuilder
         """
-        if b2c_identity_user_flow_id is None:
-            raise Exception("b2c_identity_user_flow_id cannot be undefined")
-        from .item import b2c_identity_user_flow_item_request_builder
+        if not b2c_identity_user_flow_id:
+            raise TypeError("b2c_identity_user_flow_id cannot be null.")
+        from .item.b2c_identity_user_flow_item_request_builder import B2cIdentityUserFlowItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["b2cIdentityUserFlow%2Did"] = b2c_identity_user_flow_id
-        return b2c_identity_user_flow_item_request_builder.B2cIdentityUserFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return B2cIdentityUserFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[B2cUserFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[b2c_identity_user_flow_collection_response.B2cIdentityUserFlowCollectionResponse]:
+    async def get(self,request_configuration: Optional[B2cUserFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[B2cIdentityUserFlowCollectionResponse]:
         """
         Retrieve a list of b2cIdentityUserFlow objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[b2c_identity_user_flow_collection_response.B2cIdentityUserFlowCollectionResponse]
+        Returns: Optional[B2cIdentityUserFlowCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import b2c_identity_user_flow_collection_response
+        from ...models.b2c_identity_user_flow_collection_response import B2cIdentityUserFlowCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, b2c_identity_user_flow_collection_response.B2cIdentityUserFlowCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, B2cIdentityUserFlowCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[b2c_identity_user_flow.B2cIdentityUserFlow] = None, request_configuration: Optional[B2cUserFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[b2c_identity_user_flow.B2cIdentityUserFlow]:
+    async def post(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cUserFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
         Create a new b2cIdentityUserFlow object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[b2c_identity_user_flow.B2cIdentityUserFlow]
+        Returns: Optional[B2cIdentityUserFlow]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import b2c_identity_user_flow
+        from ...models.b2c_identity_user_flow import B2cIdentityUserFlow
 
-        return await self.request_adapter.send_async(request_info, b2c_identity_user_flow.B2cIdentityUserFlow, error_mapping)
+        return await self.request_adapter.send_async(request_info, B2cIdentityUserFlow, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[B2cUserFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class B2cUserFlowsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[b2c_identity_user_flow.B2cIdentityUserFlow] = None, request_configuration: Optional[B2cUserFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cUserFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new b2cIdentityUserFlow object.
         Args:
@@ -125,8 +126,8 @@ class B2cUserFlowsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class B2cUserFlowsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class B2cUserFlowsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class B2cUserFlowsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

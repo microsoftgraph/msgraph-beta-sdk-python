@@ -1,22 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, information_protection_label
+    from .entity import Entity
+    from .information_protection_label import InformationProtectionLabel
 
-from . import entity
+from .entity import Entity
 
-class InformationProtectionPolicy(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new informationProtectionPolicy and sets the default values.
-        """
-        super().__init__()
-        # The labels property
-        self._labels: Optional[List[information_protection_label.InformationProtectionLabel]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+@dataclass
+class InformationProtectionPolicy(Entity):
+    # The labels property
+    labels: Optional[List[InformationProtectionLabel]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InformationProtectionPolicy:
@@ -26,8 +24,8 @@ class InformationProtectionPolicy(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: InformationProtectionPolicy
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return InformationProtectionPolicy()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -35,31 +33,18 @@ class InformationProtectionPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, information_protection_label
+        from .entity import Entity
+        from .information_protection_label import InformationProtectionLabel
+
+        from .entity import Entity
+        from .information_protection_label import InformationProtectionLabel
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "labels": lambda n : setattr(self, 'labels', n.get_collection_of_object_values(information_protection_label.InformationProtectionLabel)),
+            "labels": lambda n : setattr(self, 'labels', n.get_collection_of_object_values(InformationProtectionLabel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def labels(self,) -> Optional[List[information_protection_label.InformationProtectionLabel]]:
-        """
-        Gets the labels property value. The labels property
-        Returns: Optional[List[information_protection_label.InformationProtectionLabel]]
-        """
-        return self._labels
-    
-    @labels.setter
-    def labels(self,value: Optional[List[information_protection_label.InformationProtectionLabel]] = None) -> None:
-        """
-        Sets the labels property value. The labels property
-        Args:
-            value: Value to set for the labels property.
-        """
-        self._labels = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -67,8 +52,8 @@ class InformationProtectionPolicy(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("labels", self.labels)
     

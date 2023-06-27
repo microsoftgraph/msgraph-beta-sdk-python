@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import education_root
-    from ..models.o_data_errors import o_data_error
-    from .classes import classes_request_builder
-    from .me import me_request_builder
-    from .schools import schools_request_builder
-    from .synchronization_profiles import synchronization_profiles_request_builder
-    from .users import users_request_builder
+    from ..models.education_root import EducationRoot
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .classes.classes_request_builder import ClassesRequestBuilder
+    from .me.me_request_builder import MeRequestBuilder
+    from .schools.schools_request_builder import SchoolsRequestBuilder
+    from .synchronization_profiles.synchronization_profiles_request_builder import SynchronizationProfilesRequestBuilder
+    from .users.users_request_builder import UsersRequestBuilder
 
 class EducationRequestBuilder():
     """
@@ -29,10 +29,10 @@ class EducationRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/education{?%24select,%24expand}"
 
@@ -40,52 +40,52 @@ class EducationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EducationRequestBuilderGetRequestConfiguration] = None) -> Optional[education_root.EducationRoot]:
+    async def get(self,request_configuration: Optional[EducationRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationRoot]:
         """
         Get education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_root.EducationRoot]
+        Returns: Optional[EducationRoot]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import education_root
+        from ..models.education_root import EducationRoot
 
-        return await self.request_adapter.send_async(request_info, education_root.EducationRoot, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationRoot, error_mapping)
     
-    async def patch(self,body: Optional[education_root.EducationRoot] = None, request_configuration: Optional[EducationRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_root.EducationRoot]:
+    async def patch(self,body: Optional[EducationRoot] = None, request_configuration: Optional[EducationRequestBuilderPatchRequestConfiguration] = None) -> Optional[EducationRoot]:
         """
         Update education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_root.EducationRoot]
+        Returns: Optional[EducationRoot]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import education_root
+        from ..models.education_root import EducationRoot
 
-        return await self.request_adapter.send_async(request_info, education_root.EducationRoot, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationRoot, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EducationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -105,7 +105,7 @@ class EducationRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[education_root.EducationRoot] = None, request_configuration: Optional[EducationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EducationRoot] = None, request_configuration: Optional[EducationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update education
         Args:
@@ -113,8 +113,8 @@ class EducationRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -127,49 +127,49 @@ class EducationRequestBuilder():
         return request_info
     
     @property
-    def classes(self) -> classes_request_builder.ClassesRequestBuilder:
+    def classes(self) -> ClassesRequestBuilder:
         """
         Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.
         """
-        from .classes import classes_request_builder
+        from .classes.classes_request_builder import ClassesRequestBuilder
 
-        return classes_request_builder.ClassesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ClassesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def me(self) -> me_request_builder.MeRequestBuilder:
+    def me(self) -> MeRequestBuilder:
         """
         Provides operations to manage the me property of the microsoft.graph.educationRoot entity.
         """
-        from .me import me_request_builder
+        from .me.me_request_builder import MeRequestBuilder
 
-        return me_request_builder.MeRequestBuilder(self.request_adapter, self.path_parameters)
+        return MeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def schools(self) -> schools_request_builder.SchoolsRequestBuilder:
+    def schools(self) -> SchoolsRequestBuilder:
         """
         Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.
         """
-        from .schools import schools_request_builder
+        from .schools.schools_request_builder import SchoolsRequestBuilder
 
-        return schools_request_builder.SchoolsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SchoolsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def synchronization_profiles(self) -> synchronization_profiles_request_builder.SynchronizationProfilesRequestBuilder:
+    def synchronization_profiles(self) -> SynchronizationProfilesRequestBuilder:
         """
         Provides operations to manage the synchronizationProfiles property of the microsoft.graph.educationRoot entity.
         """
-        from .synchronization_profiles import synchronization_profiles_request_builder
+        from .synchronization_profiles.synchronization_profiles_request_builder import SynchronizationProfilesRequestBuilder
 
-        return synchronization_profiles_request_builder.SynchronizationProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SynchronizationProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def users(self) -> users_request_builder.UsersRequestBuilder:
+    def users(self) -> UsersRequestBuilder:
         """
         Provides operations to manage the users property of the microsoft.graph.educationRoot entity.
         """
-        from .users import users_request_builder
+        from .users.users_request_builder import UsersRequestBuilder
 
-        return users_request_builder.UsersRequestBuilder(self.request_adapter, self.path_parameters)
+        return UsersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EducationRequestBuilderGetQueryParameters():
@@ -183,8 +183,8 @@ class EducationRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

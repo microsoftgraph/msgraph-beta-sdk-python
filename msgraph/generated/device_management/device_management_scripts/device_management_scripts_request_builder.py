@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import device_management_script, device_management_script_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .has_payload_links import has_payload_links_request_builder
-    from .item import device_management_script_item_request_builder
+    from ...models.device_management_script import DeviceManagementScript
+    from ...models.device_management_script_collection_response import DeviceManagementScriptCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
+    from .item.device_management_script_item_request_builder import DeviceManagementScriptItemRequestBuilder
 
 class DeviceManagementScriptsRequestBuilder():
     """
@@ -27,10 +28,10 @@ class DeviceManagementScriptsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/deviceManagementScripts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,67 +39,67 @@ class DeviceManagementScriptsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_device_management_script_id(self,device_management_script_id: str) -> device_management_script_item_request_builder.DeviceManagementScriptItemRequestBuilder:
+    def by_device_management_script_id(self,device_management_script_id: str) -> DeviceManagementScriptItemRequestBuilder:
         """
         Provides operations to manage the deviceManagementScripts property of the microsoft.graph.deviceManagement entity.
         Args:
             device_management_script_id: Unique identifier of the item
-        Returns: device_management_script_item_request_builder.DeviceManagementScriptItemRequestBuilder
+        Returns: DeviceManagementScriptItemRequestBuilder
         """
-        if device_management_script_id is None:
-            raise Exception("device_management_script_id cannot be undefined")
-        from .item import device_management_script_item_request_builder
+        if not device_management_script_id:
+            raise TypeError("device_management_script_id cannot be null.")
+        from .item.device_management_script_item_request_builder import DeviceManagementScriptItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementScript%2Did"] = device_management_script_id
-        return device_management_script_item_request_builder.DeviceManagementScriptItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceManagementScriptItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceManagementScriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_script_collection_response.DeviceManagementScriptCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceManagementScriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementScriptCollectionResponse]:
         """
         The list of device management scripts associated with the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_script_collection_response.DeviceManagementScriptCollectionResponse]
+        Returns: Optional[DeviceManagementScriptCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_management_script_collection_response
+        from ...models.device_management_script_collection_response import DeviceManagementScriptCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, device_management_script_collection_response.DeviceManagementScriptCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementScriptCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_script.DeviceManagementScript] = None, request_configuration: Optional[DeviceManagementScriptsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_script.DeviceManagementScript]:
+    async def post(self,body: Optional[DeviceManagementScript] = None, request_configuration: Optional[DeviceManagementScriptsRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceManagementScript]:
         """
         Create new navigation property to deviceManagementScripts for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_script.DeviceManagementScript]
+        Returns: Optional[DeviceManagementScript]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_management_script
+        from ...models.device_management_script import DeviceManagementScript
 
-        return await self.request_adapter.send_async(request_info, device_management_script.DeviceManagementScript, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementScript, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceManagementScriptsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -118,7 +119,7 @@ class DeviceManagementScriptsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[device_management_script.DeviceManagementScript] = None, request_configuration: Optional[DeviceManagementScriptsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceManagementScript] = None, request_configuration: Optional[DeviceManagementScriptsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceManagementScripts for deviceManagement
         Args:
@@ -126,8 +127,8 @@ class DeviceManagementScriptsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +141,22 @@ class DeviceManagementScriptsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def has_payload_links(self) -> HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        from .has_payload_links import has_payload_links_request_builder
+        from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
 
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceManagementScriptsRequestBuilderGetQueryParameters():
@@ -169,8 +170,8 @@ class DeviceManagementScriptsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

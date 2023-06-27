@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import approval
-    from .....models.o_data_errors import o_data_error
-    from .steps import steps_request_builder
+    from .....models.approval import Approval
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .steps.steps_request_builder import StepsRequestBuilder
 
 class ApprovalItemRequestBuilder():
     """
@@ -25,10 +25,10 @@ class ApprovalItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/users/{user%2Did}/approvals/{approval%2Did}{?%24select,%24expand}"
 
@@ -45,62 +45,62 @@ class ApprovalItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ApprovalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[approval.Approval]:
+    async def get(self,request_configuration: Optional[ApprovalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Approval]:
         """
         Get approvals from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[approval.Approval]
+        Returns: Optional[Approval]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import approval
+        from .....models.approval import Approval
 
-        return await self.request_adapter.send_async(request_info, approval.Approval, error_mapping)
+        return await self.request_adapter.send_async(request_info, Approval, error_mapping)
     
-    async def patch(self,body: Optional[approval.Approval] = None, request_configuration: Optional[ApprovalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[approval.Approval]:
+    async def patch(self,body: Optional[Approval] = None, request_configuration: Optional[ApprovalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Approval]:
         """
         Update the navigation property approvals in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[approval.Approval]
+        Returns: Optional[Approval]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import approval
+        from .....models.approval import Approval
 
-        return await self.request_adapter.send_async(request_info, approval.Approval, error_mapping)
+        return await self.request_adapter.send_async(request_info, Approval, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ApprovalItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -136,7 +136,7 @@ class ApprovalItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[approval.Approval] = None, request_configuration: Optional[ApprovalItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Approval] = None, request_configuration: Optional[ApprovalItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property approvals in users
         Args:
@@ -144,8 +144,8 @@ class ApprovalItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,13 +158,13 @@ class ApprovalItemRequestBuilder():
         return request_info
     
     @property
-    def steps(self) -> steps_request_builder.StepsRequestBuilder:
+    def steps(self) -> StepsRequestBuilder:
         """
         Provides operations to manage the steps property of the microsoft.graph.approval entity.
         """
-        from .steps import steps_request_builder
+        from .steps.steps_request_builder import StepsRequestBuilder
 
-        return steps_request_builder.StepsRequestBuilder(self.request_adapter, self.path_parameters)
+        return StepsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ApprovalItemRequestBuilderDeleteRequestConfiguration():
@@ -190,8 +190,8 @@ class ApprovalItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

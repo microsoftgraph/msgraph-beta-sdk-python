@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import mac_o_s_software_update_category_summary
-    from ......models.o_data_errors import o_data_error
-    from .update_state_summaries import update_state_summaries_request_builder
+    from ......models.mac_o_s_software_update_category_summary import MacOSSoftwareUpdateCategorySummary
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .update_state_summaries.update_state_summaries_request_builder import UpdateStateSummariesRequestBuilder
 
 class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
     """
@@ -25,10 +25,10 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/macOSSoftwareUpdateAccountSummaries/{macOSSoftwareUpdateAccountSummary%2Did}/categorySummaries/{macOSSoftwareUpdateCategorySummary%2Did}{?%24select,%24expand}"
 
@@ -45,62 +45,62 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]:
+    async def get(self,request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MacOSSoftwareUpdateCategorySummary]:
         """
         Summary of the updates by category.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]
+        Returns: Optional[MacOSSoftwareUpdateCategorySummary]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import mac_o_s_software_update_category_summary
+        from ......models.mac_o_s_software_update_category_summary import MacOSSoftwareUpdateCategorySummary
 
-        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, MacOSSoftwareUpdateCategorySummary, error_mapping)
     
-    async def patch(self,body: Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]:
+    async def patch(self,body: Optional[MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[MacOSSoftwareUpdateCategorySummary]:
         """
         Update the navigation property categorySummaries in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]
+        Returns: Optional[MacOSSoftwareUpdateCategorySummary]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import mac_o_s_software_update_category_summary
+        from ......models.mac_o_s_software_update_category_summary import MacOSSoftwareUpdateCategorySummary
 
-        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, MacOSSoftwareUpdateCategorySummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -136,7 +136,7 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property categorySummaries in deviceManagement
         Args:
@@ -144,8 +144,8 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,13 +158,13 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
         return request_info
     
     @property
-    def update_state_summaries(self) -> update_state_summaries_request_builder.UpdateStateSummariesRequestBuilder:
+    def update_state_summaries(self) -> UpdateStateSummariesRequestBuilder:
         """
         Provides operations to manage the updateStateSummaries property of the microsoft.graph.macOSSoftwareUpdateCategorySummary entity.
         """
-        from .update_state_summaries import update_state_summaries_request_builder
+        from .update_state_summaries.update_state_summaries_request_builder import UpdateStateSummariesRequestBuilder
 
-        return update_state_summaries_request_builder.UpdateStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MacOSSoftwareUpdateCategorySummaryItemRequestBuilderDeleteRequestConfiguration():
@@ -190,8 +190,8 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

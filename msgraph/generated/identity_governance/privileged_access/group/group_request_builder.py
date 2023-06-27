@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,15 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import privileged_access_group
-    from ....models.o_data_errors import o_data_error
-    from .assignment_approvals import assignment_approvals_request_builder
-    from .assignment_schedule_instances import assignment_schedule_instances_request_builder
-    from .assignment_schedule_requests import assignment_schedule_requests_request_builder
-    from .assignment_schedules import assignment_schedules_request_builder
-    from .eligibility_schedule_instances import eligibility_schedule_instances_request_builder
-    from .eligibility_schedule_requests import eligibility_schedule_requests_request_builder
-    from .eligibility_schedules import eligibility_schedules_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.privileged_access_group import PrivilegedAccessGroup
+    from .assignment_approvals.assignment_approvals_request_builder import AssignmentApprovalsRequestBuilder
+    from .assignment_schedule_instances.assignment_schedule_instances_request_builder import AssignmentScheduleInstancesRequestBuilder
+    from .assignment_schedule_requests.assignment_schedule_requests_request_builder import AssignmentScheduleRequestsRequestBuilder
+    from .assignment_schedules.assignment_schedules_request_builder import AssignmentSchedulesRequestBuilder
+    from .eligibility_schedule_instances.eligibility_schedule_instances_request_builder import EligibilityScheduleInstancesRequestBuilder
+    from .eligibility_schedule_requests.eligibility_schedule_requests_request_builder import EligibilityScheduleRequestsRequestBuilder
+    from .eligibility_schedules.eligibility_schedules_request_builder import EligibilitySchedulesRequestBuilder
 
 class GroupRequestBuilder():
     """
@@ -31,10 +31,10 @@ class GroupRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/privilegedAccess/group{?%24select,%24expand}"
 
@@ -51,62 +51,62 @@ class GroupRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group.PrivilegedAccessGroup]:
+    async def get(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedAccessGroup]:
         """
         A group that's governed through Privileged Identity Management (PIM).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[privileged_access_group.PrivilegedAccessGroup]
+        Returns: Optional[PrivilegedAccessGroup]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import privileged_access_group
+        from ....models.privileged_access_group import PrivilegedAccessGroup
 
-        return await self.request_adapter.send_async(request_info, privileged_access_group.PrivilegedAccessGroup, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrivilegedAccessGroup, error_mapping)
     
-    async def patch(self,body: Optional[privileged_access_group.PrivilegedAccessGroup] = None, request_configuration: Optional[GroupRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_access_group.PrivilegedAccessGroup]:
+    async def patch(self,body: Optional[PrivilegedAccessGroup] = None, request_configuration: Optional[GroupRequestBuilderPatchRequestConfiguration] = None) -> Optional[PrivilegedAccessGroup]:
         """
         Update the navigation property group in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[privileged_access_group.PrivilegedAccessGroup]
+        Returns: Optional[PrivilegedAccessGroup]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import privileged_access_group
+        from ....models.privileged_access_group import PrivilegedAccessGroup
 
-        return await self.request_adapter.send_async(request_info, privileged_access_group.PrivilegedAccessGroup, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrivilegedAccessGroup, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -142,7 +142,7 @@ class GroupRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[privileged_access_group.PrivilegedAccessGroup] = None, request_configuration: Optional[GroupRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PrivilegedAccessGroup] = None, request_configuration: Optional[GroupRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property group in identityGovernance
         Args:
@@ -150,8 +150,8 @@ class GroupRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -164,67 +164,67 @@ class GroupRequestBuilder():
         return request_info
     
     @property
-    def assignment_approvals(self) -> assignment_approvals_request_builder.AssignmentApprovalsRequestBuilder:
+    def assignment_approvals(self) -> AssignmentApprovalsRequestBuilder:
         """
         Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.
         """
-        from .assignment_approvals import assignment_approvals_request_builder
+        from .assignment_approvals.assignment_approvals_request_builder import AssignmentApprovalsRequestBuilder
 
-        return assignment_approvals_request_builder.AssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignment_schedule_instances(self) -> assignment_schedule_instances_request_builder.AssignmentScheduleInstancesRequestBuilder:
+    def assignment_schedule_instances(self) -> AssignmentScheduleInstancesRequestBuilder:
         """
         Provides operations to manage the assignmentScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
         """
-        from .assignment_schedule_instances import assignment_schedule_instances_request_builder
+        from .assignment_schedule_instances.assignment_schedule_instances_request_builder import AssignmentScheduleInstancesRequestBuilder
 
-        return assignment_schedule_instances_request_builder.AssignmentScheduleInstancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentScheduleInstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignment_schedule_requests(self) -> assignment_schedule_requests_request_builder.AssignmentScheduleRequestsRequestBuilder:
+    def assignment_schedule_requests(self) -> AssignmentScheduleRequestsRequestBuilder:
         """
         Provides operations to manage the assignmentScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
         """
-        from .assignment_schedule_requests import assignment_schedule_requests_request_builder
+        from .assignment_schedule_requests.assignment_schedule_requests_request_builder import AssignmentScheduleRequestsRequestBuilder
 
-        return assignment_schedule_requests_request_builder.AssignmentScheduleRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentScheduleRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignment_schedules(self) -> assignment_schedules_request_builder.AssignmentSchedulesRequestBuilder:
+    def assignment_schedules(self) -> AssignmentSchedulesRequestBuilder:
         """
         Provides operations to manage the assignmentSchedules property of the microsoft.graph.privilegedAccessGroup entity.
         """
-        from .assignment_schedules import assignment_schedules_request_builder
+        from .assignment_schedules.assignment_schedules_request_builder import AssignmentSchedulesRequestBuilder
 
-        return assignment_schedules_request_builder.AssignmentSchedulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentSchedulesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def eligibility_schedule_instances(self) -> eligibility_schedule_instances_request_builder.EligibilityScheduleInstancesRequestBuilder:
+    def eligibility_schedule_instances(self) -> EligibilityScheduleInstancesRequestBuilder:
         """
         Provides operations to manage the eligibilityScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
         """
-        from .eligibility_schedule_instances import eligibility_schedule_instances_request_builder
+        from .eligibility_schedule_instances.eligibility_schedule_instances_request_builder import EligibilityScheduleInstancesRequestBuilder
 
-        return eligibility_schedule_instances_request_builder.EligibilityScheduleInstancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return EligibilityScheduleInstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def eligibility_schedule_requests(self) -> eligibility_schedule_requests_request_builder.EligibilityScheduleRequestsRequestBuilder:
+    def eligibility_schedule_requests(self) -> EligibilityScheduleRequestsRequestBuilder:
         """
         Provides operations to manage the eligibilityScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
         """
-        from .eligibility_schedule_requests import eligibility_schedule_requests_request_builder
+        from .eligibility_schedule_requests.eligibility_schedule_requests_request_builder import EligibilityScheduleRequestsRequestBuilder
 
-        return eligibility_schedule_requests_request_builder.EligibilityScheduleRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EligibilityScheduleRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def eligibility_schedules(self) -> eligibility_schedules_request_builder.EligibilitySchedulesRequestBuilder:
+    def eligibility_schedules(self) -> EligibilitySchedulesRequestBuilder:
         """
         Provides operations to manage the eligibilitySchedules property of the microsoft.graph.privilegedAccessGroup entity.
         """
-        from .eligibility_schedules import eligibility_schedules_request_builder
+        from .eligibility_schedules.eligibility_schedules_request_builder import EligibilitySchedulesRequestBuilder
 
-        return eligibility_schedules_request_builder.EligibilitySchedulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return EligibilitySchedulesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupRequestBuilderDeleteRequestConfiguration():
@@ -250,8 +250,8 @@ class GroupRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

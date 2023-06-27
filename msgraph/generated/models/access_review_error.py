@@ -1,19 +1,16 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import generic_error
+    from .generic_error import GenericError
 
-from . import generic_error
+from .generic_error import GenericError
 
-class AccessReviewError(generic_error.GenericError):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AccessReviewError and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.accessReviewError"
+@dataclass
+class AccessReviewError(GenericError):
+    odata_type = "#microsoft.graph.accessReviewError"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewError:
@@ -23,8 +20,8 @@ class AccessReviewError(generic_error.GenericError):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AccessReviewError
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AccessReviewError()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -32,7 +29,9 @@ class AccessReviewError(generic_error.GenericError):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import generic_error
+        from .generic_error import GenericError
+
+        from .generic_error import GenericError
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -46,8 +45,8 @@ class AccessReviewError(generic_error.GenericError):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

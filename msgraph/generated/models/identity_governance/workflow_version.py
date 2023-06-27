@@ -1,21 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import workflow_base
+    from .workflow_base import WorkflowBase
 
-from . import workflow_base
+from .workflow_base import WorkflowBase
 
-class WorkflowVersion(workflow_base.WorkflowBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new workflowVersion and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.identityGovernance.workflowVersion"
-        # The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        self._version_number: Optional[int] = None
+@dataclass
+class WorkflowVersion(WorkflowBase):
+    odata_type = "#microsoft.graph.identityGovernance.workflowVersion"
+    # The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    version_number: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkflowVersion:
@@ -25,8 +22,8 @@ class WorkflowVersion(workflow_base.WorkflowBase):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: WorkflowVersion
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WorkflowVersion()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,7 +31,9 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import workflow_base
+        from .workflow_base import WorkflowBase
+
+        from .workflow_base import WorkflowBase
 
         fields: Dict[str, Callable[[Any], None]] = {
             "versionNumber": lambda n : setattr(self, 'version_number', n.get_int_value()),
@@ -49,26 +48,9 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("versionNumber", self.version_number)
-    
-    @property
-    def version_number(self,) -> Optional[int]:
-        """
-        Gets the versionNumber property value. The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[int]
-        """
-        return self._version_number
-    
-    @version_number.setter
-    def version_number(self,value: Optional[int] = None) -> None:
-        """
-        Sets the versionNumber property value. The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the version_number property.
-        """
-        self._version_number = value
     
 

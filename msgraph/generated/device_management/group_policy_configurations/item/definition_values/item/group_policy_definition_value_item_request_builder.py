@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import group_policy_definition_value
-    from ......models.o_data_errors import o_data_error
-    from .definition import definition_request_builder
-    from .presentation_values import presentation_values_request_builder
+    from ......models.group_policy_definition_value import GroupPolicyDefinitionValue
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .definition.definition_request_builder import DefinitionRequestBuilder
+    from .presentation_values.presentation_values_request_builder import PresentationValuesRequestBuilder
 
 class GroupPolicyDefinitionValueItemRequestBuilder():
     """
@@ -26,10 +26,10 @@ class GroupPolicyDefinitionValueItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/groupPolicyConfigurations/{groupPolicyConfiguration%2Did}/definitionValues/{groupPolicyDefinitionValue%2Did}{?%24select,%24expand}"
 
@@ -46,62 +46,62 @@ class GroupPolicyDefinitionValueItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupPolicyDefinitionValueItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_definition_value.GroupPolicyDefinitionValue]:
+    async def get(self,request_configuration: Optional[GroupPolicyDefinitionValueItemRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicyDefinitionValue]:
         """
         The list of enabled or disabled group policy definition values for the configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_definition_value.GroupPolicyDefinitionValue]
+        Returns: Optional[GroupPolicyDefinitionValue]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import group_policy_definition_value
+        from ......models.group_policy_definition_value import GroupPolicyDefinitionValue
 
-        return await self.request_adapter.send_async(request_info, group_policy_definition_value.GroupPolicyDefinitionValue, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicyDefinitionValue, error_mapping)
     
-    async def patch(self,body: Optional[group_policy_definition_value.GroupPolicyDefinitionValue] = None, request_configuration: Optional[GroupPolicyDefinitionValueItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_definition_value.GroupPolicyDefinitionValue]:
+    async def patch(self,body: Optional[GroupPolicyDefinitionValue] = None, request_configuration: Optional[GroupPolicyDefinitionValueItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[GroupPolicyDefinitionValue]:
         """
         Update the navigation property definitionValues in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_definition_value.GroupPolicyDefinitionValue]
+        Returns: Optional[GroupPolicyDefinitionValue]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import group_policy_definition_value
+        from ......models.group_policy_definition_value import GroupPolicyDefinitionValue
 
-        return await self.request_adapter.send_async(request_info, group_policy_definition_value.GroupPolicyDefinitionValue, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicyDefinitionValue, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyDefinitionValueItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -137,7 +137,7 @@ class GroupPolicyDefinitionValueItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[group_policy_definition_value.GroupPolicyDefinitionValue] = None, request_configuration: Optional[GroupPolicyDefinitionValueItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[GroupPolicyDefinitionValue] = None, request_configuration: Optional[GroupPolicyDefinitionValueItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property definitionValues in deviceManagement
         Args:
@@ -145,8 +145,8 @@ class GroupPolicyDefinitionValueItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,22 +159,22 @@ class GroupPolicyDefinitionValueItemRequestBuilder():
         return request_info
     
     @property
-    def definition(self) -> definition_request_builder.DefinitionRequestBuilder:
+    def definition(self) -> DefinitionRequestBuilder:
         """
         Provides operations to manage the definition property of the microsoft.graph.groupPolicyDefinitionValue entity.
         """
-        from .definition import definition_request_builder
+        from .definition.definition_request_builder import DefinitionRequestBuilder
 
-        return definition_request_builder.DefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+        return DefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def presentation_values(self) -> presentation_values_request_builder.PresentationValuesRequestBuilder:
+    def presentation_values(self) -> PresentationValuesRequestBuilder:
         """
         Provides operations to manage the presentationValues property of the microsoft.graph.groupPolicyDefinitionValue entity.
         """
-        from .presentation_values import presentation_values_request_builder
+        from .presentation_values.presentation_values_request_builder import PresentationValuesRequestBuilder
 
-        return presentation_values_request_builder.PresentationValuesRequestBuilder(self.request_adapter, self.path_parameters)
+        return PresentationValuesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupPolicyDefinitionValueItemRequestBuilderDeleteRequestConfiguration():
@@ -200,8 +200,8 @@ class GroupPolicyDefinitionValueItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import planner_delta, planner_delta_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .delta import delta_request_builder
-    from .item import planner_delta_item_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.planner_delta import PlannerDelta
+    from .....models.planner_delta_collection_response import PlannerDeltaCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .delta.delta_request_builder import DeltaRequestBuilder
+    from .item.planner_delta_item_request_builder import PlannerDeltaItemRequestBuilder
 
 class AllRequestBuilder():
     """
@@ -27,10 +28,10 @@ class AllRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/users/{user%2Did}/planner/all{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,67 +39,67 @@ class AllRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_planner_delta_id(self,planner_delta_id: str) -> planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder:
+    def by_planner_delta_id(self,planner_delta_id: str) -> PlannerDeltaItemRequestBuilder:
         """
         Provides operations to manage the all property of the microsoft.graph.plannerUser entity.
         Args:
             planner_delta_id: Unique identifier of the item
-        Returns: planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder
+        Returns: PlannerDeltaItemRequestBuilder
         """
-        if planner_delta_id is None:
-            raise Exception("planner_delta_id cannot be undefined")
-        from .item import planner_delta_item_request_builder
+        if not planner_delta_id:
+            raise TypeError("planner_delta_id cannot be null.")
+        from .item.planner_delta_item_request_builder import PlannerDeltaItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["plannerDelta%2Did"] = planner_delta_id
-        return planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return PlannerDeltaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AllRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_delta_collection_response.PlannerDeltaCollectionResponse]:
+    async def get(self,request_configuration: Optional[AllRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerDeltaCollectionResponse]:
         """
         Get all from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[planner_delta_collection_response.PlannerDeltaCollectionResponse]
+        Returns: Optional[PlannerDeltaCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import planner_delta_collection_response
+        from .....models.planner_delta_collection_response import PlannerDeltaCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, planner_delta_collection_response.PlannerDeltaCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, PlannerDeltaCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[planner_delta.PlannerDelta] = None, request_configuration: Optional[AllRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_delta.PlannerDelta]:
+    async def post(self,body: Optional[PlannerDelta] = None, request_configuration: Optional[AllRequestBuilderPostRequestConfiguration] = None) -> Optional[PlannerDelta]:
         """
         Create new navigation property to all for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[planner_delta.PlannerDelta]
+        Returns: Optional[PlannerDelta]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import planner_delta
+        from .....models.planner_delta import PlannerDelta
 
-        return await self.request_adapter.send_async(request_info, planner_delta.PlannerDelta, error_mapping)
+        return await self.request_adapter.send_async(request_info, PlannerDelta, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AllRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -118,7 +119,7 @@ class AllRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[planner_delta.PlannerDelta] = None, request_configuration: Optional[AllRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PlannerDelta] = None, request_configuration: Optional[AllRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to all for users
         Args:
@@ -126,8 +127,8 @@ class AllRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +141,22 @@ class AllRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+    def delta(self) -> DeltaRequestBuilder:
         """
         Provides operations to call the delta method.
         """
-        from .delta import delta_request_builder
+        from .delta.delta_request_builder import DeltaRequestBuilder
 
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AllRequestBuilderGetQueryParameters():
@@ -169,8 +170,8 @@ class AllRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

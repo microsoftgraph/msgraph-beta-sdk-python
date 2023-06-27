@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import service_principal, service_principal_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .delta import delta_request_builder
-    from .get_by_ids import get_by_ids_request_builder
-    from .get_user_owned_objects import get_user_owned_objects_request_builder
-    from .item import service_principal_item_request_builder
-    from .validate_properties import validate_properties_request_builder
+    from ..models.o_data_errors.o_data_error import ODataError
+    from ..models.service_principal import ServicePrincipal
+    from ..models.service_principal_collection_response import ServicePrincipalCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .delta.delta_request_builder import DeltaRequestBuilder
+    from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
+    from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
+    from .item.service_principal_item_request_builder import ServicePrincipalItemRequestBuilder
+    from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
 
 class ServicePrincipalsRequestBuilder():
     """
@@ -30,10 +31,10 @@ class ServicePrincipalsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/servicePrincipals{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -41,67 +42,67 @@ class ServicePrincipalsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_service_principal_id(self,service_principal_id: str) -> service_principal_item_request_builder.ServicePrincipalItemRequestBuilder:
+    def by_service_principal_id(self,service_principal_id: str) -> ServicePrincipalItemRequestBuilder:
         """
         Provides operations to manage the collection of servicePrincipal entities.
         Args:
             service_principal_id: Unique identifier of the item
-        Returns: service_principal_item_request_builder.ServicePrincipalItemRequestBuilder
+        Returns: ServicePrincipalItemRequestBuilder
         """
-        if service_principal_id is None:
-            raise Exception("service_principal_id cannot be undefined")
-        from .item import service_principal_item_request_builder
+        if not service_principal_id:
+            raise TypeError("service_principal_id cannot be null.")
+        from .item.service_principal_item_request_builder import ServicePrincipalItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["servicePrincipal%2Did"] = service_principal_id
-        return service_principal_item_request_builder.ServicePrincipalItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ServicePrincipalItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> Optional[service_principal_collection_response.ServicePrincipalCollectionResponse]:
+    async def get(self,request_configuration: Optional[ServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> Optional[ServicePrincipalCollectionResponse]:
         """
         Retrieve a list of servicePrincipal objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[service_principal_collection_response.ServicePrincipalCollectionResponse]
+        Returns: Optional[ServicePrincipalCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import service_principal_collection_response
+        from ..models.service_principal_collection_response import ServicePrincipalCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, service_principal_collection_response.ServicePrincipalCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ServicePrincipalCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[service_principal.ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalsRequestBuilderPostRequestConfiguration] = None) -> Optional[service_principal.ServicePrincipal]:
+    async def post(self,body: Optional[ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalsRequestBuilderPostRequestConfiguration] = None) -> Optional[ServicePrincipal]:
         """
         Create a new servicePrincipal object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[service_principal.ServicePrincipal]
+        Returns: Optional[ServicePrincipal]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import service_principal
+        from ..models.service_principal import ServicePrincipal
 
-        return await self.request_adapter.send_async(request_info, service_principal.ServicePrincipal, error_mapping)
+        return await self.request_adapter.send_async(request_info, ServicePrincipal, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -121,7 +122,7 @@ class ServicePrincipalsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[service_principal.ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new servicePrincipal object.
         Args:
@@ -129,8 +130,8 @@ class ServicePrincipalsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -143,49 +144,49 @@ class ServicePrincipalsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+    def delta(self) -> DeltaRequestBuilder:
         """
         Provides operations to call the delta method.
         """
-        from .delta import delta_request_builder
+        from .delta.delta_request_builder import DeltaRequestBuilder
 
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
+    def get_by_ids(self) -> GetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
-        from .get_by_ids import get_by_ids_request_builder
+        from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
 
-        return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
+    def get_user_owned_objects(self) -> GetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
-        from .get_user_owned_objects import get_user_owned_objects_request_builder
+        from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
 
-        return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
+    def validate_properties(self) -> ValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
         """
-        from .validate_properties import validate_properties_request_builder
+        from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
 
-        return validate_properties_request_builder.ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ServicePrincipalsRequestBuilderGetQueryParameters():
@@ -199,8 +200,8 @@ class ServicePrincipalsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

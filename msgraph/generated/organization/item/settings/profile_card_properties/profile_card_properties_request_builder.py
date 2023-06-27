@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import profile_card_property, profile_card_property_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import profile_card_property_item_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.profile_card_property import ProfileCardProperty
+    from .....models.profile_card_property_collection_response import ProfileCardPropertyCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.profile_card_property_item_request_builder import ProfileCardPropertyItemRequestBuilder
 
 class ProfileCardPropertiesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class ProfileCardPropertiesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/organization/{organization%2Did}/settings/profileCardProperties{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class ProfileCardPropertiesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_profile_card_property_id(self,profile_card_property_id: str) -> profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder:
+    def by_profile_card_property_id(self,profile_card_property_id: str) -> ProfileCardPropertyItemRequestBuilder:
         """
         Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
         Args:
             profile_card_property_id: Unique identifier of the item
-        Returns: profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder
+        Returns: ProfileCardPropertyItemRequestBuilder
         """
-        if profile_card_property_id is None:
-            raise Exception("profile_card_property_id cannot be undefined")
-        from .item import profile_card_property_item_request_builder
+        if not profile_card_property_id:
+            raise TypeError("profile_card_property_id cannot be null.")
+        from .item.profile_card_property_item_request_builder import ProfileCardPropertyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["profileCardProperty%2Did"] = profile_card_property_id
-        return profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ProfileCardPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None) -> Optional[profile_card_property_collection_response.ProfileCardPropertyCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None) -> Optional[ProfileCardPropertyCollectionResponse]:
         """
         Get a collection of profileCardProperty resources of an organization. Each resource is identified by its **directoryPropertyName** property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[profile_card_property_collection_response.ProfileCardPropertyCollectionResponse]
+        Returns: Optional[ProfileCardPropertyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import profile_card_property_collection_response
+        from .....models.profile_card_property_collection_response import ProfileCardPropertyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, profile_card_property_collection_response.ProfileCardPropertyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ProfileCardPropertyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[profile_card_property.ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertiesRequestBuilderPostRequestConfiguration] = None) -> Optional[profile_card_property.ProfileCardProperty]:
+    async def post(self,body: Optional[ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertiesRequestBuilderPostRequestConfiguration] = None) -> Optional[ProfileCardProperty]:
         """
         Create a new profileCardProperty for an organization. The new property is identified by its **directoryPropertyName** property. For more information on adding properties to the profile card for an organization, see customize the profile card.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[profile_card_property.ProfileCardProperty]
+        Returns: Optional[ProfileCardProperty]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import profile_card_property
+        from .....models.profile_card_property import ProfileCardProperty
 
-        return await self.request_adapter.send_async(request_info, profile_card_property.ProfileCardProperty, error_mapping)
+        return await self.request_adapter.send_async(request_info, ProfileCardProperty, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class ProfileCardPropertiesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[profile_card_property.ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new profileCardProperty for an organization. The new property is identified by its **directoryPropertyName** property. For more information on adding properties to the profile card for an organization, see customize the profile card.
         Args:
@@ -125,8 +126,8 @@ class ProfileCardPropertiesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class ProfileCardPropertiesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ProfileCardPropertiesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class ProfileCardPropertiesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

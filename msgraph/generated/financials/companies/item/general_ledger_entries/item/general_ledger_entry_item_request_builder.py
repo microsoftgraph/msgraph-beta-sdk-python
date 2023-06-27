@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import general_ledger_entry
-    from ......models.o_data_errors import o_data_error
-    from .account import account_request_builder
+    from ......models.general_ledger_entry import GeneralLedgerEntry
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .account.account_request_builder import AccountRequestBuilder
 
 class GeneralLedgerEntryItemRequestBuilder():
     """
@@ -25,10 +25,10 @@ class GeneralLedgerEntryItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/generalLedgerEntries/{generalLedgerEntry%2Did}{?%24select,%24expand}"
 
@@ -36,27 +36,27 @@ class GeneralLedgerEntryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GeneralLedgerEntryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[general_ledger_entry.GeneralLedgerEntry]:
+    async def get(self,request_configuration: Optional[GeneralLedgerEntryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[GeneralLedgerEntry]:
         """
         Get generalLedgerEntries from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[general_ledger_entry.GeneralLedgerEntry]
+        Returns: Optional[GeneralLedgerEntry]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import general_ledger_entry
+        from ......models.general_ledger_entry import GeneralLedgerEntry
 
-        return await self.request_adapter.send_async(request_info, general_ledger_entry.GeneralLedgerEntry, error_mapping)
+        return await self.request_adapter.send_async(request_info, GeneralLedgerEntry, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GeneralLedgerEntryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -77,13 +77,13 @@ class GeneralLedgerEntryItemRequestBuilder():
         return request_info
     
     @property
-    def account(self) -> account_request_builder.AccountRequestBuilder:
+    def account(self) -> AccountRequestBuilder:
         """
         Provides operations to manage the account property of the microsoft.graph.generalLedgerEntry entity.
         """
-        from .account import account_request_builder
+        from .account.account_request_builder import AccountRequestBuilder
 
-        return account_request_builder.AccountRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GeneralLedgerEntryItemRequestBuilderGetQueryParameters():
@@ -97,8 +97,8 @@ class GeneralLedgerEntryItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

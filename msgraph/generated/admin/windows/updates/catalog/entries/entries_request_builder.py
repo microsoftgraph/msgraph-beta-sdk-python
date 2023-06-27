@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors import o_data_error
-    from ......models.windows_updates import catalog_entry, catalog_entry_collection_response
-    from .count import count_request_builder
-    from .item import catalog_entry_item_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.windows_updates.catalog_entry import CatalogEntry
+    from ......models.windows_updates.catalog_entry_collection_response import CatalogEntryCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.catalog_entry_item_request_builder import CatalogEntryItemRequestBuilder
 
 class EntriesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class EntriesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/admin/windows/updates/catalog/entries{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class EntriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_catalog_entry_id(self,catalog_entry_id: str) -> catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder:
+    def by_catalog_entry_id(self,catalog_entry_id: str) -> CatalogEntryItemRequestBuilder:
         """
         Provides operations to manage the entries property of the microsoft.graph.windowsUpdates.catalog entity.
         Args:
             catalog_entry_id: Unique identifier of the item
-        Returns: catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder
+        Returns: CatalogEntryItemRequestBuilder
         """
-        if catalog_entry_id is None:
-            raise Exception("catalog_entry_id cannot be undefined")
-        from .item import catalog_entry_item_request_builder
+        if not catalog_entry_id:
+            raise TypeError("catalog_entry_id cannot be null.")
+        from .item.catalog_entry_item_request_builder import CatalogEntryItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["catalogEntry%2Did"] = catalog_entry_id
-        return catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return CatalogEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]:
+    async def get(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> Optional[CatalogEntryCollectionResponse]:
         """
         Get a list of catalogEntry resources from the catalog. Currently, this operation returns entries of the featureUpdateCatalogEntry or qualityUpdateCatalog types, inherited from **catalogEntry**. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]
+        Returns: Optional[CatalogEntryCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.windows_updates import catalog_entry_collection_response
+        from ......models.windows_updates.catalog_entry_collection_response import CatalogEntryCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, catalog_entry_collection_response.CatalogEntryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, CatalogEntryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[catalog_entry.CatalogEntry] = None, request_configuration: Optional[EntriesRequestBuilderPostRequestConfiguration] = None) -> Optional[catalog_entry.CatalogEntry]:
+    async def post(self,body: Optional[CatalogEntry] = None, request_configuration: Optional[EntriesRequestBuilderPostRequestConfiguration] = None) -> Optional[CatalogEntry]:
         """
         Create new navigation property to entries for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[catalog_entry.CatalogEntry]
+        Returns: Optional[CatalogEntry]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.windows_updates import catalog_entry
+        from ......models.windows_updates.catalog_entry import CatalogEntry
 
-        return await self.request_adapter.send_async(request_info, catalog_entry.CatalogEntry, error_mapping)
+        return await self.request_adapter.send_async(request_info, CatalogEntry, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class EntriesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[catalog_entry.CatalogEntry] = None, request_configuration: Optional[EntriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CatalogEntry] = None, request_configuration: Optional[EntriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to entries for admin
         Args:
@@ -125,8 +126,8 @@ class EntriesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class EntriesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EntriesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class EntriesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

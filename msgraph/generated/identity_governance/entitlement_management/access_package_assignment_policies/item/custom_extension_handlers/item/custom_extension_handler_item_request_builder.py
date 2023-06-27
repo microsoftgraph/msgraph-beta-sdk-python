@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import custom_extension_handler
-    from .......models.o_data_errors import o_data_error
-    from .custom_extension import custom_extension_request_builder
+    from .......models.custom_extension_handler import CustomExtensionHandler
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .custom_extension.custom_extension_request_builder import CustomExtensionRequestBuilder
 
 class CustomExtensionHandlerItemRequestBuilder():
     """
@@ -25,10 +25,10 @@ class CustomExtensionHandlerItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentPolicies/{accessPackageAssignmentPolicy%2Did}/customExtensionHandlers/{customExtensionHandler%2Did}{?%24select,%24expand}"
 
@@ -45,62 +45,62 @@ class CustomExtensionHandlerItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_extension_handler.CustomExtensionHandler]:
+    async def get(self,request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomExtensionHandler]:
         """
         The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[custom_extension_handler.CustomExtensionHandler]
+        Returns: Optional[CustomExtensionHandler]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import custom_extension_handler
+        from .......models.custom_extension_handler import CustomExtensionHandler
 
-        return await self.request_adapter.send_async(request_info, custom_extension_handler.CustomExtensionHandler, error_mapping)
+        return await self.request_adapter.send_async(request_info, CustomExtensionHandler, error_mapping)
     
-    async def patch(self,body: Optional[custom_extension_handler.CustomExtensionHandler] = None, request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_extension_handler.CustomExtensionHandler]:
+    async def patch(self,body: Optional[CustomExtensionHandler] = None, request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CustomExtensionHandler]:
         """
         Update the navigation property customExtensionHandlers in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[custom_extension_handler.CustomExtensionHandler]
+        Returns: Optional[CustomExtensionHandler]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import custom_extension_handler
+        from .......models.custom_extension_handler import CustomExtensionHandler
 
-        return await self.request_adapter.send_async(request_info, custom_extension_handler.CustomExtensionHandler, error_mapping)
+        return await self.request_adapter.send_async(request_info, CustomExtensionHandler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -136,7 +136,7 @@ class CustomExtensionHandlerItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[custom_extension_handler.CustomExtensionHandler] = None, request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CustomExtensionHandler] = None, request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property customExtensionHandlers in identityGovernance
         Args:
@@ -144,8 +144,8 @@ class CustomExtensionHandlerItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,13 +158,13 @@ class CustomExtensionHandlerItemRequestBuilder():
         return request_info
     
     @property
-    def custom_extension(self) -> custom_extension_request_builder.CustomExtensionRequestBuilder:
+    def custom_extension(self) -> CustomExtensionRequestBuilder:
         """
         Provides operations to manage the customExtension property of the microsoft.graph.customExtensionHandler entity.
         """
-        from .custom_extension import custom_extension_request_builder
+        from .custom_extension.custom_extension_request_builder import CustomExtensionRequestBuilder
 
-        return custom_extension_request_builder.CustomExtensionRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomExtensionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CustomExtensionHandlerItemRequestBuilderDeleteRequestConfiguration():
@@ -190,8 +190,8 @@ class CustomExtensionHandlerItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,16 +10,16 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.industry_data import industry_data_root
-    from ...models.o_data_errors import o_data_error
-    from .data_connectors import data_connectors_request_builder
-    from .inbound_flows import inbound_flows_request_builder
-    from .operations import operations_request_builder
-    from .reference_definitions import reference_definitions_request_builder
-    from .role_groups import role_groups_request_builder
-    from .runs import runs_request_builder
-    from .source_systems import source_systems_request_builder
-    from .years import years_request_builder
+    from ...models.industry_data.industry_data_root import IndustryDataRoot
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .data_connectors.data_connectors_request_builder import DataConnectorsRequestBuilder
+    from .inbound_flows.inbound_flows_request_builder import InboundFlowsRequestBuilder
+    from .operations.operations_request_builder import OperationsRequestBuilder
+    from .reference_definitions.reference_definitions_request_builder import ReferenceDefinitionsRequestBuilder
+    from .role_groups.role_groups_request_builder import RoleGroupsRequestBuilder
+    from .runs.runs_request_builder import RunsRequestBuilder
+    from .source_systems.source_systems_request_builder import SourceSystemsRequestBuilder
+    from .years.years_request_builder import YearsRequestBuilder
 
 class IndustryDataRequestBuilder():
     """
@@ -32,10 +32,10 @@ class IndustryDataRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/external/industryData{?%24select,%24expand}"
 
@@ -43,27 +43,27 @@ class IndustryDataRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[IndustryDataRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_root.IndustryDataRoot]:
+    async def get(self,request_configuration: Optional[IndustryDataRequestBuilderGetRequestConfiguration] = None) -> Optional[IndustryDataRoot]:
         """
         Get industryData from external
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[industry_data_root.IndustryDataRoot]
+        Returns: Optional[IndustryDataRoot]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.industry_data import industry_data_root
+        from ...models.industry_data.industry_data_root import IndustryDataRoot
 
-        return await self.request_adapter.send_async(request_info, industry_data_root.IndustryDataRoot, error_mapping)
+        return await self.request_adapter.send_async(request_info, IndustryDataRoot, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[IndustryDataRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -84,76 +84,76 @@ class IndustryDataRequestBuilder():
         return request_info
     
     @property
-    def data_connectors(self) -> data_connectors_request_builder.DataConnectorsRequestBuilder:
+    def data_connectors(self) -> DataConnectorsRequestBuilder:
         """
         Provides operations to manage the dataConnectors property of the microsoft.graph.industryData.industryDataRoot entity.
         """
-        from .data_connectors import data_connectors_request_builder
+        from .data_connectors.data_connectors_request_builder import DataConnectorsRequestBuilder
 
-        return data_connectors_request_builder.DataConnectorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DataConnectorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def inbound_flows(self) -> inbound_flows_request_builder.InboundFlowsRequestBuilder:
+    def inbound_flows(self) -> InboundFlowsRequestBuilder:
         """
         Provides operations to manage the inboundFlows property of the microsoft.graph.industryData.industryDataRoot entity.
         """
-        from .inbound_flows import inbound_flows_request_builder
+        from .inbound_flows.inbound_flows_request_builder import InboundFlowsRequestBuilder
 
-        return inbound_flows_request_builder.InboundFlowsRequestBuilder(self.request_adapter, self.path_parameters)
+        return InboundFlowsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
+    def operations(self) -> OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.industryData.industryDataRoot entity.
         """
-        from .operations import operations_request_builder
+        from .operations.operations_request_builder import OperationsRequestBuilder
 
-        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reference_definitions(self) -> reference_definitions_request_builder.ReferenceDefinitionsRequestBuilder:
+    def reference_definitions(self) -> ReferenceDefinitionsRequestBuilder:
         """
         Provides operations to manage the referenceDefinitions property of the microsoft.graph.industryData.industryDataRoot entity.
         """
-        from .reference_definitions import reference_definitions_request_builder
+        from .reference_definitions.reference_definitions_request_builder import ReferenceDefinitionsRequestBuilder
 
-        return reference_definitions_request_builder.ReferenceDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReferenceDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_groups(self) -> role_groups_request_builder.RoleGroupsRequestBuilder:
+    def role_groups(self) -> RoleGroupsRequestBuilder:
         """
         Provides operations to manage the roleGroups property of the microsoft.graph.industryData.industryDataRoot entity.
         """
-        from .role_groups import role_groups_request_builder
+        from .role_groups.role_groups_request_builder import RoleGroupsRequestBuilder
 
-        return role_groups_request_builder.RoleGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def runs(self) -> runs_request_builder.RunsRequestBuilder:
+    def runs(self) -> RunsRequestBuilder:
         """
         Provides operations to manage the runs property of the microsoft.graph.industryData.industryDataRoot entity.
         """
-        from .runs import runs_request_builder
+        from .runs.runs_request_builder import RunsRequestBuilder
 
-        return runs_request_builder.RunsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RunsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def source_systems(self) -> source_systems_request_builder.SourceSystemsRequestBuilder:
+    def source_systems(self) -> SourceSystemsRequestBuilder:
         """
         Provides operations to manage the sourceSystems property of the microsoft.graph.industryData.industryDataRoot entity.
         """
-        from .source_systems import source_systems_request_builder
+        from .source_systems.source_systems_request_builder import SourceSystemsRequestBuilder
 
-        return source_systems_request_builder.SourceSystemsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SourceSystemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def years(self) -> years_request_builder.YearsRequestBuilder:
+    def years(self) -> YearsRequestBuilder:
         """
         Provides operations to manage the years property of the microsoft.graph.industryData.industryDataRoot entity.
         """
-        from .years import years_request_builder
+        from .years.years_request_builder import YearsRequestBuilder
 
-        return years_request_builder.YearsRequestBuilder(self.request_adapter, self.path_parameters)
+        return YearsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class IndustryDataRequestBuilderGetQueryParameters():
@@ -167,8 +167,8 @@ class IndustryDataRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

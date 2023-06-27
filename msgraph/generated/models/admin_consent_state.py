@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AdminConsentState(Enum):
+class AdminConsentState(str, Enum):
     # Admin did not configure the item
     NotConfigured = "notConfigured",
     # Admin granted item

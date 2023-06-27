@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,8 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import update_ti_indicators_post_request_body, update_ti_indicators_response
-    from ....models.o_data_errors import o_data_error
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .update_ti_indicators_post_request_body import UpdateTiIndicatorsPostRequestBody
+    from .update_ti_indicators_response import UpdateTiIndicatorsResponse
 
 class UpdateTiIndicatorsRequestBuilder():
     """
@@ -24,10 +25,10 @@ class UpdateTiIndicatorsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/security/tiIndicators/updateTiIndicators"
 
@@ -35,32 +36,32 @@ class UpdateTiIndicatorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[update_ti_indicators_post_request_body.UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[UpdateTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[update_ti_indicators_response.UpdateTiIndicatorsResponse]:
+    async def post(self,body: Optional[UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[UpdateTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[UpdateTiIndicatorsResponse]:
         """
         Update multiple threat intelligence (TI) indicators in one request instead of multiple requests.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[update_ti_indicators_response.UpdateTiIndicatorsResponse]
+        Returns: Optional[UpdateTiIndicatorsResponse]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from . import update_ti_indicators_response
+        from .update_ti_indicators_response import UpdateTiIndicatorsResponse
 
-        return await self.request_adapter.send_async(request_info, update_ti_indicators_response.UpdateTiIndicatorsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UpdateTiIndicatorsResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[update_ti_indicators_post_request_body.UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[UpdateTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[UpdateTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Update multiple threat intelligence (TI) indicators in one request instead of multiple requests.
         Args:
@@ -68,8 +69,8 @@ class UpdateTiIndicatorsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters

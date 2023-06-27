@@ -1,60 +1,29 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_conditions, entity, on_token_issuance_start_listener
+    from .authentication_conditions import AuthenticationConditions
+    from .entity import Entity
+    from .on_attribute_collection_listener import OnAttributeCollectionListener
+    from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+    from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+    from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
+    from .on_user_create_start_listener import OnUserCreateStartListener
 
-from . import entity
+from .entity import Entity
 
-class AuthenticationEventListener(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new authenticationEventListener and sets the default values.
-        """
-        super().__init__()
-        # The identifier of the authenticationEventsFlow object.
-        self._authentication_events_flow_id: Optional[str] = None
-        # The conditions on which this authenticationEventListener should trigger.
-        self._conditions: Optional[authentication_conditions.AuthenticationConditions] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
-        self._priority: Optional[int] = None
-    
-    @property
-    def authentication_events_flow_id(self,) -> Optional[str]:
-        """
-        Gets the authenticationEventsFlowId property value. The identifier of the authenticationEventsFlow object.
-        Returns: Optional[str]
-        """
-        return self._authentication_events_flow_id
-    
-    @authentication_events_flow_id.setter
-    def authentication_events_flow_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the authenticationEventsFlowId property value. The identifier of the authenticationEventsFlow object.
-        Args:
-            value: Value to set for the authentication_events_flow_id property.
-        """
-        self._authentication_events_flow_id = value
-    
-    @property
-    def conditions(self,) -> Optional[authentication_conditions.AuthenticationConditions]:
-        """
-        Gets the conditions property value. The conditions on which this authenticationEventListener should trigger.
-        Returns: Optional[authentication_conditions.AuthenticationConditions]
-        """
-        return self._conditions
-    
-    @conditions.setter
-    def conditions(self,value: Optional[authentication_conditions.AuthenticationConditions] = None) -> None:
-        """
-        Sets the conditions property value. The conditions on which this authenticationEventListener should trigger.
-        Args:
-            value: Value to set for the conditions property.
-        """
-        self._conditions = value
+@dataclass
+class AuthenticationEventListener(Entity):
+    # The identifier of the authenticationEventsFlow object.
+    authentication_events_flow_id: Optional[str] = None
+    # The conditions on which this authenticationEventListener should trigger.
+    conditions: Optional[AuthenticationConditions] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
+    priority: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationEventListener:
@@ -64,15 +33,32 @@ class AuthenticationEventListener(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AuthenticationEventListener
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.onTokenIssuanceStartListener":
-                from . import on_token_issuance_start_listener
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onAttributeCollectionListener".casefold():
+            from .on_attribute_collection_listener import OnAttributeCollectionListener
 
-                return on_token_issuance_start_listener.OnTokenIssuanceStartListener()
+            return OnAttributeCollectionListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onAuthenticationMethodLoadStartListener".casefold():
+            from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+
+            return OnAuthenticationMethodLoadStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onInteractiveAuthFlowStartListener".casefold():
+            from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+
+            return OnInteractiveAuthFlowStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onTokenIssuanceStartListener".casefold():
+            from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
+
+            return OnTokenIssuanceStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onUserCreateStartListener".casefold():
+            from .on_user_create_start_listener import OnUserCreateStartListener
+
+            return OnUserCreateStartListener()
         return AuthenticationEventListener()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -80,33 +66,30 @@ class AuthenticationEventListener(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_conditions, entity, on_token_issuance_start_listener
+        from .authentication_conditions import AuthenticationConditions
+        from .entity import Entity
+        from .on_attribute_collection_listener import OnAttributeCollectionListener
+        from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+        from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+        from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
+        from .on_user_create_start_listener import OnUserCreateStartListener
+
+        from .authentication_conditions import AuthenticationConditions
+        from .entity import Entity
+        from .on_attribute_collection_listener import OnAttributeCollectionListener
+        from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+        from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+        from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
+        from .on_user_create_start_listener import OnUserCreateStartListener
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationEventsFlowId": lambda n : setattr(self, 'authentication_events_flow_id', n.get_str_value()),
-            "conditions": lambda n : setattr(self, 'conditions', n.get_object_value(authentication_conditions.AuthenticationConditions)),
+            "conditions": lambda n : setattr(self, 'conditions', n.get_object_value(AuthenticationConditions)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def priority(self,) -> Optional[int]:
-        """
-        Gets the priority property value. The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
-        Returns: Optional[int]
-        """
-        return self._priority
-    
-    @priority.setter
-    def priority(self,value: Optional[int] = None) -> None:
-        """
-        Sets the priority property value. The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
-        Args:
-            value: Value to set for the priority property.
-        """
-        self._priority = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -114,8 +97,8 @@ class AuthenticationEventListener(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("authenticationEventsFlowId", self.authentication_events_flow_id)
         writer.write_object_value("conditions", self.conditions)

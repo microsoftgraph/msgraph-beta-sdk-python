@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import teams_app_installation
-    from ......models.o_data_errors import o_data_error
-    from .teams_app import teams_app_request_builder
-    from .teams_app_definition import teams_app_definition_request_builder
-    from .upgrade import upgrade_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.teams_app_installation import TeamsAppInstallation
+    from .teams_app.teams_app_request_builder import TeamsAppRequestBuilder
+    from .teams_app_definition.teams_app_definition_request_builder import TeamsAppDefinitionRequestBuilder
+    from .upgrade.upgrade_request_builder import UpgradeRequestBuilder
 
 class TeamsAppInstallationItemRequestBuilder():
     """
@@ -27,10 +27,10 @@ class TeamsAppInstallationItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/teamTemplateDefinition/{teamTemplateDefinition%2Did}/teamDefinition/installedApps/{teamsAppInstallation%2Did}{?%24select,%24expand}"
 
@@ -47,62 +47,62 @@ class TeamsAppInstallationItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamsAppInstallationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_app_installation.TeamsAppInstallation]:
+    async def get(self,request_configuration: Optional[TeamsAppInstallationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamsAppInstallation]:
         """
         Retrieve the app installed in the specified team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[teams_app_installation.TeamsAppInstallation]
+        Returns: Optional[TeamsAppInstallation]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import teams_app_installation
+        from ......models.teams_app_installation import TeamsAppInstallation
 
-        return await self.request_adapter.send_async(request_info, teams_app_installation.TeamsAppInstallation, error_mapping)
+        return await self.request_adapter.send_async(request_info, TeamsAppInstallation, error_mapping)
     
-    async def patch(self,body: Optional[teams_app_installation.TeamsAppInstallation] = None, request_configuration: Optional[TeamsAppInstallationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[teams_app_installation.TeamsAppInstallation]:
+    async def patch(self,body: Optional[TeamsAppInstallation] = None, request_configuration: Optional[TeamsAppInstallationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[TeamsAppInstallation]:
         """
         Update the navigation property installedApps in teamTemplateDefinition
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[teams_app_installation.TeamsAppInstallation]
+        Returns: Optional[TeamsAppInstallation]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import teams_app_installation
+        from ......models.teams_app_installation import TeamsAppInstallation
 
-        return await self.request_adapter.send_async(request_info, teams_app_installation.TeamsAppInstallation, error_mapping)
+        return await self.request_adapter.send_async(request_info, TeamsAppInstallation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TeamsAppInstallationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -138,7 +138,7 @@ class TeamsAppInstallationItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[teams_app_installation.TeamsAppInstallation] = None, request_configuration: Optional[TeamsAppInstallationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[TeamsAppInstallation] = None, request_configuration: Optional[TeamsAppInstallationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property installedApps in teamTemplateDefinition
         Args:
@@ -146,8 +146,8 @@ class TeamsAppInstallationItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,31 +160,31 @@ class TeamsAppInstallationItemRequestBuilder():
         return request_info
     
     @property
-    def teams_app(self) -> teams_app_request_builder.TeamsAppRequestBuilder:
+    def teams_app(self) -> TeamsAppRequestBuilder:
         """
         Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.
         """
-        from .teams_app import teams_app_request_builder
+        from .teams_app.teams_app_request_builder import TeamsAppRequestBuilder
 
-        return teams_app_request_builder.TeamsAppRequestBuilder(self.request_adapter, self.path_parameters)
+        return TeamsAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def teams_app_definition(self) -> teams_app_definition_request_builder.TeamsAppDefinitionRequestBuilder:
+    def teams_app_definition(self) -> TeamsAppDefinitionRequestBuilder:
         """
         Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.
         """
-        from .teams_app_definition import teams_app_definition_request_builder
+        from .teams_app_definition.teams_app_definition_request_builder import TeamsAppDefinitionRequestBuilder
 
-        return teams_app_definition_request_builder.TeamsAppDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+        return TeamsAppDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upgrade(self) -> upgrade_request_builder.UpgradeRequestBuilder:
+    def upgrade(self) -> UpgradeRequestBuilder:
         """
         Provides operations to call the upgrade method.
         """
-        from .upgrade import upgrade_request_builder
+        from .upgrade.upgrade_request_builder import UpgradeRequestBuilder
 
-        return upgrade_request_builder.UpgradeRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpgradeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TeamsAppInstallationItemRequestBuilderDeleteRequestConfiguration():
@@ -210,8 +210,8 @@ class TeamsAppInstallationItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

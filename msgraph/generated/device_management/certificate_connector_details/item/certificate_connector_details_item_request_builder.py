@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import certificate_connector_details
-    from ....models.o_data_errors import o_data_error
-    from .get_health_metrics import get_health_metrics_request_builder
-    from .get_health_metric_time_series import get_health_metric_time_series_request_builder
+    from ....models.certificate_connector_details import CertificateConnectorDetails
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .get_health_metrics.get_health_metrics_request_builder import GetHealthMetricsRequestBuilder
+    from .get_health_metric_time_series.get_health_metric_time_series_request_builder import GetHealthMetricTimeSeriesRequestBuilder
 
 class CertificateConnectorDetailsItemRequestBuilder():
     """
@@ -26,10 +26,10 @@ class CertificateConnectorDetailsItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/certificateConnectorDetails/{certificateConnectorDetails%2Did}{?%24select,%24expand}"
 
@@ -46,62 +46,62 @@ class CertificateConnectorDetailsItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[certificate_connector_details.CertificateConnectorDetails]:
+    async def get(self,request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CertificateConnectorDetails]:
         """
         Collection of certificate connector details, each associated with a corresponding Intune Certificate Connector.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[certificate_connector_details.CertificateConnectorDetails]
+        Returns: Optional[CertificateConnectorDetails]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import certificate_connector_details
+        from ....models.certificate_connector_details import CertificateConnectorDetails
 
-        return await self.request_adapter.send_async(request_info, certificate_connector_details.CertificateConnectorDetails, error_mapping)
+        return await self.request_adapter.send_async(request_info, CertificateConnectorDetails, error_mapping)
     
-    async def patch(self,body: Optional[certificate_connector_details.CertificateConnectorDetails] = None, request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[certificate_connector_details.CertificateConnectorDetails]:
+    async def patch(self,body: Optional[CertificateConnectorDetails] = None, request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CertificateConnectorDetails]:
         """
         Update the navigation property certificateConnectorDetails in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[certificate_connector_details.CertificateConnectorDetails]
+        Returns: Optional[CertificateConnectorDetails]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import certificate_connector_details
+        from ....models.certificate_connector_details import CertificateConnectorDetails
 
-        return await self.request_adapter.send_async(request_info, certificate_connector_details.CertificateConnectorDetails, error_mapping)
+        return await self.request_adapter.send_async(request_info, CertificateConnectorDetails, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -137,7 +137,7 @@ class CertificateConnectorDetailsItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[certificate_connector_details.CertificateConnectorDetails] = None, request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CertificateConnectorDetails] = None, request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property certificateConnectorDetails in deviceManagement
         Args:
@@ -145,8 +145,8 @@ class CertificateConnectorDetailsItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,22 +159,22 @@ class CertificateConnectorDetailsItemRequestBuilder():
         return request_info
     
     @property
-    def get_health_metrics(self) -> get_health_metrics_request_builder.GetHealthMetricsRequestBuilder:
+    def get_health_metrics(self) -> GetHealthMetricsRequestBuilder:
         """
         Provides operations to call the getHealthMetrics method.
         """
-        from .get_health_metrics import get_health_metrics_request_builder
+        from .get_health_metrics.get_health_metrics_request_builder import GetHealthMetricsRequestBuilder
 
-        return get_health_metrics_request_builder.GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_health_metric_time_series(self) -> get_health_metric_time_series_request_builder.GetHealthMetricTimeSeriesRequestBuilder:
+    def get_health_metric_time_series(self) -> GetHealthMetricTimeSeriesRequestBuilder:
         """
         Provides operations to call the getHealthMetricTimeSeries method.
         """
-        from .get_health_metric_time_series import get_health_metric_time_series_request_builder
+        from .get_health_metric_time_series.get_health_metric_time_series_request_builder import GetHealthMetricTimeSeriesRequestBuilder
 
-        return get_health_metric_time_series_request_builder.GetHealthMetricTimeSeriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetHealthMetricTimeSeriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CertificateConnectorDetailsItemRequestBuilderDeleteRequestConfiguration():
@@ -200,8 +200,8 @@ class CertificateConnectorDetailsItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

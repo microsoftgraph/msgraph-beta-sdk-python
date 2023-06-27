@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.ediscovery import review_set, review_set_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import review_set_item_request_builder
+    from ......models.ediscovery.review_set import ReviewSet
+    from ......models.ediscovery.review_set_collection_response import ReviewSetCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.review_set_item_request_builder import ReviewSetItemRequestBuilder
 
 class ReviewSetsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class ReviewSetsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/reviewSets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class ReviewSetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_review_set_id(self,review_set_id: str) -> review_set_item_request_builder.ReviewSetItemRequestBuilder:
+    def by_review_set_id(self,review_set_id: str) -> ReviewSetItemRequestBuilder:
         """
         Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
         Args:
             review_set_id: Unique identifier of the item
-        Returns: review_set_item_request_builder.ReviewSetItemRequestBuilder
+        Returns: ReviewSetItemRequestBuilder
         """
-        if review_set_id is None:
-            raise Exception("review_set_id cannot be undefined")
-        from .item import review_set_item_request_builder
+        if not review_set_id:
+            raise TypeError("review_set_id cannot be null.")
+        from .item.review_set_item_request_builder import ReviewSetItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["reviewSet%2Did"] = review_set_id
-        return review_set_item_request_builder.ReviewSetItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ReviewSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set_collection_response.ReviewSetCollectionResponse]:
+    async def get(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> Optional[ReviewSetCollectionResponse]:
         """
         Retrieve the properties and relationships of a reviewSet object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[review_set_collection_response.ReviewSetCollectionResponse]
+        Returns: Optional[ReviewSetCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.ediscovery import review_set_collection_response
+        from ......models.ediscovery.review_set_collection_response import ReviewSetCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, review_set_collection_response.ReviewSetCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ReviewSetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[review_set.ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> Optional[review_set.ReviewSet]:
+    async def post(self,body: Optional[ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> Optional[ReviewSet]:
         """
         Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[review_set.ReviewSet]
+        Returns: Optional[ReviewSet]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.ediscovery import review_set
+        from ......models.ediscovery.review_set import ReviewSet
 
-        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, error_mapping)
+        return await self.request_adapter.send_async(request_info, ReviewSet, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class ReviewSetsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[review_set.ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
         Args:
@@ -125,8 +126,8 @@ class ReviewSetsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class ReviewSetsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ReviewSetsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class ReviewSetsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

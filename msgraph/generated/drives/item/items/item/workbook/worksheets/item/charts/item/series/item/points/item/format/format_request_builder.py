@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...............models import workbook_chart_point_format
-    from ...............models.o_data_errors import o_data_error
-    from .fill import fill_request_builder
+    from ...............models.o_data_errors.o_data_error import ODataError
+    from ...............models.workbook_chart_point_format import WorkbookChartPointFormat
+    from .fill.fill_request_builder import FillRequestBuilder
 
 class FormatRequestBuilder():
     """
@@ -25,10 +25,10 @@ class FormatRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/{workbookChartSeries%2Did}/points/{workbookChartPoint%2Did}/format{?%24select,%24expand}"
 
@@ -45,62 +45,62 @@ class FormatRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...............models.o_data_errors import o_data_error
+        from ...............models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[FormatRequestBuilderGetRequestConfiguration] = None) -> Optional[workbook_chart_point_format.WorkbookChartPointFormat]:
+    async def get(self,request_configuration: Optional[FormatRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookChartPointFormat]:
         """
         Encapsulates the format properties chart point. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_chart_point_format.WorkbookChartPointFormat]
+        Returns: Optional[WorkbookChartPointFormat]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...............models.o_data_errors import o_data_error
+        from ...............models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...............models import workbook_chart_point_format
+        from ...............models.workbook_chart_point_format import WorkbookChartPointFormat
 
-        return await self.request_adapter.send_async(request_info, workbook_chart_point_format.WorkbookChartPointFormat, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookChartPointFormat, error_mapping)
     
-    async def patch(self,body: Optional[workbook_chart_point_format.WorkbookChartPointFormat] = None, request_configuration: Optional[FormatRequestBuilderPatchRequestConfiguration] = None) -> Optional[workbook_chart_point_format.WorkbookChartPointFormat]:
+    async def patch(self,body: Optional[WorkbookChartPointFormat] = None, request_configuration: Optional[FormatRequestBuilderPatchRequestConfiguration] = None) -> Optional[WorkbookChartPointFormat]:
         """
         Update the navigation property format in drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_chart_point_format.WorkbookChartPointFormat]
+        Returns: Optional[WorkbookChartPointFormat]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...............models.o_data_errors import o_data_error
+        from ...............models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...............models import workbook_chart_point_format
+        from ...............models.workbook_chart_point_format import WorkbookChartPointFormat
 
-        return await self.request_adapter.send_async(request_info, workbook_chart_point_format.WorkbookChartPointFormat, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookChartPointFormat, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[FormatRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -136,7 +136,7 @@ class FormatRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[workbook_chart_point_format.WorkbookChartPointFormat] = None, request_configuration: Optional[FormatRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WorkbookChartPointFormat] = None, request_configuration: Optional[FormatRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property format in drives
         Args:
@@ -144,8 +144,8 @@ class FormatRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,13 +158,13 @@ class FormatRequestBuilder():
         return request_info
     
     @property
-    def fill(self) -> fill_request_builder.FillRequestBuilder:
+    def fill(self) -> FillRequestBuilder:
         """
         Provides operations to manage the fill property of the microsoft.graph.workbookChartPointFormat entity.
         """
-        from .fill import fill_request_builder
+        from .fill.fill_request_builder import FillRequestBuilder
 
-        return fill_request_builder.FillRequestBuilder(self.request_adapter, self.path_parameters)
+        return FillRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class FormatRequestBuilderDeleteRequestConfiguration():
@@ -190,8 +190,8 @@ class FormatRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EdgeTelemetryMode(Enum):
+class EdgeTelemetryMode(str, Enum):
     # Default – No telemetry data collected or sent
     NotConfigured = "notConfigured",
     # Allow sending intranet history only: Only send browsing history data for intranet sites

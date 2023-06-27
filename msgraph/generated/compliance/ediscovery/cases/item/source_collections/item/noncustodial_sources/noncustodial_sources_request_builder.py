@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.ediscovery import noncustodial_data_source_collection_response
-    from ........models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import noncustodial_data_source_item_request_builder
+    from ........models.ediscovery.noncustodial_data_source_collection_response import NoncustodialDataSourceCollectionResponse
+    from ........models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.noncustodial_data_source_item_request_builder import NoncustodialDataSourceItemRequestBuilder
 
 class NoncustodialSourcesRequestBuilder():
     """
@@ -26,10 +26,10 @@ class NoncustodialSourcesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/sourceCollections/{sourceCollection%2Did}/noncustodialSources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,42 +37,42 @@ class NoncustodialSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_noncustodial_data_source_id(self,noncustodial_data_source_id: str) -> noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder:
+    def by_noncustodial_data_source_id(self,noncustodial_data_source_id: str) -> NoncustodialDataSourceItemRequestBuilder:
         """
         Provides operations to manage the noncustodialSources property of the microsoft.graph.ediscovery.sourceCollection entity.
         Args:
             noncustodial_data_source_id: Unique identifier of the item
-        Returns: noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder
+        Returns: NoncustodialDataSourceItemRequestBuilder
         """
-        if noncustodial_data_source_id is None:
-            raise Exception("noncustodial_data_source_id cannot be undefined")
-        from .item import noncustodial_data_source_item_request_builder
+        if not noncustodial_data_source_id:
+            raise TypeError("noncustodial_data_source_id cannot be null.")
+        from .item.noncustodial_data_source_item_request_builder import NoncustodialDataSourceItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["noncustodialDataSource%2Did"] = noncustodial_data_source_id
-        return noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return NoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[NoncustodialDataSourceCollectionResponse]:
         """
         Get a list of noncustodialDataSource associated with a sourceCollection.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]
+        Returns: Optional[NoncustodialDataSourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ........models.o_data_errors import o_data_error
+        from ........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ........models.ediscovery import noncustodial_data_source_collection_response
+        from ........models.ediscovery.noncustodial_data_source_collection_response import NoncustodialDataSourceCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, NoncustodialDataSourceCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -93,13 +93,13 @@ class NoncustodialSourcesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NoncustodialSourcesRequestBuilderGetQueryParameters():
@@ -113,8 +113,8 @@ class NoncustodialSourcesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

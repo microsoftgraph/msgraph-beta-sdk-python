@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import device_management_template
-    from ......models.o_data_errors import o_data_error
-    from .categories import categories_request_builder
-    from .compare_with_template_id import compare_with_template_id_request_builder
-    from .create_instance import create_instance_request_builder
-    from .settings import settings_request_builder
+    from ......models.device_management_template import DeviceManagementTemplate
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .categories.categories_request_builder import CategoriesRequestBuilder
+    from .compare_with_template_id.compare_with_template_id_request_builder import CompareWithTemplateIdRequestBuilder
+    from .create_instance.create_instance_request_builder import CreateInstanceRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
 
 class DeviceManagementTemplateItemRequestBuilder():
     """
@@ -28,10 +28,10 @@ class DeviceManagementTemplateItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/{deviceManagementTemplate%2Did1}{?%24select,%24expand}"
 
@@ -39,18 +39,18 @@ class DeviceManagementTemplateItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
+    def compare_with_template_id(self,template_id: Optional[str] = None) -> CompareWithTemplateIdRequestBuilder:
         """
         Provides operations to call the compare method.
         Args:
             templateId: Usage: templateId='{templateId}'
-        Returns: compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder
+        Returns: CompareWithTemplateIdRequestBuilder
         """
-        if template_id is None:
-            raise Exception("template_id cannot be undefined")
-        from .compare_with_template_id import compare_with_template_id_request_builder
+        if not template_id:
+            raise TypeError("template_id cannot be null.")
+        from .compare_with_template_id.compare_with_template_id_request_builder import CompareWithTemplateIdRequestBuilder
 
-        return compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, template_id)
+        return CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, template_id)
     
     async def delete(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -61,62 +61,62 @@ class DeviceManagementTemplateItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
+    async def get(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementTemplate]:
         """
         Collection of templates this template can migrate to
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_template.DeviceManagementTemplate]
+        Returns: Optional[DeviceManagementTemplate]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import device_management_template
+        from ......models.device_management_template import DeviceManagementTemplate
 
-        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementTemplate, error_mapping)
     
-    async def patch(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
+    async def patch(self,body: Optional[DeviceManagementTemplate] = None, request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementTemplate]:
         """
         Update the navigation property migratableTo in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_template.DeviceManagementTemplate]
+        Returns: Optional[DeviceManagementTemplate]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import device_management_template
+        from ......models.device_management_template import DeviceManagementTemplate
 
-        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementTemplate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -152,7 +152,7 @@ class DeviceManagementTemplateItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementTemplate] = None, request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property migratableTo in deviceManagement
         Args:
@@ -160,8 +160,8 @@ class DeviceManagementTemplateItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -174,31 +174,31 @@ class DeviceManagementTemplateItemRequestBuilder():
         return request_info
     
     @property
-    def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
+    def categories(self) -> CategoriesRequestBuilder:
         """
         Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
         """
-        from .categories import categories_request_builder
+        from .categories.categories_request_builder import CategoriesRequestBuilder
 
-        return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_instance(self) -> create_instance_request_builder.CreateInstanceRequestBuilder:
+    def create_instance(self) -> CreateInstanceRequestBuilder:
         """
         Provides operations to call the createInstance method.
         """
-        from .create_instance import create_instance_request_builder
+        from .create_instance.create_instance_request_builder import CreateInstanceRequestBuilder
 
-        return create_instance_request_builder.CreateInstanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreateInstanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+    def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementTemplate entity.
         """
-        from .settings import settings_request_builder
+        from .settings.settings_request_builder import SettingsRequestBuilder
 
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceManagementTemplateItemRequestBuilderDeleteRequestConfiguration():
@@ -224,8 +224,8 @@ class DeviceManagementTemplateItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

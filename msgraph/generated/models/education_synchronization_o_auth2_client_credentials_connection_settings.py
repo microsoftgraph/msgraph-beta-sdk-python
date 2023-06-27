@@ -1,23 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import education_synchronization_connection_settings
+    from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
 
-from . import education_synchronization_connection_settings
+from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
 
-class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(education_synchronization_connection_settings.EducationSynchronizationConnectionSettings):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EducationSynchronizationOAuth2ClientCredentialsConnectionSettings and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.educationSynchronizationOAuth2ClientCredentialsConnectionSettings"
-        # The scope of the access request (see RFC6749).
-        self._scope: Optional[str] = None
-        # The URL to get access tokens for the data provider.
-        self._token_url: Optional[str] = None
+@dataclass
+class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(EducationSynchronizationConnectionSettings):
+    odata_type = "#microsoft.graph.educationSynchronizationOAuth2ClientCredentialsConnectionSettings"
+    # The scope of the access request (see RFC6749).
+    scope: Optional[str] = None
+    # The URL to get access tokens for the data provider.
+    token_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationSynchronizationOAuth2ClientCredentialsConnectionSettings:
@@ -27,8 +24,8 @@ class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(educatio
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: EducationSynchronizationOAuth2ClientCredentialsConnectionSettings
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return EducationSynchronizationOAuth2ClientCredentialsConnectionSettings()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,7 +33,9 @@ class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(educatio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import education_synchronization_connection_settings
+        from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
+
+        from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
 
         fields: Dict[str, Callable[[Any], None]] = {
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
@@ -46,50 +45,16 @@ class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(educatio
         fields.update(super_fields)
         return fields
     
-    @property
-    def scope(self,) -> Optional[str]:
-        """
-        Gets the scope property value. The scope of the access request (see RFC6749).
-        Returns: Optional[str]
-        """
-        return self._scope
-    
-    @scope.setter
-    def scope(self,value: Optional[str] = None) -> None:
-        """
-        Sets the scope property value. The scope of the access request (see RFC6749).
-        Args:
-            value: Value to set for the scope property.
-        """
-        self._scope = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("scope", self.scope)
         writer.write_str_value("tokenUrl", self.token_url)
-    
-    @property
-    def token_url(self,) -> Optional[str]:
-        """
-        Gets the tokenUrl property value. The URL to get access tokens for the data provider.
-        Returns: Optional[str]
-        """
-        return self._token_url
-    
-    @token_url.setter
-    def token_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tokenUrl property value. The URL to get access tokens for the data provider.
-        Args:
-            value: Value to set for the token_url property.
-        """
-        self._token_url = value
     
 

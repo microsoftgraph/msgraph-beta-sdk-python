@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TeamworkDeviceType(Enum):
+class TeamworkDeviceType(str, Enum):
     Unknown = "unknown",
     IpPhone = "ipPhone",
     TeamsRoom = "teamsRoom",

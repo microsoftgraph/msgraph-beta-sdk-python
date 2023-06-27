@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcStatus(Enum):
+class CloudPcStatus(str, Enum):
     NotProvisioned = "notProvisioned",
     Provisioning = "provisioning",
     Provisioned = "provisioned",

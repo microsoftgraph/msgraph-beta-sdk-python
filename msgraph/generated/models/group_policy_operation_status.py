@@ -1,6 +1,6 @@
 from enum import Enum
 
-class GroupPolicyOperationStatus(Enum):
+class GroupPolicyOperationStatus(str, Enum):
     # Group Policy unknown operation status.
     Unknown = "unknown",
     # Group Policy in progress operation status.

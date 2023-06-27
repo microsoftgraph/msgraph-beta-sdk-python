@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import unified_role_management_policy_assignment
-    from ....models.o_data_errors import o_data_error
-    from .policy import policy_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.unified_role_management_policy_assignment import UnifiedRoleManagementPolicyAssignment
+    from .policy.policy_request_builder import PolicyRequestBuilder
 
 class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
     """
@@ -25,10 +25,10 @@ class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/policies/roleManagementPolicyAssignments/{unifiedRoleManagementPolicyAssignment%2Did}{?%24select,%24expand}"
 
@@ -45,62 +45,62 @@ class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment]:
+    async def get(self,request_configuration: Optional[UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementPolicyAssignment]:
         """
-        Get the details of a role management policy assignment including the policy and rules associated with the Azure AD role.
+        Represents the role management policy assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment]
+        Returns: Optional[UnifiedRoleManagementPolicyAssignment]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import unified_role_management_policy_assignment
+        from ....models.unified_role_management_policy_assignment import UnifiedRoleManagementPolicyAssignment
 
-        return await self.request_adapter.send_async(request_info, unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRoleManagementPolicyAssignment, error_mapping)
     
-    async def patch(self,body: Optional[unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment] = None, request_configuration: Optional[UnifiedRoleManagementPolicyAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment]:
+    async def patch(self,body: Optional[UnifiedRoleManagementPolicyAssignment] = None, request_configuration: Optional[UnifiedRoleManagementPolicyAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UnifiedRoleManagementPolicyAssignment]:
         """
         Update the navigation property roleManagementPolicyAssignments in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment]
+        Returns: Optional[UnifiedRoleManagementPolicyAssignment]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import unified_role_management_policy_assignment
+        from ....models.unified_role_management_policy_assignment import UnifiedRoleManagementPolicyAssignment
 
-        return await self.request_adapter.send_async(request_info, unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRoleManagementPolicyAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedRoleManagementPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -120,7 +120,7 @@ class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the details of a role management policy assignment including the policy and rules associated with the Azure AD role.
+        Represents the role management policy assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -136,7 +136,7 @@ class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment] = None, request_configuration: Optional[UnifiedRoleManagementPolicyAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UnifiedRoleManagementPolicyAssignment] = None, request_configuration: Optional[UnifiedRoleManagementPolicyAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property roleManagementPolicyAssignments in policies
         Args:
@@ -144,8 +144,8 @@ class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,13 +158,13 @@ class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
         return request_info
     
     @property
-    def policy(self) -> policy_request_builder.PolicyRequestBuilder:
+    def policy(self) -> PolicyRequestBuilder:
         """
         Provides operations to manage the policy property of the microsoft.graph.unifiedRoleManagementPolicyAssignment entity.
         """
-        from .policy import policy_request_builder
+        from .policy.policy_request_builder import PolicyRequestBuilder
 
-        return policy_request_builder.PolicyRequestBuilder(self.request_adapter, self.path_parameters)
+        return PolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UnifiedRoleManagementPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration():
@@ -181,7 +181,7 @@ class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
     @dataclass
     class UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetQueryParameters():
         """
-        Get the details of a role management policy assignment including the policy and rules associated with the Azure AD role.
+        Represents the role management policy assignments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -190,8 +190,8 @@ class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

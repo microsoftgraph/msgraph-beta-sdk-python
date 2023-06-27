@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SubjectNameFormat(Enum):
+class SubjectNameFormat(str, Enum):
     # Common name.
     CommonName = "commonName",
     # Common Name Including Email.

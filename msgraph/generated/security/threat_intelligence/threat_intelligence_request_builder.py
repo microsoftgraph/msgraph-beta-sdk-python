@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,18 +10,19 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.o_data_errors import o_data_error
-    from ...models.security import threat_intelligence
-    from .article_indicators import article_indicators_request_builder
-    from .articles import articles_request_builder
-    from .host_components import host_components_request_builder
-    from .host_cookies import host_cookies_request_builder
-    from .hosts import hosts_request_builder
-    from .host_trackers import host_trackers_request_builder
-    from .intelligence_profile_indicators import intelligence_profile_indicators_request_builder
-    from .intel_profiles import intel_profiles_request_builder
-    from .passive_dns_records import passive_dns_records_request_builder
-    from .vulnerabilities import vulnerabilities_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.security.threat_intelligence import ThreatIntelligence
+    from .article_indicators.article_indicators_request_builder import ArticleIndicatorsRequestBuilder
+    from .articles.articles_request_builder import ArticlesRequestBuilder
+    from .host_components.host_components_request_builder import HostComponentsRequestBuilder
+    from .host_cookies.host_cookies_request_builder import HostCookiesRequestBuilder
+    from .hosts.hosts_request_builder import HostsRequestBuilder
+    from .host_trackers.host_trackers_request_builder import HostTrackersRequestBuilder
+    from .intelligence_profile_indicators.intelligence_profile_indicators_request_builder import IntelligenceProfileIndicatorsRequestBuilder
+    from .intel_profiles.intel_profiles_request_builder import IntelProfilesRequestBuilder
+    from .passive_dns_records.passive_dns_records_request_builder import PassiveDnsRecordsRequestBuilder
+    from .subdomains.subdomains_request_builder import SubdomainsRequestBuilder
+    from .vulnerabilities.vulnerabilities_request_builder import VulnerabilitiesRequestBuilder
 
 class ThreatIntelligenceRequestBuilder():
     """
@@ -34,10 +35,10 @@ class ThreatIntelligenceRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/security/threatIntelligence{?%24select,%24expand}"
 
@@ -54,62 +55,62 @@ class ThreatIntelligenceRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ThreatIntelligenceRequestBuilderGetRequestConfiguration] = None) -> Optional[threat_intelligence.ThreatIntelligence]:
+    async def get(self,request_configuration: Optional[ThreatIntelligenceRequestBuilderGetRequestConfiguration] = None) -> Optional[ThreatIntelligence]:
         """
         Get threatIntelligence from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[threat_intelligence.ThreatIntelligence]
+        Returns: Optional[ThreatIntelligence]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.security import threat_intelligence
+        from ...models.security.threat_intelligence import ThreatIntelligence
 
-        return await self.request_adapter.send_async(request_info, threat_intelligence.ThreatIntelligence, error_mapping)
+        return await self.request_adapter.send_async(request_info, ThreatIntelligence, error_mapping)
     
-    async def patch(self,body: Optional[threat_intelligence.ThreatIntelligence] = None, request_configuration: Optional[ThreatIntelligenceRequestBuilderPatchRequestConfiguration] = None) -> Optional[threat_intelligence.ThreatIntelligence]:
+    async def patch(self,body: Optional[ThreatIntelligence] = None, request_configuration: Optional[ThreatIntelligenceRequestBuilderPatchRequestConfiguration] = None) -> Optional[ThreatIntelligence]:
         """
         Update the navigation property threatIntelligence in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[threat_intelligence.ThreatIntelligence]
+        Returns: Optional[ThreatIntelligence]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.security import threat_intelligence
+        from ...models.security.threat_intelligence import ThreatIntelligence
 
-        return await self.request_adapter.send_async(request_info, threat_intelligence.ThreatIntelligence, error_mapping)
+        return await self.request_adapter.send_async(request_info, ThreatIntelligence, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ThreatIntelligenceRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -145,7 +146,7 @@ class ThreatIntelligenceRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[threat_intelligence.ThreatIntelligence] = None, request_configuration: Optional[ThreatIntelligenceRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ThreatIntelligence] = None, request_configuration: Optional[ThreatIntelligenceRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property threatIntelligence in security
         Args:
@@ -153,8 +154,8 @@ class ThreatIntelligenceRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -167,94 +168,103 @@ class ThreatIntelligenceRequestBuilder():
         return request_info
     
     @property
-    def article_indicators(self) -> article_indicators_request_builder.ArticleIndicatorsRequestBuilder:
+    def article_indicators(self) -> ArticleIndicatorsRequestBuilder:
         """
         Provides operations to manage the articleIndicators property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .article_indicators import article_indicators_request_builder
+        from .article_indicators.article_indicators_request_builder import ArticleIndicatorsRequestBuilder
 
-        return article_indicators_request_builder.ArticleIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ArticleIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def articles(self) -> articles_request_builder.ArticlesRequestBuilder:
+    def articles(self) -> ArticlesRequestBuilder:
         """
         Provides operations to manage the articles property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .articles import articles_request_builder
+        from .articles.articles_request_builder import ArticlesRequestBuilder
 
-        return articles_request_builder.ArticlesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ArticlesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def host_components(self) -> host_components_request_builder.HostComponentsRequestBuilder:
+    def host_components(self) -> HostComponentsRequestBuilder:
         """
         Provides operations to manage the hostComponents property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .host_components import host_components_request_builder
+        from .host_components.host_components_request_builder import HostComponentsRequestBuilder
 
-        return host_components_request_builder.HostComponentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return HostComponentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def host_cookies(self) -> host_cookies_request_builder.HostCookiesRequestBuilder:
+    def host_cookies(self) -> HostCookiesRequestBuilder:
         """
         Provides operations to manage the hostCookies property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .host_cookies import host_cookies_request_builder
+        from .host_cookies.host_cookies_request_builder import HostCookiesRequestBuilder
 
-        return host_cookies_request_builder.HostCookiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return HostCookiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def hosts(self) -> hosts_request_builder.HostsRequestBuilder:
+    def hosts(self) -> HostsRequestBuilder:
         """
         Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .hosts import hosts_request_builder
+        from .hosts.hosts_request_builder import HostsRequestBuilder
 
-        return hosts_request_builder.HostsRequestBuilder(self.request_adapter, self.path_parameters)
+        return HostsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def host_trackers(self) -> host_trackers_request_builder.HostTrackersRequestBuilder:
+    def host_trackers(self) -> HostTrackersRequestBuilder:
         """
         Provides operations to manage the hostTrackers property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .host_trackers import host_trackers_request_builder
+        from .host_trackers.host_trackers_request_builder import HostTrackersRequestBuilder
 
-        return host_trackers_request_builder.HostTrackersRequestBuilder(self.request_adapter, self.path_parameters)
+        return HostTrackersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def intelligence_profile_indicators(self) -> intelligence_profile_indicators_request_builder.IntelligenceProfileIndicatorsRequestBuilder:
+    def intelligence_profile_indicators(self) -> IntelligenceProfileIndicatorsRequestBuilder:
         """
         Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .intelligence_profile_indicators import intelligence_profile_indicators_request_builder
+        from .intelligence_profile_indicators.intelligence_profile_indicators_request_builder import IntelligenceProfileIndicatorsRequestBuilder
 
-        return intelligence_profile_indicators_request_builder.IntelligenceProfileIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return IntelligenceProfileIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def intel_profiles(self) -> intel_profiles_request_builder.IntelProfilesRequestBuilder:
+    def intel_profiles(self) -> IntelProfilesRequestBuilder:
         """
         Provides operations to manage the intelProfiles property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .intel_profiles import intel_profiles_request_builder
+        from .intel_profiles.intel_profiles_request_builder import IntelProfilesRequestBuilder
 
-        return intel_profiles_request_builder.IntelProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return IntelProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def passive_dns_records(self) -> passive_dns_records_request_builder.PassiveDnsRecordsRequestBuilder:
+    def passive_dns_records(self) -> PassiveDnsRecordsRequestBuilder:
         """
         Provides operations to manage the passiveDnsRecords property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .passive_dns_records import passive_dns_records_request_builder
+        from .passive_dns_records.passive_dns_records_request_builder import PassiveDnsRecordsRequestBuilder
 
-        return passive_dns_records_request_builder.PassiveDnsRecordsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PassiveDnsRecordsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def vulnerabilities(self) -> vulnerabilities_request_builder.VulnerabilitiesRequestBuilder:
+    def subdomains(self) -> SubdomainsRequestBuilder:
+        """
+        Provides operations to manage the subdomains property of the microsoft.graph.security.threatIntelligence entity.
+        """
+        from .subdomains.subdomains_request_builder import SubdomainsRequestBuilder
+
+        return SubdomainsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def vulnerabilities(self) -> VulnerabilitiesRequestBuilder:
         """
         Provides operations to manage the vulnerabilities property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .vulnerabilities import vulnerabilities_request_builder
+        from .vulnerabilities.vulnerabilities_request_builder import VulnerabilitiesRequestBuilder
 
-        return vulnerabilities_request_builder.VulnerabilitiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return VulnerabilitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ThreatIntelligenceRequestBuilderDeleteRequestConfiguration():
@@ -280,8 +290,8 @@ class ThreatIntelligenceRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

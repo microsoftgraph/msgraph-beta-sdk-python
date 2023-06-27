@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.identity_governance import workflow
+    from ......models.identity_governance.workflow import Workflow
 
+@dataclass
 class CreateNewVersionPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new createNewVersionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The workflow property
-        self._workflow: Optional[workflow.Workflow] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The workflow property
+    workflow: Optional[Workflow] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CreateNewVersionPostRequestBody:
@@ -41,8 +22,8 @@ class CreateNewVersionPostRequestBody(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: CreateNewVersionPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CreateNewVersionPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -50,10 +31,12 @@ class CreateNewVersionPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ......models.identity_governance import workflow
+        from ......models.identity_governance.workflow import Workflow
+
+        from ......models.identity_governance.workflow import Workflow
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "workflow": lambda n : setattr(self, 'workflow', n.get_object_value(workflow.Workflow)),
+            "workflow": lambda n : setattr(self, 'workflow', n.get_object_value(Workflow)),
         }
         return fields
     
@@ -63,26 +46,9 @@ class CreateNewVersionPostRequestBody(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_object_value("workflow", self.workflow)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def workflow(self,) -> Optional[workflow.Workflow]:
-        """
-        Gets the workflow property value. The workflow property
-        Returns: Optional[workflow.Workflow]
-        """
-        return self._workflow
-    
-    @workflow.setter
-    def workflow(self,value: Optional[workflow.Workflow] = None) -> None:
-        """
-        Sets the workflow property value. The workflow property
-        Args:
-            value: Value to set for the workflow property.
-        """
-        self._workflow = value
     
 

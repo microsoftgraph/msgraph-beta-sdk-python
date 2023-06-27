@@ -1,29 +1,29 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import email_threat_submission, email_threat_submission_policy, file_threat_submission, url_threat_submission
-    from .. import entity
+    from ..entity import Entity
+    from .email_threat_submission import EmailThreatSubmission
+    from .email_threat_submission_policy import EmailThreatSubmissionPolicy
+    from .file_threat_submission import FileThreatSubmission
+    from .url_threat_submission import UrlThreatSubmission
 
-from .. import entity
+from ..entity import Entity
 
-class ThreatSubmissionRoot(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new threatSubmissionRoot and sets the default values.
-        """
-        super().__init__()
-        # The emailThreatSubmissionPolicies property
-        self._email_threat_submission_policies: Optional[List[email_threat_submission_policy.EmailThreatSubmissionPolicy]] = None
-        # The emailThreats property
-        self._email_threats: Optional[List[email_threat_submission.EmailThreatSubmission]] = None
-        # The fileThreats property
-        self._file_threats: Optional[List[file_threat_submission.FileThreatSubmission]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The urlThreats property
-        self._url_threats: Optional[List[url_threat_submission.UrlThreatSubmission]] = None
+@dataclass
+class ThreatSubmissionRoot(Entity):
+    # The emailThreatSubmissionPolicies property
+    email_threat_submission_policies: Optional[List[EmailThreatSubmissionPolicy]] = None
+    # The emailThreats property
+    email_threats: Optional[List[EmailThreatSubmission]] = None
+    # The fileThreats property
+    file_threats: Optional[List[FileThreatSubmission]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The urlThreats property
+    url_threats: Optional[List[UrlThreatSubmission]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ThreatSubmissionRoot:
@@ -33,74 +33,32 @@ class ThreatSubmissionRoot(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ThreatSubmissionRoot
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ThreatSubmissionRoot()
-    
-    @property
-    def email_threat_submission_policies(self,) -> Optional[List[email_threat_submission_policy.EmailThreatSubmissionPolicy]]:
-        """
-        Gets the emailThreatSubmissionPolicies property value. The emailThreatSubmissionPolicies property
-        Returns: Optional[List[email_threat_submission_policy.EmailThreatSubmissionPolicy]]
-        """
-        return self._email_threat_submission_policies
-    
-    @email_threat_submission_policies.setter
-    def email_threat_submission_policies(self,value: Optional[List[email_threat_submission_policy.EmailThreatSubmissionPolicy]] = None) -> None:
-        """
-        Sets the emailThreatSubmissionPolicies property value. The emailThreatSubmissionPolicies property
-        Args:
-            value: Value to set for the email_threat_submission_policies property.
-        """
-        self._email_threat_submission_policies = value
-    
-    @property
-    def email_threats(self,) -> Optional[List[email_threat_submission.EmailThreatSubmission]]:
-        """
-        Gets the emailThreats property value. The emailThreats property
-        Returns: Optional[List[email_threat_submission.EmailThreatSubmission]]
-        """
-        return self._email_threats
-    
-    @email_threats.setter
-    def email_threats(self,value: Optional[List[email_threat_submission.EmailThreatSubmission]] = None) -> None:
-        """
-        Sets the emailThreats property value. The emailThreats property
-        Args:
-            value: Value to set for the email_threats property.
-        """
-        self._email_threats = value
-    
-    @property
-    def file_threats(self,) -> Optional[List[file_threat_submission.FileThreatSubmission]]:
-        """
-        Gets the fileThreats property value. The fileThreats property
-        Returns: Optional[List[file_threat_submission.FileThreatSubmission]]
-        """
-        return self._file_threats
-    
-    @file_threats.setter
-    def file_threats(self,value: Optional[List[file_threat_submission.FileThreatSubmission]] = None) -> None:
-        """
-        Sets the fileThreats property value. The fileThreats property
-        Args:
-            value: Value to set for the file_threats property.
-        """
-        self._file_threats = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import email_threat_submission, email_threat_submission_policy, file_threat_submission, url_threat_submission
-        from .. import entity
+        from ..entity import Entity
+        from .email_threat_submission import EmailThreatSubmission
+        from .email_threat_submission_policy import EmailThreatSubmissionPolicy
+        from .file_threat_submission import FileThreatSubmission
+        from .url_threat_submission import UrlThreatSubmission
+
+        from ..entity import Entity
+        from .email_threat_submission import EmailThreatSubmission
+        from .email_threat_submission_policy import EmailThreatSubmissionPolicy
+        from .file_threat_submission import FileThreatSubmission
+        from .url_threat_submission import UrlThreatSubmission
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "emailThreats": lambda n : setattr(self, 'email_threats', n.get_collection_of_object_values(email_threat_submission.EmailThreatSubmission)),
-            "emailThreatSubmissionPolicies": lambda n : setattr(self, 'email_threat_submission_policies', n.get_collection_of_object_values(email_threat_submission_policy.EmailThreatSubmissionPolicy)),
-            "fileThreats": lambda n : setattr(self, 'file_threats', n.get_collection_of_object_values(file_threat_submission.FileThreatSubmission)),
-            "urlThreats": lambda n : setattr(self, 'url_threats', n.get_collection_of_object_values(url_threat_submission.UrlThreatSubmission)),
+            "emailThreatSubmissionPolicies": lambda n : setattr(self, 'email_threat_submission_policies', n.get_collection_of_object_values(EmailThreatSubmissionPolicy)),
+            "emailThreats": lambda n : setattr(self, 'email_threats', n.get_collection_of_object_values(EmailThreatSubmission)),
+            "fileThreats": lambda n : setattr(self, 'file_threats', n.get_collection_of_object_values(FileThreatSubmission)),
+            "urlThreats": lambda n : setattr(self, 'url_threats', n.get_collection_of_object_values(UrlThreatSubmission)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -112,29 +70,12 @@ class ThreatSubmissionRoot(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("emailThreats", self.email_threats)
         writer.write_collection_of_object_values("emailThreatSubmissionPolicies", self.email_threat_submission_policies)
+        writer.write_collection_of_object_values("emailThreats", self.email_threats)
         writer.write_collection_of_object_values("fileThreats", self.file_threats)
         writer.write_collection_of_object_values("urlThreats", self.url_threats)
-    
-    @property
-    def url_threats(self,) -> Optional[List[url_threat_submission.UrlThreatSubmission]]:
-        """
-        Gets the urlThreats property value. The urlThreats property
-        Returns: Optional[List[url_threat_submission.UrlThreatSubmission]]
-        """
-        return self._url_threats
-    
-    @url_threats.setter
-    def url_threats(self,value: Optional[List[url_threat_submission.UrlThreatSubmission]] = None) -> None:
-        """
-        Sets the urlThreats property value. The urlThreats property
-        Args:
-            value: Value to set for the url_threats property.
-        """
-        self._url_threats = value
     
 

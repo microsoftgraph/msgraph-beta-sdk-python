@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,15 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import group_policy_uploaded_definition_file
-    from ....models.o_data_errors import o_data_error
-    from .add_language_files import add_language_files_request_builder
-    from .definitions import definitions_request_builder
-    from .group_policy_operations import group_policy_operations_request_builder
-    from .remove import remove_request_builder
-    from .remove_language_files import remove_language_files_request_builder
-    from .update_language_files import update_language_files_request_builder
-    from .upload_new_version import upload_new_version_request_builder
+    from ....models.group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .add_language_files.add_language_files_request_builder import AddLanguageFilesRequestBuilder
+    from .definitions.definitions_request_builder import DefinitionsRequestBuilder
+    from .group_policy_operations.group_policy_operations_request_builder import GroupPolicyOperationsRequestBuilder
+    from .remove.remove_request_builder import RemoveRequestBuilder
+    from .remove_language_files.remove_language_files_request_builder import RemoveLanguageFilesRequestBuilder
+    from .update_language_files.update_language_files_request_builder import UpdateLanguageFilesRequestBuilder
+    from .upload_new_version.upload_new_version_request_builder import UploadNewVersionRequestBuilder
 
 class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
     """
@@ -31,10 +31,10 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/groupPolicyUploadedDefinitionFiles/{groupPolicyUploadedDefinitionFile%2Did}{?%24select,%24expand}"
 
@@ -51,62 +51,62 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile]:
+    async def get(self,request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicyUploadedDefinitionFile]:
         """
         The available group policy uploaded definition files for this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile]
+        Returns: Optional[GroupPolicyUploadedDefinitionFile]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import group_policy_uploaded_definition_file
+        from ....models.group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
 
-        return await self.request_adapter.send_async(request_info, group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicyUploadedDefinitionFile, error_mapping)
     
-    async def patch(self,body: Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile] = None, request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile]:
+    async def patch(self,body: Optional[GroupPolicyUploadedDefinitionFile] = None, request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[GroupPolicyUploadedDefinitionFile]:
         """
         Update the navigation property groupPolicyUploadedDefinitionFiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile]
+        Returns: Optional[GroupPolicyUploadedDefinitionFile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import group_policy_uploaded_definition_file
+        from ....models.group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
 
-        return await self.request_adapter.send_async(request_info, group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicyUploadedDefinitionFile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -142,7 +142,7 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile] = None, request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[GroupPolicyUploadedDefinitionFile] = None, request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property groupPolicyUploadedDefinitionFiles in deviceManagement
         Args:
@@ -150,8 +150,8 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -164,67 +164,67 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         return request_info
     
     @property
-    def add_language_files(self) -> add_language_files_request_builder.AddLanguageFilesRequestBuilder:
+    def add_language_files(self) -> AddLanguageFilesRequestBuilder:
         """
         Provides operations to call the addLanguageFiles method.
         """
-        from .add_language_files import add_language_files_request_builder
+        from .add_language_files.add_language_files_request_builder import AddLanguageFilesRequestBuilder
 
-        return add_language_files_request_builder.AddLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AddLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
+    def definitions(self) -> DefinitionsRequestBuilder:
         """
         Provides operations to manage the definitions property of the microsoft.graph.groupPolicyDefinitionFile entity.
         """
-        from .definitions import definitions_request_builder
+        from .definitions.definitions_request_builder import DefinitionsRequestBuilder
 
-        return definitions_request_builder.DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def group_policy_operations(self) -> group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder:
+    def group_policy_operations(self) -> GroupPolicyOperationsRequestBuilder:
         """
         Provides operations to manage the groupPolicyOperations property of the microsoft.graph.groupPolicyUploadedDefinitionFile entity.
         """
-        from .group_policy_operations import group_policy_operations_request_builder
+        from .group_policy_operations.group_policy_operations_request_builder import GroupPolicyOperationsRequestBuilder
 
-        return group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GroupPolicyOperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove(self) -> remove_request_builder.RemoveRequestBuilder:
+    def remove(self) -> RemoveRequestBuilder:
         """
         Provides operations to call the remove method.
         """
-        from .remove import remove_request_builder
+        from .remove.remove_request_builder import RemoveRequestBuilder
 
-        return remove_request_builder.RemoveRequestBuilder(self.request_adapter, self.path_parameters)
+        return RemoveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_language_files(self) -> remove_language_files_request_builder.RemoveLanguageFilesRequestBuilder:
+    def remove_language_files(self) -> RemoveLanguageFilesRequestBuilder:
         """
         Provides operations to call the removeLanguageFiles method.
         """
-        from .remove_language_files import remove_language_files_request_builder
+        from .remove_language_files.remove_language_files_request_builder import RemoveLanguageFilesRequestBuilder
 
-        return remove_language_files_request_builder.RemoveLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return RemoveLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_language_files(self) -> update_language_files_request_builder.UpdateLanguageFilesRequestBuilder:
+    def update_language_files(self) -> UpdateLanguageFilesRequestBuilder:
         """
         Provides operations to call the updateLanguageFiles method.
         """
-        from .update_language_files import update_language_files_request_builder
+        from .update_language_files.update_language_files_request_builder import UpdateLanguageFilesRequestBuilder
 
-        return update_language_files_request_builder.UpdateLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_new_version(self) -> upload_new_version_request_builder.UploadNewVersionRequestBuilder:
+    def upload_new_version(self) -> UploadNewVersionRequestBuilder:
         """
         Provides operations to call the uploadNewVersion method.
         """
-        from .upload_new_version import upload_new_version_request_builder
+        from .upload_new_version.upload_new_version_request_builder import UploadNewVersionRequestBuilder
 
-        return upload_new_version_request_builder.UploadNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
+        return UploadNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupPolicyUploadedDefinitionFileItemRequestBuilderDeleteRequestConfiguration():
@@ -250,8 +250,8 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

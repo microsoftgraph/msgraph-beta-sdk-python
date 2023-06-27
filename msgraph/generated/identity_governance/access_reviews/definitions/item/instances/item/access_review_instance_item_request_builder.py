@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,19 +10,19 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import access_review_instance
-    from .......models.o_data_errors import o_data_error
-    from .accept_recommendations import accept_recommendations_request_builder
-    from .apply_decisions import apply_decisions_request_builder
-    from .batch_record_decisions import batch_record_decisions_request_builder
-    from .contacted_reviewers import contacted_reviewers_request_builder
-    from .decisions import decisions_request_builder
-    from .definition import definition_request_builder
-    from .reset_decisions import reset_decisions_request_builder
-    from .send_reminder import send_reminder_request_builder
-    from .stages import stages_request_builder
-    from .stop import stop_request_builder
-    from .stop_apply_decisions import stop_apply_decisions_request_builder
+    from .......models.access_review_instance import AccessReviewInstance
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .accept_recommendations.accept_recommendations_request_builder import AcceptRecommendationsRequestBuilder
+    from .apply_decisions.apply_decisions_request_builder import ApplyDecisionsRequestBuilder
+    from .batch_record_decisions.batch_record_decisions_request_builder import BatchRecordDecisionsRequestBuilder
+    from .contacted_reviewers.contacted_reviewers_request_builder import ContactedReviewersRequestBuilder
+    from .decisions.decisions_request_builder import DecisionsRequestBuilder
+    from .definition.definition_request_builder import DefinitionRequestBuilder
+    from .reset_decisions.reset_decisions_request_builder import ResetDecisionsRequestBuilder
+    from .send_reminder.send_reminder_request_builder import SendReminderRequestBuilder
+    from .stages.stages_request_builder import StagesRequestBuilder
+    from .stop.stop_request_builder import StopRequestBuilder
+    from .stop_apply_decisions.stop_apply_decisions_request_builder import StopApplyDecisionsRequestBuilder
 
 class AccessReviewInstanceItemRequestBuilder():
     """
@@ -35,10 +35,10 @@ class AccessReviewInstanceItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}{?%24select,%24expand}"
 
@@ -55,62 +55,62 @@ class AccessReviewInstanceItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
+    async def get(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewInstance]:
         """
         Retrieve an accessReviewInstance object using the identifier of an accessReviewInstance and its parent accessReviewScheduleDefinition. This returns all properties of the instance except for the associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_review_instance.AccessReviewInstance]
+        Returns: Optional[AccessReviewInstance]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import access_review_instance
+        from .......models.access_review_instance import AccessReviewInstance
 
-        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessReviewInstance, error_mapping)
     
-    async def patch(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
+    async def patch(self,body: Optional[AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AccessReviewInstance]:
         """
         Update the properties of an accessReviewInstance object. Only the **reviewers** and **fallbackReviewers** properties can be updated but the **scope** property is also required in the request body. You can only add reviewers to the **fallbackReviewers** property but can't remove existing **fallbackReviewers**. To update an **accessReviewInstance**, it's **status** must be `InProgress`.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_review_instance.AccessReviewInstance]
+        Returns: Optional[AccessReviewInstance]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import access_review_instance
+        from .......models.access_review_instance import AccessReviewInstance
 
-        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessReviewInstance, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -146,7 +146,7 @@ class AccessReviewInstanceItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of an accessReviewInstance object. Only the **reviewers** and **fallbackReviewers** properties can be updated but the **scope** property is also required in the request body. You can only add reviewers to the **fallbackReviewers** property but can't remove existing **fallbackReviewers**. To update an **accessReviewInstance**, it's **status** must be `InProgress`.
         Args:
@@ -154,8 +154,8 @@ class AccessReviewInstanceItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -168,103 +168,103 @@ class AccessReviewInstanceItemRequestBuilder():
         return request_info
     
     @property
-    def accept_recommendations(self) -> accept_recommendations_request_builder.AcceptRecommendationsRequestBuilder:
+    def accept_recommendations(self) -> AcceptRecommendationsRequestBuilder:
         """
         Provides operations to call the acceptRecommendations method.
         """
-        from .accept_recommendations import accept_recommendations_request_builder
+        from .accept_recommendations.accept_recommendations_request_builder import AcceptRecommendationsRequestBuilder
 
-        return accept_recommendations_request_builder.AcceptRecommendationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AcceptRecommendationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_decisions(self) -> apply_decisions_request_builder.ApplyDecisionsRequestBuilder:
+    def apply_decisions(self) -> ApplyDecisionsRequestBuilder:
         """
         Provides operations to call the applyDecisions method.
         """
-        from .apply_decisions import apply_decisions_request_builder
+        from .apply_decisions.apply_decisions_request_builder import ApplyDecisionsRequestBuilder
 
-        return apply_decisions_request_builder.ApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def batch_record_decisions(self) -> batch_record_decisions_request_builder.BatchRecordDecisionsRequestBuilder:
+    def batch_record_decisions(self) -> BatchRecordDecisionsRequestBuilder:
         """
         Provides operations to call the batchRecordDecisions method.
         """
-        from .batch_record_decisions import batch_record_decisions_request_builder
+        from .batch_record_decisions.batch_record_decisions_request_builder import BatchRecordDecisionsRequestBuilder
 
-        return batch_record_decisions_request_builder.BatchRecordDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return BatchRecordDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def contacted_reviewers(self) -> contacted_reviewers_request_builder.ContactedReviewersRequestBuilder:
+    def contacted_reviewers(self) -> ContactedReviewersRequestBuilder:
         """
         Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.
         """
-        from .contacted_reviewers import contacted_reviewers_request_builder
+        from .contacted_reviewers.contacted_reviewers_request_builder import ContactedReviewersRequestBuilder
 
-        return contacted_reviewers_request_builder.ContactedReviewersRequestBuilder(self.request_adapter, self.path_parameters)
+        return ContactedReviewersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def decisions(self) -> decisions_request_builder.DecisionsRequestBuilder:
+    def decisions(self) -> DecisionsRequestBuilder:
         """
         Provides operations to manage the decisions property of the microsoft.graph.accessReviewInstance entity.
         """
-        from .decisions import decisions_request_builder
+        from .decisions.decisions_request_builder import DecisionsRequestBuilder
 
-        return decisions_request_builder.DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def definition(self) -> definition_request_builder.DefinitionRequestBuilder:
+    def definition(self) -> DefinitionRequestBuilder:
         """
         Provides operations to manage the definition property of the microsoft.graph.accessReviewInstance entity.
         """
-        from .definition import definition_request_builder
+        from .definition.definition_request_builder import DefinitionRequestBuilder
 
-        return definition_request_builder.DefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+        return DefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reset_decisions(self) -> reset_decisions_request_builder.ResetDecisionsRequestBuilder:
+    def reset_decisions(self) -> ResetDecisionsRequestBuilder:
         """
         Provides operations to call the resetDecisions method.
         """
-        from .reset_decisions import reset_decisions_request_builder
+        from .reset_decisions.reset_decisions_request_builder import ResetDecisionsRequestBuilder
 
-        return reset_decisions_request_builder.ResetDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResetDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send_reminder(self) -> send_reminder_request_builder.SendReminderRequestBuilder:
+    def send_reminder(self) -> SendReminderRequestBuilder:
         """
         Provides operations to call the sendReminder method.
         """
-        from .send_reminder import send_reminder_request_builder
+        from .send_reminder.send_reminder_request_builder import SendReminderRequestBuilder
 
-        return send_reminder_request_builder.SendReminderRequestBuilder(self.request_adapter, self.path_parameters)
+        return SendReminderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def stages(self) -> stages_request_builder.StagesRequestBuilder:
+    def stages(self) -> StagesRequestBuilder:
         """
         Provides operations to manage the stages property of the microsoft.graph.accessReviewInstance entity.
         """
-        from .stages import stages_request_builder
+        from .stages.stages_request_builder import StagesRequestBuilder
 
-        return stages_request_builder.StagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return StagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
+    def stop(self) -> StopRequestBuilder:
         """
         Provides operations to call the stop method.
         """
-        from .stop import stop_request_builder
+        from .stop.stop_request_builder import StopRequestBuilder
 
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
+        return StopRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def stop_apply_decisions(self) -> stop_apply_decisions_request_builder.StopApplyDecisionsRequestBuilder:
+    def stop_apply_decisions(self) -> StopApplyDecisionsRequestBuilder:
         """
         Provides operations to call the stopApplyDecisions method.
         """
-        from .stop_apply_decisions import stop_apply_decisions_request_builder
+        from .stop_apply_decisions.stop_apply_decisions_request_builder import StopApplyDecisionsRequestBuilder
 
-        return stop_apply_decisions_request_builder.StopApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return StopApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration():
@@ -290,8 +290,8 @@ class AccessReviewInstanceItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

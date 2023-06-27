@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import attack_simulation_operation, attack_simulation_operation_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import attack_simulation_operation_item_request_builder
+    from ....models.attack_simulation_operation import AttackSimulationOperation
+    from ....models.attack_simulation_operation_collection_response import AttackSimulationOperationCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.attack_simulation_operation_item_request_builder import AttackSimulationOperationItemRequestBuilder
 
 class OperationsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class OperationsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/security/attackSimulation/operations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class OperationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_attack_simulation_operation_id(self,attack_simulation_operation_id: str) -> attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder:
+    def by_attack_simulation_operation_id(self,attack_simulation_operation_id: str) -> AttackSimulationOperationItemRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.
         Args:
             attack_simulation_operation_id: Unique identifier of the item
-        Returns: attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder
+        Returns: AttackSimulationOperationItemRequestBuilder
         """
-        if attack_simulation_operation_id is None:
-            raise Exception("attack_simulation_operation_id cannot be undefined")
-        from .item import attack_simulation_operation_item_request_builder
+        if not attack_simulation_operation_id:
+            raise TypeError("attack_simulation_operation_id cannot be null.")
+        from .item.attack_simulation_operation_item_request_builder import AttackSimulationOperationItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["attackSimulationOperation%2Did"] = attack_simulation_operation_id
-        return attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AttackSimulationOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[attack_simulation_operation_collection_response.AttackSimulationOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[AttackSimulationOperationCollectionResponse]:
         """
         Get an attack simulation operation to track a long-running operation request for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[attack_simulation_operation_collection_response.AttackSimulationOperationCollectionResponse]
+        Returns: Optional[AttackSimulationOperationCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import attack_simulation_operation_collection_response
+        from ....models.attack_simulation_operation_collection_response import AttackSimulationOperationCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, attack_simulation_operation_collection_response.AttackSimulationOperationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AttackSimulationOperationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[attack_simulation_operation.AttackSimulationOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[attack_simulation_operation.AttackSimulationOperation]:
+    async def post(self,body: Optional[AttackSimulationOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[AttackSimulationOperation]:
         """
         Create new navigation property to operations for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[attack_simulation_operation.AttackSimulationOperation]
+        Returns: Optional[AttackSimulationOperation]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import attack_simulation_operation
+        from ....models.attack_simulation_operation import AttackSimulationOperation
 
-        return await self.request_adapter.send_async(request_info, attack_simulation_operation.AttackSimulationOperation, error_mapping)
+        return await self.request_adapter.send_async(request_info, AttackSimulationOperation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class OperationsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[attack_simulation_operation.AttackSimulationOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AttackSimulationOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to operations for security
         Args:
@@ -125,8 +126,8 @@ class OperationsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class OperationsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class OperationsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class OperationsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

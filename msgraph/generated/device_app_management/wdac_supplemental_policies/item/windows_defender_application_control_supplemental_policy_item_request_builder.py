@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import windows_defender_application_control_supplemental_policy
-    from ....models.o_data_errors import o_data_error
-    from .assign import assign_request_builder
-    from .assignments import assignments_request_builder
-    from .deploy_summary import deploy_summary_request_builder
-    from .device_statuses import device_statuses_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
+    from .assign.assign_request_builder import AssignRequestBuilder
+    from .assignments.assignments_request_builder import AssignmentsRequestBuilder
+    from .deploy_summary.deploy_summary_request_builder import DeploySummaryRequestBuilder
+    from .device_statuses.device_statuses_request_builder import DeviceStatusesRequestBuilder
 
 class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
     """
@@ -28,10 +28,10 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceAppManagement/wdacSupplementalPolicies/{windowsDefenderApplicationControlSupplementalPolicy%2Did}{?%24select,%24expand}"
 
@@ -48,62 +48,62 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]:
+    async def get(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicy]:
         """
         The collection of Windows Defender Application Control Supplemental Policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]
+        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicy]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import windows_defender_application_control_supplemental_policy
+        from ....models.windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicy, error_mapping)
     
-    async def patch(self,body: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy] = None, request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]:
+    async def patch(self,body: Optional[WindowsDefenderApplicationControlSupplementalPolicy] = None, request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicy]:
         """
         Update the navigation property wdacSupplementalPolicies in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]
+        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import windows_defender_application_control_supplemental_policy
+        from ....models.windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -139,7 +139,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy] = None, request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WindowsDefenderApplicationControlSupplementalPolicy] = None, request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property wdacSupplementalPolicies in deviceAppManagement
         Args:
@@ -147,8 +147,8 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -161,40 +161,40 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         return request_info
     
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+    def assign(self) -> AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
-        from .assign import assign_request_builder
+        from .assign.assign_request_builder import AssignRequestBuilder
 
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+    def assignments(self) -> AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
         """
-        from .assignments import assignments_request_builder
+        from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def deploy_summary(self) -> deploy_summary_request_builder.DeploySummaryRequestBuilder:
+    def deploy_summary(self) -> DeploySummaryRequestBuilder:
         """
         Provides operations to manage the deploySummary property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
         """
-        from .deploy_summary import deploy_summary_request_builder
+        from .deploy_summary.deploy_summary_request_builder import DeploySummaryRequestBuilder
 
-        return deploy_summary_request_builder.DeploySummaryRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeploySummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
+    def device_statuses(self) -> DeviceStatusesRequestBuilder:
         """
         Provides operations to manage the deviceStatuses property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
         """
-        from .device_statuses import device_statuses_request_builder
+        from .device_statuses.device_statuses_request_builder import DeviceStatusesRequestBuilder
 
-        return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderDeleteRequestConfiguration():
@@ -220,8 +220,8 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

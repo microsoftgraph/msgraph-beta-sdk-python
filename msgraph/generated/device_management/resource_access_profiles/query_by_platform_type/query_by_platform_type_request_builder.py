@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,8 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import query_by_platform_type_post_request_body, query_by_platform_type_response
-    from ....models.o_data_errors import o_data_error
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .query_by_platform_type_post_request_body import QueryByPlatformTypePostRequestBody
+    from .query_by_platform_type_response import QueryByPlatformTypeResponse
 
 class QueryByPlatformTypeRequestBuilder():
     """
@@ -24,10 +25,10 @@ class QueryByPlatformTypeRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/resourceAccessProfiles/queryByPlatformType"
 
@@ -35,32 +36,32 @@ class QueryByPlatformTypeRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[query_by_platform_type_post_request_body.QueryByPlatformTypePostRequestBody] = None, request_configuration: Optional[QueryByPlatformTypeRequestBuilderPostRequestConfiguration] = None) -> Optional[query_by_platform_type_response.QueryByPlatformTypeResponse]:
+    async def post(self,body: Optional[QueryByPlatformTypePostRequestBody] = None, request_configuration: Optional[QueryByPlatformTypeRequestBuilderPostRequestConfiguration] = None) -> Optional[QueryByPlatformTypeResponse]:
         """
         Invoke action queryByPlatformType
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[query_by_platform_type_response.QueryByPlatformTypeResponse]
+        Returns: Optional[QueryByPlatformTypeResponse]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from . import query_by_platform_type_response
+        from .query_by_platform_type_response import QueryByPlatformTypeResponse
 
-        return await self.request_adapter.send_async(request_info, query_by_platform_type_response.QueryByPlatformTypeResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, QueryByPlatformTypeResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[query_by_platform_type_post_request_body.QueryByPlatformTypePostRequestBody] = None, request_configuration: Optional[QueryByPlatformTypeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[QueryByPlatformTypePostRequestBody] = None, request_configuration: Optional[QueryByPlatformTypeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action queryByPlatformType
         Args:
@@ -68,8 +69,8 @@ class QueryByPlatformTypeRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters

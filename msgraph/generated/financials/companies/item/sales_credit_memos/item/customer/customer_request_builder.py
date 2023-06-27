@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import customer
-    from .......models.o_data_errors import o_data_error
-    from .currency import currency_request_builder
-    from .payment_method import payment_method_request_builder
-    from .payment_term import payment_term_request_builder
-    from .picture import picture_request_builder
-    from .shipment_method import shipment_method_request_builder
+    from .......models.customer import Customer
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .currency.currency_request_builder import CurrencyRequestBuilder
+    from .payment_method.payment_method_request_builder import PaymentMethodRequestBuilder
+    from .payment_term.payment_term_request_builder import PaymentTermRequestBuilder
+    from .picture.picture_request_builder import PictureRequestBuilder
+    from .shipment_method.shipment_method_request_builder import ShipmentMethodRequestBuilder
 
 class CustomerRequestBuilder():
     """
@@ -29,10 +29,10 @@ class CustomerRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/salesCreditMemos/{salesCreditMemo%2Did}/customer{?%24select,%24expand}"
 
@@ -49,62 +49,62 @@ class CustomerRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustomerRequestBuilderGetRequestConfiguration] = None) -> Optional[customer.Customer]:
+    async def get(self,request_configuration: Optional[CustomerRequestBuilderGetRequestConfiguration] = None) -> Optional[Customer]:
         """
         Get customer from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[customer.Customer]
+        Returns: Optional[Customer]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import customer
+        from .......models.customer import Customer
 
-        return await self.request_adapter.send_async(request_info, customer.Customer, error_mapping)
+        return await self.request_adapter.send_async(request_info, Customer, error_mapping)
     
-    async def patch(self,body: Optional[customer.Customer] = None, request_configuration: Optional[CustomerRequestBuilderPatchRequestConfiguration] = None) -> Optional[customer.Customer]:
+    async def patch(self,body: Optional[Customer] = None, request_configuration: Optional[CustomerRequestBuilderPatchRequestConfiguration] = None) -> Optional[Customer]:
         """
         Update the navigation property customer in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[customer.Customer]
+        Returns: Optional[Customer]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import customer
+        from .......models.customer import Customer
 
-        return await self.request_adapter.send_async(request_info, customer.Customer, error_mapping)
+        return await self.request_adapter.send_async(request_info, Customer, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomerRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -140,7 +140,7 @@ class CustomerRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[customer.Customer] = None, request_configuration: Optional[CustomerRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Customer] = None, request_configuration: Optional[CustomerRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property customer in financials
         Args:
@@ -148,8 +148,8 @@ class CustomerRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,49 +162,49 @@ class CustomerRequestBuilder():
         return request_info
     
     @property
-    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
+    def currency(self) -> CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.customer entity.
         """
-        from .currency import currency_request_builder
+        from .currency.currency_request_builder import CurrencyRequestBuilder
 
-        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
+        return CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payment_method(self) -> payment_method_request_builder.PaymentMethodRequestBuilder:
+    def payment_method(self) -> PaymentMethodRequestBuilder:
         """
         Provides operations to manage the paymentMethod property of the microsoft.graph.customer entity.
         """
-        from .payment_method import payment_method_request_builder
+        from .payment_method.payment_method_request_builder import PaymentMethodRequestBuilder
 
-        return payment_method_request_builder.PaymentMethodRequestBuilder(self.request_adapter, self.path_parameters)
+        return PaymentMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
+    def payment_term(self) -> PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.customer entity.
         """
-        from .payment_term import payment_term_request_builder
+        from .payment_term.payment_term_request_builder import PaymentTermRequestBuilder
 
-        return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
+        return PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def picture(self) -> picture_request_builder.PictureRequestBuilder:
+    def picture(self) -> PictureRequestBuilder:
         """
         Provides operations to manage the picture property of the microsoft.graph.customer entity.
         """
-        from .picture import picture_request_builder
+        from .picture.picture_request_builder import PictureRequestBuilder
 
-        return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
+        return PictureRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def shipment_method(self) -> shipment_method_request_builder.ShipmentMethodRequestBuilder:
+    def shipment_method(self) -> ShipmentMethodRequestBuilder:
         """
         Provides operations to manage the shipmentMethod property of the microsoft.graph.customer entity.
         """
-        from .shipment_method import shipment_method_request_builder
+        from .shipment_method.shipment_method_request_builder import ShipmentMethodRequestBuilder
 
-        return shipment_method_request_builder.ShipmentMethodRequestBuilder(self.request_adapter, self.path_parameters)
+        return ShipmentMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CustomerRequestBuilderDeleteRequestConfiguration():
@@ -230,8 +230,8 @@ class CustomerRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

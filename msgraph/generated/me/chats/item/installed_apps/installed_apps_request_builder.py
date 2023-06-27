@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import teams_app_installation, teams_app_installation_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import teams_app_installation_item_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.teams_app_installation import TeamsAppInstallation
+    from .....models.teams_app_installation_collection_response import TeamsAppInstallationCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.teams_app_installation_item_request_builder import TeamsAppInstallationItemRequestBuilder
 
 class InstalledAppsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class InstalledAppsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/me/chats/{chat%2Did}/installedApps{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class InstalledAppsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_teams_app_installation_id(self,teams_app_installation_id: str) -> teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder:
+    def by_teams_app_installation_id(self,teams_app_installation_id: str) -> TeamsAppInstallationItemRequestBuilder:
         """
         Provides operations to manage the installedApps property of the microsoft.graph.chat entity.
         Args:
             teams_app_installation_id: Unique identifier of the item
-        Returns: teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder
+        Returns: TeamsAppInstallationItemRequestBuilder
         """
-        if teams_app_installation_id is None:
-            raise Exception("teams_app_installation_id cannot be undefined")
-        from .item import teams_app_installation_item_request_builder
+        if not teams_app_installation_id:
+            raise TypeError("teams_app_installation_id cannot be null.")
+        from .item.teams_app_installation_item_request_builder import TeamsAppInstallationItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["teamsAppInstallation%2Did"] = teams_app_installation_id
-        return teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return TeamsAppInstallationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[InstalledAppsRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_app_installation_collection_response.TeamsAppInstallationCollectionResponse]:
+    async def get(self,request_configuration: Optional[InstalledAppsRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamsAppInstallationCollectionResponse]:
         """
         List all app installations within a chat. If the chat is associated with an onlineMeeting instance, then, effectively, the **teamsApp**s installed in the meeting will be listed.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[teams_app_installation_collection_response.TeamsAppInstallationCollectionResponse]
+        Returns: Optional[TeamsAppInstallationCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import teams_app_installation_collection_response
+        from .....models.teams_app_installation_collection_response import TeamsAppInstallationCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, teams_app_installation_collection_response.TeamsAppInstallationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, TeamsAppInstallationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[teams_app_installation.TeamsAppInstallation] = None, request_configuration: Optional[InstalledAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[teams_app_installation.TeamsAppInstallation]:
+    async def post(self,body: Optional[TeamsAppInstallation] = None, request_configuration: Optional[InstalledAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[TeamsAppInstallation]:
         """
         Install a teamsApp to the specified chat.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[teams_app_installation.TeamsAppInstallation]
+        Returns: Optional[TeamsAppInstallation]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import teams_app_installation
+        from .....models.teams_app_installation import TeamsAppInstallation
 
-        return await self.request_adapter.send_async(request_info, teams_app_installation.TeamsAppInstallation, error_mapping)
+        return await self.request_adapter.send_async(request_info, TeamsAppInstallation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[InstalledAppsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class InstalledAppsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[teams_app_installation.TeamsAppInstallation] = None, request_configuration: Optional[InstalledAppsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TeamsAppInstallation] = None, request_configuration: Optional[InstalledAppsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Install a teamsApp to the specified chat.
         Args:
@@ -125,8 +126,8 @@ class InstalledAppsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class InstalledAppsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class InstalledAppsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class InstalledAppsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

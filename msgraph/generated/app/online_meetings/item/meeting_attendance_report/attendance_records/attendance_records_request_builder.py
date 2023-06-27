@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import attendance_record, attendance_record_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import attendance_record_item_request_builder
+    from ......models.attendance_record import AttendanceRecord
+    from ......models.attendance_record_collection_response import AttendanceRecordCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.attendance_record_item_request_builder import AttendanceRecordItemRequestBuilder
 
 class AttendanceRecordsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class AttendanceRecordsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/app/onlineMeetings/{onlineMeeting%2Did}/meetingAttendanceReport/attendanceRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class AttendanceRecordsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_attendance_record_id(self,attendance_record_id: str) -> attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder:
+    def by_attendance_record_id(self,attendance_record_id: str) -> AttendanceRecordItemRequestBuilder:
         """
         Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.
         Args:
             attendance_record_id: Unique identifier of the item
-        Returns: attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder
+        Returns: AttendanceRecordItemRequestBuilder
         """
-        if attendance_record_id is None:
-            raise Exception("attendance_record_id cannot be undefined")
-        from .item import attendance_record_item_request_builder
+        if not attendance_record_id:
+            raise TypeError("attendance_record_id cannot be null.")
+        from .item.attendance_record_item_request_builder import AttendanceRecordItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["attendanceRecord%2Did"] = attendance_record_id
-        return attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AttendanceRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AttendanceRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[attendance_record_collection_response.AttendanceRecordCollectionResponse]:
+    async def get(self,request_configuration: Optional[AttendanceRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[AttendanceRecordCollectionResponse]:
         """
         Get a list of attendanceRecord objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[attendance_record_collection_response.AttendanceRecordCollectionResponse]
+        Returns: Optional[AttendanceRecordCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import attendance_record_collection_response
+        from ......models.attendance_record_collection_response import AttendanceRecordCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, attendance_record_collection_response.AttendanceRecordCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AttendanceRecordCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[attendance_record.AttendanceRecord] = None, request_configuration: Optional[AttendanceRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[attendance_record.AttendanceRecord]:
+    async def post(self,body: Optional[AttendanceRecord] = None, request_configuration: Optional[AttendanceRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[AttendanceRecord]:
         """
         Create new navigation property to attendanceRecords for app
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[attendance_record.AttendanceRecord]
+        Returns: Optional[AttendanceRecord]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import attendance_record
+        from ......models.attendance_record import AttendanceRecord
 
-        return await self.request_adapter.send_async(request_info, attendance_record.AttendanceRecord, error_mapping)
+        return await self.request_adapter.send_async(request_info, AttendanceRecord, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AttendanceRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class AttendanceRecordsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[attendance_record.AttendanceRecord] = None, request_configuration: Optional[AttendanceRecordsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AttendanceRecord] = None, request_configuration: Optional[AttendanceRecordsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to attendanceRecords for app
         Args:
@@ -125,8 +126,8 @@ class AttendanceRecordsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class AttendanceRecordsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AttendanceRecordsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class AttendanceRecordsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

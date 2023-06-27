@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RestrictionTrigger(Enum):
+class RestrictionTrigger(str, Enum):
     CopyPaste = "copyPaste",
     CopyToNetworkShare = "copyToNetworkShare",
     CopyToRemovableMedia = "copyToRemovableMedia",

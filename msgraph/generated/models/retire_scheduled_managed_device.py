@@ -1,80 +1,47 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import compliance_status, device_type, managed_device_owner_type, management_agent_type
+    from .compliance_status import ComplianceStatus
+    from .device_type import DeviceType
+    from .managed_device_owner_type import ManagedDeviceOwnerType
+    from .management_agent_type import ManagementAgentType
 
+@dataclass
 class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
     """
     ManagedDevices that are scheduled for retire
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new retireScheduledManagedDevice and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The complianceState property
-        self._compliance_state: Optional[compliance_status.ComplianceStatus] = None
-        # Device Compliance PolicyId
-        self._device_compliance_policy_id: Optional[str] = None
-        # Device Compliance Policy Name
-        self._device_compliance_policy_name: Optional[str] = None
-        # Device type.
-        self._device_type: Optional[device_type.DeviceType] = None
-        # Key of the entity.
-        self._id: Optional[str] = None
-        # Managed DeviceId
-        self._managed_device_id: Optional[str] = None
-        # Managed Device Name
-        self._managed_device_name: Optional[str] = None
-        # Management agent type.
-        self._management_agent: Optional[management_agent_type.ManagementAgentType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Owner type of device.
-        self._owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
-        # Managed Device Retire After DateTime
-        self._retire_after_date_time: Optional[datetime] = None
-        # List of Scope Tags for this Entity instance.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def compliance_state(self,) -> Optional[compliance_status.ComplianceStatus]:
-        """
-        Gets the complianceState property value. The complianceState property
-        Returns: Optional[compliance_status.ComplianceStatus]
-        """
-        return self._compliance_state
-    
-    @compliance_state.setter
-    def compliance_state(self,value: Optional[compliance_status.ComplianceStatus] = None) -> None:
-        """
-        Sets the complianceState property value. The complianceState property
-        Args:
-            value: Value to set for the compliance_state property.
-        """
-        self._compliance_state = value
+    # The complianceState property
+    compliance_state: Optional[ComplianceStatus] = None
+    # Device Compliance PolicyId
+    device_compliance_policy_id: Optional[str] = None
+    # Device Compliance Policy Name
+    device_compliance_policy_name: Optional[str] = None
+    # Device type.
+    device_type: Optional[DeviceType] = None
+    # Key of the entity.
+    id: Optional[str] = None
+    # Managed DeviceId
+    managed_device_id: Optional[str] = None
+    # Managed Device Name
+    managed_device_name: Optional[str] = None
+    # Management agent type.
+    management_agent: Optional[ManagementAgentType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Owner type of device.
+    owner_type: Optional[ManagedDeviceOwnerType] = None
+    # Managed Device Retire After DateTime
+    retire_after_date_time: Optional[datetime.datetime] = None
+    # List of Scope Tags for this Entity instance.
+    role_scope_tag_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RetireScheduledManagedDevice:
@@ -84,219 +51,40 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: RetireScheduledManagedDevice
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return RetireScheduledManagedDevice()
-    
-    @property
-    def device_compliance_policy_id(self,) -> Optional[str]:
-        """
-        Gets the deviceCompliancePolicyId property value. Device Compliance PolicyId
-        Returns: Optional[str]
-        """
-        return self._device_compliance_policy_id
-    
-    @device_compliance_policy_id.setter
-    def device_compliance_policy_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceCompliancePolicyId property value. Device Compliance PolicyId
-        Args:
-            value: Value to set for the device_compliance_policy_id property.
-        """
-        self._device_compliance_policy_id = value
-    
-    @property
-    def device_compliance_policy_name(self,) -> Optional[str]:
-        """
-        Gets the deviceCompliancePolicyName property value. Device Compliance Policy Name
-        Returns: Optional[str]
-        """
-        return self._device_compliance_policy_name
-    
-    @device_compliance_policy_name.setter
-    def device_compliance_policy_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceCompliancePolicyName property value. Device Compliance Policy Name
-        Args:
-            value: Value to set for the device_compliance_policy_name property.
-        """
-        self._device_compliance_policy_name = value
-    
-    @property
-    def device_type(self,) -> Optional[device_type.DeviceType]:
-        """
-        Gets the deviceType property value. Device type.
-        Returns: Optional[device_type.DeviceType]
-        """
-        return self._device_type
-    
-    @device_type.setter
-    def device_type(self,value: Optional[device_type.DeviceType] = None) -> None:
-        """
-        Sets the deviceType property value. Device type.
-        Args:
-            value: Value to set for the device_type property.
-        """
-        self._device_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import compliance_status, device_type, managed_device_owner_type, management_agent_type
+        from .compliance_status import ComplianceStatus
+        from .device_type import DeviceType
+        from .managed_device_owner_type import ManagedDeviceOwnerType
+        from .management_agent_type import ManagementAgentType
+
+        from .compliance_status import ComplianceStatus
+        from .device_type import DeviceType
+        from .managed_device_owner_type import ManagedDeviceOwnerType
+        from .management_agent_type import ManagementAgentType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "complianceState": lambda n : setattr(self, 'compliance_state', n.get_enum_value(compliance_status.ComplianceStatus)),
+            "complianceState": lambda n : setattr(self, 'compliance_state', n.get_enum_value(ComplianceStatus)),
             "deviceCompliancePolicyId": lambda n : setattr(self, 'device_compliance_policy_id', n.get_str_value()),
             "deviceCompliancePolicyName": lambda n : setattr(self, 'device_compliance_policy_name', n.get_str_value()),
-            "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(device_type.DeviceType)),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(DeviceType)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
-            "managementAgent": lambda n : setattr(self, 'management_agent', n.get_enum_value(management_agent_type.ManagementAgentType)),
+            "managementAgent": lambda n : setattr(self, 'management_agent', n.get_enum_value(ManagementAgentType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),
+            "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(ManagedDeviceOwnerType)),
             "retireAfterDateTime": lambda n : setattr(self, 'retire_after_date_time', n.get_datetime_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
-    
-    @property
-    def id(self,) -> Optional[str]:
-        """
-        Gets the id property value. Key of the entity.
-        Returns: Optional[str]
-        """
-        return self._id
-    
-    @id.setter
-    def id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the id property value. Key of the entity.
-        Args:
-            value: Value to set for the id property.
-        """
-        self._id = value
-    
-    @property
-    def managed_device_id(self,) -> Optional[str]:
-        """
-        Gets the managedDeviceId property value. Managed DeviceId
-        Returns: Optional[str]
-        """
-        return self._managed_device_id
-    
-    @managed_device_id.setter
-    def managed_device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the managedDeviceId property value. Managed DeviceId
-        Args:
-            value: Value to set for the managed_device_id property.
-        """
-        self._managed_device_id = value
-    
-    @property
-    def managed_device_name(self,) -> Optional[str]:
-        """
-        Gets the managedDeviceName property value. Managed Device Name
-        Returns: Optional[str]
-        """
-        return self._managed_device_name
-    
-    @managed_device_name.setter
-    def managed_device_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the managedDeviceName property value. Managed Device Name
-        Args:
-            value: Value to set for the managed_device_name property.
-        """
-        self._managed_device_name = value
-    
-    @property
-    def management_agent(self,) -> Optional[management_agent_type.ManagementAgentType]:
-        """
-        Gets the managementAgent property value. Management agent type.
-        Returns: Optional[management_agent_type.ManagementAgentType]
-        """
-        return self._management_agent
-    
-    @management_agent.setter
-    def management_agent(self,value: Optional[management_agent_type.ManagementAgentType] = None) -> None:
-        """
-        Sets the managementAgent property value. Management agent type.
-        Args:
-            value: Value to set for the management_agent property.
-        """
-        self._management_agent = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def owner_type(self,) -> Optional[managed_device_owner_type.ManagedDeviceOwnerType]:
-        """
-        Gets the ownerType property value. Owner type of device.
-        Returns: Optional[managed_device_owner_type.ManagedDeviceOwnerType]
-        """
-        return self._owner_type
-    
-    @owner_type.setter
-    def owner_type(self,value: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None) -> None:
-        """
-        Sets the ownerType property value. Owner type of device.
-        Args:
-            value: Value to set for the owner_type property.
-        """
-        self._owner_type = value
-    
-    @property
-    def retire_after_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the retireAfterDateTime property value. Managed Device Retire After DateTime
-        Returns: Optional[datetime]
-        """
-        return self._retire_after_date_time
-    
-    @retire_after_date_time.setter
-    def retire_after_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the retireAfterDateTime property value. Managed Device Retire After DateTime
-        Args:
-            value: Value to set for the retire_after_date_time property.
-        """
-        self._retire_after_date_time = value
-    
-    @property
-    def role_scope_tag_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
-        Returns: Optional[List[str]]
-        """
-        return self._role_scope_tag_ids
-    
-    @role_scope_tag_ids.setter
-    def role_scope_tag_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
-        Args:
-            value: Value to set for the role_scope_tag_ids property.
-        """
-        self._role_scope_tag_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -304,8 +92,8 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_enum_value("complianceState", self.compliance_state)
         writer.write_str_value("deviceCompliancePolicyId", self.device_compliance_policy_id)
         writer.write_str_value("deviceCompliancePolicyName", self.device_compliance_policy_name)
@@ -316,7 +104,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         writer.write_enum_value("managementAgent", self.management_agent)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("ownerType", self.owner_type)
-        writer.write_datetime_value("retireAfterDateTime", self.retire_after_date_time)
+        writer.write_datetime_value()("retireAfterDateTime", self.retire_after_date_time)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
         writer.write_additional_data_value(self.additional_data)
     

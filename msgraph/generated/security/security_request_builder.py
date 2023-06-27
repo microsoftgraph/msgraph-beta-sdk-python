@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,32 +10,32 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models.o_data_errors import o_data_error
-    from ..models.security import security
-    from .alerts import alerts_request_builder
-    from .alerts_v2 import alerts_v2_request_builder
-    from .attack_simulation import attack_simulation_request_builder
-    from .cases import cases_request_builder
-    from .cloud_app_security_profiles import cloud_app_security_profiles_request_builder
-    from .domain_security_profiles import domain_security_profiles_request_builder
-    from .file_security_profiles import file_security_profiles_request_builder
-    from .host_security_profiles import host_security_profiles_request_builder
-    from .incidents import incidents_request_builder
-    from .information_protection import information_protection_request_builder
-    from .ip_security_profiles import ip_security_profiles_request_builder
-    from .labels import labels_request_builder
-    from .microsoft_graph_security_run_hunting_query import microsoft_graph_security_run_hunting_query_request_builder
-    from .provider_tenant_settings import provider_tenant_settings_request_builder
-    from .secure_score_control_profiles import secure_score_control_profiles_request_builder
-    from .secure_scores import secure_scores_request_builder
-    from .security_actions import security_actions_request_builder
-    from .subject_rights_requests import subject_rights_requests_request_builder
-    from .threat_intelligence import threat_intelligence_request_builder
-    from .threat_submission import threat_submission_request_builder
-    from .ti_indicators import ti_indicators_request_builder
-    from .triggers import triggers_request_builder
-    from .trigger_types import trigger_types_request_builder
-    from .user_security_profiles import user_security_profiles_request_builder
+    from ..models.o_data_errors.o_data_error import ODataError
+    from ..models.security.security import Security
+    from .alerts.alerts_request_builder import AlertsRequestBuilder
+    from .alerts_v2.alerts_v2_request_builder import Alerts_v2RequestBuilder
+    from .attack_simulation.attack_simulation_request_builder import AttackSimulationRequestBuilder
+    from .cases.cases_request_builder import CasesRequestBuilder
+    from .cloud_app_security_profiles.cloud_app_security_profiles_request_builder import CloudAppSecurityProfilesRequestBuilder
+    from .domain_security_profiles.domain_security_profiles_request_builder import DomainSecurityProfilesRequestBuilder
+    from .file_security_profiles.file_security_profiles_request_builder import FileSecurityProfilesRequestBuilder
+    from .host_security_profiles.host_security_profiles_request_builder import HostSecurityProfilesRequestBuilder
+    from .incidents.incidents_request_builder import IncidentsRequestBuilder
+    from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
+    from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
+    from .labels.labels_request_builder import LabelsRequestBuilder
+    from .microsoft_graph_security_run_hunting_query.microsoft_graph_security_run_hunting_query_request_builder import MicrosoftGraphSecurityRunHuntingQueryRequestBuilder
+    from .provider_tenant_settings.provider_tenant_settings_request_builder import ProviderTenantSettingsRequestBuilder
+    from .secure_score_control_profiles.secure_score_control_profiles_request_builder import SecureScoreControlProfilesRequestBuilder
+    from .secure_scores.secure_scores_request_builder import SecureScoresRequestBuilder
+    from .security_actions.security_actions_request_builder import SecurityActionsRequestBuilder
+    from .subject_rights_requests.subject_rights_requests_request_builder import SubjectRightsRequestsRequestBuilder
+    from .threat_intelligence.threat_intelligence_request_builder import ThreatIntelligenceRequestBuilder
+    from .threat_submission.threat_submission_request_builder import ThreatSubmissionRequestBuilder
+    from .ti_indicators.ti_indicators_request_builder import TiIndicatorsRequestBuilder
+    from .triggers.triggers_request_builder import TriggersRequestBuilder
+    from .trigger_types.trigger_types_request_builder import TriggerTypesRequestBuilder
+    from .user_security_profiles.user_security_profiles_request_builder import UserSecurityProfilesRequestBuilder
 
 class SecurityRequestBuilder():
     """
@@ -48,10 +48,10 @@ class SecurityRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/security{?%24select,%24expand}"
 
@@ -59,52 +59,52 @@ class SecurityRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> Optional[security.Security]:
+    async def get(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> Optional[Security]:
         """
         Get security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[security.Security]
+        Returns: Optional[Security]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.security import security
+        from ..models.security.security import Security
 
-        return await self.request_adapter.send_async(request_info, security.Security, error_mapping)
+        return await self.request_adapter.send_async(request_info, Security, error_mapping)
     
-    async def patch(self,body: Optional[security.Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> Optional[security.Security]:
+    async def patch(self,body: Optional[Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> Optional[Security]:
         """
         Update security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[security.Security]
+        Returns: Optional[Security]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.security import security
+        from ..models.security.security import Security
 
-        return await self.request_adapter.send_async(request_info, security.Security, error_mapping)
+        return await self.request_adapter.send_async(request_info, Security, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -124,7 +124,7 @@ class SecurityRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[security.Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update security
         Args:
@@ -132,8 +132,8 @@ class SecurityRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -146,220 +146,220 @@ class SecurityRequestBuilder():
         return request_info
     
     @property
-    def alerts(self) -> alerts_request_builder.AlertsRequestBuilder:
+    def alerts(self) -> AlertsRequestBuilder:
         """
         Provides operations to manage the alerts property of the microsoft.graph.security entity.
         """
-        from .alerts import alerts_request_builder
+        from .alerts.alerts_request_builder import AlertsRequestBuilder
 
-        return alerts_request_builder.AlertsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlertsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def alerts_v2(self) -> alerts_v2_request_builder.Alerts_v2RequestBuilder:
+    def alerts_v2(self) -> Alerts_v2RequestBuilder:
         """
         Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.
         """
-        from .alerts_v2 import alerts_v2_request_builder
+        from .alerts_v2.alerts_v2_request_builder import Alerts_v2RequestBuilder
 
-        return alerts_v2_request_builder.Alerts_v2RequestBuilder(self.request_adapter, self.path_parameters)
+        return Alerts_v2RequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def attack_simulation(self) -> attack_simulation_request_builder.AttackSimulationRequestBuilder:
+    def attack_simulation(self) -> AttackSimulationRequestBuilder:
         """
         Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.
         """
-        from .attack_simulation import attack_simulation_request_builder
+        from .attack_simulation.attack_simulation_request_builder import AttackSimulationRequestBuilder
 
-        return attack_simulation_request_builder.AttackSimulationRequestBuilder(self.request_adapter, self.path_parameters)
+        return AttackSimulationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cases(self) -> cases_request_builder.CasesRequestBuilder:
+    def cases(self) -> CasesRequestBuilder:
         """
         Provides operations to manage the cases property of the microsoft.graph.security entity.
         """
-        from .cases import cases_request_builder
+        from .cases.cases_request_builder import CasesRequestBuilder
 
-        return cases_request_builder.CasesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CasesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cloud_app_security_profiles(self) -> cloud_app_security_profiles_request_builder.CloudAppSecurityProfilesRequestBuilder:
+    def cloud_app_security_profiles(self) -> CloudAppSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the cloudAppSecurityProfiles property of the microsoft.graph.security entity.
         """
-        from .cloud_app_security_profiles import cloud_app_security_profiles_request_builder
+        from .cloud_app_security_profiles.cloud_app_security_profiles_request_builder import CloudAppSecurityProfilesRequestBuilder
 
-        return cloud_app_security_profiles_request_builder.CloudAppSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CloudAppSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def domain_security_profiles(self) -> domain_security_profiles_request_builder.DomainSecurityProfilesRequestBuilder:
+    def domain_security_profiles(self) -> DomainSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the domainSecurityProfiles property of the microsoft.graph.security entity.
         """
-        from .domain_security_profiles import domain_security_profiles_request_builder
+        from .domain_security_profiles.domain_security_profiles_request_builder import DomainSecurityProfilesRequestBuilder
 
-        return domain_security_profiles_request_builder.DomainSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DomainSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def file_security_profiles(self) -> file_security_profiles_request_builder.FileSecurityProfilesRequestBuilder:
+    def file_security_profiles(self) -> FileSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the fileSecurityProfiles property of the microsoft.graph.security entity.
         """
-        from .file_security_profiles import file_security_profiles_request_builder
+        from .file_security_profiles.file_security_profiles_request_builder import FileSecurityProfilesRequestBuilder
 
-        return file_security_profiles_request_builder.FileSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return FileSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def host_security_profiles(self) -> host_security_profiles_request_builder.HostSecurityProfilesRequestBuilder:
+    def host_security_profiles(self) -> HostSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the hostSecurityProfiles property of the microsoft.graph.security entity.
         """
-        from .host_security_profiles import host_security_profiles_request_builder
+        from .host_security_profiles.host_security_profiles_request_builder import HostSecurityProfilesRequestBuilder
 
-        return host_security_profiles_request_builder.HostSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return HostSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def incidents(self) -> incidents_request_builder.IncidentsRequestBuilder:
+    def incidents(self) -> IncidentsRequestBuilder:
         """
         Provides operations to manage the incidents property of the microsoft.graph.security entity.
         """
-        from .incidents import incidents_request_builder
+        from .incidents.incidents_request_builder import IncidentsRequestBuilder
 
-        return incidents_request_builder.IncidentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return IncidentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def information_protection(self) -> information_protection_request_builder.InformationProtectionRequestBuilder:
+    def information_protection(self) -> InformationProtectionRequestBuilder:
         """
         Provides operations to manage the informationProtection property of the microsoft.graph.security entity.
         """
-        from .information_protection import information_protection_request_builder
+        from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
 
-        return information_protection_request_builder.InformationProtectionRequestBuilder(self.request_adapter, self.path_parameters)
+        return InformationProtectionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ip_security_profiles(self) -> ip_security_profiles_request_builder.IpSecurityProfilesRequestBuilder:
+    def ip_security_profiles(self) -> IpSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the ipSecurityProfiles property of the microsoft.graph.security entity.
         """
-        from .ip_security_profiles import ip_security_profiles_request_builder
+        from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
 
-        return ip_security_profiles_request_builder.IpSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return IpSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def labels(self) -> labels_request_builder.LabelsRequestBuilder:
+    def labels(self) -> LabelsRequestBuilder:
         """
         Provides operations to manage the labels property of the microsoft.graph.security entity.
         """
-        from .labels import labels_request_builder
+        from .labels.labels_request_builder import LabelsRequestBuilder
 
-        return labels_request_builder.LabelsRequestBuilder(self.request_adapter, self.path_parameters)
+        return LabelsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_security_run_hunting_query(self) -> microsoft_graph_security_run_hunting_query_request_builder.MicrosoftGraphSecurityRunHuntingQueryRequestBuilder:
+    def microsoft_graph_security_run_hunting_query(self) -> MicrosoftGraphSecurityRunHuntingQueryRequestBuilder:
         """
         Provides operations to call the runHuntingQuery method.
         """
-        from .microsoft_graph_security_run_hunting_query import microsoft_graph_security_run_hunting_query_request_builder
+        from .microsoft_graph_security_run_hunting_query.microsoft_graph_security_run_hunting_query_request_builder import MicrosoftGraphSecurityRunHuntingQueryRequestBuilder
 
-        return microsoft_graph_security_run_hunting_query_request_builder.MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def provider_tenant_settings(self) -> provider_tenant_settings_request_builder.ProviderTenantSettingsRequestBuilder:
+    def provider_tenant_settings(self) -> ProviderTenantSettingsRequestBuilder:
         """
         Provides operations to manage the providerTenantSettings property of the microsoft.graph.security entity.
         """
-        from .provider_tenant_settings import provider_tenant_settings_request_builder
+        from .provider_tenant_settings.provider_tenant_settings_request_builder import ProviderTenantSettingsRequestBuilder
 
-        return provider_tenant_settings_request_builder.ProviderTenantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ProviderTenantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def secure_score_control_profiles(self) -> secure_score_control_profiles_request_builder.SecureScoreControlProfilesRequestBuilder:
+    def secure_score_control_profiles(self) -> SecureScoreControlProfilesRequestBuilder:
         """
         Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.
         """
-        from .secure_score_control_profiles import secure_score_control_profiles_request_builder
+        from .secure_score_control_profiles.secure_score_control_profiles_request_builder import SecureScoreControlProfilesRequestBuilder
 
-        return secure_score_control_profiles_request_builder.SecureScoreControlProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SecureScoreControlProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def secure_scores(self) -> secure_scores_request_builder.SecureScoresRequestBuilder:
+    def secure_scores(self) -> SecureScoresRequestBuilder:
         """
         Provides operations to manage the secureScores property of the microsoft.graph.security entity.
         """
-        from .secure_scores import secure_scores_request_builder
+        from .secure_scores.secure_scores_request_builder import SecureScoresRequestBuilder
 
-        return secure_scores_request_builder.SecureScoresRequestBuilder(self.request_adapter, self.path_parameters)
+        return SecureScoresRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security_actions(self) -> security_actions_request_builder.SecurityActionsRequestBuilder:
+    def security_actions(self) -> SecurityActionsRequestBuilder:
         """
         Provides operations to manage the securityActions property of the microsoft.graph.security entity.
         """
-        from .security_actions import security_actions_request_builder
+        from .security_actions.security_actions_request_builder import SecurityActionsRequestBuilder
 
-        return security_actions_request_builder.SecurityActionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SecurityActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def subject_rights_requests(self) -> subject_rights_requests_request_builder.SubjectRightsRequestsRequestBuilder:
+    def subject_rights_requests(self) -> SubjectRightsRequestsRequestBuilder:
         """
         Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.
         """
-        from .subject_rights_requests import subject_rights_requests_request_builder
+        from .subject_rights_requests.subject_rights_requests_request_builder import SubjectRightsRequestsRequestBuilder
 
-        return subject_rights_requests_request_builder.SubjectRightsRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubjectRightsRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def threat_intelligence(self) -> threat_intelligence_request_builder.ThreatIntelligenceRequestBuilder:
+    def threat_intelligence(self) -> ThreatIntelligenceRequestBuilder:
         """
         Provides operations to manage the threatIntelligence property of the microsoft.graph.security entity.
         """
-        from .threat_intelligence import threat_intelligence_request_builder
+        from .threat_intelligence.threat_intelligence_request_builder import ThreatIntelligenceRequestBuilder
 
-        return threat_intelligence_request_builder.ThreatIntelligenceRequestBuilder(self.request_adapter, self.path_parameters)
+        return ThreatIntelligenceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def threat_submission(self) -> threat_submission_request_builder.ThreatSubmissionRequestBuilder:
+    def threat_submission(self) -> ThreatSubmissionRequestBuilder:
         """
         Provides operations to manage the threatSubmission property of the microsoft.graph.security entity.
         """
-        from .threat_submission import threat_submission_request_builder
+        from .threat_submission.threat_submission_request_builder import ThreatSubmissionRequestBuilder
 
-        return threat_submission_request_builder.ThreatSubmissionRequestBuilder(self.request_adapter, self.path_parameters)
+        return ThreatSubmissionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ti_indicators(self) -> ti_indicators_request_builder.TiIndicatorsRequestBuilder:
+    def ti_indicators(self) -> TiIndicatorsRequestBuilder:
         """
         Provides operations to manage the tiIndicators property of the microsoft.graph.security entity.
         """
-        from .ti_indicators import ti_indicators_request_builder
+        from .ti_indicators.ti_indicators_request_builder import TiIndicatorsRequestBuilder
 
-        return ti_indicators_request_builder.TiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def triggers(self) -> triggers_request_builder.TriggersRequestBuilder:
+    def triggers(self) -> TriggersRequestBuilder:
         """
         Provides operations to manage the triggers property of the microsoft.graph.security entity.
         """
-        from .triggers import triggers_request_builder
+        from .triggers.triggers_request_builder import TriggersRequestBuilder
 
-        return triggers_request_builder.TriggersRequestBuilder(self.request_adapter, self.path_parameters)
+        return TriggersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def trigger_types(self) -> trigger_types_request_builder.TriggerTypesRequestBuilder:
+    def trigger_types(self) -> TriggerTypesRequestBuilder:
         """
         Provides operations to manage the triggerTypes property of the microsoft.graph.security entity.
         """
-        from .trigger_types import trigger_types_request_builder
+        from .trigger_types.trigger_types_request_builder import TriggerTypesRequestBuilder
 
-        return trigger_types_request_builder.TriggerTypesRequestBuilder(self.request_adapter, self.path_parameters)
+        return TriggerTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_security_profiles(self) -> user_security_profiles_request_builder.UserSecurityProfilesRequestBuilder:
+    def user_security_profiles(self) -> UserSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the userSecurityProfiles property of the microsoft.graph.security entity.
         """
-        from .user_security_profiles import user_security_profiles_request_builder
+        from .user_security_profiles.user_security_profiles_request_builder import UserSecurityProfilesRequestBuilder
 
-        return user_security_profiles_request_builder.UserSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SecurityRequestBuilderGetQueryParameters():
@@ -373,8 +373,8 @@ class SecurityRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

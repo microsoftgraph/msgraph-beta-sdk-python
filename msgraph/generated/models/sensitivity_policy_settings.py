@@ -1,45 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, sensitivity_label_target
+    from .entity import Entity
+    from .sensitivity_label_target import SensitivityLabelTarget
 
-from . import entity
+from .entity import Entity
 
-class SensitivityPolicySettings(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sensitivityPolicySettings and sets the default values.
-        """
-        super().__init__()
-        # The applicableTo property
-        self._applicable_to: Optional[sensitivity_label_target.SensitivityLabelTarget] = None
-        # The downgradeSensitivityRequiresJustification property
-        self._downgrade_sensitivity_requires_justification: Optional[bool] = None
-        # The helpWebUrl property
-        self._help_web_url: Optional[str] = None
-        # The isMandatory property
-        self._is_mandatory: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def applicable_to(self,) -> Optional[sensitivity_label_target.SensitivityLabelTarget]:
-        """
-        Gets the applicableTo property value. The applicableTo property
-        Returns: Optional[sensitivity_label_target.SensitivityLabelTarget]
-        """
-        return self._applicable_to
-    
-    @applicable_to.setter
-    def applicable_to(self,value: Optional[sensitivity_label_target.SensitivityLabelTarget] = None) -> None:
-        """
-        Sets the applicableTo property value. The applicableTo property
-        Args:
-            value: Value to set for the applicable_to property.
-        """
-        self._applicable_to = value
+@dataclass
+class SensitivityPolicySettings(Entity):
+    # The applicableTo property
+    applicable_to: Optional[SensitivityLabelTarget] = None
+    # The downgradeSensitivityRequiresJustification property
+    downgrade_sensitivity_requires_justification: Optional[bool] = None
+    # The helpWebUrl property
+    help_web_url: Optional[str] = None
+    # The isMandatory property
+    is_mandatory: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitivityPolicySettings:
@@ -49,36 +30,23 @@ class SensitivityPolicySettings(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: SensitivityPolicySettings
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return SensitivityPolicySettings()
-    
-    @property
-    def downgrade_sensitivity_requires_justification(self,) -> Optional[bool]:
-        """
-        Gets the downgradeSensitivityRequiresJustification property value. The downgradeSensitivityRequiresJustification property
-        Returns: Optional[bool]
-        """
-        return self._downgrade_sensitivity_requires_justification
-    
-    @downgrade_sensitivity_requires_justification.setter
-    def downgrade_sensitivity_requires_justification(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the downgradeSensitivityRequiresJustification property value. The downgradeSensitivityRequiresJustification property
-        Args:
-            value: Value to set for the downgrade_sensitivity_requires_justification property.
-        """
-        self._downgrade_sensitivity_requires_justification = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, sensitivity_label_target
+        from .entity import Entity
+        from .sensitivity_label_target import SensitivityLabelTarget
+
+        from .entity import Entity
+        from .sensitivity_label_target import SensitivityLabelTarget
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(sensitivity_label_target.SensitivityLabelTarget)),
+            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(SensitivityLabelTarget)),
             "downgradeSensitivityRequiresJustification": lambda n : setattr(self, 'downgrade_sensitivity_requires_justification', n.get_bool_value()),
             "helpWebUrl": lambda n : setattr(self, 'help_web_url', n.get_str_value()),
             "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
@@ -87,48 +55,14 @@ class SensitivityPolicySettings(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def help_web_url(self,) -> Optional[str]:
-        """
-        Gets the helpWebUrl property value. The helpWebUrl property
-        Returns: Optional[str]
-        """
-        return self._help_web_url
-    
-    @help_web_url.setter
-    def help_web_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the helpWebUrl property value. The helpWebUrl property
-        Args:
-            value: Value to set for the help_web_url property.
-        """
-        self._help_web_url = value
-    
-    @property
-    def is_mandatory(self,) -> Optional[bool]:
-        """
-        Gets the isMandatory property value. The isMandatory property
-        Returns: Optional[bool]
-        """
-        return self._is_mandatory
-    
-    @is_mandatory.setter
-    def is_mandatory(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isMandatory property value. The isMandatory property
-        Args:
-            value: Value to set for the is_mandatory property.
-        """
-        self._is_mandatory = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("applicableTo", self.applicable_to)
         writer.write_bool_value("downgradeSensitivityRequiresJustification", self.downgrade_sensitivity_requires_justification)

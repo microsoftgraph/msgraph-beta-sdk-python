@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import agreement, agreement_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .item import agreement_item_request_builder
+    from ..models.agreement import Agreement
+    from ..models.agreement_collection_response import AgreementCollectionResponse
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .item.agreement_item_request_builder import AgreementItemRequestBuilder
 
 class AgreementsRequestBuilder():
     """
@@ -25,10 +26,10 @@ class AgreementsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/agreements{?%24search,%24select}"
 
@@ -36,67 +37,67 @@ class AgreementsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_agreement_id(self,agreement_id: str) -> agreement_item_request_builder.AgreementItemRequestBuilder:
+    def by_agreement_id(self,agreement_id: str) -> AgreementItemRequestBuilder:
         """
         Provides operations to manage the collection of agreement entities.
         Args:
             agreement_id: Unique identifier of the item
-        Returns: agreement_item_request_builder.AgreementItemRequestBuilder
+        Returns: AgreementItemRequestBuilder
         """
-        if agreement_id is None:
-            raise Exception("agreement_id cannot be undefined")
-        from .item import agreement_item_request_builder
+        if not agreement_id:
+            raise TypeError("agreement_id cannot be null.")
+        from .item.agreement_item_request_builder import AgreementItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["agreement%2Did"] = agreement_id
-        return agreement_item_request_builder.AgreementItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AgreementItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AgreementsRequestBuilderGetRequestConfiguration] = None) -> Optional[agreement_collection_response.AgreementCollectionResponse]:
+    async def get(self,request_configuration: Optional[AgreementsRequestBuilderGetRequestConfiguration] = None) -> Optional[AgreementCollectionResponse]:
         """
         Get entities from agreements
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[agreement_collection_response.AgreementCollectionResponse]
+        Returns: Optional[AgreementCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import agreement_collection_response
+        from ..models.agreement_collection_response import AgreementCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, agreement_collection_response.AgreementCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AgreementCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[agreement.Agreement] = None, request_configuration: Optional[AgreementsRequestBuilderPostRequestConfiguration] = None) -> Optional[agreement.Agreement]:
+    async def post(self,body: Optional[Agreement] = None, request_configuration: Optional[AgreementsRequestBuilderPostRequestConfiguration] = None) -> Optional[Agreement]:
         """
         Add new entity to agreements
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[agreement.Agreement]
+        Returns: Optional[Agreement]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import agreement
+        from ..models.agreement import Agreement
 
-        return await self.request_adapter.send_async(request_info, agreement.Agreement, error_mapping)
+        return await self.request_adapter.send_async(request_info, Agreement, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AgreementsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -116,7 +117,7 @@ class AgreementsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[agreement.Agreement] = None, request_configuration: Optional[AgreementsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Agreement] = None, request_configuration: Optional[AgreementsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Add new entity to agreements
         Args:
@@ -124,8 +125,8 @@ class AgreementsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -149,8 +150,8 @@ class AgreementsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "search":
                 return "%24search"
             if original_name == "select":

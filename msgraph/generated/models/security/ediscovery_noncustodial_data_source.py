@@ -1,23 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import data_source, data_source_container, ediscovery_index_operation
+    from .data_source import DataSource
+    from .data_source_container import DataSourceContainer
+    from .ediscovery_index_operation import EdiscoveryIndexOperation
 
-from . import data_source_container
+from .data_source_container import DataSourceContainer
 
-class EdiscoveryNoncustodialDataSource(data_source_container.DataSourceContainer):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EdiscoveryNoncustodialDataSource and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.ediscoveryNoncustodialDataSource"
-        # User source or SharePoint site data source as non-custodial data source.
-        self._data_source: Optional[data_source.DataSource] = None
-        # Operation entity that represents the latest indexing for the non-custodial data source.
-        self._last_index_operation: Optional[ediscovery_index_operation.EdiscoveryIndexOperation] = None
+@dataclass
+class EdiscoveryNoncustodialDataSource(DataSourceContainer):
+    odata_type = "#microsoft.graph.security.ediscoveryNoncustodialDataSource"
+    # User source or SharePoint site data source as non-custodial data source.
+    data_source: Optional[DataSource] = None
+    # Operation entity that represents the latest indexing for the non-custodial data source.
+    last_index_operation: Optional[EdiscoveryIndexOperation] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EdiscoveryNoncustodialDataSource:
@@ -27,58 +26,30 @@ class EdiscoveryNoncustodialDataSource(data_source_container.DataSourceContainer
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: EdiscoveryNoncustodialDataSource
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return EdiscoveryNoncustodialDataSource()
-    
-    @property
-    def data_source(self,) -> Optional[data_source.DataSource]:
-        """
-        Gets the dataSource property value. User source or SharePoint site data source as non-custodial data source.
-        Returns: Optional[data_source.DataSource]
-        """
-        return self._data_source
-    
-    @data_source.setter
-    def data_source(self,value: Optional[data_source.DataSource] = None) -> None:
-        """
-        Sets the dataSource property value. User source or SharePoint site data source as non-custodial data source.
-        Args:
-            value: Value to set for the data_source property.
-        """
-        self._data_source = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import data_source, data_source_container, ediscovery_index_operation
+        from .data_source import DataSource
+        from .data_source_container import DataSourceContainer
+        from .ediscovery_index_operation import EdiscoveryIndexOperation
+
+        from .data_source import DataSource
+        from .data_source_container import DataSourceContainer
+        from .ediscovery_index_operation import EdiscoveryIndexOperation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "dataSource": lambda n : setattr(self, 'data_source', n.get_object_value(data_source.DataSource)),
-            "lastIndexOperation": lambda n : setattr(self, 'last_index_operation', n.get_object_value(ediscovery_index_operation.EdiscoveryIndexOperation)),
+            "dataSource": lambda n : setattr(self, 'data_source', n.get_object_value(DataSource)),
+            "lastIndexOperation": lambda n : setattr(self, 'last_index_operation', n.get_object_value(EdiscoveryIndexOperation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_index_operation(self,) -> Optional[ediscovery_index_operation.EdiscoveryIndexOperation]:
-        """
-        Gets the lastIndexOperation property value. Operation entity that represents the latest indexing for the non-custodial data source.
-        Returns: Optional[ediscovery_index_operation.EdiscoveryIndexOperation]
-        """
-        return self._last_index_operation
-    
-    @last_index_operation.setter
-    def last_index_operation(self,value: Optional[ediscovery_index_operation.EdiscoveryIndexOperation] = None) -> None:
-        """
-        Sets the lastIndexOperation property value. Operation entity that represents the latest indexing for the non-custodial data source.
-        Args:
-            value: Value to set for the last_index_operation property.
-        """
-        self._last_index_operation = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -86,8 +57,8 @@ class EdiscoveryNoncustodialDataSource(data_source_container.DataSourceContainer
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("dataSource", self.data_source)
         writer.write_object_value("lastIndexOperation", self.last_index_operation)

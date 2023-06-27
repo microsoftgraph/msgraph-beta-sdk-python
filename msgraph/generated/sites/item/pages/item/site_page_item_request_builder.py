@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import site_page
-    from .....models.o_data_errors import o_data_error
-    from .canvas_layout import canvas_layout_request_builder
-    from .created_by_user import created_by_user_request_builder
-    from .get_web_parts_by_position import get_web_parts_by_position_request_builder
-    from .last_modified_by_user import last_modified_by_user_request_builder
-    from .publish import publish_request_builder
-    from .web_parts import web_parts_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.site_page import SitePage
+    from .canvas_layout.canvas_layout_request_builder import CanvasLayoutRequestBuilder
+    from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
+    from .get_web_parts_by_position.get_web_parts_by_position_request_builder import GetWebPartsByPositionRequestBuilder
+    from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
+    from .publish.publish_request_builder import PublishRequestBuilder
+    from .web_parts.web_parts_request_builder import WebPartsRequestBuilder
 
 class SitePageItemRequestBuilder():
     """
@@ -30,10 +30,10 @@ class SitePageItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/sites/{site%2Did}/pages/{sitePage%2Did}{?%24select,%24expand}"
 
@@ -50,62 +50,62 @@ class SitePageItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[site_page.SitePage]:
+    async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SitePage]:
         """
         Returns the metadata for a [sitePage][] in the site pages [list][] in a [site][].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[site_page.SitePage]
+        Returns: Optional[SitePage]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import site_page
+        from .....models.site_page import SitePage
 
-        return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
+        return await self.request_adapter.send_async(request_info, SitePage, error_mapping)
     
-    async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[site_page.SitePage]:
+    async def patch(self,body: Optional[SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SitePage]:
         """
         Update the properties of a sitePage object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[site_page.SitePage]
+        Returns: Optional[SitePage]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import site_page
+        from .....models.site_page import SitePage
 
-        return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
+        return await self.request_adapter.send_async(request_info, SitePage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -141,7 +141,7 @@ class SitePageItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a sitePage object.
         Args:
@@ -149,8 +149,8 @@ class SitePageItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -163,58 +163,58 @@ class SitePageItemRequestBuilder():
         return request_info
     
     @property
-    def canvas_layout(self) -> canvas_layout_request_builder.CanvasLayoutRequestBuilder:
+    def canvas_layout(self) -> CanvasLayoutRequestBuilder:
         """
         Provides operations to manage the canvasLayout property of the microsoft.graph.sitePage entity.
         """
-        from .canvas_layout import canvas_layout_request_builder
+        from .canvas_layout.canvas_layout_request_builder import CanvasLayoutRequestBuilder
 
-        return canvas_layout_request_builder.CanvasLayoutRequestBuilder(self.request_adapter, self.path_parameters)
+        return CanvasLayoutRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def created_by_user(self) -> created_by_user_request_builder.CreatedByUserRequestBuilder:
+    def created_by_user(self) -> CreatedByUserRequestBuilder:
         """
         Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         """
-        from .created_by_user import created_by_user_request_builder
+        from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
 
-        return created_by_user_request_builder.CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_web_parts_by_position(self) -> get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder:
+    def get_web_parts_by_position(self) -> GetWebPartsByPositionRequestBuilder:
         """
         Provides operations to call the getWebPartsByPosition method.
         """
-        from .get_web_parts_by_position import get_web_parts_by_position_request_builder
+        from .get_web_parts_by_position.get_web_parts_by_position_request_builder import GetWebPartsByPositionRequestBuilder
 
-        return get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def last_modified_by_user(self) -> last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder:
+    def last_modified_by_user(self) -> LastModifiedByUserRequestBuilder:
         """
         Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         """
-        from .last_modified_by_user import last_modified_by_user_request_builder
+        from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
 
-        return last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+    def publish(self) -> PublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
-        from .publish import publish_request_builder
+        from .publish.publish_request_builder import PublishRequestBuilder
 
-        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+        return PublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def web_parts(self) -> web_parts_request_builder.WebPartsRequestBuilder:
+    def web_parts(self) -> WebPartsRequestBuilder:
         """
         Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
         """
-        from .web_parts import web_parts_request_builder
+        from .web_parts.web_parts_request_builder import WebPartsRequestBuilder
 
-        return web_parts_request_builder.WebPartsRequestBuilder(self.request_adapter, self.path_parameters)
+        return WebPartsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SitePageItemRequestBuilderDeleteRequestConfiguration():
@@ -240,8 +240,8 @@ class SitePageItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

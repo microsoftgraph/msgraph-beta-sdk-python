@@ -1,117 +1,67 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import android_device_owner_enrollment_mode, android_device_owner_enrollment_token_type, aosp_wifi_security_type, entity, mime_content
+    from .android_device_owner_enrollment_mode import AndroidDeviceOwnerEnrollmentMode
+    from .android_device_owner_enrollment_token_type import AndroidDeviceOwnerEnrollmentTokenType
+    from .aosp_wifi_security_type import AospWifiSecurityType
+    from .entity import Entity
+    from .mime_content import MimeContent
 
-from . import entity
+from .entity import Entity
 
-class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
+@dataclass
+class AndroidDeviceOwnerEnrollmentProfile(Entity):
     """
     Enrollment Profile used to enroll Android Enterprise devices using Google's Cloud Management.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new androidDeviceOwnerEnrollmentProfile and sets the default values.
-        """
-        super().__init__()
-        # Tenant GUID the enrollment profile belongs to.
-        self._account_id: Optional[str] = None
-        # Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
-        self._configure_wifi: Optional[bool] = None
-        # Date time the enrollment profile was created.
-        self._created_date_time: Optional[datetime] = None
-        # Description for the enrollment profile.
-        self._description: Optional[str] = None
-        # Display name for the enrollment profile.
-        self._display_name: Optional[str] = None
-        # Total number of Android devices that have enrolled using this enrollment profile.
-        self._enrolled_device_count: Optional[int] = None
-        # The enrollment mode for an enrollment profile.
-        self._enrollment_mode: Optional[android_device_owner_enrollment_mode.AndroidDeviceOwnerEnrollmentMode] = None
-        # The enrollment token type for an enrollment profile.
-        self._enrollment_token_type: Optional[android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType] = None
-        # Total number of AOSP devices that have enrolled using the current token.
-        self._enrollment_token_usage_count: Optional[int] = None
-        # Boolean indicating if this profile is an Android AOSP for Teams device profile.
-        self._is_teams_device_profile: Optional[bool] = None
-        # Date time the enrollment profile was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # String used to generate a QR code for the token.
-        self._qr_code_content: Optional[str] = None
-        # String used to generate a QR code for the token.
-        self._qr_code_image: Optional[mime_content.MimeContent] = None
-        # List of Scope Tags for this Entity instance.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-        # Date time the most recently created token was created.
-        self._token_creation_date_time: Optional[datetime] = None
-        # Date time the most recently created token will expire.
-        self._token_expiration_date_time: Optional[datetime] = None
-        # Value of the most recently created token for this enrollment profile.
-        self._token_value: Optional[str] = None
-        # Boolean that indicates if hidden wifi networks are enabled
-        self._wifi_hidden: Optional[bool] = None
-        # String that contains the wi-fi login password
-        self._wifi_password: Optional[str] = None
-        # This enum represents Wi-Fi Security Types for Android Device Owner AOSP Scenarios.
-        self._wifi_security_type: Optional[aosp_wifi_security_type.AospWifiSecurityType] = None
-        # String that contains the wi-fi login ssid
-        self._wifi_ssid: Optional[str] = None
-    
-    @property
-    def account_id(self,) -> Optional[str]:
-        """
-        Gets the accountId property value. Tenant GUID the enrollment profile belongs to.
-        Returns: Optional[str]
-        """
-        return self._account_id
-    
-    @account_id.setter
-    def account_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountId property value. Tenant GUID the enrollment profile belongs to.
-        Args:
-            value: Value to set for the account_id property.
-        """
-        self._account_id = value
-    
-    @property
-    def configure_wifi(self,) -> Optional[bool]:
-        """
-        Gets the configureWifi property value. Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
-        Returns: Optional[bool]
-        """
-        return self._configure_wifi
-    
-    @configure_wifi.setter
-    def configure_wifi(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the configureWifi property value. Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
-        Args:
-            value: Value to set for the configure_wifi property.
-        """
-        self._configure_wifi = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. Date time the enrollment profile was created.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. Date time the enrollment profile was created.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # Tenant GUID the enrollment profile belongs to.
+    account_id: Optional[str] = None
+    # Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
+    configure_wifi: Optional[bool] = None
+    # Date time the enrollment profile was created.
+    created_date_time: Optional[datetime.datetime] = None
+    # Description for the enrollment profile.
+    description: Optional[str] = None
+    # Display name for the enrollment profile.
+    display_name: Optional[str] = None
+    # Total number of Android devices that have enrolled using this enrollment profile.
+    enrolled_device_count: Optional[int] = None
+    # The enrollment mode for an enrollment profile.
+    enrollment_mode: Optional[AndroidDeviceOwnerEnrollmentMode] = None
+    # The enrollment token type for an enrollment profile.
+    enrollment_token_type: Optional[AndroidDeviceOwnerEnrollmentTokenType] = None
+    # Total number of AOSP devices that have enrolled using the current token.
+    enrollment_token_usage_count: Optional[int] = None
+    # Boolean indicating if this profile is an Android AOSP for Teams device profile.
+    is_teams_device_profile: Optional[bool] = None
+    # Date time the enrollment profile was last modified.
+    last_modified_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # String used to generate a QR code for the token.
+    qr_code_content: Optional[str] = None
+    # String used to generate a QR code for the token.
+    qr_code_image: Optional[MimeContent] = None
+    # List of Scope Tags for this Entity instance.
+    role_scope_tag_ids: Optional[List[str]] = None
+    # Date time the most recently created token was created.
+    token_creation_date_time: Optional[datetime.datetime] = None
+    # Date time the most recently created token will expire.
+    token_expiration_date_time: Optional[datetime.datetime] = None
+    # Value of the most recently created token for this enrollment profile.
+    token_value: Optional[str] = None
+    # Boolean that indicates if hidden wifi networks are enabled
+    wifi_hidden: Optional[bool] = None
+    # String that contains the wi-fi login password
+    wifi_password: Optional[str] = None
+    # This enum represents Wi-Fi Security Types for Android Device Owner AOSP Scenarios.
+    wifi_security_type: Optional[AospWifiSecurityType] = None
+    # String that contains the wi-fi login ssid
+    wifi_ssid: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerEnrollmentProfile:
@@ -121,118 +71,26 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: AndroidDeviceOwnerEnrollmentProfile
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerEnrollmentProfile()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Description for the enrollment profile.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Description for the enrollment profile.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Display name for the enrollment profile.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Display name for the enrollment profile.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def enrolled_device_count(self,) -> Optional[int]:
-        """
-        Gets the enrolledDeviceCount property value. Total number of Android devices that have enrolled using this enrollment profile.
-        Returns: Optional[int]
-        """
-        return self._enrolled_device_count
-    
-    @enrolled_device_count.setter
-    def enrolled_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the enrolledDeviceCount property value. Total number of Android devices that have enrolled using this enrollment profile.
-        Args:
-            value: Value to set for the enrolled_device_count property.
-        """
-        self._enrolled_device_count = value
-    
-    @property
-    def enrollment_mode(self,) -> Optional[android_device_owner_enrollment_mode.AndroidDeviceOwnerEnrollmentMode]:
-        """
-        Gets the enrollmentMode property value. The enrollment mode for an enrollment profile.
-        Returns: Optional[android_device_owner_enrollment_mode.AndroidDeviceOwnerEnrollmentMode]
-        """
-        return self._enrollment_mode
-    
-    @enrollment_mode.setter
-    def enrollment_mode(self,value: Optional[android_device_owner_enrollment_mode.AndroidDeviceOwnerEnrollmentMode] = None) -> None:
-        """
-        Sets the enrollmentMode property value. The enrollment mode for an enrollment profile.
-        Args:
-            value: Value to set for the enrollment_mode property.
-        """
-        self._enrollment_mode = value
-    
-    @property
-    def enrollment_token_type(self,) -> Optional[android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType]:
-        """
-        Gets the enrollmentTokenType property value. The enrollment token type for an enrollment profile.
-        Returns: Optional[android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType]
-        """
-        return self._enrollment_token_type
-    
-    @enrollment_token_type.setter
-    def enrollment_token_type(self,value: Optional[android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType] = None) -> None:
-        """
-        Sets the enrollmentTokenType property value. The enrollment token type for an enrollment profile.
-        Args:
-            value: Value to set for the enrollment_token_type property.
-        """
-        self._enrollment_token_type = value
-    
-    @property
-    def enrollment_token_usage_count(self,) -> Optional[int]:
-        """
-        Gets the enrollmentTokenUsageCount property value. Total number of AOSP devices that have enrolled using the current token.
-        Returns: Optional[int]
-        """
-        return self._enrollment_token_usage_count
-    
-    @enrollment_token_usage_count.setter
-    def enrollment_token_usage_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the enrollmentTokenUsageCount property value. Total number of AOSP devices that have enrolled using the current token.
-        Args:
-            value: Value to set for the enrollment_token_usage_count property.
-        """
-        self._enrollment_token_usage_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import android_device_owner_enrollment_mode, android_device_owner_enrollment_token_type, aosp_wifi_security_type, entity, mime_content
+        from .android_device_owner_enrollment_mode import AndroidDeviceOwnerEnrollmentMode
+        from .android_device_owner_enrollment_token_type import AndroidDeviceOwnerEnrollmentTokenType
+        from .aosp_wifi_security_type import AospWifiSecurityType
+        from .entity import Entity
+        from .mime_content import MimeContent
+
+        from .android_device_owner_enrollment_mode import AndroidDeviceOwnerEnrollmentMode
+        from .android_device_owner_enrollment_token_type import AndroidDeviceOwnerEnrollmentTokenType
+        from .aosp_wifi_security_type import AospWifiSecurityType
+        from .entity import Entity
+        from .mime_content import MimeContent
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accountId": lambda n : setattr(self, 'account_id', n.get_str_value()),
@@ -241,110 +99,25 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enrolledDeviceCount": lambda n : setattr(self, 'enrolled_device_count', n.get_int_value()),
-            "enrollmentMode": lambda n : setattr(self, 'enrollment_mode', n.get_enum_value(android_device_owner_enrollment_mode.AndroidDeviceOwnerEnrollmentMode)),
-            "enrollmentTokenType": lambda n : setattr(self, 'enrollment_token_type', n.get_enum_value(android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType)),
+            "enrollmentMode": lambda n : setattr(self, 'enrollment_mode', n.get_enum_value(AndroidDeviceOwnerEnrollmentMode)),
+            "enrollmentTokenType": lambda n : setattr(self, 'enrollment_token_type', n.get_enum_value(AndroidDeviceOwnerEnrollmentTokenType)),
             "enrollmentTokenUsageCount": lambda n : setattr(self, 'enrollment_token_usage_count', n.get_int_value()),
             "isTeamsDeviceProfile": lambda n : setattr(self, 'is_teams_device_profile', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "qrCodeContent": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
-            "qrCodeImage": lambda n : setattr(self, 'qr_code_image', n.get_object_value(mime_content.MimeContent)),
+            "qrCodeImage": lambda n : setattr(self, 'qr_code_image', n.get_object_value(MimeContent)),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "tokenCreationDateTime": lambda n : setattr(self, 'token_creation_date_time', n.get_datetime_value()),
             "tokenExpirationDateTime": lambda n : setattr(self, 'token_expiration_date_time', n.get_datetime_value()),
             "tokenValue": lambda n : setattr(self, 'token_value', n.get_str_value()),
             "wifiHidden": lambda n : setattr(self, 'wifi_hidden', n.get_bool_value()),
             "wifiPassword": lambda n : setattr(self, 'wifi_password', n.get_str_value()),
-            "wifiSecurityType": lambda n : setattr(self, 'wifi_security_type', n.get_enum_value(aosp_wifi_security_type.AospWifiSecurityType)),
+            "wifiSecurityType": lambda n : setattr(self, 'wifi_security_type', n.get_enum_value(AospWifiSecurityType)),
             "wifiSsid": lambda n : setattr(self, 'wifi_ssid', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_teams_device_profile(self,) -> Optional[bool]:
-        """
-        Gets the isTeamsDeviceProfile property value. Boolean indicating if this profile is an Android AOSP for Teams device profile.
-        Returns: Optional[bool]
-        """
-        return self._is_teams_device_profile
-    
-    @is_teams_device_profile.setter
-    def is_teams_device_profile(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isTeamsDeviceProfile property value. Boolean indicating if this profile is an Android AOSP for Teams device profile.
-        Args:
-            value: Value to set for the is_teams_device_profile property.
-        """
-        self._is_teams_device_profile = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. Date time the enrollment profile was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. Date time the enrollment profile was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def qr_code_content(self,) -> Optional[str]:
-        """
-        Gets the qrCodeContent property value. String used to generate a QR code for the token.
-        Returns: Optional[str]
-        """
-        return self._qr_code_content
-    
-    @qr_code_content.setter
-    def qr_code_content(self,value: Optional[str] = None) -> None:
-        """
-        Sets the qrCodeContent property value. String used to generate a QR code for the token.
-        Args:
-            value: Value to set for the qr_code_content property.
-        """
-        self._qr_code_content = value
-    
-    @property
-    def qr_code_image(self,) -> Optional[mime_content.MimeContent]:
-        """
-        Gets the qrCodeImage property value. String used to generate a QR code for the token.
-        Returns: Optional[mime_content.MimeContent]
-        """
-        return self._qr_code_image
-    
-    @qr_code_image.setter
-    def qr_code_image(self,value: Optional[mime_content.MimeContent] = None) -> None:
-        """
-        Sets the qrCodeImage property value. String used to generate a QR code for the token.
-        Args:
-            value: Value to set for the qr_code_image property.
-        """
-        self._qr_code_image = value
-    
-    @property
-    def role_scope_tag_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
-        Returns: Optional[List[str]]
-        """
-        return self._role_scope_tag_ids
-    
-    @role_scope_tag_ids.setter
-    def role_scope_tag_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
-        Args:
-            value: Value to set for the role_scope_tag_ids property.
-        """
-        self._role_scope_tag_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -352,12 +125,12 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("accountId", self.account_id)
         writer.write_bool_value("configureWifi", self.configure_wifi)
-        writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_datetime_value()("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("enrolledDeviceCount", self.enrolled_device_count)
@@ -365,135 +138,16 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         writer.write_enum_value("enrollmentTokenType", self.enrollment_token_type)
         writer.write_int_value("enrollmentTokenUsageCount", self.enrollment_token_usage_count)
         writer.write_bool_value("isTeamsDeviceProfile", self.is_teams_device_profile)
-        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_datetime_value()("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("qrCodeContent", self.qr_code_content)
         writer.write_object_value("qrCodeImage", self.qr_code_image)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
-        writer.write_datetime_value("tokenCreationDateTime", self.token_creation_date_time)
-        writer.write_datetime_value("tokenExpirationDateTime", self.token_expiration_date_time)
+        writer.write_datetime_value()("tokenCreationDateTime", self.token_creation_date_time)
+        writer.write_datetime_value()("tokenExpirationDateTime", self.token_expiration_date_time)
         writer.write_str_value("tokenValue", self.token_value)
         writer.write_bool_value("wifiHidden", self.wifi_hidden)
         writer.write_str_value("wifiPassword", self.wifi_password)
         writer.write_enum_value("wifiSecurityType", self.wifi_security_type)
         writer.write_str_value("wifiSsid", self.wifi_ssid)
-    
-    @property
-    def token_creation_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the tokenCreationDateTime property value. Date time the most recently created token was created.
-        Returns: Optional[datetime]
-        """
-        return self._token_creation_date_time
-    
-    @token_creation_date_time.setter
-    def token_creation_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the tokenCreationDateTime property value. Date time the most recently created token was created.
-        Args:
-            value: Value to set for the token_creation_date_time property.
-        """
-        self._token_creation_date_time = value
-    
-    @property
-    def token_expiration_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the tokenExpirationDateTime property value. Date time the most recently created token will expire.
-        Returns: Optional[datetime]
-        """
-        return self._token_expiration_date_time
-    
-    @token_expiration_date_time.setter
-    def token_expiration_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the tokenExpirationDateTime property value. Date time the most recently created token will expire.
-        Args:
-            value: Value to set for the token_expiration_date_time property.
-        """
-        self._token_expiration_date_time = value
-    
-    @property
-    def token_value(self,) -> Optional[str]:
-        """
-        Gets the tokenValue property value. Value of the most recently created token for this enrollment profile.
-        Returns: Optional[str]
-        """
-        return self._token_value
-    
-    @token_value.setter
-    def token_value(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tokenValue property value. Value of the most recently created token for this enrollment profile.
-        Args:
-            value: Value to set for the token_value property.
-        """
-        self._token_value = value
-    
-    @property
-    def wifi_hidden(self,) -> Optional[bool]:
-        """
-        Gets the wifiHidden property value. Boolean that indicates if hidden wifi networks are enabled
-        Returns: Optional[bool]
-        """
-        return self._wifi_hidden
-    
-    @wifi_hidden.setter
-    def wifi_hidden(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the wifiHidden property value. Boolean that indicates if hidden wifi networks are enabled
-        Args:
-            value: Value to set for the wifi_hidden property.
-        """
-        self._wifi_hidden = value
-    
-    @property
-    def wifi_password(self,) -> Optional[str]:
-        """
-        Gets the wifiPassword property value. String that contains the wi-fi login password
-        Returns: Optional[str]
-        """
-        return self._wifi_password
-    
-    @wifi_password.setter
-    def wifi_password(self,value: Optional[str] = None) -> None:
-        """
-        Sets the wifiPassword property value. String that contains the wi-fi login password
-        Args:
-            value: Value to set for the wifi_password property.
-        """
-        self._wifi_password = value
-    
-    @property
-    def wifi_security_type(self,) -> Optional[aosp_wifi_security_type.AospWifiSecurityType]:
-        """
-        Gets the wifiSecurityType property value. This enum represents Wi-Fi Security Types for Android Device Owner AOSP Scenarios.
-        Returns: Optional[aosp_wifi_security_type.AospWifiSecurityType]
-        """
-        return self._wifi_security_type
-    
-    @wifi_security_type.setter
-    def wifi_security_type(self,value: Optional[aosp_wifi_security_type.AospWifiSecurityType] = None) -> None:
-        """
-        Sets the wifiSecurityType property value. This enum represents Wi-Fi Security Types for Android Device Owner AOSP Scenarios.
-        Args:
-            value: Value to set for the wifi_security_type property.
-        """
-        self._wifi_security_type = value
-    
-    @property
-    def wifi_ssid(self,) -> Optional[str]:
-        """
-        Gets the wifiSsid property value. String that contains the wi-fi login ssid
-        Returns: Optional[str]
-        """
-        return self._wifi_ssid
-    
-    @wifi_ssid.setter
-    def wifi_ssid(self,value: Optional[str] = None) -> None:
-        """
-        Sets the wifiSsid property value. String that contains the wi-fi login ssid
-        Args:
-            value: Value to set for the wifi_ssid property.
-        """
-        self._wifi_ssid = value
     
 

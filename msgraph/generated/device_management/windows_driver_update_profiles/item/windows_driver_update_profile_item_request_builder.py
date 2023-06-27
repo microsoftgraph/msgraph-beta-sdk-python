@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import windows_driver_update_profile
-    from ....models.o_data_errors import o_data_error
-    from .assign import assign_request_builder
-    from .assignments import assignments_request_builder
-    from .driver_inventories import driver_inventories_request_builder
-    from .execute_action import execute_action_request_builder
-    from .sync_inventory import sync_inventory_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.windows_driver_update_profile import WindowsDriverUpdateProfile
+    from .assign.assign_request_builder import AssignRequestBuilder
+    from .assignments.assignments_request_builder import AssignmentsRequestBuilder
+    from .driver_inventories.driver_inventories_request_builder import DriverInventoriesRequestBuilder
+    from .execute_action.execute_action_request_builder import ExecuteActionRequestBuilder
+    from .sync_inventory.sync_inventory_request_builder import SyncInventoryRequestBuilder
 
 class WindowsDriverUpdateProfileItemRequestBuilder():
     """
@@ -29,10 +29,10 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/windowsDriverUpdateProfiles/{windowsDriverUpdateProfile%2Did}{?%24select,%24expand}"
 
@@ -49,62 +49,62 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
+    async def get(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsDriverUpdateProfile]:
         """
         A collection of windows driver update profiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]
+        Returns: Optional[WindowsDriverUpdateProfile]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import windows_driver_update_profile
+        from ....models.windows_driver_update_profile import WindowsDriverUpdateProfile
 
-        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDriverUpdateProfile, error_mapping)
     
-    async def patch(self,body: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile] = None, request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
+    async def patch(self,body: Optional[WindowsDriverUpdateProfile] = None, request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WindowsDriverUpdateProfile]:
         """
         Update the navigation property windowsDriverUpdateProfiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]
+        Returns: Optional[WindowsDriverUpdateProfile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import windows_driver_update_profile
+        from ....models.windows_driver_update_profile import WindowsDriverUpdateProfile
 
-        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDriverUpdateProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -140,7 +140,7 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile] = None, request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WindowsDriverUpdateProfile] = None, request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property windowsDriverUpdateProfiles in deviceManagement
         Args:
@@ -148,8 +148,8 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,49 +162,49 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         return request_info
     
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+    def assign(self) -> AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
-        from .assign import assign_request_builder
+        from .assign.assign_request_builder import AssignRequestBuilder
 
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+    def assignments(self) -> AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsDriverUpdateProfile entity.
         """
-        from .assignments import assignments_request_builder
+        from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def driver_inventories(self) -> driver_inventories_request_builder.DriverInventoriesRequestBuilder:
+    def driver_inventories(self) -> DriverInventoriesRequestBuilder:
         """
         Provides operations to manage the driverInventories property of the microsoft.graph.windowsDriverUpdateProfile entity.
         """
-        from .driver_inventories import driver_inventories_request_builder
+        from .driver_inventories.driver_inventories_request_builder import DriverInventoriesRequestBuilder
 
-        return driver_inventories_request_builder.DriverInventoriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DriverInventoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def execute_action(self) -> execute_action_request_builder.ExecuteActionRequestBuilder:
+    def execute_action(self) -> ExecuteActionRequestBuilder:
         """
         Provides operations to call the executeAction method.
         """
-        from .execute_action import execute_action_request_builder
+        from .execute_action.execute_action_request_builder import ExecuteActionRequestBuilder
 
-        return execute_action_request_builder.ExecuteActionRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExecuteActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sync_inventory(self) -> sync_inventory_request_builder.SyncInventoryRequestBuilder:
+    def sync_inventory(self) -> SyncInventoryRequestBuilder:
         """
         Provides operations to call the syncInventory method.
         """
-        from .sync_inventory import sync_inventory_request_builder
+        from .sync_inventory.sync_inventory_request_builder import SyncInventoryRequestBuilder
 
-        return sync_inventory_request_builder.SyncInventoryRequestBuilder(self.request_adapter, self.path_parameters)
+        return SyncInventoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration():
@@ -230,8 +230,8 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import expiration_requirement
+    from .expiration_requirement import ExpirationRequirement
 
+@dataclass
 class SessionLifetimePolicy(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sessionLifetimePolicy and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The human-readable details of the conditional access session management policy applied to the sign-in.
-        self._detail: Optional[str] = None
-        # If a conditional access session management policy required the user to authenticate in this sign-in event, this field describes the policy type that required authentication. The possible values are: rememberMultifactorAuthenticationOnTrustedDevices, tenantTokenLifetimePolicy, audienceTokenLifetimePolicy, signInFrequencyPeriodicReauthentication, ngcMfa, signInFrequencyEveryTime, unknownFutureValue.
-        self._expiration_requirement: Optional[expiration_requirement.ExpirationRequirement] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The human-readable details of the conditional access session management policy applied to the sign-in.
+    detail: Optional[str] = None
+    # If a conditional access session management policy required the user to authenticate in this sign-in event, this field describes the policy type that required authentication. The possible values are: rememberMultifactorAuthenticationOnTrustedDevices, tenantTokenLifetimePolicy, audienceTokenLifetimePolicy, signInFrequencyPeriodicReauthentication, ngcMfa, signInFrequencyEveryTime, unknownFutureValue.
+    expiration_requirement: Optional[ExpirationRequirement] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SessionLifetimePolicy:
@@ -45,74 +26,25 @@ class SessionLifetimePolicy(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: SessionLifetimePolicy
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return SessionLifetimePolicy()
-    
-    @property
-    def detail(self,) -> Optional[str]:
-        """
-        Gets the detail property value. The human-readable details of the conditional access session management policy applied to the sign-in.
-        Returns: Optional[str]
-        """
-        return self._detail
-    
-    @detail.setter
-    def detail(self,value: Optional[str] = None) -> None:
-        """
-        Sets the detail property value. The human-readable details of the conditional access session management policy applied to the sign-in.
-        Args:
-            value: Value to set for the detail property.
-        """
-        self._detail = value
-    
-    @property
-    def expiration_requirement(self,) -> Optional[expiration_requirement.ExpirationRequirement]:
-        """
-        Gets the expirationRequirement property value. If a conditional access session management policy required the user to authenticate in this sign-in event, this field describes the policy type that required authentication. The possible values are: rememberMultifactorAuthenticationOnTrustedDevices, tenantTokenLifetimePolicy, audienceTokenLifetimePolicy, signInFrequencyPeriodicReauthentication, ngcMfa, signInFrequencyEveryTime, unknownFutureValue.
-        Returns: Optional[expiration_requirement.ExpirationRequirement]
-        """
-        return self._expiration_requirement
-    
-    @expiration_requirement.setter
-    def expiration_requirement(self,value: Optional[expiration_requirement.ExpirationRequirement] = None) -> None:
-        """
-        Sets the expirationRequirement property value. If a conditional access session management policy required the user to authenticate in this sign-in event, this field describes the policy type that required authentication. The possible values are: rememberMultifactorAuthenticationOnTrustedDevices, tenantTokenLifetimePolicy, audienceTokenLifetimePolicy, signInFrequencyPeriodicReauthentication, ngcMfa, signInFrequencyEveryTime, unknownFutureValue.
-        Args:
-            value: Value to set for the expiration_requirement property.
-        """
-        self._expiration_requirement = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import expiration_requirement
+        from .expiration_requirement import ExpirationRequirement
+
+        from .expiration_requirement import ExpirationRequirement
 
         fields: Dict[str, Callable[[Any], None]] = {
             "detail": lambda n : setattr(self, 'detail', n.get_str_value()),
-            "expirationRequirement": lambda n : setattr(self, 'expiration_requirement', n.get_enum_value(expiration_requirement.ExpirationRequirement)),
+            "expirationRequirement": lambda n : setattr(self, 'expiration_requirement', n.get_enum_value(ExpirationRequirement)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -120,8 +52,8 @@ class SessionLifetimePolicy(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("detail", self.detail)
         writer.write_enum_value("expirationRequirement", self.expiration_requirement)
         writer.write_str_value("@odata.type", self.odata_type)

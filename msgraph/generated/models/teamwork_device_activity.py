@@ -1,82 +1,30 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, identity_set, teamwork_active_peripherals
+    from .entity import Entity
+    from .identity_set import IdentitySet
+    from .teamwork_active_peripherals import TeamworkActivePeripherals
 
-from . import entity
+from .entity import Entity
 
-class TeamworkDeviceActivity(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TeamworkDeviceActivity and sets the default values.
-        """
-        super().__init__()
-        # The active peripheral devices attached to the device.
-        self._active_peripherals: Optional[teamwork_active_peripherals.TeamworkActivePeripherals] = None
-        # Identity of the user who created the device activity document.
-        self._created_by: Optional[identity_set.IdentitySet] = None
-        # The UTC date and time when the device activity document was created.
-        self._created_date_time: Optional[datetime] = None
-        # Identity of the user who last modified the device activity details.
-        self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The UTC date and time when the device activity detail was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def active_peripherals(self,) -> Optional[teamwork_active_peripherals.TeamworkActivePeripherals]:
-        """
-        Gets the activePeripherals property value. The active peripheral devices attached to the device.
-        Returns: Optional[teamwork_active_peripherals.TeamworkActivePeripherals]
-        """
-        return self._active_peripherals
-    
-    @active_peripherals.setter
-    def active_peripherals(self,value: Optional[teamwork_active_peripherals.TeamworkActivePeripherals] = None) -> None:
-        """
-        Sets the activePeripherals property value. The active peripheral devices attached to the device.
-        Args:
-            value: Value to set for the active_peripherals property.
-        """
-        self._active_peripherals = value
-    
-    @property
-    def created_by(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the createdBy property value. Identity of the user who created the device activity document.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._created_by
-    
-    @created_by.setter
-    def created_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the createdBy property value. Identity of the user who created the device activity document.
-        Args:
-            value: Value to set for the created_by property.
-        """
-        self._created_by = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The UTC date and time when the device activity document was created.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The UTC date and time when the device activity document was created.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+@dataclass
+class TeamworkDeviceActivity(Entity):
+    # The active peripheral devices attached to the device.
+    active_peripherals: Optional[TeamworkActivePeripherals] = None
+    # Identity of the user who created the device activity document.
+    created_by: Optional[IdentitySet] = None
+    # The UTC date and time when the device activity document was created.
+    created_date_time: Optional[datetime.datetime] = None
+    # Identity of the user who last modified the device activity details.
+    last_modified_by: Optional[IdentitySet] = None
+    # The UTC date and time when the device activity detail was last modified.
+    last_modified_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDeviceActivity:
@@ -86,8 +34,8 @@ class TeamworkDeviceActivity(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: TeamworkDeviceActivity
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return TeamworkDeviceActivity()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -95,52 +43,24 @@ class TeamworkDeviceActivity(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, identity_set, teamwork_active_peripherals
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .teamwork_active_peripherals import TeamworkActivePeripherals
+
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .teamwork_active_peripherals import TeamworkActivePeripherals
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "activePeripherals": lambda n : setattr(self, 'active_peripherals', n.get_object_value(teamwork_active_peripherals.TeamworkActivePeripherals)),
-            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "activePeripherals": lambda n : setattr(self, 'active_peripherals', n.get_object_value(TeamworkActivePeripherals)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_modified_by(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the lastModifiedBy property value. Identity of the user who last modified the device activity details.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._last_modified_by
-    
-    @last_modified_by.setter
-    def last_modified_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the lastModifiedBy property value. Identity of the user who last modified the device activity details.
-        Args:
-            value: Value to set for the last_modified_by property.
-        """
-        self._last_modified_by = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The UTC date and time when the device activity detail was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The UTC date and time when the device activity detail was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -148,13 +68,13 @@ class TeamworkDeviceActivity(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("activePeripherals", self.active_peripherals)
         writer.write_object_value("createdBy", self.created_by)
-        writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_datetime_value()("createdDateTime", self.created_date_time)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
-        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_datetime_value()("lastModifiedDateTime", self.last_modified_date_time)
     
 

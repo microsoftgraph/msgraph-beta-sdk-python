@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LifecycleWorkflowProcessingStatus(Enum):
+class LifecycleWorkflowProcessingStatus(str, Enum):
     Queued = "queued",
     InProgress = "inProgress",
     Completed = "completed",

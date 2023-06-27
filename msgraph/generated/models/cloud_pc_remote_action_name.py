@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcRemoteActionName(Enum):
+class CloudPcRemoteActionName(str, Enum):
     Unknown = "unknown",
     Restart = "restart",
     Rename = "rename",

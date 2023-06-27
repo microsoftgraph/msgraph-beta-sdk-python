@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Win32LobAppFileSystemDetectionType(Enum):
+class Win32LobAppFileSystemDetectionType(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Whether the specified file or folder exists.

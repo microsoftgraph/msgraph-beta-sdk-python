@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,15 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import cloud_pc_reports
-    from ....models.o_data_errors import o_data_error
-    from .export_jobs import export_jobs_request_builder
-    from .get_daily_aggregated_remote_connection_reports import get_daily_aggregated_remote_connection_reports_request_builder
-    from .get_real_time_remote_connection_latency_with_cloud_pc_id import get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder
-    from .get_real_time_remote_connection_status_with_cloud_pc_id import get_real_time_remote_connection_status_with_cloud_pc_id_request_builder
-    from .get_remote_connection_historical_reports import get_remote_connection_historical_reports_request_builder
-    from .get_shared_use_license_usage_report import get_shared_use_license_usage_report_request_builder
-    from .get_total_aggregated_remote_connection_reports import get_total_aggregated_remote_connection_reports_request_builder
+    from ....models.cloud_pc_reports import CloudPcReports
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .export_jobs.export_jobs_request_builder import ExportJobsRequestBuilder
+    from .get_daily_aggregated_remote_connection_reports.get_daily_aggregated_remote_connection_reports_request_builder import GetDailyAggregatedRemoteConnectionReportsRequestBuilder
+    from .get_real_time_remote_connection_latency_with_cloud_pc_id.get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder
+    from .get_real_time_remote_connection_status_with_cloud_pc_id.get_real_time_remote_connection_status_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder
+    from .get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder import GetRemoteConnectionHistoricalReportsRequestBuilder
+    from .get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder import GetSharedUseLicenseUsageReportRequestBuilder
+    from .get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder import GetTotalAggregatedRemoteConnectionReportsRequestBuilder
 
 class ReportsRequestBuilder():
     """
@@ -31,10 +31,10 @@ class ReportsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/virtualEndpoint/reports{?%24select,%24expand}"
 
@@ -51,88 +51,88 @@ class ReportsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_reports.CloudPcReports]:
+    async def get(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcReports]:
         """
         Cloud PC related reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_pc_reports.CloudPcReports]
+        Returns: Optional[CloudPcReports]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import cloud_pc_reports
+        from ....models.cloud_pc_reports import CloudPcReports
 
-        return await self.request_adapter.send_async(request_info, cloud_pc_reports.CloudPcReports, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPcReports, error_mapping)
     
-    def get_real_time_remote_connection_latency_with_cloud_pc_id(self,cloud_pc_id: Optional[str] = None) -> get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder:
+    def get_real_time_remote_connection_latency_with_cloud_pc_id(self,cloud_pc_id: Optional[str] = None) -> GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder:
         """
         Provides operations to call the getRealTimeRemoteConnectionLatency method.
         Args:
             cloudPcId: Usage: cloudPcId='{cloudPcId}'
-        Returns: get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder
+        Returns: GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder
         """
-        if cloud_pc_id is None:
-            raise Exception("cloud_pc_id cannot be undefined")
-        from .get_real_time_remote_connection_latency_with_cloud_pc_id import get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder
+        if not cloud_pc_id:
+            raise TypeError("cloud_pc_id cannot be null.")
+        from .get_real_time_remote_connection_latency_with_cloud_pc_id.get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder
 
-        return get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters, cloud_pc_id)
+        return GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters, cloud_pc_id)
     
-    def get_real_time_remote_connection_status_with_cloud_pc_id(self,cloud_pc_id: Optional[str] = None) -> get_real_time_remote_connection_status_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder:
+    def get_real_time_remote_connection_status_with_cloud_pc_id(self,cloud_pc_id: Optional[str] = None) -> GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder:
         """
         Provides operations to call the getRealTimeRemoteConnectionStatus method.
         Args:
             cloudPcId: Usage: cloudPcId='{cloudPcId}'
-        Returns: get_real_time_remote_connection_status_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder
+        Returns: GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder
         """
-        if cloud_pc_id is None:
-            raise Exception("cloud_pc_id cannot be undefined")
-        from .get_real_time_remote_connection_status_with_cloud_pc_id import get_real_time_remote_connection_status_with_cloud_pc_id_request_builder
+        if not cloud_pc_id:
+            raise TypeError("cloud_pc_id cannot be null.")
+        from .get_real_time_remote_connection_status_with_cloud_pc_id.get_real_time_remote_connection_status_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder
 
-        return get_real_time_remote_connection_status_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters, cloud_pc_id)
+        return GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters, cloud_pc_id)
     
-    async def patch(self,body: Optional[cloud_pc_reports.CloudPcReports] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_reports.CloudPcReports]:
+    async def patch(self,body: Optional[CloudPcReports] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> Optional[CloudPcReports]:
         """
         Update the navigation property reports in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_pc_reports.CloudPcReports]
+        Returns: Optional[CloudPcReports]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import cloud_pc_reports
+        from ....models.cloud_pc_reports import CloudPcReports
 
-        return await self.request_adapter.send_async(request_info, cloud_pc_reports.CloudPcReports, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPcReports, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ReportsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -168,7 +168,7 @@ class ReportsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[cloud_pc_reports.CloudPcReports] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CloudPcReports] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property reports in deviceManagement
         Args:
@@ -176,8 +176,8 @@ class ReportsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -190,49 +190,49 @@ class ReportsRequestBuilder():
         return request_info
     
     @property
-    def export_jobs(self) -> export_jobs_request_builder.ExportJobsRequestBuilder:
+    def export_jobs(self) -> ExportJobsRequestBuilder:
         """
         Provides operations to manage the exportJobs property of the microsoft.graph.cloudPcReports entity.
         """
-        from .export_jobs import export_jobs_request_builder
+        from .export_jobs.export_jobs_request_builder import ExportJobsRequestBuilder
 
-        return export_jobs_request_builder.ExportJobsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExportJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_daily_aggregated_remote_connection_reports(self) -> get_daily_aggregated_remote_connection_reports_request_builder.GetDailyAggregatedRemoteConnectionReportsRequestBuilder:
+    def get_daily_aggregated_remote_connection_reports(self) -> GetDailyAggregatedRemoteConnectionReportsRequestBuilder:
         """
         Provides operations to call the getDailyAggregatedRemoteConnectionReports method.
         """
-        from .get_daily_aggregated_remote_connection_reports import get_daily_aggregated_remote_connection_reports_request_builder
+        from .get_daily_aggregated_remote_connection_reports.get_daily_aggregated_remote_connection_reports_request_builder import GetDailyAggregatedRemoteConnectionReportsRequestBuilder
 
-        return get_daily_aggregated_remote_connection_reports_request_builder.GetDailyAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetDailyAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_remote_connection_historical_reports(self) -> get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder:
+    def get_remote_connection_historical_reports(self) -> GetRemoteConnectionHistoricalReportsRequestBuilder:
         """
         Provides operations to call the getRemoteConnectionHistoricalReports method.
         """
-        from .get_remote_connection_historical_reports import get_remote_connection_historical_reports_request_builder
+        from .get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder import GetRemoteConnectionHistoricalReportsRequestBuilder
 
-        return get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetRemoteConnectionHistoricalReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_shared_use_license_usage_report(self) -> get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder:
+    def get_shared_use_license_usage_report(self) -> GetSharedUseLicenseUsageReportRequestBuilder:
         """
         Provides operations to call the getSharedUseLicenseUsageReport method.
         """
-        from .get_shared_use_license_usage_report import get_shared_use_license_usage_report_request_builder
+        from .get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder import GetSharedUseLicenseUsageReportRequestBuilder
 
-        return get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetSharedUseLicenseUsageReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_total_aggregated_remote_connection_reports(self) -> get_total_aggregated_remote_connection_reports_request_builder.GetTotalAggregatedRemoteConnectionReportsRequestBuilder:
+    def get_total_aggregated_remote_connection_reports(self) -> GetTotalAggregatedRemoteConnectionReportsRequestBuilder:
         """
         Provides operations to call the getTotalAggregatedRemoteConnectionReports method.
         """
-        from .get_total_aggregated_remote_connection_reports import get_total_aggregated_remote_connection_reports_request_builder
+        from .get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder import GetTotalAggregatedRemoteConnectionReportsRequestBuilder
 
-        return get_total_aggregated_remote_connection_reports_request_builder.GetTotalAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetTotalAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ReportsRequestBuilderDeleteRequestConfiguration():
@@ -258,8 +258,8 @@ class ReportsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .............models import workbook_chart_point, workbook_chart_point_collection_response
-    from .............models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import workbook_chart_point_item_request_builder
-    from .item_at_with_index import item_at_with_index_request_builder
+    from .............models.o_data_errors.o_data_error import ODataError
+    from .............models.workbook_chart_point import WorkbookChartPoint
+    from .............models.workbook_chart_point_collection_response import WorkbookChartPointCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.workbook_chart_point_item_request_builder import WorkbookChartPointItemRequestBuilder
+    from .item_at_with_index.item_at_with_index_request_builder import ItemAtWithIndexRequestBuilder
 
 class PointsRequestBuilder():
     """
@@ -27,10 +28,10 @@ class PointsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/{workbookChartSeries%2Did}/points{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,80 +39,80 @@ class PointsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_workbook_chart_point_id(self,workbook_chart_point_id: str) -> workbook_chart_point_item_request_builder.WorkbookChartPointItemRequestBuilder:
+    def by_workbook_chart_point_id(self,workbook_chart_point_id: str) -> WorkbookChartPointItemRequestBuilder:
         """
         Provides operations to manage the points property of the microsoft.graph.workbookChartSeries entity.
         Args:
             workbook_chart_point_id: Unique identifier of the item
-        Returns: workbook_chart_point_item_request_builder.WorkbookChartPointItemRequestBuilder
+        Returns: WorkbookChartPointItemRequestBuilder
         """
-        if workbook_chart_point_id is None:
-            raise Exception("workbook_chart_point_id cannot be undefined")
-        from .item import workbook_chart_point_item_request_builder
+        if not workbook_chart_point_id:
+            raise TypeError("workbook_chart_point_id cannot be null.")
+        from .item.workbook_chart_point_item_request_builder import WorkbookChartPointItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["workbookChartPoint%2Did"] = workbook_chart_point_id
-        return workbook_chart_point_item_request_builder.WorkbookChartPointItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WorkbookChartPointItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[PointsRequestBuilderGetRequestConfiguration] = None) -> Optional[workbook_chart_point_collection_response.WorkbookChartPointCollectionResponse]:
+    async def get(self,request_configuration: Optional[PointsRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookChartPointCollectionResponse]:
         """
         Retrieve a list of chartpoints objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_chart_point_collection_response.WorkbookChartPointCollectionResponse]
+        Returns: Optional[WorkbookChartPointCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .............models.o_data_errors import o_data_error
+        from .............models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .............models import workbook_chart_point_collection_response
+        from .............models.workbook_chart_point_collection_response import WorkbookChartPointCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, workbook_chart_point_collection_response.WorkbookChartPointCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookChartPointCollectionResponse, error_mapping)
     
-    def item_at_with_index(self,index: Optional[int] = None) -> item_at_with_index_request_builder.ItemAtWithIndexRequestBuilder:
+    def item_at_with_index(self,index: Optional[int] = None) -> ItemAtWithIndexRequestBuilder:
         """
         Provides operations to call the itemAt method.
         Args:
             index: Usage: index={index}
-        Returns: item_at_with_index_request_builder.ItemAtWithIndexRequestBuilder
+        Returns: ItemAtWithIndexRequestBuilder
         """
-        if index is None:
-            raise Exception("index cannot be undefined")
-        from .item_at_with_index import item_at_with_index_request_builder
+        if not index:
+            raise TypeError("index cannot be null.")
+        from .item_at_with_index.item_at_with_index_request_builder import ItemAtWithIndexRequestBuilder
 
-        return item_at_with_index_request_builder.ItemAtWithIndexRequestBuilder(self.request_adapter, self.path_parameters, index)
+        return ItemAtWithIndexRequestBuilder(self.request_adapter, self.path_parameters, index)
     
-    async def post(self,body: Optional[workbook_chart_point.WorkbookChartPoint] = None, request_configuration: Optional[PointsRequestBuilderPostRequestConfiguration] = None) -> Optional[workbook_chart_point.WorkbookChartPoint]:
+    async def post(self,body: Optional[WorkbookChartPoint] = None, request_configuration: Optional[PointsRequestBuilderPostRequestConfiguration] = None) -> Optional[WorkbookChartPoint]:
         """
         Use this API to create a new ChartPoint.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_chart_point.WorkbookChartPoint]
+        Returns: Optional[WorkbookChartPoint]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .............models.o_data_errors import o_data_error
+        from .............models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .............models import workbook_chart_point
+        from .............models.workbook_chart_point import WorkbookChartPoint
 
-        return await self.request_adapter.send_async(request_info, workbook_chart_point.WorkbookChartPoint, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookChartPoint, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PointsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -131,7 +132,7 @@ class PointsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[workbook_chart_point.WorkbookChartPoint] = None, request_configuration: Optional[PointsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WorkbookChartPoint] = None, request_configuration: Optional[PointsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Use this API to create a new ChartPoint.
         Args:
@@ -139,8 +140,8 @@ class PointsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -153,13 +154,13 @@ class PointsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to call the count method.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PointsRequestBuilderGetQueryParameters():
@@ -173,8 +174,8 @@ class PointsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

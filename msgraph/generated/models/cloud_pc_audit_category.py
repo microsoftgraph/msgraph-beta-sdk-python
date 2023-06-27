@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcAuditCategory(Enum):
+class CloudPcAuditCategory(str, Enum):
     CloudPC = "cloudPC",
     Other = "other",
 

@@ -1,21 +1,19 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import azure_a_d_device, updatable_asset_group
-    from .. import entity
+    from ..entity import Entity
+    from .azure_a_d_device import AzureADDevice
+    from .updatable_asset_group import UpdatableAssetGroup
 
-from .. import entity
+from ..entity import Entity
 
-class UpdatableAsset(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updatableAsset and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+@dataclass
+class UpdatableAsset(Entity):
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdatableAsset:
@@ -25,19 +23,20 @@ class UpdatableAsset(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: UpdatableAsset
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.windowsUpdates.azureADDevice":
-                from . import azure_a_d_device
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.azureADDevice".casefold():
+            from .azure_a_d_device import AzureADDevice
 
-                return azure_a_d_device.AzureADDevice()
-            if mapping_value == "#microsoft.graph.windowsUpdates.updatableAssetGroup":
-                from . import updatable_asset_group
+            return AzureADDevice()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.updatableAssetGroup".casefold():
+            from .updatable_asset_group import UpdatableAssetGroup
 
-                return updatable_asset_group.UpdatableAssetGroup()
+            return UpdatableAssetGroup()
         return UpdatableAsset()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -45,8 +44,13 @@ class UpdatableAsset(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import azure_a_d_device, updatable_asset_group
-        from .. import entity
+        from ..entity import Entity
+        from .azure_a_d_device import AzureADDevice
+        from .updatable_asset_group import UpdatableAssetGroup
+
+        from ..entity import Entity
+        from .azure_a_d_device import AzureADDevice
+        from .updatable_asset_group import UpdatableAssetGroup
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -60,8 +64,8 @@ class UpdatableAsset(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

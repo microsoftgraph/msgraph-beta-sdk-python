@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import threat_assessment_request
-    from .....models.o_data_errors import o_data_error
-    from .results import results_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.threat_assessment_request import ThreatAssessmentRequest
+    from .results.results_request_builder import ResultsRequestBuilder
 
 class ThreatAssessmentRequestItemRequestBuilder():
     """
@@ -25,10 +25,10 @@ class ThreatAssessmentRequestItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/me/informationProtection/threatAssessmentRequests/{threatAssessmentRequest%2Did}{?%24select,%24expand}"
 
@@ -45,62 +45,62 @@ class ThreatAssessmentRequestItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ThreatAssessmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[threat_assessment_request.ThreatAssessmentRequest]:
+    async def get(self,request_configuration: Optional[ThreatAssessmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ThreatAssessmentRequest]:
         """
         Retrieve the properties and relationships of a specified threatAssessmentRequest object. A threat assessment request can be one of the following types:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[threat_assessment_request.ThreatAssessmentRequest]
+        Returns: Optional[ThreatAssessmentRequest]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import threat_assessment_request
+        from .....models.threat_assessment_request import ThreatAssessmentRequest
 
-        return await self.request_adapter.send_async(request_info, threat_assessment_request.ThreatAssessmentRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, ThreatAssessmentRequest, error_mapping)
     
-    async def patch(self,body: Optional[threat_assessment_request.ThreatAssessmentRequest] = None, request_configuration: Optional[ThreatAssessmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[threat_assessment_request.ThreatAssessmentRequest]:
+    async def patch(self,body: Optional[ThreatAssessmentRequest] = None, request_configuration: Optional[ThreatAssessmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ThreatAssessmentRequest]:
         """
         Update the navigation property threatAssessmentRequests in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[threat_assessment_request.ThreatAssessmentRequest]
+        Returns: Optional[ThreatAssessmentRequest]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import threat_assessment_request
+        from .....models.threat_assessment_request import ThreatAssessmentRequest
 
-        return await self.request_adapter.send_async(request_info, threat_assessment_request.ThreatAssessmentRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, ThreatAssessmentRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ThreatAssessmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -136,7 +136,7 @@ class ThreatAssessmentRequestItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[threat_assessment_request.ThreatAssessmentRequest] = None, request_configuration: Optional[ThreatAssessmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ThreatAssessmentRequest] = None, request_configuration: Optional[ThreatAssessmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property threatAssessmentRequests in me
         Args:
@@ -144,8 +144,8 @@ class ThreatAssessmentRequestItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,13 +158,13 @@ class ThreatAssessmentRequestItemRequestBuilder():
         return request_info
     
     @property
-    def results(self) -> results_request_builder.ResultsRequestBuilder:
+    def results(self) -> ResultsRequestBuilder:
         """
         Provides operations to manage the results property of the microsoft.graph.threatAssessmentRequest entity.
         """
-        from .results import results_request_builder
+        from .results.results_request_builder import ResultsRequestBuilder
 
-        return results_request_builder.ResultsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ThreatAssessmentRequestItemRequestBuilderDeleteRequestConfiguration():
@@ -190,8 +190,8 @@ class ThreatAssessmentRequestItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

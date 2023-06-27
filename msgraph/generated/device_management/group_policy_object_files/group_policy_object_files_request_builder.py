@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import group_policy_object_file, group_policy_object_file_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import group_policy_object_file_item_request_builder
+    from ...models.group_policy_object_file import GroupPolicyObjectFile
+    from ...models.group_policy_object_file_collection_response import GroupPolicyObjectFileCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.group_policy_object_file_item_request_builder import GroupPolicyObjectFileItemRequestBuilder
 
 class GroupPolicyObjectFilesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class GroupPolicyObjectFilesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/groupPolicyObjectFiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class GroupPolicyObjectFilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_group_policy_object_file_id(self,group_policy_object_file_id: str) -> group_policy_object_file_item_request_builder.GroupPolicyObjectFileItemRequestBuilder:
+    def by_group_policy_object_file_id(self,group_policy_object_file_id: str) -> GroupPolicyObjectFileItemRequestBuilder:
         """
         Provides operations to manage the groupPolicyObjectFiles property of the microsoft.graph.deviceManagement entity.
         Args:
             group_policy_object_file_id: Unique identifier of the item
-        Returns: group_policy_object_file_item_request_builder.GroupPolicyObjectFileItemRequestBuilder
+        Returns: GroupPolicyObjectFileItemRequestBuilder
         """
-        if group_policy_object_file_id is None:
-            raise Exception("group_policy_object_file_id cannot be undefined")
-        from .item import group_policy_object_file_item_request_builder
+        if not group_policy_object_file_id:
+            raise TypeError("group_policy_object_file_id cannot be null.")
+        from .item.group_policy_object_file_item_request_builder import GroupPolicyObjectFileItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["groupPolicyObjectFile%2Did"] = group_policy_object_file_id
-        return group_policy_object_file_item_request_builder.GroupPolicyObjectFileItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return GroupPolicyObjectFileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GroupPolicyObjectFilesRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_object_file_collection_response.GroupPolicyObjectFileCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupPolicyObjectFilesRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicyObjectFileCollectionResponse]:
         """
         A list of Group Policy Object files uploaded.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_object_file_collection_response.GroupPolicyObjectFileCollectionResponse]
+        Returns: Optional[GroupPolicyObjectFileCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import group_policy_object_file_collection_response
+        from ...models.group_policy_object_file_collection_response import GroupPolicyObjectFileCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, group_policy_object_file_collection_response.GroupPolicyObjectFileCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicyObjectFileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group_policy_object_file.GroupPolicyObjectFile] = None, request_configuration: Optional[GroupPolicyObjectFilesRequestBuilderPostRequestConfiguration] = None) -> Optional[group_policy_object_file.GroupPolicyObjectFile]:
+    async def post(self,body: Optional[GroupPolicyObjectFile] = None, request_configuration: Optional[GroupPolicyObjectFilesRequestBuilderPostRequestConfiguration] = None) -> Optional[GroupPolicyObjectFile]:
         """
         Create new navigation property to groupPolicyObjectFiles for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_object_file.GroupPolicyObjectFile]
+        Returns: Optional[GroupPolicyObjectFile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import group_policy_object_file
+        from ...models.group_policy_object_file import GroupPolicyObjectFile
 
-        return await self.request_adapter.send_async(request_info, group_policy_object_file.GroupPolicyObjectFile, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicyObjectFile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupPolicyObjectFilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class GroupPolicyObjectFilesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[group_policy_object_file.GroupPolicyObjectFile] = None, request_configuration: Optional[GroupPolicyObjectFilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GroupPolicyObjectFile] = None, request_configuration: Optional[GroupPolicyObjectFilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to groupPolicyObjectFiles for deviceManagement
         Args:
@@ -125,8 +126,8 @@ class GroupPolicyObjectFilesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class GroupPolicyObjectFilesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupPolicyObjectFilesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class GroupPolicyObjectFilesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

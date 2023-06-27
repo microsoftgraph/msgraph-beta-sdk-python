@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.device_management import alert_record, alert_record_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import alert_record_item_request_builder
-    from .microsoft_graph_device_management_get_portal_notifications import microsoft_graph_device_management_get_portal_notifications_request_builder
+    from ....models.device_management.alert_record import AlertRecord
+    from ....models.device_management.alert_record_collection_response import AlertRecordCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.alert_record_item_request_builder import AlertRecordItemRequestBuilder
+    from .microsoft_graph_device_management_get_portal_notifications.microsoft_graph_device_management_get_portal_notifications_request_builder import MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder
 
 class AlertRecordsRequestBuilder():
     """
@@ -27,10 +28,10 @@ class AlertRecordsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/monitoring/alertRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,67 +39,67 @@ class AlertRecordsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_alert_record_id(self,alert_record_id: str) -> alert_record_item_request_builder.AlertRecordItemRequestBuilder:
+    def by_alert_record_id(self,alert_record_id: str) -> AlertRecordItemRequestBuilder:
         """
         Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
         Args:
             alert_record_id: Unique identifier of the item
-        Returns: alert_record_item_request_builder.AlertRecordItemRequestBuilder
+        Returns: AlertRecordItemRequestBuilder
         """
-        if alert_record_id is None:
-            raise Exception("alert_record_id cannot be undefined")
-        from .item import alert_record_item_request_builder
+        if not alert_record_id:
+            raise TypeError("alert_record_id cannot be null.")
+        from .item.alert_record_item_request_builder import AlertRecordItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["alertRecord%2Did"] = alert_record_id
-        return alert_record_item_request_builder.AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_record_collection_response.AlertRecordCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[AlertRecordCollectionResponse]:
         """
         Get a list of the alertRecord objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[alert_record_collection_response.AlertRecordCollectionResponse]
+        Returns: Optional[AlertRecordCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.device_management import alert_record_collection_response
+        from ....models.device_management.alert_record_collection_response import AlertRecordCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, alert_record_collection_response.AlertRecordCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AlertRecordCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[alert_record.AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[alert_record.AlertRecord]:
+    async def post(self,body: Optional[AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[AlertRecord]:
         """
         Create new navigation property to alertRecords for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[alert_record.AlertRecord]
+        Returns: Optional[AlertRecord]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.device_management import alert_record
+        from ....models.device_management.alert_record import AlertRecord
 
-        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, error_mapping)
+        return await self.request_adapter.send_async(request_info, AlertRecord, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -118,7 +119,7 @@ class AlertRecordsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[alert_record.AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to alertRecords for deviceManagement
         Args:
@@ -126,8 +127,8 @@ class AlertRecordsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +141,22 @@ class AlertRecordsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_device_management_get_portal_notifications(self) -> microsoft_graph_device_management_get_portal_notifications_request_builder.MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder:
+    def microsoft_graph_device_management_get_portal_notifications(self) -> MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder:
         """
         Provides operations to call the getPortalNotifications method.
         """
-        from .microsoft_graph_device_management_get_portal_notifications import microsoft_graph_device_management_get_portal_notifications_request_builder
+        from .microsoft_graph_device_management_get_portal_notifications.microsoft_graph_device_management_get_portal_notifications_request_builder import MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder
 
-        return microsoft_graph_device_management_get_portal_notifications_request_builder.MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertRecordsRequestBuilderGetQueryParameters():
@@ -169,8 +170,8 @@ class AlertRecordsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

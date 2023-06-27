@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import role_management_alert
-    from ...models.o_data_errors import o_data_error
-    from .alert_configurations import alert_configurations_request_builder
-    from .alert_definitions import alert_definitions_request_builder
-    from .alerts import alerts_request_builder
-    from .operations import operations_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.role_management_alert import RoleManagementAlert
+    from .alert_configurations.alert_configurations_request_builder import AlertConfigurationsRequestBuilder
+    from .alert_definitions.alert_definitions_request_builder import AlertDefinitionsRequestBuilder
+    from .alerts.alerts_request_builder import AlertsRequestBuilder
+    from .operations.operations_request_builder import OperationsRequestBuilder
 
 class RoleManagementAlertsRequestBuilder():
     """
@@ -28,10 +28,10 @@ class RoleManagementAlertsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/roleManagementAlerts{?%24select,%24expand}"
 
@@ -48,62 +48,62 @@ class RoleManagementAlertsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[role_management_alert.RoleManagementAlert]:
+    async def get(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[RoleManagementAlert]:
         """
         Get roleManagementAlerts from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[role_management_alert.RoleManagementAlert]
+        Returns: Optional[RoleManagementAlert]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import role_management_alert
+        from ...models.role_management_alert import RoleManagementAlert
 
-        return await self.request_adapter.send_async(request_info, role_management_alert.RoleManagementAlert, error_mapping)
+        return await self.request_adapter.send_async(request_info, RoleManagementAlert, error_mapping)
     
-    async def patch(self,body: Optional[role_management_alert.RoleManagementAlert] = None, request_configuration: Optional[RoleManagementAlertsRequestBuilderPatchRequestConfiguration] = None) -> Optional[role_management_alert.RoleManagementAlert]:
+    async def patch(self,body: Optional[RoleManagementAlert] = None, request_configuration: Optional[RoleManagementAlertsRequestBuilderPatchRequestConfiguration] = None) -> Optional[RoleManagementAlert]:
         """
         Update the navigation property roleManagementAlerts in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[role_management_alert.RoleManagementAlert]
+        Returns: Optional[RoleManagementAlert]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import role_management_alert
+        from ...models.role_management_alert import RoleManagementAlert
 
-        return await self.request_adapter.send_async(request_info, role_management_alert.RoleManagementAlert, error_mapping)
+        return await self.request_adapter.send_async(request_info, RoleManagementAlert, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -139,7 +139,7 @@ class RoleManagementAlertsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[role_management_alert.RoleManagementAlert] = None, request_configuration: Optional[RoleManagementAlertsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[RoleManagementAlert] = None, request_configuration: Optional[RoleManagementAlertsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property roleManagementAlerts in identityGovernance
         Args:
@@ -147,8 +147,8 @@ class RoleManagementAlertsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -161,40 +161,40 @@ class RoleManagementAlertsRequestBuilder():
         return request_info
     
     @property
-    def alert_configurations(self) -> alert_configurations_request_builder.AlertConfigurationsRequestBuilder:
+    def alert_configurations(self) -> AlertConfigurationsRequestBuilder:
         """
         Provides operations to manage the alertConfigurations property of the microsoft.graph.roleManagementAlert entity.
         """
-        from .alert_configurations import alert_configurations_request_builder
+        from .alert_configurations.alert_configurations_request_builder import AlertConfigurationsRequestBuilder
 
-        return alert_configurations_request_builder.AlertConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlertConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def alert_definitions(self) -> alert_definitions_request_builder.AlertDefinitionsRequestBuilder:
+    def alert_definitions(self) -> AlertDefinitionsRequestBuilder:
         """
         Provides operations to manage the alertDefinitions property of the microsoft.graph.roleManagementAlert entity.
         """
-        from .alert_definitions import alert_definitions_request_builder
+        from .alert_definitions.alert_definitions_request_builder import AlertDefinitionsRequestBuilder
 
-        return alert_definitions_request_builder.AlertDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlertDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def alerts(self) -> alerts_request_builder.AlertsRequestBuilder:
+    def alerts(self) -> AlertsRequestBuilder:
         """
         Provides operations to manage the alerts property of the microsoft.graph.roleManagementAlert entity.
         """
-        from .alerts import alerts_request_builder
+        from .alerts.alerts_request_builder import AlertsRequestBuilder
 
-        return alerts_request_builder.AlertsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlertsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
+    def operations(self) -> OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.roleManagementAlert entity.
         """
-        from .operations import operations_request_builder
+        from .operations.operations_request_builder import OperationsRequestBuilder
 
-        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RoleManagementAlertsRequestBuilderDeleteRequestConfiguration():
@@ -220,8 +220,8 @@ class RoleManagementAlertsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

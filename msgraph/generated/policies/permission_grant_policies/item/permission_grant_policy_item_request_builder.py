@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import permission_grant_policy
-    from ....models.o_data_errors import o_data_error
-    from .excludes import excludes_request_builder
-    from .includes import includes_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.permission_grant_policy import PermissionGrantPolicy
+    from .excludes.excludes_request_builder import ExcludesRequestBuilder
+    from .includes.includes_request_builder import IncludesRequestBuilder
 
 class PermissionGrantPolicyItemRequestBuilder():
     """
@@ -26,10 +26,10 @@ class PermissionGrantPolicyItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/policies/permissionGrantPolicies/{permissionGrantPolicy%2Did}{?%24select,%24expand}"
 
@@ -46,62 +46,62 @@ class PermissionGrantPolicyItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PermissionGrantPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[permission_grant_policy.PermissionGrantPolicy]:
+    async def get(self,request_configuration: Optional[PermissionGrantPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PermissionGrantPolicy]:
         """
         Retrieve a single permissionGrantPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[permission_grant_policy.PermissionGrantPolicy]
+        Returns: Optional[PermissionGrantPolicy]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import permission_grant_policy
+        from ....models.permission_grant_policy import PermissionGrantPolicy
 
-        return await self.request_adapter.send_async(request_info, permission_grant_policy.PermissionGrantPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, PermissionGrantPolicy, error_mapping)
     
-    async def patch(self,body: Optional[permission_grant_policy.PermissionGrantPolicy] = None, request_configuration: Optional[PermissionGrantPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[permission_grant_policy.PermissionGrantPolicy]:
+    async def patch(self,body: Optional[PermissionGrantPolicy] = None, request_configuration: Optional[PermissionGrantPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PermissionGrantPolicy]:
         """
         Update properties of a  permissionGrantPolicy.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[permission_grant_policy.PermissionGrantPolicy]
+        Returns: Optional[PermissionGrantPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import permission_grant_policy
+        from ....models.permission_grant_policy import PermissionGrantPolicy
 
-        return await self.request_adapter.send_async(request_info, permission_grant_policy.PermissionGrantPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, PermissionGrantPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PermissionGrantPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -137,7 +137,7 @@ class PermissionGrantPolicyItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[permission_grant_policy.PermissionGrantPolicy] = None, request_configuration: Optional[PermissionGrantPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PermissionGrantPolicy] = None, request_configuration: Optional[PermissionGrantPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update properties of a  permissionGrantPolicy.
         Args:
@@ -145,8 +145,8 @@ class PermissionGrantPolicyItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,22 +159,22 @@ class PermissionGrantPolicyItemRequestBuilder():
         return request_info
     
     @property
-    def excludes(self) -> excludes_request_builder.ExcludesRequestBuilder:
+    def excludes(self) -> ExcludesRequestBuilder:
         """
         Provides operations to manage the excludes property of the microsoft.graph.permissionGrantPolicy entity.
         """
-        from .excludes import excludes_request_builder
+        from .excludes.excludes_request_builder import ExcludesRequestBuilder
 
-        return excludes_request_builder.ExcludesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExcludesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def includes(self) -> includes_request_builder.IncludesRequestBuilder:
+    def includes(self) -> IncludesRequestBuilder:
         """
         Provides operations to manage the includes property of the microsoft.graph.permissionGrantPolicy entity.
         """
-        from .includes import includes_request_builder
+        from .includes.includes_request_builder import IncludesRequestBuilder
 
-        return includes_request_builder.IncludesRequestBuilder(self.request_adapter, self.path_parameters)
+        return IncludesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PermissionGrantPolicyItemRequestBuilderDeleteRequestConfiguration():
@@ -200,8 +200,8 @@ class PermissionGrantPolicyItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

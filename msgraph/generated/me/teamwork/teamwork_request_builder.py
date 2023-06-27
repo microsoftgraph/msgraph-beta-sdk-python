@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import user_teamwork
-    from ...models.o_data_errors import o_data_error
-    from .associated_teams import associated_teams_request_builder
-    from .installed_apps import installed_apps_request_builder
-    from .send_activity_notification import send_activity_notification_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.user_teamwork import UserTeamwork
+    from .associated_teams.associated_teams_request_builder import AssociatedTeamsRequestBuilder
+    from .installed_apps.installed_apps_request_builder import InstalledAppsRequestBuilder
+    from .send_activity_notification.send_activity_notification_request_builder import SendActivityNotificationRequestBuilder
 
 class TeamworkRequestBuilder():
     """
@@ -27,10 +27,10 @@ class TeamworkRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/me/teamwork{?%24select,%24expand}"
 
@@ -47,62 +47,62 @@ class TeamworkRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamworkRequestBuilderGetRequestConfiguration] = None) -> Optional[user_teamwork.UserTeamwork]:
+    async def get(self,request_configuration: Optional[TeamworkRequestBuilderGetRequestConfiguration] = None) -> Optional[UserTeamwork]:
         """
         A container for Microsoft Teams features available for the user. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_teamwork.UserTeamwork]
+        Returns: Optional[UserTeamwork]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import user_teamwork
+        from ...models.user_teamwork import UserTeamwork
 
-        return await self.request_adapter.send_async(request_info, user_teamwork.UserTeamwork, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserTeamwork, error_mapping)
     
-    async def patch(self,body: Optional[user_teamwork.UserTeamwork] = None, request_configuration: Optional[TeamworkRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_teamwork.UserTeamwork]:
+    async def patch(self,body: Optional[UserTeamwork] = None, request_configuration: Optional[TeamworkRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserTeamwork]:
         """
         Update the navigation property teamwork in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_teamwork.UserTeamwork]
+        Returns: Optional[UserTeamwork]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import user_teamwork
+        from ...models.user_teamwork import UserTeamwork
 
-        return await self.request_adapter.send_async(request_info, user_teamwork.UserTeamwork, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserTeamwork, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TeamworkRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -138,7 +138,7 @@ class TeamworkRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[user_teamwork.UserTeamwork] = None, request_configuration: Optional[TeamworkRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserTeamwork] = None, request_configuration: Optional[TeamworkRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property teamwork in me
         Args:
@@ -146,8 +146,8 @@ class TeamworkRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,31 +160,31 @@ class TeamworkRequestBuilder():
         return request_info
     
     @property
-    def associated_teams(self) -> associated_teams_request_builder.AssociatedTeamsRequestBuilder:
+    def associated_teams(self) -> AssociatedTeamsRequestBuilder:
         """
         Provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.
         """
-        from .associated_teams import associated_teams_request_builder
+        from .associated_teams.associated_teams_request_builder import AssociatedTeamsRequestBuilder
 
-        return associated_teams_request_builder.AssociatedTeamsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssociatedTeamsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def installed_apps(self) -> installed_apps_request_builder.InstalledAppsRequestBuilder:
+    def installed_apps(self) -> InstalledAppsRequestBuilder:
         """
         Provides operations to manage the installedApps property of the microsoft.graph.userTeamwork entity.
         """
-        from .installed_apps import installed_apps_request_builder
+        from .installed_apps.installed_apps_request_builder import InstalledAppsRequestBuilder
 
-        return installed_apps_request_builder.InstalledAppsRequestBuilder(self.request_adapter, self.path_parameters)
+        return InstalledAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send_activity_notification(self) -> send_activity_notification_request_builder.SendActivityNotificationRequestBuilder:
+    def send_activity_notification(self) -> SendActivityNotificationRequestBuilder:
         """
         Provides operations to call the sendActivityNotification method.
         """
-        from .send_activity_notification import send_activity_notification_request_builder
+        from .send_activity_notification.send_activity_notification_request_builder import SendActivityNotificationRequestBuilder
 
-        return send_activity_notification_request_builder.SendActivityNotificationRequestBuilder(self.request_adapter, self.path_parameters)
+        return SendActivityNotificationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TeamworkRequestBuilderDeleteRequestConfiguration():
@@ -210,8 +210,8 @@ class TeamworkRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

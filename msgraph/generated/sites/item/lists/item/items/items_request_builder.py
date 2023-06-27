@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import list_item, list_item_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .delta import delta_request_builder
-    from .delta_with_token import delta_with_token_request_builder
-    from .item import list_item_item_request_builder
+    from ......models.list_item import ListItem
+    from ......models.list_item_collection_response import ListItemCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .delta.delta_request_builder import DeltaRequestBuilder
+    from .delta_with_token.delta_with_token_request_builder import DeltaWithTokenRequestBuilder
+    from .item.list_item_item_request_builder import ListItemItemRequestBuilder
 
 class ItemsRequestBuilder():
     """
@@ -27,10 +28,10 @@ class ItemsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items{?%24top,%24skip,%24search,%24filter,%24orderby,%24select,%24expand}"
 
@@ -38,80 +39,80 @@ class ItemsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_list_item_id(self,list_item_id: str) -> list_item_item_request_builder.ListItemItemRequestBuilder:
+    def by_list_item_id(self,list_item_id: str) -> ListItemItemRequestBuilder:
         """
         Provides operations to manage the items property of the microsoft.graph.list entity.
         Args:
             list_item_id: Unique identifier of the item
-        Returns: list_item_item_request_builder.ListItemItemRequestBuilder
+        Returns: ListItemItemRequestBuilder
         """
-        if list_item_id is None:
-            raise Exception("list_item_id cannot be undefined")
-        from .item import list_item_item_request_builder
+        if not list_item_id:
+            raise TypeError("list_item_id cannot be null.")
+        from .item.list_item_item_request_builder import ListItemItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["listItem%2Did"] = list_item_id
-        return list_item_item_request_builder.ListItemItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ListItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def delta_with_token(self,token: Optional[str] = None) -> delta_with_token_request_builder.DeltaWithTokenRequestBuilder:
+    def delta_with_token(self,token: Optional[str] = None) -> DeltaWithTokenRequestBuilder:
         """
         Provides operations to call the delta method.
         Args:
             token: Usage: token='{token}'
-        Returns: delta_with_token_request_builder.DeltaWithTokenRequestBuilder
+        Returns: DeltaWithTokenRequestBuilder
         """
-        if token is None:
-            raise Exception("token cannot be undefined")
-        from .delta_with_token import delta_with_token_request_builder
+        if not token:
+            raise TypeError("token cannot be null.")
+        from .delta_with_token.delta_with_token_request_builder import DeltaWithTokenRequestBuilder
 
-        return delta_with_token_request_builder.DeltaWithTokenRequestBuilder(self.request_adapter, self.path_parameters, token)
+        return DeltaWithTokenRequestBuilder(self.request_adapter, self.path_parameters, token)
     
-    async def get(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[list_item_collection_response.ListItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[ListItemCollectionResponse]:
         """
         Get the collection of [items][item] in a [list][].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[list_item_collection_response.ListItemCollectionResponse]
+        Returns: Optional[ListItemCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import list_item_collection_response
+        from ......models.list_item_collection_response import ListItemCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, list_item_collection_response.ListItemCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ListItemCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[list_item.ListItem]:
+    async def post(self,body: Optional[ListItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[ListItem]:
         """
         Create a new [listItem][] in a [list][].
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[list_item.ListItem]
+        Returns: Optional[ListItem]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import list_item
+        from ......models.list_item import ListItem
 
-        return await self.request_adapter.send_async(request_info, list_item.ListItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, ListItem, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -131,7 +132,7 @@ class ItemsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ListItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new [listItem][] in a [list][].
         Args:
@@ -139,8 +140,8 @@ class ItemsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -153,13 +154,13 @@ class ItemsRequestBuilder():
         return request_info
     
     @property
-    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+    def delta(self) -> DeltaRequestBuilder:
         """
         Provides operations to call the delta method.
         """
-        from .delta import delta_request_builder
+        from .delta.delta_request_builder import DeltaRequestBuilder
 
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ItemsRequestBuilderGetQueryParameters():
@@ -173,8 +174,8 @@ class ItemsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "filter":

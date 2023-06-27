@@ -1,31 +1,29 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, zebra_fota_connector_state
+    from .entity import Entity
+    from .zebra_fota_connector_state import ZebraFotaConnectorState
 
-from . import entity
+from .entity import Entity
 
-class ZebraFotaConnector(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new zebraFotaConnector and sets the default values.
-        """
-        super().__init__()
-        # Complete account enrollment authorization URL. This corresponds to verification_uri_complete in the Zebra API documentations.
-        self._enrollment_authorization_url: Optional[str] = None
-        # Tenant enrollment token from Zebra. The token is used to enroll Zebra devices in the FOTA Service via app config.
-        self._enrollment_token: Optional[str] = None
-        # Flag indicating if required Firmware Over-the-Air (FOTA) Apps have been approved.
-        self._fota_apps_approved: Optional[bool] = None
-        # Date and time when the account was last synched with Zebra
-        self._last_sync_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Represents various states for Zebra FOTA connector.
-        self._state: Optional[zebra_fota_connector_state.ZebraFotaConnectorState] = None
+@dataclass
+class ZebraFotaConnector(Entity):
+    # Complete account enrollment authorization URL. This corresponds to verification_uri_complete in the Zebra API documentations.
+    enrollment_authorization_url: Optional[str] = None
+    # Tenant enrollment token from Zebra. The token is used to enroll Zebra devices in the FOTA Service via app config.
+    enrollment_token: Optional[str] = None
+    # Flag indicating if required Firmware Over-the-Air (FOTA) Apps have been approved.
+    fota_apps_approved: Optional[bool] = None
+    # Date and time when the account was last synched with Zebra
+    last_sync_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Represents various states for Zebra FOTA connector.
+    state: Optional[ZebraFotaConnectorState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ZebraFotaConnector:
@@ -35,95 +33,31 @@ class ZebraFotaConnector(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ZebraFotaConnector
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ZebraFotaConnector()
-    
-    @property
-    def enrollment_authorization_url(self,) -> Optional[str]:
-        """
-        Gets the enrollmentAuthorizationUrl property value. Complete account enrollment authorization URL. This corresponds to verification_uri_complete in the Zebra API documentations.
-        Returns: Optional[str]
-        """
-        return self._enrollment_authorization_url
-    
-    @enrollment_authorization_url.setter
-    def enrollment_authorization_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the enrollmentAuthorizationUrl property value. Complete account enrollment authorization URL. This corresponds to verification_uri_complete in the Zebra API documentations.
-        Args:
-            value: Value to set for the enrollment_authorization_url property.
-        """
-        self._enrollment_authorization_url = value
-    
-    @property
-    def enrollment_token(self,) -> Optional[str]:
-        """
-        Gets the enrollmentToken property value. Tenant enrollment token from Zebra. The token is used to enroll Zebra devices in the FOTA Service via app config.
-        Returns: Optional[str]
-        """
-        return self._enrollment_token
-    
-    @enrollment_token.setter
-    def enrollment_token(self,value: Optional[str] = None) -> None:
-        """
-        Sets the enrollmentToken property value. Tenant enrollment token from Zebra. The token is used to enroll Zebra devices in the FOTA Service via app config.
-        Args:
-            value: Value to set for the enrollment_token property.
-        """
-        self._enrollment_token = value
-    
-    @property
-    def fota_apps_approved(self,) -> Optional[bool]:
-        """
-        Gets the fotaAppsApproved property value. Flag indicating if required Firmware Over-the-Air (FOTA) Apps have been approved.
-        Returns: Optional[bool]
-        """
-        return self._fota_apps_approved
-    
-    @fota_apps_approved.setter
-    def fota_apps_approved(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the fotaAppsApproved property value. Flag indicating if required Firmware Over-the-Air (FOTA) Apps have been approved.
-        Args:
-            value: Value to set for the fota_apps_approved property.
-        """
-        self._fota_apps_approved = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, zebra_fota_connector_state
+        from .entity import Entity
+        from .zebra_fota_connector_state import ZebraFotaConnectorState
+
+        from .entity import Entity
+        from .zebra_fota_connector_state import ZebraFotaConnectorState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "enrollmentAuthorizationUrl": lambda n : setattr(self, 'enrollment_authorization_url', n.get_str_value()),
             "enrollmentToken": lambda n : setattr(self, 'enrollment_token', n.get_str_value()),
             "fotaAppsApproved": lambda n : setattr(self, 'fota_apps_approved', n.get_bool_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(zebra_fota_connector_state.ZebraFotaConnectorState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(ZebraFotaConnectorState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_sync_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSyncDateTime property value. Date and time when the account was last synched with Zebra
-        Returns: Optional[datetime]
-        """
-        return self._last_sync_date_time
-    
-    @last_sync_date_time.setter
-    def last_sync_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSyncDateTime property value. Date and time when the account was last synched with Zebra
-        Args:
-            value: Value to set for the last_sync_date_time property.
-        """
-        self._last_sync_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -131,30 +65,13 @@ class ZebraFotaConnector(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("enrollmentAuthorizationUrl", self.enrollment_authorization_url)
         writer.write_str_value("enrollmentToken", self.enrollment_token)
         writer.write_bool_value("fotaAppsApproved", self.fota_apps_approved)
-        writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)
+        writer.write_datetime_value()("lastSyncDateTime", self.last_sync_date_time)
         writer.write_enum_value("state", self.state)
-    
-    @property
-    def state(self,) -> Optional[zebra_fota_connector_state.ZebraFotaConnectorState]:
-        """
-        Gets the state property value. Represents various states for Zebra FOTA connector.
-        Returns: Optional[zebra_fota_connector_state.ZebraFotaConnectorState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[zebra_fota_connector_state.ZebraFotaConnectorState] = None) -> None:
-        """
-        Sets the state property value. Represents various states for Zebra FOTA connector.
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 

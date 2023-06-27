@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import authorization_policy, authorization_policy_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import authorization_policy_item_request_builder
+    from ...models.authorization_policy import AuthorizationPolicy
+    from ...models.authorization_policy_collection_response import AuthorizationPolicyCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.authorization_policy_item_request_builder import AuthorizationPolicyItemRequestBuilder
 
 class AuthorizationPolicyRequestBuilder():
     """
@@ -26,10 +27,10 @@ class AuthorizationPolicyRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/policies/authorizationPolicy{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class AuthorizationPolicyRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_authorization_policy_id(self,authorization_policy_id: str) -> authorization_policy_item_request_builder.AuthorizationPolicyItemRequestBuilder:
+    def by_authorization_policy_id(self,authorization_policy_id: str) -> AuthorizationPolicyItemRequestBuilder:
         """
         Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.
         Args:
             authorization_policy_id: Unique identifier of the item
-        Returns: authorization_policy_item_request_builder.AuthorizationPolicyItemRequestBuilder
+        Returns: AuthorizationPolicyItemRequestBuilder
         """
-        if authorization_policy_id is None:
-            raise Exception("authorization_policy_id cannot be undefined")
-        from .item import authorization_policy_item_request_builder
+        if not authorization_policy_id:
+            raise TypeError("authorization_policy_id cannot be null.")
+        from .item.authorization_policy_item_request_builder import AuthorizationPolicyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["authorizationPolicy%2Did"] = authorization_policy_id
-        return authorization_policy_item_request_builder.AuthorizationPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AuthorizationPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AuthorizationPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[authorization_policy_collection_response.AuthorizationPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[AuthorizationPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthorizationPolicyCollectionResponse]:
         """
         The policy that controls Azure AD authorization settings.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[authorization_policy_collection_response.AuthorizationPolicyCollectionResponse]
+        Returns: Optional[AuthorizationPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import authorization_policy_collection_response
+        from ...models.authorization_policy_collection_response import AuthorizationPolicyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, authorization_policy_collection_response.AuthorizationPolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AuthorizationPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[authorization_policy.AuthorizationPolicy] = None, request_configuration: Optional[AuthorizationPolicyRequestBuilderPostRequestConfiguration] = None) -> Optional[authorization_policy.AuthorizationPolicy]:
+    async def post(self,body: Optional[AuthorizationPolicy] = None, request_configuration: Optional[AuthorizationPolicyRequestBuilderPostRequestConfiguration] = None) -> Optional[AuthorizationPolicy]:
         """
         Create new navigation property to authorizationPolicy for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[authorization_policy.AuthorizationPolicy]
+        Returns: Optional[AuthorizationPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import authorization_policy
+        from ...models.authorization_policy import AuthorizationPolicy
 
-        return await self.request_adapter.send_async(request_info, authorization_policy.AuthorizationPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, AuthorizationPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AuthorizationPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class AuthorizationPolicyRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[authorization_policy.AuthorizationPolicy] = None, request_configuration: Optional[AuthorizationPolicyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AuthorizationPolicy] = None, request_configuration: Optional[AuthorizationPolicyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to authorizationPolicy for policies
         Args:
@@ -125,8 +126,8 @@ class AuthorizationPolicyRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class AuthorizationPolicyRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AuthorizationPolicyRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class AuthorizationPolicyRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import cloud_pc_provisioning_policy, cloud_pc_provisioning_policy_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .apply_config import apply_config_request_builder
-    from .count import count_request_builder
-    from .item import cloud_pc_provisioning_policy_item_request_builder
+    from ....models.cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
+    from ....models.cloud_pc_provisioning_policy_collection_response import CloudPcProvisioningPolicyCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .apply_config.apply_config_request_builder import ApplyConfigRequestBuilder
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.cloud_pc_provisioning_policy_item_request_builder import CloudPcProvisioningPolicyItemRequestBuilder
 
 class ProvisioningPoliciesRequestBuilder():
     """
@@ -27,10 +28,10 @@ class ProvisioningPoliciesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/virtualEndpoint/provisioningPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,67 +39,67 @@ class ProvisioningPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_cloud_pc_provisioning_policy_id(self,cloud_pc_provisioning_policy_id: str) -> cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder:
+    def by_cloud_pc_provisioning_policy_id(self,cloud_pc_provisioning_policy_id: str) -> CloudPcProvisioningPolicyItemRequestBuilder:
         """
         Provides operations to manage the provisioningPolicies property of the microsoft.graph.virtualEndpoint entity.
         Args:
             cloud_pc_provisioning_policy_id: Unique identifier of the item
-        Returns: cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder
+        Returns: CloudPcProvisioningPolicyItemRequestBuilder
         """
-        if cloud_pc_provisioning_policy_id is None:
-            raise Exception("cloud_pc_provisioning_policy_id cannot be undefined")
-        from .item import cloud_pc_provisioning_policy_item_request_builder
+        if not cloud_pc_provisioning_policy_id:
+            raise TypeError("cloud_pc_provisioning_policy_id cannot be null.")
+        from .item.cloud_pc_provisioning_policy_item_request_builder import CloudPcProvisioningPolicyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["cloudPcProvisioningPolicy%2Did"] = cloud_pc_provisioning_policy_id
-        return cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return CloudPcProvisioningPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ProvisioningPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy_collection_response.CloudPcProvisioningPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProvisioningPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcProvisioningPolicyCollectionResponse]:
         """
         List properties and relationships of the cloudPcProvisioningPolicy objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_pc_provisioning_policy_collection_response.CloudPcProvisioningPolicyCollectionResponse]
+        Returns: Optional[CloudPcProvisioningPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import cloud_pc_provisioning_policy_collection_response
+        from ....models.cloud_pc_provisioning_policy_collection_response import CloudPcProvisioningPolicyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, cloud_pc_provisioning_policy_collection_response.CloudPcProvisioningPolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPcProvisioningPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy] = None, request_configuration: Optional[ProvisioningPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]:
+    async def post(self,body: Optional[CloudPcProvisioningPolicy] = None, request_configuration: Optional[ProvisioningPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcProvisioningPolicy]:
         """
         Create a new cloudPcProvisioningPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]
+        Returns: Optional[CloudPcProvisioningPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import cloud_pc_provisioning_policy
+        from ....models.cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
 
-        return await self.request_adapter.send_async(request_info, cloud_pc_provisioning_policy.CloudPcProvisioningPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPcProvisioningPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ProvisioningPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -118,7 +119,7 @@ class ProvisioningPoliciesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy] = None, request_configuration: Optional[ProvisioningPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcProvisioningPolicy] = None, request_configuration: Optional[ProvisioningPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new cloudPcProvisioningPolicy object.
         Args:
@@ -126,8 +127,8 @@ class ProvisioningPoliciesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +141,22 @@ class ProvisioningPoliciesRequestBuilder():
         return request_info
     
     @property
-    def apply_config(self) -> apply_config_request_builder.ApplyConfigRequestBuilder:
+    def apply_config(self) -> ApplyConfigRequestBuilder:
         """
         Provides operations to call the applyConfig method.
         """
-        from .apply_config import apply_config_request_builder
+        from .apply_config.apply_config_request_builder import ApplyConfigRequestBuilder
 
-        return apply_config_request_builder.ApplyConfigRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyConfigRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ProvisioningPoliciesRequestBuilderGetQueryParameters():
@@ -169,8 +170,8 @@ class ProvisioningPoliciesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

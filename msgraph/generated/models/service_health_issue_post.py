@@ -1,61 +1,26 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import item_body, post_type
+    from .item_body import ItemBody
+    from .post_type import PostType
 
+@dataclass
 class ServiceHealthIssuePost(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new serviceHealthIssuePost and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The published time of the post.
-        self._created_date_time: Optional[datetime] = None
-        # The content of the service issue post. The supported value for the contentType property is html.
-        self._description: Optional[item_body.ItemBody] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The post type of the service issue historical post. Possible values are: regular, quick, strategic, unknownFutureValue.
-        self._post_type: Optional[post_type.PostType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The published time of the post.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The published time of the post.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The published time of the post.
+    created_date_time: Optional[datetime.datetime] = None
+    # The content of the service issue post. The supported value for the contentType property is html.
+    description: Optional[ItemBody] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The post type of the service issue historical post. Possible values are: regular, quick, strategic, unknownFutureValue.
+    post_type: Optional[PostType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServiceHealthIssuePost:
@@ -65,75 +30,28 @@ class ServiceHealthIssuePost(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ServiceHealthIssuePost
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ServiceHealthIssuePost()
-    
-    @property
-    def description(self,) -> Optional[item_body.ItemBody]:
-        """
-        Gets the description property value. The content of the service issue post. The supported value for the contentType property is html.
-        Returns: Optional[item_body.ItemBody]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[item_body.ItemBody] = None) -> None:
-        """
-        Sets the description property value. The content of the service issue post. The supported value for the contentType property is html.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import item_body, post_type
+        from .item_body import ItemBody
+        from .post_type import PostType
+
+        from .item_body import ItemBody
+        from .post_type import PostType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "description": lambda n : setattr(self, 'description', n.get_object_value(item_body.ItemBody)),
+            "description": lambda n : setattr(self, 'description', n.get_object_value(ItemBody)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "postType": lambda n : setattr(self, 'post_type', n.get_enum_value(post_type.PostType)),
+            "postType": lambda n : setattr(self, 'post_type', n.get_enum_value(PostType)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def post_type(self,) -> Optional[post_type.PostType]:
-        """
-        Gets the postType property value. The post type of the service issue historical post. Possible values are: regular, quick, strategic, unknownFutureValue.
-        Returns: Optional[post_type.PostType]
-        """
-        return self._post_type
-    
-    @post_type.setter
-    def post_type(self,value: Optional[post_type.PostType] = None) -> None:
-        """
-        Sets the postType property value. The post type of the service issue historical post. Possible values are: regular, quick, strategic, unknownFutureValue.
-        Args:
-            value: Value to set for the post_type property.
-        """
-        self._post_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -141,9 +59,9 @@ class ServiceHealthIssuePost(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
-        writer.write_datetime_value("createdDateTime", self.created_date_time)
+        if not writer:
+            raise TypeError("writer cannot be null.")
+        writer.write_datetime_value()("createdDateTime", self.created_date_time)
         writer.write_object_value("description", self.description)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("postType", self.post_type)

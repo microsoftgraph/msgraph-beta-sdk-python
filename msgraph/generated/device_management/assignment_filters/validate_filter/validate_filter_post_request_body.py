@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import device_and_app_management_assignment_filter
+    from ....models.device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
 
+@dataclass
 class ValidateFilterPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new validateFilterPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The deviceAndAppManagementAssignmentFilter property
-        self._device_and_app_management_assignment_filter: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The deviceAndAppManagementAssignmentFilter property
+    device_and_app_management_assignment_filter: Optional[DeviceAndAppManagementAssignmentFilter] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ValidateFilterPostRequestBody:
@@ -41,36 +22,21 @@ class ValidateFilterPostRequestBody(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ValidateFilterPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ValidateFilterPostRequestBody()
-    
-    @property
-    def device_and_app_management_assignment_filter(self,) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
-        """
-        Gets the deviceAndAppManagementAssignmentFilter property value. The deviceAndAppManagementAssignmentFilter property
-        Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
-        """
-        return self._device_and_app_management_assignment_filter
-    
-    @device_and_app_management_assignment_filter.setter
-    def device_and_app_management_assignment_filter(self,value: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None) -> None:
-        """
-        Sets the deviceAndAppManagementAssignmentFilter property value. The deviceAndAppManagementAssignmentFilter property
-        Args:
-            value: Value to set for the device_and_app_management_assignment_filter property.
-        """
-        self._device_and_app_management_assignment_filter = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ....models import device_and_app_management_assignment_filter
+        from ....models.device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
+
+        from ....models.device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "deviceAndAppManagementAssignmentFilter": lambda n : setattr(self, 'device_and_app_management_assignment_filter', n.get_object_value(device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter)),
+            "deviceAndAppManagementAssignmentFilter": lambda n : setattr(self, 'device_and_app_management_assignment_filter', n.get_object_value(DeviceAndAppManagementAssignmentFilter)),
         }
         return fields
     
@@ -80,8 +46,8 @@ class ValidateFilterPostRequestBody(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_object_value("deviceAndAppManagementAssignmentFilter", self.device_and_app_management_assignment_filter)
         writer.write_additional_data_value(self.additional_data)
     

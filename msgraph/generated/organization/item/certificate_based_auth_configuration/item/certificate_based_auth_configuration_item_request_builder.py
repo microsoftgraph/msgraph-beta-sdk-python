@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import certificate_based_auth_configuration
-    from .....models.o_data_errors import o_data_error
+    from .....models.certificate_based_auth_configuration import CertificateBasedAuthConfiguration
+    from .....models.o_data_errors.o_data_error import ODataError
 
 class CertificateBasedAuthConfigurationItemRequestBuilder():
     """
@@ -24,10 +24,10 @@ class CertificateBasedAuthConfigurationItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/organization/{organization%2Did}/certificateBasedAuthConfiguration/{certificateBasedAuthConfiguration%2Did}{?%24select,%24expand}"
 
@@ -44,37 +44,37 @@ class CertificateBasedAuthConfigurationItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]:
+    async def get(self,request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CertificateBasedAuthConfiguration]:
         """
         Get the properties of a certificateBasedAuthConfiguration object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]
+        Returns: Optional[CertificateBasedAuthConfiguration]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import certificate_based_auth_configuration
+        from .....models.certificate_based_auth_configuration import CertificateBasedAuthConfiguration
 
-        return await self.request_adapter.send_async(request_info, certificate_based_auth_configuration.CertificateBasedAuthConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, CertificateBasedAuthConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -134,8 +134,8 @@ class CertificateBasedAuthConfigurationItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

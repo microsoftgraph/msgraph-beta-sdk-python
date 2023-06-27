@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import access_package_assignment
-    from .....models.o_data_errors import o_data_error
-    from .access_package import access_package_request_builder
-    from .access_package_assignment_policy import access_package_assignment_policy_request_builder
-    from .access_package_assignment_requests import access_package_assignment_requests_request_builder
-    from .access_package_assignment_resource_roles import access_package_assignment_resource_roles_request_builder
-    from .reprocess import reprocess_request_builder
-    from .target import target_request_builder
+    from .....models.access_package_assignment import AccessPackageAssignment
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .access_package.access_package_request_builder import AccessPackageRequestBuilder
+    from .access_package_assignment_policy.access_package_assignment_policy_request_builder import AccessPackageAssignmentPolicyRequestBuilder
+    from .access_package_assignment_requests.access_package_assignment_requests_request_builder import AccessPackageAssignmentRequestsRequestBuilder
+    from .access_package_assignment_resource_roles.access_package_assignment_resource_roles_request_builder import AccessPackageAssignmentResourceRolesRequestBuilder
+    from .reprocess.reprocess_request_builder import ReprocessRequestBuilder
+    from .target.target_request_builder import TargetRequestBuilder
 
 class AccessPackageAssignmentItemRequestBuilder():
     """
@@ -30,10 +30,10 @@ class AccessPackageAssignmentItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignments/{accessPackageAssignment%2Did}{?%24select,%24expand}"
 
@@ -50,62 +50,62 @@ class AccessPackageAssignmentItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignment]:
         """
         The assignment of an access package to a subject for a period of time.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_package_assignment.AccessPackageAssignment]
+        Returns: Optional[AccessPackageAssignment]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import access_package_assignment
+        from .....models.access_package_assignment import AccessPackageAssignment
 
-        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessPackageAssignment, error_mapping)
     
-    async def patch(self,body: Optional[access_package_assignment.AccessPackageAssignment] = None, request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
+    async def patch(self,body: Optional[AccessPackageAssignment] = None, request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AccessPackageAssignment]:
         """
         Update the navigation property accessPackageAssignments in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_package_assignment.AccessPackageAssignment]
+        Returns: Optional[AccessPackageAssignment]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import access_package_assignment
+        from .....models.access_package_assignment import AccessPackageAssignment
 
-        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessPackageAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -141,7 +141,7 @@ class AccessPackageAssignmentItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[access_package_assignment.AccessPackageAssignment] = None, request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AccessPackageAssignment] = None, request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property accessPackageAssignments in identityGovernance
         Args:
@@ -149,8 +149,8 @@ class AccessPackageAssignmentItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -163,58 +163,58 @@ class AccessPackageAssignmentItemRequestBuilder():
         return request_info
     
     @property
-    def access_package(self) -> access_package_request_builder.AccessPackageRequestBuilder:
+    def access_package(self) -> AccessPackageRequestBuilder:
         """
         Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignment entity.
         """
-        from .access_package import access_package_request_builder
+        from .access_package.access_package_request_builder import AccessPackageRequestBuilder
 
-        return access_package_request_builder.AccessPackageRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_assignment_policy(self) -> access_package_assignment_policy_request_builder.AccessPackageAssignmentPolicyRequestBuilder:
+    def access_package_assignment_policy(self) -> AccessPackageAssignmentPolicyRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentPolicy property of the microsoft.graph.accessPackageAssignment entity.
         """
-        from .access_package_assignment_policy import access_package_assignment_policy_request_builder
+        from .access_package_assignment_policy.access_package_assignment_policy_request_builder import AccessPackageAssignmentPolicyRequestBuilder
 
-        return access_package_assignment_policy_request_builder.AccessPackageAssignmentPolicyRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentPolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_assignment_requests(self) -> access_package_assignment_requests_request_builder.AccessPackageAssignmentRequestsRequestBuilder:
+    def access_package_assignment_requests(self) -> AccessPackageAssignmentRequestsRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentRequests property of the microsoft.graph.accessPackageAssignment entity.
         """
-        from .access_package_assignment_requests import access_package_assignment_requests_request_builder
+        from .access_package_assignment_requests.access_package_assignment_requests_request_builder import AccessPackageAssignmentRequestsRequestBuilder
 
-        return access_package_assignment_requests_request_builder.AccessPackageAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_package_assignment_resource_roles(self) -> access_package_assignment_resource_roles_request_builder.AccessPackageAssignmentResourceRolesRequestBuilder:
+    def access_package_assignment_resource_roles(self) -> AccessPackageAssignmentResourceRolesRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentResourceRoles property of the microsoft.graph.accessPackageAssignment entity.
         """
-        from .access_package_assignment_resource_roles import access_package_assignment_resource_roles_request_builder
+        from .access_package_assignment_resource_roles.access_package_assignment_resource_roles_request_builder import AccessPackageAssignmentResourceRolesRequestBuilder
 
-        return access_package_assignment_resource_roles_request_builder.AccessPackageAssignmentResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessPackageAssignmentResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reprocess(self) -> reprocess_request_builder.ReprocessRequestBuilder:
+    def reprocess(self) -> ReprocessRequestBuilder:
         """
         Provides operations to call the reprocess method.
         """
-        from .reprocess import reprocess_request_builder
+        from .reprocess.reprocess_request_builder import ReprocessRequestBuilder
 
-        return reprocess_request_builder.ReprocessRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReprocessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def target(self) -> target_request_builder.TargetRequestBuilder:
+    def target(self) -> TargetRequestBuilder:
         """
         Provides operations to manage the target property of the microsoft.graph.accessPackageAssignment entity.
         """
-        from .target import target_request_builder
+        from .target.target_request_builder import TargetRequestBuilder
 
-        return target_request_builder.TargetRequestBuilder(self.request_adapter, self.path_parameters)
+        return TargetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AccessPackageAssignmentItemRequestBuilderDeleteRequestConfiguration():
@@ -240,8 +240,8 @@ class AccessPackageAssignmentItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

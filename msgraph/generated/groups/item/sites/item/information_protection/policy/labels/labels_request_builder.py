@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models import information_protection_label, information_protection_label_collection_response
-    from ........models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .evaluate_application import evaluate_application_request_builder
-    from .evaluate_classification_results import evaluate_classification_results_request_builder
-    from .evaluate_removal import evaluate_removal_request_builder
-    from .extract_label import extract_label_request_builder
-    from .item import information_protection_label_item_request_builder
+    from ........models.information_protection_label import InformationProtectionLabel
+    from ........models.information_protection_label_collection_response import InformationProtectionLabelCollectionResponse
+    from ........models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .evaluate_application.evaluate_application_request_builder import EvaluateApplicationRequestBuilder
+    from .evaluate_classification_results.evaluate_classification_results_request_builder import EvaluateClassificationResultsRequestBuilder
+    from .evaluate_removal.evaluate_removal_request_builder import EvaluateRemovalRequestBuilder
+    from .extract_label.extract_label_request_builder import ExtractLabelRequestBuilder
+    from .item.information_protection_label_item_request_builder import InformationProtectionLabelItemRequestBuilder
 
 class LabelsRequestBuilder():
     """
@@ -30,10 +31,10 @@ class LabelsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/informationProtection/policy/labels{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -41,67 +42,67 @@ class LabelsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_information_protection_label_id(self,information_protection_label_id: str) -> information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder:
+    def by_information_protection_label_id(self,information_protection_label_id: str) -> InformationProtectionLabelItemRequestBuilder:
         """
         Provides operations to manage the labels property of the microsoft.graph.informationProtectionPolicy entity.
         Args:
             information_protection_label_id: Unique identifier of the item
-        Returns: information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder
+        Returns: InformationProtectionLabelItemRequestBuilder
         """
-        if information_protection_label_id is None:
-            raise Exception("information_protection_label_id cannot be undefined")
-        from .item import information_protection_label_item_request_builder
+        if not information_protection_label_id:
+            raise TypeError("information_protection_label_id cannot be null.")
+        from .item.information_protection_label_item_request_builder import InformationProtectionLabelItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["informationProtectionLabel%2Did"] = information_protection_label_id
-        return information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return InformationProtectionLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]:
+    async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[InformationProtectionLabelCollectionResponse]:
         """
         Get a collection of information protection labels available to the user or to the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]
+        Returns: Optional[InformationProtectionLabelCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ........models.o_data_errors import o_data_error
+        from ........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ........models import information_protection_label_collection_response
+        from ........models.information_protection_label_collection_response import InformationProtectionLabelCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, information_protection_label_collection_response.InformationProtectionLabelCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, InformationProtectionLabelCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[information_protection_label.InformationProtectionLabel] = None, request_configuration: Optional[LabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[information_protection_label.InformationProtectionLabel]:
+    async def post(self,body: Optional[InformationProtectionLabel] = None, request_configuration: Optional[LabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[InformationProtectionLabel]:
         """
         Create new navigation property to labels for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[information_protection_label.InformationProtectionLabel]
+        Returns: Optional[InformationProtectionLabel]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ........models.o_data_errors import o_data_error
+        from ........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ........models import information_protection_label
+        from ........models.information_protection_label import InformationProtectionLabel
 
-        return await self.request_adapter.send_async(request_info, information_protection_label.InformationProtectionLabel, error_mapping)
+        return await self.request_adapter.send_async(request_info, InformationProtectionLabel, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -121,7 +122,7 @@ class LabelsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[information_protection_label.InformationProtectionLabel] = None, request_configuration: Optional[LabelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[InformationProtectionLabel] = None, request_configuration: Optional[LabelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to labels for groups
         Args:
@@ -129,8 +130,8 @@ class LabelsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -143,49 +144,49 @@ class LabelsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_application(self) -> evaluate_application_request_builder.EvaluateApplicationRequestBuilder:
+    def evaluate_application(self) -> EvaluateApplicationRequestBuilder:
         """
         Provides operations to call the evaluateApplication method.
         """
-        from .evaluate_application import evaluate_application_request_builder
+        from .evaluate_application.evaluate_application_request_builder import EvaluateApplicationRequestBuilder
 
-        return evaluate_application_request_builder.EvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+        return EvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_classification_results(self) -> evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder:
+    def evaluate_classification_results(self) -> EvaluateClassificationResultsRequestBuilder:
         """
         Provides operations to call the evaluateClassificationResults method.
         """
-        from .evaluate_classification_results import evaluate_classification_results_request_builder
+        from .evaluate_classification_results.evaluate_classification_results_request_builder import EvaluateClassificationResultsRequestBuilder
 
-        return evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_removal(self) -> evaluate_removal_request_builder.EvaluateRemovalRequestBuilder:
+    def evaluate_removal(self) -> EvaluateRemovalRequestBuilder:
         """
         Provides operations to call the evaluateRemoval method.
         """
-        from .evaluate_removal import evaluate_removal_request_builder
+        from .evaluate_removal.evaluate_removal_request_builder import EvaluateRemovalRequestBuilder
 
-        return evaluate_removal_request_builder.EvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
+        return EvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def extract_label(self) -> extract_label_request_builder.ExtractLabelRequestBuilder:
+    def extract_label(self) -> ExtractLabelRequestBuilder:
         """
         Provides operations to call the extractLabel method.
         """
-        from .extract_label import extract_label_request_builder
+        from .extract_label.extract_label_request_builder import ExtractLabelRequestBuilder
 
-        return extract_label_request_builder.ExtractLabelRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExtractLabelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class LabelsRequestBuilderGetQueryParameters():
@@ -199,8 +200,8 @@ class LabelsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

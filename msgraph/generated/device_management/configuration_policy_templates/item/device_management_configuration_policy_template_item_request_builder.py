@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import device_management_configuration_policy_template
-    from ....models.o_data_errors import o_data_error
-    from .setting_templates import setting_templates_request_builder
+    from ....models.device_management_configuration_policy_template import DeviceManagementConfigurationPolicyTemplate
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .setting_templates.setting_templates_request_builder import SettingTemplatesRequestBuilder
 
 class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
     """
@@ -25,10 +25,10 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/configurationPolicyTemplates/{deviceManagementConfigurationPolicyTemplate%2Did}{?%24select,%24expand}"
 
@@ -45,62 +45,62 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate]:
+    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementConfigurationPolicyTemplate]:
         """
         List of all templates
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate]
+        Returns: Optional[DeviceManagementConfigurationPolicyTemplate]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import device_management_configuration_policy_template
+        from ....models.device_management_configuration_policy_template import DeviceManagementConfigurationPolicyTemplate
 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementConfigurationPolicyTemplate, error_mapping)
     
-    async def patch(self,body: Optional[device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate]:
+    async def patch(self,body: Optional[DeviceManagementConfigurationPolicyTemplate] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementConfigurationPolicyTemplate]:
         """
         Update the navigation property configurationPolicyTemplates in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate]
+        Returns: Optional[DeviceManagementConfigurationPolicyTemplate]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import device_management_configuration_policy_template
+        from ....models.device_management_configuration_policy_template import DeviceManagementConfigurationPolicyTemplate
 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementConfigurationPolicyTemplate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -136,7 +136,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementConfigurationPolicyTemplate] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property configurationPolicyTemplates in deviceManagement
         Args:
@@ -144,8 +144,8 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,13 +158,13 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
         return request_info
     
     @property
-    def setting_templates(self) -> setting_templates_request_builder.SettingTemplatesRequestBuilder:
+    def setting_templates(self) -> SettingTemplatesRequestBuilder:
         """
         Provides operations to manage the settingTemplates property of the microsoft.graph.deviceManagementConfigurationPolicyTemplate entity.
         """
-        from .setting_templates import setting_templates_request_builder
+        from .setting_templates.setting_templates_request_builder import SettingTemplatesRequestBuilder
 
-        return setting_templates_request_builder.SettingTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SettingTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceManagementConfigurationPolicyTemplateItemRequestBuilderDeleteRequestConfiguration():
@@ -190,8 +190,8 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

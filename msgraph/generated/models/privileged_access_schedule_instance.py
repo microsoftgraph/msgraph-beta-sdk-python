@@ -1,25 +1,24 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, privileged_access_group_assignment_schedule_instance, privileged_access_group_eligibility_schedule_instance
+    from .entity import Entity
+    from .privileged_access_group_assignment_schedule_instance import PrivilegedAccessGroupAssignmentScheduleInstance
+    from .privileged_access_group_eligibility_schedule_instance import PrivilegedAccessGroupEligibilityScheduleInstance
 
-from . import entity
+from .entity import Entity
 
-class PrivilegedAccessScheduleInstance(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedAccessScheduleInstance and sets the default values.
-        """
-        super().__init__()
-        # When the schedule instance ends. Required.
-        self._end_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # When this instance starts. Required.
-        self._start_date_time: Optional[datetime] = None
+@dataclass
+class PrivilegedAccessScheduleInstance(Entity):
+    # When the schedule instance ends. Required.
+    end_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # When this instance starts. Required.
+    start_date_time: Optional[datetime.datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessScheduleInstance:
@@ -29,44 +28,34 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: PrivilegedAccessScheduleInstance
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance":
-                from . import privileged_access_group_assignment_schedule_instance
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance".casefold():
+            from .privileged_access_group_assignment_schedule_instance import PrivilegedAccessGroupAssignmentScheduleInstance
 
-                return privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance()
-            if mapping_value == "#microsoft.graph.privilegedAccessGroupEligibilityScheduleInstance":
-                from . import privileged_access_group_eligibility_schedule_instance
+            return PrivilegedAccessGroupAssignmentScheduleInstance()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegedAccessGroupEligibilityScheduleInstance".casefold():
+            from .privileged_access_group_eligibility_schedule_instance import PrivilegedAccessGroupEligibilityScheduleInstance
 
-                return privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance()
+            return PrivilegedAccessGroupEligibilityScheduleInstance()
         return PrivilegedAccessScheduleInstance()
-    
-    @property
-    def end_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the endDateTime property value. When the schedule instance ends. Required.
-        Returns: Optional[datetime]
-        """
-        return self._end_date_time
-    
-    @end_date_time.setter
-    def end_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the endDateTime property value. When the schedule instance ends. Required.
-        Args:
-            value: Value to set for the end_date_time property.
-        """
-        self._end_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, privileged_access_group_assignment_schedule_instance, privileged_access_group_eligibility_schedule_instance
+        from .entity import Entity
+        from .privileged_access_group_assignment_schedule_instance import PrivilegedAccessGroupAssignmentScheduleInstance
+        from .privileged_access_group_eligibility_schedule_instance import PrivilegedAccessGroupEligibilityScheduleInstance
+
+        from .entity import Entity
+        from .privileged_access_group_assignment_schedule_instance import PrivilegedAccessGroupAssignmentScheduleInstance
+        from .privileged_access_group_eligibility_schedule_instance import PrivilegedAccessGroupEligibilityScheduleInstance
 
         fields: Dict[str, Callable[[Any], None]] = {
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
@@ -82,27 +71,10 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_datetime_value("endDateTime", self.end_date_time)
-        writer.write_datetime_value("startDateTime", self.start_date_time)
-    
-    @property
-    def start_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the startDateTime property value. When this instance starts. Required.
-        Returns: Optional[datetime]
-        """
-        return self._start_date_time
-    
-    @start_date_time.setter
-    def start_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the startDateTime property value. When this instance starts. Required.
-        Args:
-            value: Value to set for the start_date_time property.
-        """
-        self._start_date_time = value
+        writer.write_datetime_value()("endDateTime", self.end_date_time)
+        writer.write_datetime_value()("startDateTime", self.start_date_time)
     
 

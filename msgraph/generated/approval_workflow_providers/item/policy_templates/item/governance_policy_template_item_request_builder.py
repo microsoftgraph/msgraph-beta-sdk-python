@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import governance_policy_template
-    from .....models.o_data_errors import o_data_error
+    from .....models.governance_policy_template import GovernancePolicyTemplate
+    from .....models.o_data_errors.o_data_error import ODataError
 
 class GovernancePolicyTemplateItemRequestBuilder():
     """
@@ -24,10 +24,10 @@ class GovernancePolicyTemplateItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/approvalWorkflowProviders/{approvalWorkflowProvider%2Did}/policyTemplates/{governancePolicyTemplate%2Did}{?%24select,%24expand}"
 
@@ -44,62 +44,62 @@ class GovernancePolicyTemplateItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_policy_template.GovernancePolicyTemplate]:
+    async def get(self,request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[GovernancePolicyTemplate]:
         """
         Get policyTemplates from approvalWorkflowProviders
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[governance_policy_template.GovernancePolicyTemplate]
+        Returns: Optional[GovernancePolicyTemplate]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import governance_policy_template
+        from .....models.governance_policy_template import GovernancePolicyTemplate
 
-        return await self.request_adapter.send_async(request_info, governance_policy_template.GovernancePolicyTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, GovernancePolicyTemplate, error_mapping)
     
-    async def patch(self,body: Optional[governance_policy_template.GovernancePolicyTemplate] = None, request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_policy_template.GovernancePolicyTemplate]:
+    async def patch(self,body: Optional[GovernancePolicyTemplate] = None, request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[GovernancePolicyTemplate]:
         """
         Update the navigation property policyTemplates in approvalWorkflowProviders
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[governance_policy_template.GovernancePolicyTemplate]
+        Returns: Optional[GovernancePolicyTemplate]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import governance_policy_template
+        from .....models.governance_policy_template import GovernancePolicyTemplate
 
-        return await self.request_adapter.send_async(request_info, governance_policy_template.GovernancePolicyTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, GovernancePolicyTemplate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -135,7 +135,7 @@ class GovernancePolicyTemplateItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[governance_policy_template.GovernancePolicyTemplate] = None, request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[GovernancePolicyTemplate] = None, request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property policyTemplates in approvalWorkflowProviders
         Args:
@@ -143,8 +143,8 @@ class GovernancePolicyTemplateItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -180,8 +180,8 @@ class GovernancePolicyTemplateItemRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

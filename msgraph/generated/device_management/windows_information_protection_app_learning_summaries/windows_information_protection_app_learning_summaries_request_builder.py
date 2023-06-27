@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import windows_information_protection_app_learning_summary, windows_information_protection_app_learning_summary_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import windows_information_protection_app_learning_summary_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.windows_information_protection_app_learning_summary import WindowsInformationProtectionAppLearningSummary
+    from ...models.windows_information_protection_app_learning_summary_collection_response import WindowsInformationProtectionAppLearningSummaryCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.windows_information_protection_app_learning_summary_item_request_builder import WindowsInformationProtectionAppLearningSummaryItemRequestBuilder
 
 class WindowsInformationProtectionAppLearningSummariesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class WindowsInformationProtectionAppLearningSummariesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class WindowsInformationProtectionAppLearningSummariesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_windows_information_protection_app_learning_summary_id(self,windows_information_protection_app_learning_summary_id: str) -> windows_information_protection_app_learning_summary_item_request_builder.WindowsInformationProtectionAppLearningSummaryItemRequestBuilder:
+    def by_windows_information_protection_app_learning_summary_id(self,windows_information_protection_app_learning_summary_id: str) -> WindowsInformationProtectionAppLearningSummaryItemRequestBuilder:
         """
         Provides operations to manage the windowsInformationProtectionAppLearningSummaries property of the microsoft.graph.deviceManagement entity.
         Args:
             windows_information_protection_app_learning_summary_id: Unique identifier of the item
-        Returns: windows_information_protection_app_learning_summary_item_request_builder.WindowsInformationProtectionAppLearningSummaryItemRequestBuilder
+        Returns: WindowsInformationProtectionAppLearningSummaryItemRequestBuilder
         """
-        if windows_information_protection_app_learning_summary_id is None:
-            raise Exception("windows_information_protection_app_learning_summary_id cannot be undefined")
-        from .item import windows_information_protection_app_learning_summary_item_request_builder
+        if not windows_information_protection_app_learning_summary_id:
+            raise TypeError("windows_information_protection_app_learning_summary_id cannot be null.")
+        from .item.windows_information_protection_app_learning_summary_item_request_builder import WindowsInformationProtectionAppLearningSummaryItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsInformationProtectionAppLearningSummary%2Did"] = windows_information_protection_app_learning_summary_id
-        return windows_information_protection_app_learning_summary_item_request_builder.WindowsInformationProtectionAppLearningSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WindowsInformationProtectionAppLearningSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsInformationProtectionAppLearningSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_information_protection_app_learning_summary_collection_response.WindowsInformationProtectionAppLearningSummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsInformationProtectionAppLearningSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsInformationProtectionAppLearningSummaryCollectionResponse]:
         """
         The windows information protection app learning summaries.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_information_protection_app_learning_summary_collection_response.WindowsInformationProtectionAppLearningSummaryCollectionResponse]
+        Returns: Optional[WindowsInformationProtectionAppLearningSummaryCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import windows_information_protection_app_learning_summary_collection_response
+        from ...models.windows_information_protection_app_learning_summary_collection_response import WindowsInformationProtectionAppLearningSummaryCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, windows_information_protection_app_learning_summary_collection_response.WindowsInformationProtectionAppLearningSummaryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsInformationProtectionAppLearningSummaryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[windows_information_protection_app_learning_summary.WindowsInformationProtectionAppLearningSummary] = None, request_configuration: Optional[WindowsInformationProtectionAppLearningSummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_information_protection_app_learning_summary.WindowsInformationProtectionAppLearningSummary]:
+    async def post(self,body: Optional[WindowsInformationProtectionAppLearningSummary] = None, request_configuration: Optional[WindowsInformationProtectionAppLearningSummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsInformationProtectionAppLearningSummary]:
         """
         Create new navigation property to windowsInformationProtectionAppLearningSummaries for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_information_protection_app_learning_summary.WindowsInformationProtectionAppLearningSummary]
+        Returns: Optional[WindowsInformationProtectionAppLearningSummary]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import windows_information_protection_app_learning_summary
+        from ...models.windows_information_protection_app_learning_summary import WindowsInformationProtectionAppLearningSummary
 
-        return await self.request_adapter.send_async(request_info, windows_information_protection_app_learning_summary.WindowsInformationProtectionAppLearningSummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsInformationProtectionAppLearningSummary, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsInformationProtectionAppLearningSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class WindowsInformationProtectionAppLearningSummariesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[windows_information_protection_app_learning_summary.WindowsInformationProtectionAppLearningSummary] = None, request_configuration: Optional[WindowsInformationProtectionAppLearningSummariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsInformationProtectionAppLearningSummary] = None, request_configuration: Optional[WindowsInformationProtectionAppLearningSummariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsInformationProtectionAppLearningSummaries for deviceManagement
         Args:
@@ -125,8 +126,8 @@ class WindowsInformationProtectionAppLearningSummariesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class WindowsInformationProtectionAppLearningSummariesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WindowsInformationProtectionAppLearningSummariesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class WindowsInformationProtectionAppLearningSummariesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

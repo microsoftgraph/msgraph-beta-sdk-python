@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import get_plan_post_request_body
-    from ......models import business_scenario_plan_reference
-    from ......models.o_data_errors import o_data_error
+    from ......models.business_scenario_plan_reference import BusinessScenarioPlanReference
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .get_plan_post_request_body import GetPlanPostRequestBody
 
 class GetPlanRequestBuilder():
     """
@@ -25,10 +25,10 @@ class GetPlanRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/solutions/businessScenarios/{businessScenario%2Did}/planner/getPlan"
 
@@ -36,32 +36,32 @@ class GetPlanRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[get_plan_post_request_body.GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> Optional[business_scenario_plan_reference.BusinessScenarioPlanReference]:
+    async def post(self,body: Optional[GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> Optional[BusinessScenarioPlanReference]:
         """
         Get information about the plannerPlan mapped to a given target. If a **plannerPlan** doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[business_scenario_plan_reference.BusinessScenarioPlanReference]
+        Returns: Optional[BusinessScenarioPlanReference]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import business_scenario_plan_reference
+        from ......models.business_scenario_plan_reference import BusinessScenarioPlanReference
 
-        return await self.request_adapter.send_async(request_info, business_scenario_plan_reference.BusinessScenarioPlanReference, error_mapping)
+        return await self.request_adapter.send_async(request_info, BusinessScenarioPlanReference, error_mapping)
     
-    def to_post_request_information(self,body: Optional[get_plan_post_request_body.GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Get information about the plannerPlan mapped to a given target. If a **plannerPlan** doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario.
         Args:
@@ -69,8 +69,8 @@ class GetPlanRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters

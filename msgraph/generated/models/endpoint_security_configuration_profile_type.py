@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EndpointSecurityConfigurationProfileType(Enum):
+class EndpointSecurityConfigurationProfileType(str, Enum):
     # Unknown.
     Unknown = "unknown",
     # Antivirus.

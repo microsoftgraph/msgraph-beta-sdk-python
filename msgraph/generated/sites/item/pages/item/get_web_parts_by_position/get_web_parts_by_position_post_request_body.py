@@ -1,57 +1,21 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new getWebPartsByPositionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The columnId property
-        self._column_id: Optional[float] = None
-        # The horizontalSectionId property
-        self._horizontal_section_id: Optional[float] = None
-        # The isInVerticalSection property
-        self._is_in_vertical_section: Optional[bool] = None
-        # The webPartIndex property
-        self._web_part_index: Optional[float] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def column_id(self,) -> Optional[float]:
-        """
-        Gets the columnId property value. The columnId property
-        Returns: Optional[float]
-        """
-        return self._column_id
-    
-    @column_id.setter
-    def column_id(self,value: Optional[float] = None) -> None:
-        """
-        Sets the columnId property value. The columnId property
-        Args:
-            value: Value to set for the column_id property.
-        """
-        self._column_id = value
+    # The columnId property
+    column_id: Optional[float] = None
+    # The horizontalSectionId property
+    horizontal_section_id: Optional[float] = None
+    # The isInVerticalSection property
+    is_in_vertical_section: Optional[bool] = None
+    # The webPartIndex property
+    web_part_index: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetWebPartsByPositionPostRequestBody:
@@ -61,8 +25,8 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: GetWebPartsByPositionPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return GetWebPartsByPositionPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -78,69 +42,18 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def horizontal_section_id(self,) -> Optional[float]:
-        """
-        Gets the horizontalSectionId property value. The horizontalSectionId property
-        Returns: Optional[float]
-        """
-        return self._horizontal_section_id
-    
-    @horizontal_section_id.setter
-    def horizontal_section_id(self,value: Optional[float] = None) -> None:
-        """
-        Sets the horizontalSectionId property value. The horizontalSectionId property
-        Args:
-            value: Value to set for the horizontal_section_id property.
-        """
-        self._horizontal_section_id = value
-    
-    @property
-    def is_in_vertical_section(self,) -> Optional[bool]:
-        """
-        Gets the isInVerticalSection property value. The isInVerticalSection property
-        Returns: Optional[bool]
-        """
-        return self._is_in_vertical_section
-    
-    @is_in_vertical_section.setter
-    def is_in_vertical_section(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isInVerticalSection property value. The isInVerticalSection property
-        Args:
-            value: Value to set for the is_in_vertical_section property.
-        """
-        self._is_in_vertical_section = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_float_value("columnId", self.column_id)
         writer.write_float_value("horizontalSectionId", self.horizontal_section_id)
         writer.write_bool_value("isInVerticalSection", self.is_in_vertical_section)
         writer.write_float_value("webPartIndex", self.web_part_index)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def web_part_index(self,) -> Optional[float]:
-        """
-        Gets the webPartIndex property value. The webPartIndex property
-        Returns: Optional[float]
-        """
-        return self._web_part_index
-    
-    @web_part_index.setter
-    def web_part_index(self,value: Optional[float] = None) -> None:
-        """
-        Sets the webPartIndex property value. The webPartIndex property
-        Args:
-            value: Value to set for the web_part_index property.
-        """
-        self._web_part_index = value
     
 

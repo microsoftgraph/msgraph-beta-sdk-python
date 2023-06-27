@@ -1,44 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ChangeDeploymentStatusPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new changeDeploymentStatusPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The managementActionId property
-        self._management_action_id: Optional[str] = None
-        # The managementTemplateId property
-        self._management_template_id: Optional[str] = None
-        # The managementTemplateVersion property
-        self._management_template_version: Optional[int] = None
-        # The status property
-        self._status: Optional[str] = None
-        # The tenantGroupId property
-        self._tenant_group_id: Optional[str] = None
-        # The tenantId property
-        self._tenant_id: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The managementActionId property
+    management_action_id: Optional[str] = None
+    # The managementTemplateId property
+    management_template_id: Optional[str] = None
+    # The managementTemplateVersion property
+    management_template_version: Optional[int] = None
+    # The status property
+    status: Optional[str] = None
+    # The tenantGroupId property
+    tenant_group_id: Optional[str] = None
+    # The tenantId property
+    tenant_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChangeDeploymentStatusPostRequestBody:
@@ -48,8 +29,8 @@ class ChangeDeploymentStatusPostRequestBody(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: ChangeDeploymentStatusPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ChangeDeploymentStatusPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -67,65 +48,14 @@ class ChangeDeploymentStatusPostRequestBody(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def management_action_id(self,) -> Optional[str]:
-        """
-        Gets the managementActionId property value. The managementActionId property
-        Returns: Optional[str]
-        """
-        return self._management_action_id
-    
-    @management_action_id.setter
-    def management_action_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the managementActionId property value. The managementActionId property
-        Args:
-            value: Value to set for the management_action_id property.
-        """
-        self._management_action_id = value
-    
-    @property
-    def management_template_id(self,) -> Optional[str]:
-        """
-        Gets the managementTemplateId property value. The managementTemplateId property
-        Returns: Optional[str]
-        """
-        return self._management_template_id
-    
-    @management_template_id.setter
-    def management_template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the managementTemplateId property value. The managementTemplateId property
-        Args:
-            value: Value to set for the management_template_id property.
-        """
-        self._management_template_id = value
-    
-    @property
-    def management_template_version(self,) -> Optional[int]:
-        """
-        Gets the managementTemplateVersion property value. The managementTemplateVersion property
-        Returns: Optional[int]
-        """
-        return self._management_template_version
-    
-    @management_template_version.setter
-    def management_template_version(self,value: Optional[int] = None) -> None:
-        """
-        Sets the managementTemplateVersion property value. The managementTemplateVersion property
-        Args:
-            value: Value to set for the management_template_version property.
-        """
-        self._management_template_version = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("managementActionId", self.management_action_id)
         writer.write_str_value("managementTemplateId", self.management_template_id)
         writer.write_int_value("managementTemplateVersion", self.management_template_version)
@@ -133,56 +63,5 @@ class ChangeDeploymentStatusPostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_str_value("tenantGroupId", self.tenant_group_id)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def status(self,) -> Optional[str]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[str]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[str] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def tenant_group_id(self,) -> Optional[str]:
-        """
-        Gets the tenantGroupId property value. The tenantGroupId property
-        Returns: Optional[str]
-        """
-        return self._tenant_group_id
-    
-    @tenant_group_id.setter
-    def tenant_group_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantGroupId property value. The tenantGroupId property
-        Args:
-            value: Value to set for the tenant_group_id property.
-        """
-        self._tenant_group_id = value
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. The tenantId property
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. The tenantId property
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
     
 

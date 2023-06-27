@@ -1,20 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import base_collection_pagination_count_response, teams_app_installation
+    from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+    from .teams_app_installation import TeamsAppInstallation
 
-from . import base_collection_pagination_count_response
+from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
-class TeamsAppInstallationCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TeamsAppInstallationCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[teams_app_installation.TeamsAppInstallation]] = None
+@dataclass
+class TeamsAppInstallationCollectionResponse(BaseCollectionPaginationCountResponse):
+    # The value property
+    value: Optional[List[TeamsAppInstallation]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamsAppInstallationCollectionResponse:
@@ -24,8 +22,8 @@ class TeamsAppInstallationCollectionResponse(base_collection_pagination_count_re
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: TeamsAppInstallationCollectionResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return TeamsAppInstallationCollectionResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -33,10 +31,14 @@ class TeamsAppInstallationCollectionResponse(base_collection_pagination_count_re
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import base_collection_pagination_count_response, teams_app_installation
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .teams_app_installation import TeamsAppInstallation
+
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .teams_app_installation import TeamsAppInstallation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(teams_app_installation.TeamsAppInstallation)),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(TeamsAppInstallation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -48,26 +50,9 @@ class TeamsAppInstallationCollectionResponse(base_collection_pagination_count_re
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[teams_app_installation.TeamsAppInstallation]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[teams_app_installation.TeamsAppInstallation]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[teams_app_installation.TeamsAppInstallation]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.identity_governance import workflow_version_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import workflow_version_version_number_item_request_builder
+    from ......models.identity_governance.workflow_version_collection_response import WorkflowVersionCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.workflow_version_version_number_item_request_builder import WorkflowVersionVersionNumberItemRequestBuilder
 
 class VersionsRequestBuilder():
     """
@@ -26,10 +26,10 @@ class VersionsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/versions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,42 +37,42 @@ class VersionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_workflow_version_version_number(self,workflow_version_version_number: str) -> workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder:
+    def by_workflow_version_version_number(self,workflow_version_version_number: str) -> WorkflowVersionVersionNumberItemRequestBuilder:
         """
         Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
         Args:
             workflow_version_version_number: Unique identifier of the item
-        Returns: workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder
+        Returns: WorkflowVersionVersionNumberItemRequestBuilder
         """
-        if workflow_version_version_number is None:
-            raise Exception("workflow_version_version_number cannot be undefined")
-        from .item import workflow_version_version_number_item_request_builder
+        if not workflow_version_version_number:
+            raise TypeError("workflow_version_version_number cannot be null.")
+        from .item.workflow_version_version_number_item_request_builder import WorkflowVersionVersionNumberItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["workflowVersion%2DversionNumber"] = workflow_version_version_number
-        return workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WorkflowVersionVersionNumberItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_version_collection_response.WorkflowVersionCollectionResponse]:
+    async def get(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkflowVersionCollectionResponse]:
         """
         Get a list of the workflowVersion objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workflow_version_collection_response.WorkflowVersionCollectionResponse]
+        Returns: Optional[WorkflowVersionCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.identity_governance import workflow_version_collection_response
+        from ......models.identity_governance.workflow_version_collection_response import WorkflowVersionCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, workflow_version_collection_response.WorkflowVersionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkflowVersionCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -93,13 +93,13 @@ class VersionsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class VersionsRequestBuilderGetQueryParameters():
@@ -113,8 +113,8 @@ class VersionsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

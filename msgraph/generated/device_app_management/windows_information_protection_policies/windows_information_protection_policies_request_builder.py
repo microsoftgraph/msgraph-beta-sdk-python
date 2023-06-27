@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import windows_information_protection_policy, windows_information_protection_policy_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import windows_information_protection_policy_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.windows_information_protection_policy import WindowsInformationProtectionPolicy
+    from ...models.windows_information_protection_policy_collection_response import WindowsInformationProtectionPolicyCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.windows_information_protection_policy_item_request_builder import WindowsInformationProtectionPolicyItemRequestBuilder
 
 class WindowsInformationProtectionPoliciesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class WindowsInformationProtectionPoliciesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class WindowsInformationProtectionPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_windows_information_protection_policy_id(self,windows_information_protection_policy_id: str) -> windows_information_protection_policy_item_request_builder.WindowsInformationProtectionPolicyItemRequestBuilder:
+    def by_windows_information_protection_policy_id(self,windows_information_protection_policy_id: str) -> WindowsInformationProtectionPolicyItemRequestBuilder:
         """
         Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
         Args:
             windows_information_protection_policy_id: Unique identifier of the item
-        Returns: windows_information_protection_policy_item_request_builder.WindowsInformationProtectionPolicyItemRequestBuilder
+        Returns: WindowsInformationProtectionPolicyItemRequestBuilder
         """
-        if windows_information_protection_policy_id is None:
-            raise Exception("windows_information_protection_policy_id cannot be undefined")
-        from .item import windows_information_protection_policy_item_request_builder
+        if not windows_information_protection_policy_id:
+            raise TypeError("windows_information_protection_policy_id cannot be null.")
+        from .item.windows_information_protection_policy_item_request_builder import WindowsInformationProtectionPolicyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsInformationProtectionPolicy%2Did"] = windows_information_protection_policy_id
-        return windows_information_protection_policy_item_request_builder.WindowsInformationProtectionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WindowsInformationProtectionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsInformationProtectionPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_information_protection_policy_collection_response.WindowsInformationProtectionPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsInformationProtectionPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsInformationProtectionPolicyCollectionResponse]:
         """
         Windows information protection for apps running on devices which are not MDM enrolled.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_information_protection_policy_collection_response.WindowsInformationProtectionPolicyCollectionResponse]
+        Returns: Optional[WindowsInformationProtectionPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import windows_information_protection_policy_collection_response
+        from ...models.windows_information_protection_policy_collection_response import WindowsInformationProtectionPolicyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, windows_information_protection_policy_collection_response.WindowsInformationProtectionPolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsInformationProtectionPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[windows_information_protection_policy.WindowsInformationProtectionPolicy] = None, request_configuration: Optional[WindowsInformationProtectionPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_information_protection_policy.WindowsInformationProtectionPolicy]:
+    async def post(self,body: Optional[WindowsInformationProtectionPolicy] = None, request_configuration: Optional[WindowsInformationProtectionPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsInformationProtectionPolicy]:
         """
         Create new navigation property to windowsInformationProtectionPolicies for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_information_protection_policy.WindowsInformationProtectionPolicy]
+        Returns: Optional[WindowsInformationProtectionPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import windows_information_protection_policy
+        from ...models.windows_information_protection_policy import WindowsInformationProtectionPolicy
 
-        return await self.request_adapter.send_async(request_info, windows_information_protection_policy.WindowsInformationProtectionPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsInformationProtectionPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsInformationProtectionPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class WindowsInformationProtectionPoliciesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[windows_information_protection_policy.WindowsInformationProtectionPolicy] = None, request_configuration: Optional[WindowsInformationProtectionPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsInformationProtectionPolicy] = None, request_configuration: Optional[WindowsInformationProtectionPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsInformationProtectionPolicies for deviceAppManagement
         Args:
@@ -125,8 +126,8 @@ class WindowsInformationProtectionPoliciesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class WindowsInformationProtectionPoliciesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WindowsInformationProtectionPoliciesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class WindowsInformationProtectionPoliciesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

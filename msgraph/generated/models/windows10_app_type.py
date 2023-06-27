@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Windows10AppType(Enum):
+class Windows10AppType(str, Enum):
     # Desktop.
     Desktop = "desktop",
     # Universal.

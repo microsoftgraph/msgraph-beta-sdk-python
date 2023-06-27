@@ -1,66 +1,32 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import rbac_application, rbac_application_multiple, unified_rbac_application
+    from .rbac_application import RbacApplication
+    from .rbac_application_multiple import RbacApplicationMultiple
+    from .unified_rbac_application import UnifiedRbacApplication
 
+@dataclass
 class RoleManagement(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RoleManagement and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The cloudPC property
-        self._cloud_p_c: Optional[rbac_application_multiple.RbacApplicationMultiple] = None
-        # The RbacApplication for Device Management
-        self._device_management: Optional[rbac_application_multiple.RbacApplicationMultiple] = None
-        # The directory property
-        self._directory: Optional[rbac_application.RbacApplication] = None
-        # The enterpriseApps property
-        self._enterprise_apps: Optional[List[rbac_application.RbacApplication]] = None
-        # The RbacApplication for Entitlement Management
-        self._entitlement_management: Optional[rbac_application.RbacApplication] = None
-        # The exchange property
-        self._exchange: Optional[unified_rbac_application.UnifiedRbacApplication] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def cloud_p_c(self,) -> Optional[rbac_application_multiple.RbacApplicationMultiple]:
-        """
-        Gets the cloudPC property value. The cloudPC property
-        Returns: Optional[rbac_application_multiple.RbacApplicationMultiple]
-        """
-        return self._cloud_p_c
-    
-    @cloud_p_c.setter
-    def cloud_p_c(self,value: Optional[rbac_application_multiple.RbacApplicationMultiple] = None) -> None:
-        """
-        Sets the cloudPC property value. The cloudPC property
-        Args:
-            value: Value to set for the cloud_p_c property.
-        """
-        self._cloud_p_c = value
+    # The cloudPC property
+    cloud_p_c: Optional[RbacApplicationMultiple] = None
+    # The RbacApplication for Device Management
+    device_management: Optional[RbacApplicationMultiple] = None
+    # The directory property
+    directory: Optional[RbacApplication] = None
+    # The enterpriseApps property
+    enterprise_apps: Optional[List[RbacApplication]] = None
+    # The RbacApplication for Entitlement Management
+    entitlement_management: Optional[RbacApplication] = None
+    # The exchange property
+    exchange: Optional[UnifiedRbacApplication] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RoleManagement:
@@ -70,129 +36,33 @@ class RoleManagement(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: RoleManagement
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return RoleManagement()
-    
-    @property
-    def device_management(self,) -> Optional[rbac_application_multiple.RbacApplicationMultiple]:
-        """
-        Gets the deviceManagement property value. The RbacApplication for Device Management
-        Returns: Optional[rbac_application_multiple.RbacApplicationMultiple]
-        """
-        return self._device_management
-    
-    @device_management.setter
-    def device_management(self,value: Optional[rbac_application_multiple.RbacApplicationMultiple] = None) -> None:
-        """
-        Sets the deviceManagement property value. The RbacApplication for Device Management
-        Args:
-            value: Value to set for the device_management property.
-        """
-        self._device_management = value
-    
-    @property
-    def directory(self,) -> Optional[rbac_application.RbacApplication]:
-        """
-        Gets the directory property value. The directory property
-        Returns: Optional[rbac_application.RbacApplication]
-        """
-        return self._directory
-    
-    @directory.setter
-    def directory(self,value: Optional[rbac_application.RbacApplication] = None) -> None:
-        """
-        Sets the directory property value. The directory property
-        Args:
-            value: Value to set for the directory property.
-        """
-        self._directory = value
-    
-    @property
-    def enterprise_apps(self,) -> Optional[List[rbac_application.RbacApplication]]:
-        """
-        Gets the enterpriseApps property value. The enterpriseApps property
-        Returns: Optional[List[rbac_application.RbacApplication]]
-        """
-        return self._enterprise_apps
-    
-    @enterprise_apps.setter
-    def enterprise_apps(self,value: Optional[List[rbac_application.RbacApplication]] = None) -> None:
-        """
-        Sets the enterpriseApps property value. The enterpriseApps property
-        Args:
-            value: Value to set for the enterprise_apps property.
-        """
-        self._enterprise_apps = value
-    
-    @property
-    def entitlement_management(self,) -> Optional[rbac_application.RbacApplication]:
-        """
-        Gets the entitlementManagement property value. The RbacApplication for Entitlement Management
-        Returns: Optional[rbac_application.RbacApplication]
-        """
-        return self._entitlement_management
-    
-    @entitlement_management.setter
-    def entitlement_management(self,value: Optional[rbac_application.RbacApplication] = None) -> None:
-        """
-        Sets the entitlementManagement property value. The RbacApplication for Entitlement Management
-        Args:
-            value: Value to set for the entitlement_management property.
-        """
-        self._entitlement_management = value
-    
-    @property
-    def exchange(self,) -> Optional[unified_rbac_application.UnifiedRbacApplication]:
-        """
-        Gets the exchange property value. The exchange property
-        Returns: Optional[unified_rbac_application.UnifiedRbacApplication]
-        """
-        return self._exchange
-    
-    @exchange.setter
-    def exchange(self,value: Optional[unified_rbac_application.UnifiedRbacApplication] = None) -> None:
-        """
-        Sets the exchange property value. The exchange property
-        Args:
-            value: Value to set for the exchange property.
-        """
-        self._exchange = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import rbac_application, rbac_application_multiple, unified_rbac_application
+        from .rbac_application import RbacApplication
+        from .rbac_application_multiple import RbacApplicationMultiple
+        from .unified_rbac_application import UnifiedRbacApplication
+
+        from .rbac_application import RbacApplication
+        from .rbac_application_multiple import RbacApplicationMultiple
+        from .unified_rbac_application import UnifiedRbacApplication
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "cloudPC": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
-            "deviceManagement": lambda n : setattr(self, 'device_management', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
-            "directory": lambda n : setattr(self, 'directory', n.get_object_value(rbac_application.RbacApplication)),
-            "enterpriseApps": lambda n : setattr(self, 'enterprise_apps', n.get_collection_of_object_values(rbac_application.RbacApplication)),
-            "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(rbac_application.RbacApplication)),
-            "exchange": lambda n : setattr(self, 'exchange', n.get_object_value(unified_rbac_application.UnifiedRbacApplication)),
+            "cloudPC": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(RbacApplicationMultiple)),
+            "deviceManagement": lambda n : setattr(self, 'device_management', n.get_object_value(RbacApplicationMultiple)),
+            "directory": lambda n : setattr(self, 'directory', n.get_object_value(RbacApplication)),
+            "enterpriseApps": lambda n : setattr(self, 'enterprise_apps', n.get_collection_of_object_values(RbacApplication)),
+            "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(RbacApplication)),
+            "exchange": lambda n : setattr(self, 'exchange', n.get_object_value(UnifiedRbacApplication)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -200,8 +70,8 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_object_value("cloudPC", self.cloud_p_c)
         writer.write_object_value("deviceManagement", self.device_management)
         writer.write_object_value("directory", self.directory)

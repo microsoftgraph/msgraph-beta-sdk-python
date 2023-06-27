@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import item_patent, item_patent_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import item_patent_item_request_builder
+    from .....models.item_patent import ItemPatent
+    from .....models.item_patent_collection_response import ItemPatentCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.item_patent_item_request_builder import ItemPatentItemRequestBuilder
 
 class PatentsRequestBuilder():
     """
@@ -26,10 +27,10 @@ class PatentsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/users/{user%2Did}/profile/patents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class PatentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_item_patent_id(self,item_patent_id: str) -> item_patent_item_request_builder.ItemPatentItemRequestBuilder:
+    def by_item_patent_id(self,item_patent_id: str) -> ItemPatentItemRequestBuilder:
         """
         Provides operations to manage the patents property of the microsoft.graph.profile entity.
         Args:
             item_patent_id: Unique identifier of the item
-        Returns: item_patent_item_request_builder.ItemPatentItemRequestBuilder
+        Returns: ItemPatentItemRequestBuilder
         """
-        if item_patent_id is None:
-            raise Exception("item_patent_id cannot be undefined")
-        from .item import item_patent_item_request_builder
+        if not item_patent_id:
+            raise TypeError("item_patent_id cannot be null.")
+        from .item.item_patent_item_request_builder import ItemPatentItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["itemPatent%2Did"] = item_patent_id
-        return item_patent_item_request_builder.ItemPatentItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ItemPatentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_patent_collection_response.ItemPatentCollectionResponse]:
+    async def get(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemPatentCollectionResponse]:
         """
         Retrieve a list of itemPatent objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[item_patent_collection_response.ItemPatentCollectionResponse]
+        Returns: Optional[ItemPatentCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import item_patent_collection_response
+        from .....models.item_patent_collection_response import ItemPatentCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, item_patent_collection_response.ItemPatentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ItemPatentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[PatentsRequestBuilderPostRequestConfiguration] = None) -> Optional[item_patent.ItemPatent]:
+    async def post(self,body: Optional[ItemPatent] = None, request_configuration: Optional[PatentsRequestBuilderPostRequestConfiguration] = None) -> Optional[ItemPatent]:
         """
         Create a new itemPatent object within a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[item_patent.ItemPatent]
+        Returns: Optional[ItemPatent]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import item_patent
+        from .....models.item_patent import ItemPatent
 
-        return await self.request_adapter.send_async(request_info, item_patent.ItemPatent, error_mapping)
+        return await self.request_adapter.send_async(request_info, ItemPatent, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class PatentsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[PatentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ItemPatent] = None, request_configuration: Optional[PatentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new itemPatent object within a user's profile.
         Args:
@@ -125,8 +126,8 @@ class PatentsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class PatentsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PatentsRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class PatentsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

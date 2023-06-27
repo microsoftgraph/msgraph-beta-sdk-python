@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import sensitive_type, sensitive_type_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import sensitive_type_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.sensitive_type import SensitiveType
+    from ...models.sensitive_type_collection_response import SensitiveTypeCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.sensitive_type_item_request_builder import SensitiveTypeItemRequestBuilder
 
 class SensitiveTypesRequestBuilder():
     """
@@ -26,10 +27,10 @@ class SensitiveTypesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/dataClassification/sensitiveTypes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -37,67 +38,67 @@ class SensitiveTypesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_sensitive_type_id(self,sensitive_type_id: str) -> sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder:
+    def by_sensitive_type_id(self,sensitive_type_id: str) -> SensitiveTypeItemRequestBuilder:
         """
         Provides operations to manage the sensitiveTypes property of the microsoft.graph.dataClassificationService entity.
         Args:
             sensitive_type_id: Unique identifier of the item
-        Returns: sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder
+        Returns: SensitiveTypeItemRequestBuilder
         """
-        if sensitive_type_id is None:
-            raise Exception("sensitive_type_id cannot be undefined")
-        from .item import sensitive_type_item_request_builder
+        if not sensitive_type_id:
+            raise TypeError("sensitive_type_id cannot be null.")
+        from .item.sensitive_type_item_request_builder import SensitiveTypeItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["sensitiveType%2Did"] = sensitive_type_id
-        return sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return SensitiveTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SensitiveTypesRequestBuilderGetRequestConfiguration] = None) -> Optional[sensitive_type_collection_response.SensitiveTypeCollectionResponse]:
+    async def get(self,request_configuration: Optional[SensitiveTypesRequestBuilderGetRequestConfiguration] = None) -> Optional[SensitiveTypeCollectionResponse]:
         """
         Get sensitiveTypes from dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[sensitive_type_collection_response.SensitiveTypeCollectionResponse]
+        Returns: Optional[SensitiveTypeCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import sensitive_type_collection_response
+        from ...models.sensitive_type_collection_response import SensitiveTypeCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, sensitive_type_collection_response.SensitiveTypeCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SensitiveTypeCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[sensitive_type.SensitiveType] = None, request_configuration: Optional[SensitiveTypesRequestBuilderPostRequestConfiguration] = None) -> Optional[sensitive_type.SensitiveType]:
+    async def post(self,body: Optional[SensitiveType] = None, request_configuration: Optional[SensitiveTypesRequestBuilderPostRequestConfiguration] = None) -> Optional[SensitiveType]:
         """
         Create new navigation property to sensitiveTypes for dataClassification
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[sensitive_type.SensitiveType]
+        Returns: Optional[SensitiveType]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import sensitive_type
+        from ...models.sensitive_type import SensitiveType
 
-        return await self.request_adapter.send_async(request_info, sensitive_type.SensitiveType, error_mapping)
+        return await self.request_adapter.send_async(request_info, SensitiveType, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SensitiveTypesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -117,7 +118,7 @@ class SensitiveTypesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[sensitive_type.SensitiveType] = None, request_configuration: Optional[SensitiveTypesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SensitiveType] = None, request_configuration: Optional[SensitiveTypesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to sensitiveTypes for dataClassification
         Args:
@@ -125,8 +126,8 @@ class SensitiveTypesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +140,13 @@ class SensitiveTypesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SensitiveTypesRequestBuilderGetQueryParameters():
@@ -159,8 +160,8 @@ class SensitiveTypesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

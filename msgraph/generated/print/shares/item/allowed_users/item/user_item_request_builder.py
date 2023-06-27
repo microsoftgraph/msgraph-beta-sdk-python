@@ -4,8 +4,8 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .mailbox_settings import mailbox_settings_request_builder
-    from .ref import ref_request_builder
+    from .mailbox_settings.mailbox_settings_request_builder import MailboxSettingsRequestBuilder
+    from .ref.ref_request_builder import RefRequestBuilder
 
 class UserItemRequestBuilder():
     """
@@ -18,10 +18,10 @@ class UserItemRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers/{user%2Did}"
 
@@ -30,21 +30,21 @@ class UserItemRequestBuilder():
         self.request_adapter = request_adapter
     
     @property
-    def mailbox_settings(self) -> mailbox_settings_request_builder.MailboxSettingsRequestBuilder:
+    def mailbox_settings(self) -> MailboxSettingsRequestBuilder:
         """
         The mailboxSettings property
         """
-        from .mailbox_settings import mailbox_settings_request_builder
+        from .mailbox_settings.mailbox_settings_request_builder import MailboxSettingsRequestBuilder
 
-        return mailbox_settings_request_builder.MailboxSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MailboxSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ref(self) -> ref_request_builder.RefRequestBuilder:
+    def ref(self) -> RefRequestBuilder:
         """
         Provides operations to manage the collection of print entities.
         """
-        from .ref import ref_request_builder
+        from .ref.ref_request_builder import RefRequestBuilder
 
-        return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
+        return RefRequestBuilder(self.request_adapter, self.path_parameters)
     
 

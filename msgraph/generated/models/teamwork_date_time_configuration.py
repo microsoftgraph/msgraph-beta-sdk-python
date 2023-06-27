@@ -1,45 +1,26 @@
 from __future__ import annotations
-from datetime import time
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkDateTimeConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The date format for the device.
-        self._date_format: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The time of the day when the device is turned off.
-        self._office_hours_end_time: Optional[time] = None
-        # The time of the day when the device is turned on.
-        self._office_hours_start_time: Optional[time] = None
-        # The time format for the device.
-        self._time_format: Optional[str] = None
-        # The time zone to which the office hours apply.
-        self._time_zone: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The date format for the device.
+    date_format: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The time of the day when the device is turned off.
+    office_hours_end_time: Optional[datetime.time] = None
+    # The time of the day when the device is turned on.
+    office_hours_start_time: Optional[datetime.time] = None
+    # The time format for the device.
+    time_format: Optional[str] = None
+    # The time zone to which the office hours apply.
+    time_zone: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDateTimeConfiguration:
@@ -49,26 +30,9 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: TeamworkDateTimeConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return TeamworkDateTimeConfiguration()
-    
-    @property
-    def date_format(self,) -> Optional[str]:
-        """
-        Gets the dateFormat property value. The date format for the device.
-        Returns: Optional[str]
-        """
-        return self._date_format
-    
-    @date_format.setter
-    def date_format(self,value: Optional[str] = None) -> None:
-        """
-        Sets the dateFormat property value. The date format for the device.
-        Args:
-            value: Value to set for the date_format property.
-        """
-        self._date_format = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -85,105 +49,20 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def office_hours_end_time(self,) -> Optional[time]:
-        """
-        Gets the officeHoursEndTime property value. The time of the day when the device is turned off.
-        Returns: Optional[time]
-        """
-        return self._office_hours_end_time
-    
-    @office_hours_end_time.setter
-    def office_hours_end_time(self,value: Optional[time] = None) -> None:
-        """
-        Sets the officeHoursEndTime property value. The time of the day when the device is turned off.
-        Args:
-            value: Value to set for the office_hours_end_time property.
-        """
-        self._office_hours_end_time = value
-    
-    @property
-    def office_hours_start_time(self,) -> Optional[time]:
-        """
-        Gets the officeHoursStartTime property value. The time of the day when the device is turned on.
-        Returns: Optional[time]
-        """
-        return self._office_hours_start_time
-    
-    @office_hours_start_time.setter
-    def office_hours_start_time(self,value: Optional[time] = None) -> None:
-        """
-        Sets the officeHoursStartTime property value. The time of the day when the device is turned on.
-        Args:
-            value: Value to set for the office_hours_start_time property.
-        """
-        self._office_hours_start_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("dateFormat", self.date_format)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_time_value("officeHoursEndTime", self.office_hours_end_time)
-        writer.write_time_value("officeHoursStartTime", self.office_hours_start_time)
+        writer.write_time_value()("officeHoursEndTime", self.office_hours_end_time)
+        writer.write_time_value()("officeHoursStartTime", self.office_hours_start_time)
         writer.write_str_value("timeFormat", self.time_format)
         writer.write_str_value("timeZone", self.time_zone)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def time_format(self,) -> Optional[str]:
-        """
-        Gets the timeFormat property value. The time format for the device.
-        Returns: Optional[str]
-        """
-        return self._time_format
-    
-    @time_format.setter
-    def time_format(self,value: Optional[str] = None) -> None:
-        """
-        Sets the timeFormat property value. The time format for the device.
-        Args:
-            value: Value to set for the time_format property.
-        """
-        self._time_format = value
-    
-    @property
-    def time_zone(self,) -> Optional[str]:
-        """
-        Gets the timeZone property value. The time zone to which the office hours apply.
-        Returns: Optional[str]
-        """
-        return self._time_zone
-    
-    @time_zone.setter
-    def time_zone(self,value: Optional[str] = None) -> None:
-        """
-        Sets the timeZone property value. The time zone to which the office hours apply.
-        Args:
-            value: Value to set for the time_zone property.
-        """
-        self._time_zone = value
     
 

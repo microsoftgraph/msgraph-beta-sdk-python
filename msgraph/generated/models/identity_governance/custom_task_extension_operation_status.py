@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CustomTaskExtensionOperationStatus(Enum):
+class CustomTaskExtensionOperationStatus(str, Enum):
     Completed = "completed",
     Failed = "failed",
     UnknownFutureValue = "unknownFutureValue",

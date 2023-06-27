@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import admin_windows_updates
-    from ....models.o_data_errors import o_data_error
-    from .catalog import catalog_request_builder
-    from .deployment_audiences import deployment_audiences_request_builder
-    from .deployments import deployments_request_builder
-    from .resource_connections import resource_connections_request_builder
-    from .updatable_assets import updatable_assets_request_builder
-    from .update_policies import update_policies_request_builder
+    from ....models.admin_windows_updates import AdminWindowsUpdates
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .catalog.catalog_request_builder import CatalogRequestBuilder
+    from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
+    from .deployments.deployments_request_builder import DeploymentsRequestBuilder
+    from .resource_connections.resource_connections_request_builder import ResourceConnectionsRequestBuilder
+    from .updatable_assets.updatable_assets_request_builder import UpdatableAssetsRequestBuilder
+    from .update_policies.update_policies_request_builder import UpdatePoliciesRequestBuilder
 
 class UpdatesRequestBuilder():
     """
@@ -30,10 +30,10 @@ class UpdatesRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/admin/windows/updates{?%24select,%24expand}"
 
@@ -50,62 +50,62 @@ class UpdatesRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None) -> Optional[admin_windows_updates.AdminWindowsUpdates]:
+    async def get(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None) -> Optional[AdminWindowsUpdates]:
         """
         Entity that acts as a container for all Windows Update for Business deployment service functionalities. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[admin_windows_updates.AdminWindowsUpdates]
+        Returns: Optional[AdminWindowsUpdates]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import admin_windows_updates
+        from ....models.admin_windows_updates import AdminWindowsUpdates
 
-        return await self.request_adapter.send_async(request_info, admin_windows_updates.AdminWindowsUpdates, error_mapping)
+        return await self.request_adapter.send_async(request_info, AdminWindowsUpdates, error_mapping)
     
-    async def patch(self,body: Optional[admin_windows_updates.AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> Optional[admin_windows_updates.AdminWindowsUpdates]:
+    async def patch(self,body: Optional[AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> Optional[AdminWindowsUpdates]:
         """
         Update the navigation property updates in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[admin_windows_updates.AdminWindowsUpdates]
+        Returns: Optional[AdminWindowsUpdates]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import admin_windows_updates
+        from ....models.admin_windows_updates import AdminWindowsUpdates
 
-        return await self.request_adapter.send_async(request_info, admin_windows_updates.AdminWindowsUpdates, error_mapping)
+        return await self.request_adapter.send_async(request_info, AdminWindowsUpdates, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatesRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -141,7 +141,7 @@ class UpdatesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[admin_windows_updates.AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property updates in admin
         Args:
@@ -149,8 +149,8 @@ class UpdatesRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -163,58 +163,58 @@ class UpdatesRequestBuilder():
         return request_info
     
     @property
-    def catalog(self) -> catalog_request_builder.CatalogRequestBuilder:
+    def catalog(self) -> CatalogRequestBuilder:
         """
         Provides operations to manage the catalog property of the microsoft.graph.adminWindowsUpdates entity.
         """
-        from .catalog import catalog_request_builder
+        from .catalog.catalog_request_builder import CatalogRequestBuilder
 
-        return catalog_request_builder.CatalogRequestBuilder(self.request_adapter, self.path_parameters)
+        return CatalogRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def deployment_audiences(self) -> deployment_audiences_request_builder.DeploymentAudiencesRequestBuilder:
+    def deployment_audiences(self) -> DeploymentAudiencesRequestBuilder:
         """
         Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
         """
-        from .deployment_audiences import deployment_audiences_request_builder
+        from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
 
-        return deployment_audiences_request_builder.DeploymentAudiencesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeploymentAudiencesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def deployments(self) -> deployments_request_builder.DeploymentsRequestBuilder:
+    def deployments(self) -> DeploymentsRequestBuilder:
         """
         Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
         """
-        from .deployments import deployments_request_builder
+        from .deployments.deployments_request_builder import DeploymentsRequestBuilder
 
-        return deployments_request_builder.DeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def resource_connections(self) -> resource_connections_request_builder.ResourceConnectionsRequestBuilder:
+    def resource_connections(self) -> ResourceConnectionsRequestBuilder:
         """
         Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
         """
-        from .resource_connections import resource_connections_request_builder
+        from .resource_connections.resource_connections_request_builder import ResourceConnectionsRequestBuilder
 
-        return resource_connections_request_builder.ResourceConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourceConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def updatable_assets(self) -> updatable_assets_request_builder.UpdatableAssetsRequestBuilder:
+    def updatable_assets(self) -> UpdatableAssetsRequestBuilder:
         """
         Provides operations to manage the updatableAssets property of the microsoft.graph.adminWindowsUpdates entity.
         """
-        from .updatable_assets import updatable_assets_request_builder
+        from .updatable_assets.updatable_assets_request_builder import UpdatableAssetsRequestBuilder
 
-        return updatable_assets_request_builder.UpdatableAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdatableAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_policies(self) -> update_policies_request_builder.UpdatePoliciesRequestBuilder:
+    def update_policies(self) -> UpdatePoliciesRequestBuilder:
         """
         Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
         """
-        from .update_policies import update_policies_request_builder
+        from .update_policies.update_policies_request_builder import UpdatePoliciesRequestBuilder
 
-        return update_policies_request_builder.UpdatePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdatePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UpdatesRequestBuilderDeleteRequestConfiguration():
@@ -240,8 +240,8 @@ class UpdatesRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

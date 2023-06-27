@@ -1,46 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import directory_object
+    from .directory_object import DirectoryObject
 
-from . import directory_object
+from .directory_object import DirectoryObject
 
-class Endpoint(directory_object.DirectoryObject):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new endpoint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.endpoint"
-        # Describes the capability that is associated with this resource. (e.g. Messages, Conversations, etc.) Not nullable. Read-only.
-        self._capability: Optional[str] = None
-        # Application id of the publishing underlying service. Not nullable. Read-only.
-        self._provider_id: Optional[str] = None
-        # Name of the publishing underlying service. Read-only.
-        self._provider_name: Optional[str] = None
-        # For Microsoft 365 groups, this is set to a well-known name for the resource (e.g. Yammer.FeedURL etc.). Not nullable. Read-only.
-        self._provider_resource_id: Optional[str] = None
-        # URL of the published resource. Not nullable. Read-only.
-        self._uri: Optional[str] = None
-    
-    @property
-    def capability(self,) -> Optional[str]:
-        """
-        Gets the capability property value. Describes the capability that is associated with this resource. (e.g. Messages, Conversations, etc.) Not nullable. Read-only.
-        Returns: Optional[str]
-        """
-        return self._capability
-    
-    @capability.setter
-    def capability(self,value: Optional[str] = None) -> None:
-        """
-        Sets the capability property value. Describes the capability that is associated with this resource. (e.g. Messages, Conversations, etc.) Not nullable. Read-only.
-        Args:
-            value: Value to set for the capability property.
-        """
-        self._capability = value
+@dataclass
+class Endpoint(DirectoryObject):
+    odata_type = "#microsoft.graph.endpoint"
+    # Describes the capability that is associated with this resource. (e.g. Messages, Conversations, etc.) Not nullable. Read-only.
+    capability: Optional[str] = None
+    # Application id of the publishing underlying service. Not nullable. Read-only.
+    provider_id: Optional[str] = None
+    # Name of the publishing underlying service. Read-only.
+    provider_name: Optional[str] = None
+    # For Microsoft 365 groups, this is set to a well-known name for the resource (e.g. Yammer.FeedURL etc.). Not nullable. Read-only.
+    provider_resource_id: Optional[str] = None
+    # URL of the published resource. Not nullable. Read-only.
+    uri: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Endpoint:
@@ -50,8 +30,8 @@ class Endpoint(directory_object.DirectoryObject):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: Endpoint
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Endpoint()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -59,7 +39,9 @@ class Endpoint(directory_object.DirectoryObject):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import directory_object
+        from .directory_object import DirectoryObject
+
+        from .directory_object import DirectoryObject
 
         fields: Dict[str, Callable[[Any], None]] = {
             "capability": lambda n : setattr(self, 'capability', n.get_str_value()),
@@ -72,87 +54,19 @@ class Endpoint(directory_object.DirectoryObject):
         fields.update(super_fields)
         return fields
     
-    @property
-    def provider_id(self,) -> Optional[str]:
-        """
-        Gets the providerId property value. Application id of the publishing underlying service. Not nullable. Read-only.
-        Returns: Optional[str]
-        """
-        return self._provider_id
-    
-    @provider_id.setter
-    def provider_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the providerId property value. Application id of the publishing underlying service. Not nullable. Read-only.
-        Args:
-            value: Value to set for the provider_id property.
-        """
-        self._provider_id = value
-    
-    @property
-    def provider_name(self,) -> Optional[str]:
-        """
-        Gets the providerName property value. Name of the publishing underlying service. Read-only.
-        Returns: Optional[str]
-        """
-        return self._provider_name
-    
-    @provider_name.setter
-    def provider_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the providerName property value. Name of the publishing underlying service. Read-only.
-        Args:
-            value: Value to set for the provider_name property.
-        """
-        self._provider_name = value
-    
-    @property
-    def provider_resource_id(self,) -> Optional[str]:
-        """
-        Gets the providerResourceId property value. For Microsoft 365 groups, this is set to a well-known name for the resource (e.g. Yammer.FeedURL etc.). Not nullable. Read-only.
-        Returns: Optional[str]
-        """
-        return self._provider_resource_id
-    
-    @provider_resource_id.setter
-    def provider_resource_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the providerResourceId property value. For Microsoft 365 groups, this is set to a well-known name for the resource (e.g. Yammer.FeedURL etc.). Not nullable. Read-only.
-        Args:
-            value: Value to set for the provider_resource_id property.
-        """
-        self._provider_resource_id = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("capability", self.capability)
         writer.write_str_value("providerId", self.provider_id)
         writer.write_str_value("providerName", self.provider_name)
         writer.write_str_value("providerResourceId", self.provider_resource_id)
         writer.write_str_value("uri", self.uri)
-    
-    @property
-    def uri(self,) -> Optional[str]:
-        """
-        Gets the uri property value. URL of the published resource. Not nullable. Read-only.
-        Returns: Optional[str]
-        """
-        return self._uri
-    
-    @uri.setter
-    def uri(self,value: Optional[str] = None) -> None:
-        """
-        Sets the uri property value. URL of the published resource. Not nullable. Read-only.
-        Args:
-            value: Value to set for the uri property.
-        """
-        self._uri = value
     
 

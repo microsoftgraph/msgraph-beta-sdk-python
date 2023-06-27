@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import admin
-    from ..models.o_data_errors import o_data_error
-    from .edge import edge_request_builder
-    from .report_settings import report_settings_request_builder
-    from .service_announcement import service_announcement_request_builder
-    from .sharepoint import sharepoint_request_builder
-    from .windows import windows_request_builder
+    from ..models.admin import Admin
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .edge.edge_request_builder import EdgeRequestBuilder
+    from .report_settings.report_settings_request_builder import ReportSettingsRequestBuilder
+    from .service_announcement.service_announcement_request_builder import ServiceAnnouncementRequestBuilder
+    from .sharepoint.sharepoint_request_builder import SharepointRequestBuilder
+    from .windows.windows_request_builder import WindowsRequestBuilder
 
 class AdminRequestBuilder():
     """
@@ -29,10 +29,10 @@ class AdminRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/admin{?%24select,%24expand}"
 
@@ -40,52 +40,52 @@ class AdminRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None) -> Optional[admin.Admin]:
+    async def get(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None) -> Optional[Admin]:
         """
         Get admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[admin.Admin]
+        Returns: Optional[Admin]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import admin
+        from ..models.admin import Admin
 
-        return await self.request_adapter.send_async(request_info, admin.Admin, error_mapping)
+        return await self.request_adapter.send_async(request_info, Admin, error_mapping)
     
-    async def patch(self,body: Optional[admin.Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None) -> Optional[admin.Admin]:
+    async def patch(self,body: Optional[Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None) -> Optional[Admin]:
         """
         Update admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[admin.Admin]
+        Returns: Optional[Admin]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import admin
+        from ..models.admin import Admin
 
-        return await self.request_adapter.send_async(request_info, admin.Admin, error_mapping)
+        return await self.request_adapter.send_async(request_info, Admin, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -105,7 +105,7 @@ class AdminRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[admin.Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update admin
         Args:
@@ -113,8 +113,8 @@ class AdminRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -127,49 +127,49 @@ class AdminRequestBuilder():
         return request_info
     
     @property
-    def edge(self) -> edge_request_builder.EdgeRequestBuilder:
+    def edge(self) -> EdgeRequestBuilder:
         """
         Provides operations to manage the edge property of the microsoft.graph.admin entity.
         """
-        from .edge import edge_request_builder
+        from .edge.edge_request_builder import EdgeRequestBuilder
 
-        return edge_request_builder.EdgeRequestBuilder(self.request_adapter, self.path_parameters)
+        return EdgeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def report_settings(self) -> report_settings_request_builder.ReportSettingsRequestBuilder:
+    def report_settings(self) -> ReportSettingsRequestBuilder:
         """
         Provides operations to manage the reportSettings property of the microsoft.graph.admin entity.
         """
-        from .report_settings import report_settings_request_builder
+        from .report_settings.report_settings_request_builder import ReportSettingsRequestBuilder
 
-        return report_settings_request_builder.ReportSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReportSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def service_announcement(self) -> service_announcement_request_builder.ServiceAnnouncementRequestBuilder:
+    def service_announcement(self) -> ServiceAnnouncementRequestBuilder:
         """
         Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.
         """
-        from .service_announcement import service_announcement_request_builder
+        from .service_announcement.service_announcement_request_builder import ServiceAnnouncementRequestBuilder
 
-        return service_announcement_request_builder.ServiceAnnouncementRequestBuilder(self.request_adapter, self.path_parameters)
+        return ServiceAnnouncementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sharepoint(self) -> sharepoint_request_builder.SharepointRequestBuilder:
+    def sharepoint(self) -> SharepointRequestBuilder:
         """
         Provides operations to manage the sharepoint property of the microsoft.graph.admin entity.
         """
-        from .sharepoint import sharepoint_request_builder
+        from .sharepoint.sharepoint_request_builder import SharepointRequestBuilder
 
-        return sharepoint_request_builder.SharepointRequestBuilder(self.request_adapter, self.path_parameters)
+        return SharepointRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows(self) -> windows_request_builder.WindowsRequestBuilder:
+    def windows(self) -> WindowsRequestBuilder:
         """
         Provides operations to manage the windows property of the microsoft.graph.admin entity.
         """
-        from .windows import windows_request_builder
+        from .windows.windows_request_builder import WindowsRequestBuilder
 
-        return windows_request_builder.WindowsRequestBuilder(self.request_adapter, self.path_parameters)
+        return WindowsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AdminRequestBuilderGetQueryParameters():
@@ -183,8 +183,8 @@ class AdminRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":

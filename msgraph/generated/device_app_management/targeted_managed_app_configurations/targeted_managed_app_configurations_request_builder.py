@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import targeted_managed_app_configuration, targeted_managed_app_configuration_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .has_payload_links import has_payload_links_request_builder
-    from .item import targeted_managed_app_configuration_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.targeted_managed_app_configuration import TargetedManagedAppConfiguration
+    from ...models.targeted_managed_app_configuration_collection_response import TargetedManagedAppConfigurationCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
+    from .item.targeted_managed_app_configuration_item_request_builder import TargetedManagedAppConfigurationItemRequestBuilder
 
 class TargetedManagedAppConfigurationsRequestBuilder():
     """
@@ -27,10 +28,10 @@ class TargetedManagedAppConfigurationsRequestBuilder():
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
+        if not path_parameters:
+            raise TypeError("path_parameters cannot be null.")
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
         # Url template to use to build the URL for the current request builder
         self.url_template: str = "{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
 
@@ -38,67 +39,67 @@ class TargetedManagedAppConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def by_targeted_managed_app_configuration_id(self,targeted_managed_app_configuration_id: str) -> targeted_managed_app_configuration_item_request_builder.TargetedManagedAppConfigurationItemRequestBuilder:
+    def by_targeted_managed_app_configuration_id(self,targeted_managed_app_configuration_id: str) -> TargetedManagedAppConfigurationItemRequestBuilder:
         """
         Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
         Args:
             targeted_managed_app_configuration_id: Unique identifier of the item
-        Returns: targeted_managed_app_configuration_item_request_builder.TargetedManagedAppConfigurationItemRequestBuilder
+        Returns: TargetedManagedAppConfigurationItemRequestBuilder
         """
-        if targeted_managed_app_configuration_id is None:
-            raise Exception("targeted_managed_app_configuration_id cannot be undefined")
-        from .item import targeted_managed_app_configuration_item_request_builder
+        if not targeted_managed_app_configuration_id:
+            raise TypeError("targeted_managed_app_configuration_id cannot be null.")
+        from .item.targeted_managed_app_configuration_item_request_builder import TargetedManagedAppConfigurationItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["targetedManagedAppConfiguration%2Did"] = targeted_managed_app_configuration_id
-        return targeted_managed_app_configuration_item_request_builder.TargetedManagedAppConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return TargetedManagedAppConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TargetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[targeted_managed_app_configuration_collection_response.TargetedManagedAppConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[TargetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[TargetedManagedAppConfigurationCollectionResponse]:
         """
         Targeted managed app configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[targeted_managed_app_configuration_collection_response.TargetedManagedAppConfigurationCollectionResponse]
+        Returns: Optional[TargetedManagedAppConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import targeted_managed_app_configuration_collection_response
+        from ...models.targeted_managed_app_configuration_collection_response import TargetedManagedAppConfigurationCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, targeted_managed_app_configuration_collection_response.TargetedManagedAppConfigurationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, TargetedManagedAppConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration] = None, request_configuration: Optional[TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration]:
+    async def post(self,body: Optional[TargetedManagedAppConfiguration] = None, request_configuration: Optional[TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[TargetedManagedAppConfiguration]:
         """
         Create new navigation property to targetedManagedAppConfigurations for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration]
+        Returns: Optional[TargetedManagedAppConfiguration]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import targeted_managed_app_configuration
+        from ...models.targeted_managed_app_configuration import TargetedManagedAppConfiguration
 
-        return await self.request_adapter.send_async(request_info, targeted_managed_app_configuration.TargetedManagedAppConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, TargetedManagedAppConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TargetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -118,7 +119,7 @@ class TargetedManagedAppConfigurationsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration] = None, request_configuration: Optional[TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TargetedManagedAppConfiguration] = None, request_configuration: Optional[TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to targetedManagedAppConfigurations for deviceAppManagement
         Args:
@@ -126,8 +127,8 @@ class TargetedManagedAppConfigurationsRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +141,22 @@ class TargetedManagedAppConfigurationsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def has_payload_links(self) -> HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        from .has_payload_links import has_payload_links_request_builder
+        from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
 
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TargetedManagedAppConfigurationsRequestBuilderGetQueryParameters():
@@ -169,8 +170,8 @@ class TargetedManagedAppConfigurationsRequestBuilder():
                 originalName: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":

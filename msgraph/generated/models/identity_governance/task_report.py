@@ -1,63 +1,46 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import lifecycle_workflow_processing_status, task, task_definition, task_processing_result
-    from .. import entity
+    from ..entity import Entity
+    from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
+    from .task import Task
+    from .task_definition import TaskDefinition
+    from .task_processing_result import TaskProcessingResult
 
-from .. import entity
+from ..entity import Entity
 
-class TaskReport(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new taskReport and sets the default values.
-        """
-        super().__init__()
-        # The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        self._completed_date_time: Optional[datetime] = None
-        # The number of users in the run execution for which the associated task failed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        self._failed_users_count: Optional[int] = None
-        # The date and time that the task report was last updated.
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The processingStatus property
-        self._processing_status: Optional[lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus] = None
-        # The unique identifier of the associated run.
-        self._run_id: Optional[str] = None
-        # The date time that the associated run started. Value is null if the run has not started.
-        self._started_date_time: Optional[datetime] = None
-        # The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        self._successful_users_count: Optional[int] = None
-        # The task property
-        self._task: Optional[task.Task] = None
-        # The taskDefinition property
-        self._task_definition: Optional[task_definition.TaskDefinition] = None
-        # The related lifecycle workflow taskProcessingResults.
-        self._task_processing_results: Optional[List[task_processing_result.TaskProcessingResult]] = None
-        # The total number of users in the run execution for which the associated task was scheduled to execute.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        self._total_users_count: Optional[int] = None
-        # The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        self._unprocessed_users_count: Optional[int] = None
-    
-    @property
-    def completed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[datetime]
-        """
-        return self._completed_date_time
-    
-    @completed_date_time.setter
-    def completed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the completed_date_time property.
-        """
-        self._completed_date_time = value
+@dataclass
+class TaskReport(Entity):
+    # The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    completed_date_time: Optional[datetime.datetime] = None
+    # The number of users in the run execution for which the associated task failed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    failed_users_count: Optional[int] = None
+    # The date and time that the task report was last updated.
+    last_updated_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The processingStatus property
+    processing_status: Optional[LifecycleWorkflowProcessingStatus] = None
+    # The unique identifier of the associated run.
+    run_id: Optional[str] = None
+    # The date time that the associated run started. Value is null if the run has not started.
+    started_date_time: Optional[datetime.datetime] = None
+    # The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    successful_users_count: Optional[int] = None
+    # The task property
+    task: Optional[Task] = None
+    # The taskDefinition property
+    task_definition: Optional[TaskDefinition] = None
+    # The related lifecycle workflow taskProcessingResults.
+    task_processing_results: Optional[List[TaskProcessingResult]] = None
+    # The total number of users in the run execution for which the associated task was scheduled to execute.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    total_users_count: Optional[int] = None
+    # The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    unprocessed_users_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TaskReport:
@@ -67,46 +50,38 @@ class TaskReport(entity.Entity):
             parseNode: The parse node to use to read the discriminator value and create the object
         Returns: TaskReport
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return TaskReport()
-    
-    @property
-    def failed_users_count(self,) -> Optional[int]:
-        """
-        Gets the failedUsersCount property value. The number of users in the run execution for which the associated task failed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[int]
-        """
-        return self._failed_users_count
-    
-    @failed_users_count.setter
-    def failed_users_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the failedUsersCount property value. The number of users in the run execution for which the associated task failed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the failed_users_count property.
-        """
-        self._failed_users_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import lifecycle_workflow_processing_status, task, task_definition, task_processing_result
-        from .. import entity
+        from ..entity import Entity
+        from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
+        from .task import Task
+        from .task_definition import TaskDefinition
+        from .task_processing_result import TaskProcessingResult
+
+        from ..entity import Entity
+        from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
+        from .task import Task
+        from .task_definition import TaskDefinition
+        from .task_processing_result import TaskProcessingResult
 
         fields: Dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "failedUsersCount": lambda n : setattr(self, 'failed_users_count', n.get_int_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus)),
+            "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(LifecycleWorkflowProcessingStatus)),
             "runId": lambda n : setattr(self, 'run_id', n.get_str_value()),
             "startedDateTime": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
             "successfulUsersCount": lambda n : setattr(self, 'successful_users_count', n.get_int_value()),
-            "task": lambda n : setattr(self, 'task', n.get_object_value(task.Task)),
-            "taskDefinition": lambda n : setattr(self, 'task_definition', n.get_object_value(task_definition.TaskDefinition)),
-            "taskProcessingResults": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(task_processing_result.TaskProcessingResult)),
+            "task": lambda n : setattr(self, 'task', n.get_object_value(Task)),
+            "taskDefinition": lambda n : setattr(self, 'task_definition', n.get_object_value(TaskDefinition)),
+            "taskProcessingResults": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(TaskProcessingResult)),
             "totalUsersCount": lambda n : setattr(self, 'total_users_count', n.get_int_value()),
             "unprocessedUsersCount": lambda n : setattr(self, 'unprocessed_users_count', n.get_int_value()),
         }
@@ -114,196 +89,26 @@ class TaskReport(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_updated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastUpdatedDateTime property value. The date and time that the task report was last updated.
-        Returns: Optional[datetime]
-        """
-        return self._last_updated_date_time
-    
-    @last_updated_date_time.setter
-    def last_updated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastUpdatedDateTime property value. The date and time that the task report was last updated.
-        Args:
-            value: Value to set for the last_updated_date_time property.
-        """
-        self._last_updated_date_time = value
-    
-    @property
-    def processing_status(self,) -> Optional[lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus]:
-        """
-        Gets the processingStatus property value. The processingStatus property
-        Returns: Optional[lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus]
-        """
-        return self._processing_status
-    
-    @processing_status.setter
-    def processing_status(self,value: Optional[lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus] = None) -> None:
-        """
-        Sets the processingStatus property value. The processingStatus property
-        Args:
-            value: Value to set for the processing_status property.
-        """
-        self._processing_status = value
-    
-    @property
-    def run_id(self,) -> Optional[str]:
-        """
-        Gets the runId property value. The unique identifier of the associated run.
-        Returns: Optional[str]
-        """
-        return self._run_id
-    
-    @run_id.setter
-    def run_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the runId property value. The unique identifier of the associated run.
-        Args:
-            value: Value to set for the run_id property.
-        """
-        self._run_id = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_datetime_value("completedDateTime", self.completed_date_time)
+        writer.write_datetime_value()("completedDateTime", self.completed_date_time)
         writer.write_int_value("failedUsersCount", self.failed_users_count)
-        writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
+        writer.write_datetime_value()("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_enum_value("processingStatus", self.processing_status)
         writer.write_str_value("runId", self.run_id)
-        writer.write_datetime_value("startedDateTime", self.started_date_time)
+        writer.write_datetime_value()("startedDateTime", self.started_date_time)
         writer.write_int_value("successfulUsersCount", self.successful_users_count)
         writer.write_object_value("task", self.task)
         writer.write_object_value("taskDefinition", self.task_definition)
         writer.write_collection_of_object_values("taskProcessingResults", self.task_processing_results)
         writer.write_int_value("totalUsersCount", self.total_users_count)
         writer.write_int_value("unprocessedUsersCount", self.unprocessed_users_count)
-    
-    @property
-    def started_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the startedDateTime property value. The date time that the associated run started. Value is null if the run has not started.
-        Returns: Optional[datetime]
-        """
-        return self._started_date_time
-    
-    @started_date_time.setter
-    def started_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the startedDateTime property value. The date time that the associated run started. Value is null if the run has not started.
-        Args:
-            value: Value to set for the started_date_time property.
-        """
-        self._started_date_time = value
-    
-    @property
-    def successful_users_count(self,) -> Optional[int]:
-        """
-        Gets the successfulUsersCount property value. The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[int]
-        """
-        return self._successful_users_count
-    
-    @successful_users_count.setter
-    def successful_users_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the successfulUsersCount property value. The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the successful_users_count property.
-        """
-        self._successful_users_count = value
-    
-    @property
-    def task(self,) -> Optional[task.Task]:
-        """
-        Gets the task property value. The task property
-        Returns: Optional[task.Task]
-        """
-        return self._task
-    
-    @task.setter
-    def task(self,value: Optional[task.Task] = None) -> None:
-        """
-        Sets the task property value. The task property
-        Args:
-            value: Value to set for the task property.
-        """
-        self._task = value
-    
-    @property
-    def task_definition(self,) -> Optional[task_definition.TaskDefinition]:
-        """
-        Gets the taskDefinition property value. The taskDefinition property
-        Returns: Optional[task_definition.TaskDefinition]
-        """
-        return self._task_definition
-    
-    @task_definition.setter
-    def task_definition(self,value: Optional[task_definition.TaskDefinition] = None) -> None:
-        """
-        Sets the taskDefinition property value. The taskDefinition property
-        Args:
-            value: Value to set for the task_definition property.
-        """
-        self._task_definition = value
-    
-    @property
-    def task_processing_results(self,) -> Optional[List[task_processing_result.TaskProcessingResult]]:
-        """
-        Gets the taskProcessingResults property value. The related lifecycle workflow taskProcessingResults.
-        Returns: Optional[List[task_processing_result.TaskProcessingResult]]
-        """
-        return self._task_processing_results
-    
-    @task_processing_results.setter
-    def task_processing_results(self,value: Optional[List[task_processing_result.TaskProcessingResult]] = None) -> None:
-        """
-        Sets the taskProcessingResults property value. The related lifecycle workflow taskProcessingResults.
-        Args:
-            value: Value to set for the task_processing_results property.
-        """
-        self._task_processing_results = value
-    
-    @property
-    def total_users_count(self,) -> Optional[int]:
-        """
-        Gets the totalUsersCount property value. The total number of users in the run execution for which the associated task was scheduled to execute.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[int]
-        """
-        return self._total_users_count
-    
-    @total_users_count.setter
-    def total_users_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalUsersCount property value. The total number of users in the run execution for which the associated task was scheduled to execute.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the total_users_count property.
-        """
-        self._total_users_count = value
-    
-    @property
-    def unprocessed_users_count(self,) -> Optional[int]:
-        """
-        Gets the unprocessedUsersCount property value. The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[int]
-        """
-        return self._unprocessed_users_count
-    
-    @unprocessed_users_count.setter
-    def unprocessed_users_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the unprocessedUsersCount property value. The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the unprocessed_users_count property.
-        """
-        self._unprocessed_users_count = value
     
 
