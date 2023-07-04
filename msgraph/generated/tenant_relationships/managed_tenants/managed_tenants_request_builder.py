@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,47 +11,47 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.managed_tenants import managed_tenant
-    from ...models.o_data_errors import o_data_error
-    from .aggregated_policy_compliances import aggregated_policy_compliances_request_builder
-    from .app_performances import app_performances_request_builder
-    from .audit_events import audit_events_request_builder
-    from .cloud_pc_connections import cloud_pc_connections_request_builder
-    from .cloud_pc_devices import cloud_pc_devices_request_builder
-    from .cloud_pcs_overview import cloud_pcs_overview_request_builder
-    from .conditional_access_policy_coverages import conditional_access_policy_coverages_request_builder
-    from .credential_user_registrations_summaries import credential_user_registrations_summaries_request_builder
-    from .device_app_performances import device_app_performances_request_builder
-    from .device_compliance_policy_setting_state_summaries import device_compliance_policy_setting_state_summaries_request_builder
-    from .device_health_statuses import device_health_statuses_request_builder
-    from .managed_device_compliances import managed_device_compliances_request_builder
-    from .managed_device_compliance_trends import managed_device_compliance_trends_request_builder
-    from .managed_tenant_alert_logs import managed_tenant_alert_logs_request_builder
-    from .managed_tenant_alert_rule_definitions import managed_tenant_alert_rule_definitions_request_builder
-    from .managed_tenant_alert_rules import managed_tenant_alert_rules_request_builder
-    from .managed_tenant_alerts import managed_tenant_alerts_request_builder
-    from .managed_tenant_api_notifications import managed_tenant_api_notifications_request_builder
-    from .managed_tenant_email_notifications import managed_tenant_email_notifications_request_builder
-    from .managed_tenant_ticketing_endpoints import managed_tenant_ticketing_endpoints_request_builder
-    from .management_actions import management_actions_request_builder
-    from .management_action_tenant_deployment_statuses import management_action_tenant_deployment_statuses_request_builder
-    from .management_intents import management_intents_request_builder
-    from .management_template_collections import management_template_collections_request_builder
-    from .management_template_collection_tenant_summaries import management_template_collection_tenant_summaries_request_builder
-    from .management_templates import management_templates_request_builder
-    from .management_template_steps import management_template_steps_request_builder
-    from .management_template_step_tenant_summaries import management_template_step_tenant_summaries_request_builder
-    from .management_template_step_versions import management_template_step_versions_request_builder
-    from .my_roles import my_roles_request_builder
-    from .tenant_groups import tenant_groups_request_builder
-    from .tenants import tenants_request_builder
-    from .tenants_customized_information import tenants_customized_information_request_builder
-    from .tenants_detailed_information import tenants_detailed_information_request_builder
-    from .tenant_tags import tenant_tags_request_builder
-    from .windows_device_malware_states import windows_device_malware_states_request_builder
-    from .windows_protection_states import windows_protection_states_request_builder
+    from ...models.managed_tenants.managed_tenant import ManagedTenant
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .aggregated_policy_compliances.aggregated_policy_compliances_request_builder import AggregatedPolicyCompliancesRequestBuilder
+    from .app_performances.app_performances_request_builder import AppPerformancesRequestBuilder
+    from .audit_events.audit_events_request_builder import AuditEventsRequestBuilder
+    from .cloud_pc_connections.cloud_pc_connections_request_builder import CloudPcConnectionsRequestBuilder
+    from .cloud_pc_devices.cloud_pc_devices_request_builder import CloudPcDevicesRequestBuilder
+    from .cloud_pcs_overview.cloud_pcs_overview_request_builder import CloudPcsOverviewRequestBuilder
+    from .conditional_access_policy_coverages.conditional_access_policy_coverages_request_builder import ConditionalAccessPolicyCoveragesRequestBuilder
+    from .credential_user_registrations_summaries.credential_user_registrations_summaries_request_builder import CredentialUserRegistrationsSummariesRequestBuilder
+    from .device_app_performances.device_app_performances_request_builder import DeviceAppPerformancesRequestBuilder
+    from .device_compliance_policy_setting_state_summaries.device_compliance_policy_setting_state_summaries_request_builder import DeviceCompliancePolicySettingStateSummariesRequestBuilder
+    from .device_health_statuses.device_health_statuses_request_builder import DeviceHealthStatusesRequestBuilder
+    from .managed_device_compliances.managed_device_compliances_request_builder import ManagedDeviceCompliancesRequestBuilder
+    from .managed_device_compliance_trends.managed_device_compliance_trends_request_builder import ManagedDeviceComplianceTrendsRequestBuilder
+    from .managed_tenant_alert_logs.managed_tenant_alert_logs_request_builder import ManagedTenantAlertLogsRequestBuilder
+    from .managed_tenant_alert_rule_definitions.managed_tenant_alert_rule_definitions_request_builder import ManagedTenantAlertRuleDefinitionsRequestBuilder
+    from .managed_tenant_alert_rules.managed_tenant_alert_rules_request_builder import ManagedTenantAlertRulesRequestBuilder
+    from .managed_tenant_alerts.managed_tenant_alerts_request_builder import ManagedTenantAlertsRequestBuilder
+    from .managed_tenant_api_notifications.managed_tenant_api_notifications_request_builder import ManagedTenantApiNotificationsRequestBuilder
+    from .managed_tenant_email_notifications.managed_tenant_email_notifications_request_builder import ManagedTenantEmailNotificationsRequestBuilder
+    from .managed_tenant_ticketing_endpoints.managed_tenant_ticketing_endpoints_request_builder import ManagedTenantTicketingEndpointsRequestBuilder
+    from .management_actions.management_actions_request_builder import ManagementActionsRequestBuilder
+    from .management_action_tenant_deployment_statuses.management_action_tenant_deployment_statuses_request_builder import ManagementActionTenantDeploymentStatusesRequestBuilder
+    from .management_intents.management_intents_request_builder import ManagementIntentsRequestBuilder
+    from .management_template_collections.management_template_collections_request_builder import ManagementTemplateCollectionsRequestBuilder
+    from .management_template_collection_tenant_summaries.management_template_collection_tenant_summaries_request_builder import ManagementTemplateCollectionTenantSummariesRequestBuilder
+    from .management_templates.management_templates_request_builder import ManagementTemplatesRequestBuilder
+    from .management_template_steps.management_template_steps_request_builder import ManagementTemplateStepsRequestBuilder
+    from .management_template_step_tenant_summaries.management_template_step_tenant_summaries_request_builder import ManagementTemplateStepTenantSummariesRequestBuilder
+    from .management_template_step_versions.management_template_step_versions_request_builder import ManagementTemplateStepVersionsRequestBuilder
+    from .my_roles.my_roles_request_builder import MyRolesRequestBuilder
+    from .tenant_groups.tenant_groups_request_builder import TenantGroupsRequestBuilder
+    from .tenants.tenants_request_builder import TenantsRequestBuilder
+    from .tenants_customized_information.tenants_customized_information_request_builder import TenantsCustomizedInformationRequestBuilder
+    from .tenants_detailed_information.tenants_detailed_information_request_builder import TenantsDetailedInformationRequestBuilder
+    from .tenant_tags.tenant_tags_request_builder import TenantTagsRequestBuilder
+    from .windows_device_malware_states.windows_device_malware_states_request_builder import WindowsDeviceMalwareStatesRequestBuilder
+    from .windows_protection_states.windows_protection_states_request_builder import WindowsProtectionStatesRequestBuilder
 
-class ManagedTenantsRequestBuilder():
+class ManagedTenantsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the managedTenants property of the microsoft.graph.tenantRelationship entity.
     """
@@ -58,91 +59,82 @@ class ManagedTenantsRequestBuilder():
         """
         Instantiates a new ManagedTenantsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ManagedTenantsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managedTenants for tenantRelationships
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedTenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant.ManagedTenant]:
+    async def get(self,request_configuration: Optional[ManagedTenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedTenant]:
         """
         The operations available to interact with the multi-tenant management platform.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_tenant.ManagedTenant]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagedTenant]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.managed_tenants import managed_tenant
+        from ...models.managed_tenants.managed_tenant import ManagedTenant
 
-        return await self.request_adapter.send_async(request_info, managed_tenant.ManagedTenant, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedTenant, error_mapping)
     
-    async def patch(self,body: Optional[managed_tenant.ManagedTenant] = None, request_configuration: Optional[ManagedTenantsRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_tenant.ManagedTenant]:
+    async def patch(self,body: Optional[ManagedTenant] = None, request_configuration: Optional[ManagedTenantsRequestBuilderPatchRequestConfiguration] = None) -> Optional[ManagedTenant]:
         """
         Update the navigation property managedTenants in tenantRelationships
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_tenant.ManagedTenant]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagedTenant]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.managed_tenants import managed_tenant
+        from ...models.managed_tenants.managed_tenant import ManagedTenant
 
-        return await self.request_adapter.send_async(request_info, managed_tenant.ManagedTenant, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedTenant, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedTenantsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property managedTenants for tenantRelationships
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -158,7 +150,7 @@ class ManagedTenantsRequestBuilder():
         """
         The operations available to interact with the multi-tenant management platform.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -172,16 +164,16 @@ class ManagedTenantsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[managed_tenant.ManagedTenant] = None, request_configuration: Optional[ManagedTenantsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ManagedTenant] = None, request_configuration: Optional[ManagedTenantsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property managedTenants in tenantRelationships
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -194,349 +186,347 @@ class ManagedTenantsRequestBuilder():
         return request_info
     
     @property
-    def aggregated_policy_compliances(self) -> aggregated_policy_compliances_request_builder.AggregatedPolicyCompliancesRequestBuilder:
+    def aggregated_policy_compliances(self) -> AggregatedPolicyCompliancesRequestBuilder:
         """
         Provides operations to manage the aggregatedPolicyCompliances property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .aggregated_policy_compliances import aggregated_policy_compliances_request_builder
+        from .aggregated_policy_compliances.aggregated_policy_compliances_request_builder import AggregatedPolicyCompliancesRequestBuilder
 
-        return aggregated_policy_compliances_request_builder.AggregatedPolicyCompliancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AggregatedPolicyCompliancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app_performances(self) -> app_performances_request_builder.AppPerformancesRequestBuilder:
+    def app_performances(self) -> AppPerformancesRequestBuilder:
         """
         Provides operations to manage the appPerformances property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .app_performances import app_performances_request_builder
+        from .app_performances.app_performances_request_builder import AppPerformancesRequestBuilder
 
-        return app_performances_request_builder.AppPerformancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppPerformancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def audit_events(self) -> audit_events_request_builder.AuditEventsRequestBuilder:
+    def audit_events(self) -> AuditEventsRequestBuilder:
         """
         Provides operations to manage the auditEvents property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .audit_events import audit_events_request_builder
+        from .audit_events.audit_events_request_builder import AuditEventsRequestBuilder
 
-        return audit_events_request_builder.AuditEventsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AuditEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cloud_pc_connections(self) -> cloud_pc_connections_request_builder.CloudPcConnectionsRequestBuilder:
+    def cloud_pc_connections(self) -> CloudPcConnectionsRequestBuilder:
         """
         Provides operations to manage the cloudPcConnections property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .cloud_pc_connections import cloud_pc_connections_request_builder
+        from .cloud_pc_connections.cloud_pc_connections_request_builder import CloudPcConnectionsRequestBuilder
 
-        return cloud_pc_connections_request_builder.CloudPcConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CloudPcConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cloud_pc_devices(self) -> cloud_pc_devices_request_builder.CloudPcDevicesRequestBuilder:
+    def cloud_pc_devices(self) -> CloudPcDevicesRequestBuilder:
         """
         Provides operations to manage the cloudPcDevices property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .cloud_pc_devices import cloud_pc_devices_request_builder
+        from .cloud_pc_devices.cloud_pc_devices_request_builder import CloudPcDevicesRequestBuilder
 
-        return cloud_pc_devices_request_builder.CloudPcDevicesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CloudPcDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cloud_pcs_overview(self) -> cloud_pcs_overview_request_builder.CloudPcsOverviewRequestBuilder:
+    def cloud_pcs_overview(self) -> CloudPcsOverviewRequestBuilder:
         """
         Provides operations to manage the cloudPcsOverview property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .cloud_pcs_overview import cloud_pcs_overview_request_builder
+        from .cloud_pcs_overview.cloud_pcs_overview_request_builder import CloudPcsOverviewRequestBuilder
 
-        return cloud_pcs_overview_request_builder.CloudPcsOverviewRequestBuilder(self.request_adapter, self.path_parameters)
+        return CloudPcsOverviewRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def conditional_access_policy_coverages(self) -> conditional_access_policy_coverages_request_builder.ConditionalAccessPolicyCoveragesRequestBuilder:
+    def conditional_access_policy_coverages(self) -> ConditionalAccessPolicyCoveragesRequestBuilder:
         """
         Provides operations to manage the conditionalAccessPolicyCoverages property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .conditional_access_policy_coverages import conditional_access_policy_coverages_request_builder
+        from .conditional_access_policy_coverages.conditional_access_policy_coverages_request_builder import ConditionalAccessPolicyCoveragesRequestBuilder
 
-        return conditional_access_policy_coverages_request_builder.ConditionalAccessPolicyCoveragesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ConditionalAccessPolicyCoveragesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def credential_user_registrations_summaries(self) -> credential_user_registrations_summaries_request_builder.CredentialUserRegistrationsSummariesRequestBuilder:
+    def credential_user_registrations_summaries(self) -> CredentialUserRegistrationsSummariesRequestBuilder:
         """
         Provides operations to manage the credentialUserRegistrationsSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .credential_user_registrations_summaries import credential_user_registrations_summaries_request_builder
+        from .credential_user_registrations_summaries.credential_user_registrations_summaries_request_builder import CredentialUserRegistrationsSummariesRequestBuilder
 
-        return credential_user_registrations_summaries_request_builder.CredentialUserRegistrationsSummariesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CredentialUserRegistrationsSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_app_performances(self) -> device_app_performances_request_builder.DeviceAppPerformancesRequestBuilder:
+    def device_app_performances(self) -> DeviceAppPerformancesRequestBuilder:
         """
         Provides operations to manage the deviceAppPerformances property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .device_app_performances import device_app_performances_request_builder
+        from .device_app_performances.device_app_performances_request_builder import DeviceAppPerformancesRequestBuilder
 
-        return device_app_performances_request_builder.DeviceAppPerformancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceAppPerformancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_compliance_policy_setting_state_summaries(self) -> device_compliance_policy_setting_state_summaries_request_builder.DeviceCompliancePolicySettingStateSummariesRequestBuilder:
+    def device_compliance_policy_setting_state_summaries(self) -> DeviceCompliancePolicySettingStateSummariesRequestBuilder:
         """
         Provides operations to manage the deviceCompliancePolicySettingStateSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .device_compliance_policy_setting_state_summaries import device_compliance_policy_setting_state_summaries_request_builder
+        from .device_compliance_policy_setting_state_summaries.device_compliance_policy_setting_state_summaries_request_builder import DeviceCompliancePolicySettingStateSummariesRequestBuilder
 
-        return device_compliance_policy_setting_state_summaries_request_builder.DeviceCompliancePolicySettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceCompliancePolicySettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_health_statuses(self) -> device_health_statuses_request_builder.DeviceHealthStatusesRequestBuilder:
+    def device_health_statuses(self) -> DeviceHealthStatusesRequestBuilder:
         """
         Provides operations to manage the deviceHealthStatuses property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .device_health_statuses import device_health_statuses_request_builder
+        from .device_health_statuses.device_health_statuses_request_builder import DeviceHealthStatusesRequestBuilder
 
-        return device_health_statuses_request_builder.DeviceHealthStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceHealthStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_device_compliances(self) -> managed_device_compliances_request_builder.ManagedDeviceCompliancesRequestBuilder:
+    def managed_device_compliances(self) -> ManagedDeviceCompliancesRequestBuilder:
         """
         Provides operations to manage the managedDeviceCompliances property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_device_compliances import managed_device_compliances_request_builder
+        from .managed_device_compliances.managed_device_compliances_request_builder import ManagedDeviceCompliancesRequestBuilder
 
-        return managed_device_compliances_request_builder.ManagedDeviceCompliancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedDeviceCompliancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_device_compliance_trends(self) -> managed_device_compliance_trends_request_builder.ManagedDeviceComplianceTrendsRequestBuilder:
+    def managed_device_compliance_trends(self) -> ManagedDeviceComplianceTrendsRequestBuilder:
         """
         Provides operations to manage the managedDeviceComplianceTrends property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_device_compliance_trends import managed_device_compliance_trends_request_builder
+        from .managed_device_compliance_trends.managed_device_compliance_trends_request_builder import ManagedDeviceComplianceTrendsRequestBuilder
 
-        return managed_device_compliance_trends_request_builder.ManagedDeviceComplianceTrendsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedDeviceComplianceTrendsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenant_alert_logs(self) -> managed_tenant_alert_logs_request_builder.ManagedTenantAlertLogsRequestBuilder:
+    def managed_tenant_alert_logs(self) -> ManagedTenantAlertLogsRequestBuilder:
         """
         Provides operations to manage the managedTenantAlertLogs property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_tenant_alert_logs import managed_tenant_alert_logs_request_builder
+        from .managed_tenant_alert_logs.managed_tenant_alert_logs_request_builder import ManagedTenantAlertLogsRequestBuilder
 
-        return managed_tenant_alert_logs_request_builder.ManagedTenantAlertLogsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedTenantAlertLogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenant_alert_rule_definitions(self) -> managed_tenant_alert_rule_definitions_request_builder.ManagedTenantAlertRuleDefinitionsRequestBuilder:
+    def managed_tenant_alert_rule_definitions(self) -> ManagedTenantAlertRuleDefinitionsRequestBuilder:
         """
         Provides operations to manage the managedTenantAlertRuleDefinitions property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_tenant_alert_rule_definitions import managed_tenant_alert_rule_definitions_request_builder
+        from .managed_tenant_alert_rule_definitions.managed_tenant_alert_rule_definitions_request_builder import ManagedTenantAlertRuleDefinitionsRequestBuilder
 
-        return managed_tenant_alert_rule_definitions_request_builder.ManagedTenantAlertRuleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedTenantAlertRuleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenant_alert_rules(self) -> managed_tenant_alert_rules_request_builder.ManagedTenantAlertRulesRequestBuilder:
+    def managed_tenant_alert_rules(self) -> ManagedTenantAlertRulesRequestBuilder:
         """
         Provides operations to manage the managedTenantAlertRules property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_tenant_alert_rules import managed_tenant_alert_rules_request_builder
+        from .managed_tenant_alert_rules.managed_tenant_alert_rules_request_builder import ManagedTenantAlertRulesRequestBuilder
 
-        return managed_tenant_alert_rules_request_builder.ManagedTenantAlertRulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedTenantAlertRulesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenant_alerts(self) -> managed_tenant_alerts_request_builder.ManagedTenantAlertsRequestBuilder:
+    def managed_tenant_alerts(self) -> ManagedTenantAlertsRequestBuilder:
         """
         Provides operations to manage the managedTenantAlerts property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_tenant_alerts import managed_tenant_alerts_request_builder
+        from .managed_tenant_alerts.managed_tenant_alerts_request_builder import ManagedTenantAlertsRequestBuilder
 
-        return managed_tenant_alerts_request_builder.ManagedTenantAlertsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedTenantAlertsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenant_api_notifications(self) -> managed_tenant_api_notifications_request_builder.ManagedTenantApiNotificationsRequestBuilder:
+    def managed_tenant_api_notifications(self) -> ManagedTenantApiNotificationsRequestBuilder:
         """
         Provides operations to manage the managedTenantApiNotifications property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_tenant_api_notifications import managed_tenant_api_notifications_request_builder
+        from .managed_tenant_api_notifications.managed_tenant_api_notifications_request_builder import ManagedTenantApiNotificationsRequestBuilder
 
-        return managed_tenant_api_notifications_request_builder.ManagedTenantApiNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedTenantApiNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenant_email_notifications(self) -> managed_tenant_email_notifications_request_builder.ManagedTenantEmailNotificationsRequestBuilder:
+    def managed_tenant_email_notifications(self) -> ManagedTenantEmailNotificationsRequestBuilder:
         """
         Provides operations to manage the managedTenantEmailNotifications property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_tenant_email_notifications import managed_tenant_email_notifications_request_builder
+        from .managed_tenant_email_notifications.managed_tenant_email_notifications_request_builder import ManagedTenantEmailNotificationsRequestBuilder
 
-        return managed_tenant_email_notifications_request_builder.ManagedTenantEmailNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedTenantEmailNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenant_ticketing_endpoints(self) -> managed_tenant_ticketing_endpoints_request_builder.ManagedTenantTicketingEndpointsRequestBuilder:
+    def managed_tenant_ticketing_endpoints(self) -> ManagedTenantTicketingEndpointsRequestBuilder:
         """
         Provides operations to manage the managedTenantTicketingEndpoints property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .managed_tenant_ticketing_endpoints import managed_tenant_ticketing_endpoints_request_builder
+        from .managed_tenant_ticketing_endpoints.managed_tenant_ticketing_endpoints_request_builder import ManagedTenantTicketingEndpointsRequestBuilder
 
-        return managed_tenant_ticketing_endpoints_request_builder.ManagedTenantTicketingEndpointsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagedTenantTicketingEndpointsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_actions(self) -> management_actions_request_builder.ManagementActionsRequestBuilder:
+    def management_actions(self) -> ManagementActionsRequestBuilder:
         """
         Provides operations to manage the managementActions property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_actions import management_actions_request_builder
+        from .management_actions.management_actions_request_builder import ManagementActionsRequestBuilder
 
-        return management_actions_request_builder.ManagementActionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_action_tenant_deployment_statuses(self) -> management_action_tenant_deployment_statuses_request_builder.ManagementActionTenantDeploymentStatusesRequestBuilder:
+    def management_action_tenant_deployment_statuses(self) -> ManagementActionTenantDeploymentStatusesRequestBuilder:
         """
         Provides operations to manage the managementActionTenantDeploymentStatuses property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_action_tenant_deployment_statuses import management_action_tenant_deployment_statuses_request_builder
+        from .management_action_tenant_deployment_statuses.management_action_tenant_deployment_statuses_request_builder import ManagementActionTenantDeploymentStatusesRequestBuilder
 
-        return management_action_tenant_deployment_statuses_request_builder.ManagementActionTenantDeploymentStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementActionTenantDeploymentStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_intents(self) -> management_intents_request_builder.ManagementIntentsRequestBuilder:
+    def management_intents(self) -> ManagementIntentsRequestBuilder:
         """
         Provides operations to manage the managementIntents property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_intents import management_intents_request_builder
+        from .management_intents.management_intents_request_builder import ManagementIntentsRequestBuilder
 
-        return management_intents_request_builder.ManagementIntentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementIntentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_template_collections(self) -> management_template_collections_request_builder.ManagementTemplateCollectionsRequestBuilder:
+    def management_template_collections(self) -> ManagementTemplateCollectionsRequestBuilder:
         """
         Provides operations to manage the managementTemplateCollections property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_template_collections import management_template_collections_request_builder
+        from .management_template_collections.management_template_collections_request_builder import ManagementTemplateCollectionsRequestBuilder
 
-        return management_template_collections_request_builder.ManagementTemplateCollectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementTemplateCollectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_template_collection_tenant_summaries(self) -> management_template_collection_tenant_summaries_request_builder.ManagementTemplateCollectionTenantSummariesRequestBuilder:
+    def management_template_collection_tenant_summaries(self) -> ManagementTemplateCollectionTenantSummariesRequestBuilder:
         """
         Provides operations to manage the managementTemplateCollectionTenantSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_template_collection_tenant_summaries import management_template_collection_tenant_summaries_request_builder
+        from .management_template_collection_tenant_summaries.management_template_collection_tenant_summaries_request_builder import ManagementTemplateCollectionTenantSummariesRequestBuilder
 
-        return management_template_collection_tenant_summaries_request_builder.ManagementTemplateCollectionTenantSummariesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementTemplateCollectionTenantSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_templates(self) -> management_templates_request_builder.ManagementTemplatesRequestBuilder:
+    def management_templates(self) -> ManagementTemplatesRequestBuilder:
         """
         Provides operations to manage the managementTemplates property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_templates import management_templates_request_builder
+        from .management_templates.management_templates_request_builder import ManagementTemplatesRequestBuilder
 
-        return management_templates_request_builder.ManagementTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_template_steps(self) -> management_template_steps_request_builder.ManagementTemplateStepsRequestBuilder:
+    def management_template_steps(self) -> ManagementTemplateStepsRequestBuilder:
         """
         Provides operations to manage the managementTemplateSteps property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_template_steps import management_template_steps_request_builder
+        from .management_template_steps.management_template_steps_request_builder import ManagementTemplateStepsRequestBuilder
 
-        return management_template_steps_request_builder.ManagementTemplateStepsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementTemplateStepsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_template_step_tenant_summaries(self) -> management_template_step_tenant_summaries_request_builder.ManagementTemplateStepTenantSummariesRequestBuilder:
+    def management_template_step_tenant_summaries(self) -> ManagementTemplateStepTenantSummariesRequestBuilder:
         """
         Provides operations to manage the managementTemplateStepTenantSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_template_step_tenant_summaries import management_template_step_tenant_summaries_request_builder
+        from .management_template_step_tenant_summaries.management_template_step_tenant_summaries_request_builder import ManagementTemplateStepTenantSummariesRequestBuilder
 
-        return management_template_step_tenant_summaries_request_builder.ManagementTemplateStepTenantSummariesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementTemplateStepTenantSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def management_template_step_versions(self) -> management_template_step_versions_request_builder.ManagementTemplateStepVersionsRequestBuilder:
+    def management_template_step_versions(self) -> ManagementTemplateStepVersionsRequestBuilder:
         """
         Provides operations to manage the managementTemplateStepVersions property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .management_template_step_versions import management_template_step_versions_request_builder
+        from .management_template_step_versions.management_template_step_versions_request_builder import ManagementTemplateStepVersionsRequestBuilder
 
-        return management_template_step_versions_request_builder.ManagementTemplateStepVersionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ManagementTemplateStepVersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def my_roles(self) -> my_roles_request_builder.MyRolesRequestBuilder:
+    def my_roles(self) -> MyRolesRequestBuilder:
         """
         Provides operations to manage the myRoles property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .my_roles import my_roles_request_builder
+        from .my_roles.my_roles_request_builder import MyRolesRequestBuilder
 
-        return my_roles_request_builder.MyRolesRequestBuilder(self.request_adapter, self.path_parameters)
+        return MyRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tenant_groups(self) -> tenant_groups_request_builder.TenantGroupsRequestBuilder:
+    def tenant_groups(self) -> TenantGroupsRequestBuilder:
         """
         Provides operations to manage the tenantGroups property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .tenant_groups import tenant_groups_request_builder
+        from .tenant_groups.tenant_groups_request_builder import TenantGroupsRequestBuilder
 
-        return tenant_groups_request_builder.TenantGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TenantGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tenants(self) -> tenants_request_builder.TenantsRequestBuilder:
+    def tenants(self) -> TenantsRequestBuilder:
         """
         Provides operations to manage the tenants property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .tenants import tenants_request_builder
+        from .tenants.tenants_request_builder import TenantsRequestBuilder
 
-        return tenants_request_builder.TenantsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TenantsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tenants_customized_information(self) -> tenants_customized_information_request_builder.TenantsCustomizedInformationRequestBuilder:
+    def tenants_customized_information(self) -> TenantsCustomizedInformationRequestBuilder:
         """
         Provides operations to manage the tenantsCustomizedInformation property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .tenants_customized_information import tenants_customized_information_request_builder
+        from .tenants_customized_information.tenants_customized_information_request_builder import TenantsCustomizedInformationRequestBuilder
 
-        return tenants_customized_information_request_builder.TenantsCustomizedInformationRequestBuilder(self.request_adapter, self.path_parameters)
+        return TenantsCustomizedInformationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tenants_detailed_information(self) -> tenants_detailed_information_request_builder.TenantsDetailedInformationRequestBuilder:
+    def tenants_detailed_information(self) -> TenantsDetailedInformationRequestBuilder:
         """
         Provides operations to manage the tenantsDetailedInformation property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .tenants_detailed_information import tenants_detailed_information_request_builder
+        from .tenants_detailed_information.tenants_detailed_information_request_builder import TenantsDetailedInformationRequestBuilder
 
-        return tenants_detailed_information_request_builder.TenantsDetailedInformationRequestBuilder(self.request_adapter, self.path_parameters)
+        return TenantsDetailedInformationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tenant_tags(self) -> tenant_tags_request_builder.TenantTagsRequestBuilder:
+    def tenant_tags(self) -> TenantTagsRequestBuilder:
         """
         Provides operations to manage the tenantTags property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .tenant_tags import tenant_tags_request_builder
+        from .tenant_tags.tenant_tags_request_builder import TenantTagsRequestBuilder
 
-        return tenant_tags_request_builder.TenantTagsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TenantTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_device_malware_states(self) -> windows_device_malware_states_request_builder.WindowsDeviceMalwareStatesRequestBuilder:
+    def windows_device_malware_states(self) -> WindowsDeviceMalwareStatesRequestBuilder:
         """
         Provides operations to manage the windowsDeviceMalwareStates property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .windows_device_malware_states import windows_device_malware_states_request_builder
+        from .windows_device_malware_states.windows_device_malware_states_request_builder import WindowsDeviceMalwareStatesRequestBuilder
 
-        return windows_device_malware_states_request_builder.WindowsDeviceMalwareStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return WindowsDeviceMalwareStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_protection_states(self) -> windows_protection_states_request_builder.WindowsProtectionStatesRequestBuilder:
+    def windows_protection_states(self) -> WindowsProtectionStatesRequestBuilder:
         """
         Provides operations to manage the windowsProtectionStates property of the microsoft.graph.managedTenants.managedTenant entity.
         """
-        from .windows_protection_states import windows_protection_states_request_builder
+        from .windows_protection_states.windows_protection_states_request_builder import WindowsProtectionStatesRequestBuilder
 
-        return windows_protection_states_request_builder.WindowsProtectionStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return WindowsProtectionStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagedTenantsRequestBuilderDeleteRequestConfiguration():
+    class ManagedTenantsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class ManagedTenantsRequestBuilderGetQueryParameters():
@@ -547,11 +537,11 @@ class ManagedTenantsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -565,31 +555,27 @@ class ManagedTenantsRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagedTenantsRequestBuilderGetRequestConfiguration():
+    class ManagedTenantsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ManagedTenantsRequestBuilder.ManagedTenantsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagedTenantsRequestBuilderPatchRequestConfiguration():
+    class ManagedTenantsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

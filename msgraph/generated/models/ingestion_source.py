@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IngestionSource(Enum):
+class IngestionSource(str, Enum):
     # Indicates unknown category
     Unknown = "unknown",
     # Indicates the category is ingested by IT admin with sufficient permissions through custom ingestion process

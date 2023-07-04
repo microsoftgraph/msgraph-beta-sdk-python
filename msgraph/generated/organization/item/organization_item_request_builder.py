@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,21 +11,21 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import organization
-    from ...models.o_data_errors import o_data_error
-    from .branding import branding_request_builder
-    from .certificate_based_auth_configuration import certificate_based_auth_configuration_request_builder
-    from .check_member_groups import check_member_groups_request_builder
-    from .check_member_objects import check_member_objects_request_builder
-    from .extensions import extensions_request_builder
-    from .get_member_groups import get_member_groups_request_builder
-    from .get_member_objects import get_member_objects_request_builder
-    from .partner_information import partner_information_request_builder
-    from .restore import restore_request_builder
-    from .set_mobile_device_management_authority import set_mobile_device_management_authority_request_builder
-    from .settings import settings_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.organization import Organization
+    from .branding.branding_request_builder import BrandingRequestBuilder
+    from .certificate_based_auth_configuration.certificate_based_auth_configuration_request_builder import CertificateBasedAuthConfigurationRequestBuilder
+    from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
+    from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
+    from .extensions.extensions_request_builder import ExtensionsRequestBuilder
+    from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
+    from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
+    from .partner_information.partner_information_request_builder import PartnerInformationRequestBuilder
+    from .restore.restore_request_builder import RestoreRequestBuilder
+    from .set_mobile_device_management_authority.set_mobile_device_management_authority_request_builder import SetMobileDeviceManagementAuthorityRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
 
-class OrganizationItemRequestBuilder():
+class OrganizationItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of organization entities.
     """
@@ -32,91 +33,82 @@ class OrganizationItemRequestBuilder():
         """
         Instantiates a new OrganizationItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/organization/{organization%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/organization/{organization%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[OrganizationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from organization
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OrganizationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[organization.Organization]:
+    async def get(self,request_configuration: Optional[OrganizationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Organization]:
         """
         Get the properties and relationships of the currently authenticated organization. Since the **organization** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in an **organization** instance.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[organization.Organization]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Organization]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import organization
+        from ...models.organization import Organization
 
-        return await self.request_adapter.send_async(request_info, organization.Organization, error_mapping)
+        return await self.request_adapter.send_async(request_info, Organization, error_mapping)
     
-    async def patch(self,body: Optional[organization.Organization] = None, request_configuration: Optional[OrganizationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[organization.Organization]:
+    async def patch(self,body: Optional[Organization] = None, request_configuration: Optional[OrganizationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Organization]:
         """
         Update the properties of the currently authenticated organization. In this case, `organization` is defined as a collection of exactly one record, and so its **ID** must be specified in the request.  The **ID** is also known as the **tenantId** of the organization.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[organization.Organization]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Organization]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import organization
+        from ...models.organization import Organization
 
-        return await self.request_adapter.send_async(request_info, organization.Organization, error_mapping)
+        return await self.request_adapter.send_async(request_info, Organization, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OrganizationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete entity from organization
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -132,7 +124,7 @@ class OrganizationItemRequestBuilder():
         """
         Get the properties and relationships of the currently authenticated organization. Since the **organization** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in an **organization** instance.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -146,16 +138,16 @@ class OrganizationItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[organization.Organization] = None, request_configuration: Optional[OrganizationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Organization] = None, request_configuration: Optional[OrganizationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of the currently authenticated organization. In this case, `organization` is defined as a collection of exactly one record, and so its **ID** must be specified in the request.  The **ID** is also known as the **tenantId** of the organization.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -168,115 +160,113 @@ class OrganizationItemRequestBuilder():
         return request_info
     
     @property
-    def branding(self) -> branding_request_builder.BrandingRequestBuilder:
+    def branding(self) -> BrandingRequestBuilder:
         """
         Provides operations to manage the branding property of the microsoft.graph.organization entity.
         """
-        from .branding import branding_request_builder
+        from .branding.branding_request_builder import BrandingRequestBuilder
 
-        return branding_request_builder.BrandingRequestBuilder(self.request_adapter, self.path_parameters)
+        return BrandingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def certificate_based_auth_configuration(self) -> certificate_based_auth_configuration_request_builder.CertificateBasedAuthConfigurationRequestBuilder:
+    def certificate_based_auth_configuration(self) -> CertificateBasedAuthConfigurationRequestBuilder:
         """
         Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.
         """
-        from .certificate_based_auth_configuration import certificate_based_auth_configuration_request_builder
+        from .certificate_based_auth_configuration.certificate_based_auth_configuration_request_builder import CertificateBasedAuthConfigurationRequestBuilder
 
-        return certificate_based_auth_configuration_request_builder.CertificateBasedAuthConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+        return CertificateBasedAuthConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def check_member_groups(self) -> check_member_groups_request_builder.CheckMemberGroupsRequestBuilder:
+    def check_member_groups(self) -> CheckMemberGroupsRequestBuilder:
         """
         Provides operations to call the checkMemberGroups method.
         """
-        from .check_member_groups import check_member_groups_request_builder
+        from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
 
-        return check_member_groups_request_builder.CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def check_member_objects(self) -> check_member_objects_request_builder.CheckMemberObjectsRequestBuilder:
+    def check_member_objects(self) -> CheckMemberObjectsRequestBuilder:
         """
         Provides operations to call the checkMemberObjects method.
         """
-        from .check_member_objects import check_member_objects_request_builder
+        from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
 
-        return check_member_objects_request_builder.CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def extensions(self) -> extensions_request_builder.ExtensionsRequestBuilder:
+    def extensions(self) -> ExtensionsRequestBuilder:
         """
         Provides operations to manage the extensions property of the microsoft.graph.organization entity.
         """
-        from .extensions import extensions_request_builder
+        from .extensions.extensions_request_builder import ExtensionsRequestBuilder
 
-        return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_member_groups(self) -> get_member_groups_request_builder.GetMemberGroupsRequestBuilder:
+    def get_member_groups(self) -> GetMemberGroupsRequestBuilder:
         """
         Provides operations to call the getMemberGroups method.
         """
-        from .get_member_groups import get_member_groups_request_builder
+        from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
 
-        return get_member_groups_request_builder.GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_member_objects(self) -> get_member_objects_request_builder.GetMemberObjectsRequestBuilder:
+    def get_member_objects(self) -> GetMemberObjectsRequestBuilder:
         """
         Provides operations to call the getMemberObjects method.
         """
-        from .get_member_objects import get_member_objects_request_builder
+        from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
 
-        return get_member_objects_request_builder.GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def partner_information(self) -> partner_information_request_builder.PartnerInformationRequestBuilder:
+    def partner_information(self) -> PartnerInformationRequestBuilder:
         """
         Provides operations to manage the partnerInformation property of the microsoft.graph.organization entity.
         """
-        from .partner_information import partner_information_request_builder
+        from .partner_information.partner_information_request_builder import PartnerInformationRequestBuilder
 
-        return partner_information_request_builder.PartnerInformationRequestBuilder(self.request_adapter, self.path_parameters)
+        return PartnerInformationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore(self) -> restore_request_builder.RestoreRequestBuilder:
+    def restore(self) -> RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
-        from .restore import restore_request_builder
+        from .restore.restore_request_builder import RestoreRequestBuilder
 
-        return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_mobile_device_management_authority(self) -> set_mobile_device_management_authority_request_builder.SetMobileDeviceManagementAuthorityRequestBuilder:
+    def set_mobile_device_management_authority(self) -> SetMobileDeviceManagementAuthorityRequestBuilder:
         """
         Provides operations to call the setMobileDeviceManagementAuthority method.
         """
-        from .set_mobile_device_management_authority import set_mobile_device_management_authority_request_builder
+        from .set_mobile_device_management_authority.set_mobile_device_management_authority_request_builder import SetMobileDeviceManagementAuthorityRequestBuilder
 
-        return set_mobile_device_management_authority_request_builder.SetMobileDeviceManagementAuthorityRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetMobileDeviceManagementAuthorityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+    def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.organization entity.
         """
-        from .settings import settings_request_builder
+        from .settings.settings_request_builder import SettingsRequestBuilder
 
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class OrganizationItemRequestBuilderDeleteRequestConfiguration():
+    class OrganizationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class OrganizationItemRequestBuilderGetQueryParameters():
@@ -287,11 +277,11 @@ class OrganizationItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -305,31 +295,27 @@ class OrganizationItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class OrganizationItemRequestBuilderGetRequestConfiguration():
+    class OrganizationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[OrganizationItemRequestBuilder.OrganizationItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class OrganizationItemRequestBuilderPatchRequestConfiguration():
+    class OrganizationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

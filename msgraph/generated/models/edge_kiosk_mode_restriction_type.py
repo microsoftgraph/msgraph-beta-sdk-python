@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EdgeKioskModeRestrictionType(Enum):
+class EdgeKioskModeRestrictionType(str, Enum):
     # Not configured (unrestricted).
     NotConfigured = "notConfigured",
     # Interactive/Digital signage in single-app mode.

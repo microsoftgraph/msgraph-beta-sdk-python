@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,38 +11,38 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import service_principal
-    from ...models.o_data_errors import o_data_error
-    from .add_token_signing_certificate import add_token_signing_certificate_request_builder
-    from .app_management_policies import app_management_policies_request_builder
-    from .app_role_assigned_to import app_role_assigned_to_request_builder
-    from .app_role_assignments import app_role_assignments_request_builder
-    from .check_member_groups import check_member_groups_request_builder
-    from .check_member_objects import check_member_objects_request_builder
-    from .claims_mapping_policies import claims_mapping_policies_request_builder
-    from .created_objects import created_objects_request_builder
-    from .create_password_single_sign_on_credentials import create_password_single_sign_on_credentials_request_builder
-    from .delegated_permission_classifications import delegated_permission_classifications_request_builder
-    from .delete_password_single_sign_on_credentials import delete_password_single_sign_on_credentials_request_builder
-    from .endpoints import endpoints_request_builder
-    from .federated_identity_credentials import federated_identity_credentials_request_builder
-    from .get_member_groups import get_member_groups_request_builder
-    from .get_member_objects import get_member_objects_request_builder
-    from .get_password_single_sign_on_credentials import get_password_single_sign_on_credentials_request_builder
-    from .home_realm_discovery_policies import home_realm_discovery_policies_request_builder
-    from .license_details import license_details_request_builder
-    from .member_of import member_of_request_builder
-    from .oauth2_permission_grants import oauth2_permission_grants_request_builder
-    from .owned_objects import owned_objects_request_builder
-    from .owners import owners_request_builder
-    from .restore import restore_request_builder
-    from .synchronization import synchronization_request_builder
-    from .token_issuance_policies import token_issuance_policies_request_builder
-    from .token_lifetime_policies import token_lifetime_policies_request_builder
-    from .transitive_member_of import transitive_member_of_request_builder
-    from .update_password_single_sign_on_credentials import update_password_single_sign_on_credentials_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.service_principal import ServicePrincipal
+    from .add_token_signing_certificate.add_token_signing_certificate_request_builder import AddTokenSigningCertificateRequestBuilder
+    from .app_management_policies.app_management_policies_request_builder import AppManagementPoliciesRequestBuilder
+    from .app_role_assigned_to.app_role_assigned_to_request_builder import AppRoleAssignedToRequestBuilder
+    from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
+    from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
+    from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
+    from .claims_mapping_policies.claims_mapping_policies_request_builder import ClaimsMappingPoliciesRequestBuilder
+    from .created_objects.created_objects_request_builder import CreatedObjectsRequestBuilder
+    from .create_password_single_sign_on_credentials.create_password_single_sign_on_credentials_request_builder import CreatePasswordSingleSignOnCredentialsRequestBuilder
+    from .delegated_permission_classifications.delegated_permission_classifications_request_builder import DelegatedPermissionClassificationsRequestBuilder
+    from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
+    from .endpoints.endpoints_request_builder import EndpointsRequestBuilder
+    from .federated_identity_credentials.federated_identity_credentials_request_builder import FederatedIdentityCredentialsRequestBuilder
+    from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
+    from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
+    from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
+    from .home_realm_discovery_policies.home_realm_discovery_policies_request_builder import HomeRealmDiscoveryPoliciesRequestBuilder
+    from .license_details.license_details_request_builder import LicenseDetailsRequestBuilder
+    from .member_of.member_of_request_builder import MemberOfRequestBuilder
+    from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
+    from .owned_objects.owned_objects_request_builder import OwnedObjectsRequestBuilder
+    from .owners.owners_request_builder import OwnersRequestBuilder
+    from .restore.restore_request_builder import RestoreRequestBuilder
+    from .synchronization.synchronization_request_builder import SynchronizationRequestBuilder
+    from .token_issuance_policies.token_issuance_policies_request_builder import TokenIssuancePoliciesRequestBuilder
+    from .token_lifetime_policies.token_lifetime_policies_request_builder import TokenLifetimePoliciesRequestBuilder
+    from .transitive_member_of.transitive_member_of_request_builder import TransitiveMemberOfRequestBuilder
+    from .update_password_single_sign_on_credentials.update_password_single_sign_on_credentials_request_builder import UpdatePasswordSingleSignOnCredentialsRequestBuilder
 
-class ServicePrincipalItemRequestBuilder():
+class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of servicePrincipal entities.
     """
@@ -49,91 +50,82 @@ class ServicePrincipalItemRequestBuilder():
         """
         Instantiates a new ServicePrincipalItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a servicePrincipal object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[service_principal.ServicePrincipal]:
+    async def get(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ServicePrincipal]:
         """
         Retrieve the properties and relationships of a servicePrincipal object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[service_principal.ServicePrincipal]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ServicePrincipal]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import service_principal
+        from ...models.service_principal import ServicePrincipal
 
-        return await self.request_adapter.send_async(request_info, service_principal.ServicePrincipal, error_mapping)
+        return await self.request_adapter.send_async(request_info, ServicePrincipal, error_mapping)
     
-    async def patch(self,body: Optional[service_principal.ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[service_principal.ServicePrincipal]:
+    async def patch(self,body: Optional[ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ServicePrincipal]:
         """
         Update the properties of servicePrincipal object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[service_principal.ServicePrincipal]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ServicePrincipal]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import service_principal
+        from ...models.service_principal import ServicePrincipal
 
-        return await self.request_adapter.send_async(request_info, service_principal.ServicePrincipal, error_mapping)
+        return await self.request_adapter.send_async(request_info, ServicePrincipal, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a servicePrincipal object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -149,7 +141,7 @@ class ServicePrincipalItemRequestBuilder():
         """
         Retrieve the properties and relationships of a servicePrincipal object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -163,16 +155,16 @@ class ServicePrincipalItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[service_principal.ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of servicePrincipal object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -185,268 +177,266 @@ class ServicePrincipalItemRequestBuilder():
         return request_info
     
     @property
-    def add_token_signing_certificate(self) -> add_token_signing_certificate_request_builder.AddTokenSigningCertificateRequestBuilder:
+    def add_token_signing_certificate(self) -> AddTokenSigningCertificateRequestBuilder:
         """
         Provides operations to call the addTokenSigningCertificate method.
         """
-        from .add_token_signing_certificate import add_token_signing_certificate_request_builder
+        from .add_token_signing_certificate.add_token_signing_certificate_request_builder import AddTokenSigningCertificateRequestBuilder
 
-        return add_token_signing_certificate_request_builder.AddTokenSigningCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+        return AddTokenSigningCertificateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app_management_policies(self) -> app_management_policies_request_builder.AppManagementPoliciesRequestBuilder:
+    def app_management_policies(self) -> AppManagementPoliciesRequestBuilder:
         """
         Provides operations to manage the appManagementPolicies property of the microsoft.graph.servicePrincipal entity.
         """
-        from .app_management_policies import app_management_policies_request_builder
+        from .app_management_policies.app_management_policies_request_builder import AppManagementPoliciesRequestBuilder
 
-        return app_management_policies_request_builder.AppManagementPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppManagementPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app_role_assigned_to(self) -> app_role_assigned_to_request_builder.AppRoleAssignedToRequestBuilder:
+    def app_role_assigned_to(self) -> AppRoleAssignedToRequestBuilder:
         """
         Provides operations to manage the appRoleAssignedTo property of the microsoft.graph.servicePrincipal entity.
         """
-        from .app_role_assigned_to import app_role_assigned_to_request_builder
+        from .app_role_assigned_to.app_role_assigned_to_request_builder import AppRoleAssignedToRequestBuilder
 
-        return app_role_assigned_to_request_builder.AppRoleAssignedToRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppRoleAssignedToRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app_role_assignments(self) -> app_role_assignments_request_builder.AppRoleAssignmentsRequestBuilder:
+    def app_role_assignments(self) -> AppRoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
         """
-        from .app_role_assignments import app_role_assignments_request_builder
+        from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
 
-        return app_role_assignments_request_builder.AppRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def check_member_groups(self) -> check_member_groups_request_builder.CheckMemberGroupsRequestBuilder:
+    def check_member_groups(self) -> CheckMemberGroupsRequestBuilder:
         """
         Provides operations to call the checkMemberGroups method.
         """
-        from .check_member_groups import check_member_groups_request_builder
+        from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
 
-        return check_member_groups_request_builder.CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def check_member_objects(self) -> check_member_objects_request_builder.CheckMemberObjectsRequestBuilder:
+    def check_member_objects(self) -> CheckMemberObjectsRequestBuilder:
         """
         Provides operations to call the checkMemberObjects method.
         """
-        from .check_member_objects import check_member_objects_request_builder
+        from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
 
-        return check_member_objects_request_builder.CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def claims_mapping_policies(self) -> claims_mapping_policies_request_builder.ClaimsMappingPoliciesRequestBuilder:
+    def claims_mapping_policies(self) -> ClaimsMappingPoliciesRequestBuilder:
         """
         Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.servicePrincipal entity.
         """
-        from .claims_mapping_policies import claims_mapping_policies_request_builder
+        from .claims_mapping_policies.claims_mapping_policies_request_builder import ClaimsMappingPoliciesRequestBuilder
 
-        return claims_mapping_policies_request_builder.ClaimsMappingPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ClaimsMappingPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def created_objects(self) -> created_objects_request_builder.CreatedObjectsRequestBuilder:
+    def created_objects(self) -> CreatedObjectsRequestBuilder:
         """
         Provides operations to manage the createdObjects property of the microsoft.graph.servicePrincipal entity.
         """
-        from .created_objects import created_objects_request_builder
+        from .created_objects.created_objects_request_builder import CreatedObjectsRequestBuilder
 
-        return created_objects_request_builder.CreatedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreatedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_password_single_sign_on_credentials(self) -> create_password_single_sign_on_credentials_request_builder.CreatePasswordSingleSignOnCredentialsRequestBuilder:
+    def create_password_single_sign_on_credentials(self) -> CreatePasswordSingleSignOnCredentialsRequestBuilder:
         """
         Provides operations to call the createPasswordSingleSignOnCredentials method.
         """
-        from .create_password_single_sign_on_credentials import create_password_single_sign_on_credentials_request_builder
+        from .create_password_single_sign_on_credentials.create_password_single_sign_on_credentials_request_builder import CreatePasswordSingleSignOnCredentialsRequestBuilder
 
-        return create_password_single_sign_on_credentials_request_builder.CreatePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreatePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delegated_permission_classifications(self) -> delegated_permission_classifications_request_builder.DelegatedPermissionClassificationsRequestBuilder:
+    def delegated_permission_classifications(self) -> DelegatedPermissionClassificationsRequestBuilder:
         """
         Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.
         """
-        from .delegated_permission_classifications import delegated_permission_classifications_request_builder
+        from .delegated_permission_classifications.delegated_permission_classifications_request_builder import DelegatedPermissionClassificationsRequestBuilder
 
-        return delegated_permission_classifications_request_builder.DelegatedPermissionClassificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DelegatedPermissionClassificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delete_password_single_sign_on_credentials(self) -> delete_password_single_sign_on_credentials_request_builder.DeletePasswordSingleSignOnCredentialsRequestBuilder:
+    def delete_password_single_sign_on_credentials(self) -> DeletePasswordSingleSignOnCredentialsRequestBuilder:
         """
         Provides operations to call the deletePasswordSingleSignOnCredentials method.
         """
-        from .delete_password_single_sign_on_credentials import delete_password_single_sign_on_credentials_request_builder
+        from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
 
-        return delete_password_single_sign_on_credentials_request_builder.DeletePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeletePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def endpoints(self) -> endpoints_request_builder.EndpointsRequestBuilder:
+    def endpoints(self) -> EndpointsRequestBuilder:
         """
         Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.
         """
-        from .endpoints import endpoints_request_builder
+        from .endpoints.endpoints_request_builder import EndpointsRequestBuilder
 
-        return endpoints_request_builder.EndpointsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EndpointsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def federated_identity_credentials(self) -> federated_identity_credentials_request_builder.FederatedIdentityCredentialsRequestBuilder:
+    def federated_identity_credentials(self) -> FederatedIdentityCredentialsRequestBuilder:
         """
         Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.
         """
-        from .federated_identity_credentials import federated_identity_credentials_request_builder
+        from .federated_identity_credentials.federated_identity_credentials_request_builder import FederatedIdentityCredentialsRequestBuilder
 
-        return federated_identity_credentials_request_builder.FederatedIdentityCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return FederatedIdentityCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_member_groups(self) -> get_member_groups_request_builder.GetMemberGroupsRequestBuilder:
+    def get_member_groups(self) -> GetMemberGroupsRequestBuilder:
         """
         Provides operations to call the getMemberGroups method.
         """
-        from .get_member_groups import get_member_groups_request_builder
+        from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
 
-        return get_member_groups_request_builder.GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_member_objects(self) -> get_member_objects_request_builder.GetMemberObjectsRequestBuilder:
+    def get_member_objects(self) -> GetMemberObjectsRequestBuilder:
         """
         Provides operations to call the getMemberObjects method.
         """
-        from .get_member_objects import get_member_objects_request_builder
+        from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
 
-        return get_member_objects_request_builder.GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_password_single_sign_on_credentials(self) -> get_password_single_sign_on_credentials_request_builder.GetPasswordSingleSignOnCredentialsRequestBuilder:
+    def get_password_single_sign_on_credentials(self) -> GetPasswordSingleSignOnCredentialsRequestBuilder:
         """
         Provides operations to call the getPasswordSingleSignOnCredentials method.
         """
-        from .get_password_single_sign_on_credentials import get_password_single_sign_on_credentials_request_builder
+        from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
 
-        return get_password_single_sign_on_credentials_request_builder.GetPasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetPasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def home_realm_discovery_policies(self) -> home_realm_discovery_policies_request_builder.HomeRealmDiscoveryPoliciesRequestBuilder:
+    def home_realm_discovery_policies(self) -> HomeRealmDiscoveryPoliciesRequestBuilder:
         """
         Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.servicePrincipal entity.
         """
-        from .home_realm_discovery_policies import home_realm_discovery_policies_request_builder
+        from .home_realm_discovery_policies.home_realm_discovery_policies_request_builder import HomeRealmDiscoveryPoliciesRequestBuilder
 
-        return home_realm_discovery_policies_request_builder.HomeRealmDiscoveryPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return HomeRealmDiscoveryPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def license_details(self) -> license_details_request_builder.LicenseDetailsRequestBuilder:
+    def license_details(self) -> LicenseDetailsRequestBuilder:
         """
         Provides operations to manage the licenseDetails property of the microsoft.graph.servicePrincipal entity.
         """
-        from .license_details import license_details_request_builder
+        from .license_details.license_details_request_builder import LicenseDetailsRequestBuilder
 
-        return license_details_request_builder.LicenseDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+        return LicenseDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def member_of(self) -> member_of_request_builder.MemberOfRequestBuilder:
+    def member_of(self) -> MemberOfRequestBuilder:
         """
         Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.
         """
-        from .member_of import member_of_request_builder
+        from .member_of.member_of_request_builder import MemberOfRequestBuilder
 
-        return member_of_request_builder.MemberOfRequestBuilder(self.request_adapter, self.path_parameters)
+        return MemberOfRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def oauth2_permission_grants(self) -> oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder:
+    def oauth2_permission_grants(self) -> Oauth2PermissionGrantsRequestBuilder:
         """
         Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.servicePrincipal entity.
         """
-        from .oauth2_permission_grants import oauth2_permission_grants_request_builder
+        from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
 
-        return oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
+        return Oauth2PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def owned_objects(self) -> owned_objects_request_builder.OwnedObjectsRequestBuilder:
+    def owned_objects(self) -> OwnedObjectsRequestBuilder:
         """
         Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
         """
-        from .owned_objects import owned_objects_request_builder
+        from .owned_objects.owned_objects_request_builder import OwnedObjectsRequestBuilder
 
-        return owned_objects_request_builder.OwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def owners(self) -> owners_request_builder.OwnersRequestBuilder:
+    def owners(self) -> OwnersRequestBuilder:
         """
         Provides operations to manage the owners property of the microsoft.graph.servicePrincipal entity.
         """
-        from .owners import owners_request_builder
+        from .owners.owners_request_builder import OwnersRequestBuilder
 
-        return owners_request_builder.OwnersRequestBuilder(self.request_adapter, self.path_parameters)
+        return OwnersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore(self) -> restore_request_builder.RestoreRequestBuilder:
+    def restore(self) -> RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
-        from .restore import restore_request_builder
+        from .restore.restore_request_builder import RestoreRequestBuilder
 
-        return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def synchronization(self) -> synchronization_request_builder.SynchronizationRequestBuilder:
+    def synchronization(self) -> SynchronizationRequestBuilder:
         """
         Provides operations to manage the synchronization property of the microsoft.graph.servicePrincipal entity.
         """
-        from .synchronization import synchronization_request_builder
+        from .synchronization.synchronization_request_builder import SynchronizationRequestBuilder
 
-        return synchronization_request_builder.SynchronizationRequestBuilder(self.request_adapter, self.path_parameters)
+        return SynchronizationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def token_issuance_policies(self) -> token_issuance_policies_request_builder.TokenIssuancePoliciesRequestBuilder:
+    def token_issuance_policies(self) -> TokenIssuancePoliciesRequestBuilder:
         """
         Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.
         """
-        from .token_issuance_policies import token_issuance_policies_request_builder
+        from .token_issuance_policies.token_issuance_policies_request_builder import TokenIssuancePoliciesRequestBuilder
 
-        return token_issuance_policies_request_builder.TokenIssuancePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return TokenIssuancePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def token_lifetime_policies(self) -> token_lifetime_policies_request_builder.TokenLifetimePoliciesRequestBuilder:
+    def token_lifetime_policies(self) -> TokenLifetimePoliciesRequestBuilder:
         """
         Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.servicePrincipal entity.
         """
-        from .token_lifetime_policies import token_lifetime_policies_request_builder
+        from .token_lifetime_policies.token_lifetime_policies_request_builder import TokenLifetimePoliciesRequestBuilder
 
-        return token_lifetime_policies_request_builder.TokenLifetimePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return TokenLifetimePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def transitive_member_of(self) -> transitive_member_of_request_builder.TransitiveMemberOfRequestBuilder:
+    def transitive_member_of(self) -> TransitiveMemberOfRequestBuilder:
         """
         Provides operations to manage the transitiveMemberOf property of the microsoft.graph.servicePrincipal entity.
         """
-        from .transitive_member_of import transitive_member_of_request_builder
+        from .transitive_member_of.transitive_member_of_request_builder import TransitiveMemberOfRequestBuilder
 
-        return transitive_member_of_request_builder.TransitiveMemberOfRequestBuilder(self.request_adapter, self.path_parameters)
+        return TransitiveMemberOfRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_password_single_sign_on_credentials(self) -> update_password_single_sign_on_credentials_request_builder.UpdatePasswordSingleSignOnCredentialsRequestBuilder:
+    def update_password_single_sign_on_credentials(self) -> UpdatePasswordSingleSignOnCredentialsRequestBuilder:
         """
         Provides operations to call the updatePasswordSingleSignOnCredentials method.
         """
-        from .update_password_single_sign_on_credentials import update_password_single_sign_on_credentials_request_builder
+        from .update_password_single_sign_on_credentials.update_password_single_sign_on_credentials_request_builder import UpdatePasswordSingleSignOnCredentialsRequestBuilder
 
-        return update_password_single_sign_on_credentials_request_builder.UpdatePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdatePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ServicePrincipalItemRequestBuilderDeleteRequestConfiguration():
+    class ServicePrincipalItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class ServicePrincipalItemRequestBuilderGetQueryParameters():
@@ -457,11 +447,11 @@ class ServicePrincipalItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -475,31 +465,27 @@ class ServicePrincipalItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ServicePrincipalItemRequestBuilderGetRequestConfiguration():
+    class ServicePrincipalItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ServicePrincipalItemRequestBuilder.ServicePrincipalItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ServicePrincipalItemRequestBuilderPatchRequestConfiguration():
+    class ServicePrincipalItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

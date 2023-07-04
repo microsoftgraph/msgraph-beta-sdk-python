@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EmbeddedSIMDeviceStateValue(Enum):
+class EmbeddedSIMDeviceStateValue(str, Enum):
     # Designates that the embedded SIM activation code is free and available to be assigned to a device.
     NotEvaluated = "notEvaluated",
     # Designates that Intune Service failed to deliver this profile to a device.

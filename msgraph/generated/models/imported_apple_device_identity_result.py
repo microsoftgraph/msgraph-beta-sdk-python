@@ -1,33 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import imported_apple_device_identity
+    from .imported_apple_device_identity import ImportedAppleDeviceIdentity
 
-from . import imported_apple_device_identity
+from .imported_apple_device_identity import ImportedAppleDeviceIdentity
 
-class ImportedAppleDeviceIdentityResult(imported_apple_device_identity.ImportedAppleDeviceIdentity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ImportedAppleDeviceIdentityResult and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Status of imported device identity
-        self._status: Optional[bool] = None
+@dataclass
+class ImportedAppleDeviceIdentityResult(ImportedAppleDeviceIdentity):
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Status of imported device identity
+    status: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ImportedAppleDeviceIdentityResult:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ImportedAppleDeviceIdentityResult
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ImportedAppleDeviceIdentityResult()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -35,7 +32,9 @@ class ImportedAppleDeviceIdentityResult(imported_apple_device_identity.ImportedA
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import imported_apple_device_identity
+        from .imported_apple_device_identity import ImportedAppleDeviceIdentity
+
+        from .imported_apple_device_identity import ImportedAppleDeviceIdentity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "status": lambda n : setattr(self, 'status', n.get_bool_value()),
@@ -50,26 +49,9 @@ class ImportedAppleDeviceIdentityResult(imported_apple_device_identity.ImportedA
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("status", self.status)
-    
-    @property
-    def status(self,) -> Optional[bool]:
-        """
-        Gets the status property value. Status of imported device identity
-        Returns: Optional[bool]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the status property value. Status of imported device identity
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

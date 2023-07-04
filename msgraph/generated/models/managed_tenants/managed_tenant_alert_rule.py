@@ -1,196 +1,92 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import alert_severity, managed_tenant_alert, managed_tenant_alert_rule_definition, notification_destination, notification_target, tenant_info
-    from .. import entity
+    from ..entity import Entity
+    from .alert_severity import AlertSeverity
+    from .managed_tenant_alert import ManagedTenantAlert
+    from .managed_tenant_alert_rule_definition import ManagedTenantAlertRuleDefinition
+    from .notification_destination import NotificationDestination
+    from .notification_target import NotificationTarget
+    from .tenant_info import TenantInfo
 
-from .. import entity
+from ..entity import Entity
 
-class ManagedTenantAlertRule(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedTenantAlertRule and sets the default values.
-        """
-        super().__init__()
-        # The alertDisplayName property
-        self._alert_display_name: Optional[str] = None
-        # The alertTTL property
-        self._alert_t_t_l: Optional[int] = None
-        # The alerts property
-        self._alerts: Optional[List[managed_tenant_alert.ManagedTenantAlert]] = None
-        # The createdByUserId property
-        self._created_by_user_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastActionByUserId property
-        self._last_action_by_user_id: Optional[str] = None
-        # The lastActionDateTime property
-        self._last_action_date_time: Optional[datetime] = None
-        # The lastRunDateTime property
-        self._last_run_date_time: Optional[datetime] = None
-        # The notificationFinalDestinations property
-        self._notification_final_destinations: Optional[notification_destination.NotificationDestination] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The ruleDefinition property
-        self._rule_definition: Optional[managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition] = None
-        # The severity property
-        self._severity: Optional[alert_severity.AlertSeverity] = None
-        # The targets property
-        self._targets: Optional[List[notification_target.NotificationTarget]] = None
-        # The tenantIds property
-        self._tenant_ids: Optional[List[tenant_info.TenantInfo]] = None
-    
-    @property
-    def alert_display_name(self,) -> Optional[str]:
-        """
-        Gets the alertDisplayName property value. The alertDisplayName property
-        Returns: Optional[str]
-        """
-        return self._alert_display_name
-    
-    @alert_display_name.setter
-    def alert_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the alertDisplayName property value. The alertDisplayName property
-        Args:
-            value: Value to set for the alert_display_name property.
-        """
-        self._alert_display_name = value
-    
-    @property
-    def alert_t_t_l(self,) -> Optional[int]:
-        """
-        Gets the alertTTL property value. The alertTTL property
-        Returns: Optional[int]
-        """
-        return self._alert_t_t_l
-    
-    @alert_t_t_l.setter
-    def alert_t_t_l(self,value: Optional[int] = None) -> None:
-        """
-        Sets the alertTTL property value. The alertTTL property
-        Args:
-            value: Value to set for the alert_t_t_l property.
-        """
-        self._alert_t_t_l = value
-    
-    @property
-    def alerts(self,) -> Optional[List[managed_tenant_alert.ManagedTenantAlert]]:
-        """
-        Gets the alerts property value. The alerts property
-        Returns: Optional[List[managed_tenant_alert.ManagedTenantAlert]]
-        """
-        return self._alerts
-    
-    @alerts.setter
-    def alerts(self,value: Optional[List[managed_tenant_alert.ManagedTenantAlert]] = None) -> None:
-        """
-        Sets the alerts property value. The alerts property
-        Args:
-            value: Value to set for the alerts property.
-        """
-        self._alerts = value
-    
-    @property
-    def created_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the createdByUserId property value. The createdByUserId property
-        Returns: Optional[str]
-        """
-        return self._created_by_user_id
-    
-    @created_by_user_id.setter
-    def created_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the createdByUserId property value. The createdByUserId property
-        Args:
-            value: Value to set for the created_by_user_id property.
-        """
-        self._created_by_user_id = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The createdDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The createdDateTime property
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+@dataclass
+class ManagedTenantAlertRule(Entity):
+    # The alertDisplayName property
+    alert_display_name: Optional[str] = None
+    # The alertTTL property
+    alert_t_t_l: Optional[int] = None
+    # The alerts property
+    alerts: Optional[List[ManagedTenantAlert]] = None
+    # The createdByUserId property
+    created_by_user_id: Optional[str] = None
+    # The createdDateTime property
+    created_date_time: Optional[datetime.datetime] = None
+    # The description property
+    description: Optional[str] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The lastActionByUserId property
+    last_action_by_user_id: Optional[str] = None
+    # The lastActionDateTime property
+    last_action_date_time: Optional[datetime.datetime] = None
+    # The lastRunDateTime property
+    last_run_date_time: Optional[datetime.datetime] = None
+    # The notificationFinalDestinations property
+    notification_final_destinations: Optional[NotificationDestination] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The ruleDefinition property
+    rule_definition: Optional[ManagedTenantAlertRuleDefinition] = None
+    # The severity property
+    severity: Optional[AlertSeverity] = None
+    # The targets property
+    targets: Optional[List[NotificationTarget]] = None
+    # The tenantIds property
+    tenant_ids: Optional[List[TenantInfo]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedTenantAlertRule:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ManagedTenantAlertRule
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ManagedTenantAlertRule()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description property
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description property
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import alert_severity, managed_tenant_alert, managed_tenant_alert_rule_definition, notification_destination, notification_target, tenant_info
-        from .. import entity
+        from ..entity import Entity
+        from .alert_severity import AlertSeverity
+        from .managed_tenant_alert import ManagedTenantAlert
+        from .managed_tenant_alert_rule_definition import ManagedTenantAlertRuleDefinition
+        from .notification_destination import NotificationDestination
+        from .notification_target import NotificationTarget
+        from .tenant_info import TenantInfo
+
+        from ..entity import Entity
+        from .alert_severity import AlertSeverity
+        from .managed_tenant_alert import ManagedTenantAlert
+        from .managed_tenant_alert_rule_definition import ManagedTenantAlertRuleDefinition
+        from .notification_destination import NotificationDestination
+        from .notification_target import NotificationTarget
+        from .tenant_info import TenantInfo
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(managed_tenant_alert.ManagedTenantAlert)),
             "alertDisplayName": lambda n : setattr(self, 'alert_display_name', n.get_str_value()),
             "alertTTL": lambda n : setattr(self, 'alert_t_t_l', n.get_int_value()),
+            "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(ManagedTenantAlert)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -198,100 +94,15 @@ class ManagedTenantAlertRule(entity.Entity):
             "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
             "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "lastRunDateTime": lambda n : setattr(self, 'last_run_date_time', n.get_datetime_value()),
-            "notificationFinalDestinations": lambda n : setattr(self, 'notification_final_destinations', n.get_enum_value(notification_destination.NotificationDestination)),
-            "ruleDefinition": lambda n : setattr(self, 'rule_definition', n.get_object_value(managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition)),
-            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(alert_severity.AlertSeverity)),
-            "targets": lambda n : setattr(self, 'targets', n.get_collection_of_object_values(notification_target.NotificationTarget)),
-            "tenantIds": lambda n : setattr(self, 'tenant_ids', n.get_collection_of_object_values(tenant_info.TenantInfo)),
+            "notificationFinalDestinations": lambda n : setattr(self, 'notification_final_destinations', n.get_enum_value(NotificationDestination)),
+            "ruleDefinition": lambda n : setattr(self, 'rule_definition', n.get_object_value(ManagedTenantAlertRuleDefinition)),
+            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertSeverity)),
+            "targets": lambda n : setattr(self, 'targets', n.get_collection_of_object_values(NotificationTarget)),
+            "tenantIds": lambda n : setattr(self, 'tenant_ids', n.get_collection_of_object_values(TenantInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_action_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the lastActionByUserId property value. The lastActionByUserId property
-        Returns: Optional[str]
-        """
-        return self._last_action_by_user_id
-    
-    @last_action_by_user_id.setter
-    def last_action_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastActionByUserId property value. The lastActionByUserId property
-        Args:
-            value: Value to set for the last_action_by_user_id property.
-        """
-        self._last_action_by_user_id = value
-    
-    @property
-    def last_action_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastActionDateTime property value. The lastActionDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_action_date_time
-    
-    @last_action_date_time.setter
-    def last_action_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastActionDateTime property value. The lastActionDateTime property
-        Args:
-            value: Value to set for the last_action_date_time property.
-        """
-        self._last_action_date_time = value
-    
-    @property
-    def last_run_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastRunDateTime property value. The lastRunDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_run_date_time
-    
-    @last_run_date_time.setter
-    def last_run_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastRunDateTime property value. The lastRunDateTime property
-        Args:
-            value: Value to set for the last_run_date_time property.
-        """
-        self._last_run_date_time = value
-    
-    @property
-    def notification_final_destinations(self,) -> Optional[notification_destination.NotificationDestination]:
-        """
-        Gets the notificationFinalDestinations property value. The notificationFinalDestinations property
-        Returns: Optional[notification_destination.NotificationDestination]
-        """
-        return self._notification_final_destinations
-    
-    @notification_final_destinations.setter
-    def notification_final_destinations(self,value: Optional[notification_destination.NotificationDestination] = None) -> None:
-        """
-        Sets the notificationFinalDestinations property value. The notificationFinalDestinations property
-        Args:
-            value: Value to set for the notification_final_destinations property.
-        """
-        self._notification_final_destinations = value
-    
-    @property
-    def rule_definition(self,) -> Optional[managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition]:
-        """
-        Gets the ruleDefinition property value. The ruleDefinition property
-        Returns: Optional[managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition]
-        """
-        return self._rule_definition
-    
-    @rule_definition.setter
-    def rule_definition(self,value: Optional[managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition] = None) -> None:
-        """
-        Sets the ruleDefinition property value. The ruleDefinition property
-        Args:
-            value: Value to set for the rule_definition property.
-        """
-        self._rule_definition = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -299,12 +110,12 @@ class ManagedTenantAlertRule(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("alerts", self.alerts)
         writer.write_str_value("alertDisplayName", self.alert_display_name)
         writer.write_int_value("alertTTL", self.alert_t_t_l)
+        writer.write_collection_of_object_values("alerts", self.alerts)
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
@@ -317,56 +128,5 @@ class ManagedTenantAlertRule(entity.Entity):
         writer.write_enum_value("severity", self.severity)
         writer.write_collection_of_object_values("targets", self.targets)
         writer.write_collection_of_object_values("tenantIds", self.tenant_ids)
-    
-    @property
-    def severity(self,) -> Optional[alert_severity.AlertSeverity]:
-        """
-        Gets the severity property value. The severity property
-        Returns: Optional[alert_severity.AlertSeverity]
-        """
-        return self._severity
-    
-    @severity.setter
-    def severity(self,value: Optional[alert_severity.AlertSeverity] = None) -> None:
-        """
-        Sets the severity property value. The severity property
-        Args:
-            value: Value to set for the severity property.
-        """
-        self._severity = value
-    
-    @property
-    def targets(self,) -> Optional[List[notification_target.NotificationTarget]]:
-        """
-        Gets the targets property value. The targets property
-        Returns: Optional[List[notification_target.NotificationTarget]]
-        """
-        return self._targets
-    
-    @targets.setter
-    def targets(self,value: Optional[List[notification_target.NotificationTarget]] = None) -> None:
-        """
-        Sets the targets property value. The targets property
-        Args:
-            value: Value to set for the targets property.
-        """
-        self._targets = value
-    
-    @property
-    def tenant_ids(self,) -> Optional[List[tenant_info.TenantInfo]]:
-        """
-        Gets the tenantIds property value. The tenantIds property
-        Returns: Optional[List[tenant_info.TenantInfo]]
-        """
-        return self._tenant_ids
-    
-    @tenant_ids.setter
-    def tenant_ids(self,value: Optional[List[tenant_info.TenantInfo]] = None) -> None:
-        """
-        Sets the tenantIds property value. The tenantIds property
-        Args:
-            value: Value to set for the tenant_ids property.
-        """
-        self._tenant_ids = value
     
 

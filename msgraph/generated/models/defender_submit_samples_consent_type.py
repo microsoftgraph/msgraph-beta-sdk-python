@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DefenderSubmitSamplesConsentType(Enum):
+class DefenderSubmitSamplesConsentType(str, Enum):
     # Send safe samples automatically
     SendSafeSamplesAutomatically = "sendSafeSamplesAutomatically",
     # Always prompt

@@ -1,70 +1,36 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_method_configuration, authentication_method_target, x509_certificate_authentication_mode_configuration, x509_certificate_user_binding
+    from .authentication_method_configuration import AuthenticationMethodConfiguration
+    from .authentication_method_target import AuthenticationMethodTarget
+    from .x509_certificate_authentication_mode_configuration import X509CertificateAuthenticationModeConfiguration
+    from .x509_certificate_user_binding import X509CertificateUserBinding
 
-from . import authentication_method_configuration
+from .authentication_method_configuration import AuthenticationMethodConfiguration
 
-class X509CertificateAuthenticationMethodConfiguration(authentication_method_configuration.AuthenticationMethodConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new X509CertificateAuthenticationMethodConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.x509CertificateAuthenticationMethodConfiguration"
-        # Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.
-        self._authentication_mode_configuration: Optional[x509_certificate_authentication_mode_configuration.X509CertificateAuthenticationModeConfiguration] = None
-        # Defines fields in the X.509 certificate that map to attributes of the Azure AD user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.
-        self._certificate_user_bindings: Optional[List[x509_certificate_user_binding.X509CertificateUserBinding]] = None
-        # A collection of groups that are enabled to use the authentication method.
-        self._include_targets: Optional[List[authentication_method_target.AuthenticationMethodTarget]] = None
-    
-    @property
-    def authentication_mode_configuration(self,) -> Optional[x509_certificate_authentication_mode_configuration.X509CertificateAuthenticationModeConfiguration]:
-        """
-        Gets the authenticationModeConfiguration property value. Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.
-        Returns: Optional[x509_certificate_authentication_mode_configuration.X509CertificateAuthenticationModeConfiguration]
-        """
-        return self._authentication_mode_configuration
-    
-    @authentication_mode_configuration.setter
-    def authentication_mode_configuration(self,value: Optional[x509_certificate_authentication_mode_configuration.X509CertificateAuthenticationModeConfiguration] = None) -> None:
-        """
-        Sets the authenticationModeConfiguration property value. Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.
-        Args:
-            value: Value to set for the authentication_mode_configuration property.
-        """
-        self._authentication_mode_configuration = value
-    
-    @property
-    def certificate_user_bindings(self,) -> Optional[List[x509_certificate_user_binding.X509CertificateUserBinding]]:
-        """
-        Gets the certificateUserBindings property value. Defines fields in the X.509 certificate that map to attributes of the Azure AD user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.
-        Returns: Optional[List[x509_certificate_user_binding.X509CertificateUserBinding]]
-        """
-        return self._certificate_user_bindings
-    
-    @certificate_user_bindings.setter
-    def certificate_user_bindings(self,value: Optional[List[x509_certificate_user_binding.X509CertificateUserBinding]] = None) -> None:
-        """
-        Sets the certificateUserBindings property value. Defines fields in the X.509 certificate that map to attributes of the Azure AD user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.
-        Args:
-            value: Value to set for the certificate_user_bindings property.
-        """
-        self._certificate_user_bindings = value
+@dataclass
+class X509CertificateAuthenticationMethodConfiguration(AuthenticationMethodConfiguration):
+    odata_type = "#microsoft.graph.x509CertificateAuthenticationMethodConfiguration"
+    # Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.
+    authentication_mode_configuration: Optional[X509CertificateAuthenticationModeConfiguration] = None
+    # Defines fields in the X.509 certificate that map to attributes of the Azure AD user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.
+    certificate_user_bindings: Optional[List[X509CertificateUserBinding]] = None
+    # A collection of groups that are enabled to use the authentication method.
+    include_targets: Optional[List[AuthenticationMethodTarget]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> X509CertificateAuthenticationMethodConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: X509CertificateAuthenticationMethodConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return X509CertificateAuthenticationMethodConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -72,33 +38,24 @@ class X509CertificateAuthenticationMethodConfiguration(authentication_method_con
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_method_configuration, authentication_method_target, x509_certificate_authentication_mode_configuration, x509_certificate_user_binding
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_method_target import AuthenticationMethodTarget
+        from .x509_certificate_authentication_mode_configuration import X509CertificateAuthenticationModeConfiguration
+        from .x509_certificate_user_binding import X509CertificateUserBinding
+
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_method_target import AuthenticationMethodTarget
+        from .x509_certificate_authentication_mode_configuration import X509CertificateAuthenticationModeConfiguration
+        from .x509_certificate_user_binding import X509CertificateUserBinding
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "authenticationModeConfiguration": lambda n : setattr(self, 'authentication_mode_configuration', n.get_object_value(x509_certificate_authentication_mode_configuration.X509CertificateAuthenticationModeConfiguration)),
-            "certificateUserBindings": lambda n : setattr(self, 'certificate_user_bindings', n.get_collection_of_object_values(x509_certificate_user_binding.X509CertificateUserBinding)),
-            "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(authentication_method_target.AuthenticationMethodTarget)),
+            "authenticationModeConfiguration": lambda n : setattr(self, 'authentication_mode_configuration', n.get_object_value(X509CertificateAuthenticationModeConfiguration)),
+            "certificateUserBindings": lambda n : setattr(self, 'certificate_user_bindings', n.get_collection_of_object_values(X509CertificateUserBinding)),
+            "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(AuthenticationMethodTarget)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def include_targets(self,) -> Optional[List[authentication_method_target.AuthenticationMethodTarget]]:
-        """
-        Gets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
-        Returns: Optional[List[authentication_method_target.AuthenticationMethodTarget]]
-        """
-        return self._include_targets
-    
-    @include_targets.setter
-    def include_targets(self,value: Optional[List[authentication_method_target.AuthenticationMethodTarget]] = None) -> None:
-        """
-        Sets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
-        Args:
-            value: Value to set for the include_targets property.
-        """
-        self._include_targets = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -106,8 +63,8 @@ class X509CertificateAuthenticationMethodConfiguration(authentication_method_con
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("authenticationModeConfiguration", self.authentication_mode_configuration)
         writer.write_collection_of_object_values("certificateUserBindings", self.certificate_user_bindings)

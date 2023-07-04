@@ -1,33 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_troubleshooting_event
+    from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
 
-from . import device_management_troubleshooting_event
+from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
 
-class AppleVppTokenTroubleshootingEvent(device_management_troubleshooting_event.DeviceManagementTroubleshootingEvent):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AppleVppTokenTroubleshootingEvent and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Apple Volume Purchase Program Token Identifier.
-        self._token_id: Optional[str] = None
+@dataclass
+class AppleVppTokenTroubleshootingEvent(DeviceManagementTroubleshootingEvent):
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Apple Volume Purchase Program Token Identifier.
+    token_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleVppTokenTroubleshootingEvent:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AppleVppTokenTroubleshootingEvent
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AppleVppTokenTroubleshootingEvent()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -35,7 +32,9 @@ class AppleVppTokenTroubleshootingEvent(device_management_troubleshooting_event.
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_troubleshooting_event
+        from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
+
+        from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
 
         fields: Dict[str, Callable[[Any], None]] = {
             "tokenId": lambda n : setattr(self, 'token_id', n.get_str_value()),
@@ -50,26 +49,9 @@ class AppleVppTokenTroubleshootingEvent(device_management_troubleshooting_event.
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("tokenId", self.token_id)
-    
-    @property
-    def token_id(self,) -> Optional[str]:
-        """
-        Gets the tokenId property value. Apple Volume Purchase Program Token Identifier.
-        Returns: Optional[str]
-        """
-        return self._token_id
-    
-    @token_id.setter
-    def token_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tokenId property value. Apple Volume Purchase Program Token Identifier.
-        Args:
-            value: Value to set for the token_id property.
-        """
-        self._token_id = value
     
 

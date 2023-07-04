@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LanguageProficiencyLevel(Enum):
+class LanguageProficiencyLevel(str, Enum):
     Elementary = "elementary",
     Conversational = "conversational",
     LimitedWorking = "limitedWorking",

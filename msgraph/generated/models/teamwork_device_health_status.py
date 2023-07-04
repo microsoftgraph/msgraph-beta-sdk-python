@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TeamworkDeviceHealthStatus(Enum):
+class TeamworkDeviceHealthStatus(str, Enum):
     Unknown = "unknown",
     Offline = "offline",
     Critical = "critical",

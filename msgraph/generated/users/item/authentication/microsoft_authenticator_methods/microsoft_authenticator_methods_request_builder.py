@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import microsoft_authenticator_authentication_method_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import microsoft_authenticator_authentication_method_item_request_builder
+    from .....models.microsoft_authenticator_authentication_method_collection_response import MicrosoftAuthenticatorAuthenticationMethodCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.microsoft_authenticator_authentication_method_item_request_builder import MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
 
-class MicrosoftAuthenticatorMethodsRequestBuilder():
+class MicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
     """
@@ -23,62 +24,53 @@ class MicrosoftAuthenticatorMethodsRequestBuilder():
         """
         Instantiates a new MicrosoftAuthenticatorMethodsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/authentication/microsoftAuthenticatorMethods{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/authentication/microsoftAuthenticatorMethods{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_microsoft_authenticator_authentication_method_id(self,microsoft_authenticator_authentication_method_id: str) -> microsoft_authenticator_authentication_method_item_request_builder.MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder:
+    def by_microsoft_authenticator_authentication_method_id(self,microsoft_authenticator_authentication_method_id: str) -> MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder:
         """
         Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         Args:
             microsoft_authenticator_authentication_method_id: Unique identifier of the item
-        Returns: microsoft_authenticator_authentication_method_item_request_builder.MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
+        Returns: MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
         """
-        if microsoft_authenticator_authentication_method_id is None:
-            raise Exception("microsoft_authenticator_authentication_method_id cannot be undefined")
-        from .item import microsoft_authenticator_authentication_method_item_request_builder
+        if not microsoft_authenticator_authentication_method_id:
+            raise TypeError("microsoft_authenticator_authentication_method_id cannot be null.")
+        from .item.microsoft_authenticator_authentication_method_item_request_builder import MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["microsoftAuthenticatorAuthenticationMethod%2Did"] = microsoft_authenticator_authentication_method_id
-        return microsoft_authenticator_authentication_method_item_request_builder.MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_authenticator_authentication_method_collection_response.MicrosoftAuthenticatorAuthenticationMethodCollectionResponse]:
+    async def get(self,request_configuration: Optional[MicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[MicrosoftAuthenticatorAuthenticationMethodCollectionResponse]:
         """
         Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[microsoft_authenticator_authentication_method_collection_response.MicrosoftAuthenticatorAuthenticationMethodCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[MicrosoftAuthenticatorAuthenticationMethodCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import microsoft_authenticator_authentication_method_collection_response
+        from .....models.microsoft_authenticator_authentication_method_collection_response import MicrosoftAuthenticatorAuthenticationMethodCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, microsoft_authenticator_authentication_method_collection_response.MicrosoftAuthenticatorAuthenticationMethodCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, MicrosoftAuthenticatorAuthenticationMethodCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -93,13 +85,13 @@ class MicrosoftAuthenticatorMethodsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MicrosoftAuthenticatorMethodsRequestBuilderGetQueryParameters():
@@ -110,11 +102,11 @@ class MicrosoftAuthenticatorMethodsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -158,17 +150,15 @@ class MicrosoftAuthenticatorMethodsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration():
+    class MicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[MicrosoftAuthenticatorMethodsRequestBuilder.MicrosoftAuthenticatorMethodsRequestBuilderGetQueryParameters] = None
 

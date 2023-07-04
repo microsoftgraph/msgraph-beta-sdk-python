@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CertificateValidityPeriodScale(Enum):
+class CertificateValidityPeriodScale(str, Enum):
     # Days.
     Days = "days",
     # Months.

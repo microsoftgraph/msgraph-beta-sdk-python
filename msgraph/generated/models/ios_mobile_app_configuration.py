@@ -1,63 +1,48 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import app_configuration_setting_item, managed_device_mobile_app_configuration
+    from .app_configuration_setting_item import AppConfigurationSettingItem
+    from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
 
-from . import managed_device_mobile_app_configuration
+from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
 
-class IosMobileAppConfiguration(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosMobileAppConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosMobileAppConfiguration"
-        # mdm app configuration Base64 binary.
-        self._encoded_setting_xml: Optional[bytes] = None
-        # app configuration setting items.
-        self._settings: Optional[List[app_configuration_setting_item.AppConfigurationSettingItem]] = None
+@dataclass
+class IosMobileAppConfiguration(ManagedDeviceMobileAppConfiguration):
+    odata_type = "#microsoft.graph.iosMobileAppConfiguration"
+    # mdm app configuration Base64 binary.
+    encoded_setting_xml: Optional[bytes] = None
+    # app configuration setting items.
+    settings: Optional[List[AppConfigurationSettingItem]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosMobileAppConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IosMobileAppConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return IosMobileAppConfiguration()
-    
-    @property
-    def encoded_setting_xml(self,) -> Optional[bytes]:
-        """
-        Gets the encodedSettingXml property value. mdm app configuration Base64 binary.
-        Returns: Optional[bytes]
-        """
-        return self._encoded_setting_xml
-    
-    @encoded_setting_xml.setter
-    def encoded_setting_xml(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the encodedSettingXml property value. mdm app configuration Base64 binary.
-        Args:
-            value: Value to set for the encoded_setting_xml property.
-        """
-        self._encoded_setting_xml = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import app_configuration_setting_item, managed_device_mobile_app_configuration
+        from .app_configuration_setting_item import AppConfigurationSettingItem
+        from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
+
+        from .app_configuration_setting_item import AppConfigurationSettingItem
+        from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "encodedSettingXml": lambda n : setattr(self, 'encoded_setting_xml', n.get_bytes_value()),
-            "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(app_configuration_setting_item.AppConfigurationSettingItem)),
+            "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(AppConfigurationSettingItem)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -69,27 +54,10 @@ class IosMobileAppConfiguration(managed_device_mobile_app_configuration.ManagedD
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_object_value("encodedSettingXml", self.encoded_setting_xml)
+        writer.write_bytes_value("encodedSettingXml", self.encoded_setting_xml)
         writer.write_collection_of_object_values("settings", self.settings)
-    
-    @property
-    def settings(self,) -> Optional[List[app_configuration_setting_item.AppConfigurationSettingItem]]:
-        """
-        Gets the settings property value. app configuration setting items.
-        Returns: Optional[List[app_configuration_setting_item.AppConfigurationSettingItem]]
-        """
-        return self._settings
-    
-    @settings.setter
-    def settings(self,value: Optional[List[app_configuration_setting_item.AppConfigurationSettingItem]] = None) -> None:
-        """
-        Sets the settings property value. app configuration setting items.
-        Args:
-            value: Value to set for the settings property.
-        """
-        self._settings = value
     
 

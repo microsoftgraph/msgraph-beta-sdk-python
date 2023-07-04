@@ -1,230 +1,97 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import android_device_owner_certificate_profile_base, android_vpn_connection_type, app_list_item, device_management_derived_credential_settings, key_value, key_value_pair, vpn_configuration, vpn_proxy_server
+    from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+    from .android_vpn_connection_type import AndroidVpnConnectionType
+    from .app_list_item import AppListItem
+    from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+    from .key_value import KeyValue
+    from .key_value_pair import KeyValuePair
+    from .vpn_configuration import VpnConfiguration
+    from .vpn_proxy_server import VpnProxyServer
 
-from . import vpn_configuration
+from .vpn_configuration import VpnConfiguration
 
-class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerVpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerVpnConfiguration"
-        # Whether or not to enable always-on VPN connection.
-        self._always_on: Optional[bool] = None
-        # If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
-        self._always_on_lockdown: Optional[bool] = None
-        # Android VPN connection type.
-        self._connection_type: Optional[android_vpn_connection_type.AndroidVpnConnectionType] = None
-        # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-        self._custom_data: Optional[List[key_value.KeyValue]] = None
-        # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-        self._custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Tenant level settings for the Derived Credentials to be used for authentication.
-        self._derived_credential_settings: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None
-        # Identity certificate for client authentication when authentication method is certificate.
-        self._identity_certificate: Optional[android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase] = None
-        # Microsoft Tunnel site ID.
-        self._microsoft_tunnel_site_id: Optional[str] = None
-        # Proxy server.
-        self._proxy_server: Optional[vpn_proxy_server.VpnProxyServer] = None
-        # Targeted mobile apps. This collection can contain a maximum of 500 elements.
-        self._targeted_mobile_apps: Optional[List[app_list_item.AppListItem]] = None
-        # Targeted App package IDs.
-        self._targeted_package_ids: Optional[List[str]] = None
-    
-    @property
-    def always_on(self,) -> Optional[bool]:
-        """
-        Gets the alwaysOn property value. Whether or not to enable always-on VPN connection.
-        Returns: Optional[bool]
-        """
-        return self._always_on
-    
-    @always_on.setter
-    def always_on(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the alwaysOn property value. Whether or not to enable always-on VPN connection.
-        Args:
-            value: Value to set for the always_on property.
-        """
-        self._always_on = value
-    
-    @property
-    def always_on_lockdown(self,) -> Optional[bool]:
-        """
-        Gets the alwaysOnLockdown property value. If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
-        Returns: Optional[bool]
-        """
-        return self._always_on_lockdown
-    
-    @always_on_lockdown.setter
-    def always_on_lockdown(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the alwaysOnLockdown property value. If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
-        Args:
-            value: Value to set for the always_on_lockdown property.
-        """
-        self._always_on_lockdown = value
-    
-    @property
-    def connection_type(self,) -> Optional[android_vpn_connection_type.AndroidVpnConnectionType]:
-        """
-        Gets the connectionType property value. Android VPN connection type.
-        Returns: Optional[android_vpn_connection_type.AndroidVpnConnectionType]
-        """
-        return self._connection_type
-    
-    @connection_type.setter
-    def connection_type(self,value: Optional[android_vpn_connection_type.AndroidVpnConnectionType] = None) -> None:
-        """
-        Sets the connectionType property value. Android VPN connection type.
-        Args:
-            value: Value to set for the connection_type property.
-        """
-        self._connection_type = value
+@dataclass
+class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration):
+    odata_type = "#microsoft.graph.androidDeviceOwnerVpnConfiguration"
+    # Whether or not to enable always-on VPN connection.
+    always_on: Optional[bool] = None
+    # If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
+    always_on_lockdown: Optional[bool] = None
+    # Android VPN connection type.
+    connection_type: Optional[AndroidVpnConnectionType] = None
+    # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
+    custom_data: Optional[List[KeyValue]] = None
+    # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
+    custom_key_value_data: Optional[List[KeyValuePair]] = None
+    # Tenant level settings for the Derived Credentials to be used for authentication.
+    derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
+    # Identity certificate for client authentication when authentication method is certificate.
+    identity_certificate: Optional[AndroidDeviceOwnerCertificateProfileBase] = None
+    # Microsoft Tunnel site ID.
+    microsoft_tunnel_site_id: Optional[str] = None
+    # Proxy server.
+    proxy_server: Optional[VpnProxyServer] = None
+    # Targeted mobile apps. This collection can contain a maximum of 500 elements.
+    targeted_mobile_apps: Optional[List[AppListItem]] = None
+    # Targeted App package IDs.
+    targeted_package_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerVpnConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AndroidDeviceOwnerVpnConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerVpnConfiguration()
-    
-    @property
-    def custom_data(self,) -> Optional[List[key_value.KeyValue]]:
-        """
-        Gets the customData property value. Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-        Returns: Optional[List[key_value.KeyValue]]
-        """
-        return self._custom_data
-    
-    @custom_data.setter
-    def custom_data(self,value: Optional[List[key_value.KeyValue]] = None) -> None:
-        """
-        Sets the customData property value. Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-        Args:
-            value: Value to set for the custom_data property.
-        """
-        self._custom_data = value
-    
-    @property
-    def custom_key_value_data(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the customKeyValueData property value. Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._custom_key_value_data
-    
-    @custom_key_value_data.setter
-    def custom_key_value_data(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the customKeyValueData property value. Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-        Args:
-            value: Value to set for the custom_key_value_data property.
-        """
-        self._custom_key_value_data = value
-    
-    @property
-    def derived_credential_settings(self,) -> Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings]:
-        """
-        Gets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
-        Returns: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings]
-        """
-        return self._derived_credential_settings
-    
-    @derived_credential_settings.setter
-    def derived_credential_settings(self,value: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None) -> None:
-        """
-        Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
-        Args:
-            value: Value to set for the derived_credential_settings property.
-        """
-        self._derived_credential_settings = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import android_device_owner_certificate_profile_base, android_vpn_connection_type, app_list_item, device_management_derived_credential_settings, key_value, key_value_pair, vpn_configuration, vpn_proxy_server
+        from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+        from .android_vpn_connection_type import AndroidVpnConnectionType
+        from .app_list_item import AppListItem
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+        from .key_value import KeyValue
+        from .key_value_pair import KeyValuePair
+        from .vpn_configuration import VpnConfiguration
+        from .vpn_proxy_server import VpnProxyServer
+
+        from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+        from .android_vpn_connection_type import AndroidVpnConnectionType
+        from .app_list_item import AppListItem
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+        from .key_value import KeyValue
+        from .key_value_pair import KeyValuePair
+        from .vpn_configuration import VpnConfiguration
+        from .vpn_proxy_server import VpnProxyServer
 
         fields: Dict[str, Callable[[Any], None]] = {
             "alwaysOn": lambda n : setattr(self, 'always_on', n.get_bool_value()),
             "alwaysOnLockdown": lambda n : setattr(self, 'always_on_lockdown', n.get_bool_value()),
-            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_vpn_connection_type.AndroidVpnConnectionType)),
-            "customData": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
-            "customKeyValueData": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
-            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase)),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(AndroidVpnConnectionType)),
+            "customData": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(KeyValue)),
+            "customKeyValueData": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(KeyValuePair)),
+            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(AndroidDeviceOwnerCertificateProfileBase)),
             "microsoftTunnelSiteId": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
-            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(vpn_proxy_server.VpnProxyServer)),
-            "targetedMobileApps": lambda n : setattr(self, 'targeted_mobile_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(VpnProxyServer)),
+            "targetedMobileApps": lambda n : setattr(self, 'targeted_mobile_apps', n.get_collection_of_object_values(AppListItem)),
             "targetedPackageIds": lambda n : setattr(self, 'targeted_package_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def identity_certificate(self,) -> Optional[android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase]:
-        """
-        Gets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Returns: Optional[android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase]
-        """
-        return self._identity_certificate
-    
-    @identity_certificate.setter
-    def identity_certificate(self,value: Optional[android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase] = None) -> None:
-        """
-        Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Args:
-            value: Value to set for the identity_certificate property.
-        """
-        self._identity_certificate = value
-    
-    @property
-    def microsoft_tunnel_site_id(self,) -> Optional[str]:
-        """
-        Gets the microsoftTunnelSiteId property value. Microsoft Tunnel site ID.
-        Returns: Optional[str]
-        """
-        return self._microsoft_tunnel_site_id
-    
-    @microsoft_tunnel_site_id.setter
-    def microsoft_tunnel_site_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the microsoftTunnelSiteId property value. Microsoft Tunnel site ID.
-        Args:
-            value: Value to set for the microsoft_tunnel_site_id property.
-        """
-        self._microsoft_tunnel_site_id = value
-    
-    @property
-    def proxy_server(self,) -> Optional[vpn_proxy_server.VpnProxyServer]:
-        """
-        Gets the proxyServer property value. Proxy server.
-        Returns: Optional[vpn_proxy_server.VpnProxyServer]
-        """
-        return self._proxy_server
-    
-    @proxy_server.setter
-    def proxy_server(self,value: Optional[vpn_proxy_server.VpnProxyServer] = None) -> None:
-        """
-        Sets the proxyServer property value. Proxy server.
-        Args:
-            value: Value to set for the proxy_server property.
-        """
-        self._proxy_server = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -232,8 +99,8 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("alwaysOn", self.always_on)
         writer.write_bool_value("alwaysOnLockdown", self.always_on_lockdown)
@@ -246,39 +113,5 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         writer.write_object_value("proxyServer", self.proxy_server)
         writer.write_collection_of_object_values("targetedMobileApps", self.targeted_mobile_apps)
         writer.write_collection_of_primitive_values("targetedPackageIds", self.targeted_package_ids)
-    
-    @property
-    def targeted_mobile_apps(self,) -> Optional[List[app_list_item.AppListItem]]:
-        """
-        Gets the targetedMobileApps property value. Targeted mobile apps. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[app_list_item.AppListItem]]
-        """
-        return self._targeted_mobile_apps
-    
-    @targeted_mobile_apps.setter
-    def targeted_mobile_apps(self,value: Optional[List[app_list_item.AppListItem]] = None) -> None:
-        """
-        Sets the targetedMobileApps property value. Targeted mobile apps. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the targeted_mobile_apps property.
-        """
-        self._targeted_mobile_apps = value
-    
-    @property
-    def targeted_package_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the targetedPackageIds property value. Targeted App package IDs.
-        Returns: Optional[List[str]]
-        """
-        return self._targeted_package_ids
-    
-    @targeted_package_ids.setter
-    def targeted_package_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the targetedPackageIds property value. Targeted App package IDs.
-        Args:
-            value: Value to set for the targeted_package_ids property.
-        """
-        self._targeted_package_ids = value
     
 

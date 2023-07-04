@@ -1,6 +1,6 @@
 from enum import Enum
 
-class NotificationChannelType(Enum):
+class NotificationChannelType(str, Enum):
     Portal = "portal",
     Email = "email",
     PhoneCall = "phoneCall",

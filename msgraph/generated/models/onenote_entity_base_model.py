@@ -1,64 +1,69 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, notebook, onenote_entity_hierarchy_model, onenote_entity_schema_object_model, onenote_page, onenote_resource, onenote_section, section_group
+    from .entity import Entity
+    from .notebook import Notebook
+    from .onenote_entity_hierarchy_model import OnenoteEntityHierarchyModel
+    from .onenote_entity_schema_object_model import OnenoteEntitySchemaObjectModel
+    from .onenote_page import OnenotePage
+    from .onenote_resource import OnenoteResource
+    from .onenote_section import OnenoteSection
+    from .section_group import SectionGroup
 
-from . import entity
+from .entity import Entity
 
-class OnenoteEntityBaseModel(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new onenoteEntityBaseModel and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The self property
-        self._self: Optional[str] = None
+@dataclass
+class OnenoteEntityBaseModel(Entity):
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The self property
+    self: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnenoteEntityBaseModel:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: OnenoteEntityBaseModel
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.notebook":
-                from . import notebook
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.notebook".casefold():
+            from .notebook import Notebook
 
-                return notebook.Notebook()
-            if mapping_value == "#microsoft.graph.onenoteEntityHierarchyModel":
-                from . import onenote_entity_hierarchy_model
+            return Notebook()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onenoteEntityHierarchyModel".casefold():
+            from .onenote_entity_hierarchy_model import OnenoteEntityHierarchyModel
 
-                return onenote_entity_hierarchy_model.OnenoteEntityHierarchyModel()
-            if mapping_value == "#microsoft.graph.onenoteEntitySchemaObjectModel":
-                from . import onenote_entity_schema_object_model
+            return OnenoteEntityHierarchyModel()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onenoteEntitySchemaObjectModel".casefold():
+            from .onenote_entity_schema_object_model import OnenoteEntitySchemaObjectModel
 
-                return onenote_entity_schema_object_model.OnenoteEntitySchemaObjectModel()
-            if mapping_value == "#microsoft.graph.onenotePage":
-                from . import onenote_page
+            return OnenoteEntitySchemaObjectModel()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onenotePage".casefold():
+            from .onenote_page import OnenotePage
 
-                return onenote_page.OnenotePage()
-            if mapping_value == "#microsoft.graph.onenoteResource":
-                from . import onenote_resource
+            return OnenotePage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onenoteResource".casefold():
+            from .onenote_resource import OnenoteResource
 
-                return onenote_resource.OnenoteResource()
-            if mapping_value == "#microsoft.graph.onenoteSection":
-                from . import onenote_section
+            return OnenoteResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onenoteSection".casefold():
+            from .onenote_section import OnenoteSection
 
-                return onenote_section.OnenoteSection()
-            if mapping_value == "#microsoft.graph.sectionGroup":
-                from . import section_group
+            return OnenoteSection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sectionGroup".casefold():
+            from .section_group import SectionGroup
 
-                return section_group.SectionGroup()
+            return SectionGroup()
         return OnenoteEntityBaseModel()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -66,7 +71,23 @@ class OnenoteEntityBaseModel(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, notebook, onenote_entity_hierarchy_model, onenote_entity_schema_object_model, onenote_page, onenote_resource, onenote_section, section_group
+        from .entity import Entity
+        from .notebook import Notebook
+        from .onenote_entity_hierarchy_model import OnenoteEntityHierarchyModel
+        from .onenote_entity_schema_object_model import OnenoteEntitySchemaObjectModel
+        from .onenote_page import OnenotePage
+        from .onenote_resource import OnenoteResource
+        from .onenote_section import OnenoteSection
+        from .section_group import SectionGroup
+
+        from .entity import Entity
+        from .notebook import Notebook
+        from .onenote_entity_hierarchy_model import OnenoteEntityHierarchyModel
+        from .onenote_entity_schema_object_model import OnenoteEntitySchemaObjectModel
+        from .onenote_page import OnenotePage
+        from .onenote_resource import OnenoteResource
+        from .onenote_section import OnenoteSection
+        from .section_group import SectionGroup
 
         fields: Dict[str, Callable[[Any], None]] = {
             "self": lambda n : setattr(self, 'self', n.get_str_value()),
@@ -75,31 +96,14 @@ class OnenoteEntityBaseModel(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def self(self,) -> Optional[str]:
-        """
-        Gets the self property value. The self property
-        Returns: Optional[str]
-        """
-        return self._self
-    
-    @self.setter
-    def self(self,value: Optional[str] = None) -> None:
-        """
-        Sets the self property value. The self property
-        Args:
-            value: Value to set for the self property.
-        """
-        self._self = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("self", self.self)
     

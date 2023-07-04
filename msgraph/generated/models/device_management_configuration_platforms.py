@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationPlatforms(Enum):
+class DeviceManagementConfigurationPlatforms(str, Enum):
     # Default. No platform type specified.
     None_ = "none",
     # Settings for Android platform.

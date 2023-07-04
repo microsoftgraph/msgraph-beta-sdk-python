@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcProvisioningPolicyImageType(Enum):
+class CloudPcProvisioningPolicyImageType(str, Enum):
     Gallery = "gallery",
     Custom = "custom",
 

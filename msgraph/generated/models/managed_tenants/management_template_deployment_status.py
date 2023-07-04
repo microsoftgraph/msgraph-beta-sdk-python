@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagementTemplateDeploymentStatus(Enum):
+class ManagementTemplateDeploymentStatus(str, Enum):
     Unknown = "unknown",
     InProgress = "inProgress",
     Completed = "completed",

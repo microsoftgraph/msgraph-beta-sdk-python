@@ -1,493 +1,213 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import android_managed_app_protection, default_managed_app_protection, device_app_management_task, enterprise_code_signing_certificate, entity, ios_lob_app_provisioning_configuration, ios_managed_app_protection, managed_app_policy, managed_app_registration, managed_app_status, managed_device_mobile_app_configuration, managed_e_book, managed_e_book_category, mdm_windows_information_protection_policy, microsoft_store_for_business_portal_selection_options, mobile_app, mobile_app_category, policy_set, symantec_code_signing_certificate, targeted_managed_app_configuration, vpp_token, windows_defender_application_control_supplemental_policy, windows_information_protection_device_registration, windows_information_protection_policy, windows_information_protection_wipe_action, windows_managed_app_protection, windows_management_app
+    from .android_managed_app_protection import AndroidManagedAppProtection
+    from .default_managed_app_protection import DefaultManagedAppProtection
+    from .device_app_management_task import DeviceAppManagementTask
+    from .enterprise_code_signing_certificate import EnterpriseCodeSigningCertificate
+    from .entity import Entity
+    from .ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
+    from .ios_managed_app_protection import IosManagedAppProtection
+    from .managed_app_policy import ManagedAppPolicy
+    from .managed_app_registration import ManagedAppRegistration
+    from .managed_app_status import ManagedAppStatus
+    from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
+    from .managed_e_book import ManagedEBook
+    from .managed_e_book_category import ManagedEBookCategory
+    from .mdm_windows_information_protection_policy import MdmWindowsInformationProtectionPolicy
+    from .microsoft_store_for_business_portal_selection_options import MicrosoftStoreForBusinessPortalSelectionOptions
+    from .mobile_app import MobileApp
+    from .mobile_app_category import MobileAppCategory
+    from .policy_set import PolicySet
+    from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
+    from .targeted_managed_app_configuration import TargetedManagedAppConfiguration
+    from .vpp_token import VppToken
+    from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
+    from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
+    from .windows_information_protection_policy import WindowsInformationProtectionPolicy
+    from .windows_information_protection_wipe_action import WindowsInformationProtectionWipeAction
+    from .windows_managed_app_protection import WindowsManagedAppProtection
+    from .windows_management_app import WindowsManagementApp
 
-from . import entity
+from .entity import Entity
 
-class DeviceAppManagement(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceAppManagement and sets the default values.
-        """
-        super().__init__()
-        # Android managed app policies.
-        self._android_managed_app_protections: Optional[List[android_managed_app_protection.AndroidManagedAppProtection]] = None
-        # Default managed app policies.
-        self._default_managed_app_protections: Optional[List[default_managed_app_protection.DefaultManagedAppProtection]] = None
-        # Device app management tasks.
-        self._device_app_management_tasks: Optional[List[device_app_management_task.DeviceAppManagementTask]] = None
-        # The Windows Enterprise Code Signing Certificate.
-        self._enterprise_code_signing_certificates: Optional[List[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate]] = None
-        # The IOS Lob App Provisioning Configurations.
-        self._ios_lob_app_provisioning_configurations: Optional[List[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]] = None
-        # iOS managed app policies.
-        self._ios_managed_app_protections: Optional[List[ios_managed_app_protection.IosManagedAppProtection]] = None
-        # Whether the account is enabled for syncing applications from the Microsoft Store for Business.
-        self._is_enabled_for_microsoft_store_for_business: Optional[bool] = None
-        # Managed app policies.
-        self._managed_app_policies: Optional[List[managed_app_policy.ManagedAppPolicy]] = None
-        # The managed app registrations.
-        self._managed_app_registrations: Optional[List[managed_app_registration.ManagedAppRegistration]] = None
-        # The managed app statuses.
-        self._managed_app_statuses: Optional[List[managed_app_status.ManagedAppStatus]] = None
-        # The mobile eBook categories.
-        self._managed_e_book_categories: Optional[List[managed_e_book_category.ManagedEBookCategory]] = None
-        # The Managed eBook.
-        self._managed_e_books: Optional[List[managed_e_book.ManagedEBook]] = None
-        # Windows information protection for apps running on devices which are MDM enrolled.
-        self._mdm_windows_information_protection_policies: Optional[List[mdm_windows_information_protection_policy.MdmWindowsInformationProtectionPolicy]] = None
-        # The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is -<country/regioncode2>, where  is a lowercase two-letter code derived from ISO 639-1 and <country/regioncode2> is an uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific culture.
-        self._microsoft_store_for_business_language: Optional[str] = None
-        # The last time an application sync from the Microsoft Store for Business was completed.
-        self._microsoft_store_for_business_last_completed_application_sync_time: Optional[datetime] = None
-        # The last time the apps from the Microsoft Store for Business were synced successfully for the account.
-        self._microsoft_store_for_business_last_successful_sync_date_time: Optional[datetime] = None
-        # Portal to which admin syncs available Microsoft Store for Business apps. This is available in the Intune Admin Console.
-        self._microsoft_store_for_business_portal_selection: Optional[microsoft_store_for_business_portal_selection_options.MicrosoftStoreForBusinessPortalSelectionOptions] = None
-        # The mobile app categories.
-        self._mobile_app_categories: Optional[List[mobile_app_category.MobileAppCategory]] = None
-        # The Managed Device Mobile Application Configurations.
-        self._mobile_app_configurations: Optional[List[managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration]] = None
-        # The mobile apps.
-        self._mobile_apps: Optional[List[mobile_app.MobileApp]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The PolicySet of Policies and Applications
-        self._policy_sets: Optional[List[policy_set.PolicySet]] = None
-        # The WinPhone Symantec Code Signing Certificate.
-        self._symantec_code_signing_certificate: Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate] = None
-        # Targeted managed app configurations.
-        self._targeted_managed_app_configurations: Optional[List[targeted_managed_app_configuration.TargetedManagedAppConfiguration]] = None
-        # List of Vpp tokens for this organization.
-        self._vpp_tokens: Optional[List[vpp_token.VppToken]] = None
-        # The collection of Windows Defender Application Control Supplemental Policies.
-        self._wdac_supplemental_policies: Optional[List[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]] = None
-        # Windows information protection device registrations that are not MDM enrolled.
-        self._windows_information_protection_device_registrations: Optional[List[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]] = None
-        # Windows information protection for apps running on devices which are not MDM enrolled.
-        self._windows_information_protection_policies: Optional[List[windows_information_protection_policy.WindowsInformationProtectionPolicy]] = None
-        # Windows information protection wipe actions.
-        self._windows_information_protection_wipe_actions: Optional[List[windows_information_protection_wipe_action.WindowsInformationProtectionWipeAction]] = None
-        # Windows managed app policies.
-        self._windows_managed_app_protections: Optional[List[windows_managed_app_protection.WindowsManagedAppProtection]] = None
-        # Windows management app.
-        self._windows_management_app: Optional[windows_management_app.WindowsManagementApp] = None
-    
-    @property
-    def android_managed_app_protections(self,) -> Optional[List[android_managed_app_protection.AndroidManagedAppProtection]]:
-        """
-        Gets the androidManagedAppProtections property value. Android managed app policies.
-        Returns: Optional[List[android_managed_app_protection.AndroidManagedAppProtection]]
-        """
-        return self._android_managed_app_protections
-    
-    @android_managed_app_protections.setter
-    def android_managed_app_protections(self,value: Optional[List[android_managed_app_protection.AndroidManagedAppProtection]] = None) -> None:
-        """
-        Sets the androidManagedAppProtections property value. Android managed app policies.
-        Args:
-            value: Value to set for the android_managed_app_protections property.
-        """
-        self._android_managed_app_protections = value
+@dataclass
+class DeviceAppManagement(Entity):
+    # Android managed app policies.
+    android_managed_app_protections: Optional[List[AndroidManagedAppProtection]] = None
+    # Default managed app policies.
+    default_managed_app_protections: Optional[List[DefaultManagedAppProtection]] = None
+    # Device app management tasks.
+    device_app_management_tasks: Optional[List[DeviceAppManagementTask]] = None
+    # The Windows Enterprise Code Signing Certificate.
+    enterprise_code_signing_certificates: Optional[List[EnterpriseCodeSigningCertificate]] = None
+    # The IOS Lob App Provisioning Configurations.
+    ios_lob_app_provisioning_configurations: Optional[List[IosLobAppProvisioningConfiguration]] = None
+    # iOS managed app policies.
+    ios_managed_app_protections: Optional[List[IosManagedAppProtection]] = None
+    # Whether the account is enabled for syncing applications from the Microsoft Store for Business.
+    is_enabled_for_microsoft_store_for_business: Optional[bool] = None
+    # Managed app policies.
+    managed_app_policies: Optional[List[ManagedAppPolicy]] = None
+    # The managed app registrations.
+    managed_app_registrations: Optional[List[ManagedAppRegistration]] = None
+    # The managed app statuses.
+    managed_app_statuses: Optional[List[ManagedAppStatus]] = None
+    # The mobile eBook categories.
+    managed_e_book_categories: Optional[List[ManagedEBookCategory]] = None
+    # The Managed eBook.
+    managed_e_books: Optional[List[ManagedEBook]] = None
+    # Windows information protection for apps running on devices which are MDM enrolled.
+    mdm_windows_information_protection_policies: Optional[List[MdmWindowsInformationProtectionPolicy]] = None
+    # The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is -<country/regioncode2>, where  is a lowercase two-letter code derived from ISO 639-1 and <country/regioncode2> is an uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific culture.
+    microsoft_store_for_business_language: Optional[str] = None
+    # The last time an application sync from the Microsoft Store for Business was completed.
+    microsoft_store_for_business_last_completed_application_sync_time: Optional[datetime.datetime] = None
+    # The last time the apps from the Microsoft Store for Business were synced successfully for the account.
+    microsoft_store_for_business_last_successful_sync_date_time: Optional[datetime.datetime] = None
+    # Portal to which admin syncs available Microsoft Store for Business apps. This is available in the Intune Admin Console.
+    microsoft_store_for_business_portal_selection: Optional[MicrosoftStoreForBusinessPortalSelectionOptions] = None
+    # The mobile app categories.
+    mobile_app_categories: Optional[List[MobileAppCategory]] = None
+    # The Managed Device Mobile Application Configurations.
+    mobile_app_configurations: Optional[List[ManagedDeviceMobileAppConfiguration]] = None
+    # The mobile apps.
+    mobile_apps: Optional[List[MobileApp]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The PolicySet of Policies and Applications
+    policy_sets: Optional[List[PolicySet]] = None
+    # The WinPhone Symantec Code Signing Certificate.
+    symantec_code_signing_certificate: Optional[SymantecCodeSigningCertificate] = None
+    # Targeted managed app configurations.
+    targeted_managed_app_configurations: Optional[List[TargetedManagedAppConfiguration]] = None
+    # List of Vpp tokens for this organization.
+    vpp_tokens: Optional[List[VppToken]] = None
+    # The collection of Windows Defender Application Control Supplemental Policies.
+    wdac_supplemental_policies: Optional[List[WindowsDefenderApplicationControlSupplementalPolicy]] = None
+    # Windows information protection device registrations that are not MDM enrolled.
+    windows_information_protection_device_registrations: Optional[List[WindowsInformationProtectionDeviceRegistration]] = None
+    # Windows information protection for apps running on devices which are not MDM enrolled.
+    windows_information_protection_policies: Optional[List[WindowsInformationProtectionPolicy]] = None
+    # Windows information protection wipe actions.
+    windows_information_protection_wipe_actions: Optional[List[WindowsInformationProtectionWipeAction]] = None
+    # Windows managed app policies.
+    windows_managed_app_protections: Optional[List[WindowsManagedAppProtection]] = None
+    # Windows management app.
+    windows_management_app: Optional[WindowsManagementApp] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceAppManagement:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceAppManagement
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceAppManagement()
-    
-    @property
-    def default_managed_app_protections(self,) -> Optional[List[default_managed_app_protection.DefaultManagedAppProtection]]:
-        """
-        Gets the defaultManagedAppProtections property value. Default managed app policies.
-        Returns: Optional[List[default_managed_app_protection.DefaultManagedAppProtection]]
-        """
-        return self._default_managed_app_protections
-    
-    @default_managed_app_protections.setter
-    def default_managed_app_protections(self,value: Optional[List[default_managed_app_protection.DefaultManagedAppProtection]] = None) -> None:
-        """
-        Sets the defaultManagedAppProtections property value. Default managed app policies.
-        Args:
-            value: Value to set for the default_managed_app_protections property.
-        """
-        self._default_managed_app_protections = value
-    
-    @property
-    def device_app_management_tasks(self,) -> Optional[List[device_app_management_task.DeviceAppManagementTask]]:
-        """
-        Gets the deviceAppManagementTasks property value. Device app management tasks.
-        Returns: Optional[List[device_app_management_task.DeviceAppManagementTask]]
-        """
-        return self._device_app_management_tasks
-    
-    @device_app_management_tasks.setter
-    def device_app_management_tasks(self,value: Optional[List[device_app_management_task.DeviceAppManagementTask]] = None) -> None:
-        """
-        Sets the deviceAppManagementTasks property value. Device app management tasks.
-        Args:
-            value: Value to set for the device_app_management_tasks property.
-        """
-        self._device_app_management_tasks = value
-    
-    @property
-    def enterprise_code_signing_certificates(self,) -> Optional[List[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate]]:
-        """
-        Gets the enterpriseCodeSigningCertificates property value. The Windows Enterprise Code Signing Certificate.
-        Returns: Optional[List[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate]]
-        """
-        return self._enterprise_code_signing_certificates
-    
-    @enterprise_code_signing_certificates.setter
-    def enterprise_code_signing_certificates(self,value: Optional[List[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate]] = None) -> None:
-        """
-        Sets the enterpriseCodeSigningCertificates property value. The Windows Enterprise Code Signing Certificate.
-        Args:
-            value: Value to set for the enterprise_code_signing_certificates property.
-        """
-        self._enterprise_code_signing_certificates = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import android_managed_app_protection, default_managed_app_protection, device_app_management_task, enterprise_code_signing_certificate, entity, ios_lob_app_provisioning_configuration, ios_managed_app_protection, managed_app_policy, managed_app_registration, managed_app_status, managed_device_mobile_app_configuration, managed_e_book, managed_e_book_category, mdm_windows_information_protection_policy, microsoft_store_for_business_portal_selection_options, mobile_app, mobile_app_category, policy_set, symantec_code_signing_certificate, targeted_managed_app_configuration, vpp_token, windows_defender_application_control_supplemental_policy, windows_information_protection_device_registration, windows_information_protection_policy, windows_information_protection_wipe_action, windows_managed_app_protection, windows_management_app
+        from .android_managed_app_protection import AndroidManagedAppProtection
+        from .default_managed_app_protection import DefaultManagedAppProtection
+        from .device_app_management_task import DeviceAppManagementTask
+        from .enterprise_code_signing_certificate import EnterpriseCodeSigningCertificate
+        from .entity import Entity
+        from .ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
+        from .ios_managed_app_protection import IosManagedAppProtection
+        from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_registration import ManagedAppRegistration
+        from .managed_app_status import ManagedAppStatus
+        from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
+        from .managed_e_book import ManagedEBook
+        from .managed_e_book_category import ManagedEBookCategory
+        from .mdm_windows_information_protection_policy import MdmWindowsInformationProtectionPolicy
+        from .microsoft_store_for_business_portal_selection_options import MicrosoftStoreForBusinessPortalSelectionOptions
+        from .mobile_app import MobileApp
+        from .mobile_app_category import MobileAppCategory
+        from .policy_set import PolicySet
+        from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
+        from .targeted_managed_app_configuration import TargetedManagedAppConfiguration
+        from .vpp_token import VppToken
+        from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
+        from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
+        from .windows_information_protection_policy import WindowsInformationProtectionPolicy
+        from .windows_information_protection_wipe_action import WindowsInformationProtectionWipeAction
+        from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_management_app import WindowsManagementApp
+
+        from .android_managed_app_protection import AndroidManagedAppProtection
+        from .default_managed_app_protection import DefaultManagedAppProtection
+        from .device_app_management_task import DeviceAppManagementTask
+        from .enterprise_code_signing_certificate import EnterpriseCodeSigningCertificate
+        from .entity import Entity
+        from .ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
+        from .ios_managed_app_protection import IosManagedAppProtection
+        from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_registration import ManagedAppRegistration
+        from .managed_app_status import ManagedAppStatus
+        from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
+        from .managed_e_book import ManagedEBook
+        from .managed_e_book_category import ManagedEBookCategory
+        from .mdm_windows_information_protection_policy import MdmWindowsInformationProtectionPolicy
+        from .microsoft_store_for_business_portal_selection_options import MicrosoftStoreForBusinessPortalSelectionOptions
+        from .mobile_app import MobileApp
+        from .mobile_app_category import MobileAppCategory
+        from .policy_set import PolicySet
+        from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
+        from .targeted_managed_app_configuration import TargetedManagedAppConfiguration
+        from .vpp_token import VppToken
+        from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
+        from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
+        from .windows_information_protection_policy import WindowsInformationProtectionPolicy
+        from .windows_information_protection_wipe_action import WindowsInformationProtectionWipeAction
+        from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_management_app import WindowsManagementApp
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "androidManagedAppProtections": lambda n : setattr(self, 'android_managed_app_protections', n.get_collection_of_object_values(android_managed_app_protection.AndroidManagedAppProtection)),
-            "defaultManagedAppProtections": lambda n : setattr(self, 'default_managed_app_protections', n.get_collection_of_object_values(default_managed_app_protection.DefaultManagedAppProtection)),
-            "deviceAppManagementTasks": lambda n : setattr(self, 'device_app_management_tasks', n.get_collection_of_object_values(device_app_management_task.DeviceAppManagementTask)),
-            "enterpriseCodeSigningCertificates": lambda n : setattr(self, 'enterprise_code_signing_certificates', n.get_collection_of_object_values(enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate)),
-            "iosLobAppProvisioningConfigurations": lambda n : setattr(self, 'ios_lob_app_provisioning_configurations', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration)),
-            "iosManagedAppProtections": lambda n : setattr(self, 'ios_managed_app_protections', n.get_collection_of_object_values(ios_managed_app_protection.IosManagedAppProtection)),
+            "androidManagedAppProtections": lambda n : setattr(self, 'android_managed_app_protections', n.get_collection_of_object_values(AndroidManagedAppProtection)),
+            "defaultManagedAppProtections": lambda n : setattr(self, 'default_managed_app_protections', n.get_collection_of_object_values(DefaultManagedAppProtection)),
+            "deviceAppManagementTasks": lambda n : setattr(self, 'device_app_management_tasks', n.get_collection_of_object_values(DeviceAppManagementTask)),
+            "enterpriseCodeSigningCertificates": lambda n : setattr(self, 'enterprise_code_signing_certificates', n.get_collection_of_object_values(EnterpriseCodeSigningCertificate)),
+            "iosLobAppProvisioningConfigurations": lambda n : setattr(self, 'ios_lob_app_provisioning_configurations', n.get_collection_of_object_values(IosLobAppProvisioningConfiguration)),
+            "iosManagedAppProtections": lambda n : setattr(self, 'ios_managed_app_protections', n.get_collection_of_object_values(IosManagedAppProtection)),
             "isEnabledForMicrosoftStoreForBusiness": lambda n : setattr(self, 'is_enabled_for_microsoft_store_for_business', n.get_bool_value()),
-            "managedAppPolicies": lambda n : setattr(self, 'managed_app_policies', n.get_collection_of_object_values(managed_app_policy.ManagedAppPolicy)),
-            "managedAppRegistrations": lambda n : setattr(self, 'managed_app_registrations', n.get_collection_of_object_values(managed_app_registration.ManagedAppRegistration)),
-            "managedAppStatuses": lambda n : setattr(self, 'managed_app_statuses', n.get_collection_of_object_values(managed_app_status.ManagedAppStatus)),
-            "managedEBooks": lambda n : setattr(self, 'managed_e_books', n.get_collection_of_object_values(managed_e_book.ManagedEBook)),
-            "managedEBookCategories": lambda n : setattr(self, 'managed_e_book_categories', n.get_collection_of_object_values(managed_e_book_category.ManagedEBookCategory)),
-            "mdmWindowsInformationProtectionPolicies": lambda n : setattr(self, 'mdm_windows_information_protection_policies', n.get_collection_of_object_values(mdm_windows_information_protection_policy.MdmWindowsInformationProtectionPolicy)),
+            "managedAppPolicies": lambda n : setattr(self, 'managed_app_policies', n.get_collection_of_object_values(ManagedAppPolicy)),
+            "managedAppRegistrations": lambda n : setattr(self, 'managed_app_registrations', n.get_collection_of_object_values(ManagedAppRegistration)),
+            "managedAppStatuses": lambda n : setattr(self, 'managed_app_statuses', n.get_collection_of_object_values(ManagedAppStatus)),
+            "managedEBookCategories": lambda n : setattr(self, 'managed_e_book_categories', n.get_collection_of_object_values(ManagedEBookCategory)),
+            "managedEBooks": lambda n : setattr(self, 'managed_e_books', n.get_collection_of_object_values(ManagedEBook)),
+            "mdmWindowsInformationProtectionPolicies": lambda n : setattr(self, 'mdm_windows_information_protection_policies', n.get_collection_of_object_values(MdmWindowsInformationProtectionPolicy)),
             "microsoftStoreForBusinessLanguage": lambda n : setattr(self, 'microsoft_store_for_business_language', n.get_str_value()),
             "microsoftStoreForBusinessLastCompletedApplicationSyncTime": lambda n : setattr(self, 'microsoft_store_for_business_last_completed_application_sync_time', n.get_datetime_value()),
             "microsoftStoreForBusinessLastSuccessfulSyncDateTime": lambda n : setattr(self, 'microsoft_store_for_business_last_successful_sync_date_time', n.get_datetime_value()),
-            "microsoftStoreForBusinessPortalSelection": lambda n : setattr(self, 'microsoft_store_for_business_portal_selection', n.get_enum_value(microsoft_store_for_business_portal_selection_options.MicrosoftStoreForBusinessPortalSelectionOptions)),
-            "mobileApps": lambda n : setattr(self, 'mobile_apps', n.get_collection_of_object_values(mobile_app.MobileApp)),
-            "mobileAppCategories": lambda n : setattr(self, 'mobile_app_categories', n.get_collection_of_object_values(mobile_app_category.MobileAppCategory)),
-            "mobileAppConfigurations": lambda n : setattr(self, 'mobile_app_configurations', n.get_collection_of_object_values(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration)),
-            "policySets": lambda n : setattr(self, 'policy_sets', n.get_collection_of_object_values(policy_set.PolicySet)),
-            "symantecCodeSigningCertificate": lambda n : setattr(self, 'symantec_code_signing_certificate', n.get_object_value(symantec_code_signing_certificate.SymantecCodeSigningCertificate)),
-            "targetedManagedAppConfigurations": lambda n : setattr(self, 'targeted_managed_app_configurations', n.get_collection_of_object_values(targeted_managed_app_configuration.TargetedManagedAppConfiguration)),
-            "vppTokens": lambda n : setattr(self, 'vpp_tokens', n.get_collection_of_object_values(vpp_token.VppToken)),
-            "wdacSupplementalPolicies": lambda n : setattr(self, 'wdac_supplemental_policies', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy)),
-            "windowsInformationProtectionDeviceRegistrations": lambda n : setattr(self, 'windows_information_protection_device_registrations', n.get_collection_of_object_values(windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration)),
-            "windowsInformationProtectionPolicies": lambda n : setattr(self, 'windows_information_protection_policies', n.get_collection_of_object_values(windows_information_protection_policy.WindowsInformationProtectionPolicy)),
-            "windowsInformationProtectionWipeActions": lambda n : setattr(self, 'windows_information_protection_wipe_actions', n.get_collection_of_object_values(windows_information_protection_wipe_action.WindowsInformationProtectionWipeAction)),
-            "windowsManagedAppProtections": lambda n : setattr(self, 'windows_managed_app_protections', n.get_collection_of_object_values(windows_managed_app_protection.WindowsManagedAppProtection)),
-            "windowsManagementApp": lambda n : setattr(self, 'windows_management_app', n.get_object_value(windows_management_app.WindowsManagementApp)),
+            "microsoftStoreForBusinessPortalSelection": lambda n : setattr(self, 'microsoft_store_for_business_portal_selection', n.get_enum_value(MicrosoftStoreForBusinessPortalSelectionOptions)),
+            "mobileAppCategories": lambda n : setattr(self, 'mobile_app_categories', n.get_collection_of_object_values(MobileAppCategory)),
+            "mobileAppConfigurations": lambda n : setattr(self, 'mobile_app_configurations', n.get_collection_of_object_values(ManagedDeviceMobileAppConfiguration)),
+            "mobileApps": lambda n : setattr(self, 'mobile_apps', n.get_collection_of_object_values(MobileApp)),
+            "policySets": lambda n : setattr(self, 'policy_sets', n.get_collection_of_object_values(PolicySet)),
+            "symantecCodeSigningCertificate": lambda n : setattr(self, 'symantec_code_signing_certificate', n.get_object_value(SymantecCodeSigningCertificate)),
+            "targetedManagedAppConfigurations": lambda n : setattr(self, 'targeted_managed_app_configurations', n.get_collection_of_object_values(TargetedManagedAppConfiguration)),
+            "vppTokens": lambda n : setattr(self, 'vpp_tokens', n.get_collection_of_object_values(VppToken)),
+            "wdacSupplementalPolicies": lambda n : setattr(self, 'wdac_supplemental_policies', n.get_collection_of_object_values(WindowsDefenderApplicationControlSupplementalPolicy)),
+            "windowsInformationProtectionDeviceRegistrations": lambda n : setattr(self, 'windows_information_protection_device_registrations', n.get_collection_of_object_values(WindowsInformationProtectionDeviceRegistration)),
+            "windowsInformationProtectionPolicies": lambda n : setattr(self, 'windows_information_protection_policies', n.get_collection_of_object_values(WindowsInformationProtectionPolicy)),
+            "windowsInformationProtectionWipeActions": lambda n : setattr(self, 'windows_information_protection_wipe_actions', n.get_collection_of_object_values(WindowsInformationProtectionWipeAction)),
+            "windowsManagedAppProtections": lambda n : setattr(self, 'windows_managed_app_protections', n.get_collection_of_object_values(WindowsManagedAppProtection)),
+            "windowsManagementApp": lambda n : setattr(self, 'windows_management_app', n.get_object_value(WindowsManagementApp)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def ios_lob_app_provisioning_configurations(self,) -> Optional[List[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]]:
-        """
-        Gets the iosLobAppProvisioningConfigurations property value. The IOS Lob App Provisioning Configurations.
-        Returns: Optional[List[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]]
-        """
-        return self._ios_lob_app_provisioning_configurations
-    
-    @ios_lob_app_provisioning_configurations.setter
-    def ios_lob_app_provisioning_configurations(self,value: Optional[List[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]] = None) -> None:
-        """
-        Sets the iosLobAppProvisioningConfigurations property value. The IOS Lob App Provisioning Configurations.
-        Args:
-            value: Value to set for the ios_lob_app_provisioning_configurations property.
-        """
-        self._ios_lob_app_provisioning_configurations = value
-    
-    @property
-    def ios_managed_app_protections(self,) -> Optional[List[ios_managed_app_protection.IosManagedAppProtection]]:
-        """
-        Gets the iosManagedAppProtections property value. iOS managed app policies.
-        Returns: Optional[List[ios_managed_app_protection.IosManagedAppProtection]]
-        """
-        return self._ios_managed_app_protections
-    
-    @ios_managed_app_protections.setter
-    def ios_managed_app_protections(self,value: Optional[List[ios_managed_app_protection.IosManagedAppProtection]] = None) -> None:
-        """
-        Sets the iosManagedAppProtections property value. iOS managed app policies.
-        Args:
-            value: Value to set for the ios_managed_app_protections property.
-        """
-        self._ios_managed_app_protections = value
-    
-    @property
-    def is_enabled_for_microsoft_store_for_business(self,) -> Optional[bool]:
-        """
-        Gets the isEnabledForMicrosoftStoreForBusiness property value. Whether the account is enabled for syncing applications from the Microsoft Store for Business.
-        Returns: Optional[bool]
-        """
-        return self._is_enabled_for_microsoft_store_for_business
-    
-    @is_enabled_for_microsoft_store_for_business.setter
-    def is_enabled_for_microsoft_store_for_business(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEnabledForMicrosoftStoreForBusiness property value. Whether the account is enabled for syncing applications from the Microsoft Store for Business.
-        Args:
-            value: Value to set for the is_enabled_for_microsoft_store_for_business property.
-        """
-        self._is_enabled_for_microsoft_store_for_business = value
-    
-    @property
-    def managed_app_policies(self,) -> Optional[List[managed_app_policy.ManagedAppPolicy]]:
-        """
-        Gets the managedAppPolicies property value. Managed app policies.
-        Returns: Optional[List[managed_app_policy.ManagedAppPolicy]]
-        """
-        return self._managed_app_policies
-    
-    @managed_app_policies.setter
-    def managed_app_policies(self,value: Optional[List[managed_app_policy.ManagedAppPolicy]] = None) -> None:
-        """
-        Sets the managedAppPolicies property value. Managed app policies.
-        Args:
-            value: Value to set for the managed_app_policies property.
-        """
-        self._managed_app_policies = value
-    
-    @property
-    def managed_app_registrations(self,) -> Optional[List[managed_app_registration.ManagedAppRegistration]]:
-        """
-        Gets the managedAppRegistrations property value. The managed app registrations.
-        Returns: Optional[List[managed_app_registration.ManagedAppRegistration]]
-        """
-        return self._managed_app_registrations
-    
-    @managed_app_registrations.setter
-    def managed_app_registrations(self,value: Optional[List[managed_app_registration.ManagedAppRegistration]] = None) -> None:
-        """
-        Sets the managedAppRegistrations property value. The managed app registrations.
-        Args:
-            value: Value to set for the managed_app_registrations property.
-        """
-        self._managed_app_registrations = value
-    
-    @property
-    def managed_app_statuses(self,) -> Optional[List[managed_app_status.ManagedAppStatus]]:
-        """
-        Gets the managedAppStatuses property value. The managed app statuses.
-        Returns: Optional[List[managed_app_status.ManagedAppStatus]]
-        """
-        return self._managed_app_statuses
-    
-    @managed_app_statuses.setter
-    def managed_app_statuses(self,value: Optional[List[managed_app_status.ManagedAppStatus]] = None) -> None:
-        """
-        Sets the managedAppStatuses property value. The managed app statuses.
-        Args:
-            value: Value to set for the managed_app_statuses property.
-        """
-        self._managed_app_statuses = value
-    
-    @property
-    def managed_e_book_categories(self,) -> Optional[List[managed_e_book_category.ManagedEBookCategory]]:
-        """
-        Gets the managedEBookCategories property value. The mobile eBook categories.
-        Returns: Optional[List[managed_e_book_category.ManagedEBookCategory]]
-        """
-        return self._managed_e_book_categories
-    
-    @managed_e_book_categories.setter
-    def managed_e_book_categories(self,value: Optional[List[managed_e_book_category.ManagedEBookCategory]] = None) -> None:
-        """
-        Sets the managedEBookCategories property value. The mobile eBook categories.
-        Args:
-            value: Value to set for the managed_e_book_categories property.
-        """
-        self._managed_e_book_categories = value
-    
-    @property
-    def managed_e_books(self,) -> Optional[List[managed_e_book.ManagedEBook]]:
-        """
-        Gets the managedEBooks property value. The Managed eBook.
-        Returns: Optional[List[managed_e_book.ManagedEBook]]
-        """
-        return self._managed_e_books
-    
-    @managed_e_books.setter
-    def managed_e_books(self,value: Optional[List[managed_e_book.ManagedEBook]] = None) -> None:
-        """
-        Sets the managedEBooks property value. The Managed eBook.
-        Args:
-            value: Value to set for the managed_e_books property.
-        """
-        self._managed_e_books = value
-    
-    @property
-    def mdm_windows_information_protection_policies(self,) -> Optional[List[mdm_windows_information_protection_policy.MdmWindowsInformationProtectionPolicy]]:
-        """
-        Gets the mdmWindowsInformationProtectionPolicies property value. Windows information protection for apps running on devices which are MDM enrolled.
-        Returns: Optional[List[mdm_windows_information_protection_policy.MdmWindowsInformationProtectionPolicy]]
-        """
-        return self._mdm_windows_information_protection_policies
-    
-    @mdm_windows_information_protection_policies.setter
-    def mdm_windows_information_protection_policies(self,value: Optional[List[mdm_windows_information_protection_policy.MdmWindowsInformationProtectionPolicy]] = None) -> None:
-        """
-        Sets the mdmWindowsInformationProtectionPolicies property value. Windows information protection for apps running on devices which are MDM enrolled.
-        Args:
-            value: Value to set for the mdm_windows_information_protection_policies property.
-        """
-        self._mdm_windows_information_protection_policies = value
-    
-    @property
-    def microsoft_store_for_business_language(self,) -> Optional[str]:
-        """
-        Gets the microsoftStoreForBusinessLanguage property value. The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is -<country/regioncode2>, where  is a lowercase two-letter code derived from ISO 639-1 and <country/regioncode2> is an uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific culture.
-        Returns: Optional[str]
-        """
-        return self._microsoft_store_for_business_language
-    
-    @microsoft_store_for_business_language.setter
-    def microsoft_store_for_business_language(self,value: Optional[str] = None) -> None:
-        """
-        Sets the microsoftStoreForBusinessLanguage property value. The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is -<country/regioncode2>, where  is a lowercase two-letter code derived from ISO 639-1 and <country/regioncode2> is an uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific culture.
-        Args:
-            value: Value to set for the microsoft_store_for_business_language property.
-        """
-        self._microsoft_store_for_business_language = value
-    
-    @property
-    def microsoft_store_for_business_last_completed_application_sync_time(self,) -> Optional[datetime]:
-        """
-        Gets the microsoftStoreForBusinessLastCompletedApplicationSyncTime property value. The last time an application sync from the Microsoft Store for Business was completed.
-        Returns: Optional[datetime]
-        """
-        return self._microsoft_store_for_business_last_completed_application_sync_time
-    
-    @microsoft_store_for_business_last_completed_application_sync_time.setter
-    def microsoft_store_for_business_last_completed_application_sync_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the microsoftStoreForBusinessLastCompletedApplicationSyncTime property value. The last time an application sync from the Microsoft Store for Business was completed.
-        Args:
-            value: Value to set for the microsoft_store_for_business_last_completed_application_sync_time property.
-        """
-        self._microsoft_store_for_business_last_completed_application_sync_time = value
-    
-    @property
-    def microsoft_store_for_business_last_successful_sync_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the microsoftStoreForBusinessLastSuccessfulSyncDateTime property value. The last time the apps from the Microsoft Store for Business were synced successfully for the account.
-        Returns: Optional[datetime]
-        """
-        return self._microsoft_store_for_business_last_successful_sync_date_time
-    
-    @microsoft_store_for_business_last_successful_sync_date_time.setter
-    def microsoft_store_for_business_last_successful_sync_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the microsoftStoreForBusinessLastSuccessfulSyncDateTime property value. The last time the apps from the Microsoft Store for Business were synced successfully for the account.
-        Args:
-            value: Value to set for the microsoft_store_for_business_last_successful_sync_date_time property.
-        """
-        self._microsoft_store_for_business_last_successful_sync_date_time = value
-    
-    @property
-    def microsoft_store_for_business_portal_selection(self,) -> Optional[microsoft_store_for_business_portal_selection_options.MicrosoftStoreForBusinessPortalSelectionOptions]:
-        """
-        Gets the microsoftStoreForBusinessPortalSelection property value. Portal to which admin syncs available Microsoft Store for Business apps. This is available in the Intune Admin Console.
-        Returns: Optional[microsoft_store_for_business_portal_selection_options.MicrosoftStoreForBusinessPortalSelectionOptions]
-        """
-        return self._microsoft_store_for_business_portal_selection
-    
-    @microsoft_store_for_business_portal_selection.setter
-    def microsoft_store_for_business_portal_selection(self,value: Optional[microsoft_store_for_business_portal_selection_options.MicrosoftStoreForBusinessPortalSelectionOptions] = None) -> None:
-        """
-        Sets the microsoftStoreForBusinessPortalSelection property value. Portal to which admin syncs available Microsoft Store for Business apps. This is available in the Intune Admin Console.
-        Args:
-            value: Value to set for the microsoft_store_for_business_portal_selection property.
-        """
-        self._microsoft_store_for_business_portal_selection = value
-    
-    @property
-    def mobile_app_categories(self,) -> Optional[List[mobile_app_category.MobileAppCategory]]:
-        """
-        Gets the mobileAppCategories property value. The mobile app categories.
-        Returns: Optional[List[mobile_app_category.MobileAppCategory]]
-        """
-        return self._mobile_app_categories
-    
-    @mobile_app_categories.setter
-    def mobile_app_categories(self,value: Optional[List[mobile_app_category.MobileAppCategory]] = None) -> None:
-        """
-        Sets the mobileAppCategories property value. The mobile app categories.
-        Args:
-            value: Value to set for the mobile_app_categories property.
-        """
-        self._mobile_app_categories = value
-    
-    @property
-    def mobile_app_configurations(self,) -> Optional[List[managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration]]:
-        """
-        Gets the mobileAppConfigurations property value. The Managed Device Mobile Application Configurations.
-        Returns: Optional[List[managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration]]
-        """
-        return self._mobile_app_configurations
-    
-    @mobile_app_configurations.setter
-    def mobile_app_configurations(self,value: Optional[List[managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration]] = None) -> None:
-        """
-        Sets the mobileAppConfigurations property value. The Managed Device Mobile Application Configurations.
-        Args:
-            value: Value to set for the mobile_app_configurations property.
-        """
-        self._mobile_app_configurations = value
-    
-    @property
-    def mobile_apps(self,) -> Optional[List[mobile_app.MobileApp]]:
-        """
-        Gets the mobileApps property value. The mobile apps.
-        Returns: Optional[List[mobile_app.MobileApp]]
-        """
-        return self._mobile_apps
-    
-    @mobile_apps.setter
-    def mobile_apps(self,value: Optional[List[mobile_app.MobileApp]] = None) -> None:
-        """
-        Sets the mobileApps property value. The mobile apps.
-        Args:
-            value: Value to set for the mobile_apps property.
-        """
-        self._mobile_apps = value
-    
-    @property
-    def policy_sets(self,) -> Optional[List[policy_set.PolicySet]]:
-        """
-        Gets the policySets property value. The PolicySet of Policies and Applications
-        Returns: Optional[List[policy_set.PolicySet]]
-        """
-        return self._policy_sets
-    
-    @policy_sets.setter
-    def policy_sets(self,value: Optional[List[policy_set.PolicySet]] = None) -> None:
-        """
-        Sets the policySets property value. The PolicySet of Policies and Applications
-        Args:
-            value: Value to set for the policy_sets property.
-        """
-        self._policy_sets = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -495,8 +215,8 @@ class DeviceAppManagement(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("androidManagedAppProtections", self.android_managed_app_protections)
         writer.write_collection_of_object_values("defaultManagedAppProtections", self.default_managed_app_protections)
@@ -508,16 +228,16 @@ class DeviceAppManagement(entity.Entity):
         writer.write_collection_of_object_values("managedAppPolicies", self.managed_app_policies)
         writer.write_collection_of_object_values("managedAppRegistrations", self.managed_app_registrations)
         writer.write_collection_of_object_values("managedAppStatuses", self.managed_app_statuses)
-        writer.write_collection_of_object_values("managedEBooks", self.managed_e_books)
         writer.write_collection_of_object_values("managedEBookCategories", self.managed_e_book_categories)
+        writer.write_collection_of_object_values("managedEBooks", self.managed_e_books)
         writer.write_collection_of_object_values("mdmWindowsInformationProtectionPolicies", self.mdm_windows_information_protection_policies)
         writer.write_str_value("microsoftStoreForBusinessLanguage", self.microsoft_store_for_business_language)
         writer.write_datetime_value("microsoftStoreForBusinessLastCompletedApplicationSyncTime", self.microsoft_store_for_business_last_completed_application_sync_time)
         writer.write_datetime_value("microsoftStoreForBusinessLastSuccessfulSyncDateTime", self.microsoft_store_for_business_last_successful_sync_date_time)
         writer.write_enum_value("microsoftStoreForBusinessPortalSelection", self.microsoft_store_for_business_portal_selection)
-        writer.write_collection_of_object_values("mobileApps", self.mobile_apps)
         writer.write_collection_of_object_values("mobileAppCategories", self.mobile_app_categories)
         writer.write_collection_of_object_values("mobileAppConfigurations", self.mobile_app_configurations)
+        writer.write_collection_of_object_values("mobileApps", self.mobile_apps)
         writer.write_collection_of_object_values("policySets", self.policy_sets)
         writer.write_object_value("symantecCodeSigningCertificate", self.symantec_code_signing_certificate)
         writer.write_collection_of_object_values("targetedManagedAppConfigurations", self.targeted_managed_app_configurations)
@@ -528,158 +248,5 @@ class DeviceAppManagement(entity.Entity):
         writer.write_collection_of_object_values("windowsInformationProtectionWipeActions", self.windows_information_protection_wipe_actions)
         writer.write_collection_of_object_values("windowsManagedAppProtections", self.windows_managed_app_protections)
         writer.write_object_value("windowsManagementApp", self.windows_management_app)
-    
-    @property
-    def symantec_code_signing_certificate(self,) -> Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]:
-        """
-        Gets the symantecCodeSigningCertificate property value. The WinPhone Symantec Code Signing Certificate.
-        Returns: Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]
-        """
-        return self._symantec_code_signing_certificate
-    
-    @symantec_code_signing_certificate.setter
-    def symantec_code_signing_certificate(self,value: Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate] = None) -> None:
-        """
-        Sets the symantecCodeSigningCertificate property value. The WinPhone Symantec Code Signing Certificate.
-        Args:
-            value: Value to set for the symantec_code_signing_certificate property.
-        """
-        self._symantec_code_signing_certificate = value
-    
-    @property
-    def targeted_managed_app_configurations(self,) -> Optional[List[targeted_managed_app_configuration.TargetedManagedAppConfiguration]]:
-        """
-        Gets the targetedManagedAppConfigurations property value. Targeted managed app configurations.
-        Returns: Optional[List[targeted_managed_app_configuration.TargetedManagedAppConfiguration]]
-        """
-        return self._targeted_managed_app_configurations
-    
-    @targeted_managed_app_configurations.setter
-    def targeted_managed_app_configurations(self,value: Optional[List[targeted_managed_app_configuration.TargetedManagedAppConfiguration]] = None) -> None:
-        """
-        Sets the targetedManagedAppConfigurations property value. Targeted managed app configurations.
-        Args:
-            value: Value to set for the targeted_managed_app_configurations property.
-        """
-        self._targeted_managed_app_configurations = value
-    
-    @property
-    def vpp_tokens(self,) -> Optional[List[vpp_token.VppToken]]:
-        """
-        Gets the vppTokens property value. List of Vpp tokens for this organization.
-        Returns: Optional[List[vpp_token.VppToken]]
-        """
-        return self._vpp_tokens
-    
-    @vpp_tokens.setter
-    def vpp_tokens(self,value: Optional[List[vpp_token.VppToken]] = None) -> None:
-        """
-        Sets the vppTokens property value. List of Vpp tokens for this organization.
-        Args:
-            value: Value to set for the vpp_tokens property.
-        """
-        self._vpp_tokens = value
-    
-    @property
-    def wdac_supplemental_policies(self,) -> Optional[List[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]]:
-        """
-        Gets the wdacSupplementalPolicies property value. The collection of Windows Defender Application Control Supplemental Policies.
-        Returns: Optional[List[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]]
-        """
-        return self._wdac_supplemental_policies
-    
-    @wdac_supplemental_policies.setter
-    def wdac_supplemental_policies(self,value: Optional[List[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]] = None) -> None:
-        """
-        Sets the wdacSupplementalPolicies property value. The collection of Windows Defender Application Control Supplemental Policies.
-        Args:
-            value: Value to set for the wdac_supplemental_policies property.
-        """
-        self._wdac_supplemental_policies = value
-    
-    @property
-    def windows_information_protection_device_registrations(self,) -> Optional[List[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]]:
-        """
-        Gets the windowsInformationProtectionDeviceRegistrations property value. Windows information protection device registrations that are not MDM enrolled.
-        Returns: Optional[List[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]]
-        """
-        return self._windows_information_protection_device_registrations
-    
-    @windows_information_protection_device_registrations.setter
-    def windows_information_protection_device_registrations(self,value: Optional[List[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]] = None) -> None:
-        """
-        Sets the windowsInformationProtectionDeviceRegistrations property value. Windows information protection device registrations that are not MDM enrolled.
-        Args:
-            value: Value to set for the windows_information_protection_device_registrations property.
-        """
-        self._windows_information_protection_device_registrations = value
-    
-    @property
-    def windows_information_protection_policies(self,) -> Optional[List[windows_information_protection_policy.WindowsInformationProtectionPolicy]]:
-        """
-        Gets the windowsInformationProtectionPolicies property value. Windows information protection for apps running on devices which are not MDM enrolled.
-        Returns: Optional[List[windows_information_protection_policy.WindowsInformationProtectionPolicy]]
-        """
-        return self._windows_information_protection_policies
-    
-    @windows_information_protection_policies.setter
-    def windows_information_protection_policies(self,value: Optional[List[windows_information_protection_policy.WindowsInformationProtectionPolicy]] = None) -> None:
-        """
-        Sets the windowsInformationProtectionPolicies property value. Windows information protection for apps running on devices which are not MDM enrolled.
-        Args:
-            value: Value to set for the windows_information_protection_policies property.
-        """
-        self._windows_information_protection_policies = value
-    
-    @property
-    def windows_information_protection_wipe_actions(self,) -> Optional[List[windows_information_protection_wipe_action.WindowsInformationProtectionWipeAction]]:
-        """
-        Gets the windowsInformationProtectionWipeActions property value. Windows information protection wipe actions.
-        Returns: Optional[List[windows_information_protection_wipe_action.WindowsInformationProtectionWipeAction]]
-        """
-        return self._windows_information_protection_wipe_actions
-    
-    @windows_information_protection_wipe_actions.setter
-    def windows_information_protection_wipe_actions(self,value: Optional[List[windows_information_protection_wipe_action.WindowsInformationProtectionWipeAction]] = None) -> None:
-        """
-        Sets the windowsInformationProtectionWipeActions property value. Windows information protection wipe actions.
-        Args:
-            value: Value to set for the windows_information_protection_wipe_actions property.
-        """
-        self._windows_information_protection_wipe_actions = value
-    
-    @property
-    def windows_managed_app_protections(self,) -> Optional[List[windows_managed_app_protection.WindowsManagedAppProtection]]:
-        """
-        Gets the windowsManagedAppProtections property value. Windows managed app policies.
-        Returns: Optional[List[windows_managed_app_protection.WindowsManagedAppProtection]]
-        """
-        return self._windows_managed_app_protections
-    
-    @windows_managed_app_protections.setter
-    def windows_managed_app_protections(self,value: Optional[List[windows_managed_app_protection.WindowsManagedAppProtection]] = None) -> None:
-        """
-        Sets the windowsManagedAppProtections property value. Windows managed app policies.
-        Args:
-            value: Value to set for the windows_managed_app_protections property.
-        """
-        self._windows_managed_app_protections = value
-    
-    @property
-    def windows_management_app(self,) -> Optional[windows_management_app.WindowsManagementApp]:
-        """
-        Gets the windowsManagementApp property value. Windows management app.
-        Returns: Optional[windows_management_app.WindowsManagementApp]
-        """
-        return self._windows_management_app
-    
-    @windows_management_app.setter
-    def windows_management_app(self,value: Optional[windows_management_app.WindowsManagementApp] = None) -> None:
-        """
-        Sets the windowsManagementApp property value. Windows management app.
-        Args:
-            value: Value to set for the windows_management_app property.
-        """
-        self._windows_management_app = value
     
 

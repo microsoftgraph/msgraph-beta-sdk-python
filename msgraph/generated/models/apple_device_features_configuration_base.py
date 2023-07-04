@@ -1,60 +1,44 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import air_print_destination, device_configuration, ios_device_features_configuration, mac_o_s_device_features_configuration
+    from .air_print_destination import AirPrintDestination
+    from .device_configuration import DeviceConfiguration
+    from .ios_device_features_configuration import IosDeviceFeaturesConfiguration
+    from .mac_o_s_device_features_configuration import MacOSDeviceFeaturesConfiguration
 
-from . import device_configuration
+from .device_configuration import DeviceConfiguration
 
-class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AppleDeviceFeaturesConfigurationBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
-        # An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
-        self._air_print_destinations: Optional[List[air_print_destination.AirPrintDestination]] = None
-    
-    @property
-    def air_print_destinations(self,) -> Optional[List[air_print_destination.AirPrintDestination]]:
-        """
-        Gets the airPrintDestinations property value. An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[air_print_destination.AirPrintDestination]]
-        """
-        return self._air_print_destinations
-    
-    @air_print_destinations.setter
-    def air_print_destinations(self,value: Optional[List[air_print_destination.AirPrintDestination]] = None) -> None:
-        """
-        Sets the airPrintDestinations property value. An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the air_print_destinations property.
-        """
-        self._air_print_destinations = value
+@dataclass
+class AppleDeviceFeaturesConfigurationBase(DeviceConfiguration):
+    odata_type = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
+    # An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
+    air_print_destinations: Optional[List[AirPrintDestination]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleDeviceFeaturesConfigurationBase:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AppleDeviceFeaturesConfigurationBase
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.iosDeviceFeaturesConfiguration":
-                from . import ios_device_features_configuration
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosDeviceFeaturesConfiguration".casefold():
+            from .ios_device_features_configuration import IosDeviceFeaturesConfiguration
 
-                return ios_device_features_configuration.IosDeviceFeaturesConfiguration()
-            if mapping_value == "#microsoft.graph.macOSDeviceFeaturesConfiguration":
-                from . import mac_o_s_device_features_configuration
+            return IosDeviceFeaturesConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSDeviceFeaturesConfiguration".casefold():
+            from .mac_o_s_device_features_configuration import MacOSDeviceFeaturesConfiguration
 
-                return mac_o_s_device_features_configuration.MacOSDeviceFeaturesConfiguration()
+            return MacOSDeviceFeaturesConfiguration()
         return AppleDeviceFeaturesConfigurationBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -62,10 +46,18 @@ class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfigurat
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import air_print_destination, device_configuration, ios_device_features_configuration, mac_o_s_device_features_configuration
+        from .air_print_destination import AirPrintDestination
+        from .device_configuration import DeviceConfiguration
+        from .ios_device_features_configuration import IosDeviceFeaturesConfiguration
+        from .mac_o_s_device_features_configuration import MacOSDeviceFeaturesConfiguration
+
+        from .air_print_destination import AirPrintDestination
+        from .device_configuration import DeviceConfiguration
+        from .ios_device_features_configuration import IosDeviceFeaturesConfiguration
+        from .mac_o_s_device_features_configuration import MacOSDeviceFeaturesConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "airPrintDestinations": lambda n : setattr(self, 'air_print_destinations', n.get_collection_of_object_values(air_print_destination.AirPrintDestination)),
+            "airPrintDestinations": lambda n : setattr(self, 'air_print_destinations', n.get_collection_of_object_values(AirPrintDestination)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,8 +69,8 @@ class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfigurat
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("airPrintDestinations", self.air_print_destinations)
     

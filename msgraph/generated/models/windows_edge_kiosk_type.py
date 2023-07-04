@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsEdgeKioskType(Enum):
+class WindowsEdgeKioskType(str, Enum):
     # public-browsing
     PublicBrowsing = "publicBrowsing",
     # fullscreen

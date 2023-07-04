@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConfigurationManagerActionType(Enum):
+class ConfigurationManagerActionType(str, Enum):
     # Refresh machine policy on Configuration Manager client
     RefreshMachinePolicy = "refreshMachinePolicy",
     # Refresh user policy on Configuration Manager client

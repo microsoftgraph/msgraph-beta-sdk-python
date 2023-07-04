@@ -1,6 +1,7 @@
 from __future__ import annotations
-from dataclasses import dataclass
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -11,13 +12,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .........models.identity_governance import user_processing_result_collection_response
-    from .........models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import user_processing_result_item_request_builder
-    from .microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time import microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
+    from .........models.identity_governance.user_processing_result_collection_response import UserProcessingResultCollectionResponse
+    from .........models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.user_processing_result_item_request_builder import UserProcessingResultItemRequestBuilder
+    from .microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time.microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
 
-class UserProcessingResultsRequestBuilder():
+class UserProcessingResultsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.run entity.
     """
@@ -25,78 +26,69 @@ class UserProcessingResultsRequestBuilder():
         """
         Instantiates a new UserProcessingResultsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/runs/{run%2Did}/userProcessingResults{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/runs/{run%2Did}/userProcessingResults{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_user_processing_result_id(self,user_processing_result_id: str) -> user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder:
+    def by_user_processing_result_id(self,user_processing_result_id: str) -> UserProcessingResultItemRequestBuilder:
         """
         Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.run entity.
         Args:
             user_processing_result_id: Unique identifier of the item
-        Returns: user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder
+        Returns: UserProcessingResultItemRequestBuilder
         """
-        if user_processing_result_id is None:
-            raise Exception("user_processing_result_id cannot be undefined")
-        from .item import user_processing_result_item_request_builder
+        if not user_processing_result_id:
+            raise TypeError("user_processing_result_id cannot be null.")
+        from .item.user_processing_result_item_request_builder import UserProcessingResultItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userProcessingResult%2Did"] = user_processing_result_id
-        return user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return UserProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[UserProcessingResultCollectionResponse]:
         """
         Get user processing results of a workflow run object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UserProcessingResultCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .........models.o_data_errors import o_data_error
+        from .........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .........models.identity_governance import user_processing_result_collection_response
+        from .........models.identity_governance.user_processing_result_collection_response import UserProcessingResultCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserProcessingResultCollectionResponse, error_mapping)
     
-    def microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the summary method.
         Args:
-            endDateTime: Usage: endDateTime={endDateTime}
-            startDateTime: Usage: startDateTime={startDateTime}
-        Returns: microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
+            end_date_time: Usage: endDateTime={endDateTime}
+            start_date_time: Usage: startDateTime={startDateTime}
+        Returns: MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        if end_date_time is None:
-            raise Exception("end_date_time cannot be undefined")
-        if start_date_time is None:
-            raise Exception("start_date_time cannot be undefined")
-        from .microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time import microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
+        if not end_date_time:
+            raise TypeError("end_date_time cannot be null.")
+        if not start_date_time:
+            raise TypeError("start_date_time cannot be null.")
+        from .microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time.microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
 
-        return microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
     def to_get_request_information(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get user processing results of a workflow run object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -111,13 +103,13 @@ class UserProcessingResultsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UserProcessingResultsRequestBuilderGetQueryParameters():
@@ -128,11 +120,11 @@ class UserProcessingResultsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -176,17 +168,15 @@ class UserProcessingResultsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UserProcessingResultsRequestBuilderGetRequestConfiguration():
+    class UserProcessingResultsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[UserProcessingResultsRequestBuilder.UserProcessingResultsRequestBuilderGetQueryParameters] = None
 

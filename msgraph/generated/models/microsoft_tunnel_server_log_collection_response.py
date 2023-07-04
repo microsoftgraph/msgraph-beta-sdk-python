@@ -1,91 +1,59 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, microsoft_tunnel_log_collection_status
+    from .entity import Entity
+    from .microsoft_tunnel_log_collection_status import MicrosoftTunnelLogCollectionStatus
 
-from . import entity
+from .entity import Entity
 
-class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
+@dataclass
+class MicrosoftTunnelServerLogCollectionResponse(Entity):
     """
     Entity that stores the server log collection status.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new microsoftTunnelServerLogCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The end time of the logs collected
-        self._end_date_time: Optional[datetime] = None
-        # The time when the log collection is expired
-        self._expiry_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The time when the log collection was requested
-        self._request_date_time: Optional[datetime] = None
-        # ID of the server the log collection is requested upon
-        self._server_id: Optional[str] = None
-        # The size of the logs in bytes
-        self._size_in_bytes: Optional[int] = None
-        # The start time of the logs collected
-        self._start_date_time: Optional[datetime] = None
-        # Enum type that represent the status of log collection
-        self._status: Optional[microsoft_tunnel_log_collection_status.MicrosoftTunnelLogCollectionStatus] = None
+    # The end time of the logs collected
+    end_date_time: Optional[datetime.datetime] = None
+    # The time when the log collection is expired
+    expiry_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The time when the log collection was requested
+    request_date_time: Optional[datetime.datetime] = None
+    # ID of the server the log collection is requested upon
+    server_id: Optional[str] = None
+    # The size of the logs in bytes
+    size_in_bytes: Optional[int] = None
+    # The start time of the logs collected
+    start_date_time: Optional[datetime.datetime] = None
+    # Enum type that represent the status of log collection
+    status: Optional[MicrosoftTunnelLogCollectionStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftTunnelServerLogCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MicrosoftTunnelServerLogCollectionResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MicrosoftTunnelServerLogCollectionResponse()
-    
-    @property
-    def end_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the endDateTime property value. The end time of the logs collected
-        Returns: Optional[datetime]
-        """
-        return self._end_date_time
-    
-    @end_date_time.setter
-    def end_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the endDateTime property value. The end time of the logs collected
-        Args:
-            value: Value to set for the end_date_time property.
-        """
-        self._end_date_time = value
-    
-    @property
-    def expiry_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the expiryDateTime property value. The time when the log collection is expired
-        Returns: Optional[datetime]
-        """
-        return self._expiry_date_time
-    
-    @expiry_date_time.setter
-    def expiry_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the expiryDateTime property value. The time when the log collection is expired
-        Args:
-            value: Value to set for the expiry_date_time property.
-        """
-        self._expiry_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, microsoft_tunnel_log_collection_status
+        from .entity import Entity
+        from .microsoft_tunnel_log_collection_status import MicrosoftTunnelLogCollectionStatus
+
+        from .entity import Entity
+        from .microsoft_tunnel_log_collection_status import MicrosoftTunnelLogCollectionStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
@@ -94,28 +62,11 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
             "serverId": lambda n : setattr(self, 'server_id', n.get_str_value()),
             "sizeInBytes": lambda n : setattr(self, 'size_in_bytes', n.get_int_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(microsoft_tunnel_log_collection_status.MicrosoftTunnelLogCollectionStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(MicrosoftTunnelLogCollectionStatus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def request_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the requestDateTime property value. The time when the log collection was requested
-        Returns: Optional[datetime]
-        """
-        return self._request_date_time
-    
-    @request_date_time.setter
-    def request_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the requestDateTime property value. The time when the log collection was requested
-        Args:
-            value: Value to set for the request_date_time property.
-        """
-        self._request_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -123,8 +74,8 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_datetime_value("expiryDateTime", self.expiry_date_time)
@@ -133,73 +84,5 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         writer.write_int_value("sizeInBytes", self.size_in_bytes)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_enum_value("status", self.status)
-    
-    @property
-    def server_id(self,) -> Optional[str]:
-        """
-        Gets the serverId property value. ID of the server the log collection is requested upon
-        Returns: Optional[str]
-        """
-        return self._server_id
-    
-    @server_id.setter
-    def server_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serverId property value. ID of the server the log collection is requested upon
-        Args:
-            value: Value to set for the server_id property.
-        """
-        self._server_id = value
-    
-    @property
-    def size_in_bytes(self,) -> Optional[int]:
-        """
-        Gets the sizeInBytes property value. The size of the logs in bytes
-        Returns: Optional[int]
-        """
-        return self._size_in_bytes
-    
-    @size_in_bytes.setter
-    def size_in_bytes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sizeInBytes property value. The size of the logs in bytes
-        Args:
-            value: Value to set for the size_in_bytes property.
-        """
-        self._size_in_bytes = value
-    
-    @property
-    def start_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the startDateTime property value. The start time of the logs collected
-        Returns: Optional[datetime]
-        """
-        return self._start_date_time
-    
-    @start_date_time.setter
-    def start_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the startDateTime property value. The start time of the logs collected
-        Args:
-            value: Value to set for the start_date_time property.
-        """
-        self._start_date_time = value
-    
-    @property
-    def status(self,) -> Optional[microsoft_tunnel_log_collection_status.MicrosoftTunnelLogCollectionStatus]:
-        """
-        Gets the status property value. Enum type that represent the status of log collection
-        Returns: Optional[microsoft_tunnel_log_collection_status.MicrosoftTunnelLogCollectionStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[microsoft_tunnel_log_collection_status.MicrosoftTunnelLogCollectionStatus] = None) -> None:
-        """
-        Sets the status property value. Enum type that represent the status of log collection
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsAutopilotEnrollmentType(Enum):
+class WindowsAutopilotEnrollmentType(str, Enum):
     Unknown = "unknown",
     AzureADJoinedWithAutopilotProfile = "azureADJoinedWithAutopilotProfile",
     OfflineDomainJoined = "offlineDomainJoined",

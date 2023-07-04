@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Win32LobAppPowerShellScriptDetectionType(Enum):
+class Win32LobAppPowerShellScriptDetectionType(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Output data type is string.

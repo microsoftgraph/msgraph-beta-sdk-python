@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerWiFiSecurityType(Enum):
+class AndroidDeviceOwnerWiFiSecurityType(str, Enum):
     # Open (No Authentication).
     Open = "open",
     # WEP Encryption.

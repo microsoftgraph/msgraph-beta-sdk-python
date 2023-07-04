@@ -1,35 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_configuration, key_storage_provider_option
+    from .device_configuration import DeviceConfiguration
+    from .key_storage_provider_option import KeyStorageProviderOption
 
-from . import device_configuration
+from .device_configuration import DeviceConfiguration
 
-class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfiguration):
-    """
-    Deprecated
-    """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windows10PFXImportCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10PFXImportCertificateProfile"
-        # Key Storage Provider (KSP) Import Options.
-        self._key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
+@dataclass
+class Windows10PFXImportCertificateProfile(DeviceConfiguration):
+    odata_type = "#microsoft.graph.windows10PFXImportCertificateProfile"
+    # Key Storage Provider (KSP) Import Options.
+    key_storage_provider: Optional[KeyStorageProviderOption] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10PFXImportCertificateProfile:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Windows10PFXImportCertificateProfile
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Windows10PFXImportCertificateProfile()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,31 +32,18 @@ class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfigurat
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_configuration, key_storage_provider_option
+        from .device_configuration import DeviceConfiguration
+        from .key_storage_provider_option import KeyStorageProviderOption
+
+        from .device_configuration import DeviceConfiguration
+        from .key_storage_provider_option import KeyStorageProviderOption
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "keyStorageProvider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
+            "keyStorageProvider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(KeyStorageProviderOption)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def key_storage_provider(self,) -> Optional[key_storage_provider_option.KeyStorageProviderOption]:
-        """
-        Gets the keyStorageProvider property value. Key Storage Provider (KSP) Import Options.
-        Returns: Optional[key_storage_provider_option.KeyStorageProviderOption]
-        """
-        return self._key_storage_provider
-    
-    @key_storage_provider.setter
-    def key_storage_provider(self,value: Optional[key_storage_provider_option.KeyStorageProviderOption] = None) -> None:
-        """
-        Sets the keyStorageProvider property value. Key Storage Provider (KSP) Import Options.
-        Args:
-            value: Value to set for the key_storage_provider property.
-        """
-        self._key_storage_provider = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -69,8 +51,8 @@ class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfigurat
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("keyStorageProvider", self.key_storage_provider)
     

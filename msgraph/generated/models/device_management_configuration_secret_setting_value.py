@@ -1,34 +1,32 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_configuration_secret_setting_value_state, device_management_configuration_simple_setting_value
+    from .device_management_configuration_secret_setting_value_state import DeviceManagementConfigurationSecretSettingValueState
+    from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
 
-from . import device_management_configuration_simple_setting_value
+from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
 
-class DeviceManagementConfigurationSecretSettingValue(device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSecretSettingValue and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationSecretSettingValue"
-        # Value of the secret setting.
-        self._value: Optional[str] = None
-        # type tracking the encryption state of a secret setting value
-        self._value_state: Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState] = None
+@dataclass
+class DeviceManagementConfigurationSecretSettingValue(DeviceManagementConfigurationSimpleSettingValue):
+    odata_type = "#microsoft.graph.deviceManagementConfigurationSecretSettingValue"
+    # Value of the secret setting.
+    value: Optional[str] = None
+    # type tracking the encryption state of a secret setting value
+    value_state: Optional[DeviceManagementConfigurationSecretSettingValueState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSecretSettingValue:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationSecretSettingValue
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationSecretSettingValue()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,11 +34,15 @@ class DeviceManagementConfigurationSecretSettingValue(device_management_configur
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_configuration_secret_setting_value_state, device_management_configuration_simple_setting_value
+        from .device_management_configuration_secret_setting_value_state import DeviceManagementConfigurationSecretSettingValueState
+        from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
+
+        from .device_management_configuration_secret_setting_value_state import DeviceManagementConfigurationSecretSettingValueState
+        from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
 
         fields: Dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
-            "valueState": lambda n : setattr(self, 'value_state', n.get_enum_value(device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState)),
+            "valueState": lambda n : setattr(self, 'value_state', n.get_enum_value(DeviceManagementConfigurationSecretSettingValueState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,44 +54,10 @@ class DeviceManagementConfigurationSecretSettingValue(device_management_configur
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("value", self.value)
         writer.write_enum_value("valueState", self.value_state)
-    
-    @property
-    def value(self,) -> Optional[str]:
-        """
-        Gets the value property value. Value of the secret setting.
-        Returns: Optional[str]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[str] = None) -> None:
-        """
-        Sets the value property value. Value of the secret setting.
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
-    
-    @property
-    def value_state(self,) -> Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState]:
-        """
-        Gets the valueState property value. type tracking the encryption state of a secret setting value
-        Returns: Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState]
-        """
-        return self._value_state
-    
-    @value_state.setter
-    def value_state(self,value: Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState] = None) -> None:
-        """
-        Sets the valueState property value. type tracking the encryption state of a secret setting value
-        Args:
-            value: Value to set for the value_state property.
-        """
-        self._value_state = value
     
 

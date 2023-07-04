@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WiFiAuthenticationMethod(Enum):
+class WiFiAuthenticationMethod(str, Enum):
     # Use an identity certificate for authentication.
     Certificate = "certificate",
     # Use username and password for authentication.

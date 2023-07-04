@@ -1,84 +1,49 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class DeviceComplianceScriptRunSummary(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceComplianceScriptRunSummary and sets the default values.
-        """
-        super().__init__()
-        # Number of devices on which the detection script execution encountered an error and did not complete. Valid values -2147483648 to 2147483647
-        self._detection_script_error_device_count: Optional[int] = None
-        # Number of devices which have not yet run the latest version of the device compliance script. Valid values -2147483648 to 2147483647
-        self._detection_script_pending_device_count: Optional[int] = None
-        # Number of devices for which the detection script found an issue. Valid values -2147483648 to 2147483647
-        self._issue_detected_device_count: Optional[int] = None
-        # Last run time for the script across all devices
-        self._last_script_run_date_time: Optional[datetime] = None
-        # Number of devices for which the detection script did not find an issue and the device is healthy. Valid values -2147483648 to 2147483647
-        self._no_issue_detected_device_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+@dataclass
+class DeviceComplianceScriptRunSummary(Entity):
+    # Number of devices on which the detection script execution encountered an error and did not complete. Valid values -2147483648 to 2147483647
+    detection_script_error_device_count: Optional[int] = None
+    # Number of devices which have not yet run the latest version of the device compliance script. Valid values -2147483648 to 2147483647
+    detection_script_pending_device_count: Optional[int] = None
+    # Number of devices for which the detection script found an issue. Valid values -2147483648 to 2147483647
+    issue_detected_device_count: Optional[int] = None
+    # Last run time for the script across all devices
+    last_script_run_date_time: Optional[datetime.datetime] = None
+    # Number of devices for which the detection script did not find an issue and the device is healthy. Valid values -2147483648 to 2147483647
+    no_issue_detected_device_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComplianceScriptRunSummary:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceComplianceScriptRunSummary
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceComplianceScriptRunSummary()
-    
-    @property
-    def detection_script_error_device_count(self,) -> Optional[int]:
-        """
-        Gets the detectionScriptErrorDeviceCount property value. Number of devices on which the detection script execution encountered an error and did not complete. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._detection_script_error_device_count
-    
-    @detection_script_error_device_count.setter
-    def detection_script_error_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the detectionScriptErrorDeviceCount property value. Number of devices on which the detection script execution encountered an error and did not complete. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the detection_script_error_device_count property.
-        """
-        self._detection_script_error_device_count = value
-    
-    @property
-    def detection_script_pending_device_count(self,) -> Optional[int]:
-        """
-        Gets the detectionScriptPendingDeviceCount property value. Number of devices which have not yet run the latest version of the device compliance script. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._detection_script_pending_device_count
-    
-    @detection_script_pending_device_count.setter
-    def detection_script_pending_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the detectionScriptPendingDeviceCount property value. Number of devices which have not yet run the latest version of the device compliance script. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the detection_script_pending_device_count property.
-        """
-        self._detection_script_pending_device_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity
+        from .entity import Entity
+
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "detectionScriptErrorDeviceCount": lambda n : setattr(self, 'detection_script_error_device_count', n.get_int_value()),
@@ -91,65 +56,14 @@ class DeviceComplianceScriptRunSummary(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def issue_detected_device_count(self,) -> Optional[int]:
-        """
-        Gets the issueDetectedDeviceCount property value. Number of devices for which the detection script found an issue. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._issue_detected_device_count
-    
-    @issue_detected_device_count.setter
-    def issue_detected_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the issueDetectedDeviceCount property value. Number of devices for which the detection script found an issue. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the issue_detected_device_count property.
-        """
-        self._issue_detected_device_count = value
-    
-    @property
-    def last_script_run_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastScriptRunDateTime property value. Last run time for the script across all devices
-        Returns: Optional[datetime]
-        """
-        return self._last_script_run_date_time
-    
-    @last_script_run_date_time.setter
-    def last_script_run_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastScriptRunDateTime property value. Last run time for the script across all devices
-        Args:
-            value: Value to set for the last_script_run_date_time property.
-        """
-        self._last_script_run_date_time = value
-    
-    @property
-    def no_issue_detected_device_count(self,) -> Optional[int]:
-        """
-        Gets the noIssueDetectedDeviceCount property value. Number of devices for which the detection script did not find an issue and the device is healthy. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._no_issue_detected_device_count
-    
-    @no_issue_detected_device_count.setter
-    def no_issue_detected_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the noIssueDetectedDeviceCount property value. Number of devices for which the detection script did not find an issue and the device is healthy. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the no_issue_detected_device_count property.
-        """
-        self._no_issue_detected_device_count = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("detectionScriptErrorDeviceCount", self.detection_script_error_device_count)
         writer.write_int_value("detectionScriptPendingDeviceCount", self.detection_script_pending_device_count)

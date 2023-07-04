@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AssignmentFilterEvaluationResult(Enum):
+class AssignmentFilterEvaluationResult(str, Enum):
     # Unknown.
     Unknown = "unknown",
     # Match.

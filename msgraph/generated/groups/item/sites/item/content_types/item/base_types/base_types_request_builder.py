@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models import content_type_collection_response
-    from ........models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import content_type_item_request_builder
+    from ........models.content_type_collection_response import ContentTypeCollectionResponse
+    from ........models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.content_type_item_request_builder import ContentTypeItemRequestBuilder
 
-class BaseTypesRequestBuilder():
+class BaseTypesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
     """
@@ -23,62 +24,53 @@ class BaseTypesRequestBuilder():
         """
         Instantiates a new BaseTypesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/contentTypes/{contentType%2Did}/baseTypes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/contentTypes/{contentType%2Did}/baseTypes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_content_type_id1(self,content_type_id1: str) -> content_type_item_request_builder.ContentTypeItemRequestBuilder:
+    def by_content_type_id1(self,content_type_id1: str) -> ContentTypeItemRequestBuilder:
         """
         Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
         Args:
             content_type_id1: Unique identifier of the item
-        Returns: content_type_item_request_builder.ContentTypeItemRequestBuilder
+        Returns: ContentTypeItemRequestBuilder
         """
-        if content_type_id1 is None:
-            raise Exception("content_type_id1 cannot be undefined")
-        from .item import content_type_item_request_builder
+        if not content_type_id1:
+            raise TypeError("content_type_id1 cannot be null.")
+        from .item.content_type_item_request_builder import ContentTypeItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["contentType%2Did1"] = content_type_id1
-        return content_type_item_request_builder.ContentTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ContentTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[BaseTypesRequestBuilderGetRequestConfiguration] = None) -> Optional[content_type_collection_response.ContentTypeCollectionResponse]:
+    async def get(self,request_configuration: Optional[BaseTypesRequestBuilderGetRequestConfiguration] = None) -> Optional[ContentTypeCollectionResponse]:
         """
         The collection of content types that are ancestors of this content type.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[content_type_collection_response.ContentTypeCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ContentTypeCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ........models.o_data_errors import o_data_error
+        from ........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ........models import content_type_collection_response
+        from ........models.content_type_collection_response import ContentTypeCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, content_type_collection_response.ContentTypeCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ContentTypeCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[BaseTypesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The collection of content types that are ancestors of this content type.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -93,13 +85,13 @@ class BaseTypesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class BaseTypesRequestBuilderGetQueryParameters():
@@ -110,11 +102,11 @@ class BaseTypesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -158,17 +150,15 @@ class BaseTypesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class BaseTypesRequestBuilderGetRequestConfiguration():
+    class BaseTypesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[BaseTypesRequestBuilder.BaseTypesRequestBuilderGetQueryParameters] = None
 

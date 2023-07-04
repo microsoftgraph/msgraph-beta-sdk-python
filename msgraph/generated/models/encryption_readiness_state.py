@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EncryptionReadinessState(Enum):
+class EncryptionReadinessState(str, Enum):
     # Not ready
     NotReady = "notReady",
     # Ready

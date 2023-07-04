@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +11,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import calendar_permission
-    from .....models.o_data_errors import o_data_error
+    from .....models.calendar_permission import CalendarPermission
+    from .....models.o_data_errors.o_data_error import ODataError
 
-class CalendarPermissionItemRequestBuilder():
+class CalendarPermissionItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
     """
@@ -21,91 +22,82 @@ class CalendarPermissionItemRequestBuilder():
         """
         Instantiates a new CalendarPermissionItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/me/calendar/calendarPermissions/{calendarPermission%2Did}{?%24select}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/me/calendar/calendarPermissions/{calendarPermission%2Did}{?%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[CalendarPermissionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete calendarPermission.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CalendarPermissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[calendar_permission.CalendarPermission]:
+    async def get(self,request_configuration: Optional[CalendarPermissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CalendarPermission]:
         """
         Get the specified permissions object of a user or group calendar that has been shared.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[calendar_permission.CalendarPermission]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CalendarPermission]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import calendar_permission
+        from .....models.calendar_permission import CalendarPermission
 
-        return await self.request_adapter.send_async(request_info, calendar_permission.CalendarPermission, error_mapping)
+        return await self.request_adapter.send_async(request_info, CalendarPermission, error_mapping)
     
-    async def patch(self,body: Optional[calendar_permission.CalendarPermission] = None, request_configuration: Optional[CalendarPermissionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[calendar_permission.CalendarPermission]:
+    async def patch(self,body: Optional[CalendarPermission] = None, request_configuration: Optional[CalendarPermissionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CalendarPermission]:
         """
         Update the permissions assigned to an existing sharee or delegate, through the corresponding calendarPermission object for a calendar.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[calendar_permission.CalendarPermission]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CalendarPermission]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import calendar_permission
+        from .....models.calendar_permission import CalendarPermission
 
-        return await self.request_adapter.send_async(request_info, calendar_permission.CalendarPermission, error_mapping)
+        return await self.request_adapter.send_async(request_info, CalendarPermission, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CalendarPermissionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete calendarPermission.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -121,7 +113,7 @@ class CalendarPermissionItemRequestBuilder():
         """
         Get the specified permissions object of a user or group calendar that has been shared.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -135,16 +127,16 @@ class CalendarPermissionItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[calendar_permission.CalendarPermission] = None, request_configuration: Optional[CalendarPermissionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CalendarPermission] = None, request_configuration: Optional[CalendarPermissionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the permissions assigned to an existing sharee or delegate, through the corresponding calendarPermission object for a calendar.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -156,17 +148,15 @@ class CalendarPermissionItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CalendarPermissionItemRequestBuilderDeleteRequestConfiguration():
+    class CalendarPermissionItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class CalendarPermissionItemRequestBuilderGetQueryParameters():
@@ -177,11 +167,11 @@ class CalendarPermissionItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "select":
                 return "%24select"
             return original_name
@@ -190,31 +180,27 @@ class CalendarPermissionItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CalendarPermissionItemRequestBuilderGetRequestConfiguration():
+    class CalendarPermissionItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[CalendarPermissionItemRequestBuilder.CalendarPermissionItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CalendarPermissionItemRequestBuilderPatchRequestConfiguration():
+    class CalendarPermissionItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

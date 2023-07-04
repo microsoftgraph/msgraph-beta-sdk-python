@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CertificateIssuanceStates(Enum):
+class CertificateIssuanceStates(str, Enum):
     Unknown = "unknown",
     ChallengeIssued = "challengeIssued",
     ChallengeIssueFailed = "challengeIssueFailed",

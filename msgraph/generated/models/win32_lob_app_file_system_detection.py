@@ -1,164 +1,67 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import win32_lob_app_detection, win32_lob_app_detection_operator, win32_lob_app_file_system_detection_type
+    from .win32_lob_app_detection import Win32LobAppDetection
+    from .win32_lob_app_detection_operator import Win32LobAppDetectionOperator
+    from .win32_lob_app_file_system_detection_type import Win32LobAppFileSystemDetectionType
 
-from . import win32_lob_app_detection
+from .win32_lob_app_detection import Win32LobAppDetection
 
-class Win32LobAppFileSystemDetection(win32_lob_app_detection.Win32LobAppDetection):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Win32LobAppFileSystemDetection and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.win32LobAppFileSystemDetection"
-        # A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
-        self._check32_bit_on64_system: Optional[bool] = None
-        # Contains all supported file system detection type.
-        self._detection_type: Optional[win32_lob_app_file_system_detection_type.Win32LobAppFileSystemDetectionType] = None
-        # The file or folder detection value
-        self._detection_value: Optional[str] = None
-        # The file or folder name to detect Win32 Line of Business (LoB) app
-        self._file_or_folder_name: Optional[str] = None
-        # Contains properties for detection operator.
-        self._operator: Optional[win32_lob_app_detection_operator.Win32LobAppDetectionOperator] = None
-        # The file or folder path to detect Win32 Line of Business (LoB) app
-        self._path: Optional[str] = None
-    
-    @property
-    def check32_bit_on64_system(self,) -> Optional[bool]:
-        """
-        Gets the check32BitOn64System property value. A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
-        Returns: Optional[bool]
-        """
-        return self._check32_bit_on64_system
-    
-    @check32_bit_on64_system.setter
-    def check32_bit_on64_system(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the check32BitOn64System property value. A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
-        Args:
-            value: Value to set for the check32_bit_on64_system property.
-        """
-        self._check32_bit_on64_system = value
+@dataclass
+class Win32LobAppFileSystemDetection(Win32LobAppDetection):
+    odata_type = "#microsoft.graph.win32LobAppFileSystemDetection"
+    # A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
+    check32_bit_on64_system: Optional[bool] = None
+    # Contains all supported file system detection type.
+    detection_type: Optional[Win32LobAppFileSystemDetectionType] = None
+    # The file or folder detection value
+    detection_value: Optional[str] = None
+    # The file or folder name to detect Win32 Line of Business (LoB) app
+    file_or_folder_name: Optional[str] = None
+    # Contains properties for detection operator.
+    operator: Optional[Win32LobAppDetectionOperator] = None
+    # The file or folder path to detect Win32 Line of Business (LoB) app
+    path: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Win32LobAppFileSystemDetection:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Win32LobAppFileSystemDetection
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Win32LobAppFileSystemDetection()
-    
-    @property
-    def detection_type(self,) -> Optional[win32_lob_app_file_system_detection_type.Win32LobAppFileSystemDetectionType]:
-        """
-        Gets the detectionType property value. Contains all supported file system detection type.
-        Returns: Optional[win32_lob_app_file_system_detection_type.Win32LobAppFileSystemDetectionType]
-        """
-        return self._detection_type
-    
-    @detection_type.setter
-    def detection_type(self,value: Optional[win32_lob_app_file_system_detection_type.Win32LobAppFileSystemDetectionType] = None) -> None:
-        """
-        Sets the detectionType property value. Contains all supported file system detection type.
-        Args:
-            value: Value to set for the detection_type property.
-        """
-        self._detection_type = value
-    
-    @property
-    def detection_value(self,) -> Optional[str]:
-        """
-        Gets the detectionValue property value. The file or folder detection value
-        Returns: Optional[str]
-        """
-        return self._detection_value
-    
-    @detection_value.setter
-    def detection_value(self,value: Optional[str] = None) -> None:
-        """
-        Sets the detectionValue property value. The file or folder detection value
-        Args:
-            value: Value to set for the detection_value property.
-        """
-        self._detection_value = value
-    
-    @property
-    def file_or_folder_name(self,) -> Optional[str]:
-        """
-        Gets the fileOrFolderName property value. The file or folder name to detect Win32 Line of Business (LoB) app
-        Returns: Optional[str]
-        """
-        return self._file_or_folder_name
-    
-    @file_or_folder_name.setter
-    def file_or_folder_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fileOrFolderName property value. The file or folder name to detect Win32 Line of Business (LoB) app
-        Args:
-            value: Value to set for the file_or_folder_name property.
-        """
-        self._file_or_folder_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import win32_lob_app_detection, win32_lob_app_detection_operator, win32_lob_app_file_system_detection_type
+        from .win32_lob_app_detection import Win32LobAppDetection
+        from .win32_lob_app_detection_operator import Win32LobAppDetectionOperator
+        from .win32_lob_app_file_system_detection_type import Win32LobAppFileSystemDetectionType
+
+        from .win32_lob_app_detection import Win32LobAppDetection
+        from .win32_lob_app_detection_operator import Win32LobAppDetectionOperator
+        from .win32_lob_app_file_system_detection_type import Win32LobAppFileSystemDetectionType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "check32BitOn64System": lambda n : setattr(self, 'check32_bit_on64_system', n.get_bool_value()),
-            "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_file_system_detection_type.Win32LobAppFileSystemDetectionType)),
+            "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(Win32LobAppFileSystemDetectionType)),
             "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),
             "fileOrFolderName": lambda n : setattr(self, 'file_or_folder_name', n.get_str_value()),
-            "operator": lambda n : setattr(self, 'operator', n.get_enum_value(win32_lob_app_detection_operator.Win32LobAppDetectionOperator)),
+            "operator": lambda n : setattr(self, 'operator', n.get_enum_value(Win32LobAppDetectionOperator)),
             "path": lambda n : setattr(self, 'path', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def operator(self,) -> Optional[win32_lob_app_detection_operator.Win32LobAppDetectionOperator]:
-        """
-        Gets the operator property value. Contains properties for detection operator.
-        Returns: Optional[win32_lob_app_detection_operator.Win32LobAppDetectionOperator]
-        """
-        return self._operator
-    
-    @operator.setter
-    def operator(self,value: Optional[win32_lob_app_detection_operator.Win32LobAppDetectionOperator] = None) -> None:
-        """
-        Sets the operator property value. Contains properties for detection operator.
-        Args:
-            value: Value to set for the operator property.
-        """
-        self._operator = value
-    
-    @property
-    def path(self,) -> Optional[str]:
-        """
-        Gets the path property value. The file or folder path to detect Win32 Line of Business (LoB) app
-        Returns: Optional[str]
-        """
-        return self._path
-    
-    @path.setter
-    def path(self,value: Optional[str] = None) -> None:
-        """
-        Sets the path property value. The file or folder path to detect Win32 Line of Business (LoB) app
-        Args:
-            value: Value to set for the path property.
-        """
-        self._path = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -166,8 +69,8 @@ class Win32LobAppFileSystemDetection(win32_lob_app_detection.Win32LobAppDetectio
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("check32BitOn64System", self.check32_bit_on64_system)
         writer.write_enum_value("detectionType", self.detection_type)

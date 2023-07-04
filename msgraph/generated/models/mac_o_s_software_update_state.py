@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSSoftwareUpdateState(Enum):
+class MacOSSoftwareUpdateState(str, Enum):
     # The software update successfully installed
     Success = "success",
     # The software update is being downloaded

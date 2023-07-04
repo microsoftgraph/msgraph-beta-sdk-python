@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,21 +11,21 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import data_classification_service
-    from ..models.o_data_errors import o_data_error
-    from .classify_exact_matches import classify_exact_matches_request_builder
-    from .classify_file import classify_file_request_builder
-    from .classify_file_jobs import classify_file_jobs_request_builder
-    from .classify_text_jobs import classify_text_jobs_request_builder
-    from .evaluate_dlp_policies_jobs import evaluate_dlp_policies_jobs_request_builder
-    from .evaluate_label_jobs import evaluate_label_jobs_request_builder
-    from .exact_match_data_stores import exact_match_data_stores_request_builder
-    from .exact_match_upload_agents import exact_match_upload_agents_request_builder
-    from .jobs import jobs_request_builder
-    from .sensitive_types import sensitive_types_request_builder
-    from .sensitivity_labels import sensitivity_labels_request_builder
+    from ..models.data_classification_service import DataClassificationService
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .classify_exact_matches.classify_exact_matches_request_builder import ClassifyExactMatchesRequestBuilder
+    from .classify_file.classify_file_request_builder import ClassifyFileRequestBuilder
+    from .classify_file_jobs.classify_file_jobs_request_builder import ClassifyFileJobsRequestBuilder
+    from .classify_text_jobs.classify_text_jobs_request_builder import ClassifyTextJobsRequestBuilder
+    from .evaluate_dlp_policies_jobs.evaluate_dlp_policies_jobs_request_builder import EvaluateDlpPoliciesJobsRequestBuilder
+    from .evaluate_label_jobs.evaluate_label_jobs_request_builder import EvaluateLabelJobsRequestBuilder
+    from .exact_match_data_stores.exact_match_data_stores_request_builder import ExactMatchDataStoresRequestBuilder
+    from .exact_match_upload_agents.exact_match_upload_agents_request_builder import ExactMatchUploadAgentsRequestBuilder
+    from .jobs.jobs_request_builder import JobsRequestBuilder
+    from .sensitive_types.sensitive_types_request_builder import SensitiveTypesRequestBuilder
+    from .sensitivity_labels.sensitivity_labels_request_builder import SensitivityLabelsRequestBuilder
 
-class DataClassificationRequestBuilder():
+class DataClassificationRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the dataClassificationService singleton.
     """
@@ -32,72 +33,63 @@ class DataClassificationRequestBuilder():
         """
         Instantiates a new DataClassificationRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/dataClassification{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/dataClassification{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[DataClassificationRequestBuilderGetRequestConfiguration] = None) -> Optional[data_classification_service.DataClassificationService]:
+    async def get(self,request_configuration: Optional[DataClassificationRequestBuilderGetRequestConfiguration] = None) -> Optional[DataClassificationService]:
         """
         Get dataClassification
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[data_classification_service.DataClassificationService]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DataClassificationService]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import data_classification_service
+        from ..models.data_classification_service import DataClassificationService
 
-        return await self.request_adapter.send_async(request_info, data_classification_service.DataClassificationService, error_mapping)
+        return await self.request_adapter.send_async(request_info, DataClassificationService, error_mapping)
     
-    async def patch(self,body: Optional[data_classification_service.DataClassificationService] = None, request_configuration: Optional[DataClassificationRequestBuilderPatchRequestConfiguration] = None) -> Optional[data_classification_service.DataClassificationService]:
+    async def patch(self,body: Optional[DataClassificationService] = None, request_configuration: Optional[DataClassificationRequestBuilderPatchRequestConfiguration] = None) -> Optional[DataClassificationService]:
         """
         Update dataClassification
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[data_classification_service.DataClassificationService]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DataClassificationService]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import data_classification_service
+        from ..models.data_classification_service import DataClassificationService
 
-        return await self.request_adapter.send_async(request_info, data_classification_service.DataClassificationService, error_mapping)
+        return await self.request_adapter.send_async(request_info, DataClassificationService, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DataClassificationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get dataClassification
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -111,16 +103,16 @@ class DataClassificationRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[data_classification_service.DataClassificationService] = None, request_configuration: Optional[DataClassificationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DataClassificationService] = None, request_configuration: Optional[DataClassificationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update dataClassification
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -133,103 +125,103 @@ class DataClassificationRequestBuilder():
         return request_info
     
     @property
-    def classify_exact_matches(self) -> classify_exact_matches_request_builder.ClassifyExactMatchesRequestBuilder:
+    def classify_exact_matches(self) -> ClassifyExactMatchesRequestBuilder:
         """
         Provides operations to call the classifyExactMatches method.
         """
-        from .classify_exact_matches import classify_exact_matches_request_builder
+        from .classify_exact_matches.classify_exact_matches_request_builder import ClassifyExactMatchesRequestBuilder
 
-        return classify_exact_matches_request_builder.ClassifyExactMatchesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ClassifyExactMatchesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def classify_file(self) -> classify_file_request_builder.ClassifyFileRequestBuilder:
+    def classify_file(self) -> ClassifyFileRequestBuilder:
         """
         Provides operations to call the classifyFile method.
         """
-        from .classify_file import classify_file_request_builder
+        from .classify_file.classify_file_request_builder import ClassifyFileRequestBuilder
 
-        return classify_file_request_builder.ClassifyFileRequestBuilder(self.request_adapter, self.path_parameters)
+        return ClassifyFileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def classify_file_jobs(self) -> classify_file_jobs_request_builder.ClassifyFileJobsRequestBuilder:
+    def classify_file_jobs(self) -> ClassifyFileJobsRequestBuilder:
         """
         Provides operations to manage the classifyFileJobs property of the microsoft.graph.dataClassificationService entity.
         """
-        from .classify_file_jobs import classify_file_jobs_request_builder
+        from .classify_file_jobs.classify_file_jobs_request_builder import ClassifyFileJobsRequestBuilder
 
-        return classify_file_jobs_request_builder.ClassifyFileJobsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ClassifyFileJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def classify_text_jobs(self) -> classify_text_jobs_request_builder.ClassifyTextJobsRequestBuilder:
+    def classify_text_jobs(self) -> ClassifyTextJobsRequestBuilder:
         """
         Provides operations to manage the classifyTextJobs property of the microsoft.graph.dataClassificationService entity.
         """
-        from .classify_text_jobs import classify_text_jobs_request_builder
+        from .classify_text_jobs.classify_text_jobs_request_builder import ClassifyTextJobsRequestBuilder
 
-        return classify_text_jobs_request_builder.ClassifyTextJobsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ClassifyTextJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_dlp_policies_jobs(self) -> evaluate_dlp_policies_jobs_request_builder.EvaluateDlpPoliciesJobsRequestBuilder:
+    def evaluate_dlp_policies_jobs(self) -> EvaluateDlpPoliciesJobsRequestBuilder:
         """
         Provides operations to manage the evaluateDlpPoliciesJobs property of the microsoft.graph.dataClassificationService entity.
         """
-        from .evaluate_dlp_policies_jobs import evaluate_dlp_policies_jobs_request_builder
+        from .evaluate_dlp_policies_jobs.evaluate_dlp_policies_jobs_request_builder import EvaluateDlpPoliciesJobsRequestBuilder
 
-        return evaluate_dlp_policies_jobs_request_builder.EvaluateDlpPoliciesJobsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EvaluateDlpPoliciesJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_label_jobs(self) -> evaluate_label_jobs_request_builder.EvaluateLabelJobsRequestBuilder:
+    def evaluate_label_jobs(self) -> EvaluateLabelJobsRequestBuilder:
         """
         Provides operations to manage the evaluateLabelJobs property of the microsoft.graph.dataClassificationService entity.
         """
-        from .evaluate_label_jobs import evaluate_label_jobs_request_builder
+        from .evaluate_label_jobs.evaluate_label_jobs_request_builder import EvaluateLabelJobsRequestBuilder
 
-        return evaluate_label_jobs_request_builder.EvaluateLabelJobsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EvaluateLabelJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def exact_match_data_stores(self) -> exact_match_data_stores_request_builder.ExactMatchDataStoresRequestBuilder:
+    def exact_match_data_stores(self) -> ExactMatchDataStoresRequestBuilder:
         """
         Provides operations to manage the exactMatchDataStores property of the microsoft.graph.dataClassificationService entity.
         """
-        from .exact_match_data_stores import exact_match_data_stores_request_builder
+        from .exact_match_data_stores.exact_match_data_stores_request_builder import ExactMatchDataStoresRequestBuilder
 
-        return exact_match_data_stores_request_builder.ExactMatchDataStoresRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExactMatchDataStoresRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def exact_match_upload_agents(self) -> exact_match_upload_agents_request_builder.ExactMatchUploadAgentsRequestBuilder:
+    def exact_match_upload_agents(self) -> ExactMatchUploadAgentsRequestBuilder:
         """
         Provides operations to manage the exactMatchUploadAgents property of the microsoft.graph.dataClassificationService entity.
         """
-        from .exact_match_upload_agents import exact_match_upload_agents_request_builder
+        from .exact_match_upload_agents.exact_match_upload_agents_request_builder import ExactMatchUploadAgentsRequestBuilder
 
-        return exact_match_upload_agents_request_builder.ExactMatchUploadAgentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExactMatchUploadAgentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def jobs(self) -> jobs_request_builder.JobsRequestBuilder:
+    def jobs(self) -> JobsRequestBuilder:
         """
         Provides operations to manage the jobs property of the microsoft.graph.dataClassificationService entity.
         """
-        from .jobs import jobs_request_builder
+        from .jobs.jobs_request_builder import JobsRequestBuilder
 
-        return jobs_request_builder.JobsRequestBuilder(self.request_adapter, self.path_parameters)
+        return JobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sensitive_types(self) -> sensitive_types_request_builder.SensitiveTypesRequestBuilder:
+    def sensitive_types(self) -> SensitiveTypesRequestBuilder:
         """
         Provides operations to manage the sensitiveTypes property of the microsoft.graph.dataClassificationService entity.
         """
-        from .sensitive_types import sensitive_types_request_builder
+        from .sensitive_types.sensitive_types_request_builder import SensitiveTypesRequestBuilder
 
-        return sensitive_types_request_builder.SensitiveTypesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SensitiveTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sensitivity_labels(self) -> sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder:
+    def sensitivity_labels(self) -> SensitivityLabelsRequestBuilder:
         """
         Provides operations to manage the sensitivityLabels property of the microsoft.graph.dataClassificationService entity.
         """
-        from .sensitivity_labels import sensitivity_labels_request_builder
+        from .sensitivity_labels.sensitivity_labels_request_builder import SensitivityLabelsRequestBuilder
 
-        return sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SensitivityLabelsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DataClassificationRequestBuilderGetQueryParameters():
@@ -240,11 +232,11 @@ class DataClassificationRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -258,31 +250,27 @@ class DataClassificationRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DataClassificationRequestBuilderGetRequestConfiguration():
+    class DataClassificationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[DataClassificationRequestBuilder.DataClassificationRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DataClassificationRequestBuilderPatchRequestConfiguration():
+    class DataClassificationRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

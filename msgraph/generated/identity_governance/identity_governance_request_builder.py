@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,17 +11,17 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models.identity_governance import identity_governance
-    from ..models.o_data_errors import o_data_error
-    from .access_reviews import access_reviews_request_builder
-    from .app_consent import app_consent_request_builder
-    from .entitlement_management import entitlement_management_request_builder
-    from .lifecycle_workflows import lifecycle_workflows_request_builder
-    from .privileged_access import privileged_access_request_builder
-    from .role_management_alerts import role_management_alerts_request_builder
-    from .terms_of_use import terms_of_use_request_builder
+    from ..models.identity_governance.identity_governance import IdentityGovernance
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .access_reviews.access_reviews_request_builder import AccessReviewsRequestBuilder
+    from .app_consent.app_consent_request_builder import AppConsentRequestBuilder
+    from .entitlement_management.entitlement_management_request_builder import EntitlementManagementRequestBuilder
+    from .lifecycle_workflows.lifecycle_workflows_request_builder import LifecycleWorkflowsRequestBuilder
+    from .privileged_access.privileged_access_request_builder import PrivilegedAccessRequestBuilder
+    from .role_management_alerts.role_management_alerts_request_builder import RoleManagementAlertsRequestBuilder
+    from .terms_of_use.terms_of_use_request_builder import TermsOfUseRequestBuilder
 
-class IdentityGovernanceRequestBuilder():
+class IdentityGovernanceRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the identityGovernance singleton.
     """
@@ -28,72 +29,63 @@ class IdentityGovernanceRequestBuilder():
         """
         Instantiates a new IdentityGovernanceRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identityGovernance{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[IdentityGovernanceRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_governance.IdentityGovernance]:
+    async def get(self,request_configuration: Optional[IdentityGovernanceRequestBuilderGetRequestConfiguration] = None) -> Optional[IdentityGovernance]:
         """
         Get identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[identity_governance.IdentityGovernance]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[IdentityGovernance]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.identity_governance import identity_governance
+        from ..models.identity_governance.identity_governance import IdentityGovernance
 
-        return await self.request_adapter.send_async(request_info, identity_governance.IdentityGovernance, error_mapping)
+        return await self.request_adapter.send_async(request_info, IdentityGovernance, error_mapping)
     
-    async def patch(self,body: Optional[identity_governance.IdentityGovernance] = None, request_configuration: Optional[IdentityGovernanceRequestBuilderPatchRequestConfiguration] = None) -> Optional[identity_governance.IdentityGovernance]:
+    async def patch(self,body: Optional[IdentityGovernance] = None, request_configuration: Optional[IdentityGovernanceRequestBuilderPatchRequestConfiguration] = None) -> Optional[IdentityGovernance]:
         """
         Update identityGovernance
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[identity_governance.IdentityGovernance]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[IdentityGovernance]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.identity_governance import identity_governance
+        from ..models.identity_governance.identity_governance import IdentityGovernance
 
-        return await self.request_adapter.send_async(request_info, identity_governance.IdentityGovernance, error_mapping)
+        return await self.request_adapter.send_async(request_info, IdentityGovernance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[IdentityGovernanceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -107,16 +99,16 @@ class IdentityGovernanceRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[identity_governance.IdentityGovernance] = None, request_configuration: Optional[IdentityGovernanceRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[IdentityGovernance] = None, request_configuration: Optional[IdentityGovernanceRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update identityGovernance
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -129,67 +121,67 @@ class IdentityGovernanceRequestBuilder():
         return request_info
     
     @property
-    def access_reviews(self) -> access_reviews_request_builder.AccessReviewsRequestBuilder:
+    def access_reviews(self) -> AccessReviewsRequestBuilder:
         """
         Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.
         """
-        from .access_reviews import access_reviews_request_builder
+        from .access_reviews.access_reviews_request_builder import AccessReviewsRequestBuilder
 
-        return access_reviews_request_builder.AccessReviewsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessReviewsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app_consent(self) -> app_consent_request_builder.AppConsentRequestBuilder:
+    def app_consent(self) -> AppConsentRequestBuilder:
         """
         Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.
         """
-        from .app_consent import app_consent_request_builder
+        from .app_consent.app_consent_request_builder import AppConsentRequestBuilder
 
-        return app_consent_request_builder.AppConsentRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppConsentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def entitlement_management(self) -> entitlement_management_request_builder.EntitlementManagementRequestBuilder:
+    def entitlement_management(self) -> EntitlementManagementRequestBuilder:
         """
         Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.
         """
-        from .entitlement_management import entitlement_management_request_builder
+        from .entitlement_management.entitlement_management_request_builder import EntitlementManagementRequestBuilder
 
-        return entitlement_management_request_builder.EntitlementManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return EntitlementManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def lifecycle_workflows(self) -> lifecycle_workflows_request_builder.LifecycleWorkflowsRequestBuilder:
+    def lifecycle_workflows(self) -> LifecycleWorkflowsRequestBuilder:
         """
         Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
         """
-        from .lifecycle_workflows import lifecycle_workflows_request_builder
+        from .lifecycle_workflows.lifecycle_workflows_request_builder import LifecycleWorkflowsRequestBuilder
 
-        return lifecycle_workflows_request_builder.LifecycleWorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
+        return LifecycleWorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privileged_access(self) -> privileged_access_request_builder.PrivilegedAccessRequestBuilder:
+    def privileged_access(self) -> PrivilegedAccessRequestBuilder:
         """
         Provides operations to manage the privilegedAccess property of the microsoft.graph.identityGovernance entity.
         """
-        from .privileged_access import privileged_access_request_builder
+        from .privileged_access.privileged_access_request_builder import PrivilegedAccessRequestBuilder
 
-        return privileged_access_request_builder.PrivilegedAccessRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivilegedAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_management_alerts(self) -> role_management_alerts_request_builder.RoleManagementAlertsRequestBuilder:
+    def role_management_alerts(self) -> RoleManagementAlertsRequestBuilder:
         """
         Provides operations to manage the roleManagementAlerts property of the microsoft.graph.identityGovernance entity.
         """
-        from .role_management_alerts import role_management_alerts_request_builder
+        from .role_management_alerts.role_management_alerts_request_builder import RoleManagementAlertsRequestBuilder
 
-        return role_management_alerts_request_builder.RoleManagementAlertsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleManagementAlertsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def terms_of_use(self) -> terms_of_use_request_builder.TermsOfUseRequestBuilder:
+    def terms_of_use(self) -> TermsOfUseRequestBuilder:
         """
         Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.
         """
-        from .terms_of_use import terms_of_use_request_builder
+        from .terms_of_use.terms_of_use_request_builder import TermsOfUseRequestBuilder
 
-        return terms_of_use_request_builder.TermsOfUseRequestBuilder(self.request_adapter, self.path_parameters)
+        return TermsOfUseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class IdentityGovernanceRequestBuilderGetQueryParameters():
@@ -200,11 +192,11 @@ class IdentityGovernanceRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -218,31 +210,27 @@ class IdentityGovernanceRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class IdentityGovernanceRequestBuilderGetRequestConfiguration():
+    class IdentityGovernanceRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[IdentityGovernanceRequestBuilder.IdentityGovernanceRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class IdentityGovernanceRequestBuilderPatchRequestConfiguration():
+    class IdentityGovernanceRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

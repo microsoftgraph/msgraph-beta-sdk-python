@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +11,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import chat_message, chat_message_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .delta import delta_request_builder
-    from .item import chat_message_item_request_builder
+    from .....models.chat_message import ChatMessage
+    from .....models.chat_message_collection_response import ChatMessageCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .delta.delta_request_builder import DeltaRequestBuilder
+    from .item.chat_message_item_request_builder import ChatMessageItemRequestBuilder
 
-class MessagesRequestBuilder():
+class MessagesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the messages property of the microsoft.graph.channel entity.
     """
@@ -24,87 +26,78 @@ class MessagesRequestBuilder():
         """
         Instantiates a new MessagesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/teams/{team%2Did}/primaryChannel/messages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/teams/{team%2Did}/primaryChannel/messages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_chat_message_id(self,chat_message_id: str) -> chat_message_item_request_builder.ChatMessageItemRequestBuilder:
+    def by_chat_message_id(self,chat_message_id: str) -> ChatMessageItemRequestBuilder:
         """
         Provides operations to manage the messages property of the microsoft.graph.channel entity.
         Args:
             chat_message_id: Unique identifier of the item
-        Returns: chat_message_item_request_builder.ChatMessageItemRequestBuilder
+        Returns: ChatMessageItemRequestBuilder
         """
-        if chat_message_id is None:
-            raise Exception("chat_message_id cannot be undefined")
-        from .item import chat_message_item_request_builder
+        if not chat_message_id:
+            raise TypeError("chat_message_id cannot be null.")
+        from .item.chat_message_item_request_builder import ChatMessageItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["chatMessage%2Did"] = chat_message_id
-        return chat_message_item_request_builder.ChatMessageItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ChatMessageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MessagesRequestBuilderGetRequestConfiguration] = None) -> Optional[chat_message_collection_response.ChatMessageCollectionResponse]:
+    async def get(self,request_configuration: Optional[MessagesRequestBuilderGetRequestConfiguration] = None) -> Optional[ChatMessageCollectionResponse]:
         """
         Retrieve the list of messages (without the replies) in a channel of a team. To get the replies for a message, call the list message replies or the get message reply API. This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[chat_message_collection_response.ChatMessageCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ChatMessageCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import chat_message_collection_response
+        from .....models.chat_message_collection_response import ChatMessageCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, chat_message_collection_response.ChatMessageCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ChatMessageCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[chat_message.ChatMessage] = None, request_configuration: Optional[MessagesRequestBuilderPostRequestConfiguration] = None) -> Optional[chat_message.ChatMessage]:
+    async def post(self,body: Optional[ChatMessage] = None, request_configuration: Optional[MessagesRequestBuilderPostRequestConfiguration] = None) -> Optional[ChatMessage]:
         """
         Send a new chatMessage in the specified channel or a chat.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[chat_message.ChatMessage]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ChatMessage]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import chat_message
+        from .....models.chat_message import ChatMessage
 
-        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, error_mapping)
+        return await self.request_adapter.send_async(request_info, ChatMessage, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MessagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the list of messages (without the replies) in a channel of a team. To get the replies for a message, call the list message replies or the get message reply API. This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -118,16 +111,16 @@ class MessagesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[chat_message.ChatMessage] = None, request_configuration: Optional[MessagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ChatMessage] = None, request_configuration: Optional[MessagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Send a new chatMessage in the specified channel or a chat.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +133,22 @@ class MessagesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+    def delta(self) -> DeltaRequestBuilder:
         """
         Provides operations to call the delta method.
         """
-        from .delta import delta_request_builder
+        from .delta.delta_request_builder import DeltaRequestBuilder
 
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MessagesRequestBuilderGetQueryParameters():
@@ -166,11 +159,11 @@ class MessagesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -214,31 +207,27 @@ class MessagesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MessagesRequestBuilderGetRequestConfiguration():
+    class MessagesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MessagesRequestBuilderPostRequestConfiguration():
+    class MessagesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

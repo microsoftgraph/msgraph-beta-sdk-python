@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidForWorkBindStatus(Enum):
+class AndroidForWorkBindStatus(str, Enum):
     NotBound = "notBound",
     Bound = "bound",
     BoundAndValidated = "boundAndValidated",
