@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsAutopilotDeviceRemediationState(Enum):
+class WindowsAutopilotDeviceRemediationState(str, Enum):
     # Unknown status.
     Unknown = "unknown",
     # No hardware change has been detected.

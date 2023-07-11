@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EndpointSecurityConfigurationApplicablePlatform(Enum):
+class EndpointSecurityConfigurationApplicablePlatform(str, Enum):
     # Unknown.
     Unknown = "unknown",
     # MacOS.

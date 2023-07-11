@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConditionalAccessConditions(Enum):
+class ConditionalAccessConditions(str, Enum):
     None_ = "none",
     Application = "application",
     Users = "users",

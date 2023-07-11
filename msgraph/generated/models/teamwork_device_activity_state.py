@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TeamworkDeviceActivityState(Enum):
+class TeamworkDeviceActivityState(str, Enum):
     Unknown = "unknown",
     Busy = "busy",
     Idle = "idle",

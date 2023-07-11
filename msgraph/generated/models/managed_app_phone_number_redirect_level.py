@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagedAppPhoneNumberRedirectLevel(Enum):
+class ManagedAppPhoneNumberRedirectLevel(str, Enum):
     # Sharing is allowed to all apps.
     AllApps = "allApps",
     # Sharing is allowed to all managed apps.

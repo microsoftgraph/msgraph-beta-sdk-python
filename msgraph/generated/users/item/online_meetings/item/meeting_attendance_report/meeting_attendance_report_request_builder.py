@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +11,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import meeting_attendance_report
-    from ......models.o_data_errors import o_data_error
-    from .attendance_records import attendance_records_request_builder
+    from ......models.meeting_attendance_report import MeetingAttendanceReport
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .attendance_records.attendance_records_request_builder import AttendanceRecordsRequestBuilder
 
-class MeetingAttendanceReportRequestBuilder():
+class MeetingAttendanceReportRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the meetingAttendanceReport property of the microsoft.graph.onlineMeeting entity.
     """
@@ -22,91 +23,82 @@ class MeetingAttendanceReportRequestBuilder():
         """
         Instantiates a new MeetingAttendanceReportRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/meetingAttendanceReport{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/meetingAttendanceReport{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[MeetingAttendanceReportRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property meetingAttendanceReport for users
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MeetingAttendanceReportRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_attendance_report.MeetingAttendanceReport]:
+    async def get(self,request_configuration: Optional[MeetingAttendanceReportRequestBuilderGetRequestConfiguration] = None) -> Optional[MeetingAttendanceReport]:
         """
         Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[meeting_attendance_report.MeetingAttendanceReport]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[MeetingAttendanceReport]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import meeting_attendance_report
+        from ......models.meeting_attendance_report import MeetingAttendanceReport
 
-        return await self.request_adapter.send_async(request_info, meeting_attendance_report.MeetingAttendanceReport, error_mapping)
+        return await self.request_adapter.send_async(request_info, MeetingAttendanceReport, error_mapping)
     
-    async def patch(self,body: Optional[meeting_attendance_report.MeetingAttendanceReport] = None, request_configuration: Optional[MeetingAttendanceReportRequestBuilderPatchRequestConfiguration] = None) -> Optional[meeting_attendance_report.MeetingAttendanceReport]:
+    async def patch(self,body: Optional[MeetingAttendanceReport] = None, request_configuration: Optional[MeetingAttendanceReportRequestBuilderPatchRequestConfiguration] = None) -> Optional[MeetingAttendanceReport]:
         """
         Update the navigation property meetingAttendanceReport in users
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[meeting_attendance_report.MeetingAttendanceReport]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[MeetingAttendanceReport]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import meeting_attendance_report
+        from ......models.meeting_attendance_report import MeetingAttendanceReport
 
-        return await self.request_adapter.send_async(request_info, meeting_attendance_report.MeetingAttendanceReport, error_mapping)
+        return await self.request_adapter.send_async(request_info, MeetingAttendanceReport, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MeetingAttendanceReportRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property meetingAttendanceReport for users
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -122,7 +114,7 @@ class MeetingAttendanceReportRequestBuilder():
         """
         Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -136,16 +128,16 @@ class MeetingAttendanceReportRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[meeting_attendance_report.MeetingAttendanceReport] = None, request_configuration: Optional[MeetingAttendanceReportRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MeetingAttendanceReport] = None, request_configuration: Optional[MeetingAttendanceReportRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property meetingAttendanceReport in users
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,25 +150,23 @@ class MeetingAttendanceReportRequestBuilder():
         return request_info
     
     @property
-    def attendance_records(self) -> attendance_records_request_builder.AttendanceRecordsRequestBuilder:
+    def attendance_records(self) -> AttendanceRecordsRequestBuilder:
         """
         Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.
         """
-        from .attendance_records import attendance_records_request_builder
+        from .attendance_records.attendance_records_request_builder import AttendanceRecordsRequestBuilder
 
-        return attendance_records_request_builder.AttendanceRecordsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AttendanceRecordsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MeetingAttendanceReportRequestBuilderDeleteRequestConfiguration():
+    class MeetingAttendanceReportRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class MeetingAttendanceReportRequestBuilderGetQueryParameters():
@@ -187,11 +177,11 @@ class MeetingAttendanceReportRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -205,31 +195,27 @@ class MeetingAttendanceReportRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MeetingAttendanceReportRequestBuilderGetRequestConfiguration():
+    class MeetingAttendanceReportRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[MeetingAttendanceReportRequestBuilder.MeetingAttendanceReportRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MeetingAttendanceReportRequestBuilderPatchRequestConfiguration():
+    class MeetingAttendanceReportRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

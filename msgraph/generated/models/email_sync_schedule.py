@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EmailSyncSchedule(Enum):
+class EmailSyncSchedule(str, Enum):
     # User Defined, default value, no intent.
     UserDefined = "userDefined",
     # Sync as messages arrive.

@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +11,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import governance_resource, governance_resource_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import governance_resource_item_request_builder
-    from .register import register_request_builder
+    from ..models.governance_resource import GovernanceResource
+    from ..models.governance_resource_collection_response import GovernanceResourceCollectionResponse
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.governance_resource_item_request_builder import GovernanceResourceItemRequestBuilder
+    from .register.register_request_builder import RegisterRequestBuilder
 
-class GovernanceResourcesRequestBuilder():
+class GovernanceResourcesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of governanceResource entities.
     """
@@ -24,87 +26,78 @@ class GovernanceResourcesRequestBuilder():
         """
         Instantiates a new GovernanceResourcesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/governanceResources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/governanceResources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_governance_resource_id(self,governance_resource_id: str) -> governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder:
+    def by_governance_resource_id(self,governance_resource_id: str) -> GovernanceResourceItemRequestBuilder:
         """
         Provides operations to manage the collection of governanceResource entities.
         Args:
             governance_resource_id: Unique identifier of the item
-        Returns: governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder
+        Returns: GovernanceResourceItemRequestBuilder
         """
-        if governance_resource_id is None:
-            raise Exception("governance_resource_id cannot be undefined")
-        from .item import governance_resource_item_request_builder
+        if not governance_resource_id:
+            raise TypeError("governance_resource_id cannot be null.")
+        from .item.governance_resource_item_request_builder import GovernanceResourceItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["governanceResource%2Did"] = governance_resource_id
-        return governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return GovernanceResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GovernanceResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[GovernanceResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[GovernanceResourceCollectionResponse]:
         """
         Get entities from governanceResources
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GovernanceResourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import governance_resource_collection_response
+        from ..models.governance_resource_collection_response import GovernanceResourceCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, governance_resource_collection_response.GovernanceResourceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GovernanceResourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[governance_resource.GovernanceResource] = None, request_configuration: Optional[GovernanceResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_resource.GovernanceResource]:
+    async def post(self,body: Optional[GovernanceResource] = None, request_configuration: Optional[GovernanceResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[GovernanceResource]:
         """
         Add new entity to governanceResources
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[governance_resource.GovernanceResource]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GovernanceResource]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import governance_resource
+        from ..models.governance_resource import GovernanceResource
 
-        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, error_mapping)
+        return await self.request_adapter.send_async(request_info, GovernanceResource, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GovernanceResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get entities from governanceResources
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -118,16 +111,16 @@ class GovernanceResourcesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[governance_resource.GovernanceResource] = None, request_configuration: Optional[GovernanceResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GovernanceResource] = None, request_configuration: Optional[GovernanceResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Add new entity to governanceResources
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +133,22 @@ class GovernanceResourcesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def register(self) -> register_request_builder.RegisterRequestBuilder:
+    def register(self) -> RegisterRequestBuilder:
         """
         Provides operations to call the register method.
         """
-        from .register import register_request_builder
+        from .register.register_request_builder import RegisterRequestBuilder
 
-        return register_request_builder.RegisterRequestBuilder(self.request_adapter, self.path_parameters)
+        return RegisterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GovernanceResourcesRequestBuilderGetQueryParameters():
@@ -166,11 +159,11 @@ class GovernanceResourcesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -214,31 +207,27 @@ class GovernanceResourcesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GovernanceResourcesRequestBuilderGetRequestConfiguration():
+    class GovernanceResourcesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[GovernanceResourcesRequestBuilder.GovernanceResourcesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GovernanceResourcesRequestBuilderPostRequestConfiguration():
+    class GovernanceResourcesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

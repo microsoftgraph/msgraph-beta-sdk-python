@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserNewMessageRestriction(Enum):
+class UserNewMessageRestriction(str, Enum):
     Everyone = "everyone",
     EveryoneExceptGuests = "everyoneExceptGuests",
     Moderators = "moderators",

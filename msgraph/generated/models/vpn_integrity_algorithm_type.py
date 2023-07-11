@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnIntegrityAlgorithmType(Enum):
+class VpnIntegrityAlgorithmType(str, Enum):
     # SHA2-256
     Sha2_256 = "sha2_256",
     # SHA1-96

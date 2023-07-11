@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RecommendationPriority(Enum):
+class RecommendationPriority(str, Enum):
     Low = "low",
     Medium = "medium",
     High = "high",

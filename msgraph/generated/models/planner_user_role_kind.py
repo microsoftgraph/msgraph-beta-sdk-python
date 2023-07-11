@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PlannerUserRoleKind(Enum):
+class PlannerUserRoleKind(str, Enum):
     Relationship = "relationship",
     UnknownFutureValue = "unknownFutureValue",
 

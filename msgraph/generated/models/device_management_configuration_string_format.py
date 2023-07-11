@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationStringFormat(Enum):
+class DeviceManagementConfigurationStringFormat(str, Enum):
     # Indicates a string with no well-defined format expected.
     None_ = "none",
     # Indicates a string that is expected to be a valid email address.

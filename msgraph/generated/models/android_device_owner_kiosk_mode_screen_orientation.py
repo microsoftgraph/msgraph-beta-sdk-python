@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerKioskModeScreenOrientation(Enum):
+class AndroidDeviceOwnerKioskModeScreenOrientation(str, Enum):
     # Not configured; this value is ignored.
     NotConfigured = "notConfigured",
     # Portrait orientation.

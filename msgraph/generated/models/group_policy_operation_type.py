@@ -1,6 +1,6 @@
 from enum import Enum
 
-class GroupPolicyOperationType(Enum):
+class GroupPolicyOperationType(str, Enum):
     # Group Policy invalid operation type.
     None_ = "none",
     # Group Policy upload operation type.

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AdvancedBitLockerState(Enum):
+class AdvancedBitLockerState(str, Enum):
     # Advanced BitLocker State Success
     Success = "success",
     # User never gave consent for Encryption

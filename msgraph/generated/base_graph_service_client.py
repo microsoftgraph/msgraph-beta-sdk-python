@@ -1,5 +1,6 @@
 from __future__ import annotations
 from kiota_abstractions.api_client_builder import enable_backing_store_for_serialization_writer_factory, register_default_deserializer, register_default_serializer
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.serialization import ParseNodeFactoryRegistry, SerializationWriterFactoryRegistry
@@ -10,121 +11,121 @@ from kiota_serialization_text.text_serialization_writer_factory import TextSeria
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .access_review_decisions import access_review_decisions_request_builder
-    from .access_reviews import access_reviews_request_builder
-    from .activitystatistics import activitystatistics_request_builder
-    from .admin import admin_request_builder
-    from .administrative_units import administrative_units_request_builder
-    from .agreement_acceptances import agreement_acceptances_request_builder
-    from .agreements import agreements_request_builder
-    from .allowed_data_locations import allowed_data_locations_request_builder
-    from .app import app_request_builder
-    from .app_catalogs import app_catalogs_request_builder
-    from .applications import applications_request_builder
-    from .application_templates import application_templates_request_builder
-    from .app_role_assignments import app_role_assignments_request_builder
-    from .approval_workflow_providers import approval_workflow_providers_request_builder
-    from .audit_logs import audit_logs_request_builder
-    from .authentication_method_configurations import authentication_method_configurations_request_builder
-    from .authentication_methods_policy import authentication_methods_policy_request_builder
-    from .booking_businesses import booking_businesses_request_builder
-    from .booking_currencies import booking_currencies_request_builder
-    from .branding import branding_request_builder
-    from .business_flow_templates import business_flow_templates_request_builder
-    from .certificate_based_auth_configuration import certificate_based_auth_configuration_request_builder
-    from .chats import chats_request_builder
-    from .commands import commands_request_builder
-    from .communications import communications_request_builder
-    from .compliance import compliance_request_builder
-    from .connections import connections_request_builder
-    from .contacts import contacts_request_builder
-    from .contracts import contracts_request_builder
-    from .data_classification import data_classification_request_builder
-    from .data_policy_operations import data_policy_operations_request_builder
-    from .device_app_management import device_app_management_request_builder
-    from .device_local_credentials import device_local_credentials_request_builder
-    from .device_management import device_management_request_builder
-    from .devices import devices_request_builder
-    from .directory import directory_request_builder
-    from .directory_objects import directory_objects_request_builder
-    from .directory_roles import directory_roles_request_builder
-    from .directory_role_templates import directory_role_templates_request_builder
-    from .directory_setting_templates import directory_setting_templates_request_builder
-    from .domain_dns_records import domain_dns_records_request_builder
-    from .domains import domains_request_builder
-    from .drives import drives_request_builder
-    from .education import education_request_builder
-    from .employee_experience import employee_experience_request_builder
-    from .external import external_request_builder
-    from .filter_operators import filter_operators_request_builder
-    from .financials import financials_request_builder
-    from .functions import functions_request_builder
-    from .governance_resources import governance_resources_request_builder
-    from .governance_role_assignment_requests import governance_role_assignment_requests_request_builder
-    from .governance_role_assignments import governance_role_assignments_request_builder
-    from .governance_role_definitions import governance_role_definitions_request_builder
-    from .governance_role_settings import governance_role_settings_request_builder
-    from .governance_subjects import governance_subjects_request_builder
-    from .group_lifecycle_policies import group_lifecycle_policies_request_builder
-    from .groups import groups_request_builder
-    from .identity import identity_request_builder
-    from .identity_governance import identity_governance_request_builder
-    from .identity_protection import identity_protection_request_builder
-    from .identity_providers import identity_providers_request_builder
-    from .information_protection import information_protection_request_builder
-    from .invitations import invitations_request_builder
-    from .me import me_request_builder
-    from .message_events import message_events_request_builder
-    from .message_recipients import message_recipients_request_builder
-    from .message_traces import message_traces_request_builder
-    from .mobility_management_policies import mobility_management_policies_request_builder
-    from .monitoring import monitoring_request_builder
-    from .oauth2_permission_grants import oauth2_permission_grants_request_builder
-    from .on_premises_publishing_profiles import on_premises_publishing_profiles_request_builder
-    from .organization import organization_request_builder
-    from .payload_response import payload_response_request_builder
-    from .permission_grants import permission_grants_request_builder
-    from .places import places_request_builder
-    from .planner import planner_request_builder
-    from .policies import policies_request_builder
-    from .print import print_request_builder
-    from .privacy import privacy_request_builder
-    from .privileged_access import privileged_access_request_builder
-    from .privileged_approval import privileged_approval_request_builder
-    from .privileged_operation_events import privileged_operation_events_request_builder
-    from .privileged_role_assignment_requests import privileged_role_assignment_requests_request_builder
-    from .privileged_role_assignments import privileged_role_assignments_request_builder
-    from .privileged_roles import privileged_roles_request_builder
-    from .privileged_signup_status import privileged_signup_status_request_builder
-    from .program_controls import program_controls_request_builder
-    from .program_control_types import program_control_types_request_builder
-    from .programs import programs_request_builder
-    from .reports import reports_request_builder
-    from .risk_detections import risk_detections_request_builder
-    from .risky_users import risky_users_request_builder
-    from .role_management import role_management_request_builder
-    from .schema_extensions import schema_extensions_request_builder
-    from .scoped_role_memberships import scoped_role_memberships_request_builder
-    from .search import search_request_builder
-    from .security import security_request_builder
-    from .service_principals import service_principals_request_builder
-    from .settings import settings_request_builder
-    from .shares import shares_request_builder
-    from .sites import sites_request_builder
-    from .solutions import solutions_request_builder
-    from .subscribed_skus import subscribed_skus_request_builder
-    from .subscriptions import subscriptions_request_builder
-    from .teams import teams_request_builder
-    from .teams_templates import teams_templates_request_builder
-    from .team_template_definition import team_template_definition_request_builder
-    from .teamwork import teamwork_request_builder
-    from .tenant_relationships import tenant_relationships_request_builder
-    from .term_store import term_store_request_builder
-    from .threat_submission import threat_submission_request_builder
-    from .trust_framework import trust_framework_request_builder
-    from .users import users_request_builder
+    from .access_review_decisions.access_review_decisions_request_builder import AccessReviewDecisionsRequestBuilder
+    from .access_reviews.access_reviews_request_builder import AccessReviewsRequestBuilder
+    from .activitystatistics.activitystatistics_request_builder import ActivitystatisticsRequestBuilder
+    from .admin.admin_request_builder import AdminRequestBuilder
+    from .administrative_units.administrative_units_request_builder import AdministrativeUnitsRequestBuilder
+    from .agreement_acceptances.agreement_acceptances_request_builder import AgreementAcceptancesRequestBuilder
+    from .agreements.agreements_request_builder import AgreementsRequestBuilder
+    from .allowed_data_locations.allowed_data_locations_request_builder import AllowedDataLocationsRequestBuilder
+    from .app.app_request_builder import AppRequestBuilder
+    from .app_catalogs.app_catalogs_request_builder import AppCatalogsRequestBuilder
+    from .applications.applications_request_builder import ApplicationsRequestBuilder
+    from .application_templates.application_templates_request_builder import ApplicationTemplatesRequestBuilder
+    from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
+    from .approval_workflow_providers.approval_workflow_providers_request_builder import ApprovalWorkflowProvidersRequestBuilder
+    from .audit_logs.audit_logs_request_builder import AuditLogsRequestBuilder
+    from .authentication_method_configurations.authentication_method_configurations_request_builder import AuthenticationMethodConfigurationsRequestBuilder
+    from .authentication_methods_policy.authentication_methods_policy_request_builder import AuthenticationMethodsPolicyRequestBuilder
+    from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
+    from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
+    from .business_flow_templates.business_flow_templates_request_builder import BusinessFlowTemplatesRequestBuilder
+    from .certificate_based_auth_configuration.certificate_based_auth_configuration_request_builder import CertificateBasedAuthConfigurationRequestBuilder
+    from .chats.chats_request_builder import ChatsRequestBuilder
+    from .commands.commands_request_builder import CommandsRequestBuilder
+    from .communications.communications_request_builder import CommunicationsRequestBuilder
+    from .compliance.compliance_request_builder import ComplianceRequestBuilder
+    from .connections.connections_request_builder import ConnectionsRequestBuilder
+    from .contacts.contacts_request_builder import ContactsRequestBuilder
+    from .contracts.contracts_request_builder import ContractsRequestBuilder
+    from .data_classification.data_classification_request_builder import DataClassificationRequestBuilder
+    from .data_policy_operations.data_policy_operations_request_builder import DataPolicyOperationsRequestBuilder
+    from .device_app_management.device_app_management_request_builder import DeviceAppManagementRequestBuilder
+    from .device_local_credentials.device_local_credentials_request_builder import DeviceLocalCredentialsRequestBuilder
+    from .device_management.device_management_request_builder import DeviceManagementRequestBuilder
+    from .devices.devices_request_builder import DevicesRequestBuilder
+    from .directory.directory_request_builder import DirectoryRequestBuilder
+    from .directory_objects.directory_objects_request_builder import DirectoryObjectsRequestBuilder
+    from .directory_roles.directory_roles_request_builder import DirectoryRolesRequestBuilder
+    from .directory_role_templates.directory_role_templates_request_builder import DirectoryRoleTemplatesRequestBuilder
+    from .directory_setting_templates.directory_setting_templates_request_builder import DirectorySettingTemplatesRequestBuilder
+    from .domain_dns_records.domain_dns_records_request_builder import DomainDnsRecordsRequestBuilder
+    from .domains.domains_request_builder import DomainsRequestBuilder
+    from .drives.drives_request_builder import DrivesRequestBuilder
+    from .education.education_request_builder import EducationRequestBuilder
+    from .employee_experience.employee_experience_request_builder import EmployeeExperienceRequestBuilder
+    from .external.external_request_builder import ExternalRequestBuilder
+    from .filter_operators.filter_operators_request_builder import FilterOperatorsRequestBuilder
+    from .financials.financials_request_builder import FinancialsRequestBuilder
+    from .functions.functions_request_builder import FunctionsRequestBuilder
+    from .governance_resources.governance_resources_request_builder import GovernanceResourcesRequestBuilder
+    from .governance_role_assignment_requests.governance_role_assignment_requests_request_builder import GovernanceRoleAssignmentRequestsRequestBuilder
+    from .governance_role_assignments.governance_role_assignments_request_builder import GovernanceRoleAssignmentsRequestBuilder
+    from .governance_role_definitions.governance_role_definitions_request_builder import GovernanceRoleDefinitionsRequestBuilder
+    from .governance_role_settings.governance_role_settings_request_builder import GovernanceRoleSettingsRequestBuilder
+    from .governance_subjects.governance_subjects_request_builder import GovernanceSubjectsRequestBuilder
+    from .group_lifecycle_policies.group_lifecycle_policies_request_builder import GroupLifecyclePoliciesRequestBuilder
+    from .groups.groups_request_builder import GroupsRequestBuilder
+    from .identity.identity_request_builder import IdentityRequestBuilder
+    from .identity_governance.identity_governance_request_builder import IdentityGovernanceRequestBuilder
+    from .identity_protection.identity_protection_request_builder import IdentityProtectionRequestBuilder
+    from .identity_providers.identity_providers_request_builder import IdentityProvidersRequestBuilder
+    from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
+    from .invitations.invitations_request_builder import InvitationsRequestBuilder
+    from .me.me_request_builder import MeRequestBuilder
+    from .message_events.message_events_request_builder import MessageEventsRequestBuilder
+    from .message_recipients.message_recipients_request_builder import MessageRecipientsRequestBuilder
+    from .message_traces.message_traces_request_builder import MessageTracesRequestBuilder
+    from .mobility_management_policies.mobility_management_policies_request_builder import MobilityManagementPoliciesRequestBuilder
+    from .monitoring.monitoring_request_builder import MonitoringRequestBuilder
+    from .network_access.network_access_request_builder import NetworkAccessRequestBuilder
+    from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
+    from .on_premises_publishing_profiles.on_premises_publishing_profiles_request_builder import OnPremisesPublishingProfilesRequestBuilder
+    from .organization.organization_request_builder import OrganizationRequestBuilder
+    from .payload_response.payload_response_request_builder import PayloadResponseRequestBuilder
+    from .permission_grants.permission_grants_request_builder import PermissionGrantsRequestBuilder
+    from .places.places_request_builder import PlacesRequestBuilder
+    from .planner.planner_request_builder import PlannerRequestBuilder
+    from .policies.policies_request_builder import PoliciesRequestBuilder
+    from .print.print_request_builder import PrintRequestBuilder
+    from .privacy.privacy_request_builder import PrivacyRequestBuilder
+    from .privileged_access.privileged_access_request_builder import PrivilegedAccessRequestBuilder
+    from .privileged_approval.privileged_approval_request_builder import PrivilegedApprovalRequestBuilder
+    from .privileged_operation_events.privileged_operation_events_request_builder import PrivilegedOperationEventsRequestBuilder
+    from .privileged_role_assignment_requests.privileged_role_assignment_requests_request_builder import PrivilegedRoleAssignmentRequestsRequestBuilder
+    from .privileged_role_assignments.privileged_role_assignments_request_builder import PrivilegedRoleAssignmentsRequestBuilder
+    from .privileged_roles.privileged_roles_request_builder import PrivilegedRolesRequestBuilder
+    from .privileged_signup_status.privileged_signup_status_request_builder import PrivilegedSignupStatusRequestBuilder
+    from .program_controls.program_controls_request_builder import ProgramControlsRequestBuilder
+    from .program_control_types.program_control_types_request_builder import ProgramControlTypesRequestBuilder
+    from .programs.programs_request_builder import ProgramsRequestBuilder
+    from .reports.reports_request_builder import ReportsRequestBuilder
+    from .risk_detections.risk_detections_request_builder import RiskDetectionsRequestBuilder
+    from .risky_users.risky_users_request_builder import RiskyUsersRequestBuilder
+    from .role_management.role_management_request_builder import RoleManagementRequestBuilder
+    from .schema_extensions.schema_extensions_request_builder import SchemaExtensionsRequestBuilder
+    from .scoped_role_memberships.scoped_role_memberships_request_builder import ScopedRoleMembershipsRequestBuilder
+    from .search.search_request_builder import SearchRequestBuilder
+    from .security.security_request_builder import SecurityRequestBuilder
+    from .service_principals.service_principals_request_builder import ServicePrincipalsRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
+    from .shares.shares_request_builder import SharesRequestBuilder
+    from .sites.sites_request_builder import SitesRequestBuilder
+    from .solutions.solutions_request_builder import SolutionsRequestBuilder
+    from .subscribed_skus.subscribed_skus_request_builder import SubscribedSkusRequestBuilder
+    from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
+    from .teams.teams_request_builder import TeamsRequestBuilder
+    from .teams_templates.teams_templates_request_builder import TeamsTemplatesRequestBuilder
+    from .team_template_definition.team_template_definition_request_builder import TeamTemplateDefinitionRequestBuilder
+    from .teamwork.teamwork_request_builder import TeamworkRequestBuilder
+    from .tenant_relationships.tenant_relationships_request_builder import TenantRelationshipsRequestBuilder
+    from .term_store.term_store_request_builder import TermStoreRequestBuilder
+    from .threat_submission.threat_submission_request_builder import ThreatSubmissionRequestBuilder
+    from .trust_framework.trust_framework_request_builder import TrustFrameworkRequestBuilder
+    from .users.users_request_builder import UsersRequestBuilder
 
-class BaseGraphServiceClient():
+class BaseGraphServiceClient(BaseRequestBuilder):
     """
     The main entry point of the SDK, exposes the configuration and the fluent API.
     """
@@ -132,17 +133,11 @@ class BaseGraphServiceClient():
         """
         Instantiates a new BaseGraphServiceClient and sets the default values.
         Args:
-            requestAdapter: The request adapter to use to execute the requests.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Path parameters for the request
-        self.path_parameters: Dict[str, Any] = {}
-
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}"
-
-        self.request_adapter = request_adapter
+        if not request_adapter:
+            raise TypeError("request_adapter cannot be null.")
+        super().__init__(request_adapter, "{+baseurl}", None)
         register_default_serializer(JsonSerializationWriterFactory)
         register_default_serializer(TextSerializationWriterFactory)
         register_default_deserializer(JsonParseNodeFactory)
@@ -152,1020 +147,1020 @@ class BaseGraphServiceClient():
         self.path_parameters["base_url"] = self.request_adapter.base_url
     
     @property
-    def access_review_decisions(self) -> access_review_decisions_request_builder.AccessReviewDecisionsRequestBuilder:
+    def access_review_decisions(self) -> AccessReviewDecisionsRequestBuilder:
         """
         Provides operations to manage the collection of accessReviewDecision entities.
         """
-        from .access_review_decisions import access_review_decisions_request_builder
+        from .access_review_decisions.access_review_decisions_request_builder import AccessReviewDecisionsRequestBuilder
 
-        return access_review_decisions_request_builder.AccessReviewDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessReviewDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def access_reviews(self) -> access_reviews_request_builder.AccessReviewsRequestBuilder:
+    def access_reviews(self) -> AccessReviewsRequestBuilder:
         """
         Provides operations to manage the collection of accessReview entities.
         """
-        from .access_reviews import access_reviews_request_builder
+        from .access_reviews.access_reviews_request_builder import AccessReviewsRequestBuilder
 
-        return access_reviews_request_builder.AccessReviewsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccessReviewsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def activitystatistics(self) -> activitystatistics_request_builder.ActivitystatisticsRequestBuilder:
+    def activitystatistics(self) -> ActivitystatisticsRequestBuilder:
         """
         Provides operations to manage the collection of activityStatistics entities.
         """
-        from .activitystatistics import activitystatistics_request_builder
+        from .activitystatistics.activitystatistics_request_builder import ActivitystatisticsRequestBuilder
 
-        return activitystatistics_request_builder.ActivitystatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ActivitystatisticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def admin(self) -> admin_request_builder.AdminRequestBuilder:
+    def admin(self) -> AdminRequestBuilder:
         """
         Provides operations to manage the admin singleton.
         """
-        from .admin import admin_request_builder
+        from .admin.admin_request_builder import AdminRequestBuilder
 
-        return admin_request_builder.AdminRequestBuilder(self.request_adapter, self.path_parameters)
+        return AdminRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def administrative_units(self) -> administrative_units_request_builder.AdministrativeUnitsRequestBuilder:
+    def administrative_units(self) -> AdministrativeUnitsRequestBuilder:
         """
         Provides operations to manage the collection of administrativeUnit entities.
         """
-        from .administrative_units import administrative_units_request_builder
+        from .administrative_units.administrative_units_request_builder import AdministrativeUnitsRequestBuilder
 
-        return administrative_units_request_builder.AdministrativeUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AdministrativeUnitsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def agreement_acceptances(self) -> agreement_acceptances_request_builder.AgreementAcceptancesRequestBuilder:
+    def agreement_acceptances(self) -> AgreementAcceptancesRequestBuilder:
         """
         Provides operations to manage the collection of agreementAcceptance entities.
         """
-        from .agreement_acceptances import agreement_acceptances_request_builder
+        from .agreement_acceptances.agreement_acceptances_request_builder import AgreementAcceptancesRequestBuilder
 
-        return agreement_acceptances_request_builder.AgreementAcceptancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AgreementAcceptancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def agreements(self) -> agreements_request_builder.AgreementsRequestBuilder:
+    def agreements(self) -> AgreementsRequestBuilder:
         """
         Provides operations to manage the collection of agreement entities.
         """
-        from .agreements import agreements_request_builder
+        from .agreements.agreements_request_builder import AgreementsRequestBuilder
 
-        return agreements_request_builder.AgreementsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AgreementsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def allowed_data_locations(self) -> allowed_data_locations_request_builder.AllowedDataLocationsRequestBuilder:
+    def allowed_data_locations(self) -> AllowedDataLocationsRequestBuilder:
         """
         Provides operations to manage the collection of allowedDataLocation entities.
         """
-        from .allowed_data_locations import allowed_data_locations_request_builder
+        from .allowed_data_locations.allowed_data_locations_request_builder import AllowedDataLocationsRequestBuilder
 
-        return allowed_data_locations_request_builder.AllowedDataLocationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AllowedDataLocationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app(self) -> app_request_builder.AppRequestBuilder:
+    def app(self) -> AppRequestBuilder:
         """
         Provides operations to manage the commsApplication singleton.
         """
-        from .app import app_request_builder
+        from .app.app_request_builder import AppRequestBuilder
 
-        return app_request_builder.AppRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app_catalogs(self) -> app_catalogs_request_builder.AppCatalogsRequestBuilder:
+    def app_catalogs(self) -> AppCatalogsRequestBuilder:
         """
         Provides operations to manage the appCatalogs singleton.
         """
-        from .app_catalogs import app_catalogs_request_builder
+        from .app_catalogs.app_catalogs_request_builder import AppCatalogsRequestBuilder
 
-        return app_catalogs_request_builder.AppCatalogsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppCatalogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def applications(self) -> applications_request_builder.ApplicationsRequestBuilder:
+    def applications(self) -> ApplicationsRequestBuilder:
         """
         Provides operations to manage the collection of application entities.
         """
-        from .applications import applications_request_builder
+        from .applications.applications_request_builder import ApplicationsRequestBuilder
 
-        return applications_request_builder.ApplicationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplicationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def application_templates(self) -> application_templates_request_builder.ApplicationTemplatesRequestBuilder:
+    def application_templates(self) -> ApplicationTemplatesRequestBuilder:
         """
         Provides operations to manage the collection of applicationTemplate entities.
         """
-        from .application_templates import application_templates_request_builder
+        from .application_templates.application_templates_request_builder import ApplicationTemplatesRequestBuilder
 
-        return application_templates_request_builder.ApplicationTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplicationTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app_role_assignments(self) -> app_role_assignments_request_builder.AppRoleAssignmentsRequestBuilder:
+    def app_role_assignments(self) -> AppRoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the collection of appRoleAssignment entities.
         """
-        from .app_role_assignments import app_role_assignments_request_builder
+        from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
 
-        return app_role_assignments_request_builder.AppRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def approval_workflow_providers(self) -> approval_workflow_providers_request_builder.ApprovalWorkflowProvidersRequestBuilder:
+    def approval_workflow_providers(self) -> ApprovalWorkflowProvidersRequestBuilder:
         """
         Provides operations to manage the collection of approvalWorkflowProvider entities.
         """
-        from .approval_workflow_providers import approval_workflow_providers_request_builder
+        from .approval_workflow_providers.approval_workflow_providers_request_builder import ApprovalWorkflowProvidersRequestBuilder
 
-        return approval_workflow_providers_request_builder.ApprovalWorkflowProvidersRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApprovalWorkflowProvidersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def audit_logs(self) -> audit_logs_request_builder.AuditLogsRequestBuilder:
+    def audit_logs(self) -> AuditLogsRequestBuilder:
         """
         Provides operations to manage the auditLogRoot singleton.
         """
-        from .audit_logs import audit_logs_request_builder
+        from .audit_logs.audit_logs_request_builder import AuditLogsRequestBuilder
 
-        return audit_logs_request_builder.AuditLogsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AuditLogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def authentication_method_configurations(self) -> authentication_method_configurations_request_builder.AuthenticationMethodConfigurationsRequestBuilder:
+    def authentication_method_configurations(self) -> AuthenticationMethodConfigurationsRequestBuilder:
         """
         Provides operations to manage the collection of authenticationMethodConfiguration entities.
         """
-        from .authentication_method_configurations import authentication_method_configurations_request_builder
+        from .authentication_method_configurations.authentication_method_configurations_request_builder import AuthenticationMethodConfigurationsRequestBuilder
 
-        return authentication_method_configurations_request_builder.AuthenticationMethodConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AuthenticationMethodConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def authentication_methods_policy(self) -> authentication_methods_policy_request_builder.AuthenticationMethodsPolicyRequestBuilder:
+    def authentication_methods_policy(self) -> AuthenticationMethodsPolicyRequestBuilder:
         """
         Provides operations to manage the authenticationMethodsPolicy singleton.
         """
-        from .authentication_methods_policy import authentication_methods_policy_request_builder
+        from .authentication_methods_policy.authentication_methods_policy_request_builder import AuthenticationMethodsPolicyRequestBuilder
 
-        return authentication_methods_policy_request_builder.AuthenticationMethodsPolicyRequestBuilder(self.request_adapter, self.path_parameters)
+        return AuthenticationMethodsPolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def booking_businesses(self) -> booking_businesses_request_builder.BookingBusinessesRequestBuilder:
+    def booking_businesses(self) -> BookingBusinessesRequestBuilder:
         """
         Provides operations to manage the collection of bookingBusiness entities.
         """
-        from .booking_businesses import booking_businesses_request_builder
+        from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
 
-        return booking_businesses_request_builder.BookingBusinessesRequestBuilder(self.request_adapter, self.path_parameters)
+        return BookingBusinessesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def booking_currencies(self) -> booking_currencies_request_builder.BookingCurrenciesRequestBuilder:
+    def booking_currencies(self) -> BookingCurrenciesRequestBuilder:
         """
         Provides operations to manage the collection of bookingCurrency entities.
         """
-        from .booking_currencies import booking_currencies_request_builder
+        from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
 
-        return booking_currencies_request_builder.BookingCurrenciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return BookingCurrenciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def branding(self) -> branding_request_builder.BrandingRequestBuilder:
-        """
-        Provides operations to manage the organizationalBranding singleton.
-        """
-        from .branding import branding_request_builder
-
-        return branding_request_builder.BrandingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def business_flow_templates(self) -> business_flow_templates_request_builder.BusinessFlowTemplatesRequestBuilder:
+    def business_flow_templates(self) -> BusinessFlowTemplatesRequestBuilder:
         """
         Provides operations to manage the collection of businessFlowTemplate entities.
         """
-        from .business_flow_templates import business_flow_templates_request_builder
+        from .business_flow_templates.business_flow_templates_request_builder import BusinessFlowTemplatesRequestBuilder
 
-        return business_flow_templates_request_builder.BusinessFlowTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return BusinessFlowTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def certificate_based_auth_configuration(self) -> certificate_based_auth_configuration_request_builder.CertificateBasedAuthConfigurationRequestBuilder:
+    def certificate_based_auth_configuration(self) -> CertificateBasedAuthConfigurationRequestBuilder:
         """
         Provides operations to manage the collection of certificateBasedAuthConfiguration entities.
         """
-        from .certificate_based_auth_configuration import certificate_based_auth_configuration_request_builder
+        from .certificate_based_auth_configuration.certificate_based_auth_configuration_request_builder import CertificateBasedAuthConfigurationRequestBuilder
 
-        return certificate_based_auth_configuration_request_builder.CertificateBasedAuthConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+        return CertificateBasedAuthConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def chats(self) -> chats_request_builder.ChatsRequestBuilder:
+    def chats(self) -> ChatsRequestBuilder:
         """
         Provides operations to manage the collection of chat entities.
         """
-        from .chats import chats_request_builder
+        from .chats.chats_request_builder import ChatsRequestBuilder
 
-        return chats_request_builder.ChatsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ChatsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def commands(self) -> commands_request_builder.CommandsRequestBuilder:
+    def commands(self) -> CommandsRequestBuilder:
         """
         Provides operations to manage the collection of command entities.
         """
-        from .commands import commands_request_builder
+        from .commands.commands_request_builder import CommandsRequestBuilder
 
-        return commands_request_builder.CommandsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CommandsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def communications(self) -> communications_request_builder.CommunicationsRequestBuilder:
+    def communications(self) -> CommunicationsRequestBuilder:
         """
         Provides operations to manage the cloudCommunications singleton.
         """
-        from .communications import communications_request_builder
+        from .communications.communications_request_builder import CommunicationsRequestBuilder
 
-        return communications_request_builder.CommunicationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CommunicationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def compliance(self) -> compliance_request_builder.ComplianceRequestBuilder:
+    def compliance(self) -> ComplianceRequestBuilder:
         """
         Provides operations to manage the compliance singleton.
         """
-        from .compliance import compliance_request_builder
+        from .compliance.compliance_request_builder import ComplianceRequestBuilder
 
-        return compliance_request_builder.ComplianceRequestBuilder(self.request_adapter, self.path_parameters)
+        return ComplianceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def connections(self) -> connections_request_builder.ConnectionsRequestBuilder:
+    def connections(self) -> ConnectionsRequestBuilder:
         """
         Provides operations to manage the collection of externalConnection entities.
         """
-        from .connections import connections_request_builder
+        from .connections.connections_request_builder import ConnectionsRequestBuilder
 
-        return connections_request_builder.ConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def contacts(self) -> contacts_request_builder.ContactsRequestBuilder:
+    def contacts(self) -> ContactsRequestBuilder:
         """
         Provides operations to manage the collection of orgContact entities.
         """
-        from .contacts import contacts_request_builder
+        from .contacts.contacts_request_builder import ContactsRequestBuilder
 
-        return contacts_request_builder.ContactsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ContactsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def contracts(self) -> contracts_request_builder.ContractsRequestBuilder:
+    def contracts(self) -> ContractsRequestBuilder:
         """
         Provides operations to manage the collection of contract entities.
         """
-        from .contracts import contracts_request_builder
+        from .contracts.contracts_request_builder import ContractsRequestBuilder
 
-        return contracts_request_builder.ContractsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ContractsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def data_classification(self) -> data_classification_request_builder.DataClassificationRequestBuilder:
+    def data_classification(self) -> DataClassificationRequestBuilder:
         """
         Provides operations to manage the dataClassificationService singleton.
         """
-        from .data_classification import data_classification_request_builder
+        from .data_classification.data_classification_request_builder import DataClassificationRequestBuilder
 
-        return data_classification_request_builder.DataClassificationRequestBuilder(self.request_adapter, self.path_parameters)
+        return DataClassificationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def data_policy_operations(self) -> data_policy_operations_request_builder.DataPolicyOperationsRequestBuilder:
+    def data_policy_operations(self) -> DataPolicyOperationsRequestBuilder:
         """
         Provides operations to manage the collection of dataPolicyOperation entities.
         """
-        from .data_policy_operations import data_policy_operations_request_builder
+        from .data_policy_operations.data_policy_operations_request_builder import DataPolicyOperationsRequestBuilder
 
-        return data_policy_operations_request_builder.DataPolicyOperationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DataPolicyOperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_app_management(self) -> device_app_management_request_builder.DeviceAppManagementRequestBuilder:
+    def device_app_management(self) -> DeviceAppManagementRequestBuilder:
         """
         Provides operations to manage the deviceAppManagement singleton.
         """
-        from .device_app_management import device_app_management_request_builder
+        from .device_app_management.device_app_management_request_builder import DeviceAppManagementRequestBuilder
 
-        return device_app_management_request_builder.DeviceAppManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceAppManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_local_credentials(self) -> device_local_credentials_request_builder.DeviceLocalCredentialsRequestBuilder:
+    def device_local_credentials(self) -> DeviceLocalCredentialsRequestBuilder:
         """
         Provides operations to manage the collection of deviceLocalCredentialInfo entities.
         """
-        from .device_local_credentials import device_local_credentials_request_builder
+        from .device_local_credentials.device_local_credentials_request_builder import DeviceLocalCredentialsRequestBuilder
 
-        return device_local_credentials_request_builder.DeviceLocalCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceLocalCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_management(self) -> device_management_request_builder.DeviceManagementRequestBuilder:
+    def device_management(self) -> DeviceManagementRequestBuilder:
         """
         Provides operations to manage the deviceManagement singleton.
         """
-        from .device_management import device_management_request_builder
+        from .device_management.device_management_request_builder import DeviceManagementRequestBuilder
 
-        return device_management_request_builder.DeviceManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def devices(self) -> devices_request_builder.DevicesRequestBuilder:
+    def devices(self) -> DevicesRequestBuilder:
         """
         Provides operations to manage the collection of device entities.
         """
-        from .devices import devices_request_builder
+        from .devices.devices_request_builder import DevicesRequestBuilder
 
-        return devices_request_builder.DevicesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def directory(self) -> directory_request_builder.DirectoryRequestBuilder:
+    def directory(self) -> DirectoryRequestBuilder:
         """
         Provides operations to manage the directory singleton.
         """
-        from .directory import directory_request_builder
+        from .directory.directory_request_builder import DirectoryRequestBuilder
 
-        return directory_request_builder.DirectoryRequestBuilder(self.request_adapter, self.path_parameters)
+        return DirectoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def directory_objects(self) -> directory_objects_request_builder.DirectoryObjectsRequestBuilder:
+    def directory_objects(self) -> DirectoryObjectsRequestBuilder:
         """
         Provides operations to manage the collection of directoryObject entities.
         """
-        from .directory_objects import directory_objects_request_builder
+        from .directory_objects.directory_objects_request_builder import DirectoryObjectsRequestBuilder
 
-        return directory_objects_request_builder.DirectoryObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DirectoryObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def directory_roles(self) -> directory_roles_request_builder.DirectoryRolesRequestBuilder:
+    def directory_roles(self) -> DirectoryRolesRequestBuilder:
         """
         Provides operations to manage the collection of directoryRole entities.
         """
-        from .directory_roles import directory_roles_request_builder
+        from .directory_roles.directory_roles_request_builder import DirectoryRolesRequestBuilder
 
-        return directory_roles_request_builder.DirectoryRolesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DirectoryRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def directory_role_templates(self) -> directory_role_templates_request_builder.DirectoryRoleTemplatesRequestBuilder:
+    def directory_role_templates(self) -> DirectoryRoleTemplatesRequestBuilder:
         """
         Provides operations to manage the collection of directoryRoleTemplate entities.
         """
-        from .directory_role_templates import directory_role_templates_request_builder
+        from .directory_role_templates.directory_role_templates_request_builder import DirectoryRoleTemplatesRequestBuilder
 
-        return directory_role_templates_request_builder.DirectoryRoleTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DirectoryRoleTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def directory_setting_templates(self) -> directory_setting_templates_request_builder.DirectorySettingTemplatesRequestBuilder:
+    def directory_setting_templates(self) -> DirectorySettingTemplatesRequestBuilder:
         """
         Provides operations to manage the collection of directorySettingTemplate entities.
         """
-        from .directory_setting_templates import directory_setting_templates_request_builder
+        from .directory_setting_templates.directory_setting_templates_request_builder import DirectorySettingTemplatesRequestBuilder
 
-        return directory_setting_templates_request_builder.DirectorySettingTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DirectorySettingTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def domain_dns_records(self) -> domain_dns_records_request_builder.DomainDnsRecordsRequestBuilder:
+    def domain_dns_records(self) -> DomainDnsRecordsRequestBuilder:
         """
         Provides operations to manage the collection of domainDnsRecord entities.
         """
-        from .domain_dns_records import domain_dns_records_request_builder
+        from .domain_dns_records.domain_dns_records_request_builder import DomainDnsRecordsRequestBuilder
 
-        return domain_dns_records_request_builder.DomainDnsRecordsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DomainDnsRecordsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def domains(self) -> domains_request_builder.DomainsRequestBuilder:
+    def domains(self) -> DomainsRequestBuilder:
         """
         Provides operations to manage the collection of domain entities.
         """
-        from .domains import domains_request_builder
+        from .domains.domains_request_builder import DomainsRequestBuilder
 
-        return domains_request_builder.DomainsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DomainsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def drives(self) -> drives_request_builder.DrivesRequestBuilder:
+    def drives(self) -> DrivesRequestBuilder:
         """
         Provides operations to manage the collection of drive entities.
         """
-        from .drives import drives_request_builder
+        from .drives.drives_request_builder import DrivesRequestBuilder
 
-        return drives_request_builder.DrivesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DrivesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def education(self) -> education_request_builder.EducationRequestBuilder:
+    def education(self) -> EducationRequestBuilder:
         """
         Provides operations to manage the educationRoot singleton.
         """
-        from .education import education_request_builder
+        from .education.education_request_builder import EducationRequestBuilder
 
-        return education_request_builder.EducationRequestBuilder(self.request_adapter, self.path_parameters)
+        return EducationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def employee_experience(self) -> employee_experience_request_builder.EmployeeExperienceRequestBuilder:
+    def employee_experience(self) -> EmployeeExperienceRequestBuilder:
         """
         Provides operations to manage the employeeExperience singleton.
         """
-        from .employee_experience import employee_experience_request_builder
+        from .employee_experience.employee_experience_request_builder import EmployeeExperienceRequestBuilder
 
-        return employee_experience_request_builder.EmployeeExperienceRequestBuilder(self.request_adapter, self.path_parameters)
+        return EmployeeExperienceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def external(self) -> external_request_builder.ExternalRequestBuilder:
+    def external(self) -> ExternalRequestBuilder:
         """
         Provides operations to manage the external singleton.
         """
-        from .external import external_request_builder
+        from .external.external_request_builder import ExternalRequestBuilder
 
-        return external_request_builder.ExternalRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExternalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def filter_operators(self) -> filter_operators_request_builder.FilterOperatorsRequestBuilder:
+    def filter_operators(self) -> FilterOperatorsRequestBuilder:
         """
         Provides operations to manage the collection of filterOperatorSchema entities.
         """
-        from .filter_operators import filter_operators_request_builder
+        from .filter_operators.filter_operators_request_builder import FilterOperatorsRequestBuilder
 
-        return filter_operators_request_builder.FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def financials(self) -> financials_request_builder.FinancialsRequestBuilder:
+    def financials(self) -> FinancialsRequestBuilder:
         """
         Provides operations to manage the financials singleton.
         """
-        from .financials import financials_request_builder
+        from .financials.financials_request_builder import FinancialsRequestBuilder
 
-        return financials_request_builder.FinancialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return FinancialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def functions(self) -> functions_request_builder.FunctionsRequestBuilder:
+    def functions(self) -> FunctionsRequestBuilder:
         """
         Provides operations to manage the collection of attributeMappingFunctionSchema entities.
         """
-        from .functions import functions_request_builder
+        from .functions.functions_request_builder import FunctionsRequestBuilder
 
-        return functions_request_builder.FunctionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return FunctionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def governance_resources(self) -> governance_resources_request_builder.GovernanceResourcesRequestBuilder:
+    def governance_resources(self) -> GovernanceResourcesRequestBuilder:
         """
         Provides operations to manage the collection of governanceResource entities.
         """
-        from .governance_resources import governance_resources_request_builder
+        from .governance_resources.governance_resources_request_builder import GovernanceResourcesRequestBuilder
 
-        return governance_resources_request_builder.GovernanceResourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return GovernanceResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def governance_role_assignment_requests(self) -> governance_role_assignment_requests_request_builder.GovernanceRoleAssignmentRequestsRequestBuilder:
+    def governance_role_assignment_requests(self) -> GovernanceRoleAssignmentRequestsRequestBuilder:
         """
         Provides operations to manage the collection of governanceRoleAssignmentRequest entities.
         """
-        from .governance_role_assignment_requests import governance_role_assignment_requests_request_builder
+        from .governance_role_assignment_requests.governance_role_assignment_requests_request_builder import GovernanceRoleAssignmentRequestsRequestBuilder
 
-        return governance_role_assignment_requests_request_builder.GovernanceRoleAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GovernanceRoleAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def governance_role_assignments(self) -> governance_role_assignments_request_builder.GovernanceRoleAssignmentsRequestBuilder:
+    def governance_role_assignments(self) -> GovernanceRoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the collection of governanceRoleAssignment entities.
         """
-        from .governance_role_assignments import governance_role_assignments_request_builder
+        from .governance_role_assignments.governance_role_assignments_request_builder import GovernanceRoleAssignmentsRequestBuilder
 
-        return governance_role_assignments_request_builder.GovernanceRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GovernanceRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def governance_role_definitions(self) -> governance_role_definitions_request_builder.GovernanceRoleDefinitionsRequestBuilder:
+    def governance_role_definitions(self) -> GovernanceRoleDefinitionsRequestBuilder:
         """
         Provides operations to manage the collection of governanceRoleDefinition entities.
         """
-        from .governance_role_definitions import governance_role_definitions_request_builder
+        from .governance_role_definitions.governance_role_definitions_request_builder import GovernanceRoleDefinitionsRequestBuilder
 
-        return governance_role_definitions_request_builder.GovernanceRoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GovernanceRoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def governance_role_settings(self) -> governance_role_settings_request_builder.GovernanceRoleSettingsRequestBuilder:
+    def governance_role_settings(self) -> GovernanceRoleSettingsRequestBuilder:
         """
         Provides operations to manage the collection of governanceRoleSetting entities.
         """
-        from .governance_role_settings import governance_role_settings_request_builder
+        from .governance_role_settings.governance_role_settings_request_builder import GovernanceRoleSettingsRequestBuilder
 
-        return governance_role_settings_request_builder.GovernanceRoleSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GovernanceRoleSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def governance_subjects(self) -> governance_subjects_request_builder.GovernanceSubjectsRequestBuilder:
+    def governance_subjects(self) -> GovernanceSubjectsRequestBuilder:
         """
         Provides operations to manage the collection of governanceSubject entities.
         """
-        from .governance_subjects import governance_subjects_request_builder
+        from .governance_subjects.governance_subjects_request_builder import GovernanceSubjectsRequestBuilder
 
-        return governance_subjects_request_builder.GovernanceSubjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GovernanceSubjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def group_lifecycle_policies(self) -> group_lifecycle_policies_request_builder.GroupLifecyclePoliciesRequestBuilder:
+    def group_lifecycle_policies(self) -> GroupLifecyclePoliciesRequestBuilder:
         """
         Provides operations to manage the collection of groupLifecyclePolicy entities.
         """
-        from .group_lifecycle_policies import group_lifecycle_policies_request_builder
+        from .group_lifecycle_policies.group_lifecycle_policies_request_builder import GroupLifecyclePoliciesRequestBuilder
 
-        return group_lifecycle_policies_request_builder.GroupLifecyclePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return GroupLifecyclePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def groups(self) -> groups_request_builder.GroupsRequestBuilder:
+    def groups(self) -> GroupsRequestBuilder:
         """
         Provides operations to manage the collection of group entities.
         """
-        from .groups import groups_request_builder
+        from .groups.groups_request_builder import GroupsRequestBuilder
 
-        return groups_request_builder.GroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def identity(self) -> identity_request_builder.IdentityRequestBuilder:
+    def identity(self) -> IdentityRequestBuilder:
         """
         Provides operations to manage the identityContainer singleton.
         """
-        from .identity import identity_request_builder
+        from .identity.identity_request_builder import IdentityRequestBuilder
 
-        return identity_request_builder.IdentityRequestBuilder(self.request_adapter, self.path_parameters)
+        return IdentityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def identity_governance(self) -> identity_governance_request_builder.IdentityGovernanceRequestBuilder:
+    def identity_governance(self) -> IdentityGovernanceRequestBuilder:
         """
         Provides operations to manage the identityGovernance singleton.
         """
-        from .identity_governance import identity_governance_request_builder
+        from .identity_governance.identity_governance_request_builder import IdentityGovernanceRequestBuilder
 
-        return identity_governance_request_builder.IdentityGovernanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return IdentityGovernanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def identity_protection(self) -> identity_protection_request_builder.IdentityProtectionRequestBuilder:
+    def identity_protection(self) -> IdentityProtectionRequestBuilder:
         """
         Provides operations to manage the identityProtectionRoot singleton.
         """
-        from .identity_protection import identity_protection_request_builder
+        from .identity_protection.identity_protection_request_builder import IdentityProtectionRequestBuilder
 
-        return identity_protection_request_builder.IdentityProtectionRequestBuilder(self.request_adapter, self.path_parameters)
+        return IdentityProtectionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def identity_providers(self) -> identity_providers_request_builder.IdentityProvidersRequestBuilder:
+    def identity_providers(self) -> IdentityProvidersRequestBuilder:
         """
         Provides operations to manage the collection of identityProvider entities.
         """
-        from .identity_providers import identity_providers_request_builder
+        from .identity_providers.identity_providers_request_builder import IdentityProvidersRequestBuilder
 
-        return identity_providers_request_builder.IdentityProvidersRequestBuilder(self.request_adapter, self.path_parameters)
+        return IdentityProvidersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def information_protection(self) -> information_protection_request_builder.InformationProtectionRequestBuilder:
+    def information_protection(self) -> InformationProtectionRequestBuilder:
         """
         Provides operations to manage the informationProtection singleton.
         """
-        from .information_protection import information_protection_request_builder
+        from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
 
-        return information_protection_request_builder.InformationProtectionRequestBuilder(self.request_adapter, self.path_parameters)
+        return InformationProtectionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def invitations(self) -> invitations_request_builder.InvitationsRequestBuilder:
+    def invitations(self) -> InvitationsRequestBuilder:
         """
         Provides operations to manage the collection of invitation entities.
         """
-        from .invitations import invitations_request_builder
+        from .invitations.invitations_request_builder import InvitationsRequestBuilder
 
-        return invitations_request_builder.InvitationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return InvitationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def me(self) -> me_request_builder.MeRequestBuilder:
+    def me(self) -> MeRequestBuilder:
         """
         Provides operations to manage the user singleton.
         """
-        from .me import me_request_builder
+        from .me.me_request_builder import MeRequestBuilder
 
-        return me_request_builder.MeRequestBuilder(self.request_adapter, self.path_parameters)
+        return MeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def message_events(self) -> message_events_request_builder.MessageEventsRequestBuilder:
+    def message_events(self) -> MessageEventsRequestBuilder:
         """
         Provides operations to manage the collection of messageEvent entities.
         """
-        from .message_events import message_events_request_builder
+        from .message_events.message_events_request_builder import MessageEventsRequestBuilder
 
-        return message_events_request_builder.MessageEventsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MessageEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def message_recipients(self) -> message_recipients_request_builder.MessageRecipientsRequestBuilder:
+    def message_recipients(self) -> MessageRecipientsRequestBuilder:
         """
         Provides operations to manage the collection of messageRecipient entities.
         """
-        from .message_recipients import message_recipients_request_builder
+        from .message_recipients.message_recipients_request_builder import MessageRecipientsRequestBuilder
 
-        return message_recipients_request_builder.MessageRecipientsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MessageRecipientsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def message_traces(self) -> message_traces_request_builder.MessageTracesRequestBuilder:
+    def message_traces(self) -> MessageTracesRequestBuilder:
         """
         Provides operations to manage the collection of messageTrace entities.
         """
-        from .message_traces import message_traces_request_builder
+        from .message_traces.message_traces_request_builder import MessageTracesRequestBuilder
 
-        return message_traces_request_builder.MessageTracesRequestBuilder(self.request_adapter, self.path_parameters)
+        return MessageTracesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def mobility_management_policies(self) -> mobility_management_policies_request_builder.MobilityManagementPoliciesRequestBuilder:
+    def mobility_management_policies(self) -> MobilityManagementPoliciesRequestBuilder:
         """
         Provides operations to manage the collection of mobilityManagementPolicy entities.
         """
-        from .mobility_management_policies import mobility_management_policies_request_builder
+        from .mobility_management_policies.mobility_management_policies_request_builder import MobilityManagementPoliciesRequestBuilder
 
-        return mobility_management_policies_request_builder.MobilityManagementPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return MobilityManagementPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def monitoring(self) -> monitoring_request_builder.MonitoringRequestBuilder:
+    def monitoring(self) -> MonitoringRequestBuilder:
         """
         Provides operations to manage the monitoring singleton.
         """
-        from .monitoring import monitoring_request_builder
+        from .monitoring.monitoring_request_builder import MonitoringRequestBuilder
 
-        return monitoring_request_builder.MonitoringRequestBuilder(self.request_adapter, self.path_parameters)
+        return MonitoringRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def oauth2_permission_grants(self) -> oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder:
+    def network_access(self) -> NetworkAccessRequestBuilder:
+        """
+        Provides operations to manage the networkAccessRoot singleton.
+        """
+        from .network_access.network_access_request_builder import NetworkAccessRequestBuilder
+
+        return NetworkAccessRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def oauth2_permission_grants(self) -> Oauth2PermissionGrantsRequestBuilder:
         """
         Provides operations to manage the collection of oAuth2PermissionGrant entities.
         """
-        from .oauth2_permission_grants import oauth2_permission_grants_request_builder
+        from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
 
-        return oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
+        return Oauth2PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def on_premises_publishing_profiles(self) -> on_premises_publishing_profiles_request_builder.OnPremisesPublishingProfilesRequestBuilder:
+    def on_premises_publishing_profiles(self) -> OnPremisesPublishingProfilesRequestBuilder:
         """
         Provides operations to manage the collection of onPremisesPublishingProfile entities.
         """
-        from .on_premises_publishing_profiles import on_premises_publishing_profiles_request_builder
+        from .on_premises_publishing_profiles.on_premises_publishing_profiles_request_builder import OnPremisesPublishingProfilesRequestBuilder
 
-        return on_premises_publishing_profiles_request_builder.OnPremisesPublishingProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return OnPremisesPublishingProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def organization(self) -> organization_request_builder.OrganizationRequestBuilder:
+    def organization(self) -> OrganizationRequestBuilder:
         """
         Provides operations to manage the collection of organization entities.
         """
-        from .organization import organization_request_builder
+        from .organization.organization_request_builder import OrganizationRequestBuilder
 
-        return organization_request_builder.OrganizationRequestBuilder(self.request_adapter, self.path_parameters)
+        return OrganizationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payload_response(self) -> payload_response_request_builder.PayloadResponseRequestBuilder:
+    def payload_response(self) -> PayloadResponseRequestBuilder:
         """
         Provides operations to manage the collection of payloadResponse entities.
         """
-        from .payload_response import payload_response_request_builder
+        from .payload_response.payload_response_request_builder import PayloadResponseRequestBuilder
 
-        return payload_response_request_builder.PayloadResponseRequestBuilder(self.request_adapter, self.path_parameters)
+        return PayloadResponseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def permission_grants(self) -> permission_grants_request_builder.PermissionGrantsRequestBuilder:
+    def permission_grants(self) -> PermissionGrantsRequestBuilder:
         """
         Provides operations to manage the collection of resourceSpecificPermissionGrant entities.
         """
-        from .permission_grants import permission_grants_request_builder
+        from .permission_grants.permission_grants_request_builder import PermissionGrantsRequestBuilder
 
-        return permission_grants_request_builder.PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def places(self) -> places_request_builder.PlacesRequestBuilder:
+    def places(self) -> PlacesRequestBuilder:
         """
         The places property
         """
-        from .places import places_request_builder
+        from .places.places_request_builder import PlacesRequestBuilder
 
-        return places_request_builder.PlacesRequestBuilder(self.request_adapter, self.path_parameters)
+        return PlacesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def planner(self) -> planner_request_builder.PlannerRequestBuilder:
+    def planner(self) -> PlannerRequestBuilder:
         """
         Provides operations to manage the planner singleton.
         """
-        from .planner import planner_request_builder
+        from .planner.planner_request_builder import PlannerRequestBuilder
 
-        return planner_request_builder.PlannerRequestBuilder(self.request_adapter, self.path_parameters)
+        return PlannerRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
+    def policies(self) -> PoliciesRequestBuilder:
         """
         Provides operations to manage the policyRoot singleton.
         """
-        from .policies import policies_request_builder
+        from .policies.policies_request_builder import PoliciesRequestBuilder
 
-        return policies_request_builder.PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def print(self) -> print_request_builder.PrintRequestBuilder:
+    def print(self) -> PrintRequestBuilder:
         """
         Provides operations to manage the print singleton.
         """
-        from .print import print_request_builder
+        from .print.print_request_builder import PrintRequestBuilder
 
-        return print_request_builder.PrintRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrintRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privacy(self) -> privacy_request_builder.PrivacyRequestBuilder:
+    def privacy(self) -> PrivacyRequestBuilder:
         """
         Provides operations to manage the privacy singleton.
         """
-        from .privacy import privacy_request_builder
+        from .privacy.privacy_request_builder import PrivacyRequestBuilder
 
-        return privacy_request_builder.PrivacyRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivacyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privileged_access(self) -> privileged_access_request_builder.PrivilegedAccessRequestBuilder:
+    def privileged_access(self) -> PrivilegedAccessRequestBuilder:
         """
         Provides operations to manage the collection of privilegedAccess entities.
         """
-        from .privileged_access import privileged_access_request_builder
+        from .privileged_access.privileged_access_request_builder import PrivilegedAccessRequestBuilder
 
-        return privileged_access_request_builder.PrivilegedAccessRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivilegedAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privileged_approval(self) -> privileged_approval_request_builder.PrivilegedApprovalRequestBuilder:
+    def privileged_approval(self) -> PrivilegedApprovalRequestBuilder:
         """
         Provides operations to manage the collection of privilegedApproval entities.
         """
-        from .privileged_approval import privileged_approval_request_builder
+        from .privileged_approval.privileged_approval_request_builder import PrivilegedApprovalRequestBuilder
 
-        return privileged_approval_request_builder.PrivilegedApprovalRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivilegedApprovalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privileged_operation_events(self) -> privileged_operation_events_request_builder.PrivilegedOperationEventsRequestBuilder:
+    def privileged_operation_events(self) -> PrivilegedOperationEventsRequestBuilder:
         """
         Provides operations to manage the collection of privilegedOperationEvent entities.
         """
-        from .privileged_operation_events import privileged_operation_events_request_builder
+        from .privileged_operation_events.privileged_operation_events_request_builder import PrivilegedOperationEventsRequestBuilder
 
-        return privileged_operation_events_request_builder.PrivilegedOperationEventsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivilegedOperationEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privileged_role_assignment_requests(self) -> privileged_role_assignment_requests_request_builder.PrivilegedRoleAssignmentRequestsRequestBuilder:
+    def privileged_role_assignment_requests(self) -> PrivilegedRoleAssignmentRequestsRequestBuilder:
         """
         Provides operations to manage the collection of privilegedRoleAssignmentRequest entities.
         """
-        from .privileged_role_assignment_requests import privileged_role_assignment_requests_request_builder
+        from .privileged_role_assignment_requests.privileged_role_assignment_requests_request_builder import PrivilegedRoleAssignmentRequestsRequestBuilder
 
-        return privileged_role_assignment_requests_request_builder.PrivilegedRoleAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivilegedRoleAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privileged_role_assignments(self) -> privileged_role_assignments_request_builder.PrivilegedRoleAssignmentsRequestBuilder:
+    def privileged_role_assignments(self) -> PrivilegedRoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the collection of privilegedRoleAssignment entities.
         """
-        from .privileged_role_assignments import privileged_role_assignments_request_builder
+        from .privileged_role_assignments.privileged_role_assignments_request_builder import PrivilegedRoleAssignmentsRequestBuilder
 
-        return privileged_role_assignments_request_builder.PrivilegedRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivilegedRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privileged_roles(self) -> privileged_roles_request_builder.PrivilegedRolesRequestBuilder:
+    def privileged_roles(self) -> PrivilegedRolesRequestBuilder:
         """
         Provides operations to manage the collection of privilegedRole entities.
         """
-        from .privileged_roles import privileged_roles_request_builder
+        from .privileged_roles.privileged_roles_request_builder import PrivilegedRolesRequestBuilder
 
-        return privileged_roles_request_builder.PrivilegedRolesRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivilegedRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def privileged_signup_status(self) -> privileged_signup_status_request_builder.PrivilegedSignupStatusRequestBuilder:
+    def privileged_signup_status(self) -> PrivilegedSignupStatusRequestBuilder:
         """
         Provides operations to manage the collection of privilegedSignupStatus entities.
         """
-        from .privileged_signup_status import privileged_signup_status_request_builder
+        from .privileged_signup_status.privileged_signup_status_request_builder import PrivilegedSignupStatusRequestBuilder
 
-        return privileged_signup_status_request_builder.PrivilegedSignupStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return PrivilegedSignupStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def program_controls(self) -> program_controls_request_builder.ProgramControlsRequestBuilder:
+    def program_controls(self) -> ProgramControlsRequestBuilder:
         """
         Provides operations to manage the collection of programControl entities.
         """
-        from .program_controls import program_controls_request_builder
+        from .program_controls.program_controls_request_builder import ProgramControlsRequestBuilder
 
-        return program_controls_request_builder.ProgramControlsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ProgramControlsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def program_control_types(self) -> program_control_types_request_builder.ProgramControlTypesRequestBuilder:
+    def program_control_types(self) -> ProgramControlTypesRequestBuilder:
         """
         Provides operations to manage the collection of programControlType entities.
         """
-        from .program_control_types import program_control_types_request_builder
+        from .program_control_types.program_control_types_request_builder import ProgramControlTypesRequestBuilder
 
-        return program_control_types_request_builder.ProgramControlTypesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ProgramControlTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def programs(self) -> programs_request_builder.ProgramsRequestBuilder:
+    def programs(self) -> ProgramsRequestBuilder:
         """
         Provides operations to manage the collection of program entities.
         """
-        from .programs import programs_request_builder
+        from .programs.programs_request_builder import ProgramsRequestBuilder
 
-        return programs_request_builder.ProgramsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ProgramsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reports(self) -> reports_request_builder.ReportsRequestBuilder:
+    def reports(self) -> ReportsRequestBuilder:
         """
         Provides operations to manage the reportRoot singleton.
         """
-        from .reports import reports_request_builder
+        from .reports.reports_request_builder import ReportsRequestBuilder
 
-        return reports_request_builder.ReportsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def risk_detections(self) -> risk_detections_request_builder.RiskDetectionsRequestBuilder:
+    def risk_detections(self) -> RiskDetectionsRequestBuilder:
         """
         Provides operations to manage the collection of riskDetection entities.
         """
-        from .risk_detections import risk_detections_request_builder
+        from .risk_detections.risk_detections_request_builder import RiskDetectionsRequestBuilder
 
-        return risk_detections_request_builder.RiskDetectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RiskDetectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def risky_users(self) -> risky_users_request_builder.RiskyUsersRequestBuilder:
+    def risky_users(self) -> RiskyUsersRequestBuilder:
         """
         Provides operations to manage the collection of riskyUser entities.
         """
-        from .risky_users import risky_users_request_builder
+        from .risky_users.risky_users_request_builder import RiskyUsersRequestBuilder
 
-        return risky_users_request_builder.RiskyUsersRequestBuilder(self.request_adapter, self.path_parameters)
+        return RiskyUsersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_management(self) -> role_management_request_builder.RoleManagementRequestBuilder:
+    def role_management(self) -> RoleManagementRequestBuilder:
         """
         Provides operations to manage the roleManagement singleton.
         """
-        from .role_management import role_management_request_builder
+        from .role_management.role_management_request_builder import RoleManagementRequestBuilder
 
-        return role_management_request_builder.RoleManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def schema_extensions(self) -> schema_extensions_request_builder.SchemaExtensionsRequestBuilder:
+    def schema_extensions(self) -> SchemaExtensionsRequestBuilder:
         """
         Provides operations to manage the collection of schemaExtension entities.
         """
-        from .schema_extensions import schema_extensions_request_builder
+        from .schema_extensions.schema_extensions_request_builder import SchemaExtensionsRequestBuilder
 
-        return schema_extensions_request_builder.SchemaExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SchemaExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def scoped_role_memberships(self) -> scoped_role_memberships_request_builder.ScopedRoleMembershipsRequestBuilder:
+    def scoped_role_memberships(self) -> ScopedRoleMembershipsRequestBuilder:
         """
         Provides operations to manage the collection of scopedRoleMembership entities.
         """
-        from .scoped_role_memberships import scoped_role_memberships_request_builder
+        from .scoped_role_memberships.scoped_role_memberships_request_builder import ScopedRoleMembershipsRequestBuilder
 
-        return scoped_role_memberships_request_builder.ScopedRoleMembershipsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ScopedRoleMembershipsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def search(self) -> search_request_builder.SearchRequestBuilder:
+    def search(self) -> SearchRequestBuilder:
         """
         Provides operations to manage the searchEntity singleton.
         """
-        from .search import search_request_builder
+        from .search.search_request_builder import SearchRequestBuilder
 
-        return search_request_builder.SearchRequestBuilder(self.request_adapter, self.path_parameters)
+        return SearchRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security(self) -> security_request_builder.SecurityRequestBuilder:
+    def security(self) -> SecurityRequestBuilder:
         """
         Provides operations to manage the security singleton.
         """
-        from .security import security_request_builder
+        from .security.security_request_builder import SecurityRequestBuilder
 
-        return security_request_builder.SecurityRequestBuilder(self.request_adapter, self.path_parameters)
+        return SecurityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def service_principals(self) -> service_principals_request_builder.ServicePrincipalsRequestBuilder:
+    def service_principals(self) -> ServicePrincipalsRequestBuilder:
         """
         Provides operations to manage the collection of servicePrincipal entities.
         """
-        from .service_principals import service_principals_request_builder
+        from .service_principals.service_principals_request_builder import ServicePrincipalsRequestBuilder
 
-        return service_principals_request_builder.ServicePrincipalsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ServicePrincipalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+    def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the collection of directorySetting entities.
         """
-        from .settings import settings_request_builder
+        from .settings.settings_request_builder import SettingsRequestBuilder
 
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def shares(self) -> shares_request_builder.SharesRequestBuilder:
+    def shares(self) -> SharesRequestBuilder:
         """
         Provides operations to manage the collection of sharedDriveItem entities.
         """
-        from .shares import shares_request_builder
+        from .shares.shares_request_builder import SharesRequestBuilder
 
-        return shares_request_builder.SharesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SharesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sites(self) -> sites_request_builder.SitesRequestBuilder:
+    def sites(self) -> SitesRequestBuilder:
         """
         Provides operations to manage the collection of site entities.
         """
-        from .sites import sites_request_builder
+        from .sites.sites_request_builder import SitesRequestBuilder
 
-        return sites_request_builder.SitesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SitesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def solutions(self) -> solutions_request_builder.SolutionsRequestBuilder:
+    def solutions(self) -> SolutionsRequestBuilder:
         """
         Provides operations to manage the solutionsRoot singleton.
         """
-        from .solutions import solutions_request_builder
+        from .solutions.solutions_request_builder import SolutionsRequestBuilder
 
-        return solutions_request_builder.SolutionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SolutionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def subscribed_skus(self) -> subscribed_skus_request_builder.SubscribedSkusRequestBuilder:
+    def subscribed_skus(self) -> SubscribedSkusRequestBuilder:
         """
         Provides operations to manage the collection of subscribedSku entities.
         """
-        from .subscribed_skus import subscribed_skus_request_builder
+        from .subscribed_skus.subscribed_skus_request_builder import SubscribedSkusRequestBuilder
 
-        return subscribed_skus_request_builder.SubscribedSkusRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubscribedSkusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def subscriptions(self) -> subscriptions_request_builder.SubscriptionsRequestBuilder:
+    def subscriptions(self) -> SubscriptionsRequestBuilder:
         """
         Provides operations to manage the collection of subscription entities.
         """
-        from .subscriptions import subscriptions_request_builder
+        from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
 
-        return subscriptions_request_builder.SubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def teams(self) -> teams_request_builder.TeamsRequestBuilder:
+    def teams(self) -> TeamsRequestBuilder:
         """
         Provides operations to manage the collection of team entities.
         """
-        from .teams import teams_request_builder
+        from .teams.teams_request_builder import TeamsRequestBuilder
 
-        return teams_request_builder.TeamsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TeamsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def teams_templates(self) -> teams_templates_request_builder.TeamsTemplatesRequestBuilder:
+    def teams_templates(self) -> TeamsTemplatesRequestBuilder:
         """
         Provides operations to manage the collection of teamsTemplate entities.
         """
-        from .teams_templates import teams_templates_request_builder
+        from .teams_templates.teams_templates_request_builder import TeamsTemplatesRequestBuilder
 
-        return teams_templates_request_builder.TeamsTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return TeamsTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def team_template_definition(self) -> team_template_definition_request_builder.TeamTemplateDefinitionRequestBuilder:
+    def team_template_definition(self) -> TeamTemplateDefinitionRequestBuilder:
         """
         Provides operations to manage the collection of teamTemplateDefinition entities.
         """
-        from .team_template_definition import team_template_definition_request_builder
+        from .team_template_definition.team_template_definition_request_builder import TeamTemplateDefinitionRequestBuilder
 
-        return team_template_definition_request_builder.TeamTemplateDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+        return TeamTemplateDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def teamwork(self) -> teamwork_request_builder.TeamworkRequestBuilder:
+    def teamwork(self) -> TeamworkRequestBuilder:
         """
         Provides operations to manage the teamwork singleton.
         """
-        from .teamwork import teamwork_request_builder
+        from .teamwork.teamwork_request_builder import TeamworkRequestBuilder
 
-        return teamwork_request_builder.TeamworkRequestBuilder(self.request_adapter, self.path_parameters)
+        return TeamworkRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tenant_relationships(self) -> tenant_relationships_request_builder.TenantRelationshipsRequestBuilder:
+    def tenant_relationships(self) -> TenantRelationshipsRequestBuilder:
         """
         Provides operations to manage the tenantRelationship singleton.
         """
-        from .tenant_relationships import tenant_relationships_request_builder
+        from .tenant_relationships.tenant_relationships_request_builder import TenantRelationshipsRequestBuilder
 
-        return tenant_relationships_request_builder.TenantRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TenantRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def term_store(self) -> term_store_request_builder.TermStoreRequestBuilder:
+    def term_store(self) -> TermStoreRequestBuilder:
         """
         Provides operations to manage the store singleton.
         """
-        from .term_store import term_store_request_builder
+        from .term_store.term_store_request_builder import TermStoreRequestBuilder
 
-        return term_store_request_builder.TermStoreRequestBuilder(self.request_adapter, self.path_parameters)
+        return TermStoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def threat_submission(self) -> threat_submission_request_builder.ThreatSubmissionRequestBuilder:
+    def threat_submission(self) -> ThreatSubmissionRequestBuilder:
         """
         Provides operations to manage the threatSubmissionRoot singleton.
         """
-        from .threat_submission import threat_submission_request_builder
+        from .threat_submission.threat_submission_request_builder import ThreatSubmissionRequestBuilder
 
-        return threat_submission_request_builder.ThreatSubmissionRequestBuilder(self.request_adapter, self.path_parameters)
+        return ThreatSubmissionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def trust_framework(self) -> trust_framework_request_builder.TrustFrameworkRequestBuilder:
+    def trust_framework(self) -> TrustFrameworkRequestBuilder:
         """
         Provides operations to manage the trustFramework singleton.
         """
-        from .trust_framework import trust_framework_request_builder
+        from .trust_framework.trust_framework_request_builder import TrustFrameworkRequestBuilder
 
-        return trust_framework_request_builder.TrustFrameworkRequestBuilder(self.request_adapter, self.path_parameters)
+        return TrustFrameworkRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def users(self) -> users_request_builder.UsersRequestBuilder:
+    def users(self) -> UsersRequestBuilder:
         """
         Provides operations to manage the collection of user entities.
         """
-        from .users import users_request_builder
+        from .users.users_request_builder import UsersRequestBuilder
 
-        return users_request_builder.UsersRequestBuilder(self.request_adapter, self.path_parameters)
+        return UsersRequestBuilder(self.request_adapter, self.path_parameters)
     
 

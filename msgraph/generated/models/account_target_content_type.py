@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AccountTargetContentType(Enum):
+class AccountTargetContentType(str, Enum):
     Unknown = "unknown",
     IncludeAll = "includeAll",
     AddressBook = "addressBook",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsHealthMonitoringScope(Enum):
+class WindowsHealthMonitoringScope(str, Enum):
     # Undefined
     Undefined = "undefined",
     # Basic events for windows device health monitoring

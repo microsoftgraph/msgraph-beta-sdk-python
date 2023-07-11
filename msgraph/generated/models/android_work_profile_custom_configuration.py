@@ -1,35 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_configuration, oma_setting
+    from .device_configuration import DeviceConfiguration
+    from .oma_setting import OmaSetting
 
-from . import device_configuration
+from .device_configuration import DeviceConfiguration
 
-class AndroidWorkProfileCustomConfiguration(device_configuration.DeviceConfiguration):
+@dataclass
+class AndroidWorkProfileCustomConfiguration(DeviceConfiguration):
     """
     Android Work Profile custom configuration
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new androidWorkProfileCustomConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidWorkProfileCustomConfiguration"
-        # OMA settings. This collection can contain a maximum of 500 elements.
-        self._oma_settings: Optional[List[oma_setting.OmaSetting]] = None
+    odata_type = "#microsoft.graph.androidWorkProfileCustomConfiguration"
+    # OMA settings. This collection can contain a maximum of 500 elements.
+    oma_settings: Optional[List[OmaSetting]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidWorkProfileCustomConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AndroidWorkProfileCustomConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AndroidWorkProfileCustomConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,31 +35,18 @@ class AndroidWorkProfileCustomConfiguration(device_configuration.DeviceConfigura
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_configuration, oma_setting
+        from .device_configuration import DeviceConfiguration
+        from .oma_setting import OmaSetting
+
+        from .device_configuration import DeviceConfiguration
+        from .oma_setting import OmaSetting
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "omaSettings": lambda n : setattr(self, 'oma_settings', n.get_collection_of_object_values(oma_setting.OmaSetting)),
+            "omaSettings": lambda n : setattr(self, 'oma_settings', n.get_collection_of_object_values(OmaSetting)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def oma_settings(self,) -> Optional[List[oma_setting.OmaSetting]]:
-        """
-        Gets the omaSettings property value. OMA settings. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[oma_setting.OmaSetting]]
-        """
-        return self._oma_settings
-    
-    @oma_settings.setter
-    def oma_settings(self,value: Optional[List[oma_setting.OmaSetting]] = None) -> None:
-        """
-        Sets the omaSettings property value. OMA settings. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the oma_settings property.
-        """
-        self._oma_settings = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -69,8 +54,8 @@ class AndroidWorkProfileCustomConfiguration(device_configuration.DeviceConfigura
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("omaSettings", self.oma_settings)
     

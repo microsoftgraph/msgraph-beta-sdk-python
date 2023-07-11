@@ -1,86 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import certification_control
+    from .certification_control import CertificationControl
 
+@dataclass
 class ComplianceInformation(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new complianceInformation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The certificationControls property
-        self._certification_controls: Optional[List[certification_control.CertificationControl]] = None
-        # The certificationName property
-        self._certification_name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def certification_controls(self,) -> Optional[List[certification_control.CertificationControl]]:
-        """
-        Gets the certificationControls property value. The certificationControls property
-        Returns: Optional[List[certification_control.CertificationControl]]
-        """
-        return self._certification_controls
-    
-    @certification_controls.setter
-    def certification_controls(self,value: Optional[List[certification_control.CertificationControl]] = None) -> None:
-        """
-        Sets the certificationControls property value. The certificationControls property
-        Args:
-            value: Value to set for the certification_controls property.
-        """
-        self._certification_controls = value
-    
-    @property
-    def certification_name(self,) -> Optional[str]:
-        """
-        Gets the certificationName property value. The certificationName property
-        Returns: Optional[str]
-        """
-        return self._certification_name
-    
-    @certification_name.setter
-    def certification_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the certificationName property value. The certificationName property
-        Args:
-            value: Value to set for the certification_name property.
-        """
-        self._certification_name = value
+    # The certificationControls property
+    certification_controls: Optional[List[CertificationControl]] = None
+    # The certificationName property
+    certification_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ComplianceInformation:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ComplianceInformation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ComplianceInformation()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -88,31 +35,16 @@ class ComplianceInformation(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import certification_control
+        from .certification_control import CertificationControl
+
+        from .certification_control import CertificationControl
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificationControls": lambda n : setattr(self, 'certification_controls', n.get_collection_of_object_values(certification_control.CertificationControl)),
+            "certificationControls": lambda n : setattr(self, 'certification_controls', n.get_collection_of_object_values(CertificationControl)),
             "certificationName": lambda n : setattr(self, 'certification_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -120,8 +52,8 @@ class ComplianceInformation(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("certificationControls", self.certification_controls)
         writer.write_str_value("certificationName", self.certification_name)
         writer.write_str_value("@odata.type", self.odata_type)

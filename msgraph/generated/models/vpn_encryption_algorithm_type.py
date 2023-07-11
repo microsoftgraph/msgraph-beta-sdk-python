@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnEncryptionAlgorithmType(Enum):
+class VpnEncryptionAlgorithmType(str, Enum):
     # AES-256
     Aes256 = "aes256",
     # DES

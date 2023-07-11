@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AttackSimulationOperationType(Enum):
+class AttackSimulationOperationType(str, Enum):
     CreateSimualation = "createSimualation",
     UpdateSimulation = "updateSimulation",
     UnknownFutureValue = "unknownFutureValue",

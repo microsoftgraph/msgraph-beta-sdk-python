@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSSoftwareUpdateDelayPolicy(Enum):
+class MacOSSoftwareUpdateDelayPolicy(str, Enum):
     # Software update delays will not be enforced.
     None_ = "none",
     # Force delays for OS software updates.

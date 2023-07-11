@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,15 +11,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models import post
-    from ........models.o_data_errors import o_data_error
-    from .attachments import attachments_request_builder
-    from .extensions import extensions_request_builder
-    from .forward import forward_request_builder
-    from .mentions import mentions_request_builder
-    from .reply import reply_request_builder
+    from ........models.o_data_errors.o_data_error import ODataError
+    from ........models.post import Post
+    from .attachments.attachments_request_builder import AttachmentsRequestBuilder
+    from .extensions.extensions_request_builder import ExtensionsRequestBuilder
+    from .forward.forward_request_builder import ForwardRequestBuilder
+    from .mentions.mentions_request_builder import MentionsRequestBuilder
+    from .reply.reply_request_builder import ReplyRequestBuilder
 
-class InReplyToRequestBuilder():
+class InReplyToRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.
     """
@@ -26,47 +27,38 @@ class InReplyToRequestBuilder():
         """
         Instantiates a new InReplyToRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}/inReplyTo{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}/inReplyTo{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[InReplyToRequestBuilderGetRequestConfiguration] = None) -> Optional[post.Post]:
+    async def get(self,request_configuration: Optional[InReplyToRequestBuilderGetRequestConfiguration] = None) -> Optional[Post]:
         """
         The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[post.Post]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Post]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ........models.o_data_errors import o_data_error
+        from ........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ........models import post
+        from ........models.post import Post
 
-        return await self.request_adapter.send_async(request_info, post.Post, error_mapping)
+        return await self.request_adapter.send_async(request_info, Post, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[InReplyToRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -81,49 +73,49 @@ class InReplyToRequestBuilder():
         return request_info
     
     @property
-    def attachments(self) -> attachments_request_builder.AttachmentsRequestBuilder:
+    def attachments(self) -> AttachmentsRequestBuilder:
         """
         Provides operations to manage the attachments property of the microsoft.graph.post entity.
         """
-        from .attachments import attachments_request_builder
+        from .attachments.attachments_request_builder import AttachmentsRequestBuilder
 
-        return attachments_request_builder.AttachmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AttachmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def extensions(self) -> extensions_request_builder.ExtensionsRequestBuilder:
+    def extensions(self) -> ExtensionsRequestBuilder:
         """
         Provides operations to manage the extensions property of the microsoft.graph.post entity.
         """
-        from .extensions import extensions_request_builder
+        from .extensions.extensions_request_builder import ExtensionsRequestBuilder
 
-        return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def forward(self) -> forward_request_builder.ForwardRequestBuilder:
+    def forward(self) -> ForwardRequestBuilder:
         """
         Provides operations to call the forward method.
         """
-        from .forward import forward_request_builder
+        from .forward.forward_request_builder import ForwardRequestBuilder
 
-        return forward_request_builder.ForwardRequestBuilder(self.request_adapter, self.path_parameters)
+        return ForwardRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def mentions(self) -> mentions_request_builder.MentionsRequestBuilder:
+    def mentions(self) -> MentionsRequestBuilder:
         """
         Provides operations to manage the mentions property of the microsoft.graph.post entity.
         """
-        from .mentions import mentions_request_builder
+        from .mentions.mentions_request_builder import MentionsRequestBuilder
 
-        return mentions_request_builder.MentionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MentionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reply(self) -> reply_request_builder.ReplyRequestBuilder:
+    def reply(self) -> ReplyRequestBuilder:
         """
         Provides operations to call the reply method.
         """
-        from .reply import reply_request_builder
+        from .reply.reply_request_builder import ReplyRequestBuilder
 
-        return reply_request_builder.ReplyRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReplyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class InReplyToRequestBuilderGetQueryParameters():
@@ -134,11 +126,11 @@ class InReplyToRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -152,17 +144,15 @@ class InReplyToRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class InReplyToRequestBuilderGetRequestConfiguration():
+    class InReplyToRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[InReplyToRequestBuilder.InReplyToRequestBuilderGetQueryParameters] = None
 

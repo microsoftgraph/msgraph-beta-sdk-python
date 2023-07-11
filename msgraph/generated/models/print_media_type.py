@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PrintMediaType(Enum):
+class PrintMediaType(str, Enum):
     Stationery = "stationery",
     Transparency = "transparency",
     Envelope = "envelope",

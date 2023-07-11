@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidForWorkAppConfigurationSchemaItemDataType(Enum):
+class AndroidForWorkAppConfigurationSchemaItemDataType(str, Enum):
     Bool = "bool",
     Integer = "integer",
     String = "string",

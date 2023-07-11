@@ -1,6 +1,6 @@
 from enum import Enum
 
-class KioskModeType(Enum):
+class KioskModeType(str, Enum):
     # Not configured
     NotConfigured = "notConfigured",
     # Run in single-app mode

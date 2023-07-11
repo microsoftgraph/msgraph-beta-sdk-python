@@ -1,6 +1,6 @@
 from enum import Enum
 
-class NetworkSingleSignOnType(Enum):
+class NetworkSingleSignOnType(str, Enum):
     # Disabled
     Disabled = "disabled",
     # Pre-Logon

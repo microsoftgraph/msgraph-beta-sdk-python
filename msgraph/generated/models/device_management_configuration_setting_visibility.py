@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationSettingVisibility(Enum):
+class DeviceManagementConfigurationSettingVisibility(str, Enum):
     # Default. Not visible.
     None_ = "none",
     # Visible to setting catalog policy type.

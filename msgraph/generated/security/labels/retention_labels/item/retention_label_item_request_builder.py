@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.o_data_errors import o_data_error
-    from .....models.security import retention_label
-    from .disposition_review_stages import disposition_review_stages_request_builder
-    from .retention_event_type import retention_event_type_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.security.retention_label import RetentionLabel
+    from .descriptors.descriptors_request_builder import DescriptorsRequestBuilder
+    from .disposition_review_stages.disposition_review_stages_request_builder import DispositionReviewStagesRequestBuilder
+    from .retention_event_type.retention_event_type_request_builder import RetentionEventTypeRequestBuilder
 
-class RetentionLabelItemRequestBuilder():
+class RetentionLabelItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.
     """
@@ -23,91 +25,82 @@ class RetentionLabelItemRequestBuilder():
         """
         Instantiates a new RetentionLabelItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a retentionLabel object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RetentionLabelItemRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_label.RetentionLabel]:
+    async def get(self,request_configuration: Optional[RetentionLabelItemRequestBuilderGetRequestConfiguration] = None) -> Optional[RetentionLabel]:
         """
-        Get retentionLabels from security
+        Represents how customers can manage their data, whether and for how long to retain or delete it.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[retention_label.RetentionLabel]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RetentionLabel]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.security import retention_label
+        from .....models.security.retention_label import RetentionLabel
 
-        return await self.request_adapter.send_async(request_info, retention_label.RetentionLabel, error_mapping)
+        return await self.request_adapter.send_async(request_info, RetentionLabel, error_mapping)
     
-    async def patch(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[retention_label.RetentionLabel]:
+    async def patch(self,body: Optional[RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[RetentionLabel]:
         """
         Update the properties of a retentionLabel object. To update a disposition review stage, include the **actionAfterRetentionPeriod** property in the request body with one of the possible values specified.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[retention_label.RetentionLabel]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RetentionLabel]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.security import retention_label
+        from .....models.security.retention_label import RetentionLabel
 
-        return await self.request_adapter.send_async(request_info, retention_label.RetentionLabel, error_mapping)
+        return await self.request_adapter.send_async(request_info, RetentionLabel, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a retentionLabel object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -121,9 +114,9 @@ class RetentionLabelItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RetentionLabelItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get retentionLabels from security
+        Represents how customers can manage their data, whether and for how long to retain or delete it.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,16 +130,16 @@ class RetentionLabelItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a retentionLabel object. To update a disposition review stage, include the **actionAfterRetentionPeriod** property in the request body with one of the possible values specified.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,49 +152,56 @@ class RetentionLabelItemRequestBuilder():
         return request_info
     
     @property
-    def disposition_review_stages(self) -> disposition_review_stages_request_builder.DispositionReviewStagesRequestBuilder:
+    def descriptors(self) -> DescriptorsRequestBuilder:
+        """
+        Provides operations to manage the descriptors property of the microsoft.graph.security.retentionLabel entity.
+        """
+        from .descriptors.descriptors_request_builder import DescriptorsRequestBuilder
+
+        return DescriptorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def disposition_review_stages(self) -> DispositionReviewStagesRequestBuilder:
         """
         Provides operations to manage the dispositionReviewStages property of the microsoft.graph.security.retentionLabel entity.
         """
-        from .disposition_review_stages import disposition_review_stages_request_builder
+        from .disposition_review_stages.disposition_review_stages_request_builder import DispositionReviewStagesRequestBuilder
 
-        return disposition_review_stages_request_builder.DispositionReviewStagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DispositionReviewStagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def retention_event_type(self) -> retention_event_type_request_builder.RetentionEventTypeRequestBuilder:
+    def retention_event_type(self) -> RetentionEventTypeRequestBuilder:
         """
         Provides operations to manage the retentionEventType property of the microsoft.graph.security.retentionLabel entity.
         """
-        from .retention_event_type import retention_event_type_request_builder
+        from .retention_event_type.retention_event_type_request_builder import RetentionEventTypeRequestBuilder
 
-        return retention_event_type_request_builder.RetentionEventTypeRequestBuilder(self.request_adapter, self.path_parameters)
+        return RetentionEventTypeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RetentionLabelItemRequestBuilderDeleteRequestConfiguration():
+    class RetentionLabelItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class RetentionLabelItemRequestBuilderGetQueryParameters():
         """
-        Get retentionLabels from security
+        Represents how customers can manage their data, whether and for how long to retain or delete it.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -215,31 +215,27 @@ class RetentionLabelItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RetentionLabelItemRequestBuilderGetRequestConfiguration():
+    class RetentionLabelItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[RetentionLabelItemRequestBuilder.RetentionLabelItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RetentionLabelItemRequestBuilderPatchRequestConfiguration():
+    class RetentionLabelItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MessageStatus(Enum):
+class MessageStatus(str, Enum):
     GettingStatus = "gettingStatus",
     Pending = "pending",
     Failed = "failed",

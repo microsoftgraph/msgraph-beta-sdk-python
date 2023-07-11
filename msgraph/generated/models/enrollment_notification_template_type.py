@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EnrollmentNotificationTemplateType(Enum):
+class EnrollmentNotificationTemplateType(str, Enum):
     # Email Notification
     Email = "email",
     # Push Notification

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SecureBootWithDMAType(Enum):
+class SecureBootWithDMAType(str, Enum):
     # Not configured, no operation
     NotConfigured = "notConfigured",
     # Turns on VBS with Secure Boot
