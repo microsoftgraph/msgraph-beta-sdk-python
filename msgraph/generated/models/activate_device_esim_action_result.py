@@ -1,50 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_action_result
+    from .device_action_result import DeviceActionResult
 
-from . import device_action_result
+from .device_action_result import DeviceActionResult
 
-class ActivateDeviceEsimActionResult(device_action_result.DeviceActionResult):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ActivateDeviceEsimActionResult and sets the default values.
-        """
-        super().__init__()
-        # Carrier Url to activate the device eSIM
-        self._carrier_url: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def carrier_url(self,) -> Optional[str]:
-        """
-        Gets the carrierUrl property value. Carrier Url to activate the device eSIM
-        Returns: Optional[str]
-        """
-        return self._carrier_url
-    
-    @carrier_url.setter
-    def carrier_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the carrierUrl property value. Carrier Url to activate the device eSIM
-        Args:
-            value: Value to set for the carrier_url property.
-        """
-        self._carrier_url = value
+@dataclass
+class ActivateDeviceEsimActionResult(DeviceActionResult):
+    """
+    Device action result
+    """
+    # Carrier Url to activate the device eSIM
+    carrier_url: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ActivateDeviceEsimActionResult:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ActivateDeviceEsimActionResult
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ActivateDeviceEsimActionResult()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -52,7 +35,9 @@ class ActivateDeviceEsimActionResult(device_action_result.DeviceActionResult):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_action_result
+        from .device_action_result import DeviceActionResult
+
+        from .device_action_result import DeviceActionResult
 
         fields: Dict[str, Callable[[Any], None]] = {
             "carrierUrl": lambda n : setattr(self, 'carrier_url', n.get_str_value()),
@@ -67,8 +52,8 @@ class ActivateDeviceEsimActionResult(device_action_result.DeviceActionResult):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("carrierUrl", self.carrier_url)
     

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DefenderAttackSurfaceType(Enum):
+class DefenderAttackSurfaceType(str, Enum):
     # Default, which disables attack surface reduction rule.
     UserDefined = "userDefined",
     # Enable the attack surface reduction rule.

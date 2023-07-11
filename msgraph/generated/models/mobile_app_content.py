@@ -1,84 +1,55 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, mobile_app_content_file, mobile_contained_app
+    from .entity import Entity
+    from .mobile_app_content_file import MobileAppContentFile
+    from .mobile_contained_app import MobileContainedApp
 
-from . import entity
+from .entity import Entity
 
-class MobileAppContent(entity.Entity):
+@dataclass
+class MobileAppContent(Entity):
     """
     Contains content properties for a specific app version. Each mobileAppContent can have multiple mobileAppContentFile.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mobileAppContent and sets the default values.
-        """
-        super().__init__()
-        # The collection of contained apps in a MobileLobApp acting as a package.
-        self._contained_apps: Optional[List[mobile_contained_app.MobileContainedApp]] = None
-        # The list of files for this app content version.
-        self._files: Optional[List[mobile_app_content_file.MobileAppContentFile]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def contained_apps(self,) -> Optional[List[mobile_contained_app.MobileContainedApp]]:
-        """
-        Gets the containedApps property value. The collection of contained apps in a MobileLobApp acting as a package.
-        Returns: Optional[List[mobile_contained_app.MobileContainedApp]]
-        """
-        return self._contained_apps
-    
-    @contained_apps.setter
-    def contained_apps(self,value: Optional[List[mobile_contained_app.MobileContainedApp]] = None) -> None:
-        """
-        Sets the containedApps property value. The collection of contained apps in a MobileLobApp acting as a package.
-        Args:
-            value: Value to set for the contained_apps property.
-        """
-        self._contained_apps = value
+    # The collection of contained apps in a MobileLobApp acting as a package.
+    contained_apps: Optional[List[MobileContainedApp]] = None
+    # The list of files for this app content version.
+    files: Optional[List[MobileAppContentFile]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppContent:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MobileAppContent
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MobileAppContent()
-    
-    @property
-    def files(self,) -> Optional[List[mobile_app_content_file.MobileAppContentFile]]:
-        """
-        Gets the files property value. The list of files for this app content version.
-        Returns: Optional[List[mobile_app_content_file.MobileAppContentFile]]
-        """
-        return self._files
-    
-    @files.setter
-    def files(self,value: Optional[List[mobile_app_content_file.MobileAppContentFile]] = None) -> None:
-        """
-        Sets the files property value. The list of files for this app content version.
-        Args:
-            value: Value to set for the files property.
-        """
-        self._files = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, mobile_app_content_file, mobile_contained_app
+        from .entity import Entity
+        from .mobile_app_content_file import MobileAppContentFile
+        from .mobile_contained_app import MobileContainedApp
+
+        from .entity import Entity
+        from .mobile_app_content_file import MobileAppContentFile
+        from .mobile_contained_app import MobileContainedApp
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "containedApps": lambda n : setattr(self, 'contained_apps', n.get_collection_of_object_values(mobile_contained_app.MobileContainedApp)),
-            "files": lambda n : setattr(self, 'files', n.get_collection_of_object_values(mobile_app_content_file.MobileAppContentFile)),
+            "containedApps": lambda n : setattr(self, 'contained_apps', n.get_collection_of_object_values(MobileContainedApp)),
+            "files": lambda n : setattr(self, 'files', n.get_collection_of_object_values(MobileAppContentFile)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -90,8 +61,8 @@ class MobileAppContent(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("containedApps", self.contained_apps)
         writer.write_collection_of_object_values("files", self.files)

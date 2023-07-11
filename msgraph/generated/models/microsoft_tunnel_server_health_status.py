@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MicrosoftTunnelServerHealthStatus(Enum):
+class MicrosoftTunnelServerHealthStatus(str, Enum):
     # Indicates that the health status of the server is unknown. This occurs when no health status has been reported, for example when the server is initialized, but has not yet been evaluated for its health.
     Unknown = "unknown",
     # Indicates that the health status of the server is healthy. This should be the normal operational health status.

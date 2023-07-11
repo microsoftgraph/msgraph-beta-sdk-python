@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidPermissionActionType(Enum):
+class AndroidPermissionActionType(str, Enum):
     Prompt = "prompt",
     AutoGrant = "autoGrant",
     AutoDeny = "autoDeny",

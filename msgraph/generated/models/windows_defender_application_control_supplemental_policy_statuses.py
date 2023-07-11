@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsDefenderApplicationControlSupplementalPolicyStatuses(Enum):
+class WindowsDefenderApplicationControlSupplementalPolicyStatuses(str, Enum):
     # The status of the WindowsDefenderApplicationControl supplemental policy is not known.
     Unknown = "unknown",
     # The WindowsDefenderApplicationControl supplemental policy is in effect.

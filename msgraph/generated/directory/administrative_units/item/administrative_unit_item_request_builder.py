@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,18 +11,18 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import administrative_unit
-    from ....models.o_data_errors import o_data_error
-    from .check_member_groups import check_member_groups_request_builder
-    from .check_member_objects import check_member_objects_request_builder
-    from .extensions import extensions_request_builder
-    from .get_member_groups import get_member_groups_request_builder
-    from .get_member_objects import get_member_objects_request_builder
-    from .members import members_request_builder
-    from .restore import restore_request_builder
-    from .scoped_role_members import scoped_role_members_request_builder
+    from ....models.administrative_unit import AdministrativeUnit
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
+    from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
+    from .extensions.extensions_request_builder import ExtensionsRequestBuilder
+    from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
+    from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
+    from .members.members_request_builder import MembersRequestBuilder
+    from .restore.restore_request_builder import RestoreRequestBuilder
+    from .scoped_role_members.scoped_role_members_request_builder import ScopedRoleMembersRequestBuilder
 
-class AdministrativeUnitItemRequestBuilder():
+class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
     """
@@ -29,91 +30,82 @@ class AdministrativeUnitItemRequestBuilder():
         """
         Instantiates a new AdministrativeUnitItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property administrativeUnits for directory
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AdministrativeUnitItemRequestBuilderGetRequestConfiguration] = None) -> Optional[administrative_unit.AdministrativeUnit]:
+    async def get(self,request_configuration: Optional[AdministrativeUnitItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AdministrativeUnit]:
         """
         Conceptual container for user and group directory objects.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[administrative_unit.AdministrativeUnit]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AdministrativeUnit]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import administrative_unit
+        from ....models.administrative_unit import AdministrativeUnit
 
-        return await self.request_adapter.send_async(request_info, administrative_unit.AdministrativeUnit, error_mapping)
+        return await self.request_adapter.send_async(request_info, AdministrativeUnit, error_mapping)
     
-    async def patch(self,body: Optional[administrative_unit.AdministrativeUnit] = None, request_configuration: Optional[AdministrativeUnitItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[administrative_unit.AdministrativeUnit]:
+    async def patch(self,body: Optional[AdministrativeUnit] = None, request_configuration: Optional[AdministrativeUnitItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AdministrativeUnit]:
         """
         Update the navigation property administrativeUnits in directory
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[administrative_unit.AdministrativeUnit]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AdministrativeUnit]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import administrative_unit
+        from ....models.administrative_unit import AdministrativeUnit
 
-        return await self.request_adapter.send_async(request_info, administrative_unit.AdministrativeUnit, error_mapping)
+        return await self.request_adapter.send_async(request_info, AdministrativeUnit, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property administrativeUnits for directory
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -129,7 +121,7 @@ class AdministrativeUnitItemRequestBuilder():
         """
         Conceptual container for user and group directory objects.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -143,16 +135,16 @@ class AdministrativeUnitItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[administrative_unit.AdministrativeUnit] = None, request_configuration: Optional[AdministrativeUnitItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AdministrativeUnit] = None, request_configuration: Optional[AdministrativeUnitItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property administrativeUnits in directory
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -165,88 +157,86 @@ class AdministrativeUnitItemRequestBuilder():
         return request_info
     
     @property
-    def check_member_groups(self) -> check_member_groups_request_builder.CheckMemberGroupsRequestBuilder:
+    def check_member_groups(self) -> CheckMemberGroupsRequestBuilder:
         """
         Provides operations to call the checkMemberGroups method.
         """
-        from .check_member_groups import check_member_groups_request_builder
+        from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
 
-        return check_member_groups_request_builder.CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def check_member_objects(self) -> check_member_objects_request_builder.CheckMemberObjectsRequestBuilder:
+    def check_member_objects(self) -> CheckMemberObjectsRequestBuilder:
         """
         Provides operations to call the checkMemberObjects method.
         """
-        from .check_member_objects import check_member_objects_request_builder
+        from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
 
-        return check_member_objects_request_builder.CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def extensions(self) -> extensions_request_builder.ExtensionsRequestBuilder:
+    def extensions(self) -> ExtensionsRequestBuilder:
         """
         Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.
         """
-        from .extensions import extensions_request_builder
+        from .extensions.extensions_request_builder import ExtensionsRequestBuilder
 
-        return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_member_groups(self) -> get_member_groups_request_builder.GetMemberGroupsRequestBuilder:
+    def get_member_groups(self) -> GetMemberGroupsRequestBuilder:
         """
         Provides operations to call the getMemberGroups method.
         """
-        from .get_member_groups import get_member_groups_request_builder
+        from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
 
-        return get_member_groups_request_builder.GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_member_objects(self) -> get_member_objects_request_builder.GetMemberObjectsRequestBuilder:
+    def get_member_objects(self) -> GetMemberObjectsRequestBuilder:
         """
         Provides operations to call the getMemberObjects method.
         """
-        from .get_member_objects import get_member_objects_request_builder
+        from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
 
-        return get_member_objects_request_builder.GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def members(self) -> members_request_builder.MembersRequestBuilder:
+    def members(self) -> MembersRequestBuilder:
         """
         Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.
         """
-        from .members import members_request_builder
+        from .members.members_request_builder import MembersRequestBuilder
 
-        return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
+        return MembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore(self) -> restore_request_builder.RestoreRequestBuilder:
+    def restore(self) -> RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
-        from .restore import restore_request_builder
+        from .restore.restore_request_builder import RestoreRequestBuilder
 
-        return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def scoped_role_members(self) -> scoped_role_members_request_builder.ScopedRoleMembersRequestBuilder:
+    def scoped_role_members(self) -> ScopedRoleMembersRequestBuilder:
         """
         Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.
         """
-        from .scoped_role_members import scoped_role_members_request_builder
+        from .scoped_role_members.scoped_role_members_request_builder import ScopedRoleMembersRequestBuilder
 
-        return scoped_role_members_request_builder.ScopedRoleMembersRequestBuilder(self.request_adapter, self.path_parameters)
+        return ScopedRoleMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration():
+    class AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class AdministrativeUnitItemRequestBuilderGetQueryParameters():
@@ -257,11 +247,11 @@ class AdministrativeUnitItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -275,31 +265,27 @@ class AdministrativeUnitItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AdministrativeUnitItemRequestBuilderGetRequestConfiguration():
+    class AdministrativeUnitItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AdministrativeUnitItemRequestBuilder.AdministrativeUnitItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AdministrativeUnitItemRequestBuilderPatchRequestConfiguration():
+    class AdministrativeUnitItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

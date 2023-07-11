@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DriverApprovalStatus(Enum):
+class DriverApprovalStatus(str, Enum):
     # This indicates a driver needs IT admin's review.
     NeedsReview = "needsReview",
     # This indicates IT admin has declined a driver.

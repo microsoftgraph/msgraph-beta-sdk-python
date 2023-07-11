@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +11,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.managed_tenants import managed_tenant_alert
-    from ......models.o_data_errors import o_data_error
+    from ......models.managed_tenants.managed_tenant_alert import ManagedTenantAlert
+    from ......models.o_data_errors.o_data_error import ODataError
 
-class AlertRequestBuilder():
+class AlertRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the alert property of the microsoft.graph.managedTenants.managedTenantAlertLog entity.
     """
@@ -21,47 +22,38 @@ class AlertRequestBuilder():
         """
         Instantiates a new AlertRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/managedTenantAlertLogs/{managedTenantAlertLog%2Did}/alert{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managedTenantAlertLogs/{managedTenantAlertLog%2Did}/alert{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[AlertRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
+    async def get(self,request_configuration: Optional[AlertRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
         """
         Get alert from tenantRelationships
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagedTenantAlert]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.managed_tenants import managed_tenant_alert
+        from ......models.managed_tenants.managed_tenant_alert import ManagedTenantAlert
 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedTenantAlert, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AlertRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get alert from tenantRelationships
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -84,11 +76,11 @@ class AlertRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -102,17 +94,15 @@ class AlertRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AlertRequestBuilderGetRequestConfiguration():
+    class AlertRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AlertRequestBuilder.AlertRequestBuilderGetQueryParameters] = None
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,29 +11,29 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import profile
-    from ...models.o_data_errors import o_data_error
-    from .account import account_request_builder
-    from .addresses import addresses_request_builder
-    from .anniversaries import anniversaries_request_builder
-    from .awards import awards_request_builder
-    from .certifications import certifications_request_builder
-    from .educational_activities import educational_activities_request_builder
-    from .emails import emails_request_builder
-    from .interests import interests_request_builder
-    from .languages import languages_request_builder
-    from .names import names_request_builder
-    from .notes import notes_request_builder
-    from .patents import patents_request_builder
-    from .phones import phones_request_builder
-    from .positions import positions_request_builder
-    from .projects import projects_request_builder
-    from .publications import publications_request_builder
-    from .skills import skills_request_builder
-    from .web_accounts import web_accounts_request_builder
-    from .websites import websites_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.profile import Profile
+    from .account.account_request_builder import AccountRequestBuilder
+    from .addresses.addresses_request_builder import AddressesRequestBuilder
+    from .anniversaries.anniversaries_request_builder import AnniversariesRequestBuilder
+    from .awards.awards_request_builder import AwardsRequestBuilder
+    from .certifications.certifications_request_builder import CertificationsRequestBuilder
+    from .educational_activities.educational_activities_request_builder import EducationalActivitiesRequestBuilder
+    from .emails.emails_request_builder import EmailsRequestBuilder
+    from .interests.interests_request_builder import InterestsRequestBuilder
+    from .languages.languages_request_builder import LanguagesRequestBuilder
+    from .names.names_request_builder import NamesRequestBuilder
+    from .notes.notes_request_builder import NotesRequestBuilder
+    from .patents.patents_request_builder import PatentsRequestBuilder
+    from .phones.phones_request_builder import PhonesRequestBuilder
+    from .positions.positions_request_builder import PositionsRequestBuilder
+    from .projects.projects_request_builder import ProjectsRequestBuilder
+    from .publications.publications_request_builder import PublicationsRequestBuilder
+    from .skills.skills_request_builder import SkillsRequestBuilder
+    from .web_accounts.web_accounts_request_builder import WebAccountsRequestBuilder
+    from .websites.websites_request_builder import WebsitesRequestBuilder
 
-class ProfileRequestBuilder():
+class ProfileRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the profile property of the microsoft.graph.user entity.
     """
@@ -40,91 +41,82 @@ class ProfileRequestBuilder():
         """
         Instantiates a new ProfileRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/me/profile{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/me/profile{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ProfileRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Deletes a profile object from a user's account.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ProfileRequestBuilderGetRequestConfiguration] = None) -> Optional[profile.Profile]:
+    async def get(self,request_configuration: Optional[ProfileRequestBuilderGetRequestConfiguration] = None) -> Optional[Profile]:
         """
         Retrieve the properties and relationships of a profile object for a given user. The **profile** resource exposes various rich properties that are descriptive of the user as relationships, for example, anniversaries and education activities. To get one of these navigation properties, use the corresponding GET method on that property. See the methods exposed by **profile**.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[profile.Profile]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Profile]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import profile
+        from ...models.profile import Profile
 
-        return await self.request_adapter.send_async(request_info, profile.Profile, error_mapping)
+        return await self.request_adapter.send_async(request_info, Profile, error_mapping)
     
-    async def patch(self,body: Optional[profile.Profile] = None, request_configuration: Optional[ProfileRequestBuilderPatchRequestConfiguration] = None) -> Optional[profile.Profile]:
+    async def patch(self,body: Optional[Profile] = None, request_configuration: Optional[ProfileRequestBuilderPatchRequestConfiguration] = None) -> Optional[Profile]:
         """
         Update the navigation property profile in me
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[profile.Profile]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Profile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import profile
+        from ...models.profile import Profile
 
-        return await self.request_adapter.send_async(request_info, profile.Profile, error_mapping)
+        return await self.request_adapter.send_async(request_info, Profile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ProfileRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Deletes a profile object from a user's account.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -140,7 +132,7 @@ class ProfileRequestBuilder():
         """
         Retrieve the properties and relationships of a profile object for a given user. The **profile** resource exposes various rich properties that are descriptive of the user as relationships, for example, anniversaries and education activities. To get one of these navigation properties, use the corresponding GET method on that property. See the methods exposed by **profile**.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -154,16 +146,16 @@ class ProfileRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[profile.Profile] = None, request_configuration: Optional[ProfileRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Profile] = None, request_configuration: Optional[ProfileRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property profile in me
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -176,187 +168,185 @@ class ProfileRequestBuilder():
         return request_info
     
     @property
-    def account(self) -> account_request_builder.AccountRequestBuilder:
+    def account(self) -> AccountRequestBuilder:
         """
         Provides operations to manage the account property of the microsoft.graph.profile entity.
         """
-        from .account import account_request_builder
+        from .account.account_request_builder import AccountRequestBuilder
 
-        return account_request_builder.AccountRequestBuilder(self.request_adapter, self.path_parameters)
+        return AccountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def addresses(self) -> addresses_request_builder.AddressesRequestBuilder:
+    def addresses(self) -> AddressesRequestBuilder:
         """
         Provides operations to manage the addresses property of the microsoft.graph.profile entity.
         """
-        from .addresses import addresses_request_builder
+        from .addresses.addresses_request_builder import AddressesRequestBuilder
 
-        return addresses_request_builder.AddressesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AddressesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def anniversaries(self) -> anniversaries_request_builder.AnniversariesRequestBuilder:
+    def anniversaries(self) -> AnniversariesRequestBuilder:
         """
         Provides operations to manage the anniversaries property of the microsoft.graph.profile entity.
         """
-        from .anniversaries import anniversaries_request_builder
+        from .anniversaries.anniversaries_request_builder import AnniversariesRequestBuilder
 
-        return anniversaries_request_builder.AnniversariesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AnniversariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def awards(self) -> awards_request_builder.AwardsRequestBuilder:
+    def awards(self) -> AwardsRequestBuilder:
         """
         Provides operations to manage the awards property of the microsoft.graph.profile entity.
         """
-        from .awards import awards_request_builder
+        from .awards.awards_request_builder import AwardsRequestBuilder
 
-        return awards_request_builder.AwardsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AwardsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def certifications(self) -> certifications_request_builder.CertificationsRequestBuilder:
+    def certifications(self) -> CertificationsRequestBuilder:
         """
         Provides operations to manage the certifications property of the microsoft.graph.profile entity.
         """
-        from .certifications import certifications_request_builder
+        from .certifications.certifications_request_builder import CertificationsRequestBuilder
 
-        return certifications_request_builder.CertificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CertificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def educational_activities(self) -> educational_activities_request_builder.EducationalActivitiesRequestBuilder:
+    def educational_activities(self) -> EducationalActivitiesRequestBuilder:
         """
         Provides operations to manage the educationalActivities property of the microsoft.graph.profile entity.
         """
-        from .educational_activities import educational_activities_request_builder
+        from .educational_activities.educational_activities_request_builder import EducationalActivitiesRequestBuilder
 
-        return educational_activities_request_builder.EducationalActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return EducationalActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def emails(self) -> emails_request_builder.EmailsRequestBuilder:
+    def emails(self) -> EmailsRequestBuilder:
         """
         Provides operations to manage the emails property of the microsoft.graph.profile entity.
         """
-        from .emails import emails_request_builder
+        from .emails.emails_request_builder import EmailsRequestBuilder
 
-        return emails_request_builder.EmailsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EmailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def interests(self) -> interests_request_builder.InterestsRequestBuilder:
+    def interests(self) -> InterestsRequestBuilder:
         """
         Provides operations to manage the interests property of the microsoft.graph.profile entity.
         """
-        from .interests import interests_request_builder
+        from .interests.interests_request_builder import InterestsRequestBuilder
 
-        return interests_request_builder.InterestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return InterestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def languages(self) -> languages_request_builder.LanguagesRequestBuilder:
+    def languages(self) -> LanguagesRequestBuilder:
         """
         Provides operations to manage the languages property of the microsoft.graph.profile entity.
         """
-        from .languages import languages_request_builder
+        from .languages.languages_request_builder import LanguagesRequestBuilder
 
-        return languages_request_builder.LanguagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return LanguagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def names(self) -> names_request_builder.NamesRequestBuilder:
+    def names(self) -> NamesRequestBuilder:
         """
         Provides operations to manage the names property of the microsoft.graph.profile entity.
         """
-        from .names import names_request_builder
+        from .names.names_request_builder import NamesRequestBuilder
 
-        return names_request_builder.NamesRequestBuilder(self.request_adapter, self.path_parameters)
+        return NamesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def notes(self) -> notes_request_builder.NotesRequestBuilder:
+    def notes(self) -> NotesRequestBuilder:
         """
         Provides operations to manage the notes property of the microsoft.graph.profile entity.
         """
-        from .notes import notes_request_builder
+        from .notes.notes_request_builder import NotesRequestBuilder
 
-        return notes_request_builder.NotesRequestBuilder(self.request_adapter, self.path_parameters)
+        return NotesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def patents(self) -> patents_request_builder.PatentsRequestBuilder:
+    def patents(self) -> PatentsRequestBuilder:
         """
         Provides operations to manage the patents property of the microsoft.graph.profile entity.
         """
-        from .patents import patents_request_builder
+        from .patents.patents_request_builder import PatentsRequestBuilder
 
-        return patents_request_builder.PatentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PatentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def phones(self) -> phones_request_builder.PhonesRequestBuilder:
+    def phones(self) -> PhonesRequestBuilder:
         """
         Provides operations to manage the phones property of the microsoft.graph.profile entity.
         """
-        from .phones import phones_request_builder
+        from .phones.phones_request_builder import PhonesRequestBuilder
 
-        return phones_request_builder.PhonesRequestBuilder(self.request_adapter, self.path_parameters)
+        return PhonesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def positions(self) -> positions_request_builder.PositionsRequestBuilder:
+    def positions(self) -> PositionsRequestBuilder:
         """
         Provides operations to manage the positions property of the microsoft.graph.profile entity.
         """
-        from .positions import positions_request_builder
+        from .positions.positions_request_builder import PositionsRequestBuilder
 
-        return positions_request_builder.PositionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PositionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def projects(self) -> projects_request_builder.ProjectsRequestBuilder:
+    def projects(self) -> ProjectsRequestBuilder:
         """
         Provides operations to manage the projects property of the microsoft.graph.profile entity.
         """
-        from .projects import projects_request_builder
+        from .projects.projects_request_builder import ProjectsRequestBuilder
 
-        return projects_request_builder.ProjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ProjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def publications(self) -> publications_request_builder.PublicationsRequestBuilder:
+    def publications(self) -> PublicationsRequestBuilder:
         """
         Provides operations to manage the publications property of the microsoft.graph.profile entity.
         """
-        from .publications import publications_request_builder
+        from .publications.publications_request_builder import PublicationsRequestBuilder
 
-        return publications_request_builder.PublicationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PublicationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def skills(self) -> skills_request_builder.SkillsRequestBuilder:
+    def skills(self) -> SkillsRequestBuilder:
         """
         Provides operations to manage the skills property of the microsoft.graph.profile entity.
         """
-        from .skills import skills_request_builder
+        from .skills.skills_request_builder import SkillsRequestBuilder
 
-        return skills_request_builder.SkillsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SkillsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def web_accounts(self) -> web_accounts_request_builder.WebAccountsRequestBuilder:
+    def web_accounts(self) -> WebAccountsRequestBuilder:
         """
         Provides operations to manage the webAccounts property of the microsoft.graph.profile entity.
         """
-        from .web_accounts import web_accounts_request_builder
+        from .web_accounts.web_accounts_request_builder import WebAccountsRequestBuilder
 
-        return web_accounts_request_builder.WebAccountsRequestBuilder(self.request_adapter, self.path_parameters)
+        return WebAccountsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def websites(self) -> websites_request_builder.WebsitesRequestBuilder:
+    def websites(self) -> WebsitesRequestBuilder:
         """
         Provides operations to manage the websites property of the microsoft.graph.profile entity.
         """
-        from .websites import websites_request_builder
+        from .websites.websites_request_builder import WebsitesRequestBuilder
 
-        return websites_request_builder.WebsitesRequestBuilder(self.request_adapter, self.path_parameters)
+        return WebsitesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ProfileRequestBuilderDeleteRequestConfiguration():
+    class ProfileRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class ProfileRequestBuilderGetQueryParameters():
@@ -367,11 +357,11 @@ class ProfileRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -385,31 +375,27 @@ class ProfileRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ProfileRequestBuilderGetRequestConfiguration():
+    class ProfileRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ProfileRequestBuilder.ProfileRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ProfileRequestBuilderPatchRequestConfiguration():
+    class ProfileRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

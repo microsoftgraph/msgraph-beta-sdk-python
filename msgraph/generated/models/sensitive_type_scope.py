@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SensitiveTypeScope(Enum):
+class SensitiveTypeScope(str, Enum):
     FullDocument = "fullDocument",
     PartialDocument = "partialDocument",
 

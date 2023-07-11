@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagedAppDeviceThreatLevel(Enum):
+class ManagedAppDeviceThreatLevel(str, Enum):
     # Value not configured
     NotConfigured = "notConfigured",
     # Device needs to have no threat

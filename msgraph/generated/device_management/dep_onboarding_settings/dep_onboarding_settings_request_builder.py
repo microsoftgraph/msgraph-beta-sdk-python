@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,13 +11,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import dep_onboarding_setting, dep_onboarding_setting_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .get_expiring_vpp_token_count_with_expiring_before_date_time import get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder
-    from .item import dep_onboarding_setting_item_request_builder
+    from ...models.dep_onboarding_setting import DepOnboardingSetting
+    from ...models.dep_onboarding_setting_collection_response import DepOnboardingSettingCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .get_expiring_vpp_token_count_with_expiring_before_date_time.get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder import GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder
+    from .item.dep_onboarding_setting_item_request_builder import DepOnboardingSettingItemRequestBuilder
 
-class DepOnboardingSettingsRequestBuilder():
+class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the depOnboardingSettings property of the microsoft.graph.deviceManagement entity.
     """
@@ -24,100 +26,91 @@ class DepOnboardingSettingsRequestBuilder():
         """
         Instantiates a new DepOnboardingSettingsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/depOnboardingSettings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/depOnboardingSettings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_dep_onboarding_setting_id(self,dep_onboarding_setting_id: str) -> dep_onboarding_setting_item_request_builder.DepOnboardingSettingItemRequestBuilder:
+    def by_dep_onboarding_setting_id(self,dep_onboarding_setting_id: str) -> DepOnboardingSettingItemRequestBuilder:
         """
         Provides operations to manage the depOnboardingSettings property of the microsoft.graph.deviceManagement entity.
         Args:
             dep_onboarding_setting_id: Unique identifier of the item
-        Returns: dep_onboarding_setting_item_request_builder.DepOnboardingSettingItemRequestBuilder
+        Returns: DepOnboardingSettingItemRequestBuilder
         """
-        if dep_onboarding_setting_id is None:
-            raise Exception("dep_onboarding_setting_id cannot be undefined")
-        from .item import dep_onboarding_setting_item_request_builder
+        if not dep_onboarding_setting_id:
+            raise TypeError("dep_onboarding_setting_id cannot be null.")
+        from .item.dep_onboarding_setting_item_request_builder import DepOnboardingSettingItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["depOnboardingSetting%2Did"] = dep_onboarding_setting_id
-        return dep_onboarding_setting_item_request_builder.DepOnboardingSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DepOnboardingSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[DepOnboardingSettingCollectionResponse]:
         """
         This collections of multiple DEP tokens per-tenant.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DepOnboardingSettingCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import dep_onboarding_setting_collection_response
+        from ...models.dep_onboarding_setting_collection_response import DepOnboardingSettingCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DepOnboardingSettingCollectionResponse, error_mapping)
     
-    def get_expiring_vpp_token_count_with_expiring_before_date_time(self,expiring_before_date_time: Optional[str] = None) -> get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder.GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder:
+    def get_expiring_vpp_token_count_with_expiring_before_date_time(self,expiring_before_date_time: Optional[str] = None) -> GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder:
         """
         Provides operations to call the getExpiringVppTokenCount method.
         Args:
-            expiringBeforeDateTime: Usage: expiringBeforeDateTime='{expiringBeforeDateTime}'
-        Returns: get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder.GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder
+            expiring_before_date_time: Usage: expiringBeforeDateTime='{expiringBeforeDateTime}'
+        Returns: GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder
         """
-        if expiring_before_date_time is None:
-            raise Exception("expiring_before_date_time cannot be undefined")
-        from .get_expiring_vpp_token_count_with_expiring_before_date_time import get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder
+        if not expiring_before_date_time:
+            raise TypeError("expiring_before_date_time cannot be null.")
+        from .get_expiring_vpp_token_count_with_expiring_before_date_time.get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder import GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder
 
-        return get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder.GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(self.request_adapter, self.path_parameters, expiring_before_date_time)
+        return GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(self.request_adapter, self.path_parameters, expiring_before_date_time)
     
-    async def post(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
+    async def post(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[DepOnboardingSetting]:
         """
         Create new navigation property to depOnboardingSettings for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[dep_onboarding_setting.DepOnboardingSetting]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DepOnboardingSetting]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import dep_onboarding_setting
+        from ...models.dep_onboarding_setting import DepOnboardingSetting
 
-        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, error_mapping)
+        return await self.request_adapter.send_async(request_info, DepOnboardingSetting, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         This collections of multiple DEP tokens per-tenant.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -131,16 +124,16 @@ class DepOnboardingSettingsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to depOnboardingSettings for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -153,13 +146,13 @@ class DepOnboardingSettingsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DepOnboardingSettingsRequestBuilderGetQueryParameters():
@@ -170,11 +163,11 @@ class DepOnboardingSettingsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -218,31 +211,27 @@ class DepOnboardingSettingsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DepOnboardingSettingsRequestBuilderGetRequestConfiguration():
+    class DepOnboardingSettingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[DepOnboardingSettingsRequestBuilder.DepOnboardingSettingsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DepOnboardingSettingsRequestBuilderPostRequestConfiguration():
+    class DepOnboardingSettingsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

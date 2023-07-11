@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,15 +11,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import recommendation
-    from ....models.o_data_errors import o_data_error
-    from .complete import complete_request_builder
-    from .dismiss import dismiss_request_builder
-    from .impacted_resources import impacted_resources_request_builder
-    from .postpone import postpone_request_builder
-    from .reactivate import reactivate_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.recommendation import Recommendation
+    from .complete.complete_request_builder import CompleteRequestBuilder
+    from .dismiss.dismiss_request_builder import DismissRequestBuilder
+    from .impacted_resources.impacted_resources_request_builder import ImpactedResourcesRequestBuilder
+    from .postpone.postpone_request_builder import PostponeRequestBuilder
+    from .reactivate.reactivate_request_builder import ReactivateRequestBuilder
 
-class RecommendationItemRequestBuilder():
+class RecommendationItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the recommendations property of the microsoft.graph.directory entity.
     """
@@ -26,91 +27,82 @@ class RecommendationItemRequestBuilder():
         """
         Instantiates a new RecommendationItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/directory/recommendations/{recommendation%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/directory/recommendations/{recommendation%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RecommendationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property recommendations for directory
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RecommendationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[recommendation.Recommendation]:
+    async def get(self,request_configuration: Optional[RecommendationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Recommendation]:
         """
-        List of recommended improvements to improve tenant posture.
+        Read the properties and relationships of a recommendation object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[recommendation.Recommendation]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Recommendation]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import recommendation
+        from ....models.recommendation import Recommendation
 
-        return await self.request_adapter.send_async(request_info, recommendation.Recommendation, error_mapping)
+        return await self.request_adapter.send_async(request_info, Recommendation, error_mapping)
     
-    async def patch(self,body: Optional[recommendation.Recommendation] = None, request_configuration: Optional[RecommendationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[recommendation.Recommendation]:
+    async def patch(self,body: Optional[Recommendation] = None, request_configuration: Optional[RecommendationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Recommendation]:
         """
         Update the navigation property recommendations in directory
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[recommendation.Recommendation]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Recommendation]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import recommendation
+        from ....models.recommendation import Recommendation
 
-        return await self.request_adapter.send_async(request_info, recommendation.Recommendation, error_mapping)
+        return await self.request_adapter.send_async(request_info, Recommendation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RecommendationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property recommendations for directory
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -124,9 +116,9 @@ class RecommendationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RecommendationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of recommended improvements to improve tenant posture.
+        Read the properties and relationships of a recommendation object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -140,16 +132,16 @@ class RecommendationItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[recommendation.Recommendation] = None, request_configuration: Optional[RecommendationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Recommendation] = None, request_configuration: Optional[RecommendationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property recommendations in directory
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,76 +154,74 @@ class RecommendationItemRequestBuilder():
         return request_info
     
     @property
-    def complete(self) -> complete_request_builder.CompleteRequestBuilder:
+    def complete(self) -> CompleteRequestBuilder:
         """
         Provides operations to call the complete method.
         """
-        from .complete import complete_request_builder
+        from .complete.complete_request_builder import CompleteRequestBuilder
 
-        return complete_request_builder.CompleteRequestBuilder(self.request_adapter, self.path_parameters)
+        return CompleteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def dismiss(self) -> dismiss_request_builder.DismissRequestBuilder:
+    def dismiss(self) -> DismissRequestBuilder:
         """
         Provides operations to call the dismiss method.
         """
-        from .dismiss import dismiss_request_builder
+        from .dismiss.dismiss_request_builder import DismissRequestBuilder
 
-        return dismiss_request_builder.DismissRequestBuilder(self.request_adapter, self.path_parameters)
+        return DismissRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def impacted_resources(self) -> impacted_resources_request_builder.ImpactedResourcesRequestBuilder:
+    def impacted_resources(self) -> ImpactedResourcesRequestBuilder:
         """
         Provides operations to manage the impactedResources property of the microsoft.graph.recommendationBase entity.
         """
-        from .impacted_resources import impacted_resources_request_builder
+        from .impacted_resources.impacted_resources_request_builder import ImpactedResourcesRequestBuilder
 
-        return impacted_resources_request_builder.ImpactedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ImpactedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def postpone(self) -> postpone_request_builder.PostponeRequestBuilder:
+    def postpone(self) -> PostponeRequestBuilder:
         """
         Provides operations to call the postpone method.
         """
-        from .postpone import postpone_request_builder
+        from .postpone.postpone_request_builder import PostponeRequestBuilder
 
-        return postpone_request_builder.PostponeRequestBuilder(self.request_adapter, self.path_parameters)
+        return PostponeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reactivate(self) -> reactivate_request_builder.ReactivateRequestBuilder:
+    def reactivate(self) -> ReactivateRequestBuilder:
         """
         Provides operations to call the reactivate method.
         """
-        from .reactivate import reactivate_request_builder
+        from .reactivate.reactivate_request_builder import ReactivateRequestBuilder
 
-        return reactivate_request_builder.ReactivateRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReactivateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RecommendationItemRequestBuilderDeleteRequestConfiguration():
+    class RecommendationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class RecommendationItemRequestBuilderGetQueryParameters():
         """
-        List of recommended improvements to improve tenant posture.
+        Read the properties and relationships of a recommendation object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -245,31 +235,27 @@ class RecommendationItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RecommendationItemRequestBuilderGetRequestConfiguration():
+    class RecommendationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[RecommendationItemRequestBuilder.RecommendationItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RecommendationItemRequestBuilderPatchRequestConfiguration():
+    class RecommendationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

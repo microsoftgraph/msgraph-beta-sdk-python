@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MobileAppActionType(Enum):
+class MobileAppActionType(str, Enum):
     # Unknown result.
     Unknown = "unknown",
     # Application install command was sent.

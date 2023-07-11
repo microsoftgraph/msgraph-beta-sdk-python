@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,20 +11,20 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import sales_invoice
-    from ......models.o_data_errors import o_data_error
-    from .cancel import cancel_request_builder
-    from .cancel_and_send import cancel_and_send_request_builder
-    from .currency import currency_request_builder
-    from .customer import customer_request_builder
-    from .payment_term import payment_term_request_builder
-    from .post import post_request_builder
-    from .post_and_send import post_and_send_request_builder
-    from .sales_invoice_lines import sales_invoice_lines_request_builder
-    from .send import send_request_builder
-    from .shipment_method import shipment_method_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.sales_invoice import SalesInvoice
+    from .cancel.cancel_request_builder import CancelRequestBuilder
+    from .cancel_and_send.cancel_and_send_request_builder import CancelAndSendRequestBuilder
+    from .currency.currency_request_builder import CurrencyRequestBuilder
+    from .customer.customer_request_builder import CustomerRequestBuilder
+    from .payment_term.payment_term_request_builder import PaymentTermRequestBuilder
+    from .post.post_request_builder import PostRequestBuilder
+    from .post_and_send.post_and_send_request_builder import PostAndSendRequestBuilder
+    from .sales_invoice_lines.sales_invoice_lines_request_builder import SalesInvoiceLinesRequestBuilder
+    from .send.send_request_builder import SendRequestBuilder
+    from .shipment_method.shipment_method_request_builder import ShipmentMethodRequestBuilder
 
-class SalesInvoiceItemRequestBuilder():
+class SalesInvoiceItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the salesInvoices property of the microsoft.graph.company entity.
     """
@@ -31,72 +32,63 @@ class SalesInvoiceItemRequestBuilder():
         """
         Instantiates a new SalesInvoiceItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/salesInvoices/{salesInvoice%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/financials/companies/{company%2Did}/salesInvoices/{salesInvoice%2Did}{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[SalesInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_invoice.SalesInvoice]:
+    async def get(self,request_configuration: Optional[SalesInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SalesInvoice]:
         """
         Get salesInvoices from financials
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[sales_invoice.SalesInvoice]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SalesInvoice]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import sales_invoice
+        from ......models.sales_invoice import SalesInvoice
 
-        return await self.request_adapter.send_async(request_info, sales_invoice.SalesInvoice, error_mapping)
+        return await self.request_adapter.send_async(request_info, SalesInvoice, error_mapping)
     
-    async def patch(self,body: Optional[sales_invoice.SalesInvoice] = None, request_configuration: Optional[SalesInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_invoice.SalesInvoice]:
+    async def patch(self,body: Optional[SalesInvoice] = None, request_configuration: Optional[SalesInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SalesInvoice]:
         """
         Update the navigation property salesInvoices in financials
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[sales_invoice.SalesInvoice]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SalesInvoice]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import sales_invoice
+        from ......models.sales_invoice import SalesInvoice
 
-        return await self.request_adapter.send_async(request_info, sales_invoice.SalesInvoice, error_mapping)
+        return await self.request_adapter.send_async(request_info, SalesInvoice, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SalesInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get salesInvoices from financials
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -110,16 +102,16 @@ class SalesInvoiceItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[sales_invoice.SalesInvoice] = None, request_configuration: Optional[SalesInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SalesInvoice] = None, request_configuration: Optional[SalesInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property salesInvoices in financials
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -132,94 +124,94 @@ class SalesInvoiceItemRequestBuilder():
         return request_info
     
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+    def cancel(self) -> CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
-        from .cancel import cancel_request_builder
+        from .cancel.cancel_request_builder import CancelRequestBuilder
 
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+        return CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cancel_and_send(self) -> cancel_and_send_request_builder.CancelAndSendRequestBuilder:
+    def cancel_and_send(self) -> CancelAndSendRequestBuilder:
         """
         Provides operations to call the cancelAndSend method.
         """
-        from .cancel_and_send import cancel_and_send_request_builder
+        from .cancel_and_send.cancel_and_send_request_builder import CancelAndSendRequestBuilder
 
-        return cancel_and_send_request_builder.CancelAndSendRequestBuilder(self.request_adapter, self.path_parameters)
+        return CancelAndSendRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
+    def currency(self) -> CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.salesInvoice entity.
         """
-        from .currency import currency_request_builder
+        from .currency.currency_request_builder import CurrencyRequestBuilder
 
-        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
+        return CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def customer(self) -> customer_request_builder.CustomerRequestBuilder:
+    def customer(self) -> CustomerRequestBuilder:
         """
         Provides operations to manage the customer property of the microsoft.graph.salesInvoice entity.
         """
-        from .customer import customer_request_builder
+        from .customer.customer_request_builder import CustomerRequestBuilder
 
-        return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
+    def payment_term(self) -> PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.salesInvoice entity.
         """
-        from .payment_term import payment_term_request_builder
+        from .payment_term.payment_term_request_builder import PaymentTermRequestBuilder
 
-        return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
+        return PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def post_and_send(self) -> post_and_send_request_builder.PostAndSendRequestBuilder:
+    def post_and_send(self) -> PostAndSendRequestBuilder:
         """
         Provides operations to call the postAndSend method.
         """
-        from .post_and_send import post_and_send_request_builder
+        from .post_and_send.post_and_send_request_builder import PostAndSendRequestBuilder
 
-        return post_and_send_request_builder.PostAndSendRequestBuilder(self.request_adapter, self.path_parameters)
+        return PostAndSendRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def post_path(self) -> post_request_builder.PostRequestBuilder:
+    def post_path(self) -> PostRequestBuilder:
         """
         Provides operations to call the post method.
         """
-        from .post import post_request_builder
+        from .post.post_request_builder import PostRequestBuilder
 
-        return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
+        return PostRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_invoice_lines(self) -> sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder:
+    def sales_invoice_lines(self) -> SalesInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the salesInvoiceLines property of the microsoft.graph.salesInvoice entity.
         """
-        from .sales_invoice_lines import sales_invoice_lines_request_builder
+        from .sales_invoice_lines.sales_invoice_lines_request_builder import SalesInvoiceLinesRequestBuilder
 
-        return sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send(self) -> send_request_builder.SendRequestBuilder:
+    def send(self) -> SendRequestBuilder:
         """
         Provides operations to call the send method.
         """
-        from .send import send_request_builder
+        from .send.send_request_builder import SendRequestBuilder
 
-        return send_request_builder.SendRequestBuilder(self.request_adapter, self.path_parameters)
+        return SendRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def shipment_method(self) -> shipment_method_request_builder.ShipmentMethodRequestBuilder:
+    def shipment_method(self) -> ShipmentMethodRequestBuilder:
         """
         Provides operations to manage the shipmentMethod property of the microsoft.graph.salesInvoice entity.
         """
-        from .shipment_method import shipment_method_request_builder
+        from .shipment_method.shipment_method_request_builder import ShipmentMethodRequestBuilder
 
-        return shipment_method_request_builder.ShipmentMethodRequestBuilder(self.request_adapter, self.path_parameters)
+        return ShipmentMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SalesInvoiceItemRequestBuilderGetQueryParameters():
@@ -230,11 +222,11 @@ class SalesInvoiceItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -248,31 +240,27 @@ class SalesInvoiceItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SalesInvoiceItemRequestBuilderGetRequestConfiguration():
+    class SalesInvoiceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SalesInvoiceItemRequestBuilder.SalesInvoiceItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SalesInvoiceItemRequestBuilderPatchRequestConfiguration():
+    class SalesInvoiceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

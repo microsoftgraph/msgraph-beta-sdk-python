@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PlannerTaskTargetKind(Enum):
+class PlannerTaskTargetKind(str, Enum):
     Group = "group",
     UnknownFutureValue = "unknownFutureValue",
 

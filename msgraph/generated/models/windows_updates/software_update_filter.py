@@ -1,41 +1,41 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import content_filter, driver_update_filter, windows_update_filter
+    from .content_filter import ContentFilter
+    from .driver_update_filter import DriverUpdateFilter
+    from .windows_update_filter import WindowsUpdateFilter
 
-from . import content_filter
+from .content_filter import ContentFilter
 
-class SoftwareUpdateFilter(content_filter.ContentFilter):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SoftwareUpdateFilter and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.softwareUpdateFilter"
+@dataclass
+class SoftwareUpdateFilter(ContentFilter):
+    odata_type = "#microsoft.graph.windowsUpdates.softwareUpdateFilter"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SoftwareUpdateFilter:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: SoftwareUpdateFilter
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.windowsUpdates.driverUpdateFilter":
-                from . import driver_update_filter
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.driverUpdateFilter".casefold():
+            from .driver_update_filter import DriverUpdateFilter
 
-                return driver_update_filter.DriverUpdateFilter()
-            if mapping_value == "#microsoft.graph.windowsUpdates.windowsUpdateFilter":
-                from . import windows_update_filter
+            return DriverUpdateFilter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.windowsUpdateFilter".casefold():
+            from .windows_update_filter import WindowsUpdateFilter
 
-                return windows_update_filter.WindowsUpdateFilter()
+            return WindowsUpdateFilter()
         return SoftwareUpdateFilter()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -43,7 +43,13 @@ class SoftwareUpdateFilter(content_filter.ContentFilter):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import content_filter, driver_update_filter, windows_update_filter
+        from .content_filter import ContentFilter
+        from .driver_update_filter import DriverUpdateFilter
+        from .windows_update_filter import WindowsUpdateFilter
+
+        from .content_filter import ContentFilter
+        from .driver_update_filter import DriverUpdateFilter
+        from .windows_update_filter import WindowsUpdateFilter
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -57,8 +63,8 @@ class SoftwareUpdateFilter(content_filter.ContentFilter):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

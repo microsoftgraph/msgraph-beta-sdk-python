@@ -1,289 +1,93 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, managed_device, remediation_state, run_state
+    from .entity import Entity
+    from .managed_device import ManagedDevice
+    from .remediation_state import RemediationState
+    from .run_state import RunState
 
-from . import entity
+from .entity import Entity
 
-class DeviceHealthScriptDeviceState(entity.Entity):
+@dataclass
+class DeviceHealthScriptDeviceState(Entity):
     """
     Contains properties for device run state of the device health script.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceHealthScriptDeviceState and sets the default values.
-        """
-        super().__init__()
-        # A list of the assignment filter ids used for health script applicability evaluation
-        self._assignment_filter_ids: Optional[List[str]] = None
-        # Indicates the type of execution status of the device management script.
-        self._detection_state: Optional[run_state.RunState] = None
-        # The next timestamp of when the device health script is expected to execute
-        self._expected_state_update_date_time: Optional[datetime] = None
-        # The last timestamp of when the device health script executed
-        self._last_state_update_date_time: Optional[datetime] = None
-        # The last time that Intune Managment Extension synced with Intune
-        self._last_sync_date_time: Optional[datetime] = None
-        # The managed device on which the device health script executed
-        self._managed_device: Optional[managed_device.ManagedDevice] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Error from the detection script after remediation
-        self._post_remediation_detection_script_error: Optional[str] = None
-        # Detection script output after remediation
-        self._post_remediation_detection_script_output: Optional[str] = None
-        # Error from the detection script before remediation
-        self._pre_remediation_detection_script_error: Optional[str] = None
-        # Output of the detection script before remediation
-        self._pre_remediation_detection_script_output: Optional[str] = None
-        # Error output of the remediation script
-        self._remediation_script_error: Optional[str] = None
-        # Indicates the type of execution status of the device management script.
-        self._remediation_state: Optional[remediation_state.RemediationState] = None
-    
-    @property
-    def assignment_filter_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the assignmentFilterIds property value. A list of the assignment filter ids used for health script applicability evaluation
-        Returns: Optional[List[str]]
-        """
-        return self._assignment_filter_ids
-    
-    @assignment_filter_ids.setter
-    def assignment_filter_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the assignmentFilterIds property value. A list of the assignment filter ids used for health script applicability evaluation
-        Args:
-            value: Value to set for the assignment_filter_ids property.
-        """
-        self._assignment_filter_ids = value
+    # A list of the assignment filter ids used for health script applicability evaluation
+    assignment_filter_ids: Optional[List[str]] = None
+    # Indicates the type of execution status of the device management script.
+    detection_state: Optional[RunState] = None
+    # The next timestamp of when the device health script is expected to execute
+    expected_state_update_date_time: Optional[datetime.datetime] = None
+    # The last timestamp of when the device health script executed
+    last_state_update_date_time: Optional[datetime.datetime] = None
+    # The last time that Intune Managment Extension synced with Intune
+    last_sync_date_time: Optional[datetime.datetime] = None
+    # The managed device on which the device health script executed
+    managed_device: Optional[ManagedDevice] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Error from the detection script after remediation
+    post_remediation_detection_script_error: Optional[str] = None
+    # Detection script output after remediation
+    post_remediation_detection_script_output: Optional[str] = None
+    # Error from the detection script before remediation
+    pre_remediation_detection_script_error: Optional[str] = None
+    # Output of the detection script before remediation
+    pre_remediation_detection_script_output: Optional[str] = None
+    # Error output of the remediation script
+    remediation_script_error: Optional[str] = None
+    # Indicates the type of execution status of the device management script.
+    remediation_state: Optional[RemediationState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptDeviceState:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceHealthScriptDeviceState
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceHealthScriptDeviceState()
-    
-    @property
-    def detection_state(self,) -> Optional[run_state.RunState]:
-        """
-        Gets the detectionState property value. Indicates the type of execution status of the device management script.
-        Returns: Optional[run_state.RunState]
-        """
-        return self._detection_state
-    
-    @detection_state.setter
-    def detection_state(self,value: Optional[run_state.RunState] = None) -> None:
-        """
-        Sets the detectionState property value. Indicates the type of execution status of the device management script.
-        Args:
-            value: Value to set for the detection_state property.
-        """
-        self._detection_state = value
-    
-    @property
-    def expected_state_update_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the expectedStateUpdateDateTime property value. The next timestamp of when the device health script is expected to execute
-        Returns: Optional[datetime]
-        """
-        return self._expected_state_update_date_time
-    
-    @expected_state_update_date_time.setter
-    def expected_state_update_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the expectedStateUpdateDateTime property value. The next timestamp of when the device health script is expected to execute
-        Args:
-            value: Value to set for the expected_state_update_date_time property.
-        """
-        self._expected_state_update_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, managed_device, remediation_state, run_state
+        from .entity import Entity
+        from .managed_device import ManagedDevice
+        from .remediation_state import RemediationState
+        from .run_state import RunState
+
+        from .entity import Entity
+        from .managed_device import ManagedDevice
+        from .remediation_state import RemediationState
+        from .run_state import RunState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "assignmentFilterIds": lambda n : setattr(self, 'assignment_filter_ids', n.get_collection_of_primitive_values(str)),
-            "detectionState": lambda n : setattr(self, 'detection_state', n.get_enum_value(run_state.RunState)),
+            "detectionState": lambda n : setattr(self, 'detection_state', n.get_enum_value(RunState)),
             "expectedStateUpdateDateTime": lambda n : setattr(self, 'expected_state_update_date_time', n.get_datetime_value()),
             "lastStateUpdateDateTime": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "managedDevice": lambda n : setattr(self, 'managed_device', n.get_object_value(managed_device.ManagedDevice)),
+            "managedDevice": lambda n : setattr(self, 'managed_device', n.get_object_value(ManagedDevice)),
             "postRemediationDetectionScriptError": lambda n : setattr(self, 'post_remediation_detection_script_error', n.get_str_value()),
             "postRemediationDetectionScriptOutput": lambda n : setattr(self, 'post_remediation_detection_script_output', n.get_str_value()),
             "preRemediationDetectionScriptError": lambda n : setattr(self, 'pre_remediation_detection_script_error', n.get_str_value()),
             "preRemediationDetectionScriptOutput": lambda n : setattr(self, 'pre_remediation_detection_script_output', n.get_str_value()),
             "remediationScriptError": lambda n : setattr(self, 'remediation_script_error', n.get_str_value()),
-            "remediationState": lambda n : setattr(self, 'remediation_state', n.get_enum_value(remediation_state.RemediationState)),
+            "remediationState": lambda n : setattr(self, 'remediation_state', n.get_enum_value(RemediationState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_state_update_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastStateUpdateDateTime property value. The last timestamp of when the device health script executed
-        Returns: Optional[datetime]
-        """
-        return self._last_state_update_date_time
-    
-    @last_state_update_date_time.setter
-    def last_state_update_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastStateUpdateDateTime property value. The last timestamp of when the device health script executed
-        Args:
-            value: Value to set for the last_state_update_date_time property.
-        """
-        self._last_state_update_date_time = value
-    
-    @property
-    def last_sync_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSyncDateTime property value. The last time that Intune Managment Extension synced with Intune
-        Returns: Optional[datetime]
-        """
-        return self._last_sync_date_time
-    
-    @last_sync_date_time.setter
-    def last_sync_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSyncDateTime property value. The last time that Intune Managment Extension synced with Intune
-        Args:
-            value: Value to set for the last_sync_date_time property.
-        """
-        self._last_sync_date_time = value
-    
-    @property
-    def managed_device(self,) -> Optional[managed_device.ManagedDevice]:
-        """
-        Gets the managedDevice property value. The managed device on which the device health script executed
-        Returns: Optional[managed_device.ManagedDevice]
-        """
-        return self._managed_device
-    
-    @managed_device.setter
-    def managed_device(self,value: Optional[managed_device.ManagedDevice] = None) -> None:
-        """
-        Sets the managedDevice property value. The managed device on which the device health script executed
-        Args:
-            value: Value to set for the managed_device property.
-        """
-        self._managed_device = value
-    
-    @property
-    def post_remediation_detection_script_error(self,) -> Optional[str]:
-        """
-        Gets the postRemediationDetectionScriptError property value. Error from the detection script after remediation
-        Returns: Optional[str]
-        """
-        return self._post_remediation_detection_script_error
-    
-    @post_remediation_detection_script_error.setter
-    def post_remediation_detection_script_error(self,value: Optional[str] = None) -> None:
-        """
-        Sets the postRemediationDetectionScriptError property value. Error from the detection script after remediation
-        Args:
-            value: Value to set for the post_remediation_detection_script_error property.
-        """
-        self._post_remediation_detection_script_error = value
-    
-    @property
-    def post_remediation_detection_script_output(self,) -> Optional[str]:
-        """
-        Gets the postRemediationDetectionScriptOutput property value. Detection script output after remediation
-        Returns: Optional[str]
-        """
-        return self._post_remediation_detection_script_output
-    
-    @post_remediation_detection_script_output.setter
-    def post_remediation_detection_script_output(self,value: Optional[str] = None) -> None:
-        """
-        Sets the postRemediationDetectionScriptOutput property value. Detection script output after remediation
-        Args:
-            value: Value to set for the post_remediation_detection_script_output property.
-        """
-        self._post_remediation_detection_script_output = value
-    
-    @property
-    def pre_remediation_detection_script_error(self,) -> Optional[str]:
-        """
-        Gets the preRemediationDetectionScriptError property value. Error from the detection script before remediation
-        Returns: Optional[str]
-        """
-        return self._pre_remediation_detection_script_error
-    
-    @pre_remediation_detection_script_error.setter
-    def pre_remediation_detection_script_error(self,value: Optional[str] = None) -> None:
-        """
-        Sets the preRemediationDetectionScriptError property value. Error from the detection script before remediation
-        Args:
-            value: Value to set for the pre_remediation_detection_script_error property.
-        """
-        self._pre_remediation_detection_script_error = value
-    
-    @property
-    def pre_remediation_detection_script_output(self,) -> Optional[str]:
-        """
-        Gets the preRemediationDetectionScriptOutput property value. Output of the detection script before remediation
-        Returns: Optional[str]
-        """
-        return self._pre_remediation_detection_script_output
-    
-    @pre_remediation_detection_script_output.setter
-    def pre_remediation_detection_script_output(self,value: Optional[str] = None) -> None:
-        """
-        Sets the preRemediationDetectionScriptOutput property value. Output of the detection script before remediation
-        Args:
-            value: Value to set for the pre_remediation_detection_script_output property.
-        """
-        self._pre_remediation_detection_script_output = value
-    
-    @property
-    def remediation_script_error(self,) -> Optional[str]:
-        """
-        Gets the remediationScriptError property value. Error output of the remediation script
-        Returns: Optional[str]
-        """
-        return self._remediation_script_error
-    
-    @remediation_script_error.setter
-    def remediation_script_error(self,value: Optional[str] = None) -> None:
-        """
-        Sets the remediationScriptError property value. Error output of the remediation script
-        Args:
-            value: Value to set for the remediation_script_error property.
-        """
-        self._remediation_script_error = value
-    
-    @property
-    def remediation_state(self,) -> Optional[remediation_state.RemediationState]:
-        """
-        Gets the remediationState property value. Indicates the type of execution status of the device management script.
-        Returns: Optional[remediation_state.RemediationState]
-        """
-        return self._remediation_state
-    
-    @remediation_state.setter
-    def remediation_state(self,value: Optional[remediation_state.RemediationState] = None) -> None:
-        """
-        Sets the remediationState property value. Indicates the type of execution status of the device management script.
-        Args:
-            value: Value to set for the remediation_state property.
-        """
-        self._remediation_state = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -291,8 +95,8 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("assignmentFilterIds", self.assignment_filter_ids)
         writer.write_enum_value("detectionState", self.detection_state)

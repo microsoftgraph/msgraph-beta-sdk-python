@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import exact_match_session, exact_match_session_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import exact_match_session_item_request_builder
+    from .....models.exact_match_session import ExactMatchSession
+    from .....models.exact_match_session_collection_response import ExactMatchSessionCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.exact_match_session_item_request_builder import ExactMatchSessionItemRequestBuilder
 
-class SessionsRequestBuilder():
+class SessionsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
     """
@@ -23,87 +25,78 @@ class SessionsRequestBuilder():
         """
         Instantiates a new SessionsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/dataClassification/exactMatchDataStores/{exactMatchDataStore%2Did}/sessions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/dataClassification/exactMatchDataStores/{exactMatchDataStore%2Did}/sessions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_exact_match_session_id(self,exact_match_session_id: str) -> exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder:
+    def by_exact_match_session_id(self,exact_match_session_id: str) -> ExactMatchSessionItemRequestBuilder:
         """
         Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
         Args:
             exact_match_session_id: Unique identifier of the item
-        Returns: exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder
+        Returns: ExactMatchSessionItemRequestBuilder
         """
-        if exact_match_session_id is None:
-            raise Exception("exact_match_session_id cannot be undefined")
-        from .item import exact_match_session_item_request_builder
+        if not exact_match_session_id:
+            raise TypeError("exact_match_session_id cannot be null.")
+        from .item.exact_match_session_item_request_builder import ExactMatchSessionItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["exactMatchSession%2Did"] = exact_match_session_id
-        return exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ExactMatchSessionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SessionsRequestBuilderGetRequestConfiguration] = None) -> Optional[exact_match_session_collection_response.ExactMatchSessionCollectionResponse]:
+    async def get(self,request_configuration: Optional[SessionsRequestBuilderGetRequestConfiguration] = None) -> Optional[ExactMatchSessionCollectionResponse]:
         """
         Get sessions from dataClassification
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[exact_match_session_collection_response.ExactMatchSessionCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ExactMatchSessionCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import exact_match_session_collection_response
+        from .....models.exact_match_session_collection_response import ExactMatchSessionCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, exact_match_session_collection_response.ExactMatchSessionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ExactMatchSessionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[exact_match_session.ExactMatchSession] = None, request_configuration: Optional[SessionsRequestBuilderPostRequestConfiguration] = None) -> Optional[exact_match_session.ExactMatchSession]:
+    async def post(self,body: Optional[ExactMatchSession] = None, request_configuration: Optional[SessionsRequestBuilderPostRequestConfiguration] = None) -> Optional[ExactMatchSession]:
         """
         Create new navigation property to sessions for dataClassification
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[exact_match_session.ExactMatchSession]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ExactMatchSession]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import exact_match_session
+        from .....models.exact_match_session import ExactMatchSession
 
-        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, error_mapping)
+        return await self.request_adapter.send_async(request_info, ExactMatchSession, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SessionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get sessions from dataClassification
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +110,16 @@ class SessionsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[exact_match_session.ExactMatchSession] = None, request_configuration: Optional[SessionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ExactMatchSession] = None, request_configuration: Optional[SessionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to sessions for dataClassification
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +132,13 @@ class SessionsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SessionsRequestBuilderGetQueryParameters():
@@ -156,11 +149,11 @@ class SessionsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +197,27 @@ class SessionsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SessionsRequestBuilderGetRequestConfiguration():
+    class SessionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SessionsRequestBuilder.SessionsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SessionsRequestBuilderPostRequestConfiguration():
+    class SessionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

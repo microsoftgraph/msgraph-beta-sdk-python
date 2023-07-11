@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SectionEmphasisType(Enum):
+class SectionEmphasisType(str, Enum):
     None_ = "none",
     Neutral = "neutral",
     Soft = "soft",

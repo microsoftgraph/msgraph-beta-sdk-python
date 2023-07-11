@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementTemplateSubtype(Enum):
+class DeviceManagementTemplateSubtype(str, Enum):
     # Template has no subtype
     None_ = "none",
     # Endpoint security firewall subtype

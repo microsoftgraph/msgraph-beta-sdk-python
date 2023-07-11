@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AppInstallControlType(Enum):
+class AppInstallControlType(str, Enum):
     # Not configured
     NotConfigured = "notConfigured",
     # Turn off app recommendations

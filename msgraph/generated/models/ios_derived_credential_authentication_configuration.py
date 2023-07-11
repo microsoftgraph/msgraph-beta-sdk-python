@@ -1,60 +1,48 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_configuration, device_management_derived_credential_settings
+    from .device_configuration import DeviceConfiguration
+    from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
 
-from . import device_configuration
+from .device_configuration import DeviceConfiguration
 
-class IosDerivedCredentialAuthenticationConfiguration(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosDerivedCredentialAuthenticationConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosDerivedCredentialAuthenticationConfiguration"
-        # Tenant level settings for the Derived Credentials to be used for authentication.
-        self._derived_credential_settings: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None
+@dataclass
+class IosDerivedCredentialAuthenticationConfiguration(DeviceConfiguration):
+    """
+    iOS Derived Credential profile.
+    """
+    odata_type = "#microsoft.graph.iosDerivedCredentialAuthenticationConfiguration"
+    # Tenant level settings for the Derived Credentials to be used for authentication.
+    derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosDerivedCredentialAuthenticationConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IosDerivedCredentialAuthenticationConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return IosDerivedCredentialAuthenticationConfiguration()
-    
-    @property
-    def derived_credential_settings(self,) -> Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings]:
-        """
-        Gets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
-        Returns: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings]
-        """
-        return self._derived_credential_settings
-    
-    @derived_credential_settings.setter
-    def derived_credential_settings(self,value: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None) -> None:
-        """
-        Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
-        Args:
-            value: Value to set for the derived_credential_settings property.
-        """
-        self._derived_credential_settings = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_configuration, device_management_derived_credential_settings
+        from .device_configuration import DeviceConfiguration
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+
+        from .device_configuration import DeviceConfiguration
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
+            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,8 +54,8 @@ class IosDerivedCredentialAuthenticationConfiguration(device_configuration.Devic
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("derivedCredentialSettings", self.derived_credential_settings)
     

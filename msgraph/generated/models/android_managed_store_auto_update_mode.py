@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidManagedStoreAutoUpdateMode(Enum):
+class AndroidManagedStoreAutoUpdateMode(str, Enum):
     # Default update behavior (device must be connected to Wifi, charging and not actively used).
     Default = "default",
     # Updates are postponed for a maximum of 90 days after the app becomes out of date.

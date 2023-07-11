@@ -1,57 +1,39 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import file_threat_submission
+    from .file_threat_submission import FileThreatSubmission
 
-from . import file_threat_submission
+from .file_threat_submission import FileThreatSubmission
 
-class FileContentThreatSubmission(file_threat_submission.FileThreatSubmission):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new FileContentThreatSubmission and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.fileContentThreatSubmission"
-        # It specifies the file content in base 64 format.
-        self._file_content: Optional[str] = None
+@dataclass
+class FileContentThreatSubmission(FileThreatSubmission):
+    odata_type = "#microsoft.graph.security.fileContentThreatSubmission"
+    # It specifies the file content in base 64 format.
+    file_content: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FileContentThreatSubmission:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: FileContentThreatSubmission
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return FileContentThreatSubmission()
-    
-    @property
-    def file_content(self,) -> Optional[str]:
-        """
-        Gets the fileContent property value. It specifies the file content in base 64 format.
-        Returns: Optional[str]
-        """
-        return self._file_content
-    
-    @file_content.setter
-    def file_content(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fileContent property value. It specifies the file content in base 64 format.
-        Args:
-            value: Value to set for the file_content property.
-        """
-        self._file_content = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import file_threat_submission
+        from .file_threat_submission import FileThreatSubmission
+
+        from .file_threat_submission import FileThreatSubmission
 
         fields: Dict[str, Callable[[Any], None]] = {
             "fileContent": lambda n : setattr(self, 'file_content', n.get_str_value()),
@@ -66,8 +48,8 @@ class FileContentThreatSubmission(file_threat_submission.FileThreatSubmission):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("fileContent", self.file_content)
     

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceTypes(Enum):
+class DeviceTypes(str, Enum):
     # Desktop.
     Desktop = "desktop",
     # WindowsRT.

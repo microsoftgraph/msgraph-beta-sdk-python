@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DiffieHellmanGroup(Enum):
+class DiffieHellmanGroup(str, Enum):
     # Group1
     Group1 = "group1",
     # Group2

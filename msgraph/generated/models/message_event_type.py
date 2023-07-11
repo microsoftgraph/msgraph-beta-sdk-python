@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MessageEventType(Enum):
+class MessageEventType(str, Enum):
     Received = "received",
     Sent = "sent",
     Delivered = "delivered",

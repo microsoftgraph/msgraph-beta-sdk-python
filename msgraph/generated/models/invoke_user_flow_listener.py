@@ -1,32 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_listener, b2x_identity_user_flow
+    from .authentication_listener import AuthenticationListener
+    from .b2x_identity_user_flow import B2xIdentityUserFlow
 
-from . import authentication_listener
+from .authentication_listener import AuthenticationListener
 
-class InvokeUserFlowListener(authentication_listener.AuthenticationListener):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new InvokeUserFlowListener and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.invokeUserFlowListener"
-        # The user flow that is invoked when this action executes.
-        self._user_flow: Optional[b2x_identity_user_flow.B2xIdentityUserFlow] = None
+@dataclass
+class InvokeUserFlowListener(AuthenticationListener):
+    odata_type = "#microsoft.graph.invokeUserFlowListener"
+    # The user flow that is invoked when this action executes.
+    user_flow: Optional[B2xIdentityUserFlow] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InvokeUserFlowListener:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: InvokeUserFlowListener
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return InvokeUserFlowListener()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,10 +32,14 @@ class InvokeUserFlowListener(authentication_listener.AuthenticationListener):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_listener, b2x_identity_user_flow
+        from .authentication_listener import AuthenticationListener
+        from .b2x_identity_user_flow import B2xIdentityUserFlow
+
+        from .authentication_listener import AuthenticationListener
+        from .b2x_identity_user_flow import B2xIdentityUserFlow
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "userFlow": lambda n : setattr(self, 'user_flow', n.get_object_value(b2x_identity_user_flow.B2xIdentityUserFlow)),
+            "userFlow": lambda n : setattr(self, 'user_flow', n.get_object_value(B2xIdentityUserFlow)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,26 +51,9 @@ class InvokeUserFlowListener(authentication_listener.AuthenticationListener):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("userFlow", self.user_flow)
-    
-    @property
-    def user_flow(self,) -> Optional[b2x_identity_user_flow.B2xIdentityUserFlow]:
-        """
-        Gets the userFlow property value. The user flow that is invoked when this action executes.
-        Returns: Optional[b2x_identity_user_flow.B2xIdentityUserFlow]
-        """
-        return self._user_flow
-    
-    @user_flow.setter
-    def user_flow(self,value: Optional[b2x_identity_user_flow.B2xIdentityUserFlow] = None) -> None:
-        """
-        Sets the userFlow property value. The user flow that is invoked when this action executes.
-        Args:
-            value: Value to set for the user_flow property.
-        """
-        self._user_flow = value
     
 

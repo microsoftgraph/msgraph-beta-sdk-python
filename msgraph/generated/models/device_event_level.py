@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceEventLevel(Enum):
+class DeviceEventLevel(str, Enum):
     # Indicates that the device event level is none.
     None_ = "none",
     # Indicates that the device event level is verbose.

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RoutingPolicy(Enum):
+class RoutingPolicy(str, Enum):
     None_ = "none",
     NoMissedCall = "noMissedCall",
     DisableForwardingExceptPhone = "disableForwardingExceptPhone",

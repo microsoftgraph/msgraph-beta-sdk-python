@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationSettingAccessTypes(Enum):
+class DeviceManagementConfigurationSettingAccessTypes(str, Enum):
     None_ = "none",
     Add = "add",
     Copy = "copy",

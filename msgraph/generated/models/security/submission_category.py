@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SubmissionCategory(Enum):
+class SubmissionCategory(str, Enum):
     NotJunk = "notJunk",
     Spam = "spam",
     Phishing = "phishing",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementExchangeAccessLevel(Enum):
+class DeviceManagementExchangeAccessLevel(str, Enum):
     # No device access rule has been configured in Exchange.
     None_ = "none",
     # Allow the device access to Exchange.

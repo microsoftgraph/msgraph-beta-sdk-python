@@ -1,68 +1,35 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import delivery_optimization_bandwidth, delivery_optimization_bandwidth_business_hours_limit
+    from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
+    from .delivery_optimization_bandwidth_business_hours_limit import DeliveryOptimizationBandwidthBusinessHoursLimit
 
-from . import delivery_optimization_bandwidth
+from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
 
-class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_bandwidth.DeliveryOptimizationBandwidth):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeliveryOptimizationBandwidthHoursWithPercentage and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deliveryOptimizationBandwidthHoursWithPercentage"
-        # Background download percentage hours.
-        self._bandwidth_background_percentage_hours: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit] = None
-        # Foreground download percentage hours.
-        self._bandwidth_foreground_percentage_hours: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit] = None
-    
-    @property
-    def bandwidth_background_percentage_hours(self,) -> Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit]:
-        """
-        Gets the bandwidthBackgroundPercentageHours property value. Background download percentage hours.
-        Returns: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit]
-        """
-        return self._bandwidth_background_percentage_hours
-    
-    @bandwidth_background_percentage_hours.setter
-    def bandwidth_background_percentage_hours(self,value: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit] = None) -> None:
-        """
-        Sets the bandwidthBackgroundPercentageHours property value. Background download percentage hours.
-        Args:
-            value: Value to set for the bandwidth_background_percentage_hours property.
-        """
-        self._bandwidth_background_percentage_hours = value
-    
-    @property
-    def bandwidth_foreground_percentage_hours(self,) -> Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit]:
-        """
-        Gets the bandwidthForegroundPercentageHours property value. Foreground download percentage hours.
-        Returns: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit]
-        """
-        return self._bandwidth_foreground_percentage_hours
-    
-    @bandwidth_foreground_percentage_hours.setter
-    def bandwidth_foreground_percentage_hours(self,value: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit] = None) -> None:
-        """
-        Sets the bandwidthForegroundPercentageHours property value. Foreground download percentage hours.
-        Args:
-            value: Value to set for the bandwidth_foreground_percentage_hours property.
-        """
-        self._bandwidth_foreground_percentage_hours = value
+@dataclass
+class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandwidth):
+    """
+    Bandwidth restriction types
+    """
+    odata_type = "#microsoft.graph.deliveryOptimizationBandwidthHoursWithPercentage"
+    # Background download percentage hours.
+    bandwidth_background_percentage_hours: Optional[DeliveryOptimizationBandwidthBusinessHoursLimit] = None
+    # Foreground download percentage hours.
+    bandwidth_foreground_percentage_hours: Optional[DeliveryOptimizationBandwidthBusinessHoursLimit] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationBandwidthHoursWithPercentage:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeliveryOptimizationBandwidthHoursWithPercentage
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeliveryOptimizationBandwidthHoursWithPercentage()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -70,11 +37,15 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_ban
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import delivery_optimization_bandwidth, delivery_optimization_bandwidth_business_hours_limit
+        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
+        from .delivery_optimization_bandwidth_business_hours_limit import DeliveryOptimizationBandwidthBusinessHoursLimit
+
+        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
+        from .delivery_optimization_bandwidth_business_hours_limit import DeliveryOptimizationBandwidthBusinessHoursLimit
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "bandwidthBackgroundPercentageHours": lambda n : setattr(self, 'bandwidth_background_percentage_hours', n.get_object_value(delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit)),
-            "bandwidthForegroundPercentageHours": lambda n : setattr(self, 'bandwidth_foreground_percentage_hours', n.get_object_value(delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit)),
+            "bandwidthBackgroundPercentageHours": lambda n : setattr(self, 'bandwidth_background_percentage_hours', n.get_object_value(DeliveryOptimizationBandwidthBusinessHoursLimit)),
+            "bandwidthForegroundPercentageHours": lambda n : setattr(self, 'bandwidth_foreground_percentage_hours', n.get_object_value(DeliveryOptimizationBandwidthBusinessHoursLimit)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -86,8 +57,8 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_ban
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("bandwidthBackgroundPercentageHours", self.bandwidth_background_percentage_hours)
         writer.write_object_value("bandwidthForegroundPercentageHours", self.bandwidth_foreground_percentage_hours)

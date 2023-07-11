@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidManagedStoreAccountAppSyncStatus(Enum):
+class AndroidManagedStoreAccountAppSyncStatus(str, Enum):
     Success = "success",
     CredentialsNotValid = "credentialsNotValid",
     AndroidForWorkApiError = "androidForWorkApiError",

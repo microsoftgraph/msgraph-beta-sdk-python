@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MeetingRegistrantStatus(Enum):
+class MeetingRegistrantStatus(str, Enum):
     Registered = "registered",
     Canceled = "canceled",
     Processing = "processing",

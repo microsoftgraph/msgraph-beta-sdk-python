@@ -1,6 +1,6 @@
 from enum import Enum
 
-class BookingInvoiceStatus(Enum):
+class BookingInvoiceStatus(str, Enum):
     Draft = "draft",
     Reviewing = "reviewing",
     Open = "open",

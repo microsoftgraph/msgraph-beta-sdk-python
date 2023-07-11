@@ -1,32 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_configuration, windows_network_isolation_policy
+    from .device_configuration import DeviceConfiguration
+    from .windows_network_isolation_policy import WindowsNetworkIsolationPolicy
 
-from . import device_configuration
+from .device_configuration import DeviceConfiguration
 
-class Windows10NetworkBoundaryConfiguration(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10NetworkBoundaryConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10NetworkBoundaryConfiguration"
-        # Windows Network Isolation Policy
-        self._windows_network_isolation_policy: Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy] = None
+@dataclass
+class Windows10NetworkBoundaryConfiguration(DeviceConfiguration):
+    """
+    Windows10 Network Boundary Configuration
+    """
+    odata_type = "#microsoft.graph.windows10NetworkBoundaryConfiguration"
+    # Windows Network Isolation Policy
+    windows_network_isolation_policy: Optional[WindowsNetworkIsolationPolicy] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10NetworkBoundaryConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Windows10NetworkBoundaryConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Windows10NetworkBoundaryConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,10 +35,14 @@ class Windows10NetworkBoundaryConfiguration(device_configuration.DeviceConfigura
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_configuration, windows_network_isolation_policy
+        from .device_configuration import DeviceConfiguration
+        from .windows_network_isolation_policy import WindowsNetworkIsolationPolicy
+
+        from .device_configuration import DeviceConfiguration
+        from .windows_network_isolation_policy import WindowsNetworkIsolationPolicy
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "windowsNetworkIsolationPolicy": lambda n : setattr(self, 'windows_network_isolation_policy', n.get_object_value(windows_network_isolation_policy.WindowsNetworkIsolationPolicy)),
+            "windowsNetworkIsolationPolicy": lambda n : setattr(self, 'windows_network_isolation_policy', n.get_object_value(WindowsNetworkIsolationPolicy)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,26 +54,9 @@ class Windows10NetworkBoundaryConfiguration(device_configuration.DeviceConfigura
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("windowsNetworkIsolationPolicy", self.windows_network_isolation_policy)
-    
-    @property
-    def windows_network_isolation_policy(self,) -> Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy]:
-        """
-        Gets the windowsNetworkIsolationPolicy property value. Windows Network Isolation Policy
-        Returns: Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy]
-        """
-        return self._windows_network_isolation_policy
-    
-    @windows_network_isolation_policy.setter
-    def windows_network_isolation_policy(self,value: Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy] = None) -> None:
-        """
-        Sets the windowsNetworkIsolationPolicy property value. Windows Network Isolation Policy
-        Args:
-            value: Value to set for the windows_network_isolation_policy property.
-        """
-        self._windows_network_isolation_policy = value
     
 

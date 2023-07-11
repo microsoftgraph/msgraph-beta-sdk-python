@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IosWallpaperDisplayLocation(Enum):
+class IosWallpaperDisplayLocation(str, Enum):
     # No location specified for wallpaper display.
     NotConfigured = "notConfigured",
     # A configured wallpaper image is displayed on Lock screen.

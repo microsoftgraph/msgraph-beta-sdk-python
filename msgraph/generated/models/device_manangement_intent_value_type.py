@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManangementIntentValueType(Enum):
+class DeviceManangementIntentValueType(str, Enum):
     # The setting value is an integer
     Integer = "integer",
     # The setting value is a boolean

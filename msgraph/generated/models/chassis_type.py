@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ChassisType(Enum):
+class ChassisType(str, Enum):
     # Unknown.
     Unknown = "unknown",
     # Desktop.

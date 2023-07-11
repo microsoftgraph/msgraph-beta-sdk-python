@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MembershipRuleProcessingStatusDetails(Enum):
+class MembershipRuleProcessingStatusDetails(str, Enum):
     NotStarted = "NotStarted",
     Running = "Running",
     Failed = "Failed",

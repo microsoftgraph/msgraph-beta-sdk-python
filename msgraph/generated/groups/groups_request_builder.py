@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,17 +11,18 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import group, group_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .delta import delta_request_builder
-    from .evaluate_dynamic_membership import evaluate_dynamic_membership_request_builder
-    from .get_by_ids import get_by_ids_request_builder
-    from .get_user_owned_objects import get_user_owned_objects_request_builder
-    from .item import group_item_request_builder
-    from .validate_properties import validate_properties_request_builder
+    from ..models.group import Group
+    from ..models.group_collection_response import GroupCollectionResponse
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .delta.delta_request_builder import DeltaRequestBuilder
+    from .evaluate_dynamic_membership.evaluate_dynamic_membership_request_builder import EvaluateDynamicMembershipRequestBuilder
+    from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
+    from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
+    from .item.group_item_request_builder import GroupItemRequestBuilder
+    from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
 
-class GroupsRequestBuilder():
+class GroupsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of group entities.
     """
@@ -28,87 +30,78 @@ class GroupsRequestBuilder():
         """
         Instantiates a new GroupsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/groups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/groups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_group_id(self,group_id: str) -> group_item_request_builder.GroupItemRequestBuilder:
+    def by_group_id(self,group_id: str) -> GroupItemRequestBuilder:
         """
         Provides operations to manage the collection of group entities.
         Args:
             group_id: Unique identifier of the item
-        Returns: group_item_request_builder.GroupItemRequestBuilder
+        Returns: GroupItemRequestBuilder
         """
-        if group_id is None:
-            raise Exception("group_id cannot be undefined")
-        from .item import group_item_request_builder
+        if not group_id:
+            raise TypeError("group_id cannot be null.")
+        from .item.group_item_request_builder import GroupItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["group%2Did"] = group_id
-        return group_item_request_builder.GroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return GroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[group_collection_response.GroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupCollectionResponse]:
         """
         List all the groups available in an organization, excluding dynamic distribution groups. To retrieve dynamic distribution groups, use the Exchange admin center. This operation returns by default only a subset of the more commonly used properties for each group. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the group and specify the properties in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_collection_response.GroupCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GroupCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import group_collection_response
+        from ..models.group_collection_response import GroupCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, group_collection_response.GroupCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group.Group] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[group.Group]:
+    async def post(self,body: Optional[Group] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[Group]:
         """
         Create a new group as specified in the request body. You can create one of the following groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation and specify the properties in a `$select` OData query option. **Note**: To create a team, first create a group then add a team to it, see create team.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group.Group]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Group]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import group
+        from ..models.group import Group
 
-        return await self.request_adapter.send_async(request_info, group.Group, error_mapping)
+        return await self.request_adapter.send_async(request_info, Group, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         List all the groups available in an organization, excluding dynamic distribution groups. To retrieve dynamic distribution groups, use the Exchange admin center. This operation returns by default only a subset of the more commonly used properties for each group. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the group and specify the properties in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -122,16 +115,16 @@ class GroupsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[group.Group] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Group] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new group as specified in the request body. You can create one of the following groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation and specify the properties in a `$select` OData query option. **Note**: To create a team, first create a group then add a team to it, see create team.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -144,58 +137,58 @@ class GroupsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+    def delta(self) -> DeltaRequestBuilder:
         """
         Provides operations to call the delta method.
         """
-        from .delta import delta_request_builder
+        from .delta.delta_request_builder import DeltaRequestBuilder
 
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_dynamic_membership(self) -> evaluate_dynamic_membership_request_builder.EvaluateDynamicMembershipRequestBuilder:
+    def evaluate_dynamic_membership(self) -> EvaluateDynamicMembershipRequestBuilder:
         """
         Provides operations to call the evaluateDynamicMembership method.
         """
-        from .evaluate_dynamic_membership import evaluate_dynamic_membership_request_builder
+        from .evaluate_dynamic_membership.evaluate_dynamic_membership_request_builder import EvaluateDynamicMembershipRequestBuilder
 
-        return evaluate_dynamic_membership_request_builder.EvaluateDynamicMembershipRequestBuilder(self.request_adapter, self.path_parameters)
+        return EvaluateDynamicMembershipRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
+    def get_by_ids(self) -> GetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
-        from .get_by_ids import get_by_ids_request_builder
+        from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
 
-        return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
+    def get_user_owned_objects(self) -> GetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
-        from .get_user_owned_objects import get_user_owned_objects_request_builder
+        from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
 
-        return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
+    def validate_properties(self) -> ValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
         """
-        from .validate_properties import validate_properties_request_builder
+        from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
 
-        return validate_properties_request_builder.ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupsRequestBuilderGetQueryParameters():
@@ -206,11 +199,11 @@ class GroupsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -254,31 +247,27 @@ class GroupsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupsRequestBuilderGetRequestConfiguration():
+    class GroupsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[GroupsRequestBuilder.GroupsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupsRequestBuilderPostRequestConfiguration():
+    class GroupsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

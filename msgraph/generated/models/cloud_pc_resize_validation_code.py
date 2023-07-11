@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcResizeValidationCode(Enum):
+class CloudPcResizeValidationCode(str, Enum):
     Success = "success",
     CloudPcNotFound = "cloudPcNotFound",
     OperationConflict = "operationConflict",

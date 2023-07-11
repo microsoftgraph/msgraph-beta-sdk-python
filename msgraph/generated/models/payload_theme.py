@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PayloadTheme(Enum):
+class PayloadTheme(str, Enum):
     Unknown = "unknown",
     Other = "other",
     AccountActivation = "accountActivation",

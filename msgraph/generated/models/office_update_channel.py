@@ -1,6 +1,6 @@
 from enum import Enum
 
-class OfficeUpdateChannel(Enum):
+class OfficeUpdateChannel(str, Enum):
     None_ = "none",
     Current = "current",
     Deferred = "deferred",

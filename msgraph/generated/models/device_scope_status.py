@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceScopeStatus(Enum):
+class DeviceScopeStatus(str, Enum):
     # Indicates the device scope is not enabled and there are no calculations in progress.
     None_ = "none",
     # Indicates the device scope is enabled and report metrics data are being recalculated by the service.
