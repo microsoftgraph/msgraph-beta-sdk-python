@@ -1,6 +1,6 @@
 from enum import Enum
 
-class InkAccessSetting(Enum):
+class InkAccessSetting(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Enabled.

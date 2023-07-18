@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PersonalProfilePersonalPlayStoreMode(Enum):
+class PersonalProfilePersonalPlayStoreMode(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Blocked Apps.

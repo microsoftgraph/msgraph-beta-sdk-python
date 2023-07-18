@@ -1,198 +1,65 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import meta_data_key_string_pair, meta_data_key_value_pair
+    from .meta_data_key_string_pair import MetaDataKeyStringPair
+    from .meta_data_key_value_pair import MetaDataKeyValuePair
 
+@dataclass
 class ServerProcessedContent(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new serverProcessedContent and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # A key-value map where keys are string identifiers and values are component ids. SharePoint servers might decide to use this hint to preload the script for corresponding components for performance boost.
-        self._component_dependencies: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-        # A key-value map where keys are string identifier and values are object of custom key-value pair.
-        self._custom_metadata: Optional[List[meta_data_key_value_pair.MetaDataKeyValuePair]] = None
-        # A key-value map where keys are string identifiers and values are rich text with HTML format. SharePoint servers treat the values as HTML content and run services like safety checks, search index and link fixup on them.
-        self._html_strings: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-        # A key-value map where keys are string identifiers and values are image sources. SharePoint servers treat the values as image sources and run services like search index and link fixup on them.
-        self._image_sources: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-        # A key-value map where keys are string identifiers and values are links. SharePoint servers treat the values as links and run services like link fixup on them.
-        self._links: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # A key-value map where keys are string identifiers and values are strings that should be search indexed.
-        self._searchable_plain_texts: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def component_dependencies(self,) -> Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]:
-        """
-        Gets the componentDependencies property value. A key-value map where keys are string identifiers and values are component ids. SharePoint servers might decide to use this hint to preload the script for corresponding components for performance boost.
-        Returns: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]
-        """
-        return self._component_dependencies
-    
-    @component_dependencies.setter
-    def component_dependencies(self,value: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None) -> None:
-        """
-        Sets the componentDependencies property value. A key-value map where keys are string identifiers and values are component ids. SharePoint servers might decide to use this hint to preload the script for corresponding components for performance boost.
-        Args:
-            value: Value to set for the component_dependencies property.
-        """
-        self._component_dependencies = value
+    # A key-value map where keys are string identifiers and values are component ids. SharePoint servers might decide to use this hint to preload the script for corresponding components for performance boost.
+    component_dependencies: Optional[List[MetaDataKeyStringPair]] = None
+    # A key-value map where keys are string identifier and values are object of custom key-value pair.
+    custom_metadata: Optional[List[MetaDataKeyValuePair]] = None
+    # A key-value map where keys are string identifiers and values are rich text with HTML format. SharePoint servers treat the values as HTML content and run services like safety checks, search index and link fixup on them.
+    html_strings: Optional[List[MetaDataKeyStringPair]] = None
+    # A key-value map where keys are string identifiers and values are image sources. SharePoint servers treat the values as image sources and run services like search index and link fixup on them.
+    image_sources: Optional[List[MetaDataKeyStringPair]] = None
+    # A key-value map where keys are string identifiers and values are links. SharePoint servers treat the values as links and run services like link fixup on them.
+    links: Optional[List[MetaDataKeyStringPair]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # A key-value map where keys are string identifiers and values are strings that should be search indexed.
+    searchable_plain_texts: Optional[List[MetaDataKeyStringPair]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServerProcessedContent:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ServerProcessedContent
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ServerProcessedContent()
-    
-    @property
-    def custom_metadata(self,) -> Optional[List[meta_data_key_value_pair.MetaDataKeyValuePair]]:
-        """
-        Gets the customMetadata property value. A key-value map where keys are string identifier and values are object of custom key-value pair.
-        Returns: Optional[List[meta_data_key_value_pair.MetaDataKeyValuePair]]
-        """
-        return self._custom_metadata
-    
-    @custom_metadata.setter
-    def custom_metadata(self,value: Optional[List[meta_data_key_value_pair.MetaDataKeyValuePair]] = None) -> None:
-        """
-        Sets the customMetadata property value. A key-value map where keys are string identifier and values are object of custom key-value pair.
-        Args:
-            value: Value to set for the custom_metadata property.
-        """
-        self._custom_metadata = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import meta_data_key_string_pair, meta_data_key_value_pair
+        from .meta_data_key_string_pair import MetaDataKeyStringPair
+        from .meta_data_key_value_pair import MetaDataKeyValuePair
+
+        from .meta_data_key_string_pair import MetaDataKeyStringPair
+        from .meta_data_key_value_pair import MetaDataKeyValuePair
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "componentDependencies": lambda n : setattr(self, 'component_dependencies', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
-            "customMetadata": lambda n : setattr(self, 'custom_metadata', n.get_collection_of_object_values(meta_data_key_value_pair.MetaDataKeyValuePair)),
-            "htmlStrings": lambda n : setattr(self, 'html_strings', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
-            "imageSources": lambda n : setattr(self, 'image_sources', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
-            "links": lambda n : setattr(self, 'links', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
+            "componentDependencies": lambda n : setattr(self, 'component_dependencies', n.get_collection_of_object_values(MetaDataKeyStringPair)),
+            "customMetadata": lambda n : setattr(self, 'custom_metadata', n.get_collection_of_object_values(MetaDataKeyValuePair)),
+            "htmlStrings": lambda n : setattr(self, 'html_strings', n.get_collection_of_object_values(MetaDataKeyStringPair)),
+            "imageSources": lambda n : setattr(self, 'image_sources', n.get_collection_of_object_values(MetaDataKeyStringPair)),
+            "links": lambda n : setattr(self, 'links', n.get_collection_of_object_values(MetaDataKeyStringPair)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "searchablePlainTexts": lambda n : setattr(self, 'searchable_plain_texts', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
+            "searchablePlainTexts": lambda n : setattr(self, 'searchable_plain_texts', n.get_collection_of_object_values(MetaDataKeyStringPair)),
         }
         return fields
-    
-    @property
-    def html_strings(self,) -> Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]:
-        """
-        Gets the htmlStrings property value. A key-value map where keys are string identifiers and values are rich text with HTML format. SharePoint servers treat the values as HTML content and run services like safety checks, search index and link fixup on them.
-        Returns: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]
-        """
-        return self._html_strings
-    
-    @html_strings.setter
-    def html_strings(self,value: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None) -> None:
-        """
-        Sets the htmlStrings property value. A key-value map where keys are string identifiers and values are rich text with HTML format. SharePoint servers treat the values as HTML content and run services like safety checks, search index and link fixup on them.
-        Args:
-            value: Value to set for the html_strings property.
-        """
-        self._html_strings = value
-    
-    @property
-    def image_sources(self,) -> Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]:
-        """
-        Gets the imageSources property value. A key-value map where keys are string identifiers and values are image sources. SharePoint servers treat the values as image sources and run services like search index and link fixup on them.
-        Returns: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]
-        """
-        return self._image_sources
-    
-    @image_sources.setter
-    def image_sources(self,value: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None) -> None:
-        """
-        Sets the imageSources property value. A key-value map where keys are string identifiers and values are image sources. SharePoint servers treat the values as image sources and run services like search index and link fixup on them.
-        Args:
-            value: Value to set for the image_sources property.
-        """
-        self._image_sources = value
-    
-    @property
-    def links(self,) -> Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]:
-        """
-        Gets the links property value. A key-value map where keys are string identifiers and values are links. SharePoint servers treat the values as links and run services like link fixup on them.
-        Returns: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]
-        """
-        return self._links
-    
-    @links.setter
-    def links(self,value: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None) -> None:
-        """
-        Sets the links property value. A key-value map where keys are string identifiers and values are links. SharePoint servers treat the values as links and run services like link fixup on them.
-        Args:
-            value: Value to set for the links property.
-        """
-        self._links = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def searchable_plain_texts(self,) -> Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]:
-        """
-        Gets the searchablePlainTexts property value. A key-value map where keys are string identifiers and values are strings that should be search indexed.
-        Returns: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]]
-        """
-        return self._searchable_plain_texts
-    
-    @searchable_plain_texts.setter
-    def searchable_plain_texts(self,value: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None) -> None:
-        """
-        Sets the searchablePlainTexts property value. A key-value map where keys are string identifiers and values are strings that should be search indexed.
-        Args:
-            value: Value to set for the searchable_plain_texts property.
-        """
-        self._searchable_plain_texts = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -200,8 +67,8 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("componentDependencies", self.component_dependencies)
         writer.write_collection_of_object_values("customMetadata", self.custom_metadata)
         writer.write_collection_of_object_values("htmlStrings", self.html_strings)

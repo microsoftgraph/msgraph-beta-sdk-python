@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConfigurationManagerClientState(Enum):
+class ConfigurationManagerClientState(str, Enum):
     # Configuration manager agent is older than 1806 or not installed or this device has not checked into Intune for over 30 days.
     Unknown = "unknown",
     # The configuration manager agent is installed but may not be showing up in the configuration manager console yet. Wait a few hours for it to refresh.

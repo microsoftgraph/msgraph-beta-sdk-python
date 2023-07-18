@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementComplianceActionType(Enum):
+class DeviceManagementComplianceActionType(str, Enum):
     # No Action
     NoAction = "noAction",
     # Send Notification

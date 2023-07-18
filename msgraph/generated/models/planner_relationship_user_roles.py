@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PlannerRelationshipUserRoles(Enum):
+class PlannerRelationshipUserRoles(str, Enum):
     DefaultRules = "defaultRules",
     GroupOwners = "groupOwners",
     GroupMembers = "groupMembers",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AssignmentMethod(Enum):
+class AssignmentMethod(str, Enum):
     Standard = "standard",
     Privileged = "privileged",
     Auto = "auto",

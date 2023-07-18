@@ -1,48 +1,29 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import managed_e_book_assignment
+    from .....models.managed_e_book_assignment import ManagedEBookAssignment
 
+@dataclass
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The managedEBookAssignments property
-        self._managed_e_book_assignments: Optional[List[managed_e_book_assignment.ManagedEBookAssignment]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The managedEBookAssignments property
+    managed_e_book_assignments: Optional[List[ManagedEBookAssignment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AssignPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AssignPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -50,29 +31,14 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .....models import managed_e_book_assignment
+        from .....models.managed_e_book_assignment import ManagedEBookAssignment
+
+        from .....models.managed_e_book_assignment import ManagedEBookAssignment
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "managedEBookAssignments": lambda n : setattr(self, 'managed_e_book_assignments', n.get_collection_of_object_values(managed_e_book_assignment.ManagedEBookAssignment)),
+            "managedEBookAssignments": lambda n : setattr(self, 'managed_e_book_assignments', n.get_collection_of_object_values(ManagedEBookAssignment)),
         }
         return fields
-    
-    @property
-    def managed_e_book_assignments(self,) -> Optional[List[managed_e_book_assignment.ManagedEBookAssignment]]:
-        """
-        Gets the managedEBookAssignments property value. The managedEBookAssignments property
-        Returns: Optional[List[managed_e_book_assignment.ManagedEBookAssignment]]
-        """
-        return self._managed_e_book_assignments
-    
-    @managed_e_book_assignments.setter
-    def managed_e_book_assignments(self,value: Optional[List[managed_e_book_assignment.ManagedEBookAssignment]] = None) -> None:
-        """
-        Sets the managedEBookAssignments property value. The managedEBookAssignments property
-        Args:
-            value: Value to set for the managed_e_book_assignments property.
-        """
-        self._managed_e_book_assignments = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -80,8 +46,8 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("managedEBookAssignments", self.managed_e_book_assignments)
         writer.write_additional_data_value(self.additional_data)
     

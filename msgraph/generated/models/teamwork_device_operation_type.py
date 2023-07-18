@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TeamworkDeviceOperationType(Enum):
+class TeamworkDeviceOperationType(str, Enum):
     DeviceRestart = "deviceRestart",
     ConfigUpdate = "configUpdate",
     DeviceDiagnostics = "deviceDiagnostics",

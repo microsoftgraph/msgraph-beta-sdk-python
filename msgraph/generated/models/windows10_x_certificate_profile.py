@@ -1,37 +1,39 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_resource_access_profile_base, windows10_x_s_c_e_p_certificate_profile
+    from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
+    from .windows10_x_s_c_e_p_certificate_profile import Windows10XSCEPCertificateProfile
 
-from . import device_management_resource_access_profile_base
+from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
 
-class Windows10XCertificateProfile(device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10XCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10XCertificateProfile"
+@dataclass
+class Windows10XCertificateProfile(DeviceManagementResourceAccessProfileBase):
+    """
+    Base Profile Type for Authentication Certificates (SCEP or PFX Create)
+    """
+    odata_type = "#microsoft.graph.windows10XCertificateProfile"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10XCertificateProfile:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Windows10XCertificateProfile
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.windows10XSCEPCertificateProfile":
-                from . import windows10_x_s_c_e_p_certificate_profile
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10XSCEPCertificateProfile".casefold():
+            from .windows10_x_s_c_e_p_certificate_profile import Windows10XSCEPCertificateProfile
 
-                return windows10_x_s_c_e_p_certificate_profile.Windows10XSCEPCertificateProfile()
+            return Windows10XSCEPCertificateProfile()
         return Windows10XCertificateProfile()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -39,7 +41,11 @@ class Windows10XCertificateProfile(device_management_resource_access_profile_bas
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_resource_access_profile_base, windows10_x_s_c_e_p_certificate_profile
+        from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
+        from .windows10_x_s_c_e_p_certificate_profile import Windows10XSCEPCertificateProfile
+
+        from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
+        from .windows10_x_s_c_e_p_certificate_profile import Windows10XSCEPCertificateProfile
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -53,8 +59,8 @@ class Windows10XCertificateProfile(device_management_resource_access_profile_bas
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

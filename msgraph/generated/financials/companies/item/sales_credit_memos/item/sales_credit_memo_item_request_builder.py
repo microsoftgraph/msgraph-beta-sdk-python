@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +11,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import sales_credit_memo
-    from ......models.o_data_errors import o_data_error
-    from .currency import currency_request_builder
-    from .customer import customer_request_builder
-    from .payment_term import payment_term_request_builder
-    from .sales_credit_memo_lines import sales_credit_memo_lines_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.sales_credit_memo import SalesCreditMemo
+    from .currency.currency_request_builder import CurrencyRequestBuilder
+    from .customer.customer_request_builder import CustomerRequestBuilder
+    from .payment_term.payment_term_request_builder import PaymentTermRequestBuilder
+    from .sales_credit_memo_lines.sales_credit_memo_lines_request_builder import SalesCreditMemoLinesRequestBuilder
 
-class SalesCreditMemoItemRequestBuilder():
+class SalesCreditMemoItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the salesCreditMemos property of the microsoft.graph.company entity.
     """
@@ -25,72 +26,63 @@ class SalesCreditMemoItemRequestBuilder():
         """
         Instantiates a new SalesCreditMemoItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/salesCreditMemos/{salesCreditMemo%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/financials/companies/{company%2Did}/salesCreditMemos/{salesCreditMemo%2Did}{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[SalesCreditMemoItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
+    async def get(self,request_configuration: Optional[SalesCreditMemoItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SalesCreditMemo]:
         """
         Get salesCreditMemos from financials
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[sales_credit_memo.SalesCreditMemo]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SalesCreditMemo]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import sales_credit_memo
+        from ......models.sales_credit_memo import SalesCreditMemo
 
-        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, error_mapping)
+        return await self.request_adapter.send_async(request_info, SalesCreditMemo, error_mapping)
     
-    async def patch(self,body: Optional[sales_credit_memo.SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
+    async def patch(self,body: Optional[SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SalesCreditMemo]:
         """
         Update the navigation property salesCreditMemos in financials
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[sales_credit_memo.SalesCreditMemo]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SalesCreditMemo]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import sales_credit_memo
+        from ......models.sales_credit_memo import SalesCreditMemo
 
-        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, error_mapping)
+        return await self.request_adapter.send_async(request_info, SalesCreditMemo, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SalesCreditMemoItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get salesCreditMemos from financials
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -104,16 +96,16 @@ class SalesCreditMemoItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[sales_credit_memo.SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property salesCreditMemos in financials
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -126,40 +118,40 @@ class SalesCreditMemoItemRequestBuilder():
         return request_info
     
     @property
-    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
+    def currency(self) -> CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.salesCreditMemo entity.
         """
-        from .currency import currency_request_builder
+        from .currency.currency_request_builder import CurrencyRequestBuilder
 
-        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
+        return CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def customer(self) -> customer_request_builder.CustomerRequestBuilder:
+    def customer(self) -> CustomerRequestBuilder:
         """
         Provides operations to manage the customer property of the microsoft.graph.salesCreditMemo entity.
         """
-        from .customer import customer_request_builder
+        from .customer.customer_request_builder import CustomerRequestBuilder
 
-        return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
+    def payment_term(self) -> PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.salesCreditMemo entity.
         """
-        from .payment_term import payment_term_request_builder
+        from .payment_term.payment_term_request_builder import PaymentTermRequestBuilder
 
-        return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
+        return PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sales_credit_memo_lines(self) -> sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder:
+    def sales_credit_memo_lines(self) -> SalesCreditMemoLinesRequestBuilder:
         """
         Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.salesCreditMemo entity.
         """
-        from .sales_credit_memo_lines import sales_credit_memo_lines_request_builder
+        from .sales_credit_memo_lines.sales_credit_memo_lines_request_builder import SalesCreditMemoLinesRequestBuilder
 
-        return sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SalesCreditMemoLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SalesCreditMemoItemRequestBuilderGetQueryParameters():
@@ -170,11 +162,11 @@ class SalesCreditMemoItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -188,31 +180,27 @@ class SalesCreditMemoItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SalesCreditMemoItemRequestBuilderGetRequestConfiguration():
+    class SalesCreditMemoItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SalesCreditMemoItemRequestBuilder.SalesCreditMemoItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SalesCreditMemoItemRequestBuilderPatchRequestConfiguration():
+    class SalesCreditMemoItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

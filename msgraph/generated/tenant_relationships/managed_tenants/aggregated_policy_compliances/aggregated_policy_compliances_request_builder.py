@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.managed_tenants import aggregated_policy_compliance, aggregated_policy_compliance_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import aggregated_policy_compliance_item_request_builder
+    from ....models.managed_tenants.aggregated_policy_compliance import AggregatedPolicyCompliance
+    from ....models.managed_tenants.aggregated_policy_compliance_collection_response import AggregatedPolicyComplianceCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.aggregated_policy_compliance_item_request_builder import AggregatedPolicyComplianceItemRequestBuilder
 
-class AggregatedPolicyCompliancesRequestBuilder():
+class AggregatedPolicyCompliancesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the aggregatedPolicyCompliances property of the microsoft.graph.managedTenants.managedTenant entity.
     """
@@ -23,87 +25,78 @@ class AggregatedPolicyCompliancesRequestBuilder():
         """
         Instantiates a new AggregatedPolicyCompliancesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/aggregatedPolicyCompliances{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/aggregatedPolicyCompliances{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_aggregated_policy_compliance_id(self,aggregated_policy_compliance_id: str) -> aggregated_policy_compliance_item_request_builder.AggregatedPolicyComplianceItemRequestBuilder:
+    def by_aggregated_policy_compliance_id(self,aggregated_policy_compliance_id: str) -> AggregatedPolicyComplianceItemRequestBuilder:
         """
         Provides operations to manage the aggregatedPolicyCompliances property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             aggregated_policy_compliance_id: Unique identifier of the item
-        Returns: aggregated_policy_compliance_item_request_builder.AggregatedPolicyComplianceItemRequestBuilder
+        Returns: AggregatedPolicyComplianceItemRequestBuilder
         """
-        if aggregated_policy_compliance_id is None:
-            raise Exception("aggregated_policy_compliance_id cannot be undefined")
-        from .item import aggregated_policy_compliance_item_request_builder
+        if not aggregated_policy_compliance_id:
+            raise TypeError("aggregated_policy_compliance_id cannot be null.")
+        from .item.aggregated_policy_compliance_item_request_builder import AggregatedPolicyComplianceItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["aggregatedPolicyCompliance%2Did"] = aggregated_policy_compliance_id
-        return aggregated_policy_compliance_item_request_builder.AggregatedPolicyComplianceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AggregatedPolicyComplianceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration] = None) -> Optional[aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse]:
+    async def get(self,request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration] = None) -> Optional[AggregatedPolicyComplianceCollectionResponse]:
         """
         Get a list of the aggregatedPolicyCompliance objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AggregatedPolicyComplianceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.managed_tenants import aggregated_policy_compliance_collection_response
+        from ....models.managed_tenants.aggregated_policy_compliance_collection_response import AggregatedPolicyComplianceCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AggregatedPolicyComplianceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[aggregated_policy_compliance.AggregatedPolicyCompliance] = None, request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderPostRequestConfiguration] = None) -> Optional[aggregated_policy_compliance.AggregatedPolicyCompliance]:
+    async def post(self,body: Optional[AggregatedPolicyCompliance] = None, request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderPostRequestConfiguration] = None) -> Optional[AggregatedPolicyCompliance]:
         """
         Create new navigation property to aggregatedPolicyCompliances for tenantRelationships
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[aggregated_policy_compliance.AggregatedPolicyCompliance]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AggregatedPolicyCompliance]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.managed_tenants import aggregated_policy_compliance
+        from ....models.managed_tenants.aggregated_policy_compliance import AggregatedPolicyCompliance
 
-        return await self.request_adapter.send_async(request_info, aggregated_policy_compliance.AggregatedPolicyCompliance, error_mapping)
+        return await self.request_adapter.send_async(request_info, AggregatedPolicyCompliance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the aggregatedPolicyCompliance objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +110,16 @@ class AggregatedPolicyCompliancesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[aggregated_policy_compliance.AggregatedPolicyCompliance] = None, request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AggregatedPolicyCompliance] = None, request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to aggregatedPolicyCompliances for tenantRelationships
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +132,13 @@ class AggregatedPolicyCompliancesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AggregatedPolicyCompliancesRequestBuilderGetQueryParameters():
@@ -156,11 +149,11 @@ class AggregatedPolicyCompliancesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +197,27 @@ class AggregatedPolicyCompliancesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration():
+    class AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AggregatedPolicyCompliancesRequestBuilder.AggregatedPolicyCompliancesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AggregatedPolicyCompliancesRequestBuilderPostRequestConfiguration():
+    class AggregatedPolicyCompliancesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

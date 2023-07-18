@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SkillProficiencyLevel(Enum):
+class SkillProficiencyLevel(str, Enum):
     Elementary = "elementary",
     LimitedWorking = "limitedWorking",
     GeneralProfessional = "generalProfessional",

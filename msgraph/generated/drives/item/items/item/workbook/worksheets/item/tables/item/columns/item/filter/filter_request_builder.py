@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,22 +11,22 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .............models import workbook_filter
-    from .............models.o_data_errors import o_data_error
-    from .apply import apply_request_builder
-    from .apply_bottom_items_filter import apply_bottom_items_filter_request_builder
-    from .apply_bottom_percent_filter import apply_bottom_percent_filter_request_builder
-    from .apply_cell_color_filter import apply_cell_color_filter_request_builder
-    from .apply_custom_filter import apply_custom_filter_request_builder
-    from .apply_dynamic_filter import apply_dynamic_filter_request_builder
-    from .apply_font_color_filter import apply_font_color_filter_request_builder
-    from .apply_icon_filter import apply_icon_filter_request_builder
-    from .apply_top_items_filter import apply_top_items_filter_request_builder
-    from .apply_top_percent_filter import apply_top_percent_filter_request_builder
-    from .apply_values_filter import apply_values_filter_request_builder
-    from .clear import clear_request_builder
+    from .............models.o_data_errors.o_data_error import ODataError
+    from .............models.workbook_filter import WorkbookFilter
+    from .apply.apply_request_builder import ApplyRequestBuilder
+    from .apply_bottom_items_filter.apply_bottom_items_filter_request_builder import ApplyBottomItemsFilterRequestBuilder
+    from .apply_bottom_percent_filter.apply_bottom_percent_filter_request_builder import ApplyBottomPercentFilterRequestBuilder
+    from .apply_cell_color_filter.apply_cell_color_filter_request_builder import ApplyCellColorFilterRequestBuilder
+    from .apply_custom_filter.apply_custom_filter_request_builder import ApplyCustomFilterRequestBuilder
+    from .apply_dynamic_filter.apply_dynamic_filter_request_builder import ApplyDynamicFilterRequestBuilder
+    from .apply_font_color_filter.apply_font_color_filter_request_builder import ApplyFontColorFilterRequestBuilder
+    from .apply_icon_filter.apply_icon_filter_request_builder import ApplyIconFilterRequestBuilder
+    from .apply_top_items_filter.apply_top_items_filter_request_builder import ApplyTopItemsFilterRequestBuilder
+    from .apply_top_percent_filter.apply_top_percent_filter_request_builder import ApplyTopPercentFilterRequestBuilder
+    from .apply_values_filter.apply_values_filter_request_builder import ApplyValuesFilterRequestBuilder
+    from .clear.clear_request_builder import ClearRequestBuilder
 
-class FilterRequestBuilder():
+class FilterRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the filter property of the microsoft.graph.workbookTableColumn entity.
     """
@@ -33,91 +34,82 @@ class FilterRequestBuilder():
         """
         Instantiates a new FilterRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[FilterRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property filter for drives
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .............models.o_data_errors import o_data_error
+        from .............models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[FilterRequestBuilderGetRequestConfiguration] = None) -> Optional[workbook_filter.WorkbookFilter]:
+    async def get(self,request_configuration: Optional[FilterRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookFilter]:
         """
         Retrieve the filter applied to the column. Read-only.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_filter.WorkbookFilter]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WorkbookFilter]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .............models.o_data_errors import o_data_error
+        from .............models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .............models import workbook_filter
+        from .............models.workbook_filter import WorkbookFilter
 
-        return await self.request_adapter.send_async(request_info, workbook_filter.WorkbookFilter, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookFilter, error_mapping)
     
-    async def patch(self,body: Optional[workbook_filter.WorkbookFilter] = None, request_configuration: Optional[FilterRequestBuilderPatchRequestConfiguration] = None) -> Optional[workbook_filter.WorkbookFilter]:
+    async def patch(self,body: Optional[WorkbookFilter] = None, request_configuration: Optional[FilterRequestBuilderPatchRequestConfiguration] = None) -> Optional[WorkbookFilter]:
         """
         Update the navigation property filter in drives
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_filter.WorkbookFilter]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WorkbookFilter]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .............models.o_data_errors import o_data_error
+        from .............models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .............models import workbook_filter
+        from .............models.workbook_filter import WorkbookFilter
 
-        return await self.request_adapter.send_async(request_info, workbook_filter.WorkbookFilter, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookFilter, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[FilterRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property filter for drives
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -133,7 +125,7 @@ class FilterRequestBuilder():
         """
         Retrieve the filter applied to the column. Read-only.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -147,16 +139,16 @@ class FilterRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[workbook_filter.WorkbookFilter] = None, request_configuration: Optional[FilterRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WorkbookFilter] = None, request_configuration: Optional[FilterRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property filter in drives
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -169,124 +161,122 @@ class FilterRequestBuilder():
         return request_info
     
     @property
-    def apply(self) -> apply_request_builder.ApplyRequestBuilder:
+    def apply(self) -> ApplyRequestBuilder:
         """
         Provides operations to call the apply method.
         """
-        from .apply import apply_request_builder
+        from .apply.apply_request_builder import ApplyRequestBuilder
 
-        return apply_request_builder.ApplyRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_bottom_items_filter(self) -> apply_bottom_items_filter_request_builder.ApplyBottomItemsFilterRequestBuilder:
+    def apply_bottom_items_filter(self) -> ApplyBottomItemsFilterRequestBuilder:
         """
         Provides operations to call the applyBottomItemsFilter method.
         """
-        from .apply_bottom_items_filter import apply_bottom_items_filter_request_builder
+        from .apply_bottom_items_filter.apply_bottom_items_filter_request_builder import ApplyBottomItemsFilterRequestBuilder
 
-        return apply_bottom_items_filter_request_builder.ApplyBottomItemsFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyBottomItemsFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_bottom_percent_filter(self) -> apply_bottom_percent_filter_request_builder.ApplyBottomPercentFilterRequestBuilder:
+    def apply_bottom_percent_filter(self) -> ApplyBottomPercentFilterRequestBuilder:
         """
         Provides operations to call the applyBottomPercentFilter method.
         """
-        from .apply_bottom_percent_filter import apply_bottom_percent_filter_request_builder
+        from .apply_bottom_percent_filter.apply_bottom_percent_filter_request_builder import ApplyBottomPercentFilterRequestBuilder
 
-        return apply_bottom_percent_filter_request_builder.ApplyBottomPercentFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyBottomPercentFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_cell_color_filter(self) -> apply_cell_color_filter_request_builder.ApplyCellColorFilterRequestBuilder:
+    def apply_cell_color_filter(self) -> ApplyCellColorFilterRequestBuilder:
         """
         Provides operations to call the applyCellColorFilter method.
         """
-        from .apply_cell_color_filter import apply_cell_color_filter_request_builder
+        from .apply_cell_color_filter.apply_cell_color_filter_request_builder import ApplyCellColorFilterRequestBuilder
 
-        return apply_cell_color_filter_request_builder.ApplyCellColorFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyCellColorFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_custom_filter(self) -> apply_custom_filter_request_builder.ApplyCustomFilterRequestBuilder:
+    def apply_custom_filter(self) -> ApplyCustomFilterRequestBuilder:
         """
         Provides operations to call the applyCustomFilter method.
         """
-        from .apply_custom_filter import apply_custom_filter_request_builder
+        from .apply_custom_filter.apply_custom_filter_request_builder import ApplyCustomFilterRequestBuilder
 
-        return apply_custom_filter_request_builder.ApplyCustomFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyCustomFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_dynamic_filter(self) -> apply_dynamic_filter_request_builder.ApplyDynamicFilterRequestBuilder:
+    def apply_dynamic_filter(self) -> ApplyDynamicFilterRequestBuilder:
         """
         Provides operations to call the applyDynamicFilter method.
         """
-        from .apply_dynamic_filter import apply_dynamic_filter_request_builder
+        from .apply_dynamic_filter.apply_dynamic_filter_request_builder import ApplyDynamicFilterRequestBuilder
 
-        return apply_dynamic_filter_request_builder.ApplyDynamicFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyDynamicFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_font_color_filter(self) -> apply_font_color_filter_request_builder.ApplyFontColorFilterRequestBuilder:
+    def apply_font_color_filter(self) -> ApplyFontColorFilterRequestBuilder:
         """
         Provides operations to call the applyFontColorFilter method.
         """
-        from .apply_font_color_filter import apply_font_color_filter_request_builder
+        from .apply_font_color_filter.apply_font_color_filter_request_builder import ApplyFontColorFilterRequestBuilder
 
-        return apply_font_color_filter_request_builder.ApplyFontColorFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyFontColorFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_icon_filter(self) -> apply_icon_filter_request_builder.ApplyIconFilterRequestBuilder:
+    def apply_icon_filter(self) -> ApplyIconFilterRequestBuilder:
         """
         Provides operations to call the applyIconFilter method.
         """
-        from .apply_icon_filter import apply_icon_filter_request_builder
+        from .apply_icon_filter.apply_icon_filter_request_builder import ApplyIconFilterRequestBuilder
 
-        return apply_icon_filter_request_builder.ApplyIconFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyIconFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_top_items_filter(self) -> apply_top_items_filter_request_builder.ApplyTopItemsFilterRequestBuilder:
+    def apply_top_items_filter(self) -> ApplyTopItemsFilterRequestBuilder:
         """
         Provides operations to call the applyTopItemsFilter method.
         """
-        from .apply_top_items_filter import apply_top_items_filter_request_builder
+        from .apply_top_items_filter.apply_top_items_filter_request_builder import ApplyTopItemsFilterRequestBuilder
 
-        return apply_top_items_filter_request_builder.ApplyTopItemsFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyTopItemsFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_top_percent_filter(self) -> apply_top_percent_filter_request_builder.ApplyTopPercentFilterRequestBuilder:
+    def apply_top_percent_filter(self) -> ApplyTopPercentFilterRequestBuilder:
         """
         Provides operations to call the applyTopPercentFilter method.
         """
-        from .apply_top_percent_filter import apply_top_percent_filter_request_builder
+        from .apply_top_percent_filter.apply_top_percent_filter_request_builder import ApplyTopPercentFilterRequestBuilder
 
-        return apply_top_percent_filter_request_builder.ApplyTopPercentFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyTopPercentFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_values_filter(self) -> apply_values_filter_request_builder.ApplyValuesFilterRequestBuilder:
+    def apply_values_filter(self) -> ApplyValuesFilterRequestBuilder:
         """
         Provides operations to call the applyValuesFilter method.
         """
-        from .apply_values_filter import apply_values_filter_request_builder
+        from .apply_values_filter.apply_values_filter_request_builder import ApplyValuesFilterRequestBuilder
 
-        return apply_values_filter_request_builder.ApplyValuesFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplyValuesFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def clear(self) -> clear_request_builder.ClearRequestBuilder:
+    def clear(self) -> ClearRequestBuilder:
         """
         Provides operations to call the clear method.
         """
-        from .clear import clear_request_builder
+        from .clear.clear_request_builder import ClearRequestBuilder
 
-        return clear_request_builder.ClearRequestBuilder(self.request_adapter, self.path_parameters)
+        return ClearRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class FilterRequestBuilderDeleteRequestConfiguration():
+    class FilterRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class FilterRequestBuilderGetQueryParameters():
@@ -297,11 +287,11 @@ class FilterRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -315,31 +305,27 @@ class FilterRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class FilterRequestBuilderGetRequestConfiguration():
+    class FilterRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[FilterRequestBuilder.FilterRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class FilterRequestBuilderPatchRequestConfiguration():
+    class FilterRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

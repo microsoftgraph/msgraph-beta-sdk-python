@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RequirementProvider(Enum):
+class RequirementProvider(str, Enum):
     User = "user",
     Request = "request",
     ServicePrincipal = "servicePrincipal",

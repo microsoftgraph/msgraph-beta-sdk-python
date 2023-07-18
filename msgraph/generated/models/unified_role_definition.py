@@ -1,120 +1,77 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import allowed_role_principal_types, entity, unified_role_permission
+    from .allowed_role_principal_types import AllowedRolePrincipalTypes
+    from .entity import Entity
+    from .unified_role_permission import UnifiedRolePermission
 
-from . import entity
+from .entity import Entity
 
-class UnifiedRoleDefinition(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRoleDefinition and sets the default values.
-        """
-        super().__init__()
-        # The allowedPrincipalTypes property
-        self._allowed_principal_types: Optional[allowed_role_principal_types.AllowedRolePrincipalTypes] = None
-        # The description for the unifiedRoleDefinition. Read-only when isBuiltIn is true.
-        self._description: Optional[str] = None
-        # The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith operators only).
-        self._display_name: Optional[str] = None
-        # Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
-        self._inherits_permissions_from: Optional[List[UnifiedRoleDefinition]] = None
-        # Flag indicating if the unifiedRoleDefinition is part of the default set included with the product or custom. Read-only.  Supports $filter (eq operator only).
-        self._is_built_in: Optional[bool] = None
-        # Flag indicating if the role is enabled for assignment. If false the role is not available for assignment. Read-only when isBuiltIn is true.
-        self._is_enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of scopes permissions granted by the role definition apply to. Currently only / is supported. Read-only when isBuiltIn is true. DO NOT USE. This will be deprecated soon. Attach scope to role assignment
-        self._resource_scopes: Optional[List[str]] = None
-        # List of permissions included in the role. Read-only when isBuiltIn is true. Required.
-        self._role_permissions: Optional[List[unified_role_permission.UnifiedRolePermission]] = None
-        # Custom template identifier that can be set when isBuiltIn is false. This identifier is typically used if one needs an identifier to be the same across different directories. Read-only when isBuiltIn is true.
-        self._template_id: Optional[str] = None
-        # Indicates version of the unifiedRoleDefinition. Read-only when isBuiltIn is true.
-        self._version: Optional[str] = None
-    
-    @property
-    def allowed_principal_types(self,) -> Optional[allowed_role_principal_types.AllowedRolePrincipalTypes]:
-        """
-        Gets the allowedPrincipalTypes property value. The allowedPrincipalTypes property
-        Returns: Optional[allowed_role_principal_types.AllowedRolePrincipalTypes]
-        """
-        return self._allowed_principal_types
-    
-    @allowed_principal_types.setter
-    def allowed_principal_types(self,value: Optional[allowed_role_principal_types.AllowedRolePrincipalTypes] = None) -> None:
-        """
-        Sets the allowedPrincipalTypes property value. The allowedPrincipalTypes property
-        Args:
-            value: Value to set for the allowed_principal_types property.
-        """
-        self._allowed_principal_types = value
+@dataclass
+class UnifiedRoleDefinition(Entity):
+    # The allowedPrincipalTypes property
+    allowed_principal_types: Optional[AllowedRolePrincipalTypes] = None
+    # The description for the unifiedRoleDefinition. Read-only when isBuiltIn is true.
+    description: Optional[str] = None
+    # The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith operators only).
+    display_name: Optional[str] = None
+    # Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
+    inherits_permissions_from: Optional[List[UnifiedRoleDefinition]] = None
+    # Flag indicating if the unifiedRoleDefinition is part of the default set included with the product or custom. Read-only.  Supports $filter (eq operator only).
+    is_built_in: Optional[bool] = None
+    # Flag indicating if the role is enabled for assignment. If false the role is not available for assignment. Read-only when isBuiltIn is true.
+    is_enabled: Optional[bool] = None
+    # The isPrivileged property
+    is_privileged: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # List of scopes permissions granted by the role definition apply to. Currently only / is supported. Read-only when isBuiltIn is true. DO NOT USE. This will be deprecated soon. Attach scope to role assignment
+    resource_scopes: Optional[List[str]] = None
+    # List of permissions included in the role. Read-only when isBuiltIn is true. Required.
+    role_permissions: Optional[List[UnifiedRolePermission]] = None
+    # Custom template identifier that can be set when isBuiltIn is false. This identifier is typically used if one needs an identifier to be the same across different directories. Read-only when isBuiltIn is true.
+    template_id: Optional[str] = None
+    # Indicates version of the unifiedRoleDefinition. Read-only when isBuiltIn is true.
+    version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UnifiedRoleDefinition
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UnifiedRoleDefinition()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description for the unifiedRoleDefinition. Read-only when isBuiltIn is true.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description for the unifiedRoleDefinition. Read-only when isBuiltIn is true.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith operators only).
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith operators only).
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import allowed_role_principal_types, entity, unified_role_permission
+        from .allowed_role_principal_types import AllowedRolePrincipalTypes
+        from .entity import Entity
+        from .unified_role_permission import UnifiedRolePermission
+
+        from .allowed_role_principal_types import AllowedRolePrincipalTypes
+        from .entity import Entity
+        from .unified_role_permission import UnifiedRolePermission
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_enum_value(allowed_role_principal_types.AllowedRolePrincipalTypes)),
+            "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_enum_value(AllowedRolePrincipalTypes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "inheritsPermissionsFrom": lambda n : setattr(self, 'inherits_permissions_from', n.get_collection_of_object_values(UnifiedRoleDefinition)),
             "isBuiltIn": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "isPrivileged": lambda n : setattr(self, 'is_privileged', n.get_bool_value()),
             "resourceScopes": lambda n : setattr(self, 'resource_scopes', n.get_collection_of_primitive_values(str)),
-            "rolePermissions": lambda n : setattr(self, 'role_permissions', n.get_collection_of_object_values(unified_role_permission.UnifiedRolePermission)),
+            "rolePermissions": lambda n : setattr(self, 'role_permissions', n.get_collection_of_object_values(UnifiedRolePermission)),
             "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
@@ -122,99 +79,14 @@ class UnifiedRoleDefinition(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def inherits_permissions_from(self,) -> Optional[List[UnifiedRoleDefinition]]:
-        """
-        Gets the inheritsPermissionsFrom property value. Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
-        Returns: Optional[List[UnifiedRoleDefinition]]
-        """
-        return self._inherits_permissions_from
-    
-    @inherits_permissions_from.setter
-    def inherits_permissions_from(self,value: Optional[List[UnifiedRoleDefinition]] = None) -> None:
-        """
-        Sets the inheritsPermissionsFrom property value. Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
-        Args:
-            value: Value to set for the inherits_permissions_from property.
-        """
-        self._inherits_permissions_from = value
-    
-    @property
-    def is_built_in(self,) -> Optional[bool]:
-        """
-        Gets the isBuiltIn property value. Flag indicating if the unifiedRoleDefinition is part of the default set included with the product or custom. Read-only.  Supports $filter (eq operator only).
-        Returns: Optional[bool]
-        """
-        return self._is_built_in
-    
-    @is_built_in.setter
-    def is_built_in(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isBuiltIn property value. Flag indicating if the unifiedRoleDefinition is part of the default set included with the product or custom. Read-only.  Supports $filter (eq operator only).
-        Args:
-            value: Value to set for the is_built_in property.
-        """
-        self._is_built_in = value
-    
-    @property
-    def is_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isEnabled property value. Flag indicating if the role is enabled for assignment. If false the role is not available for assignment. Read-only when isBuiltIn is true.
-        Returns: Optional[bool]
-        """
-        return self._is_enabled
-    
-    @is_enabled.setter
-    def is_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEnabled property value. Flag indicating if the role is enabled for assignment. If false the role is not available for assignment. Read-only when isBuiltIn is true.
-        Args:
-            value: Value to set for the is_enabled property.
-        """
-        self._is_enabled = value
-    
-    @property
-    def resource_scopes(self,) -> Optional[List[str]]:
-        """
-        Gets the resourceScopes property value. List of scopes permissions granted by the role definition apply to. Currently only / is supported. Read-only when isBuiltIn is true. DO NOT USE. This will be deprecated soon. Attach scope to role assignment
-        Returns: Optional[List[str]]
-        """
-        return self._resource_scopes
-    
-    @resource_scopes.setter
-    def resource_scopes(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the resourceScopes property value. List of scopes permissions granted by the role definition apply to. Currently only / is supported. Read-only when isBuiltIn is true. DO NOT USE. This will be deprecated soon. Attach scope to role assignment
-        Args:
-            value: Value to set for the resource_scopes property.
-        """
-        self._resource_scopes = value
-    
-    @property
-    def role_permissions(self,) -> Optional[List[unified_role_permission.UnifiedRolePermission]]:
-        """
-        Gets the rolePermissions property value. List of permissions included in the role. Read-only when isBuiltIn is true. Required.
-        Returns: Optional[List[unified_role_permission.UnifiedRolePermission]]
-        """
-        return self._role_permissions
-    
-    @role_permissions.setter
-    def role_permissions(self,value: Optional[List[unified_role_permission.UnifiedRolePermission]] = None) -> None:
-        """
-        Sets the rolePermissions property value. List of permissions included in the role. Read-only when isBuiltIn is true. Required.
-        Args:
-            value: Value to set for the role_permissions property.
-        """
-        self._role_permissions = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("allowedPrincipalTypes", self.allowed_principal_types)
         writer.write_str_value("description", self.description)
@@ -222,43 +94,10 @@ class UnifiedRoleDefinition(entity.Entity):
         writer.write_collection_of_object_values("inheritsPermissionsFrom", self.inherits_permissions_from)
         writer.write_bool_value("isBuiltIn", self.is_built_in)
         writer.write_bool_value("isEnabled", self.is_enabled)
+        writer.write_bool_value("isPrivileged", self.is_privileged)
         writer.write_collection_of_primitive_values("resourceScopes", self.resource_scopes)
         writer.write_collection_of_object_values("rolePermissions", self.role_permissions)
         writer.write_str_value("templateId", self.template_id)
         writer.write_str_value("version", self.version)
-    
-    @property
-    def template_id(self,) -> Optional[str]:
-        """
-        Gets the templateId property value. Custom template identifier that can be set when isBuiltIn is false. This identifier is typically used if one needs an identifier to be the same across different directories. Read-only when isBuiltIn is true.
-        Returns: Optional[str]
-        """
-        return self._template_id
-    
-    @template_id.setter
-    def template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the templateId property value. Custom template identifier that can be set when isBuiltIn is false. This identifier is typically used if one needs an identifier to be the same across different directories. Read-only when isBuiltIn is true.
-        Args:
-            value: Value to set for the template_id property.
-        """
-        self._template_id = value
-    
-    @property
-    def version(self,) -> Optional[str]:
-        """
-        Gets the version property value. Indicates version of the unifiedRoleDefinition. Read-only when isBuiltIn is true.
-        Returns: Optional[str]
-        """
-        return self._version
-    
-    @version.setter
-    def version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the version property value. Indicates version of the unifiedRoleDefinition. Read-only when isBuiltIn is true.
-        Args:
-            value: Value to set for the version property.
-        """
-        self._version = value
     
 

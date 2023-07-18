@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,16 +11,17 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import device_and_app_management_assignment_filter, device_and_app_management_assignment_filter_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .enable import enable_request_builder
-    from .get_platform_supported_properties_with_platform import get_platform_supported_properties_with_platform_request_builder
-    from .get_state import get_state_request_builder
-    from .item import device_and_app_management_assignment_filter_item_request_builder
-    from .validate_filter import validate_filter_request_builder
+    from ...models.device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
+    from ...models.device_and_app_management_assignment_filter_collection_response import DeviceAndAppManagementAssignmentFilterCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .enable.enable_request_builder import EnableRequestBuilder
+    from .get_platform_supported_properties_with_platform.get_platform_supported_properties_with_platform_request_builder import GetPlatformSupportedPropertiesWithPlatformRequestBuilder
+    from .get_state.get_state_request_builder import GetStateRequestBuilder
+    from .item.device_and_app_management_assignment_filter_item_request_builder import DeviceAndAppManagementAssignmentFilterItemRequestBuilder
+    from .validate_filter.validate_filter_request_builder import ValidateFilterRequestBuilder
 
-class AssignmentFiltersRequestBuilder():
+class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the assignmentFilters property of the microsoft.graph.deviceManagement entity.
     """
@@ -27,100 +29,91 @@ class AssignmentFiltersRequestBuilder():
         """
         Instantiates a new AssignmentFiltersRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/assignmentFilters{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/assignmentFilters{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_device_and_app_management_assignment_filter_id(self,device_and_app_management_assignment_filter_id: str) -> device_and_app_management_assignment_filter_item_request_builder.DeviceAndAppManagementAssignmentFilterItemRequestBuilder:
+    def by_device_and_app_management_assignment_filter_id(self,device_and_app_management_assignment_filter_id: str) -> DeviceAndAppManagementAssignmentFilterItemRequestBuilder:
         """
         Provides operations to manage the assignmentFilters property of the microsoft.graph.deviceManagement entity.
         Args:
             device_and_app_management_assignment_filter_id: Unique identifier of the item
-        Returns: device_and_app_management_assignment_filter_item_request_builder.DeviceAndAppManagementAssignmentFilterItemRequestBuilder
+        Returns: DeviceAndAppManagementAssignmentFilterItemRequestBuilder
         """
-        if device_and_app_management_assignment_filter_id is None:
-            raise Exception("device_and_app_management_assignment_filter_id cannot be undefined")
-        from .item import device_and_app_management_assignment_filter_item_request_builder
+        if not device_and_app_management_assignment_filter_id:
+            raise TypeError("device_and_app_management_assignment_filter_id cannot be null.")
+        from .item.device_and_app_management_assignment_filter_item_request_builder import DeviceAndAppManagementAssignmentFilterItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceAndAppManagementAssignmentFilter%2Did"] = device_and_app_management_assignment_filter_id
-        return device_and_app_management_assignment_filter_item_request_builder.DeviceAndAppManagementAssignmentFilterItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceAndAppManagementAssignmentFilterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceAndAppManagementAssignmentFilterCollectionResponse]:
         """
         The list of assignment filters
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceAndAppManagementAssignmentFilterCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_and_app_management_assignment_filter_collection_response
+        from ...models.device_and_app_management_assignment_filter_collection_response import DeviceAndAppManagementAssignmentFilterCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceAndAppManagementAssignmentFilterCollectionResponse, error_mapping)
     
-    def get_platform_supported_properties_with_platform(self,platform: Optional[str] = None) -> get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder:
+    def get_platform_supported_properties_with_platform(self,platform: Optional[str] = None) -> GetPlatformSupportedPropertiesWithPlatformRequestBuilder:
         """
         Provides operations to call the getPlatformSupportedProperties method.
         Args:
             platform: Usage: platform='{platform}'
-        Returns: get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder
+        Returns: GetPlatformSupportedPropertiesWithPlatformRequestBuilder
         """
-        if platform is None:
-            raise Exception("platform cannot be undefined")
-        from .get_platform_supported_properties_with_platform import get_platform_supported_properties_with_platform_request_builder
+        if not platform:
+            raise TypeError("platform cannot be null.")
+        from .get_platform_supported_properties_with_platform.get_platform_supported_properties_with_platform_request_builder import GetPlatformSupportedPropertiesWithPlatformRequestBuilder
 
-        return get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, self.path_parameters, platform)
+        return GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, self.path_parameters, platform)
     
-    async def post(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
+    async def post(self,body: Optional[DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceAndAppManagementAssignmentFilter]:
         """
         Create new navigation property to assignmentFilters for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceAndAppManagementAssignmentFilter]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_and_app_management_assignment_filter
+        from ...models.device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceAndAppManagementAssignmentFilter, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The list of assignment filters
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -134,16 +127,16 @@ class AssignmentFiltersRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to assignmentFilters for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -156,40 +149,40 @@ class AssignmentFiltersRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enable(self) -> enable_request_builder.EnableRequestBuilder:
+    def enable(self) -> EnableRequestBuilder:
         """
         Provides operations to call the enable method.
         """
-        from .enable import enable_request_builder
+        from .enable.enable_request_builder import EnableRequestBuilder
 
-        return enable_request_builder.EnableRequestBuilder(self.request_adapter, self.path_parameters)
+        return EnableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_state(self) -> get_state_request_builder.GetStateRequestBuilder:
+    def get_state(self) -> GetStateRequestBuilder:
         """
         Provides operations to call the getState method.
         """
-        from .get_state import get_state_request_builder
+        from .get_state.get_state_request_builder import GetStateRequestBuilder
 
-        return get_state_request_builder.GetStateRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_filter(self) -> validate_filter_request_builder.ValidateFilterRequestBuilder:
+    def validate_filter(self) -> ValidateFilterRequestBuilder:
         """
         Provides operations to call the validateFilter method.
         """
-        from .validate_filter import validate_filter_request_builder
+        from .validate_filter.validate_filter_request_builder import ValidateFilterRequestBuilder
 
-        return validate_filter_request_builder.ValidateFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return ValidateFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AssignmentFiltersRequestBuilderGetQueryParameters():
@@ -200,11 +193,11 @@ class AssignmentFiltersRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -248,31 +241,27 @@ class AssignmentFiltersRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AssignmentFiltersRequestBuilderGetRequestConfiguration():
+    class AssignmentFiltersRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AssignmentFiltersRequestBuilder.AssignmentFiltersRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AssignmentFiltersRequestBuilderPostRequestConfiguration():
+    class AssignmentFiltersRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

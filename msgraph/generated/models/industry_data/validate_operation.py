@@ -1,73 +1,60 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import file_validate_operation
-    from .. import long_running_operation, public_error
+    from ..long_running_operation import LongRunningOperation
+    from ..public_error import PublicError
+    from .file_validate_operation import FileValidateOperation
 
-from .. import long_running_operation
+from ..long_running_operation import LongRunningOperation
 
-class ValidateOperation(long_running_operation.LongRunningOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ValidateOperation and sets the default values.
-        """
-        super().__init__()
-        # Set of errors discovered through validation.
-        self._errors: Optional[List[public_error.PublicError]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Set of warnings discovered through validation.
-        self._warnings: Optional[List[public_error.PublicError]] = None
+@dataclass
+class ValidateOperation(LongRunningOperation):
+    # Set of errors discovered through validation.
+    errors: Optional[List[PublicError]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Set of warnings discovered through validation.
+    warnings: Optional[List[PublicError]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ValidateOperation:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ValidateOperation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.industryData.fileValidateOperation":
-                from . import file_validate_operation
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.fileValidateOperation".casefold():
+            from .file_validate_operation import FileValidateOperation
 
-                return file_validate_operation.FileValidateOperation()
+            return FileValidateOperation()
         return ValidateOperation()
-    
-    @property
-    def errors(self,) -> Optional[List[public_error.PublicError]]:
-        """
-        Gets the errors property value. Set of errors discovered through validation.
-        Returns: Optional[List[public_error.PublicError]]
-        """
-        return self._errors
-    
-    @errors.setter
-    def errors(self,value: Optional[List[public_error.PublicError]] = None) -> None:
-        """
-        Sets the errors property value. Set of errors discovered through validation.
-        Args:
-            value: Value to set for the errors property.
-        """
-        self._errors = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import file_validate_operation
-        from .. import long_running_operation, public_error
+        from ..long_running_operation import LongRunningOperation
+        from ..public_error import PublicError
+        from .file_validate_operation import FileValidateOperation
+
+        from ..long_running_operation import LongRunningOperation
+        from ..public_error import PublicError
+        from .file_validate_operation import FileValidateOperation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(public_error.PublicError)),
-            "warnings": lambda n : setattr(self, 'warnings', n.get_collection_of_object_values(public_error.PublicError)),
+            "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(PublicError)),
+            "warnings": lambda n : setattr(self, 'warnings', n.get_collection_of_object_values(PublicError)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -79,25 +66,8 @@ class ValidateOperation(long_running_operation.LongRunningOperation):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-    
-    @property
-    def warnings(self,) -> Optional[List[public_error.PublicError]]:
-        """
-        Gets the warnings property value. Set of warnings discovered through validation.
-        Returns: Optional[List[public_error.PublicError]]
-        """
-        return self._warnings
-    
-    @warnings.setter
-    def warnings(self,value: Optional[List[public_error.PublicError]] = None) -> None:
-        """
-        Sets the warnings property value. Set of warnings discovered through validation.
-        Args:
-            value: Value to set for the warnings property.
-        """
-        self._warnings = value
     
 

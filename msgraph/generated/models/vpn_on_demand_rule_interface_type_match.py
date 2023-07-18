@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnOnDemandRuleInterfaceTypeMatch(Enum):
+class VpnOnDemandRuleInterfaceTypeMatch(str, Enum):
     # NotConfigured
     NotConfigured = "notConfigured",
     # Ethernet.

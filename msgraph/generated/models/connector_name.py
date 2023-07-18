@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConnectorName(Enum):
+class ConnectorName(str, Enum):
     # Indicates the expiration date/time for the Apple MDM Push Certificate.
     ApplePushNotificationServiceExpirationDateTime = "applePushNotificationServiceExpirationDateTime",
     # Indicates the expiration date/time for Vpp Token.

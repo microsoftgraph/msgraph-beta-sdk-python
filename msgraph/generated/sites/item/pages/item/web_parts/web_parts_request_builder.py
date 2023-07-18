@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import web_part, web_part_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import web_part_item_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.web_part import WebPart
+    from ......models.web_part_collection_response import WebPartCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.web_part_item_request_builder import WebPartItemRequestBuilder
 
-class WebPartsRequestBuilder():
+class WebPartsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
     """
@@ -23,87 +25,78 @@ class WebPartsRequestBuilder():
         """
         Instantiates a new WebPartsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/sites/{site%2Did}/pages/{sitePage%2Did}/webParts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/sites/{site%2Did}/pages/{sitePage%2Did}/webParts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_web_part_id(self,web_part_id: str) -> web_part_item_request_builder.WebPartItemRequestBuilder:
+    def by_web_part_id(self,web_part_id: str) -> WebPartItemRequestBuilder:
         """
         Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
         Args:
             web_part_id: Unique identifier of the item
-        Returns: web_part_item_request_builder.WebPartItemRequestBuilder
+        Returns: WebPartItemRequestBuilder
         """
-        if web_part_id is None:
-            raise Exception("web_part_id cannot be undefined")
-        from .item import web_part_item_request_builder
+        if not web_part_id:
+            raise TypeError("web_part_id cannot be null.")
+        from .item.web_part_item_request_builder import WebPartItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["webPart%2Did"] = web_part_id
-        return web_part_item_request_builder.WebPartItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WebPartItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WebPartsRequestBuilderGetRequestConfiguration] = None) -> Optional[web_part_collection_response.WebPartCollectionResponse]:
+    async def get(self,request_configuration: Optional[WebPartsRequestBuilderGetRequestConfiguration] = None) -> Optional[WebPartCollectionResponse]:
         """
-        Read the properties and relationships of a webPart object.
+        Collection of webparts on the SharePoint page.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[web_part_collection_response.WebPartCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WebPartCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import web_part_collection_response
+        from ......models.web_part_collection_response import WebPartCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, web_part_collection_response.WebPartCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WebPartCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[web_part.WebPart] = None, request_configuration: Optional[WebPartsRequestBuilderPostRequestConfiguration] = None) -> Optional[web_part.WebPart]:
+    async def post(self,body: Optional[WebPart] = None, request_configuration: Optional[WebPartsRequestBuilderPostRequestConfiguration] = None) -> Optional[WebPart]:
         """
         Create new navigation property to webParts for sites
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[web_part.WebPart]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WebPart]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import web_part
+        from ......models.web_part import WebPart
 
-        return await self.request_adapter.send_async(request_info, web_part.WebPart, error_mapping)
+        return await self.request_adapter.send_async(request_info, WebPart, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WebPartsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a webPart object.
+        Collection of webparts on the SharePoint page.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +110,16 @@ class WebPartsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[web_part.WebPart] = None, request_configuration: Optional[WebPartsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WebPart] = None, request_configuration: Optional[WebPartsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to webParts for sites
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,28 +132,28 @@ class WebPartsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WebPartsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a webPart object.
+        Collection of webparts on the SharePoint page.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +197,27 @@ class WebPartsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WebPartsRequestBuilderGetRequestConfiguration():
+    class WebPartsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[WebPartsRequestBuilder.WebPartsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WebPartsRequestBuilderPostRequestConfiguration():
+    class WebPartsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

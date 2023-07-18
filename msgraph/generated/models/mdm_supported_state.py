@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MdmSupportedState(Enum):
+class MdmSupportedState(str, Enum):
     # Mdm support status of the setting is not known.
     Unknown = "unknown",
     # Setting is supported.

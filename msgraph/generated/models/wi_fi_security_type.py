@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WiFiSecurityType(Enum):
+class WiFiSecurityType(str, Enum):
     # Open (No Authentication).
     Open = "open",
     # WPA-Personal.

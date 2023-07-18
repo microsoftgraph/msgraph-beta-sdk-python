@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RecommendationStatus(Enum):
+class RecommendationStatus(str, Enum):
     Active = "active",
     CompletedBySystem = "completedBySystem",
     CompletedByUser = "completedByUser",

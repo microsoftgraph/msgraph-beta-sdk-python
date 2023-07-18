@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DevicePlatformType(Enum):
+class DevicePlatformType(str, Enum):
     # Android.
     Android = "android",
     # AndroidForWork.

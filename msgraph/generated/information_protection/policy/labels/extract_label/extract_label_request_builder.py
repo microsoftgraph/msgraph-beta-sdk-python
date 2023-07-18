@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +11,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import extract_label_post_request_body
-    from .....models import information_protection_content_label
-    from .....models.o_data_errors import o_data_error
+    from .....models.information_protection_content_label import InformationProtectionContentLabel
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .extract_label_post_request_body import ExtractLabelPostRequestBody
 
-class ExtractLabelRequestBuilder():
+class ExtractLabelRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the extractLabel method.
     """
@@ -22,55 +23,46 @@ class ExtractLabelRequestBuilder():
         """
         Instantiates a new ExtractLabelRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/informationProtection/policy/labels/extractLabel"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/informationProtection/policy/labels/extractLabel", path_parameters)
     
-    async def post(self,body: Optional[extract_label_post_request_body.ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> Optional[information_protection_content_label.InformationProtectionContentLabel]:
+    async def post(self,body: Optional[ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> Optional[InformationProtectionContentLabel]:
         """
         Using the metadata that exists on an already-labeled piece of information, resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[information_protection_content_label.InformationProtectionContentLabel]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[InformationProtectionContentLabel]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import information_protection_content_label
+        from .....models.information_protection_content_label import InformationProtectionContentLabel
 
-        return await self.request_adapter.send_async(request_info, information_protection_content_label.InformationProtectionContentLabel, error_mapping)
+        return await self.request_adapter.send_async(request_info, InformationProtectionContentLabel, error_mapping)
     
-    def to_post_request_information(self,body: Optional[extract_label_post_request_body.ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Using the metadata that exists on an already-labeled piece of information, resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -82,16 +74,14 @@ class ExtractLabelRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ExtractLabelRequestBuilderPostRequestConfiguration():
+    class ExtractLabelRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

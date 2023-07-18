@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsAutopilotDeploymentState(Enum):
+class WindowsAutopilotDeploymentState(str, Enum):
     # The deployment state is unknown.
     Unknown = "unknown",
     # The deployment succeeded.

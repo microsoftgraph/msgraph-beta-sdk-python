@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AppleUserInitiatedEnrollmentType(Enum):
+class AppleUserInitiatedEnrollmentType(str, Enum):
     # Default value in case enum parsing fails
     Unknown = "unknown",
     # Device enrollment via the iOS Company Portal. The default user-initiated enrollment type, which does not segregate corporate and personal data. Supported on all Intune-supported iOS/iPadOS versions.

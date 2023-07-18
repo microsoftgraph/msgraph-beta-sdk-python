@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LocalSecurityOptionsStandardUserElevationPromptBehaviorType(Enum):
+class LocalSecurityOptionsStandardUserElevationPromptBehaviorType(str, Enum):
     # Not Configured
     NotConfigured = "notConfigured",
     # Automatically deny elevation requests

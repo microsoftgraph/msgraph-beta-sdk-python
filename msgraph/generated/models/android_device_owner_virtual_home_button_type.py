@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerVirtualHomeButtonType(Enum):
+class AndroidDeviceOwnerVirtualHomeButtonType(str, Enum):
     # Not configured; this value is ignored.
     NotConfigured = "notConfigured",
     # Swipe-up for home button.

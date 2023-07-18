@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AuthenticationTransformConstant(Enum):
+class AuthenticationTransformConstant(str, Enum):
     # MD596
     Md5_96 = "md5_96",
     # SHA196

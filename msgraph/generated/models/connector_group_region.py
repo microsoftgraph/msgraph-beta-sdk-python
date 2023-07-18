@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConnectorGroupRegion(Enum):
+class ConnectorGroupRegion(str, Enum):
     Nam = "nam",
     Eur = "eur",
     Aus = "aus",

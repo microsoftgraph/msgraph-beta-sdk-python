@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +11,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import device_health_script_policy_state
-    from ......models.o_data_errors import o_data_error
+    from ......models.device_health_script_policy_state import DeviceHealthScriptPolicyState
+    from ......models.o_data_errors.o_data_error import ODataError
 
-class WithIdWithPolicyIdWithDeviceIdRequestBuilder():
+class WithIdWithPolicyIdWithDeviceIdRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the deviceHealthScriptStates property of the microsoft.graph.managedDevice entity.
     """
@@ -21,97 +22,85 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder():
         """
         Instantiates a new WithIdWithPolicyIdWithDeviceIdRequestBuilder and sets the default values.
         Args:
-            deviceId: Property in multi-part unique identifier of deviceHealthScriptPolicyState
+            device_id: Property in multi-part unique identifier of deviceHealthScriptPolicyState
             id: Property in multi-part unique identifier of deviceHealthScriptPolicyState
-            pathParameters: The raw url or the Url template parameters for the request.
-            policyId: Property in multi-part unique identifier of deviceHealthScriptPolicyState
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            policy_id: Property in multi-part unique identifier of deviceHealthScriptPolicyState
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/deviceHealthScriptStates/id='{id}',policyId='{policyId}',deviceId='{deviceId}'{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        url_tpl_params[""] = deviceId
-        url_tpl_params[""] = id
-        url_tpl_params[""] = policyId
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/deviceHealthScriptStates/id='{id}',policyId='{policyId}',deviceId='{deviceId}'{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceHealthScriptStates for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderGetRequestConfiguration] = None) -> Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState]:
+    async def get(self,request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceHealthScriptPolicyState]:
         """
         Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceHealthScriptPolicyState]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import device_health_script_policy_state
+        from ......models.device_health_script_policy_state import DeviceHealthScriptPolicyState
 
-        return await self.request_adapter.send_async(request_info, device_health_script_policy_state.DeviceHealthScriptPolicyState, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceHealthScriptPolicyState, error_mapping)
     
-    async def patch(self,body: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState] = None, request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState]:
+    async def patch(self,body: Optional[DeviceHealthScriptPolicyState] = None, request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceHealthScriptPolicyState]:
         """
         Update the navigation property deviceHealthScriptStates in deviceManagement
         Args:
             body: Contains properties for policy run state of the device health script.
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceHealthScriptPolicyState]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import device_health_script_policy_state
+        from ......models.device_health_script_policy_state import DeviceHealthScriptPolicyState
 
-        return await self.request_adapter.send_async(request_info, device_health_script_policy_state.DeviceHealthScriptPolicyState, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceHealthScriptPolicyState, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property deviceHealthScriptStates for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -127,7 +116,7 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder():
         """
         Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -141,16 +130,16 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState] = None, request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceHealthScriptPolicyState] = None, request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property deviceHealthScriptStates in deviceManagement
         Args:
             body: Contains properties for policy run state of the device health script.
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,17 +151,15 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WithIdWithPolicyIdWithDeviceIdRequestBuilderDeleteRequestConfiguration():
+    class WithIdWithPolicyIdWithDeviceIdRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class WithIdWithPolicyIdWithDeviceIdRequestBuilderGetQueryParameters():
@@ -183,11 +170,11 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -201,31 +188,27 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WithIdWithPolicyIdWithDeviceIdRequestBuilderGetRequestConfiguration():
+    class WithIdWithPolicyIdWithDeviceIdRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilder.WithIdWithPolicyIdWithDeviceIdRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WithIdWithPolicyIdWithDeviceIdRequestBuilderPatchRequestConfiguration():
+    class WithIdWithPolicyIdWithDeviceIdRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,31 +1,29 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import base_collection_pagination_count_response, web_account
+    from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+    from .web_account import WebAccount
 
-from . import base_collection_pagination_count_response
+from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
-class WebAccountCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WebAccountCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[web_account.WebAccount]] = None
+@dataclass
+class WebAccountCollectionResponse(BaseCollectionPaginationCountResponse):
+    # The value property
+    value: Optional[List[WebAccount]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WebAccountCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WebAccountCollectionResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WebAccountCollectionResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -33,10 +31,14 @@ class WebAccountCollectionResponse(base_collection_pagination_count_response.Bas
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import base_collection_pagination_count_response, web_account
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .web_account import WebAccount
+
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .web_account import WebAccount
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(web_account.WebAccount)),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(WebAccount)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -48,26 +50,9 @@ class WebAccountCollectionResponse(base_collection_pagination_count_response.Bas
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[web_account.WebAccount]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[web_account.WebAccount]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[web_account.WebAccount]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

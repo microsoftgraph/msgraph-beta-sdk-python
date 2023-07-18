@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidWiFiSecurityType(Enum):
+class AndroidWiFiSecurityType(str, Enum):
     # Open (No Authentication).
     Open = "open",
     # WPA-Enterprise. Must use AndroidEnterpriseWifiConfiguration type to configure enterprise options.

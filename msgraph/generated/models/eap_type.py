@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EapType(Enum):
+class EapType(str, Enum):
     # EAP-Transport Layer Security (EAP-TLS).
     EapTls = "eapTls",
     # Lightweight Extensible Authentication Protocol (LEAP).

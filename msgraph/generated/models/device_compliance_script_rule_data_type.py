@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceComplianceScriptRuleDataType(Enum):
+class DeviceComplianceScriptRuleDataType(str, Enum):
     # None data type.
     None_ = "none",
     # Boolean data type.

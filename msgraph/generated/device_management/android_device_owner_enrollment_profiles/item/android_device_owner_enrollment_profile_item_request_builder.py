@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import android_device_owner_enrollment_profile
-    from ....models.o_data_errors import o_data_error
-    from .create_token import create_token_request_builder
-    from .revoke_token import revoke_token_request_builder
+    from ....models.android_device_owner_enrollment_profile import AndroidDeviceOwnerEnrollmentProfile
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .create_token.create_token_request_builder import CreateTokenRequestBuilder
+    from .revoke_token.revoke_token_request_builder import RevokeTokenRequestBuilder
 
-class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
+class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the androidDeviceOwnerEnrollmentProfiles property of the microsoft.graph.deviceManagement entity.
     """
@@ -23,91 +24,82 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         """
         Instantiates a new AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/androidDeviceOwnerEnrollmentProfiles/{androidDeviceOwnerEnrollmentProfile%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/androidDeviceOwnerEnrollmentProfiles/{androidDeviceOwnerEnrollmentProfile%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property androidDeviceOwnerEnrollmentProfiles for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
+    async def get(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AndroidDeviceOwnerEnrollmentProfile]:
         """
         Android device owner enrollment profile entities.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AndroidDeviceOwnerEnrollmentProfile]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import android_device_owner_enrollment_profile
+        from ....models.android_device_owner_enrollment_profile import AndroidDeviceOwnerEnrollmentProfile
 
-        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, AndroidDeviceOwnerEnrollmentProfile, error_mapping)
     
-    async def patch(self,body: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile] = None, request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
+    async def patch(self,body: Optional[AndroidDeviceOwnerEnrollmentProfile] = None, request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AndroidDeviceOwnerEnrollmentProfile]:
         """
         Update the navigation property androidDeviceOwnerEnrollmentProfiles in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AndroidDeviceOwnerEnrollmentProfile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import android_device_owner_enrollment_profile
+        from ....models.android_device_owner_enrollment_profile import AndroidDeviceOwnerEnrollmentProfile
 
-        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, AndroidDeviceOwnerEnrollmentProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property androidDeviceOwnerEnrollmentProfiles for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -123,7 +115,7 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         """
         Android device owner enrollment profile entities.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,16 +129,16 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile] = None, request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AndroidDeviceOwnerEnrollmentProfile] = None, request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property androidDeviceOwnerEnrollmentProfiles in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,34 +151,32 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         return request_info
     
     @property
-    def create_token(self) -> create_token_request_builder.CreateTokenRequestBuilder:
+    def create_token(self) -> CreateTokenRequestBuilder:
         """
         Provides operations to call the createToken method.
         """
-        from .create_token import create_token_request_builder
+        from .create_token.create_token_request_builder import CreateTokenRequestBuilder
 
-        return create_token_request_builder.CreateTokenRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreateTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def revoke_token(self) -> revoke_token_request_builder.RevokeTokenRequestBuilder:
+    def revoke_token(self) -> RevokeTokenRequestBuilder:
         """
         Provides operations to call the revokeToken method.
         """
-        from .revoke_token import revoke_token_request_builder
+        from .revoke_token.revoke_token_request_builder import RevokeTokenRequestBuilder
 
-        return revoke_token_request_builder.RevokeTokenRequestBuilder(self.request_adapter, self.path_parameters)
+        return RevokeTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration():
+    class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetQueryParameters():
@@ -197,11 +187,11 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -215,31 +205,27 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetRequestConfiguration():
+    class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder.AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration():
+    class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

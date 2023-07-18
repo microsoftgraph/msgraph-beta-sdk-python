@@ -1,77 +1,69 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import connected_organization_members, external_sponsors, group_members, internal_sponsors, requestor_manager, single_user
+    from .connected_organization_members import ConnectedOrganizationMembers
+    from .external_sponsors import ExternalSponsors
+    from .group_members import GroupMembers
+    from .internal_sponsors import InternalSponsors
+    from .requestor_manager import RequestorManager
+    from .single_user import SingleUser
+    from .target_user_sponsors import TargetUserSponsors
 
+@dataclass
 class UserSet(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userSet and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # For a user in an approval stage, this property indicates whether the user is a backup fallback approver.
-        self._is_backup: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # For a user in an approval stage, this property indicates whether the user is a backup fallback approver.
+    is_backup: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserSet:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UserSet
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.connectedOrganizationMembers":
-                from . import connected_organization_members
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.connectedOrganizationMembers".casefold():
+            from .connected_organization_members import ConnectedOrganizationMembers
 
-                return connected_organization_members.ConnectedOrganizationMembers()
-            if mapping_value == "#microsoft.graph.externalSponsors":
-                from . import external_sponsors
+            return ConnectedOrganizationMembers()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalSponsors".casefold():
+            from .external_sponsors import ExternalSponsors
 
-                return external_sponsors.ExternalSponsors()
-            if mapping_value == "#microsoft.graph.groupMembers":
-                from . import group_members
+            return ExternalSponsors()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupMembers".casefold():
+            from .group_members import GroupMembers
 
-                return group_members.GroupMembers()
-            if mapping_value == "#microsoft.graph.internalSponsors":
-                from . import internal_sponsors
+            return GroupMembers()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.internalSponsors".casefold():
+            from .internal_sponsors import InternalSponsors
 
-                return internal_sponsors.InternalSponsors()
-            if mapping_value == "#microsoft.graph.requestorManager":
-                from . import requestor_manager
+            return InternalSponsors()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.requestorManager".casefold():
+            from .requestor_manager import RequestorManager
 
-                return requestor_manager.RequestorManager()
-            if mapping_value == "#microsoft.graph.singleUser":
-                from . import single_user
+            return RequestorManager()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.singleUser".casefold():
+            from .single_user import SingleUser
 
-                return single_user.SingleUser()
+            return SingleUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetUserSponsors".casefold():
+            from .target_user_sponsors import TargetUserSponsors
+
+            return TargetUserSponsors()
         return UserSet()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -79,7 +71,21 @@ class UserSet(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import connected_organization_members, external_sponsors, group_members, internal_sponsors, requestor_manager, single_user
+        from .connected_organization_members import ConnectedOrganizationMembers
+        from .external_sponsors import ExternalSponsors
+        from .group_members import GroupMembers
+        from .internal_sponsors import InternalSponsors
+        from .requestor_manager import RequestorManager
+        from .single_user import SingleUser
+        from .target_user_sponsors import TargetUserSponsors
+
+        from .connected_organization_members import ConnectedOrganizationMembers
+        from .external_sponsors import ExternalSponsors
+        from .group_members import GroupMembers
+        from .internal_sponsors import InternalSponsors
+        from .requestor_manager import RequestorManager
+        from .single_user import SingleUser
+        from .target_user_sponsors import TargetUserSponsors
 
         fields: Dict[str, Callable[[Any], None]] = {
             "isBackup": lambda n : setattr(self, 'is_backup', n.get_bool_value()),
@@ -87,48 +93,14 @@ class UserSet(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def is_backup(self,) -> Optional[bool]:
-        """
-        Gets the isBackup property value. For a user in an approval stage, this property indicates whether the user is a backup fallback approver.
-        Returns: Optional[bool]
-        """
-        return self._is_backup
-    
-    @is_backup.setter
-    def is_backup(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isBackup property value. For a user in an approval stage, this property indicates whether the user is a backup fallback approver.
-        Args:
-            value: Value to set for the is_backup property.
-        """
-        self._is_backup = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_bool_value("isBackup", self.is_backup)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
