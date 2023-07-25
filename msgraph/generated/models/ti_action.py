@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TiAction(Enum):
+class TiAction(str, Enum):
     Unknown = "unknown",
     Allow = "allow",
     Block = "block",

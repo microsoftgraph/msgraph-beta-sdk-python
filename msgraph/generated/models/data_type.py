@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DataType(Enum):
+class DataType(str, Enum):
     # None data type.
     None_ = "none",
     # Boolean data type.

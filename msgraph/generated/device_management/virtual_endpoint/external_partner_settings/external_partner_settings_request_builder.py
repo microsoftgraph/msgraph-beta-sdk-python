@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import cloud_pc_external_partner_setting, cloud_pc_external_partner_setting_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import cloud_pc_external_partner_setting_item_request_builder
+    from ....models.cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
+    from ....models.cloud_pc_external_partner_setting_collection_response import CloudPcExternalPartnerSettingCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.cloud_pc_external_partner_setting_item_request_builder import CloudPcExternalPartnerSettingItemRequestBuilder
 
-class ExternalPartnerSettingsRequestBuilder():
+class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the externalPartnerSettings property of the microsoft.graph.virtualEndpoint entity.
     """
@@ -23,87 +25,78 @@ class ExternalPartnerSettingsRequestBuilder():
         """
         Instantiates a new ExternalPartnerSettingsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/virtualEndpoint/externalPartnerSettings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/externalPartnerSettings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_cloud_pc_external_partner_setting_id(self,cloud_pc_external_partner_setting_id: str) -> cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder:
+    def by_cloud_pc_external_partner_setting_id(self,cloud_pc_external_partner_setting_id: str) -> CloudPcExternalPartnerSettingItemRequestBuilder:
         """
         Provides operations to manage the externalPartnerSettings property of the microsoft.graph.virtualEndpoint entity.
         Args:
             cloud_pc_external_partner_setting_id: Unique identifier of the item
-        Returns: cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder
+        Returns: CloudPcExternalPartnerSettingItemRequestBuilder
         """
-        if cloud_pc_external_partner_setting_id is None:
-            raise Exception("cloud_pc_external_partner_setting_id cannot be undefined")
-        from .item import cloud_pc_external_partner_setting_item_request_builder
+        if not cloud_pc_external_partner_setting_id:
+            raise TypeError("cloud_pc_external_partner_setting_id cannot be null.")
+        from .item.cloud_pc_external_partner_setting_item_request_builder import CloudPcExternalPartnerSettingItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["cloudPcExternalPartnerSetting%2Did"] = cloud_pc_external_partner_setting_id
-        return cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return CloudPcExternalPartnerSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcExternalPartnerSettingCollectionResponse]:
         """
         Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CloudPcExternalPartnerSettingCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import cloud_pc_external_partner_setting_collection_response
+        from ....models.cloud_pc_external_partner_setting_collection_response import CloudPcExternalPartnerSettingCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPcExternalPartnerSettingCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]:
+    async def post(self,body: Optional[CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcExternalPartnerSetting]:
         """
         Create a new cloudPcExternalPartnerSetting object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CloudPcExternalPartnerSetting]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import cloud_pc_external_partner_setting
+        from ....models.cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
 
-        return await self.request_adapter.send_async(request_info, cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPcExternalPartnerSetting, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +110,16 @@ class ExternalPartnerSettingsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new cloudPcExternalPartnerSetting object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +132,13 @@ class ExternalPartnerSettingsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ExternalPartnerSettingsRequestBuilderGetQueryParameters():
@@ -156,11 +149,11 @@ class ExternalPartnerSettingsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +197,27 @@ class ExternalPartnerSettingsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ExternalPartnerSettingsRequestBuilderGetRequestConfiguration():
+    class ExternalPartnerSettingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ExternalPartnerSettingsRequestBuilder.ExternalPartnerSettingsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ExternalPartnerSettingsRequestBuilderPostRequestConfiguration():
+    class ExternalPartnerSettingsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

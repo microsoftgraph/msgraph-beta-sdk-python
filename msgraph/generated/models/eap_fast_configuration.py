@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EapFastConfiguration(Enum):
+class EapFastConfiguration(str, Enum):
     # Use EAP-FAST without Protected Access Credential (PAC).
     NoProtectedAccessCredential = "noProtectedAccessCredential",
     # Use Protected Access Credential (PAC).

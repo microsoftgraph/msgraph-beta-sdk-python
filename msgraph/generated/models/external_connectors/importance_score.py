@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ImportanceScore(Enum):
+class ImportanceScore(str, Enum):
     Low = "low",
     Medium = "medium",
     High = "high",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PersonRelationship(Enum):
+class PersonRelationship(str, Enum):
     Manager = "manager",
     Colleague = "colleague",
     DirectReport = "directReport",

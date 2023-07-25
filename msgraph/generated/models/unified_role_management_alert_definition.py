@@ -1,93 +1,61 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import alert_severity, entity
+    from .alert_severity import AlertSeverity
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class UnifiedRoleManagementAlertDefinition(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRoleManagementAlertDefinition and sets the default values.
-        """
-        super().__init__()
-        # The description property
-        self._description: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The howToPrevent property
-        self._how_to_prevent: Optional[str] = None
-        # The isConfigurable property
-        self._is_configurable: Optional[bool] = None
-        # The isRemediatable property
-        self._is_remediatable: Optional[bool] = None
-        # The mitigationSteps property
-        self._mitigation_steps: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The scopeId property
-        self._scope_id: Optional[str] = None
-        # The scopeType property
-        self._scope_type: Optional[str] = None
-        # The securityImpact property
-        self._security_impact: Optional[str] = None
-        # The severityLevel property
-        self._severity_level: Optional[alert_severity.AlertSeverity] = None
+@dataclass
+class UnifiedRoleManagementAlertDefinition(Entity):
+    # The description of the alert.
+    description: Optional[str] = None
+    # The friendly display name that renders in Privileged Identity Management (PIM) alerts in the Azure portal.
+    display_name: Optional[str] = None
+    # Long-form text that indicates the ways to prevent the alert from being triggered in your tenant.
+    how_to_prevent: Optional[str] = None
+    # true if the alert configuration can be customized in the tenant, and false otherwise. For example, the number and percentage thresholds of the 'There are too many global administrators' alert can be configured by users, while the 'This organization does not have Azure AD Premium P2' cannot be configured, because the criteria is restricted.
+    is_configurable: Optional[bool] = None
+    # true if the alert can be remediated, and false otherwise.
+    is_remediatable: Optional[bool] = None
+    # The methods to mitigate the alert when it's triggered in the tenant. For example, to mitigate the 'There are too many global administrators', you could remove redundant privileged role assignments.
+    mitigation_steps: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The identifier of the scope where the alert is related. / is the only supported one for the tenant. Supports $filter (eq, ne).
+    scope_id: Optional[str] = None
+    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Azure AD Roles.
+    scope_type: Optional[str] = None
+    # Security impact of the alert. For example, it could be information leaks or unauthorized access.
+    security_impact: Optional[str] = None
+    # Severity level of the alert. The possible values are: unknown, informational, low, medium, high, unknownFutureValue.
+    severity_level: Optional[AlertSeverity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleManagementAlertDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UnifiedRoleManagementAlertDefinition
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UnifiedRoleManagementAlertDefinition()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description property
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description property
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import alert_severity, entity
+        from .alert_severity import AlertSeverity
+        from .entity import Entity
+
+        from .alert_severity import AlertSeverity
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -99,130 +67,11 @@ class UnifiedRoleManagementAlertDefinition(entity.Entity):
             "scopeId": lambda n : setattr(self, 'scope_id', n.get_str_value()),
             "scopeType": lambda n : setattr(self, 'scope_type', n.get_str_value()),
             "securityImpact": lambda n : setattr(self, 'security_impact', n.get_str_value()),
-            "severityLevel": lambda n : setattr(self, 'severity_level', n.get_enum_value(alert_severity.AlertSeverity)),
+            "severityLevel": lambda n : setattr(self, 'severity_level', n.get_enum_value(AlertSeverity)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def how_to_prevent(self,) -> Optional[str]:
-        """
-        Gets the howToPrevent property value. The howToPrevent property
-        Returns: Optional[str]
-        """
-        return self._how_to_prevent
-    
-    @how_to_prevent.setter
-    def how_to_prevent(self,value: Optional[str] = None) -> None:
-        """
-        Sets the howToPrevent property value. The howToPrevent property
-        Args:
-            value: Value to set for the how_to_prevent property.
-        """
-        self._how_to_prevent = value
-    
-    @property
-    def is_configurable(self,) -> Optional[bool]:
-        """
-        Gets the isConfigurable property value. The isConfigurable property
-        Returns: Optional[bool]
-        """
-        return self._is_configurable
-    
-    @is_configurable.setter
-    def is_configurable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isConfigurable property value. The isConfigurable property
-        Args:
-            value: Value to set for the is_configurable property.
-        """
-        self._is_configurable = value
-    
-    @property
-    def is_remediatable(self,) -> Optional[bool]:
-        """
-        Gets the isRemediatable property value. The isRemediatable property
-        Returns: Optional[bool]
-        """
-        return self._is_remediatable
-    
-    @is_remediatable.setter
-    def is_remediatable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isRemediatable property value. The isRemediatable property
-        Args:
-            value: Value to set for the is_remediatable property.
-        """
-        self._is_remediatable = value
-    
-    @property
-    def mitigation_steps(self,) -> Optional[str]:
-        """
-        Gets the mitigationSteps property value. The mitigationSteps property
-        Returns: Optional[str]
-        """
-        return self._mitigation_steps
-    
-    @mitigation_steps.setter
-    def mitigation_steps(self,value: Optional[str] = None) -> None:
-        """
-        Sets the mitigationSteps property value. The mitigationSteps property
-        Args:
-            value: Value to set for the mitigation_steps property.
-        """
-        self._mitigation_steps = value
-    
-    @property
-    def scope_id(self,) -> Optional[str]:
-        """
-        Gets the scopeId property value. The scopeId property
-        Returns: Optional[str]
-        """
-        return self._scope_id
-    
-    @scope_id.setter
-    def scope_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the scopeId property value. The scopeId property
-        Args:
-            value: Value to set for the scope_id property.
-        """
-        self._scope_id = value
-    
-    @property
-    def scope_type(self,) -> Optional[str]:
-        """
-        Gets the scopeType property value. The scopeType property
-        Returns: Optional[str]
-        """
-        return self._scope_type
-    
-    @scope_type.setter
-    def scope_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the scopeType property value. The scopeType property
-        Args:
-            value: Value to set for the scope_type property.
-        """
-        self._scope_type = value
-    
-    @property
-    def security_impact(self,) -> Optional[str]:
-        """
-        Gets the securityImpact property value. The securityImpact property
-        Returns: Optional[str]
-        """
-        return self._security_impact
-    
-    @security_impact.setter
-    def security_impact(self,value: Optional[str] = None) -> None:
-        """
-        Sets the securityImpact property value. The securityImpact property
-        Args:
-            value: Value to set for the security_impact property.
-        """
-        self._security_impact = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -230,8 +79,8 @@ class UnifiedRoleManagementAlertDefinition(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
@@ -243,22 +92,5 @@ class UnifiedRoleManagementAlertDefinition(entity.Entity):
         writer.write_str_value("scopeType", self.scope_type)
         writer.write_str_value("securityImpact", self.security_impact)
         writer.write_enum_value("severityLevel", self.severity_level)
-    
-    @property
-    def severity_level(self,) -> Optional[alert_severity.AlertSeverity]:
-        """
-        Gets the severityLevel property value. The severityLevel property
-        Returns: Optional[alert_severity.AlertSeverity]
-        """
-        return self._severity_level
-    
-    @severity_level.setter
-    def severity_level(self,value: Optional[alert_severity.AlertSeverity] = None) -> None:
-        """
-        Sets the severityLevel property value. The severityLevel property
-        Args:
-            value: Value to set for the severity_level property.
-        """
-        self._severity_level = value
     
 

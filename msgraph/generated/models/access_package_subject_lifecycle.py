@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AccessPackageSubjectLifecycle(Enum):
+class AccessPackageSubjectLifecycle(str, Enum):
     NotDefined = "notDefined",
     NotGoverned = "notGoverned",
     Governed = "governed",

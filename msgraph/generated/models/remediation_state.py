@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RemediationState(Enum):
+class RemediationState(str, Enum):
     # Unknown result.
     Unknown = "unknown",
     # Remediation script execution was skipped

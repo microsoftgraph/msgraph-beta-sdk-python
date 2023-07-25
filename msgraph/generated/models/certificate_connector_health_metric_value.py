@@ -1,90 +1,37 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class CertificateConnectorHealthMetricValue(AdditionalDataHolder, Parsable):
     """
     Metric snapshot value returned in response to a GetHealthMetricTimeSeries request.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new certificateConnectorHealthMetricValue and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Timestamp for this metric data-point.
-        self._date_time: Optional[datetime] = None
-        # Count of failed requests/operations.
-        self._failure_count: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Count of successful requests/operations.
-        self._success_count: Optional[int] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Timestamp for this metric data-point.
+    date_time: Optional[datetime.datetime] = None
+    # Count of failed requests/operations.
+    failure_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Count of successful requests/operations.
+    success_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CertificateConnectorHealthMetricValue:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CertificateConnectorHealthMetricValue
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CertificateConnectorHealthMetricValue()
-    
-    @property
-    def date_time(self,) -> Optional[datetime]:
-        """
-        Gets the dateTime property value. Timestamp for this metric data-point.
-        Returns: Optional[datetime]
-        """
-        return self._date_time
-    
-    @date_time.setter
-    def date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the dateTime property value. Timestamp for this metric data-point.
-        Args:
-            value: Value to set for the date_time property.
-        """
-        self._date_time = value
-    
-    @property
-    def failure_count(self,) -> Optional[int]:
-        """
-        Gets the failureCount property value. Count of failed requests/operations.
-        Returns: Optional[int]
-        """
-        return self._failure_count
-    
-    @failure_count.setter
-    def failure_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the failureCount property value. Count of failed requests/operations.
-        Args:
-            value: Value to set for the failure_count property.
-        """
-        self._failure_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -99,52 +46,18 @@ class CertificateConnectorHealthMetricValue(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_datetime_value("dateTime", self.date_time)
         writer.write_int_value("failureCount", self.failure_count)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("successCount", self.success_count)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def success_count(self,) -> Optional[int]:
-        """
-        Gets the successCount property value. Count of successful requests/operations.
-        Returns: Optional[int]
-        """
-        return self._success_count
-    
-    @success_count.setter
-    def success_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the successCount property value. Count of successful requests/operations.
-        Args:
-            value: Value to set for the success_count property.
-        """
-        self._success_count = value
     
 

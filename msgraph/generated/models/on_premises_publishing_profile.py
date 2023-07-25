@@ -1,115 +1,50 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import connector, connector_group, entity, hybrid_agent_updater_configuration, on_premises_agent, on_premises_agent_group, published_resource
+    from .connector import Connector
+    from .connector_group import ConnectorGroup
+    from .entity import Entity
+    from .hybrid_agent_updater_configuration import HybridAgentUpdaterConfiguration
+    from .on_premises_agent import OnPremisesAgent
+    from .on_premises_agent_group import OnPremisesAgentGroup
+    from .published_resource import PublishedResource
 
-from . import entity
+from .entity import Entity
 
-class OnPremisesPublishingProfile(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OnPremisesPublishingProfile and sets the default values.
-        """
-        super().__init__()
-        # List of existing onPremisesAgentGroup objects. Read-only. Nullable.
-        self._agent_groups: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]] = None
-        # List of existing onPremisesAgent objects. Read-only. Nullable.
-        self._agents: Optional[List[on_premises_agent.OnPremisesAgent]] = None
-        # List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
-        self._connector_groups: Optional[List[connector_group.ConnectorGroup]] = None
-        # List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
-        self._connectors: Optional[List[connector.Connector]] = None
-        # Represents a hybridAgentUpdaterConfiguration object.
-        self._hybrid_agent_updater_configuration: Optional[hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration] = None
-        # The isDefaultAccessEnabled property
-        self._is_default_access_enabled: Optional[bool] = None
-        # Represents if Azure AD Application Proxy is enabled for the tenant.
-        self._is_enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of existing publishedResource objects. Read-only. Nullable.
-        self._published_resources: Optional[List[published_resource.PublishedResource]] = None
-    
-    @property
-    def agent_groups(self,) -> Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]:
-        """
-        Gets the agentGroups property value. List of existing onPremisesAgentGroup objects. Read-only. Nullable.
-        Returns: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]
-        """
-        return self._agent_groups
-    
-    @agent_groups.setter
-    def agent_groups(self,value: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]] = None) -> None:
-        """
-        Sets the agentGroups property value. List of existing onPremisesAgentGroup objects. Read-only. Nullable.
-        Args:
-            value: Value to set for the agent_groups property.
-        """
-        self._agent_groups = value
-    
-    @property
-    def agents(self,) -> Optional[List[on_premises_agent.OnPremisesAgent]]:
-        """
-        Gets the agents property value. List of existing onPremisesAgent objects. Read-only. Nullable.
-        Returns: Optional[List[on_premises_agent.OnPremisesAgent]]
-        """
-        return self._agents
-    
-    @agents.setter
-    def agents(self,value: Optional[List[on_premises_agent.OnPremisesAgent]] = None) -> None:
-        """
-        Sets the agents property value. List of existing onPremisesAgent objects. Read-only. Nullable.
-        Args:
-            value: Value to set for the agents property.
-        """
-        self._agents = value
-    
-    @property
-    def connector_groups(self,) -> Optional[List[connector_group.ConnectorGroup]]:
-        """
-        Gets the connectorGroups property value. List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
-        Returns: Optional[List[connector_group.ConnectorGroup]]
-        """
-        return self._connector_groups
-    
-    @connector_groups.setter
-    def connector_groups(self,value: Optional[List[connector_group.ConnectorGroup]] = None) -> None:
-        """
-        Sets the connectorGroups property value. List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
-        Args:
-            value: Value to set for the connector_groups property.
-        """
-        self._connector_groups = value
-    
-    @property
-    def connectors(self,) -> Optional[List[connector.Connector]]:
-        """
-        Gets the connectors property value. List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
-        Returns: Optional[List[connector.Connector]]
-        """
-        return self._connectors
-    
-    @connectors.setter
-    def connectors(self,value: Optional[List[connector.Connector]] = None) -> None:
-        """
-        Sets the connectors property value. List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
-        Args:
-            value: Value to set for the connectors property.
-        """
-        self._connectors = value
+@dataclass
+class OnPremisesPublishingProfile(Entity):
+    # List of existing onPremisesAgentGroup objects. Read-only. Nullable.
+    agent_groups: Optional[List[OnPremisesAgentGroup]] = None
+    # List of existing onPremisesAgent objects. Read-only. Nullable.
+    agents: Optional[List[OnPremisesAgent]] = None
+    # List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+    connector_groups: Optional[List[ConnectorGroup]] = None
+    # List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
+    connectors: Optional[List[Connector]] = None
+    # Represents a hybridAgentUpdaterConfiguration object.
+    hybrid_agent_updater_configuration: Optional[HybridAgentUpdaterConfiguration] = None
+    # The isDefaultAccessEnabled property
+    is_default_access_enabled: Optional[bool] = None
+    # Represents if Azure AD Application Proxy is enabled for the tenant.
+    is_enabled: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # List of existing publishedResource objects. Read-only. Nullable.
+    published_resources: Optional[List[PublishedResource]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesPublishingProfile:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: OnPremisesPublishingProfile
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return OnPremisesPublishingProfile()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -117,89 +52,35 @@ class OnPremisesPublishingProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import connector, connector_group, entity, hybrid_agent_updater_configuration, on_premises_agent, on_premises_agent_group, published_resource
+        from .connector import Connector
+        from .connector_group import ConnectorGroup
+        from .entity import Entity
+        from .hybrid_agent_updater_configuration import HybridAgentUpdaterConfiguration
+        from .on_premises_agent import OnPremisesAgent
+        from .on_premises_agent_group import OnPremisesAgentGroup
+        from .published_resource import PublishedResource
+
+        from .connector import Connector
+        from .connector_group import ConnectorGroup
+        from .entity import Entity
+        from .hybrid_agent_updater_configuration import HybridAgentUpdaterConfiguration
+        from .on_premises_agent import OnPremisesAgent
+        from .on_premises_agent_group import OnPremisesAgentGroup
+        from .published_resource import PublishedResource
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "agents": lambda n : setattr(self, 'agents', n.get_collection_of_object_values(on_premises_agent.OnPremisesAgent)),
-            "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
-            "connectors": lambda n : setattr(self, 'connectors', n.get_collection_of_object_values(connector.Connector)),
-            "connectorGroups": lambda n : setattr(self, 'connector_groups', n.get_collection_of_object_values(connector_group.ConnectorGroup)),
-            "hybridAgentUpdaterConfiguration": lambda n : setattr(self, 'hybrid_agent_updater_configuration', n.get_object_value(hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration)),
+            "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(OnPremisesAgentGroup)),
+            "agents": lambda n : setattr(self, 'agents', n.get_collection_of_object_values(OnPremisesAgent)),
+            "connectorGroups": lambda n : setattr(self, 'connector_groups', n.get_collection_of_object_values(ConnectorGroup)),
+            "connectors": lambda n : setattr(self, 'connectors', n.get_collection_of_object_values(Connector)),
+            "hybridAgentUpdaterConfiguration": lambda n : setattr(self, 'hybrid_agent_updater_configuration', n.get_object_value(HybridAgentUpdaterConfiguration)),
             "isDefaultAccessEnabled": lambda n : setattr(self, 'is_default_access_enabled', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "publishedResources": lambda n : setattr(self, 'published_resources', n.get_collection_of_object_values(published_resource.PublishedResource)),
+            "publishedResources": lambda n : setattr(self, 'published_resources', n.get_collection_of_object_values(PublishedResource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def hybrid_agent_updater_configuration(self,) -> Optional[hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration]:
-        """
-        Gets the hybridAgentUpdaterConfiguration property value. Represents a hybridAgentUpdaterConfiguration object.
-        Returns: Optional[hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration]
-        """
-        return self._hybrid_agent_updater_configuration
-    
-    @hybrid_agent_updater_configuration.setter
-    def hybrid_agent_updater_configuration(self,value: Optional[hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration] = None) -> None:
-        """
-        Sets the hybridAgentUpdaterConfiguration property value. Represents a hybridAgentUpdaterConfiguration object.
-        Args:
-            value: Value to set for the hybrid_agent_updater_configuration property.
-        """
-        self._hybrid_agent_updater_configuration = value
-    
-    @property
-    def is_default_access_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isDefaultAccessEnabled property value. The isDefaultAccessEnabled property
-        Returns: Optional[bool]
-        """
-        return self._is_default_access_enabled
-    
-    @is_default_access_enabled.setter
-    def is_default_access_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isDefaultAccessEnabled property value. The isDefaultAccessEnabled property
-        Args:
-            value: Value to set for the is_default_access_enabled property.
-        """
-        self._is_default_access_enabled = value
-    
-    @property
-    def is_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isEnabled property value. Represents if Azure AD Application Proxy is enabled for the tenant.
-        Returns: Optional[bool]
-        """
-        return self._is_enabled
-    
-    @is_enabled.setter
-    def is_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEnabled property value. Represents if Azure AD Application Proxy is enabled for the tenant.
-        Args:
-            value: Value to set for the is_enabled property.
-        """
-        self._is_enabled = value
-    
-    @property
-    def published_resources(self,) -> Optional[List[published_resource.PublishedResource]]:
-        """
-        Gets the publishedResources property value. List of existing publishedResource objects. Read-only. Nullable.
-        Returns: Optional[List[published_resource.PublishedResource]]
-        """
-        return self._published_resources
-    
-    @published_resources.setter
-    def published_resources(self,value: Optional[List[published_resource.PublishedResource]] = None) -> None:
-        """
-        Sets the publishedResources property value. List of existing publishedResource objects. Read-only. Nullable.
-        Args:
-            value: Value to set for the published_resources property.
-        """
-        self._published_resources = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -207,13 +88,13 @@ class OnPremisesPublishingProfile(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("agents", self.agents)
         writer.write_collection_of_object_values("agentGroups", self.agent_groups)
-        writer.write_collection_of_object_values("connectors", self.connectors)
+        writer.write_collection_of_object_values("agents", self.agents)
         writer.write_collection_of_object_values("connectorGroups", self.connector_groups)
+        writer.write_collection_of_object_values("connectors", self.connectors)
         writer.write_object_value("hybridAgentUpdaterConfiguration", self.hybrid_agent_updater_configuration)
         writer.write_bool_value("isDefaultAccessEnabled", self.is_default_access_enabled)
         writer.write_bool_value("isEnabled", self.is_enabled)

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSSoftwareUpdateBehavior(Enum):
+class MacOSSoftwareUpdateBehavior(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Download and/or install the software update, depending on the current device state.

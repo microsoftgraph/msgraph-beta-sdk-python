@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RemoteAction(Enum):
+class RemoteAction(str, Enum):
     # Indicate user initiates an unknown action.
     Unknown = "unknown",
     # Indicate user initiates an action to factory reset a device. 
@@ -63,4 +63,6 @@ class RemoteAction(Enum):
     InitiateOnDemandProactiveRemediation = "initiateOnDemandProactiveRemediation",
     # Add device action of RotateLocalAdminPassword
     RotateLocalAdminPassword = "rotateLocalAdminPassword",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

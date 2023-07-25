@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ReferenceAttachmentPermission(Enum):
+class ReferenceAttachmentPermission(str, Enum):
     Other = "other",
     View = "view",
     Edit = "edit",

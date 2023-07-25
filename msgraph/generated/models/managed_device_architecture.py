@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagedDeviceArchitecture(Enum):
+class ManagedDeviceArchitecture(str, Enum):
     # Unknown architecture
     Unknown = "unknown",
     # X86

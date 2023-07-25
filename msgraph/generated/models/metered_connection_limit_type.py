@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MeteredConnectionLimitType(Enum):
+class MeteredConnectionLimitType(str, Enum):
     # Unrestricted
     Unrestricted = "unrestricted",
     # Fixed

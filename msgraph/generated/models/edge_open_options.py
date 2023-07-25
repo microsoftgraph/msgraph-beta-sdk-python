@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EdgeOpenOptions(Enum):
+class EdgeOpenOptions(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # StartPage.

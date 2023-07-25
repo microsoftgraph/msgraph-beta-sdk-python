@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsDefenderProductStatus(Enum):
+class WindowsDefenderProductStatus(str, Enum):
     # No status
     NoStatus = "noStatus",
     # Service not running

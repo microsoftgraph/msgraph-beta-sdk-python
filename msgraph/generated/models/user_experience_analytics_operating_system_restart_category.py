@@ -1,22 +1,24 @@
 from enum import Enum
 
-class UserExperienceAnalyticsOperatingSystemRestartCategory(Enum):
-    # Unknown
+class UserExperienceAnalyticsOperatingSystemRestartCategory(str, Enum):
+    # Default. Set to unknown if device operating system restart category has not yet been calculated.
     Unknown = "unknown",
-    # Restart with update
+    # Indicates that the device operating system restart is along with an update.
     RestartWithUpdate = "restartWithUpdate",
-    # Restart without update
+    # Indicates that the device operating system restart is without update.
     RestartWithoutUpdate = "restartWithoutUpdate",
-    # Blue screen restart
+    # Indicates that the device operating system restart is due to a specific stop error.
     BlueScreen = "blueScreen",
-    # Shutdown with update
+    # Indicates that the device operating system restart is due to shutdown with update.
     ShutdownWithUpdate = "shutdownWithUpdate",
-    # Shutdown without update
+    # Indicates that the device operating system restart is due to shutdown without update.
     ShutdownWithoutUpdate = "shutdownWithoutUpdate",
-    # Long power button press
+    # Indicates that the device operating system restart is due to update long power-button press.
     LongPowerButtonPress = "longPowerButtonPress",
-    # Boot error
+    # Indicates that the device operating system restart is due to boot error.
     BootError = "bootError",
-    # Update
+    # Indicates that the device operating system restarted after an update.
     Update = "update",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

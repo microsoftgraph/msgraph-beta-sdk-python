@@ -1,32 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_configuration_setting_instance_template, device_management_configuration_simple_setting_value_template
+    from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+    from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
 
-from . import device_management_configuration_setting_instance_template
+from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
 
-class DeviceManagementConfigurationSimpleSettingInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSimpleSettingInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate"
-        # Simple Setting Value Template
-        self._simple_setting_value_template: Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate] = None
+@dataclass
+class DeviceManagementConfigurationSimpleSettingInstanceTemplate(DeviceManagementConfigurationSettingInstanceTemplate):
+    """
+    Simple Setting Instance Template
+    """
+    odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate"
+    # Simple Setting Value Template
+    simple_setting_value_template: Optional[DeviceManagementConfigurationSimpleSettingValueTemplate] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingInstanceTemplate:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationSimpleSettingInstanceTemplate
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationSimpleSettingInstanceTemplate()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,10 +35,14 @@ class DeviceManagementConfigurationSimpleSettingInstanceTemplate(device_manageme
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_configuration_setting_instance_template, device_management_configuration_simple_setting_value_template
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+        from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
+
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+        from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "simpleSettingValueTemplate": lambda n : setattr(self, 'simple_setting_value_template', n.get_object_value(device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate)),
+            "simpleSettingValueTemplate": lambda n : setattr(self, 'simple_setting_value_template', n.get_object_value(DeviceManagementConfigurationSimpleSettingValueTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,26 +54,9 @@ class DeviceManagementConfigurationSimpleSettingInstanceTemplate(device_manageme
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("simpleSettingValueTemplate", self.simple_setting_value_template)
-    
-    @property
-    def simple_setting_value_template(self,) -> Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]:
-        """
-        Gets the simpleSettingValueTemplate property value. Simple Setting Value Template
-        Returns: Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]
-        """
-        return self._simple_setting_value_template
-    
-    @simple_setting_value_template.setter
-    def simple_setting_value_template(self,value: Optional[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate] = None) -> None:
-        """
-        Sets the simpleSettingValueTemplate property value. Simple Setting Value Template
-        Args:
-            value: Value to set for the simple_setting_value_template property.
-        """
-        self._simple_setting_value_template = value
     
 

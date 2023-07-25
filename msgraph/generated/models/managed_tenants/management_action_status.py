@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagementActionStatus(Enum):
+class ManagementActionStatus(str, Enum):
     ToAddress = "toAddress",
     Completed = "completed",
     Error = "error",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsFirewallRuleTrafficDirectionType(Enum):
+class WindowsFirewallRuleTrafficDirectionType(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # The rule applies to outbound traffic.

@@ -1,31 +1,29 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import base_collection_pagination_count_response, result_info
+    from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+    from ....models.result_info import ResultInfo
 
-from ....models import base_collection_pagination_count_response
+from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
-class DeleteTiIndicatorsByExternalIdResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deleteTiIndicatorsByExternalIdResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[result_info.ResultInfo]] = None
+@dataclass
+class DeleteTiIndicatorsByExternalIdResponse(BaseCollectionPaginationCountResponse):
+    # The value property
+    value: Optional[List[ResultInfo]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeleteTiIndicatorsByExternalIdResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeleteTiIndicatorsByExternalIdResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeleteTiIndicatorsByExternalIdResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -33,10 +31,14 @@ class DeleteTiIndicatorsByExternalIdResponse(base_collection_pagination_count_re
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ....models import base_collection_pagination_count_response, result_info
+        from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ....models.result_info import ResultInfo
+
+        from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ....models.result_info import ResultInfo
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(result_info.ResultInfo)),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(ResultInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -48,26 +50,9 @@ class DeleteTiIndicatorsByExternalIdResponse(base_collection_pagination_count_re
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[result_info.ResultInfo]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[result_info.ResultInfo]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[result_info.ResultInfo]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +11,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import create_session_post_request_body
-    from .......models import workbook_session_info
-    from .......models.o_data_errors import o_data_error
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .......models.workbook_session_info import WorkbookSessionInfo
+    from .create_session_post_request_body import CreateSessionPostRequestBody
 
-class CreateSessionRequestBuilder():
+class CreateSessionRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the createSession method.
     """
@@ -22,55 +23,46 @@ class CreateSessionRequestBuilder():
         """
         Instantiates a new CreateSessionRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/createSession"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/createSession", path_parameters)
     
-    async def post(self,body: Optional[create_session_post_request_body.CreateSessionPostRequestBody] = None, request_configuration: Optional[CreateSessionRequestBuilderPostRequestConfiguration] = None) -> Optional[workbook_session_info.WorkbookSessionInfo]:
+    async def post(self,body: Optional[CreateSessionPostRequestBody] = None, request_configuration: Optional[CreateSessionRequestBuilderPostRequestConfiguration] = None) -> Optional[WorkbookSessionInfo]:
         """
         Create a new workbook session.  Excel APIs can be called in one of two modes:  To represent the session in the API, use the `workbook-session-id: {session-id}` header.  In some cases, creating a new session requires an indeterminate time to complete. Microsoft Graph also provides a long running operations pattern. This pattern provides a way to poll for creation status updates, without waiting for the creation to complete. The following are the steps:
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_session_info.WorkbookSessionInfo]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WorkbookSessionInfo]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import workbook_session_info
+        from .......models.workbook_session_info import WorkbookSessionInfo
 
-        return await self.request_adapter.send_async(request_info, workbook_session_info.WorkbookSessionInfo, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookSessionInfo, error_mapping)
     
-    def to_post_request_information(self,body: Optional[create_session_post_request_body.CreateSessionPostRequestBody] = None, request_configuration: Optional[CreateSessionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CreateSessionPostRequestBody] = None, request_configuration: Optional[CreateSessionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new workbook session.  Excel APIs can be called in one of two modes:  To represent the session in the API, use the `workbook-session-id: {session-id}` header.  In some cases, creating a new session requires an indeterminate time to complete. Microsoft Graph also provides a long running operations pattern. This pattern provides a way to poll for creation status updates, without waiting for the creation to complete. The following are the steps:
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -82,16 +74,14 @@ class CreateSessionRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CreateSessionRequestBuilderPostRequestConfiguration():
+    class CreateSessionRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

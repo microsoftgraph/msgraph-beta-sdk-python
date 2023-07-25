@@ -1,32 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import azure_a_d_device_registration_error_reason, updatable_asset_error
+    from .azure_a_d_device_registration_error_reason import AzureADDeviceRegistrationErrorReason
+    from .updatable_asset_error import UpdatableAssetError
 
-from . import updatable_asset_error
+from .updatable_asset_error import UpdatableAssetError
 
-class AzureADDeviceRegistrationError(updatable_asset_error.UpdatableAssetError):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AzureADDeviceRegistrationError and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.azureADDeviceRegistrationError"
-        # The reason property
-        self._reason: Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason] = None
+@dataclass
+class AzureADDeviceRegistrationError(UpdatableAssetError):
+    odata_type = "#microsoft.graph.windowsUpdates.azureADDeviceRegistrationError"
+    # The reason property
+    reason: Optional[AzureADDeviceRegistrationErrorReason] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureADDeviceRegistrationError:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AzureADDeviceRegistrationError
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AzureADDeviceRegistrationError()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,31 +32,18 @@ class AzureADDeviceRegistrationError(updatable_asset_error.UpdatableAssetError):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import azure_a_d_device_registration_error_reason, updatable_asset_error
+        from .azure_a_d_device_registration_error_reason import AzureADDeviceRegistrationErrorReason
+        from .updatable_asset_error import UpdatableAssetError
+
+        from .azure_a_d_device_registration_error_reason import AzureADDeviceRegistrationErrorReason
+        from .updatable_asset_error import UpdatableAssetError
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "reason": lambda n : setattr(self, 'reason', n.get_enum_value(azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason)),
+            "reason": lambda n : setattr(self, 'reason', n.get_enum_value(AzureADDeviceRegistrationErrorReason)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def reason(self,) -> Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason]:
-        """
-        Gets the reason property value. The reason property
-        Returns: Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason]
-        """
-        return self._reason
-    
-    @reason.setter
-    def reason(self,value: Optional[azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason] = None) -> None:
-        """
-        Sets the reason property value. The reason property
-        Args:
-            value: Value to set for the reason property.
-        """
-        self._reason = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -66,8 +51,8 @@ class AzureADDeviceRegistrationError(updatable_asset_error.UpdatableAssetError):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("reason", self.reason)
     

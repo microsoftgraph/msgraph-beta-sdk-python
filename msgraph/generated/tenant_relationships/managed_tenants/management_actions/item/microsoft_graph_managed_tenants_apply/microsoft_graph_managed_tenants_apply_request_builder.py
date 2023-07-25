@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +11,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import apply_post_request_body
-    from ......models.managed_tenants import management_action_deployment_status
-    from ......models.o_data_errors import o_data_error
+    from ......models.managed_tenants.management_action_deployment_status import ManagementActionDeploymentStatus
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .apply_post_request_body import ApplyPostRequestBody
 
-class MicrosoftGraphManagedTenantsApplyRequestBuilder():
+class MicrosoftGraphManagedTenantsApplyRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the apply method.
     """
@@ -22,55 +23,46 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder():
         """
         Instantiates a new MicrosoftGraphManagedTenantsApplyRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/managementActions/{managementAction%2Did}/microsoft.graph.managedTenants.apply"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managementActions/{managementAction%2Did}/microsoft.graph.managedTenants.apply", path_parameters)
     
-    async def post(self,body: Optional[apply_post_request_body.ApplyPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> Optional[management_action_deployment_status.ManagementActionDeploymentStatus]:
+    async def post(self,body: Optional[ApplyPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagementActionDeploymentStatus]:
         """
         Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multi-factor authentication for admins management action will create an Azure Active Directory conditional access policy that requires multi-factor authentication for all users that have been assigned an administrative directory role.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[management_action_deployment_status.ManagementActionDeploymentStatus]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagementActionDeploymentStatus]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.managed_tenants import management_action_deployment_status
+        from ......models.managed_tenants.management_action_deployment_status import ManagementActionDeploymentStatus
 
-        return await self.request_adapter.send_async(request_info, management_action_deployment_status.ManagementActionDeploymentStatus, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagementActionDeploymentStatus, error_mapping)
     
-    def to_post_request_information(self,body: Optional[apply_post_request_body.ApplyPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ApplyPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multi-factor authentication for admins management action will create an Azure Active Directory conditional access policy that requires multi-factor authentication for all users that have been assigned an administrative directory role.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -82,16 +74,14 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration():
+    class MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +11,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import authentication_strength_usage
-    from .......models.o_data_errors import o_data_error
+    from .......models.authentication_strength_usage import AuthenticationStrengthUsage
+    from .......models.o_data_errors.o_data_error import ODataError
 
-class UsageRequestBuilder():
+class UsageRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the usage method.
     """
@@ -21,47 +22,38 @@ class UsageRequestBuilder():
         """
         Instantiates a new UsageRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identity/conditionalAccess/authenticationStrength/policies/{authenticationStrengthPolicy%2Did}/usage()"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrength/policies/{authenticationStrengthPolicy%2Did}/usage()", path_parameters)
     
-    async def get(self,request_configuration: Optional[UsageRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_strength_usage.AuthenticationStrengthUsage]:
+    async def get(self,request_configuration: Optional[UsageRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthenticationStrengthUsage]:
         """
         Invoke function usage
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[authentication_strength_usage.AuthenticationStrengthUsage]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AuthenticationStrengthUsage]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import authentication_strength_usage
+        from .......models.authentication_strength_usage import AuthenticationStrengthUsage
 
-        return await self.request_adapter.send_async(request_info, authentication_strength_usage.AuthenticationStrengthUsage, error_mapping)
+        return await self.request_adapter.send_async(request_info, AuthenticationStrengthUsage, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UsageRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke function usage
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -74,16 +66,14 @@ class UsageRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UsageRequestBuilderGetRequestConfiguration():
+    class UsageRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

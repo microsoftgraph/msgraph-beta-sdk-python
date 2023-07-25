@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcRegionGroup(Enum):
+class CloudPcRegionGroup(str, Enum):
     Default = "default",
     Australia = "australia",
     Canada = "canada",

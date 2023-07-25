@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import group_policy_setting_mapping, group_policy_setting_mapping_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import group_policy_setting_mapping_item_request_builder
+    from .....models.group_policy_setting_mapping import GroupPolicySettingMapping
+    from .....models.group_policy_setting_mapping_collection_response import GroupPolicySettingMappingCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.group_policy_setting_mapping_item_request_builder import GroupPolicySettingMappingItemRequestBuilder
 
-class GroupPolicySettingMappingsRequestBuilder():
+class GroupPolicySettingMappingsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the groupPolicySettingMappings property of the microsoft.graph.groupPolicyMigrationReport entity.
     """
@@ -23,87 +25,78 @@ class GroupPolicySettingMappingsRequestBuilder():
         """
         Instantiates a new GroupPolicySettingMappingsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/groupPolicyMigrationReports/{groupPolicyMigrationReport%2Did}/groupPolicySettingMappings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/groupPolicyMigrationReports/{groupPolicyMigrationReport%2Did}/groupPolicySettingMappings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_group_policy_setting_mapping_id(self,group_policy_setting_mapping_id: str) -> group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder:
+    def by_group_policy_setting_mapping_id(self,group_policy_setting_mapping_id: str) -> GroupPolicySettingMappingItemRequestBuilder:
         """
         Provides operations to manage the groupPolicySettingMappings property of the microsoft.graph.groupPolicyMigrationReport entity.
         Args:
             group_policy_setting_mapping_id: Unique identifier of the item
-        Returns: group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder
+        Returns: GroupPolicySettingMappingItemRequestBuilder
         """
-        if group_policy_setting_mapping_id is None:
-            raise Exception("group_policy_setting_mapping_id cannot be undefined")
-        from .item import group_policy_setting_mapping_item_request_builder
+        if not group_policy_setting_mapping_id:
+            raise TypeError("group_policy_setting_mapping_id cannot be null.")
+        from .item.group_policy_setting_mapping_item_request_builder import GroupPolicySettingMappingItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["groupPolicySettingMapping%2Did"] = group_policy_setting_mapping_id
-        return group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return GroupPolicySettingMappingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GroupPolicySettingMappingsRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_setting_mapping_collection_response.GroupPolicySettingMappingCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupPolicySettingMappingsRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicySettingMappingCollectionResponse]:
         """
         A list of group policy settings to MDM/Intune mappings.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_setting_mapping_collection_response.GroupPolicySettingMappingCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GroupPolicySettingMappingCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import group_policy_setting_mapping_collection_response
+        from .....models.group_policy_setting_mapping_collection_response import GroupPolicySettingMappingCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, group_policy_setting_mapping_collection_response.GroupPolicySettingMappingCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicySettingMappingCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group_policy_setting_mapping.GroupPolicySettingMapping] = None, request_configuration: Optional[GroupPolicySettingMappingsRequestBuilderPostRequestConfiguration] = None) -> Optional[group_policy_setting_mapping.GroupPolicySettingMapping]:
+    async def post(self,body: Optional[GroupPolicySettingMapping] = None, request_configuration: Optional[GroupPolicySettingMappingsRequestBuilderPostRequestConfiguration] = None) -> Optional[GroupPolicySettingMapping]:
         """
         Create new navigation property to groupPolicySettingMappings for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_setting_mapping.GroupPolicySettingMapping]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GroupPolicySettingMapping]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import group_policy_setting_mapping
+        from .....models.group_policy_setting_mapping import GroupPolicySettingMapping
 
-        return await self.request_adapter.send_async(request_info, group_policy_setting_mapping.GroupPolicySettingMapping, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicySettingMapping, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupPolicySettingMappingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A list of group policy settings to MDM/Intune mappings.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +110,16 @@ class GroupPolicySettingMappingsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[group_policy_setting_mapping.GroupPolicySettingMapping] = None, request_configuration: Optional[GroupPolicySettingMappingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GroupPolicySettingMapping] = None, request_configuration: Optional[GroupPolicySettingMappingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to groupPolicySettingMappings for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +132,13 @@ class GroupPolicySettingMappingsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupPolicySettingMappingsRequestBuilderGetQueryParameters():
@@ -156,11 +149,11 @@ class GroupPolicySettingMappingsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +197,27 @@ class GroupPolicySettingMappingsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupPolicySettingMappingsRequestBuilderGetRequestConfiguration():
+    class GroupPolicySettingMappingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[GroupPolicySettingMappingsRequestBuilder.GroupPolicySettingMappingsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupPolicySettingMappingsRequestBuilderPostRequestConfiguration():
+    class GroupPolicySettingMappingsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

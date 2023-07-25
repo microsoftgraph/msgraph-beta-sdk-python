@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceAndAppManagementAssignmentFilterType(Enum):
+class DeviceAndAppManagementAssignmentFilterType(str, Enum):
     # Default value. Do not use.
     None_ = "none",
     # Indicates in-filter, rule matching will offer the payload to devices.

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EmailType(Enum):
+class EmailType(str, Enum):
     Unknown = "unknown",
     Work = "work",
     Personal = "personal",

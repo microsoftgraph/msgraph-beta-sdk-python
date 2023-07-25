@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagedAppNotificationRestriction(Enum):
+class ManagedAppNotificationRestriction(str, Enum):
     # Share all notifications.
     Allow = "allow",
     # Do not share Orgnizational data in notifications.

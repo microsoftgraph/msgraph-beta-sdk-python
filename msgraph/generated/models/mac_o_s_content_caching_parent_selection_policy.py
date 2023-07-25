@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSContentCachingParentSelectionPolicy(Enum):
+class MacOSContentCachingParentSelectionPolicy(str, Enum):
     # Defaults to round-robin strategy.
     NotConfigured = "notConfigured",
     # Rotate through the parents in order. Use this policy for load balancing.

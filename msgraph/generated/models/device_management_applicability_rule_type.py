@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementApplicabilityRuleType(Enum):
+class DeviceManagementApplicabilityRuleType(str, Enum):
     # Include
     Include = "include",
     # Exclude

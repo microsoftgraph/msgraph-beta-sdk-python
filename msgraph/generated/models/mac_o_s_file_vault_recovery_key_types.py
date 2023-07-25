@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSFileVaultRecoveryKeyTypes(Enum):
+class MacOSFileVaultRecoveryKeyTypes(str, Enum):
     # Device default value, no intent.
     NotConfigured = "notConfigured",
     # An institutional recovery key is like a “master” recovery key that can be used to unlock any device whose password has been lost.

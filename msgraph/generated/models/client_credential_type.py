@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ClientCredentialType(Enum):
+class ClientCredentialType(str, Enum):
     None_ = "none",
     ClientSecret = "clientSecret",
     ClientAssertion = "clientAssertion",

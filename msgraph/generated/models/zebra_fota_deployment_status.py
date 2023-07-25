@@ -1,149 +1,84 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import zebra_fota_deployment_state, zebra_fota_error_code
+    from .zebra_fota_deployment_state import ZebraFotaDeploymentState
+    from .zebra_fota_error_code import ZebraFotaErrorCode
 
+@dataclass
 class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
     """
     Describes the status for a single FOTA deployment.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new zebraFotaDeploymentStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # A boolean that indicates if a cancellation was requested on the deployment. NOTE: A cancellation request does not guarantee that the deployment was canceled.
-        self._cancel_requested: Optional[bool] = None
-        # The date and time when this deployment was completed or canceled. The actual date time is determined by the value of state. If the state is canceled, this property holds the cancellation date/time. If the the state is completed, this property holds the completion date/time. If the deployment is not completed before the deployment end date, then completed date/time and end date/time are the same. This is always in the deployment timezone. Note: An installation that is in progress can continue past the deployment end date.
-        self._complete_or_canceled_date_time: Optional[datetime] = None
-        # An error code indicating the failure reason, when the deployment state is createFailed. Possible values: See zebraFotaErrorCode enum.
-        self._error_code: Optional[zebra_fota_error_code.ZebraFotaErrorCode] = None
-        # Date and time when the deployment status was updated from Zebra
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Represents the state of Zebra FOTA deployment.
-        self._state: Optional[zebra_fota_deployment_state.ZebraFotaDeploymentState] = None
-        # An integer that indicates the total number of devices where installation was successful.
-        self._total_awaiting_install: Optional[int] = None
-        # An integer that indicates the total number of devices where installation was canceled.
-        self._total_canceled: Optional[int] = None
-        # An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices.
-        self._total_created: Optional[int] = None
-        # An integer that indicates the total number of devices in the deployment.
-        self._total_devices: Optional[int] = None
-        # An integer that indicates the total number of devices where installation was successful.
-        self._total_downloading: Optional[int] = None
-        # An integer that indicates the total number of devices that have failed to download the new OS file.
-        self._total_failed_download: Optional[int] = None
-        # An integer that indicates the total number of devices that have failed to install the new OS file.
-        self._total_failed_install: Optional[int] = None
-        # An integer that indicates the total number of devices that received the json and are scheduled.
-        self._total_scheduled: Optional[int] = None
-        # An integer that indicates the total number of devices where installation was successful.
-        self._total_succeeded_install: Optional[int] = None
-        # An integer that indicates the total number of devices where no deployment status or end state has not received, even after the scheduled end date was reached.
-        self._total_unknown: Optional[int] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def cancel_requested(self,) -> Optional[bool]:
-        """
-        Gets the cancelRequested property value. A boolean that indicates if a cancellation was requested on the deployment. NOTE: A cancellation request does not guarantee that the deployment was canceled.
-        Returns: Optional[bool]
-        """
-        return self._cancel_requested
-    
-    @cancel_requested.setter
-    def cancel_requested(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the cancelRequested property value. A boolean that indicates if a cancellation was requested on the deployment. NOTE: A cancellation request does not guarantee that the deployment was canceled.
-        Args:
-            value: Value to set for the cancel_requested property.
-        """
-        self._cancel_requested = value
-    
-    @property
-    def complete_or_canceled_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completeOrCanceledDateTime property value. The date and time when this deployment was completed or canceled. The actual date time is determined by the value of state. If the state is canceled, this property holds the cancellation date/time. If the the state is completed, this property holds the completion date/time. If the deployment is not completed before the deployment end date, then completed date/time and end date/time are the same. This is always in the deployment timezone. Note: An installation that is in progress can continue past the deployment end date.
-        Returns: Optional[datetime]
-        """
-        return self._complete_or_canceled_date_time
-    
-    @complete_or_canceled_date_time.setter
-    def complete_or_canceled_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completeOrCanceledDateTime property value. The date and time when this deployment was completed or canceled. The actual date time is determined by the value of state. If the state is canceled, this property holds the cancellation date/time. If the the state is completed, this property holds the completion date/time. If the deployment is not completed before the deployment end date, then completed date/time and end date/time are the same. This is always in the deployment timezone. Note: An installation that is in progress can continue past the deployment end date.
-        Args:
-            value: Value to set for the complete_or_canceled_date_time property.
-        """
-        self._complete_or_canceled_date_time = value
+    # A boolean that indicates if a cancellation was requested on the deployment. NOTE: A cancellation request does not guarantee that the deployment was canceled.
+    cancel_requested: Optional[bool] = None
+    # The date and time when this deployment was completed or canceled. The actual date time is determined by the value of state. If the state is canceled, this property holds the cancellation date/time. If the the state is completed, this property holds the completion date/time. If the deployment is not completed before the deployment end date, then completed date/time and end date/time are the same. This is always in the deployment timezone. Note: An installation that is in progress can continue past the deployment end date.
+    complete_or_canceled_date_time: Optional[datetime.datetime] = None
+    # An error code indicating the failure reason, when the deployment state is createFailed. Possible values: See zebraFotaErrorCode enum.
+    error_code: Optional[ZebraFotaErrorCode] = None
+    # Date and time when the deployment status was updated from Zebra
+    last_updated_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Represents the state of Zebra FOTA deployment.
+    state: Optional[ZebraFotaDeploymentState] = None
+    # An integer that indicates the total number of devices where installation was successful.
+    total_awaiting_install: Optional[int] = None
+    # An integer that indicates the total number of devices where installation was canceled.
+    total_canceled: Optional[int] = None
+    # An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices.
+    total_created: Optional[int] = None
+    # An integer that indicates the total number of devices in the deployment.
+    total_devices: Optional[int] = None
+    # An integer that indicates the total number of devices where installation was successful.
+    total_downloading: Optional[int] = None
+    # An integer that indicates the total number of devices that have failed to download the new OS file.
+    total_failed_download: Optional[int] = None
+    # An integer that indicates the total number of devices that have failed to install the new OS file.
+    total_failed_install: Optional[int] = None
+    # An integer that indicates the total number of devices that received the json and are scheduled.
+    total_scheduled: Optional[int] = None
+    # An integer that indicates the total number of devices where installation was successful.
+    total_succeeded_install: Optional[int] = None
+    # An integer that indicates the total number of devices where no deployment status or end state has not received, even after the scheduled end date was reached.
+    total_unknown: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ZebraFotaDeploymentStatus:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ZebraFotaDeploymentStatus
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ZebraFotaDeploymentStatus()
-    
-    @property
-    def error_code(self,) -> Optional[zebra_fota_error_code.ZebraFotaErrorCode]:
-        """
-        Gets the errorCode property value. An error code indicating the failure reason, when the deployment state is createFailed. Possible values: See zebraFotaErrorCode enum.
-        Returns: Optional[zebra_fota_error_code.ZebraFotaErrorCode]
-        """
-        return self._error_code
-    
-    @error_code.setter
-    def error_code(self,value: Optional[zebra_fota_error_code.ZebraFotaErrorCode] = None) -> None:
-        """
-        Sets the errorCode property value. An error code indicating the failure reason, when the deployment state is createFailed. Possible values: See zebraFotaErrorCode enum.
-        Args:
-            value: Value to set for the error_code property.
-        """
-        self._error_code = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import zebra_fota_deployment_state, zebra_fota_error_code
+        from .zebra_fota_deployment_state import ZebraFotaDeploymentState
+        from .zebra_fota_error_code import ZebraFotaErrorCode
+
+        from .zebra_fota_deployment_state import ZebraFotaDeploymentState
+        from .zebra_fota_error_code import ZebraFotaErrorCode
 
         fields: Dict[str, Callable[[Any], None]] = {
             "cancelRequested": lambda n : setattr(self, 'cancel_requested', n.get_bool_value()),
             "completeOrCanceledDateTime": lambda n : setattr(self, 'complete_or_canceled_date_time', n.get_datetime_value()),
-            "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(zebra_fota_error_code.ZebraFotaErrorCode)),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(ZebraFotaErrorCode)),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(zebra_fota_deployment_state.ZebraFotaDeploymentState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(ZebraFotaDeploymentState)),
             "totalAwaitingInstall": lambda n : setattr(self, 'total_awaiting_install', n.get_int_value()),
             "totalCanceled": lambda n : setattr(self, 'total_canceled', n.get_int_value()),
             "totalCreated": lambda n : setattr(self, 'total_created', n.get_int_value()),
@@ -157,48 +92,14 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def last_updated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastUpdatedDateTime property value. Date and time when the deployment status was updated from Zebra
-        Returns: Optional[datetime]
-        """
-        return self._last_updated_date_time
-    
-    @last_updated_date_time.setter
-    def last_updated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastUpdatedDateTime property value. Date and time when the deployment status was updated from Zebra
-        Args:
-            value: Value to set for the last_updated_date_time property.
-        """
-        self._last_updated_date_time = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_bool_value("cancelRequested", self.cancel_requested)
         writer.write_datetime_value("completeOrCanceledDateTime", self.complete_or_canceled_date_time)
         writer.write_enum_value("errorCode", self.error_code)
@@ -216,192 +117,5 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         writer.write_int_value("totalSucceededInstall", self.total_succeeded_install)
         writer.write_int_value("totalUnknown", self.total_unknown)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def state(self,) -> Optional[zebra_fota_deployment_state.ZebraFotaDeploymentState]:
-        """
-        Gets the state property value. Represents the state of Zebra FOTA deployment.
-        Returns: Optional[zebra_fota_deployment_state.ZebraFotaDeploymentState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[zebra_fota_deployment_state.ZebraFotaDeploymentState] = None) -> None:
-        """
-        Sets the state property value. Represents the state of Zebra FOTA deployment.
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
-    
-    @property
-    def total_awaiting_install(self,) -> Optional[int]:
-        """
-        Gets the totalAwaitingInstall property value. An integer that indicates the total number of devices where installation was successful.
-        Returns: Optional[int]
-        """
-        return self._total_awaiting_install
-    
-    @total_awaiting_install.setter
-    def total_awaiting_install(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalAwaitingInstall property value. An integer that indicates the total number of devices where installation was successful.
-        Args:
-            value: Value to set for the total_awaiting_install property.
-        """
-        self._total_awaiting_install = value
-    
-    @property
-    def total_canceled(self,) -> Optional[int]:
-        """
-        Gets the totalCanceled property value. An integer that indicates the total number of devices where installation was canceled.
-        Returns: Optional[int]
-        """
-        return self._total_canceled
-    
-    @total_canceled.setter
-    def total_canceled(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalCanceled property value. An integer that indicates the total number of devices where installation was canceled.
-        Args:
-            value: Value to set for the total_canceled property.
-        """
-        self._total_canceled = value
-    
-    @property
-    def total_created(self,) -> Optional[int]:
-        """
-        Gets the totalCreated property value. An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices.
-        Returns: Optional[int]
-        """
-        return self._total_created
-    
-    @total_created.setter
-    def total_created(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalCreated property value. An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices.
-        Args:
-            value: Value to set for the total_created property.
-        """
-        self._total_created = value
-    
-    @property
-    def total_devices(self,) -> Optional[int]:
-        """
-        Gets the totalDevices property value. An integer that indicates the total number of devices in the deployment.
-        Returns: Optional[int]
-        """
-        return self._total_devices
-    
-    @total_devices.setter
-    def total_devices(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalDevices property value. An integer that indicates the total number of devices in the deployment.
-        Args:
-            value: Value to set for the total_devices property.
-        """
-        self._total_devices = value
-    
-    @property
-    def total_downloading(self,) -> Optional[int]:
-        """
-        Gets the totalDownloading property value. An integer that indicates the total number of devices where installation was successful.
-        Returns: Optional[int]
-        """
-        return self._total_downloading
-    
-    @total_downloading.setter
-    def total_downloading(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalDownloading property value. An integer that indicates the total number of devices where installation was successful.
-        Args:
-            value: Value to set for the total_downloading property.
-        """
-        self._total_downloading = value
-    
-    @property
-    def total_failed_download(self,) -> Optional[int]:
-        """
-        Gets the totalFailedDownload property value. An integer that indicates the total number of devices that have failed to download the new OS file.
-        Returns: Optional[int]
-        """
-        return self._total_failed_download
-    
-    @total_failed_download.setter
-    def total_failed_download(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalFailedDownload property value. An integer that indicates the total number of devices that have failed to download the new OS file.
-        Args:
-            value: Value to set for the total_failed_download property.
-        """
-        self._total_failed_download = value
-    
-    @property
-    def total_failed_install(self,) -> Optional[int]:
-        """
-        Gets the totalFailedInstall property value. An integer that indicates the total number of devices that have failed to install the new OS file.
-        Returns: Optional[int]
-        """
-        return self._total_failed_install
-    
-    @total_failed_install.setter
-    def total_failed_install(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalFailedInstall property value. An integer that indicates the total number of devices that have failed to install the new OS file.
-        Args:
-            value: Value to set for the total_failed_install property.
-        """
-        self._total_failed_install = value
-    
-    @property
-    def total_scheduled(self,) -> Optional[int]:
-        """
-        Gets the totalScheduled property value. An integer that indicates the total number of devices that received the json and are scheduled.
-        Returns: Optional[int]
-        """
-        return self._total_scheduled
-    
-    @total_scheduled.setter
-    def total_scheduled(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalScheduled property value. An integer that indicates the total number of devices that received the json and are scheduled.
-        Args:
-            value: Value to set for the total_scheduled property.
-        """
-        self._total_scheduled = value
-    
-    @property
-    def total_succeeded_install(self,) -> Optional[int]:
-        """
-        Gets the totalSucceededInstall property value. An integer that indicates the total number of devices where installation was successful.
-        Returns: Optional[int]
-        """
-        return self._total_succeeded_install
-    
-    @total_succeeded_install.setter
-    def total_succeeded_install(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalSucceededInstall property value. An integer that indicates the total number of devices where installation was successful.
-        Args:
-            value: Value to set for the total_succeeded_install property.
-        """
-        self._total_succeeded_install = value
-    
-    @property
-    def total_unknown(self,) -> Optional[int]:
-        """
-        Gets the totalUnknown property value. An integer that indicates the total number of devices where no deployment status or end state has not received, even after the scheduled end date was reached.
-        Returns: Optional[int]
-        """
-        return self._total_unknown
-    
-    @total_unknown.setter
-    def total_unknown(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalUnknown property value. An integer that indicates the total number of devices where no deployment status or end state has not received, even after the scheduled end date was reached.
-        Args:
-            value: Value to set for the total_unknown property.
-        """
-        self._total_unknown = value
     
 

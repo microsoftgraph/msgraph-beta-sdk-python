@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IncludedUserRoles(Enum):
+class IncludedUserRoles(str, Enum):
     All = "all",
     PrivilegedAdmin = "privilegedAdmin",
     Admin = "admin",

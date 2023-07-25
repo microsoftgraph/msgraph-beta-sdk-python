@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementTemplateLifecycleState(Enum):
+class DeviceManagementTemplateLifecycleState(str, Enum):
     # Invalid
     Invalid = "invalid",
     # Draft

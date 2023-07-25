@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsAutopilotProfileAssignmentStatus(Enum):
+class WindowsAutopilotProfileAssignmentStatus(str, Enum):
     # Unknown assignment status
     Unknown = "unknown",
     # Assigned successfully in Intune and in sync with Windows auto pilot program
