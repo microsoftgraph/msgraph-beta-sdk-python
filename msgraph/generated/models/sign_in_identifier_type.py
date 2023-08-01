@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SignInIdentifierType(Enum):
+class SignInIdentifierType(str, Enum):
     UserPrincipalName = "userPrincipalName",
     PhoneNumber = "phoneNumber",
     ProxyAddress = "proxyAddress",

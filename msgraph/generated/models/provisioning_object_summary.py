@@ -1,161 +1,102 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, initiator, modified_property, provisioned_identity, provisioning_action, provisioning_service_principal, provisioning_status_info, provisioning_step, provisioning_system, status_base
+    from .entity import Entity
+    from .initiator import Initiator
+    from .modified_property import ModifiedProperty
+    from .provisioned_identity import ProvisionedIdentity
+    from .provisioning_action import ProvisioningAction
+    from .provisioning_service_principal import ProvisioningServicePrincipal
+    from .provisioning_status_info import ProvisioningStatusInfo
+    from .provisioning_step import ProvisioningStep
+    from .provisioning_system import ProvisioningSystem
+    from .status_base import StatusBase
 
-from . import entity
+from .entity import Entity
 
-class ProvisioningObjectSummary(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProvisioningObjectSummary and sets the default values.
-        """
-        super().__init__()
-        # The action property
-        self._action: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._activity_date_time: Optional[datetime] = None
-        # Unique ID of this change in this cycle.
-        self._change_id: Optional[str] = None
-        # Unique ID per job iteration.
-        self._cycle_id: Optional[str] = None
-        # Indicates how long this provisioning action took to finish. Measured in milliseconds.
-        self._duration_in_milliseconds: Optional[int] = None
-        # Details of who initiated this provisioning.
-        self._initiated_by: Optional[initiator.Initiator] = None
-        # The unique ID for the whole provisioning job.
-        self._job_id: Optional[str] = None
-        # Details of each property that was modified in this provisioning action on this object.
-        self._modified_properties: Optional[List[modified_property.ModifiedProperty]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.
-        self._provisioning_action: Optional[provisioning_action.ProvisioningAction] = None
-        # Details of provisioning status.
-        self._provisioning_status_info: Optional[provisioning_status_info.ProvisioningStatusInfo] = None
-        # Details of each step in provisioning.
-        self._provisioning_steps: Optional[List[provisioning_step.ProvisioningStep]] = None
-        # Represents the service principal used for provisioning.
-        self._service_principal: Optional[provisioning_service_principal.ProvisioningServicePrincipal] = None
-        # Details of source object being provisioned.
-        self._source_identity: Optional[provisioned_identity.ProvisionedIdentity] = None
-        # Details of source system of the object being provisioned.
-        self._source_system: Optional[provisioning_system.ProvisioningSystem] = None
-        # The statusInfo property
-        self._status_info: Optional[status_base.StatusBase] = None
-        # Details of target object being provisioned.
-        self._target_identity: Optional[provisioned_identity.ProvisionedIdentity] = None
-        # Details of target system of the object being provisioned.
-        self._target_system: Optional[provisioning_system.ProvisioningSystem] = None
-        # Unique Azure AD tenant ID.
-        self._tenant_id: Optional[str] = None
-    
-    @property
-    def action(self,) -> Optional[str]:
-        """
-        Gets the action property value. The action property
-        Returns: Optional[str]
-        """
-        return self._action
-    
-    @action.setter
-    def action(self,value: Optional[str] = None) -> None:
-        """
-        Sets the action property value. The action property
-        Args:
-            value: Value to set for the action property.
-        """
-        self._action = value
-    
-    @property
-    def activity_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the activityDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Returns: Optional[datetime]
-        """
-        return self._activity_date_time
-    
-    @activity_date_time.setter
-    def activity_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the activityDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Args:
-            value: Value to set for the activity_date_time property.
-        """
-        self._activity_date_time = value
-    
-    @property
-    def change_id(self,) -> Optional[str]:
-        """
-        Gets the changeId property value. Unique ID of this change in this cycle.
-        Returns: Optional[str]
-        """
-        return self._change_id
-    
-    @change_id.setter
-    def change_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the changeId property value. Unique ID of this change in this cycle.
-        Args:
-            value: Value to set for the change_id property.
-        """
-        self._change_id = value
+@dataclass
+class ProvisioningObjectSummary(Entity):
+    # The action property
+    action: Optional[str] = None
+    # Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $filter (eq, gt, lt) and orderby.
+    activity_date_time: Optional[datetime.datetime] = None
+    # Unique ID of this change in this cycle. Supports $filter (eq, contains).
+    change_id: Optional[str] = None
+    # Unique ID per job iteration. Supports $filter (eq, contains).
+    cycle_id: Optional[str] = None
+    # Indicates how long this provisioning action took to finish. Measured in milliseconds. Supports $filter (eq, gt, lt).
+    duration_in_milliseconds: Optional[int] = None
+    # Details of who initiated this provisioning. Supports $filter (eq, contains).
+    initiated_by: Optional[Initiator] = None
+    # The unique ID for the whole provisioning job. Supports $filter (eq, contains).
+    job_id: Optional[str] = None
+    # Details of each property that was modified in this provisioning action on this object.
+    modified_properties: Optional[List[ModifiedProperty]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list. Supports $filter (eq, contains).
+    provisioning_action: Optional[ProvisioningAction] = None
+    # Details of provisioning status. Supports $filter (eq, contains) for status.
+    provisioning_status_info: Optional[ProvisioningStatusInfo] = None
+    # Details of each step in provisioning.
+    provisioning_steps: Optional[List[ProvisioningStep]] = None
+    # Represents the service principal used for provisioning. Supports $filter (eq) for id and name.
+    service_principal: Optional[ProvisioningServicePrincipal] = None
+    # Details of source object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
+    source_identity: Optional[ProvisionedIdentity] = None
+    # Details of source system of the object being provisioned. Supports $filter (eq, contains) for displayName.
+    source_system: Optional[ProvisioningSystem] = None
+    # The statusInfo property
+    status_info: Optional[StatusBase] = None
+    # Details of target object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
+    target_identity: Optional[ProvisionedIdentity] = None
+    # Details of target system of the object being provisioned. Supports $filter (eq, contains) for displayName.
+    target_system: Optional[ProvisioningSystem] = None
+    # Unique Azure AD tenant ID. Supports $filter (eq, contains).
+    tenant_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProvisioningObjectSummary:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ProvisioningObjectSummary
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ProvisioningObjectSummary()
-    
-    @property
-    def cycle_id(self,) -> Optional[str]:
-        """
-        Gets the cycleId property value. Unique ID per job iteration.
-        Returns: Optional[str]
-        """
-        return self._cycle_id
-    
-    @cycle_id.setter
-    def cycle_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the cycleId property value. Unique ID per job iteration.
-        Args:
-            value: Value to set for the cycle_id property.
-        """
-        self._cycle_id = value
-    
-    @property
-    def duration_in_milliseconds(self,) -> Optional[int]:
-        """
-        Gets the durationInMilliseconds property value. Indicates how long this provisioning action took to finish. Measured in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._duration_in_milliseconds
-    
-    @duration_in_milliseconds.setter
-    def duration_in_milliseconds(self,value: Optional[int] = None) -> None:
-        """
-        Sets the durationInMilliseconds property value. Indicates how long this provisioning action took to finish. Measured in milliseconds.
-        Args:
-            value: Value to set for the duration_in_milliseconds property.
-        """
-        self._duration_in_milliseconds = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, initiator, modified_property, provisioned_identity, provisioning_action, provisioning_service_principal, provisioning_status_info, provisioning_step, provisioning_system, status_base
+        from .entity import Entity
+        from .initiator import Initiator
+        from .modified_property import ModifiedProperty
+        from .provisioned_identity import ProvisionedIdentity
+        from .provisioning_action import ProvisioningAction
+        from .provisioning_service_principal import ProvisioningServicePrincipal
+        from .provisioning_status_info import ProvisioningStatusInfo
+        from .provisioning_step import ProvisioningStep
+        from .provisioning_system import ProvisioningSystem
+        from .status_base import StatusBase
+
+        from .entity import Entity
+        from .initiator import Initiator
+        from .modified_property import ModifiedProperty
+        from .provisioned_identity import ProvisionedIdentity
+        from .provisioning_action import ProvisioningAction
+        from .provisioning_service_principal import ProvisioningServicePrincipal
+        from .provisioning_status_info import ProvisioningStatusInfo
+        from .provisioning_step import ProvisioningStep
+        from .provisioning_system import ProvisioningSystem
+        from .status_base import StatusBase
 
         fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_str_value()),
@@ -163,125 +104,23 @@ class ProvisioningObjectSummary(entity.Entity):
             "changeId": lambda n : setattr(self, 'change_id', n.get_str_value()),
             "cycleId": lambda n : setattr(self, 'cycle_id', n.get_str_value()),
             "durationInMilliseconds": lambda n : setattr(self, 'duration_in_milliseconds', n.get_int_value()),
-            "initiatedBy": lambda n : setattr(self, 'initiated_by', n.get_object_value(initiator.Initiator)),
+            "initiatedBy": lambda n : setattr(self, 'initiated_by', n.get_object_value(Initiator)),
             "jobId": lambda n : setattr(self, 'job_id', n.get_str_value()),
-            "modifiedProperties": lambda n : setattr(self, 'modified_properties', n.get_collection_of_object_values(modified_property.ModifiedProperty)),
-            "provisioningAction": lambda n : setattr(self, 'provisioning_action', n.get_enum_value(provisioning_action.ProvisioningAction)),
-            "provisioningStatusInfo": lambda n : setattr(self, 'provisioning_status_info', n.get_object_value(provisioning_status_info.ProvisioningStatusInfo)),
-            "provisioningSteps": lambda n : setattr(self, 'provisioning_steps', n.get_collection_of_object_values(provisioning_step.ProvisioningStep)),
-            "servicePrincipal": lambda n : setattr(self, 'service_principal', n.get_object_value(provisioning_service_principal.ProvisioningServicePrincipal)),
-            "sourceIdentity": lambda n : setattr(self, 'source_identity', n.get_object_value(provisioned_identity.ProvisionedIdentity)),
-            "sourceSystem": lambda n : setattr(self, 'source_system', n.get_object_value(provisioning_system.ProvisioningSystem)),
-            "statusInfo": lambda n : setattr(self, 'status_info', n.get_object_value(status_base.StatusBase)),
-            "targetIdentity": lambda n : setattr(self, 'target_identity', n.get_object_value(provisioned_identity.ProvisionedIdentity)),
-            "targetSystem": lambda n : setattr(self, 'target_system', n.get_object_value(provisioning_system.ProvisioningSystem)),
+            "modifiedProperties": lambda n : setattr(self, 'modified_properties', n.get_collection_of_object_values(ModifiedProperty)),
+            "provisioningAction": lambda n : setattr(self, 'provisioning_action', n.get_enum_value(ProvisioningAction)),
+            "provisioningStatusInfo": lambda n : setattr(self, 'provisioning_status_info', n.get_object_value(ProvisioningStatusInfo)),
+            "provisioningSteps": lambda n : setattr(self, 'provisioning_steps', n.get_collection_of_object_values(ProvisioningStep)),
+            "servicePrincipal": lambda n : setattr(self, 'service_principal', n.get_object_value(ProvisioningServicePrincipal)),
+            "sourceIdentity": lambda n : setattr(self, 'source_identity', n.get_object_value(ProvisionedIdentity)),
+            "sourceSystem": lambda n : setattr(self, 'source_system', n.get_object_value(ProvisioningSystem)),
+            "statusInfo": lambda n : setattr(self, 'status_info', n.get_object_value(StatusBase)),
+            "targetIdentity": lambda n : setattr(self, 'target_identity', n.get_object_value(ProvisionedIdentity)),
+            "targetSystem": lambda n : setattr(self, 'target_system', n.get_object_value(ProvisioningSystem)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def initiated_by(self,) -> Optional[initiator.Initiator]:
-        """
-        Gets the initiatedBy property value. Details of who initiated this provisioning.
-        Returns: Optional[initiator.Initiator]
-        """
-        return self._initiated_by
-    
-    @initiated_by.setter
-    def initiated_by(self,value: Optional[initiator.Initiator] = None) -> None:
-        """
-        Sets the initiatedBy property value. Details of who initiated this provisioning.
-        Args:
-            value: Value to set for the initiated_by property.
-        """
-        self._initiated_by = value
-    
-    @property
-    def job_id(self,) -> Optional[str]:
-        """
-        Gets the jobId property value. The unique ID for the whole provisioning job.
-        Returns: Optional[str]
-        """
-        return self._job_id
-    
-    @job_id.setter
-    def job_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the jobId property value. The unique ID for the whole provisioning job.
-        Args:
-            value: Value to set for the job_id property.
-        """
-        self._job_id = value
-    
-    @property
-    def modified_properties(self,) -> Optional[List[modified_property.ModifiedProperty]]:
-        """
-        Gets the modifiedProperties property value. Details of each property that was modified in this provisioning action on this object.
-        Returns: Optional[List[modified_property.ModifiedProperty]]
-        """
-        return self._modified_properties
-    
-    @modified_properties.setter
-    def modified_properties(self,value: Optional[List[modified_property.ModifiedProperty]] = None) -> None:
-        """
-        Sets the modifiedProperties property value. Details of each property that was modified in this provisioning action on this object.
-        Args:
-            value: Value to set for the modified_properties property.
-        """
-        self._modified_properties = value
-    
-    @property
-    def provisioning_action(self,) -> Optional[provisioning_action.ProvisioningAction]:
-        """
-        Gets the provisioningAction property value. Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.
-        Returns: Optional[provisioning_action.ProvisioningAction]
-        """
-        return self._provisioning_action
-    
-    @provisioning_action.setter
-    def provisioning_action(self,value: Optional[provisioning_action.ProvisioningAction] = None) -> None:
-        """
-        Sets the provisioningAction property value. Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.
-        Args:
-            value: Value to set for the provisioning_action property.
-        """
-        self._provisioning_action = value
-    
-    @property
-    def provisioning_status_info(self,) -> Optional[provisioning_status_info.ProvisioningStatusInfo]:
-        """
-        Gets the provisioningStatusInfo property value. Details of provisioning status.
-        Returns: Optional[provisioning_status_info.ProvisioningStatusInfo]
-        """
-        return self._provisioning_status_info
-    
-    @provisioning_status_info.setter
-    def provisioning_status_info(self,value: Optional[provisioning_status_info.ProvisioningStatusInfo] = None) -> None:
-        """
-        Sets the provisioningStatusInfo property value. Details of provisioning status.
-        Args:
-            value: Value to set for the provisioning_status_info property.
-        """
-        self._provisioning_status_info = value
-    
-    @property
-    def provisioning_steps(self,) -> Optional[List[provisioning_step.ProvisioningStep]]:
-        """
-        Gets the provisioningSteps property value. Details of each step in provisioning.
-        Returns: Optional[List[provisioning_step.ProvisioningStep]]
-        """
-        return self._provisioning_steps
-    
-    @provisioning_steps.setter
-    def provisioning_steps(self,value: Optional[List[provisioning_step.ProvisioningStep]] = None) -> None:
-        """
-        Sets the provisioningSteps property value. Details of each step in provisioning.
-        Args:
-            value: Value to set for the provisioning_steps property.
-        """
-        self._provisioning_steps = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -289,8 +128,8 @@ class ProvisioningObjectSummary(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("action", self.action)
         writer.write_datetime_value("activityDateTime", self.activity_date_time)
@@ -310,124 +149,5 @@ class ProvisioningObjectSummary(entity.Entity):
         writer.write_object_value("targetIdentity", self.target_identity)
         writer.write_object_value("targetSystem", self.target_system)
         writer.write_str_value("tenantId", self.tenant_id)
-    
-    @property
-    def service_principal(self,) -> Optional[provisioning_service_principal.ProvisioningServicePrincipal]:
-        """
-        Gets the servicePrincipal property value. Represents the service principal used for provisioning.
-        Returns: Optional[provisioning_service_principal.ProvisioningServicePrincipal]
-        """
-        return self._service_principal
-    
-    @service_principal.setter
-    def service_principal(self,value: Optional[provisioning_service_principal.ProvisioningServicePrincipal] = None) -> None:
-        """
-        Sets the servicePrincipal property value. Represents the service principal used for provisioning.
-        Args:
-            value: Value to set for the service_principal property.
-        """
-        self._service_principal = value
-    
-    @property
-    def source_identity(self,) -> Optional[provisioned_identity.ProvisionedIdentity]:
-        """
-        Gets the sourceIdentity property value. Details of source object being provisioned.
-        Returns: Optional[provisioned_identity.ProvisionedIdentity]
-        """
-        return self._source_identity
-    
-    @source_identity.setter
-    def source_identity(self,value: Optional[provisioned_identity.ProvisionedIdentity] = None) -> None:
-        """
-        Sets the sourceIdentity property value. Details of source object being provisioned.
-        Args:
-            value: Value to set for the source_identity property.
-        """
-        self._source_identity = value
-    
-    @property
-    def source_system(self,) -> Optional[provisioning_system.ProvisioningSystem]:
-        """
-        Gets the sourceSystem property value. Details of source system of the object being provisioned.
-        Returns: Optional[provisioning_system.ProvisioningSystem]
-        """
-        return self._source_system
-    
-    @source_system.setter
-    def source_system(self,value: Optional[provisioning_system.ProvisioningSystem] = None) -> None:
-        """
-        Sets the sourceSystem property value. Details of source system of the object being provisioned.
-        Args:
-            value: Value to set for the source_system property.
-        """
-        self._source_system = value
-    
-    @property
-    def status_info(self,) -> Optional[status_base.StatusBase]:
-        """
-        Gets the statusInfo property value. The statusInfo property
-        Returns: Optional[status_base.StatusBase]
-        """
-        return self._status_info
-    
-    @status_info.setter
-    def status_info(self,value: Optional[status_base.StatusBase] = None) -> None:
-        """
-        Sets the statusInfo property value. The statusInfo property
-        Args:
-            value: Value to set for the status_info property.
-        """
-        self._status_info = value
-    
-    @property
-    def target_identity(self,) -> Optional[provisioned_identity.ProvisionedIdentity]:
-        """
-        Gets the targetIdentity property value. Details of target object being provisioned.
-        Returns: Optional[provisioned_identity.ProvisionedIdentity]
-        """
-        return self._target_identity
-    
-    @target_identity.setter
-    def target_identity(self,value: Optional[provisioned_identity.ProvisionedIdentity] = None) -> None:
-        """
-        Sets the targetIdentity property value. Details of target object being provisioned.
-        Args:
-            value: Value to set for the target_identity property.
-        """
-        self._target_identity = value
-    
-    @property
-    def target_system(self,) -> Optional[provisioning_system.ProvisioningSystem]:
-        """
-        Gets the targetSystem property value. Details of target system of the object being provisioned.
-        Returns: Optional[provisioning_system.ProvisioningSystem]
-        """
-        return self._target_system
-    
-    @target_system.setter
-    def target_system(self,value: Optional[provisioning_system.ProvisioningSystem] = None) -> None:
-        """
-        Sets the targetSystem property value. Details of target system of the object being provisioned.
-        Args:
-            value: Value to set for the target_system property.
-        """
-        self._target_system = value
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. Unique Azure AD tenant ID.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. Unique Azure AD tenant ID.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
     
 

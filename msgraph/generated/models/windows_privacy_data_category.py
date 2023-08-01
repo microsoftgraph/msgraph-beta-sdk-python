@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsPrivacyDataCategory(Enum):
+class WindowsPrivacyDataCategory(str, Enum):
     # No access level specified, no intents. Device may behave either as in UserInControl or ForceAllow. It may depend on the privacy data been accessed, Windows versions and other factors.
     NotConfigured = "notConfigured",
     # Let apps access user’s name, picture and other account information created in Microsoft account. Added in Windows 10, version 1607.

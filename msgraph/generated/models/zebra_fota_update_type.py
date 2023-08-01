@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ZebraFotaUpdateType(Enum):
+class ZebraFotaUpdateType(str, Enum):
     # Custom update where the user selects specific BSP, OS version, and patch number to update to.
     Custom = "custom",
     # The latest released update becomes the target OS. Latest may update the device to a new Android version.

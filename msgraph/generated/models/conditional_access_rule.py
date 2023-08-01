@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConditionalAccessRule(Enum):
+class ConditionalAccessRule(str, Enum):
     AllApps = "allApps",
     FirstPartyApps = "firstPartyApps",
     Office365 = "office365",

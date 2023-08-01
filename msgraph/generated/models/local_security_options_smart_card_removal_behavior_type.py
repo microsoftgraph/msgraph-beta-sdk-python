@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LocalSecurityOptionsSmartCardRemovalBehaviorType(Enum):
+class LocalSecurityOptionsSmartCardRemovalBehaviorType(str, Enum):
     # No Action
     NoAction = "noAction",
     # Lock Workstation

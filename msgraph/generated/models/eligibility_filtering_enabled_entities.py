@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EligibilityFilteringEnabledEntities(Enum):
+class EligibilityFilteringEnabledEntities(str, Enum):
     None_ = "none",
     SwapRequest = "swapRequest",
     OfferShiftRequest = "offerShiftRequest",

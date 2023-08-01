@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ApplicationGuardEnabledOptions(Enum):
+class ApplicationGuardEnabledOptions(str, Enum):
     # Not Configured
     NotConfigured = "notConfigured",
     # Enabled For Edge

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RuleMode(Enum):
+class RuleMode(str, Enum):
     Audit = "audit",
     AuditAndNotify = "auditAndNotify",
     Enforce = "enforce",

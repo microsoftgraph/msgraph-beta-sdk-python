@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ApplicationPermissionsRequired(Enum):
+class ApplicationPermissionsRequired(str, Enum):
     Unknown = "unknown",
     Anonymous = "anonymous",
     Guest = "guest",

@@ -1,67 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
 if TYPE_CHECKING:
-    from . import company
+    from .company import Company
 
+@dataclass
 class Financials(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Financials and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The companies property
-        self._companies: Optional[List[company.Company]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def companies(self,) -> Optional[List[company.Company]]:
-        """
-        Gets the companies property value. The companies property
-        Returns: Optional[List[company.Company]]
-        """
-        return self._companies
-    
-    @companies.setter
-    def companies(self,value: Optional[List[company.Company]] = None) -> None:
-        """
-        Sets the companies property value. The companies property
-        Args:
-            value: Value to set for the companies property.
-        """
-        self._companies = value
+    # The companies property
+    companies: Optional[List[Company]] = None
+    # The id property
+    id: Optional[UUID] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Financials:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Financials
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Financials()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -69,30 +36,16 @@ class Financials(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import company
+        from .company import Company
+
+        from .company import Company
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "companies": lambda n : setattr(self, 'companies', n.get_collection_of_object_values(company.Company)),
+            "companies": lambda n : setattr(self, 'companies', n.get_collection_of_object_values(Company)),
+            "id": lambda n : setattr(self, 'id', n.get_uuid_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -100,9 +53,10 @@ class Financials(AdditionalDataHolder, Parsable):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("companies", self.companies)
+        writer.write_uuid_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

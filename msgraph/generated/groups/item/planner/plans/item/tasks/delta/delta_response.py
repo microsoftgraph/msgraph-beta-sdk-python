@@ -1,31 +1,29 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models import base_delta_function_response, planner_task
+    from ........models.base_delta_function_response import BaseDeltaFunctionResponse
+    from ........models.planner_task import PlannerTask
 
-from ........models import base_delta_function_response
+from ........models.base_delta_function_response import BaseDeltaFunctionResponse
 
-class DeltaResponse(base_delta_function_response.BaseDeltaFunctionResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deltaResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[planner_task.PlannerTask]] = None
+@dataclass
+class DeltaResponse(BaseDeltaFunctionResponse):
+    # The value property
+    value: Optional[List[PlannerTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeltaResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeltaResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeltaResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -33,10 +31,14 @@ class DeltaResponse(base_delta_function_response.BaseDeltaFunctionResponse):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ........models import base_delta_function_response, planner_task
+        from ........models.base_delta_function_response import BaseDeltaFunctionResponse
+        from ........models.planner_task import PlannerTask
+
+        from ........models.base_delta_function_response import BaseDeltaFunctionResponse
+        from ........models.planner_task import PlannerTask
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(planner_task.PlannerTask)),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(PlannerTask)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -48,26 +50,9 @@ class DeltaResponse(base_delta_function_response.BaseDeltaFunctionResponse):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[planner_task.PlannerTask]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[planner_task.PlannerTask]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[planner_task.PlannerTask]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

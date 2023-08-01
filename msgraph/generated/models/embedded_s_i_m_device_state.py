@@ -1,100 +1,68 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import embedded_s_i_m_device_state_value, entity
+    from .embedded_s_i_m_device_state_value import EmbeddedSIMDeviceStateValue
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class EmbeddedSIMDeviceState(entity.Entity):
+@dataclass
+class EmbeddedSIMDeviceState(Entity):
     """
     Describes the embedded SIM activation code deployment state in relation to a device.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new embeddedSIMDeviceState and sets the default values.
-        """
-        super().__init__()
-        # The time the embedded SIM device status was created. Generated service side.
-        self._created_date_time: Optional[datetime] = None
-        # Device name to which the subscription was provisioned e.g. DESKTOP-JOE
-        self._device_name: Optional[str] = None
-        # The time the embedded SIM device last checked in. Updated service side.
-        self._last_sync_date_time: Optional[datetime] = None
-        # The time the embedded SIM device status was last modified. Updated service side.
-        self._modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Describes the various states for an embedded SIM activation code.
-        self._state: Optional[embedded_s_i_m_device_state_value.EmbeddedSIMDeviceStateValue] = None
-        # String description of the provisioning state.
-        self._state_details: Optional[str] = None
-        # The Universal Integrated Circuit Card Identifier (UICCID) identifying the hardware onto which a profile is to be deployed.
-        self._universal_integrated_circuit_card_identifier: Optional[str] = None
-        # Username which the subscription was provisioned to e.g. joe@contoso.com
-        self._user_name: Optional[str] = None
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The time the embedded SIM device status was created. Generated service side.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The time the embedded SIM device status was created. Generated service side.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The time the embedded SIM device status was created. Generated service side.
+    created_date_time: Optional[datetime.datetime] = None
+    # Device name to which the subscription was provisioned e.g. DESKTOP-JOE
+    device_name: Optional[str] = None
+    # The time the embedded SIM device last checked in. Updated service side.
+    last_sync_date_time: Optional[datetime.datetime] = None
+    # The time the embedded SIM device status was last modified. Updated service side.
+    modified_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Describes the various states for an embedded SIM activation code.
+    state: Optional[EmbeddedSIMDeviceStateValue] = None
+    # String description of the provisioning state.
+    state_details: Optional[str] = None
+    # The Universal Integrated Circuit Card Identifier (UICCID) identifying the hardware onto which a profile is to be deployed.
+    universal_integrated_circuit_card_identifier: Optional[str] = None
+    # Username which the subscription was provisioned to e.g. joe@contoso.com
+    user_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EmbeddedSIMDeviceState:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: EmbeddedSIMDeviceState
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return EmbeddedSIMDeviceState()
-    
-    @property
-    def device_name(self,) -> Optional[str]:
-        """
-        Gets the deviceName property value. Device name to which the subscription was provisioned e.g. DESKTOP-JOE
-        Returns: Optional[str]
-        """
-        return self._device_name
-    
-    @device_name.setter
-    def device_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceName property value. Device name to which the subscription was provisioned e.g. DESKTOP-JOE
-        Args:
-            value: Value to set for the device_name property.
-        """
-        self._device_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import embedded_s_i_m_device_state_value, entity
+        from .embedded_s_i_m_device_state_value import EmbeddedSIMDeviceStateValue
+        from .entity import Entity
+
+        from .embedded_s_i_m_device_state_value import EmbeddedSIMDeviceStateValue
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
             "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(embedded_s_i_m_device_state_value.EmbeddedSIMDeviceStateValue)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(EmbeddedSIMDeviceStateValue)),
             "stateDetails": lambda n : setattr(self, 'state_details', n.get_str_value()),
             "universalIntegratedCircuitCardIdentifier": lambda n : setattr(self, 'universal_integrated_circuit_card_identifier', n.get_str_value()),
             "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
@@ -103,48 +71,14 @@ class EmbeddedSIMDeviceState(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_sync_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSyncDateTime property value. The time the embedded SIM device last checked in. Updated service side.
-        Returns: Optional[datetime]
-        """
-        return self._last_sync_date_time
-    
-    @last_sync_date_time.setter
-    def last_sync_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSyncDateTime property value. The time the embedded SIM device last checked in. Updated service side.
-        Args:
-            value: Value to set for the last_sync_date_time property.
-        """
-        self._last_sync_date_time = value
-    
-    @property
-    def modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the modifiedDateTime property value. The time the embedded SIM device status was last modified. Updated service side.
-        Returns: Optional[datetime]
-        """
-        return self._modified_date_time
-    
-    @modified_date_time.setter
-    def modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the modifiedDateTime property value. The time the embedded SIM device status was last modified. Updated service side.
-        Args:
-            value: Value to set for the modified_date_time property.
-        """
-        self._modified_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deviceName", self.device_name)
@@ -154,73 +88,5 @@ class EmbeddedSIMDeviceState(entity.Entity):
         writer.write_str_value("stateDetails", self.state_details)
         writer.write_str_value("universalIntegratedCircuitCardIdentifier", self.universal_integrated_circuit_card_identifier)
         writer.write_str_value("userName", self.user_name)
-    
-    @property
-    def state(self,) -> Optional[embedded_s_i_m_device_state_value.EmbeddedSIMDeviceStateValue]:
-        """
-        Gets the state property value. Describes the various states for an embedded SIM activation code.
-        Returns: Optional[embedded_s_i_m_device_state_value.EmbeddedSIMDeviceStateValue]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[embedded_s_i_m_device_state_value.EmbeddedSIMDeviceStateValue] = None) -> None:
-        """
-        Sets the state property value. Describes the various states for an embedded SIM activation code.
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
-    
-    @property
-    def state_details(self,) -> Optional[str]:
-        """
-        Gets the stateDetails property value. String description of the provisioning state.
-        Returns: Optional[str]
-        """
-        return self._state_details
-    
-    @state_details.setter
-    def state_details(self,value: Optional[str] = None) -> None:
-        """
-        Sets the stateDetails property value. String description of the provisioning state.
-        Args:
-            value: Value to set for the state_details property.
-        """
-        self._state_details = value
-    
-    @property
-    def universal_integrated_circuit_card_identifier(self,) -> Optional[str]:
-        """
-        Gets the universalIntegratedCircuitCardIdentifier property value. The Universal Integrated Circuit Card Identifier (UICCID) identifying the hardware onto which a profile is to be deployed.
-        Returns: Optional[str]
-        """
-        return self._universal_integrated_circuit_card_identifier
-    
-    @universal_integrated_circuit_card_identifier.setter
-    def universal_integrated_circuit_card_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the universalIntegratedCircuitCardIdentifier property value. The Universal Integrated Circuit Card Identifier (UICCID) identifying the hardware onto which a profile is to be deployed.
-        Args:
-            value: Value to set for the universal_integrated_circuit_card_identifier property.
-        """
-        self._universal_integrated_circuit_card_identifier = value
-    
-    @property
-    def user_name(self,) -> Optional[str]:
-        """
-        Gets the userName property value. Username which the subscription was provisioned to e.g. joe@contoso.com
-        Returns: Optional[str]
-        """
-        return self._user_name
-    
-    @user_name.setter
-    def user_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userName property value. Username which the subscription was provisioned to e.g. joe@contoso.com
-        Args:
-            value: Value to set for the user_name property.
-        """
-        self._user_name = value
     
 

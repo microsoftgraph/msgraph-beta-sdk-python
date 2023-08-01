@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SubjectAlternativeNameType(Enum):
+class SubjectAlternativeNameType(str, Enum):
     # No subject alternative name.
     None_ = "none",
     # Email address.

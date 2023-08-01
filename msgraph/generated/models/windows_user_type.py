@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsUserType(Enum):
+class WindowsUserType(str, Enum):
     Administrator = "administrator",
     Standard = "standard",
 

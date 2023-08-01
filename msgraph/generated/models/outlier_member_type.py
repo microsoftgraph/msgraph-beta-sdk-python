@@ -1,6 +1,6 @@
 from enum import Enum
 
-class OutlierMemberType(Enum):
+class OutlierMemberType(str, Enum):
     User = "user",
     UnknownFutureValue = "unknownFutureValue",
 

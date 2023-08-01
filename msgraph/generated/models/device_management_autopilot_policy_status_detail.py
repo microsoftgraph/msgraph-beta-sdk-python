@@ -1,152 +1,72 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_autopilot_policy_compliance_status, device_management_autopilot_policy_type, entity
+    from .device_management_autopilot_policy_compliance_status import DeviceManagementAutopilotPolicyComplianceStatus
+    from .device_management_autopilot_policy_type import DeviceManagementAutopilotPolicyType
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
+@dataclass
+class DeviceManagementAutopilotPolicyStatusDetail(Entity):
     """
     Policy status detail item contained by an autopilot event.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementAutopilotPolicyStatusDetail and sets the default values.
-        """
-        super().__init__()
-        # The complianceStatus property
-        self._compliance_status: Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus] = None
-        # The friendly name of the policy.
-        self._display_name: Optional[str] = None
-        # The errorode associated with the compliance or enforcement status of the policy. Error code for enforcement status takes precedence if it exists.
-        self._error_code: Optional[int] = None
-        # Timestamp of the reported policy status
-        self._last_reported_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The policyType property
-        self._policy_type: Optional[device_management_autopilot_policy_type.DeviceManagementAutopilotPolicyType] = None
-        # Indicates if this prolicy was tracked as part of the autopilot bootstrap enrollment sync session
-        self._tracked_on_enrollment_status: Optional[bool] = None
-    
-    @property
-    def compliance_status(self,) -> Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus]:
-        """
-        Gets the complianceStatus property value. The complianceStatus property
-        Returns: Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus]
-        """
-        return self._compliance_status
-    
-    @compliance_status.setter
-    def compliance_status(self,value: Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus] = None) -> None:
-        """
-        Sets the complianceStatus property value. The complianceStatus property
-        Args:
-            value: Value to set for the compliance_status property.
-        """
-        self._compliance_status = value
+    # The complianceStatus property
+    compliance_status: Optional[DeviceManagementAutopilotPolicyComplianceStatus] = None
+    # The friendly name of the policy.
+    display_name: Optional[str] = None
+    # The errorode associated with the compliance or enforcement status of the policy. Error code for enforcement status takes precedence if it exists.
+    error_code: Optional[int] = None
+    # Timestamp of the reported policy status
+    last_reported_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The policyType property
+    policy_type: Optional[DeviceManagementAutopilotPolicyType] = None
+    # Indicates if this prolicy was tracked as part of the autopilot bootstrap enrollment sync session
+    tracked_on_enrollment_status: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementAutopilotPolicyStatusDetail:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementAutopilotPolicyStatusDetail
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceManagementAutopilotPolicyStatusDetail()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The friendly name of the policy.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The friendly name of the policy.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def error_code(self,) -> Optional[int]:
-        """
-        Gets the errorCode property value. The errorode associated with the compliance or enforcement status of the policy. Error code for enforcement status takes precedence if it exists.
-        Returns: Optional[int]
-        """
-        return self._error_code
-    
-    @error_code.setter
-    def error_code(self,value: Optional[int] = None) -> None:
-        """
-        Sets the errorCode property value. The errorode associated with the compliance or enforcement status of the policy. Error code for enforcement status takes precedence if it exists.
-        Args:
-            value: Value to set for the error_code property.
-        """
-        self._error_code = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_autopilot_policy_compliance_status, device_management_autopilot_policy_type, entity
+        from .device_management_autopilot_policy_compliance_status import DeviceManagementAutopilotPolicyComplianceStatus
+        from .device_management_autopilot_policy_type import DeviceManagementAutopilotPolicyType
+        from .entity import Entity
+
+        from .device_management_autopilot_policy_compliance_status import DeviceManagementAutopilotPolicyComplianceStatus
+        from .device_management_autopilot_policy_type import DeviceManagementAutopilotPolicyType
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "complianceStatus": lambda n : setattr(self, 'compliance_status', n.get_enum_value(device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus)),
+            "complianceStatus": lambda n : setattr(self, 'compliance_status', n.get_enum_value(DeviceManagementAutopilotPolicyComplianceStatus)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
             "lastReportedDateTime": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
-            "policyType": lambda n : setattr(self, 'policy_type', n.get_enum_value(device_management_autopilot_policy_type.DeviceManagementAutopilotPolicyType)),
+            "policyType": lambda n : setattr(self, 'policy_type', n.get_enum_value(DeviceManagementAutopilotPolicyType)),
             "trackedOnEnrollmentStatus": lambda n : setattr(self, 'tracked_on_enrollment_status', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_reported_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastReportedDateTime property value. Timestamp of the reported policy status
-        Returns: Optional[datetime]
-        """
-        return self._last_reported_date_time
-    
-    @last_reported_date_time.setter
-    def last_reported_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastReportedDateTime property value. Timestamp of the reported policy status
-        Args:
-            value: Value to set for the last_reported_date_time property.
-        """
-        self._last_reported_date_time = value
-    
-    @property
-    def policy_type(self,) -> Optional[device_management_autopilot_policy_type.DeviceManagementAutopilotPolicyType]:
-        """
-        Gets the policyType property value. The policyType property
-        Returns: Optional[device_management_autopilot_policy_type.DeviceManagementAutopilotPolicyType]
-        """
-        return self._policy_type
-    
-    @policy_type.setter
-    def policy_type(self,value: Optional[device_management_autopilot_policy_type.DeviceManagementAutopilotPolicyType] = None) -> None:
-        """
-        Sets the policyType property value. The policyType property
-        Args:
-            value: Value to set for the policy_type property.
-        """
-        self._policy_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -154,8 +74,8 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("complianceStatus", self.compliance_status)
         writer.write_str_value("displayName", self.display_name)
@@ -163,22 +83,5 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         writer.write_datetime_value("lastReportedDateTime", self.last_reported_date_time)
         writer.write_enum_value("policyType", self.policy_type)
         writer.write_bool_value("trackedOnEnrollmentStatus", self.tracked_on_enrollment_status)
-    
-    @property
-    def tracked_on_enrollment_status(self,) -> Optional[bool]:
-        """
-        Gets the trackedOnEnrollmentStatus property value. Indicates if this prolicy was tracked as part of the autopilot bootstrap enrollment sync session
-        Returns: Optional[bool]
-        """
-        return self._tracked_on_enrollment_status
-    
-    @tracked_on_enrollment_status.setter
-    def tracked_on_enrollment_status(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the trackedOnEnrollmentStatus property value. Indicates if this prolicy was tracked as part of the autopilot bootstrap enrollment sync session
-        Args:
-            value: Value to set for the tracked_on_enrollment_status property.
-        """
-        self._tracked_on_enrollment_status = value
     
 

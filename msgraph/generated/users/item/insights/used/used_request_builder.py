@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import used_insight, used_insight_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import used_insight_item_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.used_insight import UsedInsight
+    from .....models.used_insight_collection_response import UsedInsightCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.used_insight_item_request_builder import UsedInsightItemRequestBuilder
 
-class UsedRequestBuilder():
+class UsedRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the used property of the microsoft.graph.officeGraphInsights entity.
     """
@@ -23,87 +25,78 @@ class UsedRequestBuilder():
         """
         Instantiates a new UsedRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/insights/used{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/insights/used{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_used_insight_id(self,used_insight_id: str) -> used_insight_item_request_builder.UsedInsightItemRequestBuilder:
+    def by_used_insight_id(self,used_insight_id: str) -> UsedInsightItemRequestBuilder:
         """
         Provides operations to manage the used property of the microsoft.graph.officeGraphInsights entity.
         Args:
             used_insight_id: Unique identifier of the item
-        Returns: used_insight_item_request_builder.UsedInsightItemRequestBuilder
+        Returns: UsedInsightItemRequestBuilder
         """
-        if used_insight_id is None:
-            raise Exception("used_insight_id cannot be undefined")
-        from .item import used_insight_item_request_builder
+        if not used_insight_id:
+            raise TypeError("used_insight_id cannot be null.")
+        from .item.used_insight_item_request_builder import UsedInsightItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["usedInsight%2Did"] = used_insight_id
-        return used_insight_item_request_builder.UsedInsightItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return UsedInsightItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UsedRequestBuilderGetRequestConfiguration] = None) -> Optional[used_insight_collection_response.UsedInsightCollectionResponse]:
+    async def get(self,request_configuration: Optional[UsedRequestBuilderGetRequestConfiguration] = None) -> Optional[UsedInsightCollectionResponse]:
         """
         Access this property from the derived type itemInsights.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[used_insight_collection_response.UsedInsightCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UsedInsightCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import used_insight_collection_response
+        from .....models.used_insight_collection_response import UsedInsightCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, used_insight_collection_response.UsedInsightCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UsedInsightCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[used_insight.UsedInsight] = None, request_configuration: Optional[UsedRequestBuilderPostRequestConfiguration] = None) -> Optional[used_insight.UsedInsight]:
+    async def post(self,body: Optional[UsedInsight] = None, request_configuration: Optional[UsedRequestBuilderPostRequestConfiguration] = None) -> Optional[UsedInsight]:
         """
         Create new navigation property to used for users
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[used_insight.UsedInsight]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UsedInsight]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import used_insight
+        from .....models.used_insight import UsedInsight
 
-        return await self.request_adapter.send_async(request_info, used_insight.UsedInsight, error_mapping)
+        return await self.request_adapter.send_async(request_info, UsedInsight, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UsedRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Access this property from the derived type itemInsights.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +110,16 @@ class UsedRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[used_insight.UsedInsight] = None, request_configuration: Optional[UsedRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UsedInsight] = None, request_configuration: Optional[UsedRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to used for users
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +132,13 @@ class UsedRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UsedRequestBuilderGetQueryParameters():
@@ -156,11 +149,11 @@ class UsedRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +197,27 @@ class UsedRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UsedRequestBuilderGetRequestConfiguration():
+    class UsedRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[UsedRequestBuilder.UsedRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UsedRequestBuilderPostRequestConfiguration():
+    class UsedRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

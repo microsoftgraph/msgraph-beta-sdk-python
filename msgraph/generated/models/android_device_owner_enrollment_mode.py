@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerEnrollmentMode(Enum):
+class AndroidDeviceOwnerEnrollmentMode(str, Enum):
     CorporateOwnedDedicatedDevice = "corporateOwnedDedicatedDevice",
     CorporateOwnedFullyManaged = "corporateOwnedFullyManaged",
     CorporateOwnedWorkProfile = "corporateOwnedWorkProfile",

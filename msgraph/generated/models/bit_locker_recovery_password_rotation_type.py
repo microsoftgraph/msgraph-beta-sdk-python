@@ -1,6 +1,6 @@
 from enum import Enum
 
-class BitLockerRecoveryPasswordRotationType(Enum):
+class BitLockerRecoveryPasswordRotationType(str, Enum):
     # Not configured
     NotConfigured = "notConfigured",
     # Recovery password rotation off

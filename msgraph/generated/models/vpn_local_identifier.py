@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnLocalIdentifier(Enum):
+class VpnLocalIdentifier(str, Enum):
     # Device Fully Qualified Domain Name
     DeviceFQDN = "deviceFQDN",
     # Empty

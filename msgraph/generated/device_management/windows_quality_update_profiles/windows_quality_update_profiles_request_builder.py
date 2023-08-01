@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import windows_quality_update_profile, windows_quality_update_profile_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import windows_quality_update_profile_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.windows_quality_update_profile import WindowsQualityUpdateProfile
+    from ...models.windows_quality_update_profile_collection_response import WindowsQualityUpdateProfileCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.windows_quality_update_profile_item_request_builder import WindowsQualityUpdateProfileItemRequestBuilder
 
-class WindowsQualityUpdateProfilesRequestBuilder():
+class WindowsQualityUpdateProfilesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the windowsQualityUpdateProfiles property of the microsoft.graph.deviceManagement entity.
     """
@@ -23,87 +25,78 @@ class WindowsQualityUpdateProfilesRequestBuilder():
         """
         Instantiates a new WindowsQualityUpdateProfilesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/windowsQualityUpdateProfiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/windowsQualityUpdateProfiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_windows_quality_update_profile_id(self,windows_quality_update_profile_id: str) -> windows_quality_update_profile_item_request_builder.WindowsQualityUpdateProfileItemRequestBuilder:
+    def by_windows_quality_update_profile_id(self,windows_quality_update_profile_id: str) -> WindowsQualityUpdateProfileItemRequestBuilder:
         """
         Provides operations to manage the windowsQualityUpdateProfiles property of the microsoft.graph.deviceManagement entity.
         Args:
             windows_quality_update_profile_id: Unique identifier of the item
-        Returns: windows_quality_update_profile_item_request_builder.WindowsQualityUpdateProfileItemRequestBuilder
+        Returns: WindowsQualityUpdateProfileItemRequestBuilder
         """
-        if windows_quality_update_profile_id is None:
-            raise Exception("windows_quality_update_profile_id cannot be undefined")
-        from .item import windows_quality_update_profile_item_request_builder
+        if not windows_quality_update_profile_id:
+            raise TypeError("windows_quality_update_profile_id cannot be null.")
+        from .item.windows_quality_update_profile_item_request_builder import WindowsQualityUpdateProfileItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsQualityUpdateProfile%2Did"] = windows_quality_update_profile_id
-        return windows_quality_update_profile_item_request_builder.WindowsQualityUpdateProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WindowsQualityUpdateProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsQualityUpdateProfileCollectionResponse]:
         """
         A collection of windows quality update profiles
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WindowsQualityUpdateProfileCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import windows_quality_update_profile_collection_response
+        from ...models.windows_quality_update_profile_collection_response import WindowsQualityUpdateProfileCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsQualityUpdateProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[windows_quality_update_profile.WindowsQualityUpdateProfile] = None, request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_quality_update_profile.WindowsQualityUpdateProfile]:
+    async def post(self,body: Optional[WindowsQualityUpdateProfile] = None, request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsQualityUpdateProfile]:
         """
         Create new navigation property to windowsQualityUpdateProfiles for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_quality_update_profile.WindowsQualityUpdateProfile]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WindowsQualityUpdateProfile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import windows_quality_update_profile
+        from ...models.windows_quality_update_profile import WindowsQualityUpdateProfile
 
-        return await self.request_adapter.send_async(request_info, windows_quality_update_profile.WindowsQualityUpdateProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsQualityUpdateProfile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A collection of windows quality update profiles
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +110,16 @@ class WindowsQualityUpdateProfilesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[windows_quality_update_profile.WindowsQualityUpdateProfile] = None, request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsQualityUpdateProfile] = None, request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsQualityUpdateProfiles for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +132,13 @@ class WindowsQualityUpdateProfilesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WindowsQualityUpdateProfilesRequestBuilderGetQueryParameters():
@@ -156,11 +149,11 @@ class WindowsQualityUpdateProfilesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +197,27 @@ class WindowsQualityUpdateProfilesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration():
+    class WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[WindowsQualityUpdateProfilesRequestBuilder.WindowsQualityUpdateProfilesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration():
+    class WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

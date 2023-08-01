@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +11,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import update_scope_tags_post_request_body, update_scope_tags_response
-    from .....models.o_data_errors import o_data_error
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .update_scope_tags_post_request_body import UpdateScopeTagsPostRequestBody
+    from .update_scope_tags_response import UpdateScopeTagsResponse
 
-class UpdateScopeTagsRequestBuilder():
+class UpdateScopeTagsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the updateScopeTags method.
     """
@@ -21,55 +23,46 @@ class UpdateScopeTagsRequestBuilder():
         """
         Instantiates a new UpdateScopeTagsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/groupPolicyMigrationReports/{groupPolicyMigrationReport%2Did}/updateScopeTags"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/groupPolicyMigrationReports/{groupPolicyMigrationReport%2Did}/updateScopeTags", path_parameters)
     
-    async def post(self,body: Optional[update_scope_tags_post_request_body.UpdateScopeTagsPostRequestBody] = None, request_configuration: Optional[UpdateScopeTagsRequestBuilderPostRequestConfiguration] = None) -> Optional[update_scope_tags_response.UpdateScopeTagsResponse]:
+    async def post(self,body: Optional[UpdateScopeTagsPostRequestBody] = None, request_configuration: Optional[UpdateScopeTagsRequestBuilderPostRequestConfiguration] = None) -> Optional[UpdateScopeTagsResponse]:
         """
         Invoke action updateScopeTags
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[update_scope_tags_response.UpdateScopeTagsResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UpdateScopeTagsResponse]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from . import update_scope_tags_response
+        from .update_scope_tags_response import UpdateScopeTagsResponse
 
-        return await self.request_adapter.send_async(request_info, update_scope_tags_response.UpdateScopeTagsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UpdateScopeTagsResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[update_scope_tags_post_request_body.UpdateScopeTagsPostRequestBody] = None, request_configuration: Optional[UpdateScopeTagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UpdateScopeTagsPostRequestBody] = None, request_configuration: Optional[UpdateScopeTagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action updateScopeTags
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -81,16 +74,14 @@ class UpdateScopeTagsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UpdateScopeTagsRequestBuilderPostRequestConfiguration():
+    class UpdateScopeTagsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AssignmentFilterOperator(Enum):
+class AssignmentFilterOperator(str, Enum):
     # NotSet.
     NotSet = "notSet",
     # Equals.

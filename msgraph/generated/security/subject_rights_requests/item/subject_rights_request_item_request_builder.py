@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,16 +11,16 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import subject_rights_request
-    from ....models.o_data_errors import o_data_error
-    from .approvers import approvers_request_builder
-    from .collaborators import collaborators_request_builder
-    from .get_final_attachment import get_final_attachment_request_builder
-    from .get_final_report import get_final_report_request_builder
-    from .notes import notes_request_builder
-    from .team import team_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.subject_rights_request import SubjectRightsRequest
+    from .approvers.approvers_request_builder import ApproversRequestBuilder
+    from .collaborators.collaborators_request_builder import CollaboratorsRequestBuilder
+    from .get_final_attachment.get_final_attachment_request_builder import GetFinalAttachmentRequestBuilder
+    from .get_final_report.get_final_report_request_builder import GetFinalReportRequestBuilder
+    from .notes.notes_request_builder import NotesRequestBuilder
+    from .team.team_request_builder import TeamRequestBuilder
 
-class SubjectRightsRequestItemRequestBuilder():
+class SubjectRightsRequestItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.
     """
@@ -27,91 +28,82 @@ class SubjectRightsRequestItemRequestBuilder():
         """
         Instantiates a new SubjectRightsRequestItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property subjectRightsRequests for security
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[subject_rights_request.SubjectRightsRequest]:
+    async def get(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SubjectRightsRequest]:
         """
         Get subjectRightsRequests from security
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[subject_rights_request.SubjectRightsRequest]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SubjectRightsRequest]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import subject_rights_request
+        from ....models.subject_rights_request import SubjectRightsRequest
 
-        return await self.request_adapter.send_async(request_info, subject_rights_request.SubjectRightsRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, SubjectRightsRequest, error_mapping)
     
-    async def patch(self,body: Optional[subject_rights_request.SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[subject_rights_request.SubjectRightsRequest]:
+    async def patch(self,body: Optional[SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SubjectRightsRequest]:
         """
         Update the navigation property subjectRightsRequests in security
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[subject_rights_request.SubjectRightsRequest]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SubjectRightsRequest]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import subject_rights_request
+        from ....models.subject_rights_request import SubjectRightsRequest
 
-        return await self.request_adapter.send_async(request_info, subject_rights_request.SubjectRightsRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, SubjectRightsRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property subjectRightsRequests for security
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -127,7 +119,7 @@ class SubjectRightsRequestItemRequestBuilder():
         """
         Get subjectRightsRequests from security
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -141,16 +133,16 @@ class SubjectRightsRequestItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[subject_rights_request.SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property subjectRightsRequests in security
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -163,70 +155,68 @@ class SubjectRightsRequestItemRequestBuilder():
         return request_info
     
     @property
-    def approvers(self) -> approvers_request_builder.ApproversRequestBuilder:
+    def approvers(self) -> ApproversRequestBuilder:
         """
         Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.
         """
-        from .approvers import approvers_request_builder
+        from .approvers.approvers_request_builder import ApproversRequestBuilder
 
-        return approvers_request_builder.ApproversRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApproversRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def collaborators(self) -> collaborators_request_builder.CollaboratorsRequestBuilder:
+    def collaborators(self) -> CollaboratorsRequestBuilder:
         """
         Provides operations to manage the collaborators property of the microsoft.graph.subjectRightsRequest entity.
         """
-        from .collaborators import collaborators_request_builder
+        from .collaborators.collaborators_request_builder import CollaboratorsRequestBuilder
 
-        return collaborators_request_builder.CollaboratorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CollaboratorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_final_attachment(self) -> get_final_attachment_request_builder.GetFinalAttachmentRequestBuilder:
+    def get_final_attachment(self) -> GetFinalAttachmentRequestBuilder:
         """
         Provides operations to call the getFinalAttachment method.
         """
-        from .get_final_attachment import get_final_attachment_request_builder
+        from .get_final_attachment.get_final_attachment_request_builder import GetFinalAttachmentRequestBuilder
 
-        return get_final_attachment_request_builder.GetFinalAttachmentRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetFinalAttachmentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_final_report(self) -> get_final_report_request_builder.GetFinalReportRequestBuilder:
+    def get_final_report(self) -> GetFinalReportRequestBuilder:
         """
         Provides operations to call the getFinalReport method.
         """
-        from .get_final_report import get_final_report_request_builder
+        from .get_final_report.get_final_report_request_builder import GetFinalReportRequestBuilder
 
-        return get_final_report_request_builder.GetFinalReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetFinalReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def notes(self) -> notes_request_builder.NotesRequestBuilder:
+    def notes(self) -> NotesRequestBuilder:
         """
         Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.
         """
-        from .notes import notes_request_builder
+        from .notes.notes_request_builder import NotesRequestBuilder
 
-        return notes_request_builder.NotesRequestBuilder(self.request_adapter, self.path_parameters)
+        return NotesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def team(self) -> team_request_builder.TeamRequestBuilder:
+    def team(self) -> TeamRequestBuilder:
         """
         Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.
         """
-        from .team import team_request_builder
+        from .team.team_request_builder import TeamRequestBuilder
 
-        return team_request_builder.TeamRequestBuilder(self.request_adapter, self.path_parameters)
+        return TeamRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration():
+    class SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class SubjectRightsRequestItemRequestBuilderGetQueryParameters():
@@ -237,11 +227,11 @@ class SubjectRightsRequestItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -255,31 +245,27 @@ class SubjectRightsRequestItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SubjectRightsRequestItemRequestBuilderGetRequestConfiguration():
+    class SubjectRightsRequestItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SubjectRightsRequestItemRequestBuilder.SubjectRightsRequestItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration():
+    class SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

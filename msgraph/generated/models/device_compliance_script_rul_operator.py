@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceComplianceScriptRulOperator(Enum):
+class DeviceComplianceScriptRulOperator(str, Enum):
     # None operator.
     None_ = "none",
     # And operator.

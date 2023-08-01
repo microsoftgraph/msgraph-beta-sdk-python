@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +11,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import microsoft_tunnel_server
-    from ......models.o_data_errors import o_data_error
-    from .create_server_log_collection_request import create_server_log_collection_request_request_builder
-    from .generate_server_log_collection_request import generate_server_log_collection_request_request_builder
-    from .get_health_metrics import get_health_metrics_request_builder
-    from .get_health_metric_time_series import get_health_metric_time_series_request_builder
+    from ......models.microsoft_tunnel_server import MicrosoftTunnelServer
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .create_server_log_collection_request.create_server_log_collection_request_request_builder import CreateServerLogCollectionRequestRequestBuilder
+    from .generate_server_log_collection_request.generate_server_log_collection_request_request_builder import GenerateServerLogCollectionRequestRequestBuilder
+    from .get_health_metrics.get_health_metrics_request_builder import GetHealthMetricsRequestBuilder
+    from .get_health_metric_time_series.get_health_metric_time_series_request_builder import GetHealthMetricTimeSeriesRequestBuilder
 
-class MicrosoftTunnelServerItemRequestBuilder():
+class MicrosoftTunnelServerItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the microsoftTunnelServers property of the microsoft.graph.microsoftTunnelSite entity.
     """
@@ -25,91 +26,82 @@ class MicrosoftTunnelServerItemRequestBuilder():
         """
         Instantiates a new MicrosoftTunnelServerItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/microsoftTunnelSites/{microsoftTunnelSite%2Did}/microsoftTunnelServers/{microsoftTunnelServer%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/microsoftTunnelSites/{microsoftTunnelSite%2Did}/microsoftTunnelServers/{microsoftTunnelServer%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[MicrosoftTunnelServerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property microsoftTunnelServers for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MicrosoftTunnelServerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_tunnel_server.MicrosoftTunnelServer]:
+    async def get(self,request_configuration: Optional[MicrosoftTunnelServerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MicrosoftTunnelServer]:
         """
         A list of MicrosoftTunnelServers that are registered to this MicrosoftTunnelSite
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[microsoft_tunnel_server.MicrosoftTunnelServer]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[MicrosoftTunnelServer]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import microsoft_tunnel_server
+        from ......models.microsoft_tunnel_server import MicrosoftTunnelServer
 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_server.MicrosoftTunnelServer, error_mapping)
+        return await self.request_adapter.send_async(request_info, MicrosoftTunnelServer, error_mapping)
     
-    async def patch(self,body: Optional[microsoft_tunnel_server.MicrosoftTunnelServer] = None, request_configuration: Optional[MicrosoftTunnelServerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[microsoft_tunnel_server.MicrosoftTunnelServer]:
+    async def patch(self,body: Optional[MicrosoftTunnelServer] = None, request_configuration: Optional[MicrosoftTunnelServerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[MicrosoftTunnelServer]:
         """
         Update the navigation property microsoftTunnelServers in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[microsoft_tunnel_server.MicrosoftTunnelServer]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[MicrosoftTunnelServer]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import microsoft_tunnel_server
+        from ......models.microsoft_tunnel_server import MicrosoftTunnelServer
 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_server.MicrosoftTunnelServer, error_mapping)
+        return await self.request_adapter.send_async(request_info, MicrosoftTunnelServer, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MicrosoftTunnelServerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property microsoftTunnelServers for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -125,7 +117,7 @@ class MicrosoftTunnelServerItemRequestBuilder():
         """
         A list of MicrosoftTunnelServers that are registered to this MicrosoftTunnelSite
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -139,16 +131,16 @@ class MicrosoftTunnelServerItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[microsoft_tunnel_server.MicrosoftTunnelServer] = None, request_configuration: Optional[MicrosoftTunnelServerItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MicrosoftTunnelServer] = None, request_configuration: Optional[MicrosoftTunnelServerItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property microsoftTunnelServers in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -161,52 +153,50 @@ class MicrosoftTunnelServerItemRequestBuilder():
         return request_info
     
     @property
-    def create_server_log_collection_request(self) -> create_server_log_collection_request_request_builder.CreateServerLogCollectionRequestRequestBuilder:
+    def create_server_log_collection_request(self) -> CreateServerLogCollectionRequestRequestBuilder:
         """
         Provides operations to call the createServerLogCollectionRequest method.
         """
-        from .create_server_log_collection_request import create_server_log_collection_request_request_builder
+        from .create_server_log_collection_request.create_server_log_collection_request_request_builder import CreateServerLogCollectionRequestRequestBuilder
 
-        return create_server_log_collection_request_request_builder.CreateServerLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreateServerLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def generate_server_log_collection_request(self) -> generate_server_log_collection_request_request_builder.GenerateServerLogCollectionRequestRequestBuilder:
+    def generate_server_log_collection_request(self) -> GenerateServerLogCollectionRequestRequestBuilder:
         """
         Provides operations to call the generateServerLogCollectionRequest method.
         """
-        from .generate_server_log_collection_request import generate_server_log_collection_request_request_builder
+        from .generate_server_log_collection_request.generate_server_log_collection_request_request_builder import GenerateServerLogCollectionRequestRequestBuilder
 
-        return generate_server_log_collection_request_request_builder.GenerateServerLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
+        return GenerateServerLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_health_metrics(self) -> get_health_metrics_request_builder.GetHealthMetricsRequestBuilder:
+    def get_health_metrics(self) -> GetHealthMetricsRequestBuilder:
         """
         Provides operations to call the getHealthMetrics method.
         """
-        from .get_health_metrics import get_health_metrics_request_builder
+        from .get_health_metrics.get_health_metrics_request_builder import GetHealthMetricsRequestBuilder
 
-        return get_health_metrics_request_builder.GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_health_metric_time_series(self) -> get_health_metric_time_series_request_builder.GetHealthMetricTimeSeriesRequestBuilder:
+    def get_health_metric_time_series(self) -> GetHealthMetricTimeSeriesRequestBuilder:
         """
         Provides operations to call the getHealthMetricTimeSeries method.
         """
-        from .get_health_metric_time_series import get_health_metric_time_series_request_builder
+        from .get_health_metric_time_series.get_health_metric_time_series_request_builder import GetHealthMetricTimeSeriesRequestBuilder
 
-        return get_health_metric_time_series_request_builder.GetHealthMetricTimeSeriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetHealthMetricTimeSeriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MicrosoftTunnelServerItemRequestBuilderDeleteRequestConfiguration():
+    class MicrosoftTunnelServerItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class MicrosoftTunnelServerItemRequestBuilderGetQueryParameters():
@@ -217,11 +207,11 @@ class MicrosoftTunnelServerItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -235,31 +225,27 @@ class MicrosoftTunnelServerItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MicrosoftTunnelServerItemRequestBuilderGetRequestConfiguration():
+    class MicrosoftTunnelServerItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[MicrosoftTunnelServerItemRequestBuilder.MicrosoftTunnelServerItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MicrosoftTunnelServerItemRequestBuilderPatchRequestConfiguration():
+    class MicrosoftTunnelServerItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

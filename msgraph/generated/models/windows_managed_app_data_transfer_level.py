@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsManagedAppDataTransferLevel(Enum):
+class WindowsManagedAppDataTransferLevel(str, Enum):
     # All apps.
     AllApps = "allApps",
     # No apps.

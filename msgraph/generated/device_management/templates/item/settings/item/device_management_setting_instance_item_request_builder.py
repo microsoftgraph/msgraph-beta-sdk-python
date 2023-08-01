@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +11,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import device_management_setting_instance
-    from ......models.o_data_errors import o_data_error
+    from ......models.device_management_setting_instance import DeviceManagementSettingInstance
+    from ......models.o_data_errors.o_data_error import ODataError
 
-class DeviceManagementSettingInstanceItemRequestBuilder():
+class DeviceManagementSettingInstanceItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the settings property of the microsoft.graph.deviceManagementTemplate entity.
     """
@@ -21,91 +22,82 @@ class DeviceManagementSettingInstanceItemRequestBuilder():
         """
         Instantiates a new DeviceManagementSettingInstanceItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/settings/{deviceManagementSettingInstance%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/settings/{deviceManagementSettingInstance%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[DeviceManagementSettingInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property settings for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementSettingInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_setting_instance.DeviceManagementSettingInstance]:
+    async def get(self,request_configuration: Optional[DeviceManagementSettingInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementSettingInstance]:
         """
         Collection of all settings this template has
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_setting_instance.DeviceManagementSettingInstance]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceManagementSettingInstance]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import device_management_setting_instance
+        from ......models.device_management_setting_instance import DeviceManagementSettingInstance
 
-        return await self.request_adapter.send_async(request_info, device_management_setting_instance.DeviceManagementSettingInstance, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementSettingInstance, error_mapping)
     
-    async def patch(self,body: Optional[device_management_setting_instance.DeviceManagementSettingInstance] = None, request_configuration: Optional[DeviceManagementSettingInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_setting_instance.DeviceManagementSettingInstance]:
+    async def patch(self,body: Optional[DeviceManagementSettingInstance] = None, request_configuration: Optional[DeviceManagementSettingInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementSettingInstance]:
         """
         Update the navigation property settings in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_setting_instance.DeviceManagementSettingInstance]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceManagementSettingInstance]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import device_management_setting_instance
+        from ......models.device_management_setting_instance import DeviceManagementSettingInstance
 
-        return await self.request_adapter.send_async(request_info, device_management_setting_instance.DeviceManagementSettingInstance, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementSettingInstance, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementSettingInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property settings for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -121,7 +113,7 @@ class DeviceManagementSettingInstanceItemRequestBuilder():
         """
         Collection of all settings this template has
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -135,16 +127,16 @@ class DeviceManagementSettingInstanceItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[device_management_setting_instance.DeviceManagementSettingInstance] = None, request_configuration: Optional[DeviceManagementSettingInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementSettingInstance] = None, request_configuration: Optional[DeviceManagementSettingInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property settings in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -156,17 +148,15 @@ class DeviceManagementSettingInstanceItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DeviceManagementSettingInstanceItemRequestBuilderDeleteRequestConfiguration():
+    class DeviceManagementSettingInstanceItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class DeviceManagementSettingInstanceItemRequestBuilderGetQueryParameters():
@@ -177,11 +167,11 @@ class DeviceManagementSettingInstanceItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -195,31 +185,27 @@ class DeviceManagementSettingInstanceItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DeviceManagementSettingInstanceItemRequestBuilderGetRequestConfiguration():
+    class DeviceManagementSettingInstanceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[DeviceManagementSettingInstanceItemRequestBuilder.DeviceManagementSettingInstanceItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DeviceManagementSettingInstanceItemRequestBuilderPatchRequestConfiguration():
+    class DeviceManagementSettingInstanceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

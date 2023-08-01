@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcSupportedRegionStatus(Enum):
+class CloudPcSupportedRegionStatus(str, Enum):
     Available = "available",
     Restricted = "restricted",
     Unavailable = "unavailable",

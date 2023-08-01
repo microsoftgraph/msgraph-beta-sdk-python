@@ -1,86 +1,83 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import default_mfa_method_type, entity, sign_in_user_type
+    from .default_mfa_method_type import DefaultMfaMethodType
+    from .entity import Entity
+    from .sign_in_user_type import SignInUserType
+    from .user_default_authentication_method import UserDefaultAuthenticationMethod
 
-from . import entity
+from .entity import Entity
 
-class UserRegistrationDetails(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userRegistrationDetails and sets the default values.
-        """
-        super().__init__()
-        # The method the user or admin selected as default for performing multi-factor authentication for the user. The possible values are: none, mobilePhone, alternateMobilePhone, officePhone, microsoftAuthenticatorPush, softwareOneTimePasscode, unknownFutureValue.
-        self._default_mfa_method: Optional[default_mfa_method_type.DefaultMfaMethodType] = None
-        # Whether the user has an admin role in the tenant. This value can be used to check the authentication methods that privileged accounts are registered for and capable of.
-        self._is_admin: Optional[bool] = None
-        # Whether the user has registered a strong authentication method for multi-factor authentication. The method must be allowed by the authentication methods policy. Supports $filter (eq).
-        self._is_mfa_capable: Optional[bool] = None
-        # Whether the user has registered a strong authentication method for multi-factor authentication. The method may not necessarily be allowed by the authentication methods policy.  Supports $filter (eq).
-        self._is_mfa_registered: Optional[bool] = None
-        # Whether the user has registered a passwordless strong authentication method (including FIDO2, Windows Hello for Business, and Microsoft Authenticator (Passwordless)) that is allowed by the authentication methods policy. Supports $filter (eq).
-        self._is_passwordless_capable: Optional[bool] = None
-        # Whether the user has registered the required number of authentication methods for self-service password reset and the user is allowed to perform self-service password reset by policy. Supports $filter (eq).
-        self._is_sspr_capable: Optional[bool] = None
-        # Whether the user is allowed to perform self-service password reset by policy. The user may not necessarily have registered the required number of authentication methods for self-service password reset. Supports $filter (eq).
-        self._is_sspr_enabled: Optional[bool] = None
-        # Whether the user has registered the required number of authentication methods for self-service password reset. The user may not necessarily be allowed to perform self-service password reset by policy. Supports $filter (eq).
-        self._is_sspr_registered: Optional[bool] = None
-        # The lastUpdatedDateTime property
-        self._last_updated_date_time: Optional[datetime] = None
-        # Collection of authentication methods registered, such as mobilePhone, email, fido2. Supports $filter (any with eq).
-        self._methods_registered: Optional[List[str]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user display name, such as Adele Vance. Supports $filter (eq, startsWith) and $orderBy.
-        self._user_display_name: Optional[str] = None
-        # The user principal name, such as AdeleV@contoso.com. Supports $filter (eq, startsWith) and $orderBy.
-        self._user_principal_name: Optional[str] = None
-        # Identifies whether the user is a member or guest in the tenant. The possible values are: member, guest, unknownFutureValue.
-        self._user_type: Optional[sign_in_user_type.SignInUserType] = None
+@dataclass
+class UserRegistrationDetails(Entity):
+    # The method the user or admin selected as default for performing multi-factor authentication for the user. The possible values are: none, mobilePhone, alternateMobilePhone, officePhone, microsoftAuthenticatorPush, softwareOneTimePasscode, unknownFutureValue.
+    default_mfa_method: Optional[DefaultMfaMethodType] = None
+    # Indicates whether the user has an admin role in the tenant. This value can be used to check the authentication methods that privileged accounts are registered for and capable of.
+    is_admin: Optional[bool] = None
+    # Indicates whether the user has registered a strong authentication method for multi-factor authentication. The method must be allowed by the authentication methods policy. Supports $filter (eq).
+    is_mfa_capable: Optional[bool] = None
+    # Indicates whether the user has registered a strong authentication method for multi-factor authentication. The method may not necessarily be allowed by the authentication methods policy. Supports $filter (eq).
+    is_mfa_registered: Optional[bool] = None
+    # Indicates whether the user has registered a passwordless strong authentication method (including FIDO2, Windows Hello for Business, and Microsoft Authenticator (Passwordless)) that is allowed by the authentication methods policy. Supports $filter (eq).
+    is_passwordless_capable: Optional[bool] = None
+    # Indicates whether the user has registered the required number of authentication methods for self-service password reset and the user is allowed to perform self-service password reset by policy. Supports $filter (eq).
+    is_sspr_capable: Optional[bool] = None
+    # Indicates whether the user is allowed to perform self-service password reset by policy. The user may not necessarily have registered the required number of authentication methods for self-service password reset. Supports $filter (eq).
+    is_sspr_enabled: Optional[bool] = None
+    # Indicates whether the user has registered the required number of authentication methods for self-service password reset. The user may not necessarily be allowed to perform self-service password reset by policy. Supports $filter (eq).
+    is_sspr_registered: Optional[bool] = None
+    # Indicates whether system preferred authentication method is enabled. If enabled, the system dynamically determines the most secure authentication method among the methods registered by the user. Supports $filter (eq).
+    is_system_preferred_authentication_method_enabled: Optional[bool] = None
+    # The date and time (UTC) when the record was last updated. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    last_updated_date_time: Optional[datetime.datetime] = None
+    # Collection of authentication methods registered, such as mobilePhone, email, fido2. Supports $filter (any with eq).
+    methods_registered: Optional[List[str]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Collection of authentication methods that the system determined to be the most secure authentication methods among the registered methods for second factor authentication. Possible values are: push, oath, voiceMobile, voiceAlternateMobile, voiceOffice, sms, none, unknownFutureValue. Supports $filter (any with eq).
+    system_preferred_authentication_methods: Optional[List[str]] = None
+    # The user display name, such as Adele Vance. Supports $filter (eq, startsWith) and $orderBy.
+    user_display_name: Optional[str] = None
+    # The method the user selected as the default second-factor for performing multi-factor authentication. Possible values are: push, oath, voiceMobile, voiceAlternateMobile, voiceOffice, sms, none, unknownFutureValue.
+    user_preferred_method_for_secondary_authentication: Optional[UserDefaultAuthenticationMethod] = None
+    # The user principal name, such as AdeleV@contoso.com. Supports $filter (eq, startsWith) and $orderBy.
+    user_principal_name: Optional[str] = None
+    # Identifies whether the user is a member or guest in the tenant. The possible values are: member, guest, unknownFutureValue.
+    user_type: Optional[SignInUserType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserRegistrationDetails:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UserRegistrationDetails
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UserRegistrationDetails()
-    
-    @property
-    def default_mfa_method(self,) -> Optional[default_mfa_method_type.DefaultMfaMethodType]:
-        """
-        Gets the defaultMfaMethod property value. The method the user or admin selected as default for performing multi-factor authentication for the user. The possible values are: none, mobilePhone, alternateMobilePhone, officePhone, microsoftAuthenticatorPush, softwareOneTimePasscode, unknownFutureValue.
-        Returns: Optional[default_mfa_method_type.DefaultMfaMethodType]
-        """
-        return self._default_mfa_method
-    
-    @default_mfa_method.setter
-    def default_mfa_method(self,value: Optional[default_mfa_method_type.DefaultMfaMethodType] = None) -> None:
-        """
-        Sets the defaultMfaMethod property value. The method the user or admin selected as default for performing multi-factor authentication for the user. The possible values are: none, mobilePhone, alternateMobilePhone, officePhone, microsoftAuthenticatorPush, softwareOneTimePasscode, unknownFutureValue.
-        Args:
-            value: Value to set for the default_mfa_method property.
-        """
-        self._default_mfa_method = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import default_mfa_method_type, entity, sign_in_user_type
+        from .default_mfa_method_type import DefaultMfaMethodType
+        from .entity import Entity
+        from .sign_in_user_type import SignInUserType
+        from .user_default_authentication_method import UserDefaultAuthenticationMethod
+
+        from .default_mfa_method_type import DefaultMfaMethodType
+        from .entity import Entity
+        from .sign_in_user_type import SignInUserType
+        from .user_default_authentication_method import UserDefaultAuthenticationMethod
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "defaultMfaMethod": lambda n : setattr(self, 'default_mfa_method', n.get_enum_value(default_mfa_method_type.DefaultMfaMethodType)),
+            "defaultMfaMethod": lambda n : setattr(self, 'default_mfa_method', n.get_enum_value(DefaultMfaMethodType)),
             "isAdmin": lambda n : setattr(self, 'is_admin', n.get_bool_value()),
             "isMfaCapable": lambda n : setattr(self, 'is_mfa_capable', n.get_bool_value()),
             "isMfaRegistered": lambda n : setattr(self, 'is_mfa_registered', n.get_bool_value()),
@@ -88,168 +85,18 @@ class UserRegistrationDetails(entity.Entity):
             "isSsprCapable": lambda n : setattr(self, 'is_sspr_capable', n.get_bool_value()),
             "isSsprEnabled": lambda n : setattr(self, 'is_sspr_enabled', n.get_bool_value()),
             "isSsprRegistered": lambda n : setattr(self, 'is_sspr_registered', n.get_bool_value()),
+            "isSystemPreferredAuthenticationMethodEnabled": lambda n : setattr(self, 'is_system_preferred_authentication_method_enabled', n.get_bool_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "methodsRegistered": lambda n : setattr(self, 'methods_registered', n.get_collection_of_primitive_values(str)),
+            "systemPreferredAuthenticationMethods": lambda n : setattr(self, 'system_preferred_authentication_methods', n.get_collection_of_primitive_values(str)),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userPreferredMethodForSecondaryAuthentication": lambda n : setattr(self, 'user_preferred_method_for_secondary_authentication', n.get_enum_value(UserDefaultAuthenticationMethod)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(sign_in_user_type.SignInUserType)),
+            "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(SignInUserType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_admin(self,) -> Optional[bool]:
-        """
-        Gets the isAdmin property value. Whether the user has an admin role in the tenant. This value can be used to check the authentication methods that privileged accounts are registered for and capable of.
-        Returns: Optional[bool]
-        """
-        return self._is_admin
-    
-    @is_admin.setter
-    def is_admin(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isAdmin property value. Whether the user has an admin role in the tenant. This value can be used to check the authentication methods that privileged accounts are registered for and capable of.
-        Args:
-            value: Value to set for the is_admin property.
-        """
-        self._is_admin = value
-    
-    @property
-    def is_mfa_capable(self,) -> Optional[bool]:
-        """
-        Gets the isMfaCapable property value. Whether the user has registered a strong authentication method for multi-factor authentication. The method must be allowed by the authentication methods policy. Supports $filter (eq).
-        Returns: Optional[bool]
-        """
-        return self._is_mfa_capable
-    
-    @is_mfa_capable.setter
-    def is_mfa_capable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isMfaCapable property value. Whether the user has registered a strong authentication method for multi-factor authentication. The method must be allowed by the authentication methods policy. Supports $filter (eq).
-        Args:
-            value: Value to set for the is_mfa_capable property.
-        """
-        self._is_mfa_capable = value
-    
-    @property
-    def is_mfa_registered(self,) -> Optional[bool]:
-        """
-        Gets the isMfaRegistered property value. Whether the user has registered a strong authentication method for multi-factor authentication. The method may not necessarily be allowed by the authentication methods policy.  Supports $filter (eq).
-        Returns: Optional[bool]
-        """
-        return self._is_mfa_registered
-    
-    @is_mfa_registered.setter
-    def is_mfa_registered(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isMfaRegistered property value. Whether the user has registered a strong authentication method for multi-factor authentication. The method may not necessarily be allowed by the authentication methods policy.  Supports $filter (eq).
-        Args:
-            value: Value to set for the is_mfa_registered property.
-        """
-        self._is_mfa_registered = value
-    
-    @property
-    def is_passwordless_capable(self,) -> Optional[bool]:
-        """
-        Gets the isPasswordlessCapable property value. Whether the user has registered a passwordless strong authentication method (including FIDO2, Windows Hello for Business, and Microsoft Authenticator (Passwordless)) that is allowed by the authentication methods policy. Supports $filter (eq).
-        Returns: Optional[bool]
-        """
-        return self._is_passwordless_capable
-    
-    @is_passwordless_capable.setter
-    def is_passwordless_capable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isPasswordlessCapable property value. Whether the user has registered a passwordless strong authentication method (including FIDO2, Windows Hello for Business, and Microsoft Authenticator (Passwordless)) that is allowed by the authentication methods policy. Supports $filter (eq).
-        Args:
-            value: Value to set for the is_passwordless_capable property.
-        """
-        self._is_passwordless_capable = value
-    
-    @property
-    def is_sspr_capable(self,) -> Optional[bool]:
-        """
-        Gets the isSsprCapable property value. Whether the user has registered the required number of authentication methods for self-service password reset and the user is allowed to perform self-service password reset by policy. Supports $filter (eq).
-        Returns: Optional[bool]
-        """
-        return self._is_sspr_capable
-    
-    @is_sspr_capable.setter
-    def is_sspr_capable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isSsprCapable property value. Whether the user has registered the required number of authentication methods for self-service password reset and the user is allowed to perform self-service password reset by policy. Supports $filter (eq).
-        Args:
-            value: Value to set for the is_sspr_capable property.
-        """
-        self._is_sspr_capable = value
-    
-    @property
-    def is_sspr_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isSsprEnabled property value. Whether the user is allowed to perform self-service password reset by policy. The user may not necessarily have registered the required number of authentication methods for self-service password reset. Supports $filter (eq).
-        Returns: Optional[bool]
-        """
-        return self._is_sspr_enabled
-    
-    @is_sspr_enabled.setter
-    def is_sspr_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isSsprEnabled property value. Whether the user is allowed to perform self-service password reset by policy. The user may not necessarily have registered the required number of authentication methods for self-service password reset. Supports $filter (eq).
-        Args:
-            value: Value to set for the is_sspr_enabled property.
-        """
-        self._is_sspr_enabled = value
-    
-    @property
-    def is_sspr_registered(self,) -> Optional[bool]:
-        """
-        Gets the isSsprRegistered property value. Whether the user has registered the required number of authentication methods for self-service password reset. The user may not necessarily be allowed to perform self-service password reset by policy. Supports $filter (eq).
-        Returns: Optional[bool]
-        """
-        return self._is_sspr_registered
-    
-    @is_sspr_registered.setter
-    def is_sspr_registered(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isSsprRegistered property value. Whether the user has registered the required number of authentication methods for self-service password reset. The user may not necessarily be allowed to perform self-service password reset by policy. Supports $filter (eq).
-        Args:
-            value: Value to set for the is_sspr_registered property.
-        """
-        self._is_sspr_registered = value
-    
-    @property
-    def last_updated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastUpdatedDateTime property value. The lastUpdatedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_updated_date_time
-    
-    @last_updated_date_time.setter
-    def last_updated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastUpdatedDateTime property value. The lastUpdatedDateTime property
-        Args:
-            value: Value to set for the last_updated_date_time property.
-        """
-        self._last_updated_date_time = value
-    
-    @property
-    def methods_registered(self,) -> Optional[List[str]]:
-        """
-        Gets the methodsRegistered property value. Collection of authentication methods registered, such as mobilePhone, email, fido2. Supports $filter (any with eq).
-        Returns: Optional[List[str]]
-        """
-        return self._methods_registered
-    
-    @methods_registered.setter
-    def methods_registered(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the methodsRegistered property value. Collection of authentication methods registered, such as mobilePhone, email, fido2. Supports $filter (any with eq).
-        Args:
-            value: Value to set for the methods_registered property.
-        """
-        self._methods_registered = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -257,8 +104,8 @@ class UserRegistrationDetails(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("defaultMfaMethod", self.default_mfa_method)
         writer.write_bool_value("isAdmin", self.is_admin)
@@ -268,61 +115,13 @@ class UserRegistrationDetails(entity.Entity):
         writer.write_bool_value("isSsprCapable", self.is_sspr_capable)
         writer.write_bool_value("isSsprEnabled", self.is_sspr_enabled)
         writer.write_bool_value("isSsprRegistered", self.is_sspr_registered)
+        writer.write_bool_value("isSystemPreferredAuthenticationMethodEnabled", self.is_system_preferred_authentication_method_enabled)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_collection_of_primitive_values("methodsRegistered", self.methods_registered)
+        writer.write_collection_of_primitive_values("systemPreferredAuthenticationMethods", self.system_preferred_authentication_methods)
         writer.write_str_value("userDisplayName", self.user_display_name)
+        writer.write_enum_value("userPreferredMethodForSecondaryAuthentication", self.user_preferred_method_for_secondary_authentication)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
         writer.write_enum_value("userType", self.user_type)
-    
-    @property
-    def user_display_name(self,) -> Optional[str]:
-        """
-        Gets the userDisplayName property value. The user display name, such as Adele Vance. Supports $filter (eq, startsWith) and $orderBy.
-        Returns: Optional[str]
-        """
-        return self._user_display_name
-    
-    @user_display_name.setter
-    def user_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userDisplayName property value. The user display name, such as Adele Vance. Supports $filter (eq, startsWith) and $orderBy.
-        Args:
-            value: Value to set for the user_display_name property.
-        """
-        self._user_display_name = value
-    
-    @property
-    def user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the userPrincipalName property value. The user principal name, such as AdeleV@contoso.com. Supports $filter (eq, startsWith) and $orderBy.
-        Returns: Optional[str]
-        """
-        return self._user_principal_name
-    
-    @user_principal_name.setter
-    def user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userPrincipalName property value. The user principal name, such as AdeleV@contoso.com. Supports $filter (eq, startsWith) and $orderBy.
-        Args:
-            value: Value to set for the user_principal_name property.
-        """
-        self._user_principal_name = value
-    
-    @property
-    def user_type(self,) -> Optional[sign_in_user_type.SignInUserType]:
-        """
-        Gets the userType property value. Identifies whether the user is a member or guest in the tenant. The possible values are: member, guest, unknownFutureValue.
-        Returns: Optional[sign_in_user_type.SignInUserType]
-        """
-        return self._user_type
-    
-    @user_type.setter
-    def user_type(self,value: Optional[sign_in_user_type.SignInUserType] = None) -> None:
-        """
-        Sets the userType property value. Identifies whether the user is a member or guest in the tenant. The possible values are: member, guest, unknownFutureValue.
-        Args:
-            value: Value to set for the user_type property.
-        """
-        self._user_type = value
     
 

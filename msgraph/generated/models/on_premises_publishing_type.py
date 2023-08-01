@@ -1,6 +1,6 @@
 from enum import Enum
 
-class OnPremisesPublishingType(Enum):
+class OnPremisesPublishingType(str, Enum):
     ApplicationProxy = "applicationProxy",
     ExchangeOnline = "exchangeOnline",
     Authentication = "authentication",

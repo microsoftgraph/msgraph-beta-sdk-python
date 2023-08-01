@@ -1,61 +1,46 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, workbook_chart_font
+    from .entity import Entity
+    from .workbook_chart_font import WorkbookChartFont
 
-from . import entity
+from .entity import Entity
 
-class WorkbookChartAxisTitleFormat(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new workbookChartAxisTitleFormat and sets the default values.
-        """
-        super().__init__()
-        # Represents the font attributes, such as font name, font size, color, etc. of chart axis title object. Read-only.
-        self._font: Optional[workbook_chart_font.WorkbookChartFont] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+@dataclass
+class WorkbookChartAxisTitleFormat(Entity):
+    # Represents the font attributes, such as font name, font size, color, etc. of chart axis title object. Read-only.
+    font: Optional[WorkbookChartFont] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkbookChartAxisTitleFormat:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WorkbookChartAxisTitleFormat
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WorkbookChartAxisTitleFormat()
-    
-    @property
-    def font(self,) -> Optional[workbook_chart_font.WorkbookChartFont]:
-        """
-        Gets the font property value. Represents the font attributes, such as font name, font size, color, etc. of chart axis title object. Read-only.
-        Returns: Optional[workbook_chart_font.WorkbookChartFont]
-        """
-        return self._font
-    
-    @font.setter
-    def font(self,value: Optional[workbook_chart_font.WorkbookChartFont] = None) -> None:
-        """
-        Sets the font property value. Represents the font attributes, such as font name, font size, color, etc. of chart axis title object. Read-only.
-        Args:
-            value: Value to set for the font property.
-        """
-        self._font = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, workbook_chart_font
+        from .entity import Entity
+        from .workbook_chart_font import WorkbookChartFont
+
+        from .entity import Entity
+        from .workbook_chart_font import WorkbookChartFont
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "font": lambda n : setattr(self, 'font', n.get_object_value(workbook_chart_font.WorkbookChartFont)),
+            "font": lambda n : setattr(self, 'font', n.get_object_value(WorkbookChartFont)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -67,8 +52,8 @@ class WorkbookChartAxisTitleFormat(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("font", self.font)
     

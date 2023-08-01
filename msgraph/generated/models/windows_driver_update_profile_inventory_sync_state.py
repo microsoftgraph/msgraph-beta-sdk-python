@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsDriverUpdateProfileInventorySyncState(Enum):
+class WindowsDriverUpdateProfileInventorySyncState(str, Enum):
     # Pending sync.
     Pending = "pending",
     # Successful sync.

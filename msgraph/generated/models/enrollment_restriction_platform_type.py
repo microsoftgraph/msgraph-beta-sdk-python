@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EnrollmentRestrictionPlatformType(Enum):
+class EnrollmentRestrictionPlatformType(str, Enum):
     # Indicates that the enrollment configuration applies to all platforms
     AllPlatforms = "allPlatforms",
     # Indicates that the enrollment configuration applies only to iOS/iPadOS devices

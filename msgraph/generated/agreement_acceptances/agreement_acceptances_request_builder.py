@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,11 +11,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import agreement_acceptance, agreement_acceptance_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .item import agreement_acceptance_item_request_builder
+    from ..models.agreement_acceptance import AgreementAcceptance
+    from ..models.agreement_acceptance_collection_response import AgreementAcceptanceCollectionResponse
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .item.agreement_acceptance_item_request_builder import AgreementAcceptanceItemRequestBuilder
 
-class AgreementAcceptancesRequestBuilder():
+class AgreementAcceptancesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of agreementAcceptance entities.
     """
@@ -22,87 +24,78 @@ class AgreementAcceptancesRequestBuilder():
         """
         Instantiates a new AgreementAcceptancesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/agreementAcceptances{?%24search,%24select}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/agreementAcceptances{?%24search,%24select}", path_parameters)
     
-    def by_agreement_acceptance_id(self,agreement_acceptance_id: str) -> agreement_acceptance_item_request_builder.AgreementAcceptanceItemRequestBuilder:
+    def by_agreement_acceptance_id(self,agreement_acceptance_id: str) -> AgreementAcceptanceItemRequestBuilder:
         """
         Provides operations to manage the collection of agreementAcceptance entities.
         Args:
             agreement_acceptance_id: Unique identifier of the item
-        Returns: agreement_acceptance_item_request_builder.AgreementAcceptanceItemRequestBuilder
+        Returns: AgreementAcceptanceItemRequestBuilder
         """
-        if agreement_acceptance_id is None:
-            raise Exception("agreement_acceptance_id cannot be undefined")
-        from .item import agreement_acceptance_item_request_builder
+        if not agreement_acceptance_id:
+            raise TypeError("agreement_acceptance_id cannot be null.")
+        from .item.agreement_acceptance_item_request_builder import AgreementAcceptanceItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["agreementAcceptance%2Did"] = agreement_acceptance_id
-        return agreement_acceptance_item_request_builder.AgreementAcceptanceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AgreementAcceptanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AgreementAcceptancesRequestBuilderGetRequestConfiguration] = None) -> Optional[agreement_acceptance_collection_response.AgreementAcceptanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[AgreementAcceptancesRequestBuilderGetRequestConfiguration] = None) -> Optional[AgreementAcceptanceCollectionResponse]:
         """
         Get entities from agreementAcceptances
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[agreement_acceptance_collection_response.AgreementAcceptanceCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AgreementAcceptanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import agreement_acceptance_collection_response
+        from ..models.agreement_acceptance_collection_response import AgreementAcceptanceCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, agreement_acceptance_collection_response.AgreementAcceptanceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AgreementAcceptanceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[agreement_acceptance.AgreementAcceptance] = None, request_configuration: Optional[AgreementAcceptancesRequestBuilderPostRequestConfiguration] = None) -> Optional[agreement_acceptance.AgreementAcceptance]:
+    async def post(self,body: Optional[AgreementAcceptance] = None, request_configuration: Optional[AgreementAcceptancesRequestBuilderPostRequestConfiguration] = None) -> Optional[AgreementAcceptance]:
         """
         Add new entity to agreementAcceptances
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[agreement_acceptance.AgreementAcceptance]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AgreementAcceptance]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import agreement_acceptance
+        from ..models.agreement_acceptance import AgreementAcceptance
 
-        return await self.request_adapter.send_async(request_info, agreement_acceptance.AgreementAcceptance, error_mapping)
+        return await self.request_adapter.send_async(request_info, AgreementAcceptance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AgreementAcceptancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get entities from agreementAcceptances
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -116,16 +109,16 @@ class AgreementAcceptancesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[agreement_acceptance.AgreementAcceptance] = None, request_configuration: Optional[AgreementAcceptancesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AgreementAcceptance] = None, request_configuration: Optional[AgreementAcceptancesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Add new entity to agreementAcceptances
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -146,11 +139,11 @@ class AgreementAcceptancesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "search":
                 return "%24search"
             if original_name == "select":
@@ -164,31 +157,27 @@ class AgreementAcceptancesRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AgreementAcceptancesRequestBuilderGetRequestConfiguration():
+    class AgreementAcceptancesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AgreementAcceptancesRequestBuilder.AgreementAcceptancesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AgreementAcceptancesRequestBuilderPostRequestConfiguration():
+    class AgreementAcceptancesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

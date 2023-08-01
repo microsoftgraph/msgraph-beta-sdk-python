@@ -1,6 +1,6 @@
 from enum import Enum
 
-class HostReputationRuleSeverity(Enum):
+class HostReputationRuleSeverity(str, Enum):
     Unknown = "unknown",
     Low = "low",
     Medium = "medium",

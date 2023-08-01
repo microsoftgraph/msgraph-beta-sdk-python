@@ -1,80 +1,48 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, profile_card_annotation
+    from .entity import Entity
+    from .profile_card_annotation import ProfileCardAnnotation
 
-from . import entity
+from .entity import Entity
 
-class ProfileCardProperty(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new profileCardProperty and sets the default values.
-        """
-        super().__init__()
-        # Allows an administrator to set a custom display label for the directory property and localize it for the users in their tenant.
-        self._annotations: Optional[List[profile_card_annotation.ProfileCardAnnotation]] = None
-        # Identifies a profileCardProperty resource in Get, Update, or Delete operations. Allows an administrator to surface hidden Azure Active Directory (Azure AD) properties on the Microsoft 365 profile card within their tenant. When present, the Azure AD field referenced in this field will be visible to all users in your tenant on the contact pane of the profile card. Allowed values for this field are: UserPrincipalName, Fax, StreetAddress, PostalCode, StateOrProvince, Alias, CustomAttribute1,  CustomAttribute2, CustomAttribute3, CustomAttribute4, CustomAttribute5, CustomAttribute6, CustomAttribute7, CustomAttribute8, CustomAttribute9, CustomAttribute10, CustomAttribute11, CustomAttribute12, CustomAttribute13, CustomAttribute14, CustomAttribute15.
-        self._directory_property_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def annotations(self,) -> Optional[List[profile_card_annotation.ProfileCardAnnotation]]:
-        """
-        Gets the annotations property value. Allows an administrator to set a custom display label for the directory property and localize it for the users in their tenant.
-        Returns: Optional[List[profile_card_annotation.ProfileCardAnnotation]]
-        """
-        return self._annotations
-    
-    @annotations.setter
-    def annotations(self,value: Optional[List[profile_card_annotation.ProfileCardAnnotation]] = None) -> None:
-        """
-        Sets the annotations property value. Allows an administrator to set a custom display label for the directory property and localize it for the users in their tenant.
-        Args:
-            value: Value to set for the annotations property.
-        """
-        self._annotations = value
+@dataclass
+class ProfileCardProperty(Entity):
+    # Allows an administrator to set a custom display label for the directory property and localize it for the users in their tenant.
+    annotations: Optional[List[ProfileCardAnnotation]] = None
+    # Identifies a profileCardProperty resource in Get, Update, or Delete operations. Allows an administrator to surface hidden Azure Active Directory (Azure AD) properties on the Microsoft 365 profile card within their tenant. When present, the Azure AD field referenced in this field will be visible to all users in your tenant on the contact pane of the profile card. Allowed values for this field are: UserPrincipalName, Fax, StreetAddress, PostalCode, StateOrProvince, Alias, CustomAttribute1,  CustomAttribute2, CustomAttribute3, CustomAttribute4, CustomAttribute5, CustomAttribute6, CustomAttribute7, CustomAttribute8, CustomAttribute9, CustomAttribute10, CustomAttribute11, CustomAttribute12, CustomAttribute13, CustomAttribute14, CustomAttribute15.
+    directory_property_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProfileCardProperty:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ProfileCardProperty
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ProfileCardProperty()
-    
-    @property
-    def directory_property_name(self,) -> Optional[str]:
-        """
-        Gets the directoryPropertyName property value. Identifies a profileCardProperty resource in Get, Update, or Delete operations. Allows an administrator to surface hidden Azure Active Directory (Azure AD) properties on the Microsoft 365 profile card within their tenant. When present, the Azure AD field referenced in this field will be visible to all users in your tenant on the contact pane of the profile card. Allowed values for this field are: UserPrincipalName, Fax, StreetAddress, PostalCode, StateOrProvince, Alias, CustomAttribute1,  CustomAttribute2, CustomAttribute3, CustomAttribute4, CustomAttribute5, CustomAttribute6, CustomAttribute7, CustomAttribute8, CustomAttribute9, CustomAttribute10, CustomAttribute11, CustomAttribute12, CustomAttribute13, CustomAttribute14, CustomAttribute15.
-        Returns: Optional[str]
-        """
-        return self._directory_property_name
-    
-    @directory_property_name.setter
-    def directory_property_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the directoryPropertyName property value. Identifies a profileCardProperty resource in Get, Update, or Delete operations. Allows an administrator to surface hidden Azure Active Directory (Azure AD) properties on the Microsoft 365 profile card within their tenant. When present, the Azure AD field referenced in this field will be visible to all users in your tenant on the contact pane of the profile card. Allowed values for this field are: UserPrincipalName, Fax, StreetAddress, PostalCode, StateOrProvince, Alias, CustomAttribute1,  CustomAttribute2, CustomAttribute3, CustomAttribute4, CustomAttribute5, CustomAttribute6, CustomAttribute7, CustomAttribute8, CustomAttribute9, CustomAttribute10, CustomAttribute11, CustomAttribute12, CustomAttribute13, CustomAttribute14, CustomAttribute15.
-        Args:
-            value: Value to set for the directory_property_name property.
-        """
-        self._directory_property_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, profile_card_annotation
+        from .entity import Entity
+        from .profile_card_annotation import ProfileCardAnnotation
+
+        from .entity import Entity
+        from .profile_card_annotation import ProfileCardAnnotation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "annotations": lambda n : setattr(self, 'annotations', n.get_collection_of_object_values(profile_card_annotation.ProfileCardAnnotation)),
+            "annotations": lambda n : setattr(self, 'annotations', n.get_collection_of_object_values(ProfileCardAnnotation)),
             "directoryPropertyName": lambda n : setattr(self, 'directory_property_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -87,8 +55,8 @@ class ProfileCardProperty(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("annotations", self.annotations)
         writer.write_str_value("directoryPropertyName", self.directory_property_name)

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementComparisonResult(Enum):
+class DeviceManagementComparisonResult(str, Enum):
     # Unknown setting comparison
     Unknown = "unknown",
     # The setting values are equal

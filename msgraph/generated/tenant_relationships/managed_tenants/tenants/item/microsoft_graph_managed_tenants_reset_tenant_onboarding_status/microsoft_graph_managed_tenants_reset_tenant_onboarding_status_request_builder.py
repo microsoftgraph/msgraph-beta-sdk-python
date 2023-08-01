@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,10 +11,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.managed_tenants import tenant
-    from ......models.o_data_errors import o_data_error
+    from ......models.managed_tenants.tenant import Tenant
+    from ......models.o_data_errors.o_data_error import ODataError
 
-class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder():
+class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the resetTenantOnboardingStatus method.
     """
@@ -21,47 +22,38 @@ class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder():
         """
         Instantiates a new MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/tenants/{tenant%2Did}/microsoft.graph.managedTenants.resetTenantOnboardingStatus"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/tenants/{tenant%2Did}/microsoft.graph.managedTenants.resetTenantOnboardingStatus", path_parameters)
     
-    async def post(self,request_configuration: Optional[MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant.Tenant]:
+    async def post(self,request_configuration: Optional[MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[Tenant]:
         """
         Carries out the appropriate procedures to reset the onboarding status for the managed tenant that was removed from the multi-tenant management platform using the offboardTenant action. By invoking this action the platform will attempt to onboard the managed tenant for management.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[tenant.Tenant]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Tenant]
         """
         request_info = self.to_post_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.managed_tenants import tenant
+        from ......models.managed_tenants.tenant import Tenant
 
-        return await self.request_adapter.send_async(request_info, tenant.Tenant, error_mapping)
+        return await self.request_adapter.send_async(request_info, Tenant, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Carries out the appropriate procedures to reset the onboarding status for the managed tenant that was removed from the multi-tenant management platform using the offboardTenant action. By invoking this action the platform will attempt to onboard the managed tenant for management.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -74,16 +66,14 @@ class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration():
+    class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

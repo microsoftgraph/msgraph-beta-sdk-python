@@ -1,60 +1,45 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import external_domain_name, saml_or_ws_fed_provider
+    from .external_domain_name import ExternalDomainName
+    from .saml_or_ws_fed_provider import SamlOrWsFedProvider
 
-from . import saml_or_ws_fed_provider
+from .saml_or_ws_fed_provider import SamlOrWsFedProvider
 
-class SamlOrWsFedExternalDomainFederation(saml_or_ws_fed_provider.SamlOrWsFedProvider):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SamlOrWsFedExternalDomainFederation and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.samlOrWsFedExternalDomainFederation"
-        # Collection of domain names of the external organizations that the tenant is federating with. Supports $filter (eq).
-        self._domains: Optional[List[external_domain_name.ExternalDomainName]] = None
+@dataclass
+class SamlOrWsFedExternalDomainFederation(SamlOrWsFedProvider):
+    odata_type = "#microsoft.graph.samlOrWsFedExternalDomainFederation"
+    # Collection of domain names of the external organizations that the tenant is federating with. Supports $filter (eq).
+    domains: Optional[List[ExternalDomainName]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SamlOrWsFedExternalDomainFederation:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: SamlOrWsFedExternalDomainFederation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return SamlOrWsFedExternalDomainFederation()
-    
-    @property
-    def domains(self,) -> Optional[List[external_domain_name.ExternalDomainName]]:
-        """
-        Gets the domains property value. Collection of domain names of the external organizations that the tenant is federating with. Supports $filter (eq).
-        Returns: Optional[List[external_domain_name.ExternalDomainName]]
-        """
-        return self._domains
-    
-    @domains.setter
-    def domains(self,value: Optional[List[external_domain_name.ExternalDomainName]] = None) -> None:
-        """
-        Sets the domains property value. Collection of domain names of the external organizations that the tenant is federating with. Supports $filter (eq).
-        Args:
-            value: Value to set for the domains property.
-        """
-        self._domains = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import external_domain_name, saml_or_ws_fed_provider
+        from .external_domain_name import ExternalDomainName
+        from .saml_or_ws_fed_provider import SamlOrWsFedProvider
+
+        from .external_domain_name import ExternalDomainName
+        from .saml_or_ws_fed_provider import SamlOrWsFedProvider
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "domains": lambda n : setattr(self, 'domains', n.get_collection_of_object_values(external_domain_name.ExternalDomainName)),
+            "domains": lambda n : setattr(self, 'domains', n.get_collection_of_object_values(ExternalDomainName)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,8 +51,8 @@ class SamlOrWsFedExternalDomainFederation(saml_or_ws_fed_provider.SamlOrWsFedPro
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("domains", self.domains)
     

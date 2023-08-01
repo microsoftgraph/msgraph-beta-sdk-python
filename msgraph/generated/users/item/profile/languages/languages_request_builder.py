@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,12 +11,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import language_proficiency, language_proficiency_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import language_proficiency_item_request_builder
+    from .....models.language_proficiency import LanguageProficiency
+    from .....models.language_proficiency_collection_response import LanguageProficiencyCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.language_proficiency_item_request_builder import LanguageProficiencyItemRequestBuilder
 
-class LanguagesRequestBuilder():
+class LanguagesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the languages property of the microsoft.graph.profile entity.
     """
@@ -23,87 +25,78 @@ class LanguagesRequestBuilder():
         """
         Instantiates a new LanguagesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/profile/languages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/profile/languages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_language_proficiency_id(self,language_proficiency_id: str) -> language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder:
+    def by_language_proficiency_id(self,language_proficiency_id: str) -> LanguageProficiencyItemRequestBuilder:
         """
         Provides operations to manage the languages property of the microsoft.graph.profile entity.
         Args:
             language_proficiency_id: Unique identifier of the item
-        Returns: language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder
+        Returns: LanguageProficiencyItemRequestBuilder
         """
-        if language_proficiency_id is None:
-            raise Exception("language_proficiency_id cannot be undefined")
-        from .item import language_proficiency_item_request_builder
+        if not language_proficiency_id:
+            raise TypeError("language_proficiency_id cannot be null.")
+        from .item.language_proficiency_item_request_builder import LanguageProficiencyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["languageProficiency%2Did"] = language_proficiency_id
-        return language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return LanguageProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> Optional[language_proficiency_collection_response.LanguageProficiencyCollectionResponse]:
+    async def get(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> Optional[LanguageProficiencyCollectionResponse]:
         """
         Retrieve a list of languageProficiency objects from a user's profile.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[language_proficiency_collection_response.LanguageProficiencyCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[LanguageProficiencyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import language_proficiency_collection_response
+        from .....models.language_proficiency_collection_response import LanguageProficiencyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, language_proficiency_collection_response.LanguageProficiencyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, LanguageProficiencyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[language_proficiency.LanguageProficiency] = None, request_configuration: Optional[LanguagesRequestBuilderPostRequestConfiguration] = None) -> Optional[language_proficiency.LanguageProficiency]:
+    async def post(self,body: Optional[LanguageProficiency] = None, request_configuration: Optional[LanguagesRequestBuilderPostRequestConfiguration] = None) -> Optional[LanguageProficiency]:
         """
         Use this API to create a new languageProficiency object in a user's profile.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[language_proficiency.LanguageProficiency]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[LanguageProficiency]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import language_proficiency
+        from .....models.language_proficiency import LanguageProficiency
 
-        return await self.request_adapter.send_async(request_info, language_proficiency.LanguageProficiency, error_mapping)
+        return await self.request_adapter.send_async(request_info, LanguageProficiency, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of languageProficiency objects from a user's profile.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +110,16 @@ class LanguagesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[language_proficiency.LanguageProficiency] = None, request_configuration: Optional[LanguagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[LanguageProficiency] = None, request_configuration: Optional[LanguagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Use this API to create a new languageProficiency object in a user's profile.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +132,13 @@ class LanguagesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class LanguagesRequestBuilderGetQueryParameters():
@@ -156,11 +149,11 @@ class LanguagesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +197,27 @@ class LanguagesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LanguagesRequestBuilderGetRequestConfiguration():
+    class LanguagesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[LanguagesRequestBuilder.LanguagesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LanguagesRequestBuilderPostRequestConfiguration():
+    class LanguagesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

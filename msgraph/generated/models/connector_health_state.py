@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConnectorHealthState(Enum):
+class ConnectorHealthState(str, Enum):
     # Indicates a healthy connector status and no action required.
     Healthy = "healthy",
     # Indicates that a connector needs attention.

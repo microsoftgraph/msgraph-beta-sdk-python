@@ -1,77 +1,59 @@
 from __future__ import annotations
-from datetime import date
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class Office365ActiveUserCounts(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Office365ActiveUserCounts and sets the default values.
-        """
-        super().__init__()
-        # The number of active users in Exchange. Any user who can read and send email is considered an active user.
-        self._exchange: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The number of active users in Microsoft 365. This number includes all the active users in Exchange, OneDrive, SharePoint, Skype For Business, Yammer, and Microsoft Teams. You can find the definition of active user for each product in the respective property description.
-        self._office365: Optional[int] = None
-        # The number of active users in OneDrive. Any user who viewed or edited files, shared files internally or externally, or synced files is considered an active user.
-        self._one_drive: Optional[int] = None
-        # The date on which a number of users were active.
-        self._report_date: Optional[date] = None
-        # The number of days the report covers.
-        self._report_period: Optional[str] = None
-        # The latest date of the content.
-        self._report_refresh_date: Optional[date] = None
-        # The number of active users in SharePoint. Any user who viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages is considered an active user.
-        self._share_point: Optional[int] = None
-        # The number of active users in Skype For Business. Any user who organized or participated in conferences, or joined peer-to-peer sessions is considered an active user.
-        self._skype_for_business: Optional[int] = None
-        # The number of active users in Microsoft Teams. Any user who posted messages in team channels, sent messages in private chat sessions, or participated in meetings or calls is considered an active user.
-        self._teams: Optional[int] = None
-        # The number of active users in Yammer. Any user who can post, read, or like messages is considered an active user.
-        self._yammer: Optional[int] = None
+@dataclass
+class Office365ActiveUserCounts(Entity):
+    # The number of active users in Exchange. Any user who can read and send email is considered an active user.
+    exchange: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The number of active users in Microsoft 365. This number includes all the active users in Exchange, OneDrive, SharePoint, Skype For Business, Yammer, and Microsoft Teams. You can find the definition of active user for each product in the respective property description.
+    office365: Optional[int] = None
+    # The number of active users in OneDrive. Any user who viewed or edited files, shared files internally or externally, or synced files is considered an active user.
+    one_drive: Optional[int] = None
+    # The date on which a number of users were active.
+    report_date: Optional[datetime.date] = None
+    # The number of days the report covers.
+    report_period: Optional[str] = None
+    # The latest date of the content.
+    report_refresh_date: Optional[datetime.date] = None
+    # The number of active users in SharePoint. Any user who viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages is considered an active user.
+    share_point: Optional[int] = None
+    # The number of active users in Skype For Business. Any user who organized or participated in conferences, or joined peer-to-peer sessions is considered an active user.
+    skype_for_business: Optional[int] = None
+    # The number of active users in Microsoft Teams. Any user who posted messages in team channels, sent messages in private chat sessions, or participated in meetings or calls is considered an active user.
+    teams: Optional[int] = None
+    # The number of active users in Yammer. Any user who can post, read, or like messages is considered an active user.
+    yammer: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Office365ActiveUserCounts:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Office365ActiveUserCounts
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Office365ActiveUserCounts()
-    
-    @property
-    def exchange(self,) -> Optional[int]:
-        """
-        Gets the exchange property value. The number of active users in Exchange. Any user who can read and send email is considered an active user.
-        Returns: Optional[int]
-        """
-        return self._exchange
-    
-    @exchange.setter
-    def exchange(self,value: Optional[int] = None) -> None:
-        """
-        Sets the exchange property value. The number of active users in Exchange. Any user who can read and send email is considered an active user.
-        Args:
-            value: Value to set for the exchange property.
-        """
-        self._exchange = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity
+        from .entity import Entity
+
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "exchange": lambda n : setattr(self, 'exchange', n.get_int_value()),
@@ -89,99 +71,14 @@ class Office365ActiveUserCounts(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def office365(self,) -> Optional[int]:
-        """
-        Gets the office365 property value. The number of active users in Microsoft 365. This number includes all the active users in Exchange, OneDrive, SharePoint, Skype For Business, Yammer, and Microsoft Teams. You can find the definition of active user for each product in the respective property description.
-        Returns: Optional[int]
-        """
-        return self._office365
-    
-    @office365.setter
-    def office365(self,value: Optional[int] = None) -> None:
-        """
-        Sets the office365 property value. The number of active users in Microsoft 365. This number includes all the active users in Exchange, OneDrive, SharePoint, Skype For Business, Yammer, and Microsoft Teams. You can find the definition of active user for each product in the respective property description.
-        Args:
-            value: Value to set for the office365 property.
-        """
-        self._office365 = value
-    
-    @property
-    def one_drive(self,) -> Optional[int]:
-        """
-        Gets the oneDrive property value. The number of active users in OneDrive. Any user who viewed or edited files, shared files internally or externally, or synced files is considered an active user.
-        Returns: Optional[int]
-        """
-        return self._one_drive
-    
-    @one_drive.setter
-    def one_drive(self,value: Optional[int] = None) -> None:
-        """
-        Sets the oneDrive property value. The number of active users in OneDrive. Any user who viewed or edited files, shared files internally or externally, or synced files is considered an active user.
-        Args:
-            value: Value to set for the one_drive property.
-        """
-        self._one_drive = value
-    
-    @property
-    def report_date(self,) -> Optional[date]:
-        """
-        Gets the reportDate property value. The date on which a number of users were active.
-        Returns: Optional[date]
-        """
-        return self._report_date
-    
-    @report_date.setter
-    def report_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the reportDate property value. The date on which a number of users were active.
-        Args:
-            value: Value to set for the report_date property.
-        """
-        self._report_date = value
-    
-    @property
-    def report_period(self,) -> Optional[str]:
-        """
-        Gets the reportPeriod property value. The number of days the report covers.
-        Returns: Optional[str]
-        """
-        return self._report_period
-    
-    @report_period.setter
-    def report_period(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reportPeriod property value. The number of days the report covers.
-        Args:
-            value: Value to set for the report_period property.
-        """
-        self._report_period = value
-    
-    @property
-    def report_refresh_date(self,) -> Optional[date]:
-        """
-        Gets the reportRefreshDate property value. The latest date of the content.
-        Returns: Optional[date]
-        """
-        return self._report_refresh_date
-    
-    @report_refresh_date.setter
-    def report_refresh_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the reportRefreshDate property value. The latest date of the content.
-        Args:
-            value: Value to set for the report_refresh_date property.
-        """
-        self._report_refresh_date = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("exchange", self.exchange)
         writer.write_int_value("office365", self.office365)
@@ -193,73 +90,5 @@ class Office365ActiveUserCounts(entity.Entity):
         writer.write_int_value("skypeForBusiness", self.skype_for_business)
         writer.write_int_value("teams", self.teams)
         writer.write_int_value("yammer", self.yammer)
-    
-    @property
-    def share_point(self,) -> Optional[int]:
-        """
-        Gets the sharePoint property value. The number of active users in SharePoint. Any user who viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages is considered an active user.
-        Returns: Optional[int]
-        """
-        return self._share_point
-    
-    @share_point.setter
-    def share_point(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sharePoint property value. The number of active users in SharePoint. Any user who viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages is considered an active user.
-        Args:
-            value: Value to set for the share_point property.
-        """
-        self._share_point = value
-    
-    @property
-    def skype_for_business(self,) -> Optional[int]:
-        """
-        Gets the skypeForBusiness property value. The number of active users in Skype For Business. Any user who organized or participated in conferences, or joined peer-to-peer sessions is considered an active user.
-        Returns: Optional[int]
-        """
-        return self._skype_for_business
-    
-    @skype_for_business.setter
-    def skype_for_business(self,value: Optional[int] = None) -> None:
-        """
-        Sets the skypeForBusiness property value. The number of active users in Skype For Business. Any user who organized or participated in conferences, or joined peer-to-peer sessions is considered an active user.
-        Args:
-            value: Value to set for the skype_for_business property.
-        """
-        self._skype_for_business = value
-    
-    @property
-    def teams(self,) -> Optional[int]:
-        """
-        Gets the teams property value. The number of active users in Microsoft Teams. Any user who posted messages in team channels, sent messages in private chat sessions, or participated in meetings or calls is considered an active user.
-        Returns: Optional[int]
-        """
-        return self._teams
-    
-    @teams.setter
-    def teams(self,value: Optional[int] = None) -> None:
-        """
-        Sets the teams property value. The number of active users in Microsoft Teams. Any user who posted messages in team channels, sent messages in private chat sessions, or participated in meetings or calls is considered an active user.
-        Args:
-            value: Value to set for the teams property.
-        """
-        self._teams = value
-    
-    @property
-    def yammer(self,) -> Optional[int]:
-        """
-        Gets the yammer property value. The number of active users in Yammer. Any user who can post, read, or like messages is considered an active user.
-        Returns: Optional[int]
-        """
-        return self._yammer
-    
-    @yammer.setter
-    def yammer(self,value: Optional[int] = None) -> None:
-        """
-        Sets the yammer property value. The number of active users in Yammer. Any user who can post, read, or like messages is considered an active user.
-        Args:
-            value: Value to set for the yammer property.
-        """
-        self._yammer = value
     
 

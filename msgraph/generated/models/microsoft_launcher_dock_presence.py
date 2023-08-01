@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MicrosoftLauncherDockPresence(Enum):
+class MicrosoftLauncherDockPresence(str, Enum):
     # Not configured; this value is ignored.
     NotConfigured = "notConfigured",
     # Indicates the device's dock will be displayed on the device.

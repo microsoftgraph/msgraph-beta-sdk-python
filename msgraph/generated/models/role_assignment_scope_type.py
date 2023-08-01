@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RoleAssignmentScopeType(Enum):
+class RoleAssignmentScopeType(str, Enum):
     # Allow assignments to the specified ResourceScopes.
     ResourceScope = "resourceScope",
     # Allow assignments to all Intune devices.

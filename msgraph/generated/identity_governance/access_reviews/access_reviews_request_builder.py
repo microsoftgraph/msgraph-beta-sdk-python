@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,14 +11,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import access_review_set
-    from ...models.o_data_errors import o_data_error
-    from .decisions import decisions_request_builder
-    from .definitions import definitions_request_builder
-    from .history_definitions import history_definitions_request_builder
-    from .policy import policy_request_builder
+    from ...models.access_review_set import AccessReviewSet
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .decisions.decisions_request_builder import DecisionsRequestBuilder
+    from .definitions.definitions_request_builder import DefinitionsRequestBuilder
+    from .history_definitions.history_definitions_request_builder import HistoryDefinitionsRequestBuilder
+    from .policy.policy_request_builder import PolicyRequestBuilder
 
-class AccessReviewsRequestBuilder():
+class AccessReviewsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.
     """
@@ -25,91 +26,82 @@ class AccessReviewsRequestBuilder():
         """
         Instantiates a new AccessReviewsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identityGovernance/accessReviews{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/accessReviews{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[AccessReviewsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property accessReviews for identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_set.AccessReviewSet]:
+    async def get(self,request_configuration: Optional[AccessReviewsRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewSet]:
         """
         Get accessReviews from identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_review_set.AccessReviewSet]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AccessReviewSet]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import access_review_set
+        from ...models.access_review_set import AccessReviewSet
 
-        return await self.request_adapter.send_async(request_info, access_review_set.AccessReviewSet, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessReviewSet, error_mapping)
     
-    async def patch(self,body: Optional[access_review_set.AccessReviewSet] = None, request_configuration: Optional[AccessReviewsRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_set.AccessReviewSet]:
+    async def patch(self,body: Optional[AccessReviewSet] = None, request_configuration: Optional[AccessReviewsRequestBuilderPatchRequestConfiguration] = None) -> Optional[AccessReviewSet]:
         """
         Update the navigation property accessReviews in identityGovernance
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_review_set.AccessReviewSet]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AccessReviewSet]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import access_review_set
+        from ...models.access_review_set import AccessReviewSet
 
-        return await self.request_adapter.send_async(request_info, access_review_set.AccessReviewSet, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessReviewSet, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property accessReviews for identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -125,7 +117,7 @@ class AccessReviewsRequestBuilder():
         """
         Get accessReviews from identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -139,16 +131,16 @@ class AccessReviewsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[access_review_set.AccessReviewSet] = None, request_configuration: Optional[AccessReviewsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AccessReviewSet] = None, request_configuration: Optional[AccessReviewsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property accessReviews in identityGovernance
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -161,52 +153,50 @@ class AccessReviewsRequestBuilder():
         return request_info
     
     @property
-    def decisions(self) -> decisions_request_builder.DecisionsRequestBuilder:
+    def decisions(self) -> DecisionsRequestBuilder:
         """
         Provides operations to manage the decisions property of the microsoft.graph.accessReviewSet entity.
         """
-        from .decisions import decisions_request_builder
+        from .decisions.decisions_request_builder import DecisionsRequestBuilder
 
-        return decisions_request_builder.DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
+    def definitions(self) -> DefinitionsRequestBuilder:
         """
         Provides operations to manage the definitions property of the microsoft.graph.accessReviewSet entity.
         """
-        from .definitions import definitions_request_builder
+        from .definitions.definitions_request_builder import DefinitionsRequestBuilder
 
-        return definitions_request_builder.DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def history_definitions(self) -> history_definitions_request_builder.HistoryDefinitionsRequestBuilder:
+    def history_definitions(self) -> HistoryDefinitionsRequestBuilder:
         """
         Provides operations to manage the historyDefinitions property of the microsoft.graph.accessReviewSet entity.
         """
-        from .history_definitions import history_definitions_request_builder
+        from .history_definitions.history_definitions_request_builder import HistoryDefinitionsRequestBuilder
 
-        return history_definitions_request_builder.HistoryDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return HistoryDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def policy(self) -> policy_request_builder.PolicyRequestBuilder:
+    def policy(self) -> PolicyRequestBuilder:
         """
         Provides operations to manage the policy property of the microsoft.graph.accessReviewSet entity.
         """
-        from .policy import policy_request_builder
+        from .policy.policy_request_builder import PolicyRequestBuilder
 
-        return policy_request_builder.PolicyRequestBuilder(self.request_adapter, self.path_parameters)
+        return PolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AccessReviewsRequestBuilderDeleteRequestConfiguration():
+    class AccessReviewsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class AccessReviewsRequestBuilderGetQueryParameters():
@@ -217,11 +207,11 @@ class AccessReviewsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -235,31 +225,27 @@ class AccessReviewsRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AccessReviewsRequestBuilderGetRequestConfiguration():
+    class AccessReviewsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AccessReviewsRequestBuilder.AccessReviewsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AccessReviewsRequestBuilderPatchRequestConfiguration():
+    class AccessReviewsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ApprovalState(Enum):
+class ApprovalState(str, Enum):
     Pending = "pending",
     Approved = "approved",
     Denied = "denied",

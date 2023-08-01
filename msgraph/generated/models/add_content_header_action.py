@@ -1,123 +1,57 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import content_alignment, information_protection_action
+    from .content_alignment import ContentAlignment
+    from .information_protection_action import InformationProtectionAction
 
-from . import information_protection_action
+from .information_protection_action import InformationProtectionAction
 
-class AddContentHeaderAction(information_protection_action.InformationProtectionAction):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AddContentHeaderAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.addContentHeaderAction"
-        # The alignment property
-        self._alignment: Optional[content_alignment.ContentAlignment] = None
-        # Color of the font to use for the header.
-        self._font_color: Optional[str] = None
-        # Name of the font to use for the header.
-        self._font_name: Optional[str] = None
-        # Font size to use for the header.
-        self._font_size: Optional[int] = None
-        # The margin of the header from the top of the document.
-        self._margin: Optional[int] = None
-        # The contents of the header itself.
-        self._text: Optional[str] = None
-        # The name of the UI element where the header should be placed.
-        self._ui_element_name: Optional[str] = None
-    
-    @property
-    def alignment(self,) -> Optional[content_alignment.ContentAlignment]:
-        """
-        Gets the alignment property value. The alignment property
-        Returns: Optional[content_alignment.ContentAlignment]
-        """
-        return self._alignment
-    
-    @alignment.setter
-    def alignment(self,value: Optional[content_alignment.ContentAlignment] = None) -> None:
-        """
-        Sets the alignment property value. The alignment property
-        Args:
-            value: Value to set for the alignment property.
-        """
-        self._alignment = value
+@dataclass
+class AddContentHeaderAction(InformationProtectionAction):
+    odata_type = "#microsoft.graph.addContentHeaderAction"
+    # The alignment property
+    alignment: Optional[ContentAlignment] = None
+    # Color of the font to use for the header.
+    font_color: Optional[str] = None
+    # Name of the font to use for the header.
+    font_name: Optional[str] = None
+    # Font size to use for the header.
+    font_size: Optional[int] = None
+    # The margin of the header from the top of the document.
+    margin: Optional[int] = None
+    # The contents of the header itself.
+    text: Optional[str] = None
+    # The name of the UI element where the header should be placed.
+    ui_element_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddContentHeaderAction:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AddContentHeaderAction
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AddContentHeaderAction()
-    
-    @property
-    def font_color(self,) -> Optional[str]:
-        """
-        Gets the fontColor property value. Color of the font to use for the header.
-        Returns: Optional[str]
-        """
-        return self._font_color
-    
-    @font_color.setter
-    def font_color(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fontColor property value. Color of the font to use for the header.
-        Args:
-            value: Value to set for the font_color property.
-        """
-        self._font_color = value
-    
-    @property
-    def font_name(self,) -> Optional[str]:
-        """
-        Gets the fontName property value. Name of the font to use for the header.
-        Returns: Optional[str]
-        """
-        return self._font_name
-    
-    @font_name.setter
-    def font_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fontName property value. Name of the font to use for the header.
-        Args:
-            value: Value to set for the font_name property.
-        """
-        self._font_name = value
-    
-    @property
-    def font_size(self,) -> Optional[int]:
-        """
-        Gets the fontSize property value. Font size to use for the header.
-        Returns: Optional[int]
-        """
-        return self._font_size
-    
-    @font_size.setter
-    def font_size(self,value: Optional[int] = None) -> None:
-        """
-        Sets the fontSize property value. Font size to use for the header.
-        Args:
-            value: Value to set for the font_size property.
-        """
-        self._font_size = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import content_alignment, information_protection_action
+        from .content_alignment import ContentAlignment
+        from .information_protection_action import InformationProtectionAction
+
+        from .content_alignment import ContentAlignment
+        from .information_protection_action import InformationProtectionAction
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "alignment": lambda n : setattr(self, 'alignment', n.get_enum_value(content_alignment.ContentAlignment)),
+            "alignment": lambda n : setattr(self, 'alignment', n.get_enum_value(ContentAlignment)),
             "fontColor": lambda n : setattr(self, 'font_color', n.get_str_value()),
             "fontName": lambda n : setattr(self, 'font_name', n.get_str_value()),
             "fontSize": lambda n : setattr(self, 'font_size', n.get_int_value()),
@@ -129,31 +63,14 @@ class AddContentHeaderAction(information_protection_action.InformationProtection
         fields.update(super_fields)
         return fields
     
-    @property
-    def margin(self,) -> Optional[int]:
-        """
-        Gets the margin property value. The margin of the header from the top of the document.
-        Returns: Optional[int]
-        """
-        return self._margin
-    
-    @margin.setter
-    def margin(self,value: Optional[int] = None) -> None:
-        """
-        Sets the margin property value. The margin of the header from the top of the document.
-        Args:
-            value: Value to set for the margin property.
-        """
-        self._margin = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("alignment", self.alignment)
         writer.write_str_value("fontColor", self.font_color)
@@ -162,39 +79,5 @@ class AddContentHeaderAction(information_protection_action.InformationProtection
         writer.write_int_value("margin", self.margin)
         writer.write_str_value("text", self.text)
         writer.write_str_value("uiElementName", self.ui_element_name)
-    
-    @property
-    def text(self,) -> Optional[str]:
-        """
-        Gets the text property value. The contents of the header itself.
-        Returns: Optional[str]
-        """
-        return self._text
-    
-    @text.setter
-    def text(self,value: Optional[str] = None) -> None:
-        """
-        Sets the text property value. The contents of the header itself.
-        Args:
-            value: Value to set for the text property.
-        """
-        self._text = value
-    
-    @property
-    def ui_element_name(self,) -> Optional[str]:
-        """
-        Gets the uiElementName property value. The name of the UI element where the header should be placed.
-        Returns: Optional[str]
-        """
-        return self._ui_element_name
-    
-    @ui_element_name.setter
-    def ui_element_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the uiElementName property value. The name of the UI element where the header should be placed.
-        Args:
-            value: Value to set for the ui_element_name property.
-        """
-        self._ui_element_name = value
     
 

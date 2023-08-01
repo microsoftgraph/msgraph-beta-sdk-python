@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ShiftWorkCloudPcAccessState(Enum):
+class ShiftWorkCloudPcAccessState(str, Enum):
     Unassigned = "unassigned",
     NoLicensesAvailable = "noLicensesAvailable",
     ActivationFailed = "activationFailed",

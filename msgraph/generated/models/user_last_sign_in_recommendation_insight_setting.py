@@ -1,35 +1,33 @@
 from __future__ import annotations
-from datetime import timedelta
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import access_review_recommendation_insight_setting, user_sign_in_recommendation_scope
+    from .access_review_recommendation_insight_setting import AccessReviewRecommendationInsightSetting
+    from .user_sign_in_recommendation_scope import UserSignInRecommendationScope
 
-from . import access_review_recommendation_insight_setting
+from .access_review_recommendation_insight_setting import AccessReviewRecommendationInsightSetting
 
-class UserLastSignInRecommendationInsightSetting(access_review_recommendation_insight_setting.AccessReviewRecommendationInsightSetting):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new UserLastSignInRecommendationInsightSetting and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.userLastSignInRecommendationInsightSetting"
-        # Optional. Indicates the time period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look-back duration. For reviews of groups and Azure AD roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days.
-        self._recommendation_look_back_duration: Optional[timedelta] = None
-        # Indicates whether inactivity is calculated based on the user's inactivity in the tenant or in the application. The possible values are tenant, application, unknownFutureValue. application is only relevant when the access review is a review of an assignment to an application.
-        self._sign_in_scope: Optional[user_sign_in_recommendation_scope.UserSignInRecommendationScope] = None
+@dataclass
+class UserLastSignInRecommendationInsightSetting(AccessReviewRecommendationInsightSetting):
+    odata_type = "#microsoft.graph.userLastSignInRecommendationInsightSetting"
+    # Optional. Indicates the time period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look-back duration. For reviews of groups and Azure AD roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days.
+    recommendation_look_back_duration: Optional[datetime.timedelta] = None
+    # Indicates whether inactivity is calculated based on the user's inactivity in the tenant or in the application. The possible values are tenant, application, unknownFutureValue. application is only relevant when the access review is a review of an assignment to an application.
+    sign_in_scope: Optional[UserSignInRecommendationScope] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserLastSignInRecommendationInsightSetting:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UserLastSignInRecommendationInsightSetting
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UserLastSignInRecommendationInsightSetting()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,32 +35,19 @@ class UserLastSignInRecommendationInsightSetting(access_review_recommendation_in
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import access_review_recommendation_insight_setting, user_sign_in_recommendation_scope
+        from .access_review_recommendation_insight_setting import AccessReviewRecommendationInsightSetting
+        from .user_sign_in_recommendation_scope import UserSignInRecommendationScope
+
+        from .access_review_recommendation_insight_setting import AccessReviewRecommendationInsightSetting
+        from .user_sign_in_recommendation_scope import UserSignInRecommendationScope
 
         fields: Dict[str, Callable[[Any], None]] = {
             "recommendationLookBackDuration": lambda n : setattr(self, 'recommendation_look_back_duration', n.get_timedelta_value()),
-            "signInScope": lambda n : setattr(self, 'sign_in_scope', n.get_enum_value(user_sign_in_recommendation_scope.UserSignInRecommendationScope)),
+            "signInScope": lambda n : setattr(self, 'sign_in_scope', n.get_enum_value(UserSignInRecommendationScope)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def recommendation_look_back_duration(self,) -> Optional[timedelta]:
-        """
-        Gets the recommendationLookBackDuration property value. Optional. Indicates the time period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look-back duration. For reviews of groups and Azure AD roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days.
-        Returns: Optional[timedelta]
-        """
-        return self._recommendation_look_back_duration
-    
-    @recommendation_look_back_duration.setter
-    def recommendation_look_back_duration(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the recommendationLookBackDuration property value. Optional. Indicates the time period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look-back duration. For reviews of groups and Azure AD roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days.
-        Args:
-            value: Value to set for the recommendation_look_back_duration property.
-        """
-        self._recommendation_look_back_duration = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -70,27 +55,10 @@ class UserLastSignInRecommendationInsightSetting(access_review_recommendation_in
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_timedelta_value("recommendationLookBackDuration", self.recommendation_look_back_duration)
         writer.write_enum_value("signInScope", self.sign_in_scope)
-    
-    @property
-    def sign_in_scope(self,) -> Optional[user_sign_in_recommendation_scope.UserSignInRecommendationScope]:
-        """
-        Gets the signInScope property value. Indicates whether inactivity is calculated based on the user's inactivity in the tenant or in the application. The possible values are tenant, application, unknownFutureValue. application is only relevant when the access review is a review of an assignment to an application.
-        Returns: Optional[user_sign_in_recommendation_scope.UserSignInRecommendationScope]
-        """
-        return self._sign_in_scope
-    
-    @sign_in_scope.setter
-    def sign_in_scope(self,value: Optional[user_sign_in_recommendation_scope.UserSignInRecommendationScope] = None) -> None:
-        """
-        Sets the signInScope property value. Indicates whether inactivity is calculated based on the user's inactivity in the tenant or in the application. The possible values are tenant, application, unknownFutureValue. application is only relevant when the access review is a review of an assignment to an application.
-        Args:
-            value: Value to set for the sign_in_scope property.
-        """
-        self._sign_in_scope = value
     
 

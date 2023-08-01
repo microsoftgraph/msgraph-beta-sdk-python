@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,18 +11,19 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import device_compliance_policy, device_compliance_policy_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .get_devices_scheduled_to_retire import get_devices_scheduled_to_retire_request_builder
-    from .get_noncompliant_devices_to_retire import get_noncompliant_devices_to_retire_request_builder
-    from .has_payload_links import has_payload_links_request_builder
-    from .item import device_compliance_policy_item_request_builder
-    from .refresh_device_compliance_report_summarization import refresh_device_compliance_report_summarization_request_builder
-    from .set_scheduled_retire_state import set_scheduled_retire_state_request_builder
-    from .validate_compliance_script import validate_compliance_script_request_builder
+    from ...models.device_compliance_policy import DeviceCompliancePolicy
+    from ...models.device_compliance_policy_collection_response import DeviceCompliancePolicyCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .get_devices_scheduled_to_retire.get_devices_scheduled_to_retire_request_builder import GetDevicesScheduledToRetireRequestBuilder
+    from .get_noncompliant_devices_to_retire.get_noncompliant_devices_to_retire_request_builder import GetNoncompliantDevicesToRetireRequestBuilder
+    from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
+    from .item.device_compliance_policy_item_request_builder import DeviceCompliancePolicyItemRequestBuilder
+    from .refresh_device_compliance_report_summarization.refresh_device_compliance_report_summarization_request_builder import RefreshDeviceComplianceReportSummarizationRequestBuilder
+    from .set_scheduled_retire_state.set_scheduled_retire_state_request_builder import SetScheduledRetireStateRequestBuilder
+    from .validate_compliance_script.validate_compliance_script_request_builder import ValidateComplianceScriptRequestBuilder
 
-class DeviceCompliancePoliciesRequestBuilder():
+class DeviceCompliancePoliciesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the deviceCompliancePolicies property of the microsoft.graph.deviceManagement entity.
     """
@@ -29,87 +31,78 @@ class DeviceCompliancePoliciesRequestBuilder():
         """
         Instantiates a new DeviceCompliancePoliciesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/deviceCompliancePolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceCompliancePolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_device_compliance_policy_id(self,device_compliance_policy_id: str) -> device_compliance_policy_item_request_builder.DeviceCompliancePolicyItemRequestBuilder:
+    def by_device_compliance_policy_id(self,device_compliance_policy_id: str) -> DeviceCompliancePolicyItemRequestBuilder:
         """
         Provides operations to manage the deviceCompliancePolicies property of the microsoft.graph.deviceManagement entity.
         Args:
             device_compliance_policy_id: Unique identifier of the item
-        Returns: device_compliance_policy_item_request_builder.DeviceCompliancePolicyItemRequestBuilder
+        Returns: DeviceCompliancePolicyItemRequestBuilder
         """
-        if device_compliance_policy_id is None:
-            raise Exception("device_compliance_policy_id cannot be undefined")
-        from .item import device_compliance_policy_item_request_builder
+        if not device_compliance_policy_id:
+            raise TypeError("device_compliance_policy_id cannot be null.")
+        from .item.device_compliance_policy_item_request_builder import DeviceCompliancePolicyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceCompliancePolicy%2Did"] = device_compliance_policy_id
-        return device_compliance_policy_item_request_builder.DeviceCompliancePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceCompliancePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceCompliancePolicyCollectionResponse]:
         """
         The device compliance policies.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceCompliancePolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_compliance_policy_collection_response
+        from ...models.device_compliance_policy_collection_response import DeviceCompliancePolicyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceCompliancePolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_compliance_policy.DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
+    async def post(self,body: Optional[DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceCompliancePolicy]:
         """
         Create new navigation property to deviceCompliancePolicies for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_compliance_policy.DeviceCompliancePolicy]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceCompliancePolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import device_compliance_policy
+        from ...models.device_compliance_policy import DeviceCompliancePolicy
 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceCompliancePolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The device compliance policies.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -123,16 +116,16 @@ class DeviceCompliancePoliciesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[device_compliance_policy.DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceCompliancePolicies for deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -145,67 +138,67 @@ class DeviceCompliancePoliciesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_devices_scheduled_to_retire(self) -> get_devices_scheduled_to_retire_request_builder.GetDevicesScheduledToRetireRequestBuilder:
+    def get_devices_scheduled_to_retire(self) -> GetDevicesScheduledToRetireRequestBuilder:
         """
         Provides operations to call the getDevicesScheduledToRetire method.
         """
-        from .get_devices_scheduled_to_retire import get_devices_scheduled_to_retire_request_builder
+        from .get_devices_scheduled_to_retire.get_devices_scheduled_to_retire_request_builder import GetDevicesScheduledToRetireRequestBuilder
 
-        return get_devices_scheduled_to_retire_request_builder.GetDevicesScheduledToRetireRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetDevicesScheduledToRetireRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_noncompliant_devices_to_retire(self) -> get_noncompliant_devices_to_retire_request_builder.GetNoncompliantDevicesToRetireRequestBuilder:
+    def get_noncompliant_devices_to_retire(self) -> GetNoncompliantDevicesToRetireRequestBuilder:
         """
         Provides operations to call the getNoncompliantDevicesToRetire method.
         """
-        from .get_noncompliant_devices_to_retire import get_noncompliant_devices_to_retire_request_builder
+        from .get_noncompliant_devices_to_retire.get_noncompliant_devices_to_retire_request_builder import GetNoncompliantDevicesToRetireRequestBuilder
 
-        return get_noncompliant_devices_to_retire_request_builder.GetNoncompliantDevicesToRetireRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetNoncompliantDevicesToRetireRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def has_payload_links(self) -> HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        from .has_payload_links import has_payload_links_request_builder
+        from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
 
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def refresh_device_compliance_report_summarization(self) -> refresh_device_compliance_report_summarization_request_builder.RefreshDeviceComplianceReportSummarizationRequestBuilder:
+    def refresh_device_compliance_report_summarization(self) -> RefreshDeviceComplianceReportSummarizationRequestBuilder:
         """
         Provides operations to call the refreshDeviceComplianceReportSummarization method.
         """
-        from .refresh_device_compliance_report_summarization import refresh_device_compliance_report_summarization_request_builder
+        from .refresh_device_compliance_report_summarization.refresh_device_compliance_report_summarization_request_builder import RefreshDeviceComplianceReportSummarizationRequestBuilder
 
-        return refresh_device_compliance_report_summarization_request_builder.RefreshDeviceComplianceReportSummarizationRequestBuilder(self.request_adapter, self.path_parameters)
+        return RefreshDeviceComplianceReportSummarizationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_scheduled_retire_state(self) -> set_scheduled_retire_state_request_builder.SetScheduledRetireStateRequestBuilder:
+    def set_scheduled_retire_state(self) -> SetScheduledRetireStateRequestBuilder:
         """
         Provides operations to call the setScheduledRetireState method.
         """
-        from .set_scheduled_retire_state import set_scheduled_retire_state_request_builder
+        from .set_scheduled_retire_state.set_scheduled_retire_state_request_builder import SetScheduledRetireStateRequestBuilder
 
-        return set_scheduled_retire_state_request_builder.SetScheduledRetireStateRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetScheduledRetireStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_compliance_script(self) -> validate_compliance_script_request_builder.ValidateComplianceScriptRequestBuilder:
+    def validate_compliance_script(self) -> ValidateComplianceScriptRequestBuilder:
         """
         Provides operations to call the validateComplianceScript method.
         """
-        from .validate_compliance_script import validate_compliance_script_request_builder
+        from .validate_compliance_script.validate_compliance_script_request_builder import ValidateComplianceScriptRequestBuilder
 
-        return validate_compliance_script_request_builder.ValidateComplianceScriptRequestBuilder(self.request_adapter, self.path_parameters)
+        return ValidateComplianceScriptRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceCompliancePoliciesRequestBuilderGetQueryParameters():
@@ -216,11 +209,11 @@ class DeviceCompliancePoliciesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -264,31 +257,27 @@ class DeviceCompliancePoliciesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration():
+    class DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[DeviceCompliancePoliciesRequestBuilder.DeviceCompliancePoliciesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration():
+    class DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AppManagementLevel(Enum):
+class AppManagementLevel(str, Enum):
     # Unspecified
     Unspecified = "unspecified",
     # Unmanaged

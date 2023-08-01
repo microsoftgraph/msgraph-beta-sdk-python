@@ -1,49 +1,32 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import mobile_contained_app
+    from .mobile_contained_app import MobileContainedApp
 
-from . import mobile_contained_app
+from .mobile_contained_app import MobileContainedApp
 
-class WindowsUniversalAppXContainedApp(mobile_contained_app.MobileContainedApp):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsUniversalAppXContainedApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUniversalAppXContainedApp"
-        # The app user model ID of the contained app of a WindowsUniversalAppX app.
-        self._app_user_model_id: Optional[str] = None
-    
-    @property
-    def app_user_model_id(self,) -> Optional[str]:
-        """
-        Gets the appUserModelId property value. The app user model ID of the contained app of a WindowsUniversalAppX app.
-        Returns: Optional[str]
-        """
-        return self._app_user_model_id
-    
-    @app_user_model_id.setter
-    def app_user_model_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appUserModelId property value. The app user model ID of the contained app of a WindowsUniversalAppX app.
-        Args:
-            value: Value to set for the app_user_model_id property.
-        """
-        self._app_user_model_id = value
+@dataclass
+class WindowsUniversalAppXContainedApp(MobileContainedApp):
+    """
+    A class that represents a contained app of a WindowsUniversalAppX app.
+    """
+    odata_type = "#microsoft.graph.windowsUniversalAppXContainedApp"
+    # The app user model ID of the contained app of a WindowsUniversalAppX app.
+    app_user_model_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsUniversalAppXContainedApp:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WindowsUniversalAppXContainedApp
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WindowsUniversalAppXContainedApp()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -51,7 +34,9 @@ class WindowsUniversalAppXContainedApp(mobile_contained_app.MobileContainedApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import mobile_contained_app
+        from .mobile_contained_app import MobileContainedApp
+
+        from .mobile_contained_app import MobileContainedApp
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appUserModelId": lambda n : setattr(self, 'app_user_model_id', n.get_str_value()),
@@ -66,8 +51,8 @@ class WindowsUniversalAppXContainedApp(mobile_contained_app.MobileContainedApp):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appUserModelId", self.app_user_model_id)
     

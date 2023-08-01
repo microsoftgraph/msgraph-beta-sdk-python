@@ -1,33 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import domain_dns_record
+    from .domain_dns_record import DomainDnsRecord
 
-from . import domain_dns_record
+from .domain_dns_record import DomainDnsRecord
 
-class DomainDnsTxtRecord(domain_dns_record.DomainDnsRecord):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DomainDnsTxtRecord and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Value used when configuring the text property at the DNS host.
-        self._text: Optional[str] = None
+@dataclass
+class DomainDnsTxtRecord(DomainDnsRecord):
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Value used when configuring the text property at the DNS host.
+    text: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DomainDnsTxtRecord:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DomainDnsTxtRecord
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DomainDnsTxtRecord()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -35,7 +32,9 @@ class DomainDnsTxtRecord(domain_dns_record.DomainDnsRecord):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import domain_dns_record
+        from .domain_dns_record import DomainDnsRecord
+
+        from .domain_dns_record import DomainDnsRecord
 
         fields: Dict[str, Callable[[Any], None]] = {
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
@@ -50,26 +49,9 @@ class DomainDnsTxtRecord(domain_dns_record.DomainDnsRecord):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("text", self.text)
-    
-    @property
-    def text(self,) -> Optional[str]:
-        """
-        Gets the text property value. Value used when configuring the text property at the DNS host.
-        Returns: Optional[str]
-        """
-        return self._text
-    
-    @text.setter
-    def text(self,value: Optional[str] = None) -> None:
-        """
-        Sets the text property value. Value used when configuring the text property at the DNS host.
-        Args:
-            value: Value to set for the text property.
-        """
-        self._text = value
     
 

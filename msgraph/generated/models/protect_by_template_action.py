@@ -1,32 +1,29 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import information_protection_action
+    from .information_protection_action import InformationProtectionAction
 
-from . import information_protection_action
+from .information_protection_action import InformationProtectionAction
 
-class ProtectByTemplateAction(information_protection_action.InformationProtectionAction):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProtectByTemplateAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.protectByTemplateAction"
-        # The GUID of the Azure Information Protection template to apply to the information.
-        self._template_id: Optional[str] = None
+@dataclass
+class ProtectByTemplateAction(InformationProtectionAction):
+    odata_type = "#microsoft.graph.protectByTemplateAction"
+    # The GUID of the Azure Information Protection template to apply to the information.
+    template_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectByTemplateAction:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ProtectByTemplateAction
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ProtectByTemplateAction()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,7 +31,9 @@ class ProtectByTemplateAction(information_protection_action.InformationProtectio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import information_protection_action
+        from .information_protection_action import InformationProtectionAction
+
+        from .information_protection_action import InformationProtectionAction
 
         fields: Dict[str, Callable[[Any], None]] = {
             "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
@@ -49,26 +48,9 @@ class ProtectByTemplateAction(information_protection_action.InformationProtectio
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("templateId", self.template_id)
-    
-    @property
-    def template_id(self,) -> Optional[str]:
-        """
-        Gets the templateId property value. The GUID of the Azure Information Protection template to apply to the information.
-        Returns: Optional[str]
-        """
-        return self._template_id
-    
-    @template_id.setter
-    def template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the templateId property value. The GUID of the Azure Information Protection template to apply to the information.
-        Args:
-            value: Value to set for the template_id property.
-        """
-        self._template_id = value
     
 

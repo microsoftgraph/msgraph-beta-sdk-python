@@ -1,5 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,16 +11,16 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.identity_governance import lifecycle_workflows_container
-    from ...models.o_data_errors import o_data_error
-    from .custom_task_extensions import custom_task_extensions_request_builder
-    from .deleted_items import deleted_items_request_builder
-    from .settings import settings_request_builder
-    from .task_definitions import task_definitions_request_builder
-    from .workflows import workflows_request_builder
-    from .workflow_templates import workflow_templates_request_builder
+    from ...models.identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .custom_task_extensions.custom_task_extensions_request_builder import CustomTaskExtensionsRequestBuilder
+    from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
+    from .task_definitions.task_definitions_request_builder import TaskDefinitionsRequestBuilder
+    from .workflows.workflows_request_builder import WorkflowsRequestBuilder
+    from .workflow_templates.workflow_templates_request_builder import WorkflowTemplatesRequestBuilder
 
-class LifecycleWorkflowsRequestBuilder():
+class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
     """
@@ -27,91 +28,82 @@ class LifecycleWorkflowsRequestBuilder():
         """
         Instantiates a new LifecycleWorkflowsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/lifecycleWorkflows{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[LifecycleWorkflowsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property lifecycleWorkflows for identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[LifecycleWorkflowsRequestBuilderGetRequestConfiguration] = None) -> Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer]:
+    async def get(self,request_configuration: Optional[LifecycleWorkflowsRequestBuilderGetRequestConfiguration] = None) -> Optional[LifecycleWorkflowsContainer]:
         """
         Get lifecycleWorkflows from identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[LifecycleWorkflowsContainer]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.identity_governance import lifecycle_workflows_container
+        from ...models.identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
 
-        return await self.request_adapter.send_async(request_info, lifecycle_workflows_container.LifecycleWorkflowsContainer, error_mapping)
+        return await self.request_adapter.send_async(request_info, LifecycleWorkflowsContainer, error_mapping)
     
-    async def patch(self,body: Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer] = None, request_configuration: Optional[LifecycleWorkflowsRequestBuilderPatchRequestConfiguration] = None) -> Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer]:
+    async def patch(self,body: Optional[LifecycleWorkflowsContainer] = None, request_configuration: Optional[LifecycleWorkflowsRequestBuilderPatchRequestConfiguration] = None) -> Optional[LifecycleWorkflowsContainer]:
         """
         Update the navigation property lifecycleWorkflows in identityGovernance
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[LifecycleWorkflowsContainer]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.identity_governance import lifecycle_workflows_container
+        from ...models.identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
 
-        return await self.request_adapter.send_async(request_info, lifecycle_workflows_container.LifecycleWorkflowsContainer, error_mapping)
+        return await self.request_adapter.send_async(request_info, LifecycleWorkflowsContainer, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[LifecycleWorkflowsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property lifecycleWorkflows for identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -127,7 +119,7 @@ class LifecycleWorkflowsRequestBuilder():
         """
         Get lifecycleWorkflows from identityGovernance
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -141,16 +133,16 @@ class LifecycleWorkflowsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer] = None, request_configuration: Optional[LifecycleWorkflowsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[LifecycleWorkflowsContainer] = None, request_configuration: Optional[LifecycleWorkflowsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property lifecycleWorkflows in identityGovernance
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -163,70 +155,68 @@ class LifecycleWorkflowsRequestBuilder():
         return request_info
     
     @property
-    def custom_task_extensions(self) -> custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder:
+    def custom_task_extensions(self) -> CustomTaskExtensionsRequestBuilder:
         """
         Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
-        from .custom_task_extensions import custom_task_extensions_request_builder
+        from .custom_task_extensions.custom_task_extensions_request_builder import CustomTaskExtensionsRequestBuilder
 
-        return custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomTaskExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def deleted_items(self) -> deleted_items_request_builder.DeletedItemsRequestBuilder:
+    def deleted_items(self) -> DeletedItemsRequestBuilder:
         """
         Provides operations to manage the deletedItems property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
-        from .deleted_items import deleted_items_request_builder
+        from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
 
-        return deleted_items_request_builder.DeletedItemsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeletedItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+    def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
-        from .settings import settings_request_builder
+        from .settings.settings_request_builder import SettingsRequestBuilder
 
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def task_definitions(self) -> task_definitions_request_builder.TaskDefinitionsRequestBuilder:
+    def task_definitions(self) -> TaskDefinitionsRequestBuilder:
         """
         Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
-        from .task_definitions import task_definitions_request_builder
+        from .task_definitions.task_definitions_request_builder import TaskDefinitionsRequestBuilder
 
-        return task_definitions_request_builder.TaskDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TaskDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def workflows(self) -> workflows_request_builder.WorkflowsRequestBuilder:
+    def workflows(self) -> WorkflowsRequestBuilder:
         """
         Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
-        from .workflows import workflows_request_builder
+        from .workflows.workflows_request_builder import WorkflowsRequestBuilder
 
-        return workflows_request_builder.WorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
+        return WorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def workflow_templates(self) -> workflow_templates_request_builder.WorkflowTemplatesRequestBuilder:
+    def workflow_templates(self) -> WorkflowTemplatesRequestBuilder:
         """
         Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
-        from .workflow_templates import workflow_templates_request_builder
+        from .workflow_templates.workflow_templates_request_builder import WorkflowTemplatesRequestBuilder
 
-        return workflow_templates_request_builder.WorkflowTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return WorkflowTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LifecycleWorkflowsRequestBuilderDeleteRequestConfiguration():
+    class LifecycleWorkflowsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class LifecycleWorkflowsRequestBuilderGetQueryParameters():
@@ -237,11 +227,11 @@ class LifecycleWorkflowsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -255,31 +245,27 @@ class LifecycleWorkflowsRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LifecycleWorkflowsRequestBuilderGetRequestConfiguration():
+    class LifecycleWorkflowsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[LifecycleWorkflowsRequestBuilder.LifecycleWorkflowsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LifecycleWorkflowsRequestBuilderPatchRequestConfiguration():
+    class LifecycleWorkflowsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 
