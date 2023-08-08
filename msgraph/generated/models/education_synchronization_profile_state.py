@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EducationSynchronizationProfileState(Enum):
+class EducationSynchronizationProfileState(str, Enum):
     Deleting = "deleting",
     DeletionFailed = "deletionFailed",
     ProvisioningFailed = "provisioningFailed",

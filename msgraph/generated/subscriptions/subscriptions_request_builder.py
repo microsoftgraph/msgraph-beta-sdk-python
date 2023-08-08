@@ -1,20 +1,21 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import subscription, subscription_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .item import subscription_item_request_builder
+    from ..models.o_data_errors.o_data_error import ODataError
+    from ..models.subscription import Subscription
+    from ..models.subscription_collection_response import SubscriptionCollectionResponse
+    from .item.subscription_item_request_builder import SubscriptionItemRequestBuilder
 
-class SubscriptionsRequestBuilder():
+class SubscriptionsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of subscription entities.
     """
@@ -22,87 +23,78 @@ class SubscriptionsRequestBuilder():
         """
         Instantiates a new SubscriptionsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/subscriptions{?%24search,%24select}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/subscriptions{?%24search,%24select}", path_parameters)
     
-    def by_subscription_id(self,subscription_id: str) -> subscription_item_request_builder.SubscriptionItemRequestBuilder:
+    def by_subscription_id(self,subscription_id: str) -> SubscriptionItemRequestBuilder:
         """
         Provides operations to manage the collection of subscription entities.
         Args:
             subscription_id: Unique identifier of the item
-        Returns: subscription_item_request_builder.SubscriptionItemRequestBuilder
+        Returns: SubscriptionItemRequestBuilder
         """
-        if subscription_id is None:
-            raise Exception("subscription_id cannot be undefined")
-        from .item import subscription_item_request_builder
+        if not subscription_id:
+            raise TypeError("subscription_id cannot be null.")
+        from .item.subscription_item_request_builder import SubscriptionItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["subscription%2Did"] = subscription_id
-        return subscription_item_request_builder.SubscriptionItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return SubscriptionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SubscriptionsRequestBuilderGetRequestConfiguration] = None) -> Optional[subscription_collection_response.SubscriptionCollectionResponse]:
+    async def get(self,request_configuration: Optional[SubscriptionsRequestBuilderGetRequestConfiguration] = None) -> Optional[SubscriptionCollectionResponse]:
         """
         Retrieve a list of webhook subscriptions.  The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[subscription_collection_response.SubscriptionCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SubscriptionCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import subscription_collection_response
+        from ..models.subscription_collection_response import SubscriptionCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, subscription_collection_response.SubscriptionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SubscriptionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[subscription.Subscription] = None, request_configuration: Optional[SubscriptionsRequestBuilderPostRequestConfiguration] = None) -> Optional[subscription.Subscription]:
+    async def post(self,body: Optional[Subscription] = None, request_configuration: Optional[SubscriptionsRequestBuilderPostRequestConfiguration] = None) -> Optional[Subscription]:
         """
-        Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. See the table in the Permissions section for the list of resources that support subscribing to change notifications. Some resources support the option to include encrypted resource data in change notifications. These resources include chatMessage, contact, event, message, onlineMeetings and presence. For more information, see Set up change notifications that include resource data and Change notifications for Outlook resources in Microsoft Graph.
+        Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[subscription.Subscription]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Subscription]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import subscription
+        from ..models.subscription import Subscription
 
-        return await self.request_adapter.send_async(request_info, subscription.Subscription, error_mapping)
+        return await self.request_adapter.send_async(request_info, Subscription, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SubscriptionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of webhook subscriptions.  The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -116,16 +108,16 @@ class SubscriptionsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[subscription.Subscription] = None, request_configuration: Optional[SubscriptionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Subscription] = None, request_configuration: Optional[SubscriptionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. See the table in the Permissions section for the list of resources that support subscribing to change notifications. Some resources support the option to include encrypted resource data in change notifications. These resources include chatMessage, contact, event, message, onlineMeetings and presence. For more information, see Set up change notifications that include resource data and Change notifications for Outlook resources in Microsoft Graph.
+        Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -146,11 +138,11 @@ class SubscriptionsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "search":
                 return "%24search"
             if original_name == "select":
@@ -164,31 +156,27 @@ class SubscriptionsRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SubscriptionsRequestBuilderGetRequestConfiguration():
+    class SubscriptionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SubscriptionsRequestBuilder.SubscriptionsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SubscriptionsRequestBuilderPostRequestConfiguration():
+    class SubscriptionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

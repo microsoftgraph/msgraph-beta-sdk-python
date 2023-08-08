@@ -1,25 +1,26 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import ti_indicator, ti_indicator_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .delete_ti_indicators import delete_ti_indicators_request_builder
-    from .delete_ti_indicators_by_external_id import delete_ti_indicators_by_external_id_request_builder
-    from .item import ti_indicator_item_request_builder
-    from .submit_ti_indicators import submit_ti_indicators_request_builder
-    from .update_ti_indicators import update_ti_indicators_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.ti_indicator import TiIndicator
+    from ...models.ti_indicator_collection_response import TiIndicatorCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .delete_ti_indicators.delete_ti_indicators_request_builder import DeleteTiIndicatorsRequestBuilder
+    from .delete_ti_indicators_by_external_id.delete_ti_indicators_by_external_id_request_builder import DeleteTiIndicatorsByExternalIdRequestBuilder
+    from .item.ti_indicator_item_request_builder import TiIndicatorItemRequestBuilder
+    from .submit_ti_indicators.submit_ti_indicators_request_builder import SubmitTiIndicatorsRequestBuilder
+    from .update_ti_indicators.update_ti_indicators_request_builder import UpdateTiIndicatorsRequestBuilder
 
-class TiIndicatorsRequestBuilder():
+class TiIndicatorsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the tiIndicators property of the microsoft.graph.security entity.
     """
@@ -27,87 +28,78 @@ class TiIndicatorsRequestBuilder():
         """
         Instantiates a new TiIndicatorsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/security/tiIndicators{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/security/tiIndicators{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_ti_indicator_id(self,ti_indicator_id: str) -> ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder:
+    def by_ti_indicator_id(self,ti_indicator_id: str) -> TiIndicatorItemRequestBuilder:
         """
         Provides operations to manage the tiIndicators property of the microsoft.graph.security entity.
         Args:
             ti_indicator_id: Unique identifier of the item
-        Returns: ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder
+        Returns: TiIndicatorItemRequestBuilder
         """
-        if ti_indicator_id is None:
-            raise Exception("ti_indicator_id cannot be undefined")
-        from .item import ti_indicator_item_request_builder
+        if not ti_indicator_id:
+            raise TypeError("ti_indicator_id cannot be null.")
+        from .item.ti_indicator_item_request_builder import TiIndicatorItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["tiIndicator%2Did"] = ti_indicator_id
-        return ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return TiIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]:
+    async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[TiIndicatorCollectionResponse]:
         """
         Retrieve a list of tiIndicator objects.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[TiIndicatorCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import ti_indicator_collection_response
+        from ...models.ti_indicator_collection_response import TiIndicatorCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, ti_indicator_collection_response.TiIndicatorCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, TiIndicatorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[ti_indicator.TiIndicator]:
+    async def post(self,body: Optional[TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[TiIndicator]:
         """
         Create a new tiIndicator object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ti_indicator.TiIndicator]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[TiIndicator]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import ti_indicator
+        from ...models.ti_indicator import TiIndicator
 
-        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, error_mapping)
+        return await self.request_adapter.send_async(request_info, TiIndicator, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of tiIndicator objects.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -121,16 +113,16 @@ class TiIndicatorsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new tiIndicator object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -143,49 +135,49 @@ class TiIndicatorsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delete_ti_indicators(self) -> delete_ti_indicators_request_builder.DeleteTiIndicatorsRequestBuilder:
+    def delete_ti_indicators(self) -> DeleteTiIndicatorsRequestBuilder:
         """
         Provides operations to call the deleteTiIndicators method.
         """
-        from .delete_ti_indicators import delete_ti_indicators_request_builder
+        from .delete_ti_indicators.delete_ti_indicators_request_builder import DeleteTiIndicatorsRequestBuilder
 
-        return delete_ti_indicators_request_builder.DeleteTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeleteTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delete_ti_indicators_by_external_id(self) -> delete_ti_indicators_by_external_id_request_builder.DeleteTiIndicatorsByExternalIdRequestBuilder:
+    def delete_ti_indicators_by_external_id(self) -> DeleteTiIndicatorsByExternalIdRequestBuilder:
         """
         Provides operations to call the deleteTiIndicatorsByExternalId method.
         """
-        from .delete_ti_indicators_by_external_id import delete_ti_indicators_by_external_id_request_builder
+        from .delete_ti_indicators_by_external_id.delete_ti_indicators_by_external_id_request_builder import DeleteTiIndicatorsByExternalIdRequestBuilder
 
-        return delete_ti_indicators_by_external_id_request_builder.DeleteTiIndicatorsByExternalIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeleteTiIndicatorsByExternalIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def submit_ti_indicators(self) -> submit_ti_indicators_request_builder.SubmitTiIndicatorsRequestBuilder:
+    def submit_ti_indicators(self) -> SubmitTiIndicatorsRequestBuilder:
         """
         Provides operations to call the submitTiIndicators method.
         """
-        from .submit_ti_indicators import submit_ti_indicators_request_builder
+        from .submit_ti_indicators.submit_ti_indicators_request_builder import SubmitTiIndicatorsRequestBuilder
 
-        return submit_ti_indicators_request_builder.SubmitTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubmitTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_ti_indicators(self) -> update_ti_indicators_request_builder.UpdateTiIndicatorsRequestBuilder:
+    def update_ti_indicators(self) -> UpdateTiIndicatorsRequestBuilder:
         """
         Provides operations to call the updateTiIndicators method.
         """
-        from .update_ti_indicators import update_ti_indicators_request_builder
+        from .update_ti_indicators.update_ti_indicators_request_builder import UpdateTiIndicatorsRequestBuilder
 
-        return update_ti_indicators_request_builder.UpdateTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TiIndicatorsRequestBuilderGetQueryParameters():
@@ -196,11 +188,11 @@ class TiIndicatorsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -244,31 +236,27 @@ class TiIndicatorsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TiIndicatorsRequestBuilderGetRequestConfiguration():
+    class TiIndicatorsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[TiIndicatorsRequestBuilder.TiIndicatorsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TiIndicatorsRequestBuilderPostRequestConfiguration():
+    class TiIndicatorsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

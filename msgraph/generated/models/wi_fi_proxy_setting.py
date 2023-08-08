@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WiFiProxySetting(Enum):
+class WiFiProxySetting(str, Enum):
     # No Proxy.
     None_ = "none",
     # Manual Proxy Settings via Address and Port.

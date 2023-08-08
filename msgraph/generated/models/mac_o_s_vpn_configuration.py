@@ -1,32 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import apple_vpn_configuration, mac_o_s_certificate_profile_base
+    from .apple_vpn_configuration import AppleVpnConfiguration
+    from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
-from . import apple_vpn_configuration
+from .apple_vpn_configuration import AppleVpnConfiguration
 
-class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSVpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSVpnConfiguration"
-        # Identity certificate for client authentication when authentication method is certificate.
-        self._identity_certificate: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase] = None
+@dataclass
+class MacOSVpnConfiguration(AppleVpnConfiguration):
+    """
+    By providing the configurations in this profile you can instruct the Mac device to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.macOSVpnConfiguration"
+    # Identity certificate for client authentication when authentication method is certificate.
+    identity_certificate: Optional[MacOSCertificateProfileBase] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSVpnConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MacOSVpnConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MacOSVpnConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,31 +36,18 @@ class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import apple_vpn_configuration, mac_o_s_certificate_profile_base
+        from .apple_vpn_configuration import AppleVpnConfiguration
+        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+
+        from .apple_vpn_configuration import AppleVpnConfiguration
+        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(MacOSCertificateProfileBase)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def identity_certificate(self,) -> Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase]:
-        """
-        Gets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Returns: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase]
-        """
-        return self._identity_certificate
-    
-    @identity_certificate.setter
-    def identity_certificate(self,value: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase] = None) -> None:
-        """
-        Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Args:
-            value: Value to set for the identity_certificate property.
-        """
-        self._identity_certificate = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -66,8 +55,8 @@ class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("identityCertificate", self.identity_certificate)
     

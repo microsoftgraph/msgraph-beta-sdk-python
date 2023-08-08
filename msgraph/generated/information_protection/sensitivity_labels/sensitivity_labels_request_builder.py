@@ -1,22 +1,23 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import sensitivity_label, sensitivity_label_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .evaluate import evaluate_request_builder
-    from .item import sensitivity_label_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.sensitivity_label import SensitivityLabel
+    from ...models.sensitivity_label_collection_response import SensitivityLabelCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .evaluate.evaluate_request_builder import EvaluateRequestBuilder
+    from .item.sensitivity_label_item_request_builder import SensitivityLabelItemRequestBuilder
 
-class SensitivityLabelsRequestBuilder():
+class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
     """
@@ -24,87 +25,78 @@ class SensitivityLabelsRequestBuilder():
         """
         Instantiates a new SensitivityLabelsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/informationProtection/sensitivityLabels{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/informationProtection/sensitivityLabels{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_sensitivity_label_id(self,sensitivity_label_id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
+    def by_sensitivity_label_id(self,sensitivity_label_id: str) -> SensitivityLabelItemRequestBuilder:
         """
         Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
         Args:
             sensitivity_label_id: Unique identifier of the item
-        Returns: sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder
+        Returns: SensitivityLabelItemRequestBuilder
         """
-        if sensitivity_label_id is None:
-            raise Exception("sensitivity_label_id cannot be undefined")
-        from .item import sensitivity_label_item_request_builder
+        if not sensitivity_label_id:
+            raise TypeError("sensitivity_label_id cannot be null.")
+        from .item.sensitivity_label_item_request_builder import SensitivityLabelItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["sensitivityLabel%2Did"] = sensitivity_label_id
-        return sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]:
+    async def get(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[SensitivityLabelCollectionResponse]:
         """
         Get sensitivityLabels from informationProtection
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SensitivityLabelCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import sensitivity_label_collection_response
+        from ...models.sensitivity_label_collection_response import SensitivityLabelCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, sensitivity_label_collection_response.SensitivityLabelCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SensitivityLabelCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[sensitivity_label.SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[sensitivity_label.SensitivityLabel]:
+    async def post(self,body: Optional[SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[SensitivityLabel]:
         """
         Create new navigation property to sensitivityLabels for informationProtection
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[sensitivity_label.SensitivityLabel]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SensitivityLabel]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import sensitivity_label
+        from ...models.sensitivity_label import SensitivityLabel
 
-        return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, error_mapping)
+        return await self.request_adapter.send_async(request_info, SensitivityLabel, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get sensitivityLabels from informationProtection
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -118,16 +110,16 @@ class SensitivityLabelsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[sensitivity_label.SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to sensitivityLabels for informationProtection
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +132,22 @@ class SensitivityLabelsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate(self) -> evaluate_request_builder.EvaluateRequestBuilder:
+    def evaluate(self) -> EvaluateRequestBuilder:
         """
         Provides operations to call the evaluate method.
         """
-        from .evaluate import evaluate_request_builder
+        from .evaluate.evaluate_request_builder import EvaluateRequestBuilder
 
-        return evaluate_request_builder.EvaluateRequestBuilder(self.request_adapter, self.path_parameters)
+        return EvaluateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SensitivityLabelsRequestBuilderGetQueryParameters():
@@ -166,11 +158,11 @@ class SensitivityLabelsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -214,31 +206,27 @@ class SensitivityLabelsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SensitivityLabelsRequestBuilderGetRequestConfiguration():
+    class SensitivityLabelsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SensitivityLabelsRequestBuilder.SensitivityLabelsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SensitivityLabelsRequestBuilderPostRequestConfiguration():
+    class SensitivityLabelsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

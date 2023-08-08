@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TenantAllowBlockListEntryType(Enum):
+class TenantAllowBlockListEntryType(str, Enum):
     Url = "url",
     FileHash = "fileHash",
     Sender = "sender",

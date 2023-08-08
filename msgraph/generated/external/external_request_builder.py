@@ -1,21 +1,21 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models.external_connectors import external
-    from ..models.o_data_errors import o_data_error
-    from .connections import connections_request_builder
-    from .industry_data import industry_data_request_builder
+    from ..models.external_connectors.external import External
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .connections.connections_request_builder import ConnectionsRequestBuilder
+    from .industry_data.industry_data_request_builder import IndustryDataRequestBuilder
 
-class ExternalRequestBuilder():
+class ExternalRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the external singleton.
     """
@@ -23,72 +23,63 @@ class ExternalRequestBuilder():
         """
         Instantiates a new ExternalRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/external{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/external{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[ExternalRequestBuilderGetRequestConfiguration] = None) -> Optional[external.External]:
+    async def get(self,request_configuration: Optional[ExternalRequestBuilderGetRequestConfiguration] = None) -> Optional[External]:
         """
         Get external
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[external.External]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[External]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.external_connectors import external
+        from ..models.external_connectors.external import External
 
-        return await self.request_adapter.send_async(request_info, external.External, error_mapping)
+        return await self.request_adapter.send_async(request_info, External, error_mapping)
     
-    async def patch(self,body: Optional[external.External] = None, request_configuration: Optional[ExternalRequestBuilderPatchRequestConfiguration] = None) -> Optional[external.External]:
+    async def patch(self,body: Optional[External] = None, request_configuration: Optional[ExternalRequestBuilderPatchRequestConfiguration] = None) -> Optional[External]:
         """
         Update external
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[external.External]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[External]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.external_connectors import external
+        from ..models.external_connectors.external import External
 
-        return await self.request_adapter.send_async(request_info, external.External, error_mapping)
+        return await self.request_adapter.send_async(request_info, External, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExternalRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get external
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -102,16 +93,16 @@ class ExternalRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[external.External] = None, request_configuration: Optional[ExternalRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[External] = None, request_configuration: Optional[ExternalRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update external
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -124,22 +115,22 @@ class ExternalRequestBuilder():
         return request_info
     
     @property
-    def connections(self) -> connections_request_builder.ConnectionsRequestBuilder:
+    def connections(self) -> ConnectionsRequestBuilder:
         """
         Provides operations to manage the connections property of the microsoft.graph.externalConnectors.external entity.
         """
-        from .connections import connections_request_builder
+        from .connections.connections_request_builder import ConnectionsRequestBuilder
 
-        return connections_request_builder.ConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def industry_data(self) -> industry_data_request_builder.IndustryDataRequestBuilder:
+    def industry_data(self) -> IndustryDataRequestBuilder:
         """
         Provides operations to manage the industryData property of the microsoft.graph.externalConnectors.external entity.
         """
-        from .industry_data import industry_data_request_builder
+        from .industry_data.industry_data_request_builder import IndustryDataRequestBuilder
 
-        return industry_data_request_builder.IndustryDataRequestBuilder(self.request_adapter, self.path_parameters)
+        return IndustryDataRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ExternalRequestBuilderGetQueryParameters():
@@ -150,11 +141,11 @@ class ExternalRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -168,31 +159,27 @@ class ExternalRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ExternalRequestBuilderGetRequestConfiguration():
+    class ExternalRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ExternalRequestBuilder.ExternalRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ExternalRequestBuilderPatchRequestConfiguration():
+    class ExternalRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,24 +1,24 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..........models import workbook_table_column
-    from ..........models.o_data_errors import o_data_error
-    from .data_body_range import data_body_range_request_builder
-    from .filter import filter_request_builder
-    from .header_row_range import header_row_range_request_builder
-    from .range import range_request_builder
-    from .total_row_range import total_row_range_request_builder
+    from ..........models.o_data_errors.o_data_error import ODataError
+    from ..........models.workbook_table_column import WorkbookTableColumn
+    from .data_body_range.data_body_range_request_builder import DataBodyRangeRequestBuilder
+    from .filter.filter_request_builder import FilterRequestBuilder
+    from .header_row_range.header_row_range_request_builder import HeaderRowRangeRequestBuilder
+    from .range.range_request_builder import RangeRequestBuilder
+    from .total_row_range.total_row_range_request_builder import TotalRowRangeRequestBuilder
 
-class WorkbookTableColumnItemRequestBuilder():
+class WorkbookTableColumnItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.
     """
@@ -26,91 +26,82 @@ class WorkbookTableColumnItemRequestBuilder():
         """
         Instantiates a new WorkbookTableColumnItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[WorkbookTableColumnItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Deletes the column from the table.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ..........models.o_data_errors import o_data_error
+        from ..........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WorkbookTableColumnItemRequestBuilderGetRequestConfiguration] = None) -> Optional[workbook_table_column.WorkbookTableColumn]:
+    async def get(self,request_configuration: Optional[WorkbookTableColumnItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookTableColumn]:
         """
         Retrieve the properties and relationships of tablecolumn object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_table_column.WorkbookTableColumn]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WorkbookTableColumn]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..........models.o_data_errors import o_data_error
+        from ..........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..........models import workbook_table_column
+        from ..........models.workbook_table_column import WorkbookTableColumn
 
-        return await self.request_adapter.send_async(request_info, workbook_table_column.WorkbookTableColumn, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookTableColumn, error_mapping)
     
-    async def patch(self,body: Optional[workbook_table_column.WorkbookTableColumn] = None, request_configuration: Optional[WorkbookTableColumnItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[workbook_table_column.WorkbookTableColumn]:
+    async def patch(self,body: Optional[WorkbookTableColumn] = None, request_configuration: Optional[WorkbookTableColumnItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WorkbookTableColumn]:
         """
         Update the properties of tablecolumn object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_table_column.WorkbookTableColumn]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WorkbookTableColumn]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..........models.o_data_errors import o_data_error
+        from ..........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..........models import workbook_table_column
+        from ..........models.workbook_table_column import WorkbookTableColumn
 
-        return await self.request_adapter.send_async(request_info, workbook_table_column.WorkbookTableColumn, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookTableColumn, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WorkbookTableColumnItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Deletes the column from the table.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -126,7 +117,7 @@ class WorkbookTableColumnItemRequestBuilder():
         """
         Retrieve the properties and relationships of tablecolumn object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -140,16 +131,16 @@ class WorkbookTableColumnItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[workbook_table_column.WorkbookTableColumn] = None, request_configuration: Optional[WorkbookTableColumnItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WorkbookTableColumn] = None, request_configuration: Optional[WorkbookTableColumnItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of tablecolumn object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,61 +153,59 @@ class WorkbookTableColumnItemRequestBuilder():
         return request_info
     
     @property
-    def data_body_range(self) -> data_body_range_request_builder.DataBodyRangeRequestBuilder:
+    def data_body_range(self) -> DataBodyRangeRequestBuilder:
         """
         Provides operations to call the dataBodyRange method.
         """
-        from .data_body_range import data_body_range_request_builder
+        from .data_body_range.data_body_range_request_builder import DataBodyRangeRequestBuilder
 
-        return data_body_range_request_builder.DataBodyRangeRequestBuilder(self.request_adapter, self.path_parameters)
+        return DataBodyRangeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def filter(self) -> filter_request_builder.FilterRequestBuilder:
+    def filter(self) -> FilterRequestBuilder:
         """
         Provides operations to manage the filter property of the microsoft.graph.workbookTableColumn entity.
         """
-        from .filter import filter_request_builder
+        from .filter.filter_request_builder import FilterRequestBuilder
 
-        return filter_request_builder.FilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return FilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def header_row_range(self) -> header_row_range_request_builder.HeaderRowRangeRequestBuilder:
+    def header_row_range(self) -> HeaderRowRangeRequestBuilder:
         """
         Provides operations to call the headerRowRange method.
         """
-        from .header_row_range import header_row_range_request_builder
+        from .header_row_range.header_row_range_request_builder import HeaderRowRangeRequestBuilder
 
-        return header_row_range_request_builder.HeaderRowRangeRequestBuilder(self.request_adapter, self.path_parameters)
+        return HeaderRowRangeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def range(self) -> range_request_builder.RangeRequestBuilder:
+    def range(self) -> RangeRequestBuilder:
         """
         Provides operations to call the range method.
         """
-        from .range import range_request_builder
+        from .range.range_request_builder import RangeRequestBuilder
 
-        return range_request_builder.RangeRequestBuilder(self.request_adapter, self.path_parameters)
+        return RangeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def total_row_range(self) -> total_row_range_request_builder.TotalRowRangeRequestBuilder:
+    def total_row_range(self) -> TotalRowRangeRequestBuilder:
         """
         Provides operations to call the totalRowRange method.
         """
-        from .total_row_range import total_row_range_request_builder
+        from .total_row_range.total_row_range_request_builder import TotalRowRangeRequestBuilder
 
-        return total_row_range_request_builder.TotalRowRangeRequestBuilder(self.request_adapter, self.path_parameters)
+        return TotalRowRangeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WorkbookTableColumnItemRequestBuilderDeleteRequestConfiguration():
+    class WorkbookTableColumnItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class WorkbookTableColumnItemRequestBuilderGetQueryParameters():
@@ -227,11 +216,11 @@ class WorkbookTableColumnItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -245,31 +234,27 @@ class WorkbookTableColumnItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WorkbookTableColumnItemRequestBuilderGetRequestConfiguration():
+    class WorkbookTableColumnItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[WorkbookTableColumnItemRequestBuilder.WorkbookTableColumnItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WorkbookTableColumnItemRequestBuilderPatchRequestConfiguration():
+    class WorkbookTableColumnItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

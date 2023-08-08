@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsKioskAppType(Enum):
+class WindowsKioskAppType(str, Enum):
     # Unknown.
     Unknown = "unknown",
     # Store App.

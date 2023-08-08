@@ -1,21 +1,21 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import cloud_pc_user_setting
-    from .....models.o_data_errors import o_data_error
-    from .assign import assign_request_builder
-    from .assignments import assignments_request_builder
+    from .....models.cloud_pc_user_setting import CloudPcUserSetting
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .assign.assign_request_builder import AssignRequestBuilder
+    from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
-class CloudPcUserSettingItemRequestBuilder():
+class CloudPcUserSettingItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the userSettings property of the microsoft.graph.virtualEndpoint entity.
     """
@@ -23,91 +23,82 @@ class CloudPcUserSettingItemRequestBuilder():
         """
         Instantiates a new CloudPcUserSettingItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/virtualEndpoint/userSettings/{cloudPcUserSetting%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/userSettings/{cloudPcUserSetting%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a cloudPcUserSetting object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
+    async def get(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcUserSetting]:
         """
         Read the properties and relationships of a cloudPcUserSetting object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_pc_user_setting.CloudPcUserSetting]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CloudPcUserSetting]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import cloud_pc_user_setting
+        from .....models.cloud_pc_user_setting import CloudPcUserSetting
 
-        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting.CloudPcUserSetting, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPcUserSetting, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_user_setting.CloudPcUserSetting] = None, request_configuration: Optional[CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
+    async def patch(self,body: Optional[CloudPcUserSetting] = None, request_configuration: Optional[CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CloudPcUserSetting]:
         """
         Update the properties of a cloudPcUserSetting object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_pc_user_setting.CloudPcUserSetting]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CloudPcUserSetting]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import cloud_pc_user_setting
+        from .....models.cloud_pc_user_setting import CloudPcUserSetting
 
-        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting.CloudPcUserSetting, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPcUserSetting, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a cloudPcUserSetting object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -123,7 +114,7 @@ class CloudPcUserSettingItemRequestBuilder():
         """
         Read the properties and relationships of a cloudPcUserSetting object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,16 +128,16 @@ class CloudPcUserSettingItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[cloud_pc_user_setting.CloudPcUserSetting] = None, request_configuration: Optional[CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CloudPcUserSetting] = None, request_configuration: Optional[CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a cloudPcUserSetting object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,34 +150,32 @@ class CloudPcUserSettingItemRequestBuilder():
         return request_info
     
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+    def assign(self) -> AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
-        from .assign import assign_request_builder
+        from .assign.assign_request_builder import AssignRequestBuilder
 
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+    def assignments(self) -> AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.
         """
-        from .assignments import assignments_request_builder
+        from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration():
+    class CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class CloudPcUserSettingItemRequestBuilderGetQueryParameters():
@@ -197,11 +186,11 @@ class CloudPcUserSettingItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -215,31 +204,27 @@ class CloudPcUserSettingItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPcUserSettingItemRequestBuilderGetRequestConfiguration():
+    class CloudPcUserSettingItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[CloudPcUserSettingItemRequestBuilder.CloudPcUserSettingItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration():
+    class CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

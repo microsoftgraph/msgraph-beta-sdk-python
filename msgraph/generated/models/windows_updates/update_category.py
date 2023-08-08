@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UpdateCategory(Enum):
+class UpdateCategory(str, Enum):
     Feature = "feature",
     Quality = "quality",
     UnknownFutureValue = "unknownFutureValue",

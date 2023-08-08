@@ -1,35 +1,35 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import cloud_p_c
-    from .....models.o_data_errors import o_data_error
-    from .change_user_account_type import change_user_account_type_request_builder
-    from .end_grace_period import end_grace_period_request_builder
-    from .get_cloud_pc_connectivity_history import get_cloud_pc_connectivity_history_request_builder
-    from .get_cloud_pc_launch_info import get_cloud_pc_launch_info_request_builder
-    from .get_shift_work_cloud_pc_access_state import get_shift_work_cloud_pc_access_state_request_builder
-    from .get_supported_cloud_pc_remote_actions import get_supported_cloud_pc_remote_actions_request_builder
-    from .power_off import power_off_request_builder
-    from .power_on import power_on_request_builder
-    from .reboot import reboot_request_builder
-    from .rename import rename_request_builder
-    from .reprovision import reprovision_request_builder
-    from .restore import restore_request_builder
-    from .retry_partner_agent_installation import retry_partner_agent_installation_request_builder
-    from .start import start_request_builder
-    from .stop import stop_request_builder
-    from .troubleshoot import troubleshoot_request_builder
+    from .....models.cloud_p_c import CloudPC
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .change_user_account_type.change_user_account_type_request_builder import ChangeUserAccountTypeRequestBuilder
+    from .end_grace_period.end_grace_period_request_builder import EndGracePeriodRequestBuilder
+    from .get_cloud_pc_connectivity_history.get_cloud_pc_connectivity_history_request_builder import GetCloudPcConnectivityHistoryRequestBuilder
+    from .get_cloud_pc_launch_info.get_cloud_pc_launch_info_request_builder import GetCloudPcLaunchInfoRequestBuilder
+    from .get_shift_work_cloud_pc_access_state.get_shift_work_cloud_pc_access_state_request_builder import GetShiftWorkCloudPcAccessStateRequestBuilder
+    from .get_supported_cloud_pc_remote_actions.get_supported_cloud_pc_remote_actions_request_builder import GetSupportedCloudPcRemoteActionsRequestBuilder
+    from .power_off.power_off_request_builder import PowerOffRequestBuilder
+    from .power_on.power_on_request_builder import PowerOnRequestBuilder
+    from .reboot.reboot_request_builder import RebootRequestBuilder
+    from .rename.rename_request_builder import RenameRequestBuilder
+    from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
+    from .restore.restore_request_builder import RestoreRequestBuilder
+    from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
+    from .start.start_request_builder import StartRequestBuilder
+    from .stop.stop_request_builder import StopRequestBuilder
+    from .troubleshoot.troubleshoot_request_builder import TroubleshootRequestBuilder
 
-class CloudPCItemRequestBuilder():
+class CloudPCItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the cloudPCs property of the microsoft.graph.virtualEndpoint entity.
     """
@@ -37,91 +37,82 @@ class CloudPCItemRequestBuilder():
         """
         Instantiates a new CloudPCItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/virtualEndpoint/cloudPCs/{cloudPC%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudPCs/{cloudPC%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[CloudPCItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property cloudPCs for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
+    async def get(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPC]:
         """
         Read the properties and relationships of a specific cloudPC object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_p_c.CloudPC]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CloudPC]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import cloud_p_c
+        from .....models.cloud_p_c import CloudPC
 
-        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPC, error_mapping)
     
-    async def patch(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
+    async def patch(self,body: Optional[CloudPC] = None, request_configuration: Optional[CloudPCItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CloudPC]:
         """
         Update the navigation property cloudPCs in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[cloud_p_c.CloudPC]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CloudPC]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import cloud_p_c
+        from .....models.cloud_p_c import CloudPC
 
-        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, error_mapping)
+        return await self.request_adapter.send_async(request_info, CloudPC, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPCItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property cloudPCs for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,7 +128,7 @@ class CloudPCItemRequestBuilder():
         """
         Read the properties and relationships of a specific cloudPC object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -151,16 +142,16 @@ class CloudPCItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CloudPC] = None, request_configuration: Optional[CloudPCItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property cloudPCs in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -173,160 +164,158 @@ class CloudPCItemRequestBuilder():
         return request_info
     
     @property
-    def change_user_account_type(self) -> change_user_account_type_request_builder.ChangeUserAccountTypeRequestBuilder:
+    def change_user_account_type(self) -> ChangeUserAccountTypeRequestBuilder:
         """
         Provides operations to call the changeUserAccountType method.
         """
-        from .change_user_account_type import change_user_account_type_request_builder
+        from .change_user_account_type.change_user_account_type_request_builder import ChangeUserAccountTypeRequestBuilder
 
-        return change_user_account_type_request_builder.ChangeUserAccountTypeRequestBuilder(self.request_adapter, self.path_parameters)
+        return ChangeUserAccountTypeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def end_grace_period(self) -> end_grace_period_request_builder.EndGracePeriodRequestBuilder:
+    def end_grace_period(self) -> EndGracePeriodRequestBuilder:
         """
         Provides operations to call the endGracePeriod method.
         """
-        from .end_grace_period import end_grace_period_request_builder
+        from .end_grace_period.end_grace_period_request_builder import EndGracePeriodRequestBuilder
 
-        return end_grace_period_request_builder.EndGracePeriodRequestBuilder(self.request_adapter, self.path_parameters)
+        return EndGracePeriodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_cloud_pc_connectivity_history(self) -> get_cloud_pc_connectivity_history_request_builder.GetCloudPcConnectivityHistoryRequestBuilder:
+    def get_cloud_pc_connectivity_history(self) -> GetCloudPcConnectivityHistoryRequestBuilder:
         """
         Provides operations to call the getCloudPcConnectivityHistory method.
         """
-        from .get_cloud_pc_connectivity_history import get_cloud_pc_connectivity_history_request_builder
+        from .get_cloud_pc_connectivity_history.get_cloud_pc_connectivity_history_request_builder import GetCloudPcConnectivityHistoryRequestBuilder
 
-        return get_cloud_pc_connectivity_history_request_builder.GetCloudPcConnectivityHistoryRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetCloudPcConnectivityHistoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_cloud_pc_launch_info(self) -> get_cloud_pc_launch_info_request_builder.GetCloudPcLaunchInfoRequestBuilder:
+    def get_cloud_pc_launch_info(self) -> GetCloudPcLaunchInfoRequestBuilder:
         """
         Provides operations to call the getCloudPcLaunchInfo method.
         """
-        from .get_cloud_pc_launch_info import get_cloud_pc_launch_info_request_builder
+        from .get_cloud_pc_launch_info.get_cloud_pc_launch_info_request_builder import GetCloudPcLaunchInfoRequestBuilder
 
-        return get_cloud_pc_launch_info_request_builder.GetCloudPcLaunchInfoRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetCloudPcLaunchInfoRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_shift_work_cloud_pc_access_state(self) -> get_shift_work_cloud_pc_access_state_request_builder.GetShiftWorkCloudPcAccessStateRequestBuilder:
+    def get_shift_work_cloud_pc_access_state(self) -> GetShiftWorkCloudPcAccessStateRequestBuilder:
         """
         Provides operations to call the getShiftWorkCloudPcAccessState method.
         """
-        from .get_shift_work_cloud_pc_access_state import get_shift_work_cloud_pc_access_state_request_builder
+        from .get_shift_work_cloud_pc_access_state.get_shift_work_cloud_pc_access_state_request_builder import GetShiftWorkCloudPcAccessStateRequestBuilder
 
-        return get_shift_work_cloud_pc_access_state_request_builder.GetShiftWorkCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetShiftWorkCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_supported_cloud_pc_remote_actions(self) -> get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder:
+    def get_supported_cloud_pc_remote_actions(self) -> GetSupportedCloudPcRemoteActionsRequestBuilder:
         """
         Provides operations to call the getSupportedCloudPcRemoteActions method.
         """
-        from .get_supported_cloud_pc_remote_actions import get_supported_cloud_pc_remote_actions_request_builder
+        from .get_supported_cloud_pc_remote_actions.get_supported_cloud_pc_remote_actions_request_builder import GetSupportedCloudPcRemoteActionsRequestBuilder
 
-        return get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetSupportedCloudPcRemoteActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def power_off(self) -> power_off_request_builder.PowerOffRequestBuilder:
+    def power_off(self) -> PowerOffRequestBuilder:
         """
         Provides operations to call the powerOff method.
         """
-        from .power_off import power_off_request_builder
+        from .power_off.power_off_request_builder import PowerOffRequestBuilder
 
-        return power_off_request_builder.PowerOffRequestBuilder(self.request_adapter, self.path_parameters)
+        return PowerOffRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def power_on(self) -> power_on_request_builder.PowerOnRequestBuilder:
+    def power_on(self) -> PowerOnRequestBuilder:
         """
         Provides operations to call the powerOn method.
         """
-        from .power_on import power_on_request_builder
+        from .power_on.power_on_request_builder import PowerOnRequestBuilder
 
-        return power_on_request_builder.PowerOnRequestBuilder(self.request_adapter, self.path_parameters)
+        return PowerOnRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reboot(self) -> reboot_request_builder.RebootRequestBuilder:
+    def reboot(self) -> RebootRequestBuilder:
         """
         Provides operations to call the reboot method.
         """
-        from .reboot import reboot_request_builder
+        from .reboot.reboot_request_builder import RebootRequestBuilder
 
-        return reboot_request_builder.RebootRequestBuilder(self.request_adapter, self.path_parameters)
+        return RebootRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def rename(self) -> rename_request_builder.RenameRequestBuilder:
+    def rename(self) -> RenameRequestBuilder:
         """
         Provides operations to call the rename method.
         """
-        from .rename import rename_request_builder
+        from .rename.rename_request_builder import RenameRequestBuilder
 
-        return rename_request_builder.RenameRequestBuilder(self.request_adapter, self.path_parameters)
+        return RenameRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reprovision(self) -> reprovision_request_builder.ReprovisionRequestBuilder:
+    def reprovision(self) -> ReprovisionRequestBuilder:
         """
         Provides operations to call the reprovision method.
         """
-        from .reprovision import reprovision_request_builder
+        from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
 
-        return reprovision_request_builder.ReprovisionRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReprovisionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore(self) -> restore_request_builder.RestoreRequestBuilder:
+    def restore(self) -> RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
-        from .restore import restore_request_builder
+        from .restore.restore_request_builder import RestoreRequestBuilder
 
-        return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def retry_partner_agent_installation(self) -> retry_partner_agent_installation_request_builder.RetryPartnerAgentInstallationRequestBuilder:
+    def retry_partner_agent_installation(self) -> RetryPartnerAgentInstallationRequestBuilder:
         """
         Provides operations to call the retryPartnerAgentInstallation method.
         """
-        from .retry_partner_agent_installation import retry_partner_agent_installation_request_builder
+        from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
 
-        return retry_partner_agent_installation_request_builder.RetryPartnerAgentInstallationRequestBuilder(self.request_adapter, self.path_parameters)
+        return RetryPartnerAgentInstallationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def start(self) -> start_request_builder.StartRequestBuilder:
+    def start(self) -> StartRequestBuilder:
         """
         Provides operations to call the start method.
         """
-        from .start import start_request_builder
+        from .start.start_request_builder import StartRequestBuilder
 
-        return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
+        return StartRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
+    def stop(self) -> StopRequestBuilder:
         """
         Provides operations to call the stop method.
         """
-        from .stop import stop_request_builder
+        from .stop.stop_request_builder import StopRequestBuilder
 
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
+        return StopRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def troubleshoot(self) -> troubleshoot_request_builder.TroubleshootRequestBuilder:
+    def troubleshoot(self) -> TroubleshootRequestBuilder:
         """
         Provides operations to call the troubleshoot method.
         """
-        from .troubleshoot import troubleshoot_request_builder
+        from .troubleshoot.troubleshoot_request_builder import TroubleshootRequestBuilder
 
-        return troubleshoot_request_builder.TroubleshootRequestBuilder(self.request_adapter, self.path_parameters)
+        return TroubleshootRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPCItemRequestBuilderDeleteRequestConfiguration():
+    class CloudPCItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class CloudPCItemRequestBuilderGetQueryParameters():
@@ -337,11 +326,11 @@ class CloudPCItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -355,31 +344,27 @@ class CloudPCItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPCItemRequestBuilderGetRequestConfiguration():
+    class CloudPCItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[CloudPCItemRequestBuilder.CloudPCItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPCItemRequestBuilderPatchRequestConfiguration():
+    class CloudPCItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

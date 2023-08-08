@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ResultantAppState(Enum):
+class ResultantAppState(str, Enum):
     # The application is not applicable.
     NotApplicable = "notApplicable",
     # The application is installed with no errors.

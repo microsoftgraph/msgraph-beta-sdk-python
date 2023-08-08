@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidManagedAppSafetyNetDeviceAttestationType(Enum):
+class AndroidManagedAppSafetyNetDeviceAttestationType(str, Enum):
     # no requirement set
     None_ = "none",
     # require that Android device passes SafetyNet Basic Integrity validation

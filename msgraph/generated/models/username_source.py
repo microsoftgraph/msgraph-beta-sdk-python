@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UsernameSource(Enum):
+class UsernameSource(str, Enum):
     # User principal name.
     UserPrincipalName = "userPrincipalName",
     # Primary SMTP address.

@@ -1,28 +1,28 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import list
-    from .....models.o_data_errors import o_data_error
-    from .activities import activities_request_builder
-    from .columns import columns_request_builder
-    from .content_types import content_types_request_builder
-    from .created_by_user import created_by_user_request_builder
-    from .drive import drive_request_builder
-    from .items import items_request_builder
-    from .last_modified_by_user import last_modified_by_user_request_builder
-    from .operations import operations_request_builder
-    from .subscriptions import subscriptions_request_builder
+    from .....models.list_ import List_
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .activities.activities_request_builder import ActivitiesRequestBuilder
+    from .columns.columns_request_builder import ColumnsRequestBuilder
+    from .content_types.content_types_request_builder import ContentTypesRequestBuilder
+    from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
+    from .drive.drive_request_builder import DriveRequestBuilder
+    from .items.items_request_builder import ItemsRequestBuilder
+    from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
+    from .operations.operations_request_builder import OperationsRequestBuilder
+    from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
 
-class ListItemRequestBuilder():
+class ListItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the lists property of the microsoft.graph.site entity.
     """
@@ -30,91 +30,82 @@ class ListItemRequestBuilder():
         """
         Instantiates a new ListItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ListItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property lists for sites
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ListItemRequestBuilderGetRequestConfiguration] = None) -> Optional[list.List]:
+    async def get(self,request_configuration: Optional[ListItemRequestBuilderGetRequestConfiguration] = None) -> Optional[List_]:
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a [list][].
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[list.List]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[List_]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import list
+        from .....models.list_ import List_
 
-        return await self.request_adapter.send_async(request_info, list.List, error_mapping)
+        return await self.request_adapter.send_async(request_info, List_, error_mapping)
     
-    async def patch(self,body: Optional[list.List] = None, request_configuration: Optional[ListItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[list.List]:
+    async def patch(self,body: Optional[List_] = None, request_configuration: Optional[ListItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[List_]:
         """
         Update the navigation property lists in sites
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[list.List]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[List_]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import list
+        from .....models.list_ import List_
 
-        return await self.request_adapter.send_async(request_info, list.List, error_mapping)
+        return await self.request_adapter.send_async(request_info, List_, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ListItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property lists for sites
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -128,9 +119,9 @@ class ListItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ListItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a [list][].
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -144,16 +135,16 @@ class ListItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[list.List] = None, request_configuration: Optional[ListItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[List_] = None, request_configuration: Optional[ListItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property lists in sites
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -166,112 +157,110 @@ class ListItemRequestBuilder():
         return request_info
     
     @property
-    def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
+    def activities(self) -> ActivitiesRequestBuilder:
         """
         Provides operations to manage the activities property of the microsoft.graph.list entity.
         """
-        from .activities import activities_request_builder
+        from .activities.activities_request_builder import ActivitiesRequestBuilder
 
-        return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def columns(self) -> columns_request_builder.ColumnsRequestBuilder:
+    def columns(self) -> ColumnsRequestBuilder:
         """
         Provides operations to manage the columns property of the microsoft.graph.list entity.
         """
-        from .columns import columns_request_builder
+        from .columns.columns_request_builder import ColumnsRequestBuilder
 
-        return columns_request_builder.ColumnsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ColumnsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def content_types(self) -> content_types_request_builder.ContentTypesRequestBuilder:
+    def content_types(self) -> ContentTypesRequestBuilder:
         """
         Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
         """
-        from .content_types import content_types_request_builder
+        from .content_types.content_types_request_builder import ContentTypesRequestBuilder
 
-        return content_types_request_builder.ContentTypesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ContentTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def created_by_user(self) -> created_by_user_request_builder.CreatedByUserRequestBuilder:
+    def created_by_user(self) -> CreatedByUserRequestBuilder:
         """
         Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         """
-        from .created_by_user import created_by_user_request_builder
+        from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
 
-        return created_by_user_request_builder.CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def drive(self) -> drive_request_builder.DriveRequestBuilder:
+    def drive(self) -> DriveRequestBuilder:
         """
         Provides operations to manage the drive property of the microsoft.graph.list entity.
         """
-        from .drive import drive_request_builder
+        from .drive.drive_request_builder import DriveRequestBuilder
 
-        return drive_request_builder.DriveRequestBuilder(self.request_adapter, self.path_parameters)
+        return DriveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def items(self) -> items_request_builder.ItemsRequestBuilder:
+    def items(self) -> ItemsRequestBuilder:
         """
         Provides operations to manage the items property of the microsoft.graph.list entity.
         """
-        from .items import items_request_builder
+        from .items.items_request_builder import ItemsRequestBuilder
 
-        return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def last_modified_by_user(self) -> last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder:
+    def last_modified_by_user(self) -> LastModifiedByUserRequestBuilder:
         """
         Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         """
-        from .last_modified_by_user import last_modified_by_user_request_builder
+        from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
 
-        return last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
+    def operations(self) -> OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.list entity.
         """
-        from .operations import operations_request_builder
+        from .operations.operations_request_builder import OperationsRequestBuilder
 
-        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def subscriptions(self) -> subscriptions_request_builder.SubscriptionsRequestBuilder:
+    def subscriptions(self) -> SubscriptionsRequestBuilder:
         """
         Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
         """
-        from .subscriptions import subscriptions_request_builder
+        from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
 
-        return subscriptions_request_builder.SubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ListItemRequestBuilderDeleteRequestConfiguration():
+    class ListItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class ListItemRequestBuilderGetQueryParameters():
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a [list][].
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -285,31 +274,27 @@ class ListItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ListItemRequestBuilderGetRequestConfiguration():
+    class ListItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ListItemRequestBuilder.ListItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ListItemRequestBuilderPatchRequestConfiguration():
+    class ListItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

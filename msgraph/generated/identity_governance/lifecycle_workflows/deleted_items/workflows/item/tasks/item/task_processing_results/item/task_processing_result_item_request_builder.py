@@ -1,22 +1,22 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..........models.identity_governance import task_processing_result
-    from ..........models.o_data_errors import o_data_error
-    from .microsoft_graph_identity_governance_resume import microsoft_graph_identity_governance_resume_request_builder
-    from .subject import subject_request_builder
-    from .task import task_request_builder
+    from ..........models.identity_governance.task_processing_result import TaskProcessingResult
+    from ..........models.o_data_errors.o_data_error import ODataError
+    from .microsoft_graph_identity_governance_resume.microsoft_graph_identity_governance_resume_request_builder import MicrosoftGraphIdentityGovernanceResumeRequestBuilder
+    from .subject.subject_request_builder import SubjectRequestBuilder
+    from .task.task_request_builder import TaskRequestBuilder
 
-class TaskProcessingResultItemRequestBuilder():
+class TaskProcessingResultItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.task entity.
     """
@@ -24,47 +24,38 @@ class TaskProcessingResultItemRequestBuilder():
         """
         Instantiates a new TaskProcessingResultItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/tasks/{task%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/tasks/{task%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[task_processing_result.TaskProcessingResult]:
+    async def get(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TaskProcessingResult]:
         """
         The result of processing the task.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[task_processing_result.TaskProcessingResult]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[TaskProcessingResult]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..........models.o_data_errors import o_data_error
+        from ..........models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..........models.identity_governance import task_processing_result
+        from ..........models.identity_governance.task_processing_result import TaskProcessingResult
 
-        return await self.request_adapter.send_async(request_info, task_processing_result.TaskProcessingResult, error_mapping)
+        return await self.request_adapter.send_async(request_info, TaskProcessingResult, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The result of processing the task.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -79,31 +70,31 @@ class TaskProcessingResultItemRequestBuilder():
         return request_info
     
     @property
-    def microsoft_graph_identity_governance_resume(self) -> microsoft_graph_identity_governance_resume_request_builder.MicrosoftGraphIdentityGovernanceResumeRequestBuilder:
+    def microsoft_graph_identity_governance_resume(self) -> MicrosoftGraphIdentityGovernanceResumeRequestBuilder:
         """
         Provides operations to call the resume method.
         """
-        from .microsoft_graph_identity_governance_resume import microsoft_graph_identity_governance_resume_request_builder
+        from .microsoft_graph_identity_governance_resume.microsoft_graph_identity_governance_resume_request_builder import MicrosoftGraphIdentityGovernanceResumeRequestBuilder
 
-        return microsoft_graph_identity_governance_resume_request_builder.MicrosoftGraphIdentityGovernanceResumeRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphIdentityGovernanceResumeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def subject(self) -> subject_request_builder.SubjectRequestBuilder:
+    def subject(self) -> SubjectRequestBuilder:
         """
         Provides operations to manage the subject property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
         """
-        from .subject import subject_request_builder
+        from .subject.subject_request_builder import SubjectRequestBuilder
 
-        return subject_request_builder.SubjectRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def task(self) -> task_request_builder.TaskRequestBuilder:
+    def task(self) -> TaskRequestBuilder:
         """
         Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
         """
-        from .task import task_request_builder
+        from .task.task_request_builder import TaskRequestBuilder
 
-        return task_request_builder.TaskRequestBuilder(self.request_adapter, self.path_parameters)
+        return TaskRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TaskProcessingResultItemRequestBuilderGetQueryParameters():
@@ -114,11 +105,11 @@ class TaskProcessingResultItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -132,17 +123,15 @@ class TaskProcessingResultItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TaskProcessingResultItemRequestBuilderGetRequestConfiguration():
+    class TaskProcessingResultItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[TaskProcessingResultItemRequestBuilder.TaskProcessingResultItemRequestBuilderGetQueryParameters] = None
 

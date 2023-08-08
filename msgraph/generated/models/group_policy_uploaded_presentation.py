@@ -1,69 +1,80 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import group_policy_presentation, group_policy_presentation_check_box, group_policy_presentation_combo_box, group_policy_presentation_decimal_text_box, group_policy_presentation_dropdown_list, group_policy_presentation_list_box, group_policy_presentation_long_decimal_text_box, group_policy_presentation_multi_text_box, group_policy_presentation_text, group_policy_presentation_text_box
+    from .group_policy_presentation import GroupPolicyPresentation
+    from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
+    from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
+    from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
+    from .group_policy_presentation_dropdown_list import GroupPolicyPresentationDropdownList
+    from .group_policy_presentation_list_box import GroupPolicyPresentationListBox
+    from .group_policy_presentation_long_decimal_text_box import GroupPolicyPresentationLongDecimalTextBox
+    from .group_policy_presentation_multi_text_box import GroupPolicyPresentationMultiTextBox
+    from .group_policy_presentation_text import GroupPolicyPresentationText
+    from .group_policy_presentation_text_box import GroupPolicyPresentationTextBox
 
-from . import group_policy_presentation
+from .group_policy_presentation import GroupPolicyPresentation
 
-class GroupPolicyUploadedPresentation(group_policy_presentation.GroupPolicyPresentation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GroupPolicyUploadedPresentation and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.groupPolicyUploadedPresentation"
+@dataclass
+class GroupPolicyUploadedPresentation(GroupPolicyPresentation):
+    """
+    Represents an ADMX checkBox element and an ADMX boolean element.
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.groupPolicyUploadedPresentation"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyUploadedPresentation:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: GroupPolicyUploadedPresentation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationCheckBox":
-                from . import group_policy_presentation_check_box
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationCheckBox".casefold():
+            from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
 
-                return group_policy_presentation_check_box.GroupPolicyPresentationCheckBox()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationComboBox":
-                from . import group_policy_presentation_combo_box
+            return GroupPolicyPresentationCheckBox()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationComboBox".casefold():
+            from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
 
-                return group_policy_presentation_combo_box.GroupPolicyPresentationComboBox()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationDecimalTextBox":
-                from . import group_policy_presentation_decimal_text_box
+            return GroupPolicyPresentationComboBox()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationDecimalTextBox".casefold():
+            from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
 
-                return group_policy_presentation_decimal_text_box.GroupPolicyPresentationDecimalTextBox()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationDropdownList":
-                from . import group_policy_presentation_dropdown_list
+            return GroupPolicyPresentationDecimalTextBox()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationDropdownList".casefold():
+            from .group_policy_presentation_dropdown_list import GroupPolicyPresentationDropdownList
 
-                return group_policy_presentation_dropdown_list.GroupPolicyPresentationDropdownList()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationListBox":
-                from . import group_policy_presentation_list_box
+            return GroupPolicyPresentationDropdownList()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationListBox".casefold():
+            from .group_policy_presentation_list_box import GroupPolicyPresentationListBox
 
-                return group_policy_presentation_list_box.GroupPolicyPresentationListBox()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationLongDecimalTextBox":
-                from . import group_policy_presentation_long_decimal_text_box
+            return GroupPolicyPresentationListBox()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationLongDecimalTextBox".casefold():
+            from .group_policy_presentation_long_decimal_text_box import GroupPolicyPresentationLongDecimalTextBox
 
-                return group_policy_presentation_long_decimal_text_box.GroupPolicyPresentationLongDecimalTextBox()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationMultiTextBox":
-                from . import group_policy_presentation_multi_text_box
+            return GroupPolicyPresentationLongDecimalTextBox()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationMultiTextBox".casefold():
+            from .group_policy_presentation_multi_text_box import GroupPolicyPresentationMultiTextBox
 
-                return group_policy_presentation_multi_text_box.GroupPolicyPresentationMultiTextBox()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationText":
-                from . import group_policy_presentation_text
+            return GroupPolicyPresentationMultiTextBox()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationText".casefold():
+            from .group_policy_presentation_text import GroupPolicyPresentationText
 
-                return group_policy_presentation_text.GroupPolicyPresentationText()
-            if mapping_value == "#microsoft.graph.groupPolicyPresentationTextBox":
-                from . import group_policy_presentation_text_box
+            return GroupPolicyPresentationText()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationTextBox".casefold():
+            from .group_policy_presentation_text_box import GroupPolicyPresentationTextBox
 
-                return group_policy_presentation_text_box.GroupPolicyPresentationTextBox()
+            return GroupPolicyPresentationTextBox()
         return GroupPolicyUploadedPresentation()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -71,7 +82,27 @@ class GroupPolicyUploadedPresentation(group_policy_presentation.GroupPolicyPrese
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import group_policy_presentation, group_policy_presentation_check_box, group_policy_presentation_combo_box, group_policy_presentation_decimal_text_box, group_policy_presentation_dropdown_list, group_policy_presentation_list_box, group_policy_presentation_long_decimal_text_box, group_policy_presentation_multi_text_box, group_policy_presentation_text, group_policy_presentation_text_box
+        from .group_policy_presentation import GroupPolicyPresentation
+        from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
+        from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
+        from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
+        from .group_policy_presentation_dropdown_list import GroupPolicyPresentationDropdownList
+        from .group_policy_presentation_list_box import GroupPolicyPresentationListBox
+        from .group_policy_presentation_long_decimal_text_box import GroupPolicyPresentationLongDecimalTextBox
+        from .group_policy_presentation_multi_text_box import GroupPolicyPresentationMultiTextBox
+        from .group_policy_presentation_text import GroupPolicyPresentationText
+        from .group_policy_presentation_text_box import GroupPolicyPresentationTextBox
+
+        from .group_policy_presentation import GroupPolicyPresentation
+        from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
+        from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
+        from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
+        from .group_policy_presentation_dropdown_list import GroupPolicyPresentationDropdownList
+        from .group_policy_presentation_list_box import GroupPolicyPresentationListBox
+        from .group_policy_presentation_long_decimal_text_box import GroupPolicyPresentationLongDecimalTextBox
+        from .group_policy_presentation_multi_text_box import GroupPolicyPresentationMultiTextBox
+        from .group_policy_presentation_text import GroupPolicyPresentationText
+        from .group_policy_presentation_text_box import GroupPolicyPresentationTextBox
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -85,8 +116,8 @@ class GroupPolicyUploadedPresentation(group_policy_presentation.GroupPolicyPrese
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

@@ -1,32 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import information_protection_action
+    from .information_protection_action import InformationProtectionAction
 
-from . import information_protection_action
+from .information_protection_action import InformationProtectionAction
 
-class RemoveWatermarkAction(information_protection_action.InformationProtectionAction):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RemoveWatermarkAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.removeWatermarkAction"
-        # The name of the UI element of watermark to be removed.
-        self._ui_element_names: Optional[List[str]] = None
+@dataclass
+class RemoveWatermarkAction(InformationProtectionAction):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.security.removeWatermarkAction"
+    # The name of the UI element of watermark to be removed.
+    ui_element_names: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RemoveWatermarkAction:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: RemoveWatermarkAction
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return RemoveWatermarkAction()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,7 +32,9 @@ class RemoveWatermarkAction(information_protection_action.InformationProtectionA
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import information_protection_action
+        from .information_protection_action import InformationProtectionAction
+
+        from .information_protection_action import InformationProtectionAction
 
         fields: Dict[str, Callable[[Any], None]] = {
             "uiElementNames": lambda n : setattr(self, 'ui_element_names', n.get_collection_of_primitive_values(str)),
@@ -49,26 +49,9 @@ class RemoveWatermarkAction(information_protection_action.InformationProtectionA
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("uiElementNames", self.ui_element_names)
-    
-    @property
-    def ui_element_names(self,) -> Optional[List[str]]:
-        """
-        Gets the uiElementNames property value. The name of the UI element of watermark to be removed.
-        Returns: Optional[List[str]]
-        """
-        return self._ui_element_names
-    
-    @ui_element_names.setter
-    def ui_element_names(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the uiElementNames property value. The name of the UI element of watermark to be removed.
-        Args:
-            value: Value to set for the ui_element_names property.
-        """
-        self._ui_element_names = value
     
 

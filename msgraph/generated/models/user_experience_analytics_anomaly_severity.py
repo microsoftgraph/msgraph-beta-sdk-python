@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserExperienceAnalyticsAnomalySeverity(Enum):
+class UserExperienceAnalyticsAnomalySeverity(str, Enum):
     # Indicates the anomaly is of high severity.
     High = "high",
     # Indicates the anomaly is of medium severity.

@@ -1,26 +1,26 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models.o_data_errors import o_data_error
-    from .......models.security import ediscovery_search
-    from .additional_sources import additional_sources_request_builder
-    from .add_to_review_set_operation import add_to_review_set_operation_request_builder
-    from .custodian_sources import custodian_sources_request_builder
-    from .last_estimate_statistics_operation import last_estimate_statistics_operation_request_builder
-    from .microsoft_graph_security_estimate_statistics import microsoft_graph_security_estimate_statistics_request_builder
-    from .microsoft_graph_security_purge_data import microsoft_graph_security_purge_data_request_builder
-    from .noncustodial_sources import noncustodial_sources_request_builder
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .......models.security.ediscovery_search import EdiscoverySearch
+    from .additional_sources.additional_sources_request_builder import AdditionalSourcesRequestBuilder
+    from .add_to_review_set_operation.add_to_review_set_operation_request_builder import AddToReviewSetOperationRequestBuilder
+    from .custodian_sources.custodian_sources_request_builder import CustodianSourcesRequestBuilder
+    from .last_estimate_statistics_operation.last_estimate_statistics_operation_request_builder import LastEstimateStatisticsOperationRequestBuilder
+    from .microsoft_graph_security_estimate_statistics.microsoft_graph_security_estimate_statistics_request_builder import MicrosoftGraphSecurityEstimateStatisticsRequestBuilder
+    from .microsoft_graph_security_purge_data.microsoft_graph_security_purge_data_request_builder import MicrosoftGraphSecurityPurgeDataRequestBuilder
+    from .noncustodial_sources.noncustodial_sources_request_builder import NoncustodialSourcesRequestBuilder
 
-class EdiscoverySearchItemRequestBuilder():
+class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.
     """
@@ -28,91 +28,82 @@ class EdiscoverySearchItemRequestBuilder():
         """
         Instantiates a new EdiscoverySearchItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete an ediscoverySearch object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_search.EdiscoverySearch]:
+    async def get(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EdiscoverySearch]:
         """
         Read the properties and relationships of an ediscoverySearch object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ediscovery_search.EdiscoverySearch]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EdiscoverySearch]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.security import ediscovery_search
+        from .......models.security.ediscovery_search import EdiscoverySearch
 
-        return await self.request_adapter.send_async(request_info, ediscovery_search.EdiscoverySearch, error_mapping)
+        return await self.request_adapter.send_async(request_info, EdiscoverySearch, error_mapping)
     
-    async def patch(self,body: Optional[ediscovery_search.EdiscoverySearch] = None, request_configuration: Optional[EdiscoverySearchItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ediscovery_search.EdiscoverySearch]:
+    async def patch(self,body: Optional[EdiscoverySearch] = None, request_configuration: Optional[EdiscoverySearchItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EdiscoverySearch]:
         """
         Update the properties of an ediscoverySearch object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ediscovery_search.EdiscoverySearch]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EdiscoverySearch]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.security import ediscovery_search
+        from .......models.security.ediscovery_search import EdiscoverySearch
 
-        return await self.request_adapter.send_async(request_info, ediscovery_search.EdiscoverySearch, error_mapping)
+        return await self.request_adapter.send_async(request_info, EdiscoverySearch, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete an ediscoverySearch object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -128,7 +119,7 @@ class EdiscoverySearchItemRequestBuilder():
         """
         Read the properties and relationships of an ediscoverySearch object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -142,16 +133,16 @@ class EdiscoverySearchItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ediscovery_search.EdiscoverySearch] = None, request_configuration: Optional[EdiscoverySearchItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EdiscoverySearch] = None, request_configuration: Optional[EdiscoverySearchItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of an ediscoverySearch object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -164,79 +155,77 @@ class EdiscoverySearchItemRequestBuilder():
         return request_info
     
     @property
-    def additional_sources(self) -> additional_sources_request_builder.AdditionalSourcesRequestBuilder:
+    def additional_sources(self) -> AdditionalSourcesRequestBuilder:
         """
         Provides operations to manage the additionalSources property of the microsoft.graph.security.ediscoverySearch entity.
         """
-        from .additional_sources import additional_sources_request_builder
+        from .additional_sources.additional_sources_request_builder import AdditionalSourcesRequestBuilder
 
-        return additional_sources_request_builder.AdditionalSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AdditionalSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def add_to_review_set_operation(self) -> add_to_review_set_operation_request_builder.AddToReviewSetOperationRequestBuilder:
+    def add_to_review_set_operation(self) -> AddToReviewSetOperationRequestBuilder:
         """
         Provides operations to manage the addToReviewSetOperation property of the microsoft.graph.security.ediscoverySearch entity.
         """
-        from .add_to_review_set_operation import add_to_review_set_operation_request_builder
+        from .add_to_review_set_operation.add_to_review_set_operation_request_builder import AddToReviewSetOperationRequestBuilder
 
-        return add_to_review_set_operation_request_builder.AddToReviewSetOperationRequestBuilder(self.request_adapter, self.path_parameters)
+        return AddToReviewSetOperationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def custodian_sources(self) -> custodian_sources_request_builder.CustodianSourcesRequestBuilder:
+    def custodian_sources(self) -> CustodianSourcesRequestBuilder:
         """
         Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.
         """
-        from .custodian_sources import custodian_sources_request_builder
+        from .custodian_sources.custodian_sources_request_builder import CustodianSourcesRequestBuilder
 
-        return custodian_sources_request_builder.CustodianSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustodianSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def last_estimate_statistics_operation(self) -> last_estimate_statistics_operation_request_builder.LastEstimateStatisticsOperationRequestBuilder:
+    def last_estimate_statistics_operation(self) -> LastEstimateStatisticsOperationRequestBuilder:
         """
         Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.security.ediscoverySearch entity.
         """
-        from .last_estimate_statistics_operation import last_estimate_statistics_operation_request_builder
+        from .last_estimate_statistics_operation.last_estimate_statistics_operation_request_builder import LastEstimateStatisticsOperationRequestBuilder
 
-        return last_estimate_statistics_operation_request_builder.LastEstimateStatisticsOperationRequestBuilder(self.request_adapter, self.path_parameters)
+        return LastEstimateStatisticsOperationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_security_estimate_statistics(self) -> microsoft_graph_security_estimate_statistics_request_builder.MicrosoftGraphSecurityEstimateStatisticsRequestBuilder:
+    def microsoft_graph_security_estimate_statistics(self) -> MicrosoftGraphSecurityEstimateStatisticsRequestBuilder:
         """
         Provides operations to call the estimateStatistics method.
         """
-        from .microsoft_graph_security_estimate_statistics import microsoft_graph_security_estimate_statistics_request_builder
+        from .microsoft_graph_security_estimate_statistics.microsoft_graph_security_estimate_statistics_request_builder import MicrosoftGraphSecurityEstimateStatisticsRequestBuilder
 
-        return microsoft_graph_security_estimate_statistics_request_builder.MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_security_purge_data(self) -> microsoft_graph_security_purge_data_request_builder.MicrosoftGraphSecurityPurgeDataRequestBuilder:
+    def microsoft_graph_security_purge_data(self) -> MicrosoftGraphSecurityPurgeDataRequestBuilder:
         """
         Provides operations to call the purgeData method.
         """
-        from .microsoft_graph_security_purge_data import microsoft_graph_security_purge_data_request_builder
+        from .microsoft_graph_security_purge_data.microsoft_graph_security_purge_data_request_builder import MicrosoftGraphSecurityPurgeDataRequestBuilder
 
-        return microsoft_graph_security_purge_data_request_builder.MicrosoftGraphSecurityPurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphSecurityPurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def noncustodial_sources(self) -> noncustodial_sources_request_builder.NoncustodialSourcesRequestBuilder:
+    def noncustodial_sources(self) -> NoncustodialSourcesRequestBuilder:
         """
         Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.
         """
-        from .noncustodial_sources import noncustodial_sources_request_builder
+        from .noncustodial_sources.noncustodial_sources_request_builder import NoncustodialSourcesRequestBuilder
 
-        return noncustodial_sources_request_builder.NoncustodialSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return NoncustodialSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration():
+    class EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class EdiscoverySearchItemRequestBuilderGetQueryParameters():
@@ -247,11 +236,11 @@ class EdiscoverySearchItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -265,31 +254,27 @@ class EdiscoverySearchItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EdiscoverySearchItemRequestBuilderGetRequestConfiguration():
+    class EdiscoverySearchItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[EdiscoverySearchItemRequestBuilder.EdiscoverySearchItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EdiscoverySearchItemRequestBuilderPatchRequestConfiguration():
+    class EdiscoverySearchItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

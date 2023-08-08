@@ -1,49 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import conversation_member
+    from .conversation_member import ConversationMember
 
-from . import conversation_member
+from .conversation_member import ConversationMember
 
-class AzureCommunicationServicesUserConversationMember(conversation_member.ConversationMember):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AzureCommunicationServicesUserConversationMember and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.azureCommunicationServicesUserConversationMember"
-        # Azure Communication Services ID of the user.
-        self._azure_communication_services_id: Optional[str] = None
-    
-    @property
-    def azure_communication_services_id(self,) -> Optional[str]:
-        """
-        Gets the azureCommunicationServicesId property value. Azure Communication Services ID of the user.
-        Returns: Optional[str]
-        """
-        return self._azure_communication_services_id
-    
-    @azure_communication_services_id.setter
-    def azure_communication_services_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureCommunicationServicesId property value. Azure Communication Services ID of the user.
-        Args:
-            value: Value to set for the azure_communication_services_id property.
-        """
-        self._azure_communication_services_id = value
+@dataclass
+class AzureCommunicationServicesUserConversationMember(ConversationMember):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.azureCommunicationServicesUserConversationMember"
+    # Azure Communication Services ID of the user.
+    azure_communication_services_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureCommunicationServicesUserConversationMember:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AzureCommunicationServicesUserConversationMember
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AzureCommunicationServicesUserConversationMember()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -51,7 +32,9 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import conversation_member
+        from .conversation_member import ConversationMember
+
+        from .conversation_member import ConversationMember
 
         fields: Dict[str, Callable[[Any], None]] = {
             "azureCommunicationServicesId": lambda n : setattr(self, 'azure_communication_services_id', n.get_str_value()),
@@ -66,8 +49,8 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("azureCommunicationServicesId", self.azure_communication_services_id)
     

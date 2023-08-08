@@ -1,51 +1,35 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import ios_home_screen_item
+    from .ios_home_screen_item import IosHomeScreenItem
 
-from . import ios_home_screen_item
+from .ios_home_screen_item import IosHomeScreenItem
 
-class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosHomeScreenApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosHomeScreenApp"
-        # BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
-        self._bundle_i_d: Optional[str] = None
-        # When true, the bundle ID will be handled as a URL for a web clip.
-        self._is_web_clip: Optional[bool] = None
-    
-    @property
-    def bundle_i_d(self,) -> Optional[str]:
-        """
-        Gets the bundleID property value. BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
-        Returns: Optional[str]
-        """
-        return self._bundle_i_d
-    
-    @bundle_i_d.setter
-    def bundle_i_d(self,value: Optional[str] = None) -> None:
-        """
-        Sets the bundleID property value. BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
-        Args:
-            value: Value to set for the bundle_i_d property.
-        """
-        self._bundle_i_d = value
+@dataclass
+class IosHomeScreenApp(IosHomeScreenItem):
+    """
+    Represents an icon for an app on the Home Screen
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.iosHomeScreenApp"
+    # BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
+    bundle_i_d: Optional[str] = None
+    # When true, the bundle ID will be handled as a URL for a web clip.
+    is_web_clip: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosHomeScreenApp:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IosHomeScreenApp
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return IosHomeScreenApp()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -53,7 +37,9 @@ class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import ios_home_screen_item
+        from .ios_home_screen_item import IosHomeScreenItem
+
+        from .ios_home_screen_item import IosHomeScreenItem
 
         fields: Dict[str, Callable[[Any], None]] = {
             "bundleID": lambda n : setattr(self, 'bundle_i_d', n.get_str_value()),
@@ -63,31 +49,14 @@ class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_web_clip(self,) -> Optional[bool]:
-        """
-        Gets the isWebClip property value. When true, the bundle ID will be handled as a URL for a web clip.
-        Returns: Optional[bool]
-        """
-        return self._is_web_clip
-    
-    @is_web_clip.setter
-    def is_web_clip(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isWebClip property value. When true, the bundle ID will be handled as a URL for a web clip.
-        Args:
-            value: Value to set for the is_web_clip property.
-        """
-        self._is_web_clip = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("bundleID", self.bundle_i_d)
         writer.write_bool_value("isWebClip", self.is_web_clip)

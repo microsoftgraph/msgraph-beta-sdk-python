@@ -1,72 +1,35 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class CallTranscript(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new callTranscript and sets the default values.
-        """
-        super().__init__()
-        # A field that represents the content of the transcript. Read-only.
-        self._content: Optional[bytes] = None
-        # Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # A field that represents the time-aligned metadata of the utterances in the transcript. Read-only.
-        self._metadata_content: Optional[bytes] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def content(self,) -> Optional[bytes]:
-        """
-        Gets the content property value. A field that represents the content of the transcript. Read-only.
-        Returns: Optional[bytes]
-        """
-        return self._content
-    
-    @content.setter
-    def content(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the content property value. A field that represents the content of the transcript. Read-only.
-        Args:
-            value: Value to set for the content property.
-        """
-        self._content = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+@dataclass
+class CallTranscript(Entity):
+    # The content of the transcript. Read-only.
+    content: Optional[bytes] = None
+    # Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+    created_date_time: Optional[datetime.datetime] = None
+    # The time-aligned metadata of the utterances in the transcript. Read-only.
+    metadata_content: Optional[bytes] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CallTranscript:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CallTranscript
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CallTranscript()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -74,7 +37,9 @@ class CallTranscript(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity
+        from .entity import Entity
+
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
@@ -85,34 +50,17 @@ class CallTranscript(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def metadata_content(self,) -> Optional[bytes]:
-        """
-        Gets the metadataContent property value. A field that represents the time-aligned metadata of the utterances in the transcript. Read-only.
-        Returns: Optional[bytes]
-        """
-        return self._metadata_content
-    
-    @metadata_content.setter
-    def metadata_content(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the metadataContent property value. A field that represents the time-aligned metadata of the utterances in the transcript. Read-only.
-        Args:
-            value: Value to set for the metadata_content property.
-        """
-        self._metadata_content = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_object_value("content", self.content)
+        writer.write_bytes_value("content", self.content)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_object_value("metadataContent", self.metadata_content)
+        writer.write_bytes_value("metadataContent", self.metadata_content)
     
 

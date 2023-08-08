@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TeamworkSupportedClient(Enum):
+class TeamworkSupportedClient(str, Enum):
     Unknown = "unknown",
     SkypeDefaultAndTeams = "skypeDefaultAndTeams",
     TeamsDefaultAndSkype = "teamsDefaultAndSkype",

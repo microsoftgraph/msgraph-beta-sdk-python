@@ -1,32 +1,32 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import rbac_application
-    from ....models.o_data_errors import o_data_error
-    from .resource_namespaces import resource_namespaces_request_builder
-    from .role_assignment_approvals import role_assignment_approvals_request_builder
-    from .role_assignments import role_assignments_request_builder
-    from .role_assignment_schedule_instances import role_assignment_schedule_instances_request_builder
-    from .role_assignment_schedule_requests import role_assignment_schedule_requests_request_builder
-    from .role_assignment_schedules import role_assignment_schedules_request_builder
-    from .role_definitions import role_definitions_request_builder
-    from .role_eligibility_schedule_instances import role_eligibility_schedule_instances_request_builder
-    from .role_eligibility_schedule_requests import role_eligibility_schedule_requests_request_builder
-    from .role_eligibility_schedules import role_eligibility_schedules_request_builder
-    from .role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id import role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder
-    from .role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id import role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder
-    from .transitive_role_assignments import transitive_role_assignments_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.rbac_application import RbacApplication
+    from .resource_namespaces.resource_namespaces_request_builder import ResourceNamespacesRequestBuilder
+    from .role_assignment_approvals.role_assignment_approvals_request_builder import RoleAssignmentApprovalsRequestBuilder
+    from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
+    from .role_assignment_schedule_instances.role_assignment_schedule_instances_request_builder import RoleAssignmentScheduleInstancesRequestBuilder
+    from .role_assignment_schedule_requests.role_assignment_schedule_requests_request_builder import RoleAssignmentScheduleRequestsRequestBuilder
+    from .role_assignment_schedules.role_assignment_schedules_request_builder import RoleAssignmentSchedulesRequestBuilder
+    from .role_definitions.role_definitions_request_builder import RoleDefinitionsRequestBuilder
+    from .role_eligibility_schedule_instances.role_eligibility_schedule_instances_request_builder import RoleEligibilityScheduleInstancesRequestBuilder
+    from .role_eligibility_schedule_requests.role_eligibility_schedule_requests_request_builder import RoleEligibilityScheduleRequestsRequestBuilder
+    from .role_eligibility_schedules.role_eligibility_schedules_request_builder import RoleEligibilitySchedulesRequestBuilder
+    from .role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder import RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder
+    from .role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder import RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder
+    from .transitive_role_assignments.transitive_role_assignments_request_builder import TransitiveRoleAssignmentsRequestBuilder
 
-class RbacApplicationItemRequestBuilder():
+class RbacApplicationItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the enterpriseApps property of the microsoft.graph.roleManagement entity.
     """
@@ -34,91 +34,82 @@ class RbacApplicationItemRequestBuilder():
         """
         Instantiates a new RbacApplicationItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/roleManagement/enterpriseApps/{rbacApplication%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/roleManagement/enterpriseApps/{rbacApplication%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RbacApplicationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property enterpriseApps for roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RbacApplicationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[rbac_application.RbacApplication]:
+    async def get(self,request_configuration: Optional[RbacApplicationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[RbacApplication]:
         """
         Get enterpriseApps from roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[rbac_application.RbacApplication]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RbacApplication]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import rbac_application
+        from ....models.rbac_application import RbacApplication
 
-        return await self.request_adapter.send_async(request_info, rbac_application.RbacApplication, error_mapping)
+        return await self.request_adapter.send_async(request_info, RbacApplication, error_mapping)
     
-    async def patch(self,body: Optional[rbac_application.RbacApplication] = None, request_configuration: Optional[RbacApplicationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[rbac_application.RbacApplication]:
+    async def patch(self,body: Optional[RbacApplication] = None, request_configuration: Optional[RbacApplicationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[RbacApplication]:
         """
         Update the navigation property enterpriseApps in roleManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[rbac_application.RbacApplication]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RbacApplication]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import rbac_application
+        from ....models.rbac_application import RbacApplication
 
-        return await self.request_adapter.send_async(request_info, rbac_application.RbacApplication, error_mapping)
+        return await self.request_adapter.send_async(request_info, RbacApplication, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RbacApplicationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property enterpriseApps for roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -134,7 +125,7 @@ class RbacApplicationItemRequestBuilder():
         """
         Get enterpriseApps from roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -148,16 +139,16 @@ class RbacApplicationItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[rbac_application.RbacApplication] = None, request_configuration: Optional[RbacApplicationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[RbacApplication] = None, request_configuration: Optional[RbacApplicationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property enterpriseApps in roleManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -170,133 +161,131 @@ class RbacApplicationItemRequestBuilder():
         return request_info
     
     @property
-    def resource_namespaces(self) -> resource_namespaces_request_builder.ResourceNamespacesRequestBuilder:
+    def resource_namespaces(self) -> ResourceNamespacesRequestBuilder:
         """
         Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.
         """
-        from .resource_namespaces import resource_namespaces_request_builder
+        from .resource_namespaces.resource_namespaces_request_builder import ResourceNamespacesRequestBuilder
 
-        return resource_namespaces_request_builder.ResourceNamespacesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourceNamespacesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_assignment_approvals(self) -> role_assignment_approvals_request_builder.RoleAssignmentApprovalsRequestBuilder:
+    def role_assignment_approvals(self) -> RoleAssignmentApprovalsRequestBuilder:
         """
         Provides operations to manage the roleAssignmentApprovals property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_assignment_approvals import role_assignment_approvals_request_builder
+        from .role_assignment_approvals.role_assignment_approvals_request_builder import RoleAssignmentApprovalsRequestBuilder
 
-        return role_assignment_approvals_request_builder.RoleAssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleAssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_assignments(self) -> role_assignments_request_builder.RoleAssignmentsRequestBuilder:
+    def role_assignments(self) -> RoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_assignments import role_assignments_request_builder
+        from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
 
-        return role_assignments_request_builder.RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_assignment_schedule_instances(self) -> role_assignment_schedule_instances_request_builder.RoleAssignmentScheduleInstancesRequestBuilder:
+    def role_assignment_schedule_instances(self) -> RoleAssignmentScheduleInstancesRequestBuilder:
         """
         Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_assignment_schedule_instances import role_assignment_schedule_instances_request_builder
+        from .role_assignment_schedule_instances.role_assignment_schedule_instances_request_builder import RoleAssignmentScheduleInstancesRequestBuilder
 
-        return role_assignment_schedule_instances_request_builder.RoleAssignmentScheduleInstancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleAssignmentScheduleInstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_assignment_schedule_requests(self) -> role_assignment_schedule_requests_request_builder.RoleAssignmentScheduleRequestsRequestBuilder:
+    def role_assignment_schedule_requests(self) -> RoleAssignmentScheduleRequestsRequestBuilder:
         """
         Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_assignment_schedule_requests import role_assignment_schedule_requests_request_builder
+        from .role_assignment_schedule_requests.role_assignment_schedule_requests_request_builder import RoleAssignmentScheduleRequestsRequestBuilder
 
-        return role_assignment_schedule_requests_request_builder.RoleAssignmentScheduleRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleAssignmentScheduleRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_assignment_schedules(self) -> role_assignment_schedules_request_builder.RoleAssignmentSchedulesRequestBuilder:
+    def role_assignment_schedules(self) -> RoleAssignmentSchedulesRequestBuilder:
         """
         Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_assignment_schedules import role_assignment_schedules_request_builder
+        from .role_assignment_schedules.role_assignment_schedules_request_builder import RoleAssignmentSchedulesRequestBuilder
 
-        return role_assignment_schedules_request_builder.RoleAssignmentSchedulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleAssignmentSchedulesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_definitions(self) -> role_definitions_request_builder.RoleDefinitionsRequestBuilder:
+    def role_definitions(self) -> RoleDefinitionsRequestBuilder:
         """
         Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_definitions import role_definitions_request_builder
+        from .role_definitions.role_definitions_request_builder import RoleDefinitionsRequestBuilder
 
-        return role_definitions_request_builder.RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_eligibility_schedule_instances(self) -> role_eligibility_schedule_instances_request_builder.RoleEligibilityScheduleInstancesRequestBuilder:
+    def role_eligibility_schedule_instances(self) -> RoleEligibilityScheduleInstancesRequestBuilder:
         """
         Provides operations to manage the roleEligibilityScheduleInstances property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_eligibility_schedule_instances import role_eligibility_schedule_instances_request_builder
+        from .role_eligibility_schedule_instances.role_eligibility_schedule_instances_request_builder import RoleEligibilityScheduleInstancesRequestBuilder
 
-        return role_eligibility_schedule_instances_request_builder.RoleEligibilityScheduleInstancesRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleEligibilityScheduleInstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_eligibility_schedule_requests(self) -> role_eligibility_schedule_requests_request_builder.RoleEligibilityScheduleRequestsRequestBuilder:
+    def role_eligibility_schedule_requests(self) -> RoleEligibilityScheduleRequestsRequestBuilder:
         """
         Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_eligibility_schedule_requests import role_eligibility_schedule_requests_request_builder
+        from .role_eligibility_schedule_requests.role_eligibility_schedule_requests_request_builder import RoleEligibilityScheduleRequestsRequestBuilder
 
-        return role_eligibility_schedule_requests_request_builder.RoleEligibilityScheduleRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleEligibilityScheduleRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_eligibility_schedules(self) -> role_eligibility_schedules_request_builder.RoleEligibilitySchedulesRequestBuilder:
+    def role_eligibility_schedules(self) -> RoleEligibilitySchedulesRequestBuilder:
         """
         Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.
         """
-        from .role_eligibility_schedules import role_eligibility_schedules_request_builder
+        from .role_eligibility_schedules.role_eligibility_schedules_request_builder import RoleEligibilitySchedulesRequestBuilder
 
-        return role_eligibility_schedules_request_builder.RoleEligibilitySchedulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleEligibilitySchedulesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id(self) -> role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder:
+    def role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id(self) -> RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder:
         """
         Provides operations to call the roleScheduleInstances method.
         """
-        from .role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id import role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder
+        from .role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder import RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder
 
-        return role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id(self) -> role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder:
+    def role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id(self) -> RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder:
         """
         Provides operations to call the roleSchedules method.
         """
-        from .role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id import role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder
+        from .role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder import RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder
 
-        return role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def transitive_role_assignments(self) -> transitive_role_assignments_request_builder.TransitiveRoleAssignmentsRequestBuilder:
+    def transitive_role_assignments(self) -> TransitiveRoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the transitiveRoleAssignments property of the microsoft.graph.rbacApplication entity.
         """
-        from .transitive_role_assignments import transitive_role_assignments_request_builder
+        from .transitive_role_assignments.transitive_role_assignments_request_builder import TransitiveRoleAssignmentsRequestBuilder
 
-        return transitive_role_assignments_request_builder.TransitiveRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TransitiveRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RbacApplicationItemRequestBuilderDeleteRequestConfiguration():
+    class RbacApplicationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class RbacApplicationItemRequestBuilderGetQueryParameters():
@@ -307,11 +296,11 @@ class RbacApplicationItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -325,31 +314,27 @@ class RbacApplicationItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RbacApplicationItemRequestBuilderGetRequestConfiguration():
+    class RbacApplicationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[RbacApplicationItemRequestBuilder.RbacApplicationItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RbacApplicationItemRequestBuilderPatchRequestConfiguration():
+    class RbacApplicationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

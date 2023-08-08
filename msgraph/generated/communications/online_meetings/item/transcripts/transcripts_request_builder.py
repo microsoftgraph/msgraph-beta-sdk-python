@@ -1,21 +1,22 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import call_transcript, call_transcript_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import call_transcript_item_request_builder
+    from .....models.call_transcript import CallTranscript
+    from .....models.call_transcript_collection_response import CallTranscriptCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.call_transcript_item_request_builder import CallTranscriptItemRequestBuilder
 
-class TranscriptsRequestBuilder():
+class TranscriptsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
     """
@@ -23,87 +24,78 @@ class TranscriptsRequestBuilder():
         """
         Instantiates a new TranscriptsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/transcripts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/transcripts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_call_transcript_id(self,call_transcript_id: str) -> call_transcript_item_request_builder.CallTranscriptItemRequestBuilder:
+    def by_call_transcript_id(self,call_transcript_id: str) -> CallTranscriptItemRequestBuilder:
         """
         Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
         Args:
             call_transcript_id: Unique identifier of the item
-        Returns: call_transcript_item_request_builder.CallTranscriptItemRequestBuilder
+        Returns: CallTranscriptItemRequestBuilder
         """
-        if call_transcript_id is None:
-            raise Exception("call_transcript_id cannot be undefined")
-        from .item import call_transcript_item_request_builder
+        if not call_transcript_id:
+            raise TypeError("call_transcript_id cannot be null.")
+        from .item.call_transcript_item_request_builder import CallTranscriptItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["callTranscript%2Did"] = call_transcript_id
-        return call_transcript_item_request_builder.CallTranscriptItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return CallTranscriptItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TranscriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[call_transcript_collection_response.CallTranscriptCollectionResponse]:
+    async def get(self,request_configuration: Optional[TranscriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[CallTranscriptCollectionResponse]:
         """
         Retrieve the list of callTranscript objects associated with an onlineMeeting.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[call_transcript_collection_response.CallTranscriptCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CallTranscriptCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import call_transcript_collection_response
+        from .....models.call_transcript_collection_response import CallTranscriptCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, call_transcript_collection_response.CallTranscriptCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, CallTranscriptCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[call_transcript.CallTranscript] = None, request_configuration: Optional[TranscriptsRequestBuilderPostRequestConfiguration] = None) -> Optional[call_transcript.CallTranscript]:
+    async def post(self,body: Optional[CallTranscript] = None, request_configuration: Optional[TranscriptsRequestBuilderPostRequestConfiguration] = None) -> Optional[CallTranscript]:
         """
         Create new navigation property to transcripts for communications
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[call_transcript.CallTranscript]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CallTranscript]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import call_transcript
+        from .....models.call_transcript import CallTranscript
 
-        return await self.request_adapter.send_async(request_info, call_transcript.CallTranscript, error_mapping)
+        return await self.request_adapter.send_async(request_info, CallTranscript, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TranscriptsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the list of callTranscript objects associated with an onlineMeeting.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +109,16 @@ class TranscriptsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[call_transcript.CallTranscript] = None, request_configuration: Optional[TranscriptsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CallTranscript] = None, request_configuration: Optional[TranscriptsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to transcripts for communications
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +131,13 @@ class TranscriptsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TranscriptsRequestBuilderGetQueryParameters():
@@ -156,11 +148,11 @@ class TranscriptsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +196,27 @@ class TranscriptsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TranscriptsRequestBuilderGetRequestConfiguration():
+    class TranscriptsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[TranscriptsRequestBuilder.TranscriptsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TranscriptsRequestBuilderPostRequestConfiguration():
+    class TranscriptsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

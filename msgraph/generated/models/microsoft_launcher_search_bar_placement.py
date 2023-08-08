@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MicrosoftLauncherSearchBarPlacement(Enum):
+class MicrosoftLauncherSearchBarPlacement(str, Enum):
     # Not configured; this value is ignored.
     NotConfigured = "notConfigured",
     # Indicates that the search bar will be displayed on the top of the device.

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class JoinType(Enum):
+class JoinType(str, Enum):
     # Unknown enrollment join type.
     Unknown = "unknown",
     # The device is joined by Azure AD.

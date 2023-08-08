@@ -1,85 +1,54 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import event_message_detail, identity_set
+    from .event_message_detail import EventMessageDetail
+    from .identity_set import IdentitySet
 
-from . import event_message_detail
+from .event_message_detail import EventMessageDetail
 
-class MessageUnpinnedEventMessageDetail(event_message_detail.EventMessageDetail):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MessageUnpinnedEventMessageDetail and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.messageUnpinnedEventMessageDetail"
-        # Date and time when the event occurred.
-        self._event_date_time: Optional[datetime] = None
-        # Initiator of the event.
-        self._initiator: Optional[identity_set.IdentitySet] = None
+@dataclass
+class MessageUnpinnedEventMessageDetail(EventMessageDetail):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.messageUnpinnedEventMessageDetail"
+    # Date and time when the event occurred.
+    event_date_time: Optional[datetime.datetime] = None
+    # Initiator of the event.
+    initiator: Optional[IdentitySet] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MessageUnpinnedEventMessageDetail:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MessageUnpinnedEventMessageDetail
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MessageUnpinnedEventMessageDetail()
-    
-    @property
-    def event_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the eventDateTime property value. Date and time when the event occurred.
-        Returns: Optional[datetime]
-        """
-        return self._event_date_time
-    
-    @event_date_time.setter
-    def event_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the eventDateTime property value. Date and time when the event occurred.
-        Args:
-            value: Value to set for the event_date_time property.
-        """
-        self._event_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import event_message_detail, identity_set
+        from .event_message_detail import EventMessageDetail
+        from .identity_set import IdentitySet
+
+        from .event_message_detail import EventMessageDetail
+        from .identity_set import IdentitySet
 
         fields: Dict[str, Callable[[Any], None]] = {
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
-            "initiator": lambda n : setattr(self, 'initiator', n.get_object_value(identity_set.IdentitySet)),
+            "initiator": lambda n : setattr(self, 'initiator', n.get_object_value(IdentitySet)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def initiator(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the initiator property value. Initiator of the event.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._initiator
-    
-    @initiator.setter
-    def initiator(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the initiator property value. Initiator of the event.
-        Args:
-            value: Value to set for the initiator property.
-        """
-        self._initiator = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -87,8 +56,8 @@ class MessageUnpinnedEventMessageDetail(event_message_detail.EventMessageDetail)
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("eventDateTime", self.event_date_time)
         writer.write_object_value("initiator", self.initiator)

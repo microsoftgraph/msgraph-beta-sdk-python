@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcConnectivityStatus(Enum):
+class CloudPcConnectivityStatus(str, Enum):
     Unknown = "unknown",
     Available = "available",
     AvailableWithWarning = "availableWithWarning",

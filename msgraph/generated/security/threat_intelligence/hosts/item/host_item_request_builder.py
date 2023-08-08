@@ -1,25 +1,31 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.o_data_errors import o_data_error
-    from .....models.security import host
-    from .components import components_request_builder
-    from .cookies import cookies_request_builder
-    from .passive_dns import passive_dns_request_builder
-    from .passive_dns_reverse import passive_dns_reverse_request_builder
-    from .reputation import reputation_request_builder
-    from .trackers import trackers_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.security.host import Host
+    from .child_host_pairs.child_host_pairs_request_builder import ChildHostPairsRequestBuilder
+    from .components.components_request_builder import ComponentsRequestBuilder
+    from .cookies.cookies_request_builder import CookiesRequestBuilder
+    from .host_pairs.host_pairs_request_builder import HostPairsRequestBuilder
+    from .parent_host_pairs.parent_host_pairs_request_builder import ParentHostPairsRequestBuilder
+    from .passive_dns.passive_dns_request_builder import PassiveDnsRequestBuilder
+    from .passive_dns_reverse.passive_dns_reverse_request_builder import PassiveDnsReverseRequestBuilder
+    from .reputation.reputation_request_builder import ReputationRequestBuilder
+    from .ssl_certificates.ssl_certificates_request_builder import SslCertificatesRequestBuilder
+    from .subdomains.subdomains_request_builder import SubdomainsRequestBuilder
+    from .trackers.trackers_request_builder import TrackersRequestBuilder
+    from .whois.whois_request_builder import WhoisRequestBuilder
 
-class HostItemRequestBuilder():
+class HostItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
     """
@@ -27,91 +33,82 @@ class HostItemRequestBuilder():
         """
         Instantiates a new HostItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/security/threatIntelligence/hosts/{host%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/security/threatIntelligence/hosts/{host%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[HostItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property hosts for security
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[HostItemRequestBuilderGetRequestConfiguration] = None) -> Optional[host.Host]:
+    async def get(self,request_configuration: Optional[HostItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Host]:
         """
         Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[host.Host]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Host]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.security import host
+        from .....models.security.host import Host
 
-        return await self.request_adapter.send_async(request_info, host.Host, error_mapping)
+        return await self.request_adapter.send_async(request_info, Host, error_mapping)
     
-    async def patch(self,body: Optional[host.Host] = None, request_configuration: Optional[HostItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[host.Host]:
+    async def patch(self,body: Optional[Host] = None, request_configuration: Optional[HostItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Host]:
         """
         Update the navigation property hosts in security
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[host.Host]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Host]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.security import host
+        from .....models.security.host import Host
 
-        return await self.request_adapter.send_async(request_info, host.Host, error_mapping)
+        return await self.request_adapter.send_async(request_info, Host, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[HostItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property hosts for security
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -127,7 +124,7 @@ class HostItemRequestBuilder():
         """
         Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -141,16 +138,16 @@ class HostItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[host.Host] = None, request_configuration: Optional[HostItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Host] = None, request_configuration: Optional[HostItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property hosts in security
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -163,70 +160,122 @@ class HostItemRequestBuilder():
         return request_info
     
     @property
-    def components(self) -> components_request_builder.ComponentsRequestBuilder:
+    def child_host_pairs(self) -> ChildHostPairsRequestBuilder:
+        """
+        Provides operations to manage the childHostPairs property of the microsoft.graph.security.host entity.
+        """
+        from .child_host_pairs.child_host_pairs_request_builder import ChildHostPairsRequestBuilder
+
+        return ChildHostPairsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def components(self) -> ComponentsRequestBuilder:
         """
         Provides operations to manage the components property of the microsoft.graph.security.host entity.
         """
-        from .components import components_request_builder
+        from .components.components_request_builder import ComponentsRequestBuilder
 
-        return components_request_builder.ComponentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ComponentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cookies(self) -> cookies_request_builder.CookiesRequestBuilder:
+    def cookies(self) -> CookiesRequestBuilder:
         """
         Provides operations to manage the cookies property of the microsoft.graph.security.host entity.
         """
-        from .cookies import cookies_request_builder
+        from .cookies.cookies_request_builder import CookiesRequestBuilder
 
-        return cookies_request_builder.CookiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CookiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def passive_dns(self) -> passive_dns_request_builder.PassiveDnsRequestBuilder:
+    def host_pairs(self) -> HostPairsRequestBuilder:
+        """
+        Provides operations to manage the hostPairs property of the microsoft.graph.security.host entity.
+        """
+        from .host_pairs.host_pairs_request_builder import HostPairsRequestBuilder
+
+        return HostPairsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def parent_host_pairs(self) -> ParentHostPairsRequestBuilder:
+        """
+        Provides operations to manage the parentHostPairs property of the microsoft.graph.security.host entity.
+        """
+        from .parent_host_pairs.parent_host_pairs_request_builder import ParentHostPairsRequestBuilder
+
+        return ParentHostPairsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def passive_dns(self) -> PassiveDnsRequestBuilder:
         """
         Provides operations to manage the passiveDns property of the microsoft.graph.security.host entity.
         """
-        from .passive_dns import passive_dns_request_builder
+        from .passive_dns.passive_dns_request_builder import PassiveDnsRequestBuilder
 
-        return passive_dns_request_builder.PassiveDnsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PassiveDnsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def passive_dns_reverse(self) -> passive_dns_reverse_request_builder.PassiveDnsReverseRequestBuilder:
+    def passive_dns_reverse(self) -> PassiveDnsReverseRequestBuilder:
         """
         Provides operations to manage the passiveDnsReverse property of the microsoft.graph.security.host entity.
         """
-        from .passive_dns_reverse import passive_dns_reverse_request_builder
+        from .passive_dns_reverse.passive_dns_reverse_request_builder import PassiveDnsReverseRequestBuilder
 
-        return passive_dns_reverse_request_builder.PassiveDnsReverseRequestBuilder(self.request_adapter, self.path_parameters)
+        return PassiveDnsReverseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reputation(self) -> reputation_request_builder.ReputationRequestBuilder:
+    def reputation(self) -> ReputationRequestBuilder:
         """
         Provides operations to manage the reputation property of the microsoft.graph.security.host entity.
         """
-        from .reputation import reputation_request_builder
+        from .reputation.reputation_request_builder import ReputationRequestBuilder
 
-        return reputation_request_builder.ReputationRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReputationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def trackers(self) -> trackers_request_builder.TrackersRequestBuilder:
+    def ssl_certificates(self) -> SslCertificatesRequestBuilder:
+        """
+        Provides operations to manage the sslCertificates property of the microsoft.graph.security.host entity.
+        """
+        from .ssl_certificates.ssl_certificates_request_builder import SslCertificatesRequestBuilder
+
+        return SslCertificatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def subdomains(self) -> SubdomainsRequestBuilder:
+        """
+        Provides operations to manage the subdomains property of the microsoft.graph.security.host entity.
+        """
+        from .subdomains.subdomains_request_builder import SubdomainsRequestBuilder
+
+        return SubdomainsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def trackers(self) -> TrackersRequestBuilder:
         """
         Provides operations to manage the trackers property of the microsoft.graph.security.host entity.
         """
-        from .trackers import trackers_request_builder
+        from .trackers.trackers_request_builder import TrackersRequestBuilder
 
-        return trackers_request_builder.TrackersRequestBuilder(self.request_adapter, self.path_parameters)
+        return TrackersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def whois(self) -> WhoisRequestBuilder:
+        """
+        Provides operations to manage the whois property of the microsoft.graph.security.host entity.
+        """
+        from .whois.whois_request_builder import WhoisRequestBuilder
+
+        return WhoisRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class HostItemRequestBuilderDeleteRequestConfiguration():
+    class HostItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class HostItemRequestBuilderGetQueryParameters():
@@ -237,11 +286,11 @@ class HostItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -255,31 +304,27 @@ class HostItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class HostItemRequestBuilderGetRequestConfiguration():
+    class HostItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[HostItemRequestBuilder.HostItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class HostItemRequestBuilderPatchRequestConfiguration():
+    class HostItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

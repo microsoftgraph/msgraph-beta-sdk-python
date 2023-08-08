@@ -1,54 +1,35 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, usage_right_state
+    from .entity import Entity
+    from .usage_right_state import UsageRightState
 
-from . import entity
+from .entity import Entity
 
-class UsageRight(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new usageRight and sets the default values.
-        """
-        super().__init__()
-        # Product id corresponding to the usage right.
-        self._catalog_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Identifier of the service corresponding to the usage right.
-        self._service_identifier: Optional[str] = None
-        # The state property
-        self._state: Optional[usage_right_state.UsageRightState] = None
-    
-    @property
-    def catalog_id(self,) -> Optional[str]:
-        """
-        Gets the catalogId property value. Product id corresponding to the usage right.
-        Returns: Optional[str]
-        """
-        return self._catalog_id
-    
-    @catalog_id.setter
-    def catalog_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the catalogId property value. Product id corresponding to the usage right.
-        Args:
-            value: Value to set for the catalog_id property.
-        """
-        self._catalog_id = value
+@dataclass
+class UsageRight(Entity):
+    # Product id corresponding to the usage right.
+    catalog_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Identifier of the service corresponding to the usage right.
+    service_identifier: Optional[str] = None
+    # The state property
+    state: Optional[UsageRightState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UsageRight:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UsageRight
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UsageRight()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -56,12 +37,16 @@ class UsageRight(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, usage_right_state
+        from .entity import Entity
+        from .usage_right_state import UsageRightState
+
+        from .entity import Entity
+        from .usage_right_state import UsageRightState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
             "serviceIdentifier": lambda n : setattr(self, 'service_identifier', n.get_str_value()),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(usage_right_state.UsageRightState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(UsageRightState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,45 +58,11 @@ class UsageRight(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("catalogId", self.catalog_id)
         writer.write_str_value("serviceIdentifier", self.service_identifier)
         writer.write_enum_value("state", self.state)
-    
-    @property
-    def service_identifier(self,) -> Optional[str]:
-        """
-        Gets the serviceIdentifier property value. Identifier of the service corresponding to the usage right.
-        Returns: Optional[str]
-        """
-        return self._service_identifier
-    
-    @service_identifier.setter
-    def service_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serviceIdentifier property value. Identifier of the service corresponding to the usage right.
-        Args:
-            value: Value to set for the service_identifier property.
-        """
-        self._service_identifier = value
-    
-    @property
-    def state(self,) -> Optional[usage_right_state.UsageRightState]:
-        """
-        Gets the state property value. The state property
-        Returns: Optional[usage_right_state.UsageRightState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[usage_right_state.UsageRightState] = None) -> None:
-        """
-        Sets the state property value. The state property
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 

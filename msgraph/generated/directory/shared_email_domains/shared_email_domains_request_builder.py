@@ -1,21 +1,22 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import shared_email_domain, shared_email_domain_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import shared_email_domain_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.shared_email_domain import SharedEmailDomain
+    from ...models.shared_email_domain_collection_response import SharedEmailDomainCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.shared_email_domain_item_request_builder import SharedEmailDomainItemRequestBuilder
 
-class SharedEmailDomainsRequestBuilder():
+class SharedEmailDomainsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the sharedEmailDomains property of the microsoft.graph.directory entity.
     """
@@ -23,87 +24,78 @@ class SharedEmailDomainsRequestBuilder():
         """
         Instantiates a new SharedEmailDomainsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/directory/sharedEmailDomains{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/directory/sharedEmailDomains{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_shared_email_domain_id(self,shared_email_domain_id: str) -> shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder:
+    def by_shared_email_domain_id(self,shared_email_domain_id: str) -> SharedEmailDomainItemRequestBuilder:
         """
         Provides operations to manage the sharedEmailDomains property of the microsoft.graph.directory entity.
         Args:
             shared_email_domain_id: Unique identifier of the item
-        Returns: shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder
+        Returns: SharedEmailDomainItemRequestBuilder
         """
-        if shared_email_domain_id is None:
-            raise Exception("shared_email_domain_id cannot be undefined")
-        from .item import shared_email_domain_item_request_builder
+        if not shared_email_domain_id:
+            raise TypeError("shared_email_domain_id cannot be null.")
+        from .item.shared_email_domain_item_request_builder import SharedEmailDomainItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["sharedEmailDomain%2Did"] = shared_email_domain_id
-        return shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return SharedEmailDomainItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SharedEmailDomainsRequestBuilderGetRequestConfiguration] = None) -> Optional[shared_email_domain_collection_response.SharedEmailDomainCollectionResponse]:
+    async def get(self,request_configuration: Optional[SharedEmailDomainsRequestBuilderGetRequestConfiguration] = None) -> Optional[SharedEmailDomainCollectionResponse]:
         """
         Get sharedEmailDomains from directory
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[shared_email_domain_collection_response.SharedEmailDomainCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SharedEmailDomainCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import shared_email_domain_collection_response
+        from ...models.shared_email_domain_collection_response import SharedEmailDomainCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, shared_email_domain_collection_response.SharedEmailDomainCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SharedEmailDomainCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[shared_email_domain.SharedEmailDomain] = None, request_configuration: Optional[SharedEmailDomainsRequestBuilderPostRequestConfiguration] = None) -> Optional[shared_email_domain.SharedEmailDomain]:
+    async def post(self,body: Optional[SharedEmailDomain] = None, request_configuration: Optional[SharedEmailDomainsRequestBuilderPostRequestConfiguration] = None) -> Optional[SharedEmailDomain]:
         """
         Create new navigation property to sharedEmailDomains for directory
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[shared_email_domain.SharedEmailDomain]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SharedEmailDomain]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import shared_email_domain
+        from ...models.shared_email_domain import SharedEmailDomain
 
-        return await self.request_adapter.send_async(request_info, shared_email_domain.SharedEmailDomain, error_mapping)
+        return await self.request_adapter.send_async(request_info, SharedEmailDomain, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SharedEmailDomainsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get sharedEmailDomains from directory
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +109,16 @@ class SharedEmailDomainsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[shared_email_domain.SharedEmailDomain] = None, request_configuration: Optional[SharedEmailDomainsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SharedEmailDomain] = None, request_configuration: Optional[SharedEmailDomainsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to sharedEmailDomains for directory
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +131,13 @@ class SharedEmailDomainsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SharedEmailDomainsRequestBuilderGetQueryParameters():
@@ -156,11 +148,11 @@ class SharedEmailDomainsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +196,27 @@ class SharedEmailDomainsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SharedEmailDomainsRequestBuilderGetRequestConfiguration():
+    class SharedEmailDomainsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SharedEmailDomainsRequestBuilder.SharedEmailDomainsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SharedEmailDomainsRequestBuilderPostRequestConfiguration():
+    class SharedEmailDomainsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

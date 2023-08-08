@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ExportOptions(Enum):
+class ExportOptions(str, Enum):
     OriginalFiles = "originalFiles",
     Text = "text",
     PdfReplacement = "pdfReplacement",

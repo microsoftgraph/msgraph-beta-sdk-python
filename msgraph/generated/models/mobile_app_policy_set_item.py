@@ -1,34 +1,37 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import install_intent, mobile_app_assignment_settings, policy_set_item
+    from .install_intent import InstallIntent
+    from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+    from .policy_set_item import PolicySetItem
 
-from . import policy_set_item
+from .policy_set_item import PolicySetItem
 
-class MobileAppPolicySetItem(policy_set_item.PolicySetItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MobileAppPolicySetItem and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.mobileAppPolicySetItem"
-        # Possible values for the install intent chosen by the admin.
-        self._intent: Optional[install_intent.InstallIntent] = None
-        # Settings of the MobileAppPolicySetItem.
-        self._settings: Optional[mobile_app_assignment_settings.MobileAppAssignmentSettings] = None
+@dataclass
+class MobileAppPolicySetItem(PolicySetItem):
+    """
+    A class containing the properties used for mobile app PolicySetItem.
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.mobileAppPolicySetItem"
+    # Possible values for the install intent chosen by the admin.
+    intent: Optional[InstallIntent] = None
+    # Settings of the MobileAppPolicySetItem.
+    settings: Optional[MobileAppAssignmentSettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppPolicySetItem:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MobileAppPolicySetItem
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MobileAppPolicySetItem()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,32 +39,21 @@ class MobileAppPolicySetItem(policy_set_item.PolicySetItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import install_intent, mobile_app_assignment_settings, policy_set_item
+        from .install_intent import InstallIntent
+        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+        from .policy_set_item import PolicySetItem
+
+        from .install_intent import InstallIntent
+        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+        from .policy_set_item import PolicySetItem
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "intent": lambda n : setattr(self, 'intent', n.get_enum_value(install_intent.InstallIntent)),
-            "settings": lambda n : setattr(self, 'settings', n.get_object_value(mobile_app_assignment_settings.MobileAppAssignmentSettings)),
+            "intent": lambda n : setattr(self, 'intent', n.get_enum_value(InstallIntent)),
+            "settings": lambda n : setattr(self, 'settings', n.get_object_value(MobileAppAssignmentSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def intent(self,) -> Optional[install_intent.InstallIntent]:
-        """
-        Gets the intent property value. Possible values for the install intent chosen by the admin.
-        Returns: Optional[install_intent.InstallIntent]
-        """
-        return self._intent
-    
-    @intent.setter
-    def intent(self,value: Optional[install_intent.InstallIntent] = None) -> None:
-        """
-        Sets the intent property value. Possible values for the install intent chosen by the admin.
-        Args:
-            value: Value to set for the intent property.
-        """
-        self._intent = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -69,27 +61,10 @@ class MobileAppPolicySetItem(policy_set_item.PolicySetItem):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("intent", self.intent)
         writer.write_object_value("settings", self.settings)
-    
-    @property
-    def settings(self,) -> Optional[mobile_app_assignment_settings.MobileAppAssignmentSettings]:
-        """
-        Gets the settings property value. Settings of the MobileAppPolicySetItem.
-        Returns: Optional[mobile_app_assignment_settings.MobileAppAssignmentSettings]
-        """
-        return self._settings
-    
-    @settings.setter
-    def settings(self,value: Optional[mobile_app_assignment_settings.MobileAppAssignmentSettings] = None) -> None:
-        """
-        Sets the settings property value. Settings of the MobileAppPolicySetItem.
-        Args:
-            value: Value to set for the settings property.
-        """
-        self._settings = value
     
 

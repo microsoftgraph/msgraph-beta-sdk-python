@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcOnPremisesConnectionHealthCheckErrorType(Enum):
+class CloudPcOnPremisesConnectionHealthCheckErrorType(str, Enum):
     DnsCheckFqdnNotFound = "dnsCheckFqdnNotFound",
     DnsCheckNameWithInvalidCharacter = "dnsCheckNameWithInvalidCharacter",
     DnsCheckUnknownError = "dnsCheckUnknownError",
@@ -52,9 +52,13 @@ class CloudPcOnPremisesConnectionHealthCheckErrorType(Enum):
     PermissionCheckNoResourceGroupOwnerRole = "permissionCheckNoResourceGroupOwnerRole",
     PermissionCheckNoVNetContributorRole = "permissionCheckNoVNetContributorRole",
     PermissionCheckNoResourceGroupNetworkContributorRole = "permissionCheckNoResourceGroupNetworkContributorRole",
+    PermissionCheckNoWindows365NetworkUserRole = "permissionCheckNoWindows365NetworkUserRole",
+    PermissionCheckNoWindows365NetworkInterfaceContributorRole = "permissionCheckNoWindows365NetworkInterfaceContributorRole",
     PermissionCheckTransientServiceError = "permissionCheckTransientServiceError",
     PermissionCheckUnknownError = "permissionCheckUnknownError",
     UdpConnectivityCheckStunUrlNotAllowListed = "udpConnectivityCheckStunUrlNotAllowListed",
+    UdpConnectivityCheckTurnUrlNotAllowListed = "udpConnectivityCheckTurnUrlNotAllowListed",
+    UdpConnectivityCheckUrlsNotAllowListed = "udpConnectivityCheckUrlsNotAllowListed",
     UdpConnectivityCheckUnknownError = "udpConnectivityCheckUnknownError",
     InternalServerErrorDeploymentCanceled = "internalServerErrorDeploymentCanceled",
     InternalServerErrorAllocateResourceFailed = "internalServerErrorAllocateResourceFailed",

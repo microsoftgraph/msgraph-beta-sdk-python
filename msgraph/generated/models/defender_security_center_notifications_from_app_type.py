@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DefenderSecurityCenterNotificationsFromAppType(Enum):
+class DefenderSecurityCenterNotificationsFromAppType(str, Enum):
     # Not Configured
     NotConfigured = "notConfigured",
     # Block non-critical notifications

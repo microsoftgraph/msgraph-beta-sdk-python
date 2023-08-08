@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MobileAppIntent(Enum):
+class MobileAppIntent(str, Enum):
     # Available
     Available = "available",
     # Not Available

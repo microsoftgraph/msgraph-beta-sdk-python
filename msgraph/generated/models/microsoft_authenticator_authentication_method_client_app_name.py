@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MicrosoftAuthenticatorAuthenticationMethodClientAppName(Enum):
+class MicrosoftAuthenticatorAuthenticationMethodClientAppName(str, Enum):
     MicrosoftAuthenticator = "microsoftAuthenticator",
     OutlookMobile = "outlookMobile",
     UnknownFutureValue = "unknownFutureValue",

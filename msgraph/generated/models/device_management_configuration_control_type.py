@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationControlType(Enum):
+class DeviceManagementConfigurationControlType(str, Enum):
     # Default. UX uses default UX element base on setting type for the setting.
     Default = "default",
     # Display the setting in dropdown box.

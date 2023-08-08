@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeliveryOptimizationRestrictPeerSelectionByOptions(Enum):
+class DeliveryOptimizationRestrictPeerSelectionByOptions(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Subnet mask.

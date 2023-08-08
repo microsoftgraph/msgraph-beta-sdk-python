@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ScheduledRetireState(Enum):
+class ScheduledRetireState(str, Enum):
     # CancelRetire
     CancelRetire = "cancelRetire",
     # ConfirmRetire

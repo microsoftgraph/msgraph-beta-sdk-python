@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidForWorkDefaultAppPermissionPolicyType(Enum):
+class AndroidForWorkDefaultAppPermissionPolicyType(str, Enum):
     # Device default value, no intent.
     DeviceDefault = "deviceDefault",
     # Prompt.

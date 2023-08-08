@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementSubscriptions(Enum):
+class DeviceManagementSubscriptions(str, Enum):
     # None
     None_ = "none",
     # Microsoft Intune Subscription

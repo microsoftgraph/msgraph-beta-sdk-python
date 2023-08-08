@@ -1,112 +1,66 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, mac_o_s_software_update_category, mac_o_s_software_update_state_summary
+    from .entity import Entity
+    from .mac_o_s_software_update_category import MacOSSoftwareUpdateCategory
+    from .mac_o_s_software_update_state_summary import MacOSSoftwareUpdateStateSummary
 
-from . import entity
+from .entity import Entity
 
-class MacOSSoftwareUpdateCategorySummary(entity.Entity):
+@dataclass
+class MacOSSoftwareUpdateCategorySummary(Entity):
     """
     MacOS software update category summary report for a device and user
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSSoftwareUpdateCategorySummary and sets the default values.
-        """
-        super().__init__()
-        # The device ID.
-        self._device_id: Optional[str] = None
-        # The name of the report
-        self._display_name: Optional[str] = None
-        # Number of failed updates on the device
-        self._failed_update_count: Optional[int] = None
-        # Last date time the report for this device was updated.
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Number of successful updates on the device
-        self._successful_update_count: Optional[int] = None
-        # Number of total updates on the device
-        self._total_update_count: Optional[int] = None
-        # MacOS Software Update Category
-        self._update_category: Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory] = None
-        # Summary of the update states.
-        self._update_state_summaries: Optional[List[mac_o_s_software_update_state_summary.MacOSSoftwareUpdateStateSummary]] = None
-        # The user ID.
-        self._user_id: Optional[str] = None
+    # The device ID.
+    device_id: Optional[str] = None
+    # The name of the report
+    display_name: Optional[str] = None
+    # Number of failed updates on the device
+    failed_update_count: Optional[int] = None
+    # Last date time the report for this device was updated.
+    last_updated_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Number of successful updates on the device
+    successful_update_count: Optional[int] = None
+    # Number of total updates on the device
+    total_update_count: Optional[int] = None
+    # MacOS Software Update Category
+    update_category: Optional[MacOSSoftwareUpdateCategory] = None
+    # Summary of the update states.
+    update_state_summaries: Optional[List[MacOSSoftwareUpdateStateSummary]] = None
+    # The user ID.
+    user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSoftwareUpdateCategorySummary:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MacOSSoftwareUpdateCategorySummary
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MacOSSoftwareUpdateCategorySummary()
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The device ID.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The device ID.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The name of the report
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The name of the report
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def failed_update_count(self,) -> Optional[int]:
-        """
-        Gets the failedUpdateCount property value. Number of failed updates on the device
-        Returns: Optional[int]
-        """
-        return self._failed_update_count
-    
-    @failed_update_count.setter
-    def failed_update_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the failedUpdateCount property value. Number of failed updates on the device
-        Args:
-            value: Value to set for the failed_update_count property.
-        """
-        self._failed_update_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, mac_o_s_software_update_category, mac_o_s_software_update_state_summary
+        from .entity import Entity
+        from .mac_o_s_software_update_category import MacOSSoftwareUpdateCategory
+        from .mac_o_s_software_update_state_summary import MacOSSoftwareUpdateStateSummary
+
+        from .entity import Entity
+        from .mac_o_s_software_update_category import MacOSSoftwareUpdateCategory
+        from .mac_o_s_software_update_state_summary import MacOSSoftwareUpdateStateSummary
 
         fields: Dict[str, Callable[[Any], None]] = {
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
@@ -115,30 +69,13 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "successfulUpdateCount": lambda n : setattr(self, 'successful_update_count', n.get_int_value()),
             "totalUpdateCount": lambda n : setattr(self, 'total_update_count', n.get_int_value()),
-            "updateCategory": lambda n : setattr(self, 'update_category', n.get_enum_value(mac_o_s_software_update_category.MacOSSoftwareUpdateCategory)),
-            "updateStateSummaries": lambda n : setattr(self, 'update_state_summaries', n.get_collection_of_object_values(mac_o_s_software_update_state_summary.MacOSSoftwareUpdateStateSummary)),
+            "updateCategory": lambda n : setattr(self, 'update_category', n.get_enum_value(MacOSSoftwareUpdateCategory)),
+            "updateStateSummaries": lambda n : setattr(self, 'update_state_summaries', n.get_collection_of_object_values(MacOSSoftwareUpdateStateSummary)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_updated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastUpdatedDateTime property value. Last date time the report for this device was updated.
-        Returns: Optional[datetime]
-        """
-        return self._last_updated_date_time
-    
-    @last_updated_date_time.setter
-    def last_updated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastUpdatedDateTime property value. Last date time the report for this device was updated.
-        Args:
-            value: Value to set for the last_updated_date_time property.
-        """
-        self._last_updated_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -146,8 +83,8 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("displayName", self.display_name)
@@ -158,90 +95,5 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         writer.write_enum_value("updateCategory", self.update_category)
         writer.write_collection_of_object_values("updateStateSummaries", self.update_state_summaries)
         writer.write_str_value("userId", self.user_id)
-    
-    @property
-    def successful_update_count(self,) -> Optional[int]:
-        """
-        Gets the successfulUpdateCount property value. Number of successful updates on the device
-        Returns: Optional[int]
-        """
-        return self._successful_update_count
-    
-    @successful_update_count.setter
-    def successful_update_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the successfulUpdateCount property value. Number of successful updates on the device
-        Args:
-            value: Value to set for the successful_update_count property.
-        """
-        self._successful_update_count = value
-    
-    @property
-    def total_update_count(self,) -> Optional[int]:
-        """
-        Gets the totalUpdateCount property value. Number of total updates on the device
-        Returns: Optional[int]
-        """
-        return self._total_update_count
-    
-    @total_update_count.setter
-    def total_update_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalUpdateCount property value. Number of total updates on the device
-        Args:
-            value: Value to set for the total_update_count property.
-        """
-        self._total_update_count = value
-    
-    @property
-    def update_category(self,) -> Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory]:
-        """
-        Gets the updateCategory property value. MacOS Software Update Category
-        Returns: Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory]
-        """
-        return self._update_category
-    
-    @update_category.setter
-    def update_category(self,value: Optional[mac_o_s_software_update_category.MacOSSoftwareUpdateCategory] = None) -> None:
-        """
-        Sets the updateCategory property value. MacOS Software Update Category
-        Args:
-            value: Value to set for the update_category property.
-        """
-        self._update_category = value
-    
-    @property
-    def update_state_summaries(self,) -> Optional[List[mac_o_s_software_update_state_summary.MacOSSoftwareUpdateStateSummary]]:
-        """
-        Gets the updateStateSummaries property value. Summary of the update states.
-        Returns: Optional[List[mac_o_s_software_update_state_summary.MacOSSoftwareUpdateStateSummary]]
-        """
-        return self._update_state_summaries
-    
-    @update_state_summaries.setter
-    def update_state_summaries(self,value: Optional[List[mac_o_s_software_update_state_summary.MacOSSoftwareUpdateStateSummary]] = None) -> None:
-        """
-        Sets the updateStateSummaries property value. Summary of the update states.
-        Args:
-            value: Value to set for the update_state_summaries property.
-        """
-        self._update_state_summaries = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The user ID.
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The user ID.
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
     
 

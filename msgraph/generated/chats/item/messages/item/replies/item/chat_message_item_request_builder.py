@@ -1,24 +1,24 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import chat_message
-    from .......models.o_data_errors import o_data_error
-    from .hosted_contents import hosted_contents_request_builder
-    from .set_reaction import set_reaction_request_builder
-    from .soft_delete import soft_delete_request_builder
-    from .undo_soft_delete import undo_soft_delete_request_builder
-    from .unset_reaction import unset_reaction_request_builder
+    from .......models.chat_message import ChatMessage
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .hosted_contents.hosted_contents_request_builder import HostedContentsRequestBuilder
+    from .set_reaction.set_reaction_request_builder import SetReactionRequestBuilder
+    from .soft_delete.soft_delete_request_builder import SoftDeleteRequestBuilder
+    from .undo_soft_delete.undo_soft_delete_request_builder import UndoSoftDeleteRequestBuilder
+    from .unset_reaction.unset_reaction_request_builder import UnsetReactionRequestBuilder
 
-class ChatMessageItemRequestBuilder():
+class ChatMessageItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.
     """
@@ -26,91 +26,82 @@ class ChatMessageItemRequestBuilder():
         """
         Instantiates a new ChatMessageItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ChatMessageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property replies for chats
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ChatMessageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[chat_message.ChatMessage]:
+    async def get(self,request_configuration: Optional[ChatMessageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ChatMessage]:
         """
         Retrieve a single message or a message reply in a channel or a chat.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[chat_message.ChatMessage]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ChatMessage]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import chat_message
+        from .......models.chat_message import ChatMessage
 
-        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, error_mapping)
+        return await self.request_adapter.send_async(request_info, ChatMessage, error_mapping)
     
-    async def patch(self,body: Optional[chat_message.ChatMessage] = None, request_configuration: Optional[ChatMessageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[chat_message.ChatMessage]:
+    async def patch(self,body: Optional[ChatMessage] = None, request_configuration: Optional[ChatMessageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ChatMessage]:
         """
         Update the navigation property replies in chats
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[chat_message.ChatMessage]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ChatMessage]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import chat_message
+        from .......models.chat_message import ChatMessage
 
-        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, error_mapping)
+        return await self.request_adapter.send_async(request_info, ChatMessage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ChatMessageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property replies for chats
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -126,7 +117,7 @@ class ChatMessageItemRequestBuilder():
         """
         Retrieve a single message or a message reply in a channel or a chat.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -140,16 +131,16 @@ class ChatMessageItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[chat_message.ChatMessage] = None, request_configuration: Optional[ChatMessageItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ChatMessage] = None, request_configuration: Optional[ChatMessageItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property replies in chats
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,61 +153,59 @@ class ChatMessageItemRequestBuilder():
         return request_info
     
     @property
-    def hosted_contents(self) -> hosted_contents_request_builder.HostedContentsRequestBuilder:
+    def hosted_contents(self) -> HostedContentsRequestBuilder:
         """
         Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
         """
-        from .hosted_contents import hosted_contents_request_builder
+        from .hosted_contents.hosted_contents_request_builder import HostedContentsRequestBuilder
 
-        return hosted_contents_request_builder.HostedContentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return HostedContentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_reaction(self) -> set_reaction_request_builder.SetReactionRequestBuilder:
+    def set_reaction(self) -> SetReactionRequestBuilder:
         """
         Provides operations to call the setReaction method.
         """
-        from .set_reaction import set_reaction_request_builder
+        from .set_reaction.set_reaction_request_builder import SetReactionRequestBuilder
 
-        return set_reaction_request_builder.SetReactionRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetReactionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def soft_delete(self) -> soft_delete_request_builder.SoftDeleteRequestBuilder:
+    def soft_delete(self) -> SoftDeleteRequestBuilder:
         """
         Provides operations to call the softDelete method.
         """
-        from .soft_delete import soft_delete_request_builder
+        from .soft_delete.soft_delete_request_builder import SoftDeleteRequestBuilder
 
-        return soft_delete_request_builder.SoftDeleteRequestBuilder(self.request_adapter, self.path_parameters)
+        return SoftDeleteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def undo_soft_delete(self) -> undo_soft_delete_request_builder.UndoSoftDeleteRequestBuilder:
+    def undo_soft_delete(self) -> UndoSoftDeleteRequestBuilder:
         """
         Provides operations to call the undoSoftDelete method.
         """
-        from .undo_soft_delete import undo_soft_delete_request_builder
+        from .undo_soft_delete.undo_soft_delete_request_builder import UndoSoftDeleteRequestBuilder
 
-        return undo_soft_delete_request_builder.UndoSoftDeleteRequestBuilder(self.request_adapter, self.path_parameters)
+        return UndoSoftDeleteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unset_reaction(self) -> unset_reaction_request_builder.UnsetReactionRequestBuilder:
+    def unset_reaction(self) -> UnsetReactionRequestBuilder:
         """
         Provides operations to call the unsetReaction method.
         """
-        from .unset_reaction import unset_reaction_request_builder
+        from .unset_reaction.unset_reaction_request_builder import UnsetReactionRequestBuilder
 
-        return unset_reaction_request_builder.UnsetReactionRequestBuilder(self.request_adapter, self.path_parameters)
+        return UnsetReactionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ChatMessageItemRequestBuilderDeleteRequestConfiguration():
+    class ChatMessageItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class ChatMessageItemRequestBuilderGetQueryParameters():
@@ -227,11 +216,11 @@ class ChatMessageItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -245,31 +234,27 @@ class ChatMessageItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ChatMessageItemRequestBuilderGetRequestConfiguration():
+    class ChatMessageItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ChatMessageItemRequestBuilder.ChatMessageItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ChatMessageItemRequestBuilderPatchRequestConfiguration():
+    class ChatMessageItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

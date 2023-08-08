@@ -1,21 +1,22 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import user_flow_language_page, user_flow_language_page_collection_response
-    from .......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import user_flow_language_page_item_request_builder
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .......models.user_flow_language_page import UserFlowLanguagePage
+    from .......models.user_flow_language_page_collection_response import UserFlowLanguagePageCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.user_flow_language_page_item_request_builder import UserFlowLanguagePageItemRequestBuilder
 
-class DefaultPagesRequestBuilder():
+class DefaultPagesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
     """
@@ -23,87 +24,78 @@ class DefaultPagesRequestBuilder():
         """
         Instantiates a new DefaultPagesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}/defaultPages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}/defaultPages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_user_flow_language_page_id(self,user_flow_language_page_id: str) -> user_flow_language_page_item_request_builder.UserFlowLanguagePageItemRequestBuilder:
+    def by_user_flow_language_page_id(self,user_flow_language_page_id: str) -> UserFlowLanguagePageItemRequestBuilder:
         """
         Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
         Args:
             user_flow_language_page_id: Unique identifier of the item
-        Returns: user_flow_language_page_item_request_builder.UserFlowLanguagePageItemRequestBuilder
+        Returns: UserFlowLanguagePageItemRequestBuilder
         """
-        if user_flow_language_page_id is None:
-            raise Exception("user_flow_language_page_id cannot be undefined")
-        from .item import user_flow_language_page_item_request_builder
+        if not user_flow_language_page_id:
+            raise TypeError("user_flow_language_page_id cannot be null.")
+        from .item.user_flow_language_page_item_request_builder import UserFlowLanguagePageItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userFlowLanguagePage%2Did"] = user_flow_language_page_id
-        return user_flow_language_page_item_request_builder.UserFlowLanguagePageItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return UserFlowLanguagePageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DefaultPagesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_flow_language_page_collection_response.UserFlowLanguagePageCollectionResponse]:
+    async def get(self,request_configuration: Optional[DefaultPagesRequestBuilderGetRequestConfiguration] = None) -> Optional[UserFlowLanguagePageCollectionResponse]:
         """
         Get the userFlowLanguagePage resources from the defaultPages navigation property. These contain the values shown to the user in a default user journey of a user flow.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_flow_language_page_collection_response.UserFlowLanguagePageCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UserFlowLanguagePageCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import user_flow_language_page_collection_response
+        from .......models.user_flow_language_page_collection_response import UserFlowLanguagePageCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, user_flow_language_page_collection_response.UserFlowLanguagePageCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserFlowLanguagePageCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_flow_language_page.UserFlowLanguagePage] = None, request_configuration: Optional[DefaultPagesRequestBuilderPostRequestConfiguration] = None) -> Optional[user_flow_language_page.UserFlowLanguagePage]:
+    async def post(self,body: Optional[UserFlowLanguagePage] = None, request_configuration: Optional[DefaultPagesRequestBuilderPostRequestConfiguration] = None) -> Optional[UserFlowLanguagePage]:
         """
         Create new navigation property to defaultPages for identity
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_flow_language_page.UserFlowLanguagePage]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UserFlowLanguagePage]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import user_flow_language_page
+        from .......models.user_flow_language_page import UserFlowLanguagePage
 
-        return await self.request_adapter.send_async(request_info, user_flow_language_page.UserFlowLanguagePage, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserFlowLanguagePage, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DefaultPagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get the userFlowLanguagePage resources from the defaultPages navigation property. These contain the values shown to the user in a default user journey of a user flow.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +109,16 @@ class DefaultPagesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[user_flow_language_page.UserFlowLanguagePage] = None, request_configuration: Optional[DefaultPagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UserFlowLanguagePage] = None, request_configuration: Optional[DefaultPagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to defaultPages for identity
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +131,13 @@ class DefaultPagesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DefaultPagesRequestBuilderGetQueryParameters():
@@ -156,11 +148,11 @@ class DefaultPagesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +196,27 @@ class DefaultPagesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DefaultPagesRequestBuilderGetRequestConfiguration():
+    class DefaultPagesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[DefaultPagesRequestBuilder.DefaultPagesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DefaultPagesRequestBuilderPostRequestConfiguration():
+    class DefaultPagesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

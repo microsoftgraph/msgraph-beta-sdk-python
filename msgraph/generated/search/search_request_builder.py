@@ -1,23 +1,23 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import search_entity
-    from ..models.o_data_errors import o_data_error
-    from .acronyms import acronyms_request_builder
-    from .bookmarks import bookmarks_request_builder
-    from .qnas import qnas_request_builder
-    from .query import query_request_builder
+    from ..models.o_data_errors.o_data_error import ODataError
+    from ..models.search_entity import SearchEntity
+    from .acronyms.acronyms_request_builder import AcronymsRequestBuilder
+    from .bookmarks.bookmarks_request_builder import BookmarksRequestBuilder
+    from .qnas.qnas_request_builder import QnasRequestBuilder
+    from .query.query_request_builder import QueryRequestBuilder
 
-class SearchRequestBuilder():
+class SearchRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the searchEntity singleton.
     """
@@ -25,72 +25,63 @@ class SearchRequestBuilder():
         """
         Instantiates a new SearchRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/search{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/search{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> Optional[search_entity.SearchEntity]:
+    async def get(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> Optional[SearchEntity]:
         """
         Get search
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[search_entity.SearchEntity]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SearchEntity]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import search_entity
+        from ..models.search_entity import SearchEntity
 
-        return await self.request_adapter.send_async(request_info, search_entity.SearchEntity, error_mapping)
+        return await self.request_adapter.send_async(request_info, SearchEntity, error_mapping)
     
-    async def patch(self,body: Optional[search_entity.SearchEntity] = None, request_configuration: Optional[SearchRequestBuilderPatchRequestConfiguration] = None) -> Optional[search_entity.SearchEntity]:
+    async def patch(self,body: Optional[SearchEntity] = None, request_configuration: Optional[SearchRequestBuilderPatchRequestConfiguration] = None) -> Optional[SearchEntity]:
         """
         Update search
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[search_entity.SearchEntity]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SearchEntity]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import search_entity
+        from ..models.search_entity import SearchEntity
 
-        return await self.request_adapter.send_async(request_info, search_entity.SearchEntity, error_mapping)
+        return await self.request_adapter.send_async(request_info, SearchEntity, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get search
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -104,16 +95,16 @@ class SearchRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[search_entity.SearchEntity] = None, request_configuration: Optional[SearchRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SearchEntity] = None, request_configuration: Optional[SearchRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update search
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -126,40 +117,40 @@ class SearchRequestBuilder():
         return request_info
     
     @property
-    def acronyms(self) -> acronyms_request_builder.AcronymsRequestBuilder:
+    def acronyms(self) -> AcronymsRequestBuilder:
         """
         Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.
         """
-        from .acronyms import acronyms_request_builder
+        from .acronyms.acronyms_request_builder import AcronymsRequestBuilder
 
-        return acronyms_request_builder.AcronymsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AcronymsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def bookmarks(self) -> bookmarks_request_builder.BookmarksRequestBuilder:
+    def bookmarks(self) -> BookmarksRequestBuilder:
         """
         Provides operations to manage the bookmarks property of the microsoft.graph.searchEntity entity.
         """
-        from .bookmarks import bookmarks_request_builder
+        from .bookmarks.bookmarks_request_builder import BookmarksRequestBuilder
 
-        return bookmarks_request_builder.BookmarksRequestBuilder(self.request_adapter, self.path_parameters)
+        return BookmarksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def qnas(self) -> qnas_request_builder.QnasRequestBuilder:
+    def qnas(self) -> QnasRequestBuilder:
         """
         Provides operations to manage the qnas property of the microsoft.graph.searchEntity entity.
         """
-        from .qnas import qnas_request_builder
+        from .qnas.qnas_request_builder import QnasRequestBuilder
 
-        return qnas_request_builder.QnasRequestBuilder(self.request_adapter, self.path_parameters)
+        return QnasRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def query(self) -> query_request_builder.QueryRequestBuilder:
+    def query(self) -> QueryRequestBuilder:
         """
         Provides operations to call the query method.
         """
-        from .query import query_request_builder
+        from .query.query_request_builder import QueryRequestBuilder
 
-        return query_request_builder.QueryRequestBuilder(self.request_adapter, self.path_parameters)
+        return QueryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SearchRequestBuilderGetQueryParameters():
@@ -170,11 +161,11 @@ class SearchRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -188,31 +179,27 @@ class SearchRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SearchRequestBuilderGetRequestConfiguration():
+    class SearchRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SearchRequestBuilder.SearchRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SearchRequestBuilderPatchRequestConfiguration():
+    class SearchRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

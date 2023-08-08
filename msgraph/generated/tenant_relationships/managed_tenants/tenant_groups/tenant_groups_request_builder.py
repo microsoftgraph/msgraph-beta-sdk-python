@@ -1,22 +1,23 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.managed_tenants import tenant_group, tenant_group_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import tenant_group_item_request_builder
-    from .microsoft_graph_managed_tenants_tenant_search import microsoft_graph_managed_tenants_tenant_search_request_builder
+    from ....models.managed_tenants.tenant_group import TenantGroup
+    from ....models.managed_tenants.tenant_group_collection_response import TenantGroupCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.tenant_group_item_request_builder import TenantGroupItemRequestBuilder
+    from .microsoft_graph_managed_tenants_tenant_search.microsoft_graph_managed_tenants_tenant_search_request_builder import MicrosoftGraphManagedTenantsTenantSearchRequestBuilder
 
-class TenantGroupsRequestBuilder():
+class TenantGroupsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the tenantGroups property of the microsoft.graph.managedTenants.managedTenant entity.
     """
@@ -24,87 +25,78 @@ class TenantGroupsRequestBuilder():
         """
         Instantiates a new TenantGroupsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/tenantGroups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/tenantGroups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_tenant_group_id(self,tenant_group_id: str) -> tenant_group_item_request_builder.TenantGroupItemRequestBuilder:
+    def by_tenant_group_id(self,tenant_group_id: str) -> TenantGroupItemRequestBuilder:
         """
         Provides operations to manage the tenantGroups property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             tenant_group_id: Unique identifier of the item
-        Returns: tenant_group_item_request_builder.TenantGroupItemRequestBuilder
+        Returns: TenantGroupItemRequestBuilder
         """
-        if tenant_group_id is None:
-            raise Exception("tenant_group_id cannot be undefined")
-        from .item import tenant_group_item_request_builder
+        if not tenant_group_id:
+            raise TypeError("tenant_group_id cannot be null.")
+        from .item.tenant_group_item_request_builder import TenantGroupItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["tenantGroup%2Did"] = tenant_group_id
-        return tenant_group_item_request_builder.TenantGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return TenantGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_group_collection_response.TenantGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantGroupCollectionResponse]:
         """
         Get a list of the tenantGroup objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[tenant_group_collection_response.TenantGroupCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[TenantGroupCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.managed_tenants import tenant_group_collection_response
+        from ....models.managed_tenants.tenant_group_collection_response import TenantGroupCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, tenant_group_collection_response.TenantGroupCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, TenantGroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[tenant_group.TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant_group.TenantGroup]:
+    async def post(self,body: Optional[TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[TenantGroup]:
         """
         Create new navigation property to tenantGroups for tenantRelationships
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[tenant_group.TenantGroup]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[TenantGroup]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.managed_tenants import tenant_group
+        from ....models.managed_tenants.tenant_group import TenantGroup
 
-        return await self.request_adapter.send_async(request_info, tenant_group.TenantGroup, error_mapping)
+        return await self.request_adapter.send_async(request_info, TenantGroup, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the tenantGroup objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -118,16 +110,16 @@ class TenantGroupsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[tenant_group.TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to tenantGroups for tenantRelationships
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +132,22 @@ class TenantGroupsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_managed_tenants_tenant_search(self) -> microsoft_graph_managed_tenants_tenant_search_request_builder.MicrosoftGraphManagedTenantsTenantSearchRequestBuilder:
+    def microsoft_graph_managed_tenants_tenant_search(self) -> MicrosoftGraphManagedTenantsTenantSearchRequestBuilder:
         """
         Provides operations to call the tenantSearch method.
         """
-        from .microsoft_graph_managed_tenants_tenant_search import microsoft_graph_managed_tenants_tenant_search_request_builder
+        from .microsoft_graph_managed_tenants_tenant_search.microsoft_graph_managed_tenants_tenant_search_request_builder import MicrosoftGraphManagedTenantsTenantSearchRequestBuilder
 
-        return microsoft_graph_managed_tenants_tenant_search_request_builder.MicrosoftGraphManagedTenantsTenantSearchRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphManagedTenantsTenantSearchRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TenantGroupsRequestBuilderGetQueryParameters():
@@ -166,11 +158,11 @@ class TenantGroupsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -214,31 +206,27 @@ class TenantGroupsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TenantGroupsRequestBuilderGetRequestConfiguration():
+    class TenantGroupsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[TenantGroupsRequestBuilder.TenantGroupsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TenantGroupsRequestBuilderPostRequestConfiguration():
+    class TenantGroupsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

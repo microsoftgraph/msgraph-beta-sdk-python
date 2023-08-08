@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IndustryDataActivityStatus(Enum):
+class IndustryDataActivityStatus(str, Enum):
     InProgress = "inProgress",
     Skipped = "skipped",
     Failed = "failed",

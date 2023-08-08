@@ -1,22 +1,22 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import rbac_application_multiple
-    from ...models.o_data_errors import o_data_error
-    from .resource_namespaces import resource_namespaces_request_builder
-    from .role_assignments import role_assignments_request_builder
-    from .role_definitions import role_definitions_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.rbac_application_multiple import RbacApplicationMultiple
+    from .resource_namespaces.resource_namespaces_request_builder import ResourceNamespacesRequestBuilder
+    from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
+    from .role_definitions.role_definitions_request_builder import RoleDefinitionsRequestBuilder
 
-class CloudPCRequestBuilder():
+class CloudPCRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the cloudPC property of the microsoft.graph.roleManagement entity.
     """
@@ -24,91 +24,82 @@ class CloudPCRequestBuilder():
         """
         Instantiates a new CloudPCRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/roleManagement/cloudPC{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/roleManagement/cloudPC{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[CloudPCRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property cloudPC for roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPCRequestBuilderGetRequestConfiguration] = None) -> Optional[rbac_application_multiple.RbacApplicationMultiple]:
+    async def get(self,request_configuration: Optional[CloudPCRequestBuilderGetRequestConfiguration] = None) -> Optional[RbacApplicationMultiple]:
         """
         Get cloudPC from roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[rbac_application_multiple.RbacApplicationMultiple]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RbacApplicationMultiple]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import rbac_application_multiple
+        from ...models.rbac_application_multiple import RbacApplicationMultiple
 
-        return await self.request_adapter.send_async(request_info, rbac_application_multiple.RbacApplicationMultiple, error_mapping)
+        return await self.request_adapter.send_async(request_info, RbacApplicationMultiple, error_mapping)
     
-    async def patch(self,body: Optional[rbac_application_multiple.RbacApplicationMultiple] = None, request_configuration: Optional[CloudPCRequestBuilderPatchRequestConfiguration] = None) -> Optional[rbac_application_multiple.RbacApplicationMultiple]:
+    async def patch(self,body: Optional[RbacApplicationMultiple] = None, request_configuration: Optional[CloudPCRequestBuilderPatchRequestConfiguration] = None) -> Optional[RbacApplicationMultiple]:
         """
         Update the navigation property cloudPC in roleManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[rbac_application_multiple.RbacApplicationMultiple]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RbacApplicationMultiple]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import rbac_application_multiple
+        from ...models.rbac_application_multiple import RbacApplicationMultiple
 
-        return await self.request_adapter.send_async(request_info, rbac_application_multiple.RbacApplicationMultiple, error_mapping)
+        return await self.request_adapter.send_async(request_info, RbacApplicationMultiple, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPCRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property cloudPC for roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -124,7 +115,7 @@ class CloudPCRequestBuilder():
         """
         Get cloudPC from roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -138,16 +129,16 @@ class CloudPCRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[rbac_application_multiple.RbacApplicationMultiple] = None, request_configuration: Optional[CloudPCRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[RbacApplicationMultiple] = None, request_configuration: Optional[CloudPCRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property cloudPC in roleManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,43 +151,41 @@ class CloudPCRequestBuilder():
         return request_info
     
     @property
-    def resource_namespaces(self) -> resource_namespaces_request_builder.ResourceNamespacesRequestBuilder:
+    def resource_namespaces(self) -> ResourceNamespacesRequestBuilder:
         """
         Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplicationMultiple entity.
         """
-        from .resource_namespaces import resource_namespaces_request_builder
+        from .resource_namespaces.resource_namespaces_request_builder import ResourceNamespacesRequestBuilder
 
-        return resource_namespaces_request_builder.ResourceNamespacesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourceNamespacesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_assignments(self) -> role_assignments_request_builder.RoleAssignmentsRequestBuilder:
+    def role_assignments(self) -> RoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplicationMultiple entity.
         """
-        from .role_assignments import role_assignments_request_builder
+        from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
 
-        return role_assignments_request_builder.RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_definitions(self) -> role_definitions_request_builder.RoleDefinitionsRequestBuilder:
+    def role_definitions(self) -> RoleDefinitionsRequestBuilder:
         """
         Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplicationMultiple entity.
         """
-        from .role_definitions import role_definitions_request_builder
+        from .role_definitions.role_definitions_request_builder import RoleDefinitionsRequestBuilder
 
-        return role_definitions_request_builder.RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPCRequestBuilderDeleteRequestConfiguration():
+    class CloudPCRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class CloudPCRequestBuilderGetQueryParameters():
@@ -207,11 +196,11 @@ class CloudPCRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -225,31 +214,27 @@ class CloudPCRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPCRequestBuilderGetRequestConfiguration():
+    class CloudPCRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[CloudPCRequestBuilder.CloudPCRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CloudPCRequestBuilderPatchRequestConfiguration():
+    class CloudPCRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

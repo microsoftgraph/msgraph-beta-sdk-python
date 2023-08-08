@@ -1,15 +1,25 @@
 from enum import Enum
 
-class ManagedDeviceRemoteAction(Enum):
+class ManagedDeviceRemoteAction(str, Enum):
+    # Name of the retire action.
     Retire = "retire",
+    # Name of the delete action.
     Delete = "delete",
+    # Name of the full Scan action.
     FullScan = "fullScan",
+    # Name of the Quick Scan action.
     QuickScan = "quickScan",
+    # Signature Update action
     SignatureUpdate = "signatureUpdate",
+    # Name of the wipe action.
     Wipe = "wipe",
+    # Name of the Custom Text Notification action.
     CustomTextNotification = "customTextNotification",
+    # Name of the reboot now action.
     RebootNow = "rebootNow",
+    # Set Device Name action.
     SetDeviceName = "setDeviceName",
+    # Sync Device action.
     SyncDevice = "syncDevice",
     # Name of the deprovision action.
     Deprovision = "deprovision",
@@ -27,4 +37,6 @@ class ManagedDeviceRemoteAction(Enum):
     InitiateMobileDeviceManagementKeyRecovery = "initiateMobileDeviceManagementKeyRecovery",
     # Name of action to initiate On Demand Proactive Remediation
     InitiateOnDemandProactiveRemediation = "initiateOnDemandProactiveRemediation",
+    # Evolvable enum member
+    UnknownFutureValue = "unknownFutureValue",
 

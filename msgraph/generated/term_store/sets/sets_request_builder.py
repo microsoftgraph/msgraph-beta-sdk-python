@@ -1,21 +1,22 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.o_data_errors import o_data_error
-    from ...models.term_store import set, set_collection_response
-    from .count import count_request_builder
-    from .item import set_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.term_store.set import Set
+    from ...models.term_store.set_collection_response import SetCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.set_item_request_builder import SetItemRequestBuilder
 
-class SetsRequestBuilder():
+class SetsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the sets property of the microsoft.graph.termStore.store entity.
     """
@@ -23,87 +24,78 @@ class SetsRequestBuilder():
         """
         Instantiates a new SetsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/termStore/sets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/termStore/sets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_set_id(self,set_id: str) -> set_item_request_builder.SetItemRequestBuilder:
+    def by_set_id(self,set_id: str) -> SetItemRequestBuilder:
         """
         Provides operations to manage the sets property of the microsoft.graph.termStore.store entity.
         Args:
             set_id: Unique identifier of the item
-        Returns: set_item_request_builder.SetItemRequestBuilder
+        Returns: SetItemRequestBuilder
         """
-        if set_id is None:
-            raise Exception("set_id cannot be undefined")
-        from .item import set_item_request_builder
+        if not set_id:
+            raise TypeError("set_id cannot be null.")
+        from .item.set_item_request_builder import SetItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["set%2Did"] = set_id
-        return set_item_request_builder.SetItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return SetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SetsRequestBuilderGetRequestConfiguration] = None) -> Optional[set_collection_response.SetCollectionResponse]:
+    async def get(self,request_configuration: Optional[SetsRequestBuilderGetRequestConfiguration] = None) -> Optional[SetCollectionResponse]:
         """
         Read the properties and relationships of a set object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[set_collection_response.SetCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SetCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.term_store import set_collection_response
+        from ...models.term_store.set_collection_response import SetCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, set_collection_response.SetCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[set.Set] = None, request_configuration: Optional[SetsRequestBuilderPostRequestConfiguration] = None) -> Optional[set.Set]:
+    async def post(self,body: Optional[Set] = None, request_configuration: Optional[SetsRequestBuilderPostRequestConfiguration] = None) -> Optional[Set]:
         """
         Create new navigation property to sets for termStore
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[set.Set]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Set]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.term_store import set
+        from ...models.term_store.set import Set
 
-        return await self.request_adapter.send_async(request_info, set.Set, error_mapping)
+        return await self.request_adapter.send_async(request_info, Set, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a set object.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +109,16 @@ class SetsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[set.Set] = None, request_configuration: Optional[SetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Set] = None, request_configuration: Optional[SetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to sets for termStore
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +131,13 @@ class SetsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SetsRequestBuilderGetQueryParameters():
@@ -156,11 +148,11 @@ class SetsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +196,27 @@ class SetsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SetsRequestBuilderGetRequestConfiguration():
+    class SetsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SetsRequestBuilder.SetsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SetsRequestBuilderPostRequestConfiguration():
+    class SetsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

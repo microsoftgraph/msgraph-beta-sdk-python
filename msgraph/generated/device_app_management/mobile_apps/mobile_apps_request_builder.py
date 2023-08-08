@@ -1,27 +1,26 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import mobile_app, mobile_app_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .get_mobile_app_count_with_status import get_mobile_app_count_with_status_request_builder
-    from .get_top_mobile_apps_with_status_with_count import get_top_mobile_apps_with_status_with_count_request_builder
-    from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
-    from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
-    from .has_payload_links import has_payload_links_request_builder
-    from .item import mobile_app_item_request_builder
-    from .validate_xml import validate_xml_request_builder
+    from ...models.mobile_app import MobileApp
+    from ...models.mobile_app_collection_response import MobileAppCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .graph_managed_mobile_lob_app.graph_managed_mobile_lob_app_request_builder import GraphManagedMobileLobAppRequestBuilder
+    from .graph_mobile_lob_app.graph_mobile_lob_app_request_builder import GraphMobileLobAppRequestBuilder
+    from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
+    from .item.mobile_app_item_request_builder import MobileAppItemRequestBuilder
+    from .validate_xml.validate_xml_request_builder import ValidateXmlRequestBuilder
 
-class MobileAppsRequestBuilder():
+class MobileAppsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
     """
@@ -29,116 +28,78 @@ class MobileAppsRequestBuilder():
         """
         Instantiates a new MobileAppsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceAppManagement/mobileApps{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/mobileApps{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_mobile_app_id(self,mobile_app_id: str) -> mobile_app_item_request_builder.MobileAppItemRequestBuilder:
+    def by_mobile_app_id(self,mobile_app_id: str) -> MobileAppItemRequestBuilder:
         """
         Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
         Args:
             mobile_app_id: Unique identifier of the item
-        Returns: mobile_app_item_request_builder.MobileAppItemRequestBuilder
+        Returns: MobileAppItemRequestBuilder
         """
-        if mobile_app_id is None:
-            raise Exception("mobile_app_id cannot be undefined")
-        from .item import mobile_app_item_request_builder
+        if not mobile_app_id:
+            raise TypeError("mobile_app_id cannot be null.")
+        from .item.mobile_app_item_request_builder import MobileAppItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["mobileApp%2Did"] = mobile_app_id
-        return mobile_app_item_request_builder.MobileAppItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return MobileAppItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_collection_response.MobileAppCollectionResponse]:
+    async def get(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None) -> Optional[MobileAppCollectionResponse]:
         """
         The mobile apps.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobile_app_collection_response.MobileAppCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[MobileAppCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import mobile_app_collection_response
+        from ...models.mobile_app_collection_response import MobileAppCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, mobile_app_collection_response.MobileAppCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobileAppCollectionResponse, error_mapping)
     
-    def get_mobile_app_count_with_status(self,status: Optional[str] = None) -> get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder:
-        """
-        Provides operations to call the getMobileAppCount method.
-        Args:
-            status: Usage: status='{status}'
-        Returns: get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder
-        """
-        if status is None:
-            raise Exception("status cannot be undefined")
-        from .get_mobile_app_count_with_status import get_mobile_app_count_with_status_request_builder
-
-        return get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder(self.request_adapter, self.path_parameters, status)
-    
-    def get_top_mobile_apps_with_status_with_count(self,count: Optional[int] = None, status: Optional[str] = None) -> get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder:
-        """
-        Provides operations to call the getTopMobileApps method.
-        Args:
-            count: Usage: count={count}
-            status: Usage: status='{status}'
-        Returns: get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder
-        """
-        if count is None:
-            raise Exception("count cannot be undefined")
-        if status is None:
-            raise Exception("status cannot be undefined")
-        from .get_top_mobile_apps_with_status_with_count import get_top_mobile_apps_with_status_with_count_request_builder
-
-        return get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder(self.request_adapter, self.path_parameters, count, status)
-    
-    async def post(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
+    async def post(self,body: Optional[MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[MobileApp]:
         """
         Create new navigation property to mobileApps for deviceAppManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobile_app.MobileApp]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[MobileApp]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import mobile_app
+        from ...models.mobile_app import MobileApp
 
-        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobileApp, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The mobile apps.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -152,16 +113,16 @@ class MobileAppsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to mobileApps for deviceAppManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -174,49 +135,49 @@ class MobileAppsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_managed_mobile_lob_app(self) -> graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder:
+    def graph_managed_mobile_lob_app(self) -> GraphManagedMobileLobAppRequestBuilder:
         """
         Casts the previous resource to managedMobileLobApp.
         """
-        from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
+        from .graph_managed_mobile_lob_app.graph_managed_mobile_lob_app_request_builder import GraphManagedMobileLobAppRequestBuilder
 
-        return graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_mobile_lob_app(self) -> graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder:
+    def graph_mobile_lob_app(self) -> GraphMobileLobAppRequestBuilder:
         """
         Casts the previous resource to mobileLobApp.
         """
-        from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
+        from .graph_mobile_lob_app.graph_mobile_lob_app_request_builder import GraphMobileLobAppRequestBuilder
 
-        return graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def has_payload_links(self) -> HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        from .has_payload_links import has_payload_links_request_builder
+        from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
 
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_xml(self) -> validate_xml_request_builder.ValidateXmlRequestBuilder:
+    def validate_xml(self) -> ValidateXmlRequestBuilder:
         """
         Provides operations to call the validateXml method.
         """
-        from .validate_xml import validate_xml_request_builder
+        from .validate_xml.validate_xml_request_builder import ValidateXmlRequestBuilder
 
-        return validate_xml_request_builder.ValidateXmlRequestBuilder(self.request_adapter, self.path_parameters)
+        return ValidateXmlRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MobileAppsRequestBuilderGetQueryParameters():
@@ -227,11 +188,11 @@ class MobileAppsRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -275,31 +236,27 @@ class MobileAppsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MobileAppsRequestBuilderGetRequestConfiguration():
+    class MobileAppsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[MobileAppsRequestBuilder.MobileAppsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MobileAppsRequestBuilderPostRequestConfiguration():
+    class MobileAppsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

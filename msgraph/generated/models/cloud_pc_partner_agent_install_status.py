@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcPartnerAgentInstallStatus(Enum):
+class CloudPcPartnerAgentInstallStatus(str, Enum):
     Installed = "installed",
     InstallFailed = "installFailed",
     Installing = "installing",

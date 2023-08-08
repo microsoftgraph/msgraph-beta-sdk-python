@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSSoftwareUpdateScheduleType(Enum):
+class MacOSSoftwareUpdateScheduleType(str, Enum):
     # Always update.
     AlwaysUpdate = "alwaysUpdate",
     # Update during time windows.

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SecurityBaselineComplianceState(Enum):
+class SecurityBaselineComplianceState(str, Enum):
     # Unknown state
     Unknown = "unknown",
     # Secure state

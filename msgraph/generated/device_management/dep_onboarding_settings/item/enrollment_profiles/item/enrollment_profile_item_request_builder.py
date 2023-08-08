@@ -1,22 +1,22 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import enrollment_profile
-    from ......models.o_data_errors import o_data_error
-    from .export_mobile_config import export_mobile_config_request_builder
-    from .set_default_profile import set_default_profile_request_builder
-    from .update_device_profile_assignment import update_device_profile_assignment_request_builder
+    from ......models.enrollment_profile import EnrollmentProfile
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .export_mobile_config.export_mobile_config_request_builder import ExportMobileConfigRequestBuilder
+    from .set_default_profile.set_default_profile_request_builder import SetDefaultProfileRequestBuilder
+    from .update_device_profile_assignment.update_device_profile_assignment_request_builder import UpdateDeviceProfileAssignmentRequestBuilder
 
-class EnrollmentProfileItemRequestBuilder():
+class EnrollmentProfileItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
     """
@@ -24,91 +24,82 @@ class EnrollmentProfileItemRequestBuilder():
         """
         Instantiates a new EnrollmentProfileItemRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/depOnboardingSettings/{depOnboardingSetting%2Did}/enrollmentProfiles/{enrollmentProfile%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/depOnboardingSettings/{depOnboardingSetting%2Did}/enrollmentProfiles/{enrollmentProfile%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property enrollmentProfiles for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
+    async def get(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EnrollmentProfile]:
         """
         The enrollment profiles.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[enrollment_profile.EnrollmentProfile]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EnrollmentProfile]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import enrollment_profile
+        from ......models.enrollment_profile import EnrollmentProfile
 
-        return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, EnrollmentProfile, error_mapping)
     
-    async def patch(self,body: Optional[enrollment_profile.EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
+    async def patch(self,body: Optional[EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EnrollmentProfile]:
         """
         Update the navigation property enrollmentProfiles in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[enrollment_profile.EnrollmentProfile]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EnrollmentProfile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import enrollment_profile
+        from ......models.enrollment_profile import EnrollmentProfile
 
-        return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, EnrollmentProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property enrollmentProfiles for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -124,7 +115,7 @@ class EnrollmentProfileItemRequestBuilder():
         """
         The enrollment profiles.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -138,16 +129,16 @@ class EnrollmentProfileItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[enrollment_profile.EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property enrollmentProfiles in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,43 +151,41 @@ class EnrollmentProfileItemRequestBuilder():
         return request_info
     
     @property
-    def export_mobile_config(self) -> export_mobile_config_request_builder.ExportMobileConfigRequestBuilder:
+    def export_mobile_config(self) -> ExportMobileConfigRequestBuilder:
         """
         Provides operations to call the exportMobileConfig method.
         """
-        from .export_mobile_config import export_mobile_config_request_builder
+        from .export_mobile_config.export_mobile_config_request_builder import ExportMobileConfigRequestBuilder
 
-        return export_mobile_config_request_builder.ExportMobileConfigRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExportMobileConfigRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_default_profile(self) -> set_default_profile_request_builder.SetDefaultProfileRequestBuilder:
+    def set_default_profile(self) -> SetDefaultProfileRequestBuilder:
         """
         Provides operations to call the setDefaultProfile method.
         """
-        from .set_default_profile import set_default_profile_request_builder
+        from .set_default_profile.set_default_profile_request_builder import SetDefaultProfileRequestBuilder
 
-        return set_default_profile_request_builder.SetDefaultProfileRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetDefaultProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_device_profile_assignment(self) -> update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder:
+    def update_device_profile_assignment(self) -> UpdateDeviceProfileAssignmentRequestBuilder:
         """
         Provides operations to call the updateDeviceProfileAssignment method.
         """
-        from .update_device_profile_assignment import update_device_profile_assignment_request_builder
+        from .update_device_profile_assignment.update_device_profile_assignment_request_builder import UpdateDeviceProfileAssignmentRequestBuilder
 
-        return update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateDeviceProfileAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration():
+    class EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class EnrollmentProfileItemRequestBuilderGetQueryParameters():
@@ -207,11 +196,11 @@ class EnrollmentProfileItemRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -225,31 +214,27 @@ class EnrollmentProfileItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EnrollmentProfileItemRequestBuilderGetRequestConfiguration():
+    class EnrollmentProfileItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[EnrollmentProfileItemRequestBuilder.EnrollmentProfileItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EnrollmentProfileItemRequestBuilderPatchRequestConfiguration():
+    class EnrollmentProfileItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

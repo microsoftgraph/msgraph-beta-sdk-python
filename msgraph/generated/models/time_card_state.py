@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TimeCardState(Enum):
+class TimeCardState(str, Enum):
     ClockedIn = "clockedIn",
     OnBreak = "onBreak",
     ClockedOut = "clockedOut",

@@ -1,21 +1,22 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import print_usage_by_printer, print_usage_by_printer_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import print_usage_by_printer_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.print_usage_by_printer import PrintUsageByPrinter
+    from ...models.print_usage_by_printer_collection_response import PrintUsageByPrinterCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.print_usage_by_printer_item_request_builder import PrintUsageByPrinterItemRequestBuilder
 
-class MonthlyPrintUsageByPrinterRequestBuilder():
+class MonthlyPrintUsageByPrinterRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
     """
@@ -23,87 +24,78 @@ class MonthlyPrintUsageByPrinterRequestBuilder():
         """
         Instantiates a new MonthlyPrintUsageByPrinterRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/reports/monthlyPrintUsageByPrinter{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/reports/monthlyPrintUsageByPrinter{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_print_usage_by_printer_id(self,print_usage_by_printer_id: str) -> print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder:
+    def by_print_usage_by_printer_id(self,print_usage_by_printer_id: str) -> PrintUsageByPrinterItemRequestBuilder:
         """
         Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         Args:
             print_usage_by_printer_id: Unique identifier of the item
-        Returns: print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder
+        Returns: PrintUsageByPrinterItemRequestBuilder
         """
-        if print_usage_by_printer_id is None:
-            raise Exception("print_usage_by_printer_id cannot be undefined")
-        from .item import print_usage_by_printer_item_request_builder
+        if not print_usage_by_printer_id:
+            raise TypeError("print_usage_by_printer_id cannot be null.")
+        from .item.print_usage_by_printer_item_request_builder import PrintUsageByPrinterItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["printUsageByPrinter%2Did"] = print_usage_by_printer_id
-        return print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return PrintUsageByPrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MonthlyPrintUsageByPrinterRequestBuilderGetRequestConfiguration] = None) -> Optional[print_usage_by_printer_collection_response.PrintUsageByPrinterCollectionResponse]:
+    async def get(self,request_configuration: Optional[MonthlyPrintUsageByPrinterRequestBuilderGetRequestConfiguration] = None) -> Optional[PrintUsageByPrinterCollectionResponse]:
         """
-        Get monthlyPrintUsageByPrinter from reports
+        Retrieve a list of monthly print usage summaries, grouped by printer.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[print_usage_by_printer_collection_response.PrintUsageByPrinterCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[PrintUsageByPrinterCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import print_usage_by_printer_collection_response
+        from ...models.print_usage_by_printer_collection_response import PrintUsageByPrinterCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, print_usage_by_printer_collection_response.PrintUsageByPrinterCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrintUsageByPrinterCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[print_usage_by_printer.PrintUsageByPrinter] = None, request_configuration: Optional[MonthlyPrintUsageByPrinterRequestBuilderPostRequestConfiguration] = None) -> Optional[print_usage_by_printer.PrintUsageByPrinter]:
+    async def post(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[MonthlyPrintUsageByPrinterRequestBuilderPostRequestConfiguration] = None) -> Optional[PrintUsageByPrinter]:
         """
         Create new navigation property to monthlyPrintUsageByPrinter for reports
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[print_usage_by_printer.PrintUsageByPrinter]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[PrintUsageByPrinter]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import print_usage_by_printer
+        from ...models.print_usage_by_printer import PrintUsageByPrinter
 
-        return await self.request_adapter.send_async(request_info, print_usage_by_printer.PrintUsageByPrinter, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrintUsageByPrinter, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MonthlyPrintUsageByPrinterRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get monthlyPrintUsageByPrinter from reports
+        Retrieve a list of monthly print usage summaries, grouped by printer.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +109,16 @@ class MonthlyPrintUsageByPrinterRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[print_usage_by_printer.PrintUsageByPrinter] = None, request_configuration: Optional[MonthlyPrintUsageByPrinterRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[MonthlyPrintUsageByPrinterRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to monthlyPrintUsageByPrinter for reports
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,28 +131,28 @@ class MonthlyPrintUsageByPrinterRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MonthlyPrintUsageByPrinterRequestBuilderGetQueryParameters():
         """
-        Get monthlyPrintUsageByPrinter from reports
+        Retrieve a list of monthly print usage summaries, grouped by printer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +196,27 @@ class MonthlyPrintUsageByPrinterRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MonthlyPrintUsageByPrinterRequestBuilderGetRequestConfiguration():
+    class MonthlyPrintUsageByPrinterRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[MonthlyPrintUsageByPrinterRequestBuilder.MonthlyPrintUsageByPrinterRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MonthlyPrintUsageByPrinterRequestBuilderPostRequestConfiguration():
+    class MonthlyPrintUsageByPrinterRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

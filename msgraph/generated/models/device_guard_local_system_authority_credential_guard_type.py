@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceGuardLocalSystemAuthorityCredentialGuardType(Enum):
+class DeviceGuardLocalSystemAuthorityCredentialGuardType(str, Enum):
     # Turns off Credential Guard remotely if configured previously without UEFI Lock.
     NotConfigured = "notConfigured",
     # Turns on Credential Guard with UEFI lock.

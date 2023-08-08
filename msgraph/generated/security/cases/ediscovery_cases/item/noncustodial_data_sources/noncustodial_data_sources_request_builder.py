@@ -1,23 +1,24 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors import o_data_error
-    from ......models.security import ediscovery_noncustodial_data_source, ediscovery_noncustodial_data_source_collection_response
-    from .count import count_request_builder
-    from .item import ediscovery_noncustodial_data_source_item_request_builder
-    from .microsoft_graph_security_apply_hold import microsoft_graph_security_apply_hold_request_builder
-    from .microsoft_graph_security_remove_hold import microsoft_graph_security_remove_hold_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.security.ediscovery_noncustodial_data_source import EdiscoveryNoncustodialDataSource
+    from ......models.security.ediscovery_noncustodial_data_source_collection_response import EdiscoveryNoncustodialDataSourceCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.ediscovery_noncustodial_data_source_item_request_builder import EdiscoveryNoncustodialDataSourceItemRequestBuilder
+    from .microsoft_graph_security_apply_hold.microsoft_graph_security_apply_hold_request_builder import MicrosoftGraphSecurityApplyHoldRequestBuilder
+    from .microsoft_graph_security_remove_hold.microsoft_graph_security_remove_hold_request_builder import MicrosoftGraphSecurityRemoveHoldRequestBuilder
 
-class NoncustodialDataSourcesRequestBuilder():
+class NoncustodialDataSourcesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
     """
@@ -25,87 +26,78 @@ class NoncustodialDataSourcesRequestBuilder():
         """
         Instantiates a new NoncustodialDataSourcesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/noncustodialDataSources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/noncustodialDataSources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_ediscovery_noncustodial_data_source_id(self,ediscovery_noncustodial_data_source_id: str) -> ediscovery_noncustodial_data_source_item_request_builder.EdiscoveryNoncustodialDataSourceItemRequestBuilder:
+    def by_ediscovery_noncustodial_data_source_id(self,ediscovery_noncustodial_data_source_id: str) -> EdiscoveryNoncustodialDataSourceItemRequestBuilder:
         """
         Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
         Args:
             ediscovery_noncustodial_data_source_id: Unique identifier of the item
-        Returns: ediscovery_noncustodial_data_source_item_request_builder.EdiscoveryNoncustodialDataSourceItemRequestBuilder
+        Returns: EdiscoveryNoncustodialDataSourceItemRequestBuilder
         """
-        if ediscovery_noncustodial_data_source_id is None:
-            raise Exception("ediscovery_noncustodial_data_source_id cannot be undefined")
-        from .item import ediscovery_noncustodial_data_source_item_request_builder
+        if not ediscovery_noncustodial_data_source_id:
+            raise TypeError("ediscovery_noncustodial_data_source_id cannot be null.")
+        from .item.ediscovery_noncustodial_data_source_item_request_builder import EdiscoveryNoncustodialDataSourceItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["ediscoveryNoncustodialDataSource%2Did"] = ediscovery_noncustodial_data_source_id
-        return ediscovery_noncustodial_data_source_item_request_builder.EdiscoveryNoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return EdiscoveryNoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_noncustodial_data_source_collection_response.EdiscoveryNoncustodialDataSourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[EdiscoveryNoncustodialDataSourceCollectionResponse]:
         """
         Returns a list of case ediscoveryNoncustodialDataSource objects for this case.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ediscovery_noncustodial_data_source_collection_response.EdiscoveryNoncustodialDataSourceCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EdiscoveryNoncustodialDataSourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.security import ediscovery_noncustodial_data_source_collection_response
+        from ......models.security.ediscovery_noncustodial_data_source_collection_response import EdiscoveryNoncustodialDataSourceCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, ediscovery_noncustodial_data_source_collection_response.EdiscoveryNoncustodialDataSourceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, EdiscoveryNoncustodialDataSourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource]:
+    async def post(self,body: Optional[EdiscoveryNoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[EdiscoveryNoncustodialDataSource]:
         """
         Create a new ediscoveryNoncustodialDataSource object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EdiscoveryNoncustodialDataSource]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.security import ediscovery_noncustodial_data_source
+        from ......models.security.ediscovery_noncustodial_data_source import EdiscoveryNoncustodialDataSource
 
-        return await self.request_adapter.send_async(request_info, ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource, error_mapping)
+        return await self.request_adapter.send_async(request_info, EdiscoveryNoncustodialDataSource, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Returns a list of case ediscoveryNoncustodialDataSource objects for this case.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -119,16 +111,16 @@ class NoncustodialDataSourcesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EdiscoveryNoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new ediscoveryNoncustodialDataSource object.
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -141,31 +133,31 @@ class NoncustodialDataSourcesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_security_apply_hold(self) -> microsoft_graph_security_apply_hold_request_builder.MicrosoftGraphSecurityApplyHoldRequestBuilder:
+    def microsoft_graph_security_apply_hold(self) -> MicrosoftGraphSecurityApplyHoldRequestBuilder:
         """
         Provides operations to call the applyHold method.
         """
-        from .microsoft_graph_security_apply_hold import microsoft_graph_security_apply_hold_request_builder
+        from .microsoft_graph_security_apply_hold.microsoft_graph_security_apply_hold_request_builder import MicrosoftGraphSecurityApplyHoldRequestBuilder
 
-        return microsoft_graph_security_apply_hold_request_builder.MicrosoftGraphSecurityApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphSecurityApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_security_remove_hold(self) -> microsoft_graph_security_remove_hold_request_builder.MicrosoftGraphSecurityRemoveHoldRequestBuilder:
+    def microsoft_graph_security_remove_hold(self) -> MicrosoftGraphSecurityRemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
-        from .microsoft_graph_security_remove_hold import microsoft_graph_security_remove_hold_request_builder
+        from .microsoft_graph_security_remove_hold.microsoft_graph_security_remove_hold_request_builder import MicrosoftGraphSecurityRemoveHoldRequestBuilder
 
-        return microsoft_graph_security_remove_hold_request_builder.MicrosoftGraphSecurityRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphSecurityRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NoncustodialDataSourcesRequestBuilderGetQueryParameters():
@@ -176,11 +168,11 @@ class NoncustodialDataSourcesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -224,31 +216,27 @@ class NoncustodialDataSourcesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class NoncustodialDataSourcesRequestBuilderGetRequestConfiguration():
+    class NoncustodialDataSourcesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[NoncustodialDataSourcesRequestBuilder.NoncustodialDataSourcesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class NoncustodialDataSourcesRequestBuilderPostRequestConfiguration():
+    class NoncustodialDataSourcesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

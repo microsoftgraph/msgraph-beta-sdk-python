@@ -1,22 +1,23 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.managed_tenants import management_action_tenant_deployment_status, management_action_tenant_deployment_status_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import management_action_tenant_deployment_status_item_request_builder
-    from .microsoft_graph_managed_tenants_change_deployment_status import microsoft_graph_managed_tenants_change_deployment_status_request_builder
+    from ....models.managed_tenants.management_action_tenant_deployment_status import ManagementActionTenantDeploymentStatus
+    from ....models.managed_tenants.management_action_tenant_deployment_status_collection_response import ManagementActionTenantDeploymentStatusCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.management_action_tenant_deployment_status_item_request_builder import ManagementActionTenantDeploymentStatusItemRequestBuilder
+    from .microsoft_graph_managed_tenants_change_deployment_status.microsoft_graph_managed_tenants_change_deployment_status_request_builder import MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder
 
-class ManagementActionTenantDeploymentStatusesRequestBuilder():
+class ManagementActionTenantDeploymentStatusesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the managementActionTenantDeploymentStatuses property of the microsoft.graph.managedTenants.managedTenant entity.
     """
@@ -24,87 +25,78 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         """
         Instantiates a new ManagementActionTenantDeploymentStatusesRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/managementActionTenantDeploymentStatuses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managementActionTenantDeploymentStatuses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_management_action_tenant_deployment_status_id(self,management_action_tenant_deployment_status_id: str) -> management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder:
+    def by_management_action_tenant_deployment_status_id(self,management_action_tenant_deployment_status_id: str) -> ManagementActionTenantDeploymentStatusItemRequestBuilder:
         """
         Provides operations to manage the managementActionTenantDeploymentStatuses property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             management_action_tenant_deployment_status_id: Unique identifier of the item
-        Returns: management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder
+        Returns: ManagementActionTenantDeploymentStatusItemRequestBuilder
         """
-        if management_action_tenant_deployment_status_id is None:
-            raise Exception("management_action_tenant_deployment_status_id cannot be undefined")
-        from .item import management_action_tenant_deployment_status_item_request_builder
+        if not management_action_tenant_deployment_status_id:
+            raise TypeError("management_action_tenant_deployment_status_id cannot be null.")
+        from .item.management_action_tenant_deployment_status_item_request_builder import ManagementActionTenantDeploymentStatusItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managementActionTenantDeploymentStatus%2Did"] = management_action_tenant_deployment_status_id
-        return management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ManagementActionTenantDeploymentStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagementActionTenantDeploymentStatusesRequestBuilderGetRequestConfiguration] = None) -> Optional[management_action_tenant_deployment_status_collection_response.ManagementActionTenantDeploymentStatusCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagementActionTenantDeploymentStatusesRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagementActionTenantDeploymentStatusCollectionResponse]:
         """
         Get a list of the managementActionTenantDeploymentStatus objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[management_action_tenant_deployment_status_collection_response.ManagementActionTenantDeploymentStatusCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagementActionTenantDeploymentStatusCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.managed_tenants import management_action_tenant_deployment_status_collection_response
+        from ....models.managed_tenants.management_action_tenant_deployment_status_collection_response import ManagementActionTenantDeploymentStatusCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, management_action_tenant_deployment_status_collection_response.ManagementActionTenantDeploymentStatusCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagementActionTenantDeploymentStatusCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus] = None, request_configuration: Optional[ManagementActionTenantDeploymentStatusesRequestBuilderPostRequestConfiguration] = None) -> Optional[management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus]:
+    async def post(self,body: Optional[ManagementActionTenantDeploymentStatus] = None, request_configuration: Optional[ManagementActionTenantDeploymentStatusesRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagementActionTenantDeploymentStatus]:
         """
         Create new navigation property to managementActionTenantDeploymentStatuses for tenantRelationships
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagementActionTenantDeploymentStatus]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.managed_tenants import management_action_tenant_deployment_status
+        from ....models.managed_tenants.management_action_tenant_deployment_status import ManagementActionTenantDeploymentStatus
 
-        return await self.request_adapter.send_async(request_info, management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagementActionTenantDeploymentStatus, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagementActionTenantDeploymentStatusesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the managementActionTenantDeploymentStatus objects and their properties.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -118,16 +110,16 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus] = None, request_configuration: Optional[ManagementActionTenantDeploymentStatusesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ManagementActionTenantDeploymentStatus] = None, request_configuration: Optional[ManagementActionTenantDeploymentStatusesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to managementActionTenantDeploymentStatuses for tenantRelationships
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +132,22 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_managed_tenants_change_deployment_status(self) -> microsoft_graph_managed_tenants_change_deployment_status_request_builder.MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder:
+    def microsoft_graph_managed_tenants_change_deployment_status(self) -> MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder:
         """
         Provides operations to call the changeDeploymentStatus method.
         """
-        from .microsoft_graph_managed_tenants_change_deployment_status import microsoft_graph_managed_tenants_change_deployment_status_request_builder
+        from .microsoft_graph_managed_tenants_change_deployment_status.microsoft_graph_managed_tenants_change_deployment_status_request_builder import MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder
 
-        return microsoft_graph_managed_tenants_change_deployment_status_request_builder.MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ManagementActionTenantDeploymentStatusesRequestBuilderGetQueryParameters():
@@ -166,11 +158,11 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -214,31 +206,27 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagementActionTenantDeploymentStatusesRequestBuilderGetRequestConfiguration():
+    class ManagementActionTenantDeploymentStatusesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ManagementActionTenantDeploymentStatusesRequestBuilder.ManagementActionTenantDeploymentStatusesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagementActionTenantDeploymentStatusesRequestBuilderPostRequestConfiguration():
+    class ManagementActionTenantDeploymentStatusesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

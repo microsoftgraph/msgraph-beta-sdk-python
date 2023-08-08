@@ -1,32 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_configuration_group_setting_value, device_management_configuration_setting_instance
+    from .device_management_configuration_group_setting_value import DeviceManagementConfigurationGroupSettingValue
+    from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
 
-from . import device_management_configuration_setting_instance
+from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
 
-class DeviceManagementConfigurationGroupSettingCollectionInstance(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationGroupSettingCollectionInstance and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance"
-        # A collection of GroupSetting values
-        self._group_setting_collection_value: Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]] = None
+@dataclass
+class DeviceManagementConfigurationGroupSettingCollectionInstance(DeviceManagementConfigurationSettingInstance):
+    """
+    Instance of a GroupSettingCollection
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance"
+    # A collection of GroupSetting values
+    group_setting_collection_value: Optional[List[DeviceManagementConfigurationGroupSettingValue]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingCollectionInstance:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationGroupSettingCollectionInstance
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationGroupSettingCollectionInstance()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,31 +36,18 @@ class DeviceManagementConfigurationGroupSettingCollectionInstance(device_managem
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_configuration_group_setting_value, device_management_configuration_setting_instance
+        from .device_management_configuration_group_setting_value import DeviceManagementConfigurationGroupSettingValue
+        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+
+        from .device_management_configuration_group_setting_value import DeviceManagementConfigurationGroupSettingValue
+        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "groupSettingCollectionValue": lambda n : setattr(self, 'group_setting_collection_value', n.get_collection_of_object_values(device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue)),
+            "groupSettingCollectionValue": lambda n : setattr(self, 'group_setting_collection_value', n.get_collection_of_object_values(DeviceManagementConfigurationGroupSettingValue)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group_setting_collection_value(self,) -> Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]]:
-        """
-        Gets the groupSettingCollectionValue property value. A collection of GroupSetting values
-        Returns: Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]]
-        """
-        return self._group_setting_collection_value
-    
-    @group_setting_collection_value.setter
-    def group_setting_collection_value(self,value: Optional[List[device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue]] = None) -> None:
-        """
-        Sets the groupSettingCollectionValue property value. A collection of GroupSetting values
-        Args:
-            value: Value to set for the group_setting_collection_value property.
-        """
-        self._group_setting_collection_value = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -66,8 +55,8 @@ class DeviceManagementConfigurationGroupSettingCollectionInstance(device_managem
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("groupSettingCollectionValue", self.group_setting_collection_value)
     

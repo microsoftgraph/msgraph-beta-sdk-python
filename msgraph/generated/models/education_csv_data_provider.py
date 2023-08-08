@@ -1,60 +1,46 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import education_synchronization_customizations, education_synchronization_data_provider
+    from .education_synchronization_customizations import EducationSynchronizationCustomizations
+    from .education_synchronization_data_provider import EducationSynchronizationDataProvider
 
-from . import education_synchronization_data_provider
+from .education_synchronization_data_provider import EducationSynchronizationDataProvider
 
-class EducationCsvDataProvider(education_synchronization_data_provider.EducationSynchronizationDataProvider):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EducationCsvDataProvider and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.educationCsvDataProvider"
-        # Optional customizations to be applied to the synchronization profile.
-        self._customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
+@dataclass
+class EducationCsvDataProvider(EducationSynchronizationDataProvider):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.educationCsvDataProvider"
+    # Optional customizations to be applied to the synchronization profile.
+    customizations: Optional[EducationSynchronizationCustomizations] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationCsvDataProvider:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: EducationCsvDataProvider
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return EducationCsvDataProvider()
-    
-    @property
-    def customizations(self,) -> Optional[education_synchronization_customizations.EducationSynchronizationCustomizations]:
-        """
-        Gets the customizations property value. Optional customizations to be applied to the synchronization profile.
-        Returns: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations]
-        """
-        return self._customizations
-    
-    @customizations.setter
-    def customizations(self,value: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None) -> None:
-        """
-        Sets the customizations property value. Optional customizations to be applied to the synchronization profile.
-        Args:
-            value: Value to set for the customizations property.
-        """
-        self._customizations = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import education_synchronization_customizations, education_synchronization_data_provider
+        from .education_synchronization_customizations import EducationSynchronizationCustomizations
+        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
+
+        from .education_synchronization_customizations import EducationSynchronizationCustomizations
+        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "customizations": lambda n : setattr(self, 'customizations', n.get_object_value(education_synchronization_customizations.EducationSynchronizationCustomizations)),
+            "customizations": lambda n : setattr(self, 'customizations', n.get_object_value(EducationSynchronizationCustomizations)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,8 +52,8 @@ class EducationCsvDataProvider(education_synchronization_data_provider.Education
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("customizations", self.customizations)
     

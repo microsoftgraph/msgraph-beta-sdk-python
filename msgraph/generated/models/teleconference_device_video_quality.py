@@ -1,113 +1,45 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import teleconference_device_media_quality, teleconference_device_screen_sharing_quality
+    from .teleconference_device_media_quality import TeleconferenceDeviceMediaQuality
+    from .teleconference_device_screen_sharing_quality import TeleconferenceDeviceScreenSharingQuality
 
-from . import teleconference_device_media_quality
+from .teleconference_device_media_quality import TeleconferenceDeviceMediaQuality
 
-class TeleconferenceDeviceVideoQuality(teleconference_device_media_quality.TeleconferenceDeviceMediaQuality):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TeleconferenceDeviceVideoQuality and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.teleconferenceDeviceVideoQuality"
-        # The average inbound stream video bit rate per second.
-        self._average_inbound_bit_rate: Optional[float] = None
-        # The average inbound stream video frame rate per second.
-        self._average_inbound_frame_rate: Optional[float] = None
-        # The average outbound stream video bit rate per second.
-        self._average_outbound_bit_rate: Optional[float] = None
-        # The average outbound stream video frame rate per second.
-        self._average_outbound_frame_rate: Optional[float] = None
-    
-    @property
-    def average_inbound_bit_rate(self,) -> Optional[float]:
-        """
-        Gets the averageInboundBitRate property value. The average inbound stream video bit rate per second.
-        Returns: Optional[float]
-        """
-        return self._average_inbound_bit_rate
-    
-    @average_inbound_bit_rate.setter
-    def average_inbound_bit_rate(self,value: Optional[float] = None) -> None:
-        """
-        Sets the averageInboundBitRate property value. The average inbound stream video bit rate per second.
-        Args:
-            value: Value to set for the average_inbound_bit_rate property.
-        """
-        self._average_inbound_bit_rate = value
-    
-    @property
-    def average_inbound_frame_rate(self,) -> Optional[float]:
-        """
-        Gets the averageInboundFrameRate property value. The average inbound stream video frame rate per second.
-        Returns: Optional[float]
-        """
-        return self._average_inbound_frame_rate
-    
-    @average_inbound_frame_rate.setter
-    def average_inbound_frame_rate(self,value: Optional[float] = None) -> None:
-        """
-        Sets the averageInboundFrameRate property value. The average inbound stream video frame rate per second.
-        Args:
-            value: Value to set for the average_inbound_frame_rate property.
-        """
-        self._average_inbound_frame_rate = value
-    
-    @property
-    def average_outbound_bit_rate(self,) -> Optional[float]:
-        """
-        Gets the averageOutboundBitRate property value. The average outbound stream video bit rate per second.
-        Returns: Optional[float]
-        """
-        return self._average_outbound_bit_rate
-    
-    @average_outbound_bit_rate.setter
-    def average_outbound_bit_rate(self,value: Optional[float] = None) -> None:
-        """
-        Sets the averageOutboundBitRate property value. The average outbound stream video bit rate per second.
-        Args:
-            value: Value to set for the average_outbound_bit_rate property.
-        """
-        self._average_outbound_bit_rate = value
-    
-    @property
-    def average_outbound_frame_rate(self,) -> Optional[float]:
-        """
-        Gets the averageOutboundFrameRate property value. The average outbound stream video frame rate per second.
-        Returns: Optional[float]
-        """
-        return self._average_outbound_frame_rate
-    
-    @average_outbound_frame_rate.setter
-    def average_outbound_frame_rate(self,value: Optional[float] = None) -> None:
-        """
-        Sets the averageOutboundFrameRate property value. The average outbound stream video frame rate per second.
-        Args:
-            value: Value to set for the average_outbound_frame_rate property.
-        """
-        self._average_outbound_frame_rate = value
+@dataclass
+class TeleconferenceDeviceVideoQuality(TeleconferenceDeviceMediaQuality):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.teleconferenceDeviceVideoQuality"
+    # The average inbound stream video bit rate per second.
+    average_inbound_bit_rate: Optional[float] = None
+    # The average inbound stream video frame rate per second.
+    average_inbound_frame_rate: Optional[float] = None
+    # The average outbound stream video bit rate per second.
+    average_outbound_bit_rate: Optional[float] = None
+    # The average outbound stream video frame rate per second.
+    average_outbound_frame_rate: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeleconferenceDeviceVideoQuality:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: TeleconferenceDeviceVideoQuality
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.teleconferenceDeviceScreenSharingQuality":
-                from . import teleconference_device_screen_sharing_quality
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teleconferenceDeviceScreenSharingQuality".casefold():
+            from .teleconference_device_screen_sharing_quality import TeleconferenceDeviceScreenSharingQuality
 
-                return teleconference_device_screen_sharing_quality.TeleconferenceDeviceScreenSharingQuality()
+            return TeleconferenceDeviceScreenSharingQuality()
         return TeleconferenceDeviceVideoQuality()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -115,7 +47,11 @@ class TeleconferenceDeviceVideoQuality(teleconference_device_media_quality.Telec
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import teleconference_device_media_quality, teleconference_device_screen_sharing_quality
+        from .teleconference_device_media_quality import TeleconferenceDeviceMediaQuality
+        from .teleconference_device_screen_sharing_quality import TeleconferenceDeviceScreenSharingQuality
+
+        from .teleconference_device_media_quality import TeleconferenceDeviceMediaQuality
+        from .teleconference_device_screen_sharing_quality import TeleconferenceDeviceScreenSharingQuality
 
         fields: Dict[str, Callable[[Any], None]] = {
             "averageInboundBitRate": lambda n : setattr(self, 'average_inbound_bit_rate', n.get_float_value()),
@@ -133,8 +69,8 @@ class TeleconferenceDeviceVideoQuality(teleconference_device_media_quality.Telec
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_float_value("averageInboundBitRate", self.average_inbound_bit_rate)
         writer.write_float_value("averageInboundFrameRate", self.average_inbound_frame_rate)

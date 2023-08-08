@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UsageRightState(Enum):
+class UsageRightState(str, Enum):
     Active = "active",
     Inactive = "inactive",
     Warning = "warning",

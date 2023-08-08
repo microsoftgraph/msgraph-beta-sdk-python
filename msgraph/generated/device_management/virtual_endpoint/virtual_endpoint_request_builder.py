@@ -1,35 +1,37 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import virtual_endpoint
-    from ...models.o_data_errors import o_data_error
-    from .audit_events import audit_events_request_builder
-    from .cloud_p_cs import cloud_p_cs_request_builder
-    from .cross_cloud_government_organization_mapping import cross_cloud_government_organization_mapping_request_builder
-    from .device_images import device_images_request_builder
-    from .external_partner_settings import external_partner_settings_request_builder
-    from .gallery_images import gallery_images_request_builder
-    from .get_effective_permissions import get_effective_permissions_request_builder
-    from .on_premises_connections import on_premises_connections_request_builder
-    from .organization_settings import organization_settings_request_builder
-    from .provisioning_policies import provisioning_policies_request_builder
-    from .reports import reports_request_builder
-    from .service_plans import service_plans_request_builder
-    from .shared_use_service_plans import shared_use_service_plans_request_builder
-    from .snapshots import snapshots_request_builder
-    from .supported_regions import supported_regions_request_builder
-    from .user_settings import user_settings_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.virtual_endpoint import VirtualEndpoint
+    from .audit_events.audit_events_request_builder import AuditEventsRequestBuilder
+    from .bulk_actions.bulk_actions_request_builder import BulkActionsRequestBuilder
+    from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
+    from .cross_cloud_government_organization_mapping.cross_cloud_government_organization_mapping_request_builder import CrossCloudGovernmentOrganizationMappingRequestBuilder
+    from .device_images.device_images_request_builder import DeviceImagesRequestBuilder
+    from .external_partner_settings.external_partner_settings_request_builder import ExternalPartnerSettingsRequestBuilder
+    from .front_line_service_plans.front_line_service_plans_request_builder import FrontLineServicePlansRequestBuilder
+    from .gallery_images.gallery_images_request_builder import GalleryImagesRequestBuilder
+    from .get_effective_permissions.get_effective_permissions_request_builder import GetEffectivePermissionsRequestBuilder
+    from .on_premises_connections.on_premises_connections_request_builder import OnPremisesConnectionsRequestBuilder
+    from .organization_settings.organization_settings_request_builder import OrganizationSettingsRequestBuilder
+    from .provisioning_policies.provisioning_policies_request_builder import ProvisioningPoliciesRequestBuilder
+    from .reports.reports_request_builder import ReportsRequestBuilder
+    from .service_plans.service_plans_request_builder import ServicePlansRequestBuilder
+    from .shared_use_service_plans.shared_use_service_plans_request_builder import SharedUseServicePlansRequestBuilder
+    from .snapshots.snapshots_request_builder import SnapshotsRequestBuilder
+    from .supported_regions.supported_regions_request_builder import SupportedRegionsRequestBuilder
+    from .user_settings.user_settings_request_builder import UserSettingsRequestBuilder
 
-class VirtualEndpointRequestBuilder():
+class VirtualEndpointRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the virtualEndpoint property of the microsoft.graph.deviceManagement entity.
     """
@@ -37,91 +39,82 @@ class VirtualEndpointRequestBuilder():
         """
         Instantiates a new VirtualEndpointRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/virtualEndpoint{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[VirtualEndpointRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property virtualEndpoint for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[VirtualEndpointRequestBuilderGetRequestConfiguration] = None) -> Optional[virtual_endpoint.VirtualEndpoint]:
+    async def get(self,request_configuration: Optional[VirtualEndpointRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEndpoint]:
         """
         Get virtualEndpoint from deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[virtual_endpoint.VirtualEndpoint]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[VirtualEndpoint]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import virtual_endpoint
+        from ...models.virtual_endpoint import VirtualEndpoint
 
-        return await self.request_adapter.send_async(request_info, virtual_endpoint.VirtualEndpoint, error_mapping)
+        return await self.request_adapter.send_async(request_info, VirtualEndpoint, error_mapping)
     
-    async def patch(self,body: Optional[virtual_endpoint.VirtualEndpoint] = None, request_configuration: Optional[VirtualEndpointRequestBuilderPatchRequestConfiguration] = None) -> Optional[virtual_endpoint.VirtualEndpoint]:
+    async def patch(self,body: Optional[VirtualEndpoint] = None, request_configuration: Optional[VirtualEndpointRequestBuilderPatchRequestConfiguration] = None) -> Optional[VirtualEndpoint]:
         """
         Update the navigation property virtualEndpoint in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[virtual_endpoint.VirtualEndpoint]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[VirtualEndpoint]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import virtual_endpoint
+        from ...models.virtual_endpoint import VirtualEndpoint
 
-        return await self.request_adapter.send_async(request_info, virtual_endpoint.VirtualEndpoint, error_mapping)
+        return await self.request_adapter.send_async(request_info, VirtualEndpoint, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[VirtualEndpointRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property virtualEndpoint for deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,7 +130,7 @@ class VirtualEndpointRequestBuilder():
         """
         Get virtualEndpoint from deviceManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -151,16 +144,16 @@ class VirtualEndpointRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[virtual_endpoint.VirtualEndpoint] = None, request_configuration: Optional[VirtualEndpointRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[VirtualEndpoint] = None, request_configuration: Optional[VirtualEndpointRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property virtualEndpoint in deviceManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -173,160 +166,176 @@ class VirtualEndpointRequestBuilder():
         return request_info
     
     @property
-    def audit_events(self) -> audit_events_request_builder.AuditEventsRequestBuilder:
+    def audit_events(self) -> AuditEventsRequestBuilder:
         """
         Provides operations to manage the auditEvents property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .audit_events import audit_events_request_builder
+        from .audit_events.audit_events_request_builder import AuditEventsRequestBuilder
 
-        return audit_events_request_builder.AuditEventsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AuditEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cloud_p_cs(self) -> cloud_p_cs_request_builder.CloudPCsRequestBuilder:
+    def bulk_actions(self) -> BulkActionsRequestBuilder:
+        """
+        Provides operations to manage the bulkActions property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .bulk_actions.bulk_actions_request_builder import BulkActionsRequestBuilder
+
+        return BulkActionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cloud_p_cs(self) -> CloudPCsRequestBuilder:
         """
         Provides operations to manage the cloudPCs property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .cloud_p_cs import cloud_p_cs_request_builder
+        from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
 
-        return cloud_p_cs_request_builder.CloudPCsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CloudPCsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cross_cloud_government_organization_mapping(self) -> cross_cloud_government_organization_mapping_request_builder.CrossCloudGovernmentOrganizationMappingRequestBuilder:
+    def cross_cloud_government_organization_mapping(self) -> CrossCloudGovernmentOrganizationMappingRequestBuilder:
         """
         Provides operations to manage the crossCloudGovernmentOrganizationMapping property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .cross_cloud_government_organization_mapping import cross_cloud_government_organization_mapping_request_builder
+        from .cross_cloud_government_organization_mapping.cross_cloud_government_organization_mapping_request_builder import CrossCloudGovernmentOrganizationMappingRequestBuilder
 
-        return cross_cloud_government_organization_mapping_request_builder.CrossCloudGovernmentOrganizationMappingRequestBuilder(self.request_adapter, self.path_parameters)
+        return CrossCloudGovernmentOrganizationMappingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_images(self) -> device_images_request_builder.DeviceImagesRequestBuilder:
+    def device_images(self) -> DeviceImagesRequestBuilder:
         """
         Provides operations to manage the deviceImages property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .device_images import device_images_request_builder
+        from .device_images.device_images_request_builder import DeviceImagesRequestBuilder
 
-        return device_images_request_builder.DeviceImagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceImagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def external_partner_settings(self) -> external_partner_settings_request_builder.ExternalPartnerSettingsRequestBuilder:
+    def external_partner_settings(self) -> ExternalPartnerSettingsRequestBuilder:
         """
         Provides operations to manage the externalPartnerSettings property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .external_partner_settings import external_partner_settings_request_builder
+        from .external_partner_settings.external_partner_settings_request_builder import ExternalPartnerSettingsRequestBuilder
 
-        return external_partner_settings_request_builder.ExternalPartnerSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExternalPartnerSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def gallery_images(self) -> gallery_images_request_builder.GalleryImagesRequestBuilder:
+    def front_line_service_plans(self) -> FrontLineServicePlansRequestBuilder:
+        """
+        Provides operations to manage the frontLineServicePlans property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .front_line_service_plans.front_line_service_plans_request_builder import FrontLineServicePlansRequestBuilder
+
+        return FrontLineServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def gallery_images(self) -> GalleryImagesRequestBuilder:
         """
         Provides operations to manage the galleryImages property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .gallery_images import gallery_images_request_builder
+        from .gallery_images.gallery_images_request_builder import GalleryImagesRequestBuilder
 
-        return gallery_images_request_builder.GalleryImagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return GalleryImagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_effective_permissions(self) -> get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder:
+    def get_effective_permissions(self) -> GetEffectivePermissionsRequestBuilder:
         """
         Provides operations to call the getEffectivePermissions method.
         """
-        from .get_effective_permissions import get_effective_permissions_request_builder
+        from .get_effective_permissions.get_effective_permissions_request_builder import GetEffectivePermissionsRequestBuilder
 
-        return get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetEffectivePermissionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def on_premises_connections(self) -> on_premises_connections_request_builder.OnPremisesConnectionsRequestBuilder:
+    def on_premises_connections(self) -> OnPremisesConnectionsRequestBuilder:
         """
         Provides operations to manage the onPremisesConnections property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .on_premises_connections import on_premises_connections_request_builder
+        from .on_premises_connections.on_premises_connections_request_builder import OnPremisesConnectionsRequestBuilder
 
-        return on_premises_connections_request_builder.OnPremisesConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OnPremisesConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def organization_settings(self) -> organization_settings_request_builder.OrganizationSettingsRequestBuilder:
+    def organization_settings(self) -> OrganizationSettingsRequestBuilder:
         """
         Provides operations to manage the organizationSettings property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .organization_settings import organization_settings_request_builder
+        from .organization_settings.organization_settings_request_builder import OrganizationSettingsRequestBuilder
 
-        return organization_settings_request_builder.OrganizationSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OrganizationSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def provisioning_policies(self) -> provisioning_policies_request_builder.ProvisioningPoliciesRequestBuilder:
+    def provisioning_policies(self) -> ProvisioningPoliciesRequestBuilder:
         """
         Provides operations to manage the provisioningPolicies property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .provisioning_policies import provisioning_policies_request_builder
+        from .provisioning_policies.provisioning_policies_request_builder import ProvisioningPoliciesRequestBuilder
 
-        return provisioning_policies_request_builder.ProvisioningPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ProvisioningPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reports(self) -> reports_request_builder.ReportsRequestBuilder:
+    def reports(self) -> ReportsRequestBuilder:
         """
         Provides operations to manage the reports property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .reports import reports_request_builder
+        from .reports.reports_request_builder import ReportsRequestBuilder
 
-        return reports_request_builder.ReportsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def service_plans(self) -> service_plans_request_builder.ServicePlansRequestBuilder:
+    def service_plans(self) -> ServicePlansRequestBuilder:
         """
         Provides operations to manage the servicePlans property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .service_plans import service_plans_request_builder
+        from .service_plans.service_plans_request_builder import ServicePlansRequestBuilder
 
-        return service_plans_request_builder.ServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
+        return ServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def shared_use_service_plans(self) -> shared_use_service_plans_request_builder.SharedUseServicePlansRequestBuilder:
+    def shared_use_service_plans(self) -> SharedUseServicePlansRequestBuilder:
         """
         Provides operations to manage the sharedUseServicePlans property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .shared_use_service_plans import shared_use_service_plans_request_builder
+        from .shared_use_service_plans.shared_use_service_plans_request_builder import SharedUseServicePlansRequestBuilder
 
-        return shared_use_service_plans_request_builder.SharedUseServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
+        return SharedUseServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def snapshots(self) -> snapshots_request_builder.SnapshotsRequestBuilder:
+    def snapshots(self) -> SnapshotsRequestBuilder:
         """
         Provides operations to manage the snapshots property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .snapshots import snapshots_request_builder
+        from .snapshots.snapshots_request_builder import SnapshotsRequestBuilder
 
-        return snapshots_request_builder.SnapshotsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SnapshotsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def supported_regions(self) -> supported_regions_request_builder.SupportedRegionsRequestBuilder:
+    def supported_regions(self) -> SupportedRegionsRequestBuilder:
         """
         Provides operations to manage the supportedRegions property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .supported_regions import supported_regions_request_builder
+        from .supported_regions.supported_regions_request_builder import SupportedRegionsRequestBuilder
 
-        return supported_regions_request_builder.SupportedRegionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SupportedRegionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_settings(self) -> user_settings_request_builder.UserSettingsRequestBuilder:
+    def user_settings(self) -> UserSettingsRequestBuilder:
         """
         Provides operations to manage the userSettings property of the microsoft.graph.virtualEndpoint entity.
         """
-        from .user_settings import user_settings_request_builder
+        from .user_settings.user_settings_request_builder import UserSettingsRequestBuilder
 
-        return user_settings_request_builder.UserSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class VirtualEndpointRequestBuilderDeleteRequestConfiguration():
+    class VirtualEndpointRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class VirtualEndpointRequestBuilderGetQueryParameters():
@@ -337,11 +346,11 @@ class VirtualEndpointRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -355,31 +364,27 @@ class VirtualEndpointRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class VirtualEndpointRequestBuilderGetRequestConfiguration():
+    class VirtualEndpointRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[VirtualEndpointRequestBuilder.VirtualEndpointRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class VirtualEndpointRequestBuilderPatchRequestConfiguration():
+    class VirtualEndpointRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

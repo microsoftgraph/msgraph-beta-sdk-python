@@ -1,25 +1,25 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import role_management
-    from ..models.o_data_errors import o_data_error
-    from .cloud_p_c import cloud_p_c_request_builder
-    from .device_management import device_management_request_builder
-    from .directory import directory_request_builder
-    from .enterprise_apps import enterprise_apps_request_builder
-    from .entitlement_management import entitlement_management_request_builder
-    from .exchange import exchange_request_builder
+    from ..models.o_data_errors.o_data_error import ODataError
+    from ..models.role_management import RoleManagement
+    from .cloud_p_c.cloud_p_c_request_builder import CloudPCRequestBuilder
+    from .device_management.device_management_request_builder import DeviceManagementRequestBuilder
+    from .directory.directory_request_builder import DirectoryRequestBuilder
+    from .enterprise_apps.enterprise_apps_request_builder import EnterpriseAppsRequestBuilder
+    from .entitlement_management.entitlement_management_request_builder import EntitlementManagementRequestBuilder
+    from .exchange.exchange_request_builder import ExchangeRequestBuilder
 
-class RoleManagementRequestBuilder():
+class RoleManagementRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the roleManagement singleton.
     """
@@ -27,72 +27,63 @@ class RoleManagementRequestBuilder():
         """
         Instantiates a new RoleManagementRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/roleManagement{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/roleManagement{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RoleManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[role_management.RoleManagement]:
+    async def get(self,request_configuration: Optional[RoleManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[RoleManagement]:
         """
         Get roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[role_management.RoleManagement]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RoleManagement]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import role_management
+        from ..models.role_management import RoleManagement
 
-        return await self.request_adapter.send_async(request_info, role_management.RoleManagement, error_mapping)
+        return await self.request_adapter.send_async(request_info, RoleManagement, error_mapping)
     
-    async def patch(self,body: Optional[role_management.RoleManagement] = None, request_configuration: Optional[RoleManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[role_management.RoleManagement]:
+    async def patch(self,body: Optional[RoleManagement] = None, request_configuration: Optional[RoleManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[RoleManagement]:
         """
         Update roleManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[role_management.RoleManagement]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RoleManagement]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import role_management
+        from ..models.role_management import RoleManagement
 
-        return await self.request_adapter.send_async(request_info, role_management.RoleManagement, error_mapping)
+        return await self.request_adapter.send_async(request_info, RoleManagement, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleManagementRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get roleManagement
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -106,16 +97,16 @@ class RoleManagementRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[role_management.RoleManagement] = None, request_configuration: Optional[RoleManagementRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[RoleManagement] = None, request_configuration: Optional[RoleManagementRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update roleManagement
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -128,58 +119,58 @@ class RoleManagementRequestBuilder():
         return request_info
     
     @property
-    def cloud_p_c(self) -> cloud_p_c_request_builder.CloudPCRequestBuilder:
+    def cloud_p_c(self) -> CloudPCRequestBuilder:
         """
         Provides operations to manage the cloudPC property of the microsoft.graph.roleManagement entity.
         """
-        from .cloud_p_c import cloud_p_c_request_builder
+        from .cloud_p_c.cloud_p_c_request_builder import CloudPCRequestBuilder
 
-        return cloud_p_c_request_builder.CloudPCRequestBuilder(self.request_adapter, self.path_parameters)
+        return CloudPCRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_management(self) -> device_management_request_builder.DeviceManagementRequestBuilder:
+    def device_management(self) -> DeviceManagementRequestBuilder:
         """
         Provides operations to manage the deviceManagement property of the microsoft.graph.roleManagement entity.
         """
-        from .device_management import device_management_request_builder
+        from .device_management.device_management_request_builder import DeviceManagementRequestBuilder
 
-        return device_management_request_builder.DeviceManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def directory(self) -> directory_request_builder.DirectoryRequestBuilder:
+    def directory(self) -> DirectoryRequestBuilder:
         """
         Provides operations to manage the directory property of the microsoft.graph.roleManagement entity.
         """
-        from .directory import directory_request_builder
+        from .directory.directory_request_builder import DirectoryRequestBuilder
 
-        return directory_request_builder.DirectoryRequestBuilder(self.request_adapter, self.path_parameters)
+        return DirectoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enterprise_apps(self) -> enterprise_apps_request_builder.EnterpriseAppsRequestBuilder:
+    def enterprise_apps(self) -> EnterpriseAppsRequestBuilder:
         """
         Provides operations to manage the enterpriseApps property of the microsoft.graph.roleManagement entity.
         """
-        from .enterprise_apps import enterprise_apps_request_builder
+        from .enterprise_apps.enterprise_apps_request_builder import EnterpriseAppsRequestBuilder
 
-        return enterprise_apps_request_builder.EnterpriseAppsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EnterpriseAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def entitlement_management(self) -> entitlement_management_request_builder.EntitlementManagementRequestBuilder:
+    def entitlement_management(self) -> EntitlementManagementRequestBuilder:
         """
         Provides operations to manage the entitlementManagement property of the microsoft.graph.roleManagement entity.
         """
-        from .entitlement_management import entitlement_management_request_builder
+        from .entitlement_management.entitlement_management_request_builder import EntitlementManagementRequestBuilder
 
-        return entitlement_management_request_builder.EntitlementManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return EntitlementManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def exchange(self) -> exchange_request_builder.ExchangeRequestBuilder:
+    def exchange(self) -> ExchangeRequestBuilder:
         """
         Provides operations to manage the exchange property of the microsoft.graph.roleManagement entity.
         """
-        from .exchange import exchange_request_builder
+        from .exchange.exchange_request_builder import ExchangeRequestBuilder
 
-        return exchange_request_builder.ExchangeRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExchangeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RoleManagementRequestBuilderGetQueryParameters():
@@ -190,11 +181,11 @@ class RoleManagementRequestBuilder():
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -208,31 +199,27 @@ class RoleManagementRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RoleManagementRequestBuilderGetRequestConfiguration():
+    class RoleManagementRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[RoleManagementRequestBuilder.RoleManagementRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class RoleManagementRequestBuilderPatchRequestConfiguration():
+    class RoleManagementRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

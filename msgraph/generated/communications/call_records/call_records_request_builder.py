@@ -1,27 +1,28 @@
 from __future__ import annotations
-from dataclasses import dataclass
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.call_records import call_record, call_record_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import call_record_item_request_builder
-    from .microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder
-    from .microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder
-    from .microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder
-    from .microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder
-    from .microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder
+    from ...models.call_records.call_record import CallRecord
+    from ...models.call_records.call_record_collection_response import CallRecordCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.call_record_item_request_builder import CallRecordItemRequestBuilder
+    from .microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder
+    from .microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder
+    from .microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder
+    from .microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder
+    from .microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder
 
-class CallRecordsRequestBuilder():
+class CallRecordsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.
     """
@@ -29,167 +30,158 @@ class CallRecordsRequestBuilder():
         """
         Instantiates a new CallRecordsRequestBuilder and sets the default values.
         Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+            path_parameters: The raw url or the Url template parameters for the request.
+            request_adapter: The request adapter to use to execute the requests.
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/communications/callRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/communications/callRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_call_record_id(self,call_record_id: str) -> call_record_item_request_builder.CallRecordItemRequestBuilder:
+    def by_call_record_id(self,call_record_id: str) -> CallRecordItemRequestBuilder:
         """
         Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.
         Args:
             call_record_id: Unique identifier of the item
-        Returns: call_record_item_request_builder.CallRecordItemRequestBuilder
+        Returns: CallRecordItemRequestBuilder
         """
-        if call_record_id is None:
-            raise Exception("call_record_id cannot be undefined")
-        from .item import call_record_item_request_builder
+        if not call_record_id:
+            raise TypeError("call_record_id cannot be null.")
+        from .item.call_record_item_request_builder import CallRecordItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["callRecord%2Did"] = call_record_id
-        return call_record_item_request_builder.CallRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return CallRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CallRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[call_record_collection_response.CallRecordCollectionResponse]:
+    async def get(self,request_configuration: Optional[CallRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[CallRecordCollectionResponse]:
         """
-        Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
+        Retrieve the properties and relationships of a callRecord object. There are two ways to get the id of a callRecord: You can use the $expand query parameter to optionally include session and segment details, as shown in the Get full details example. When you expand session details, the maximum page size is 60 sessions.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[call_record_collection_response.CallRecordCollectionResponse]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CallRecordCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.call_records import call_record_collection_response
+        from ...models.call_records.call_record_collection_response import CallRecordCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, call_record_collection_response.CallRecordCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, CallRecordCollectionResponse, error_mapping)
     
-    def microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getDirectRoutingCalls method.
         Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder
+            from_date_time: Usage: fromDateTime={fromDateTime}
+            to_date_time: Usage: toDateTime={toDateTime}
+        Returns: MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder
         """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder
+        if not from_date_time:
+            raise TypeError("from_date_time cannot be null.")
+        if not to_date_time:
+            raise TypeError("to_date_time cannot be null.")
+        from .microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder
 
-        return microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+        return MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    def microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getPstnBlockedUsersLog method.
         Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder
+            from_date_time: Usage: fromDateTime={fromDateTime}
+            to_date_time: Usage: toDateTime={toDateTime}
+        Returns: MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder
         """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder
+        if not from_date_time:
+            raise TypeError("from_date_time cannot be null.")
+        if not to_date_time:
+            raise TypeError("to_date_time cannot be null.")
+        from .microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder
 
-        return microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+        return MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    def microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getPstnCalls method.
         Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder
+            from_date_time: Usage: fromDateTime={fromDateTime}
+            to_date_time: Usage: toDateTime={toDateTime}
+        Returns: MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder
         """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder
+        if not from_date_time:
+            raise TypeError("from_date_time cannot be null.")
+        if not to_date_time:
+            raise TypeError("to_date_time cannot be null.")
+        from .microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder
 
-        return microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+        return MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    def microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getPstnOnlineMeetingDialoutReport method.
         Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder
+            from_date_time: Usage: fromDateTime={fromDateTime}
+            to_date_time: Usage: toDateTime={toDateTime}
+        Returns: MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder
         """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder
+        if not from_date_time:
+            raise TypeError("from_date_time cannot be null.")
+        if not to_date_time:
+            raise TypeError("to_date_time cannot be null.")
+        from .microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder
 
-        return microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+        return MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    def microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getSmsLog method.
         Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder
+            from_date_time: Usage: fromDateTime={fromDateTime}
+            to_date_time: Usage: toDateTime={toDateTime}
+        Returns: MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder
         """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder
+        if not from_date_time:
+            raise TypeError("from_date_time cannot be null.")
+        if not to_date_time:
+            raise TypeError("to_date_time cannot be null.")
+        from .microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time.microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder import MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder
 
-        return microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+        return MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    async def post(self,body: Optional[call_record.CallRecord] = None, request_configuration: Optional[CallRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[call_record.CallRecord]:
+    async def post(self,body: Optional[CallRecord] = None, request_configuration: Optional[CallRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[CallRecord]:
         """
         Create new navigation property to callRecords for communications
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[call_record.CallRecord]
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CallRecord]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.call_records import call_record
+        from ...models.call_records.call_record import CallRecord
 
-        return await self.request_adapter.send_async(request_info, call_record.CallRecord, error_mapping)
+        return await self.request_adapter.send_async(request_info, CallRecord, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CallRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
+        Retrieve the properties and relationships of a callRecord object. There are two ways to get the id of a callRecord: You can use the $expand query parameter to optionally include session and segment details, as shown in the Get full details example. When you expand session details, the maximum page size is 60 sessions.
         Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -203,16 +195,16 @@ class CallRecordsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[call_record.CallRecord] = None, request_configuration: Optional[CallRecordsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CallRecord] = None, request_configuration: Optional[CallRecordsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to callRecords for communications
         Args:
             body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -225,28 +217,28 @@ class CallRecordsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CallRecordsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
+        Retrieve the properties and relationships of a callRecord object. There are two ways to get the id of a callRecord: You can use the $expand query parameter to optionally include session and segment details, as shown in the Get full details example. When you expand session details, the maximum page size is 60 sessions.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             Args:
-                originalName: The original query parameter name in the class.
+                original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -290,31 +282,27 @@ class CallRecordsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CallRecordsRequestBuilderGetRequestConfiguration():
+    class CallRecordsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[CallRecordsRequestBuilder.CallRecordsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CallRecordsRequestBuilderPostRequestConfiguration():
+    class CallRecordsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

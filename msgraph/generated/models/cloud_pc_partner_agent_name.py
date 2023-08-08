@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcPartnerAgentName(Enum):
+class CloudPcPartnerAgentName(str, Enum):
     Citrix = "citrix",
     UnknownFutureValue = "unknownFutureValue",
 

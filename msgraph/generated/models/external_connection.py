@@ -1,188 +1,86 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import configuration, connection_operation, connection_state, entity, external_group, external_item, schema
+    from .configuration import Configuration
+    from .connection_operation import ConnectionOperation
+    from .connection_state import ConnectionState
+    from .entity import Entity
+    from .external_group import ExternalGroup
+    from .external_item import ExternalItem
+    from .schema import Schema
 
-from . import entity
+from .entity import Entity
 
-class ExternalConnection(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new externalConnection and sets the default values.
-        """
-        super().__init__()
-        # The configuration property
-        self._configuration: Optional[configuration.Configuration] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The groups property
-        self._groups: Optional[List[external_group.ExternalGroup]] = None
-        # The items property
-        self._items: Optional[List[external_item.ExternalItem]] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The operations property
-        self._operations: Optional[List[connection_operation.ConnectionOperation]] = None
-        # The schema property
-        self._schema: Optional[schema.Schema] = None
-        # The state property
-        self._state: Optional[connection_state.ConnectionState] = None
-    
-    @property
-    def configuration(self,) -> Optional[configuration.Configuration]:
-        """
-        Gets the configuration property value. The configuration property
-        Returns: Optional[configuration.Configuration]
-        """
-        return self._configuration
-    
-    @configuration.setter
-    def configuration(self,value: Optional[configuration.Configuration] = None) -> None:
-        """
-        Sets the configuration property value. The configuration property
-        Args:
-            value: Value to set for the configuration property.
-        """
-        self._configuration = value
+@dataclass
+class ExternalConnection(Entity):
+    # The configuration property
+    configuration: Optional[Configuration] = None
+    # The description property
+    description: Optional[str] = None
+    # The groups property
+    groups: Optional[List[ExternalGroup]] = None
+    # The items property
+    items: Optional[List[ExternalItem]] = None
+    # The name property
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The operations property
+    operations: Optional[List[ConnectionOperation]] = None
+    # The schema property
+    schema: Optional[Schema] = None
+    # The state property
+    state: Optional[ConnectionState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExternalConnection:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+            parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ExternalConnection
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ExternalConnection()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description property
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description property
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import configuration, connection_operation, connection_state, entity, external_group, external_item, schema
+        from .configuration import Configuration
+        from .connection_operation import ConnectionOperation
+        from .connection_state import ConnectionState
+        from .entity import Entity
+        from .external_group import ExternalGroup
+        from .external_item import ExternalItem
+        from .schema import Schema
+
+        from .configuration import Configuration
+        from .connection_operation import ConnectionOperation
+        from .connection_state import ConnectionState
+        from .entity import Entity
+        from .external_group import ExternalGroup
+        from .external_item import ExternalItem
+        from .schema import Schema
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(configuration.Configuration)),
+            "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(Configuration)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "groups": lambda n : setattr(self, 'groups', n.get_collection_of_object_values(external_group.ExternalGroup)),
-            "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(external_item.ExternalItem)),
+            "groups": lambda n : setattr(self, 'groups', n.get_collection_of_object_values(ExternalGroup)),
+            "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(ExternalItem)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(connection_operation.ConnectionOperation)),
-            "schema": lambda n : setattr(self, 'schema', n.get_object_value(schema.Schema)),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(connection_state.ConnectionState)),
+            "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(ConnectionOperation)),
+            "schema": lambda n : setattr(self, 'schema', n.get_object_value(Schema)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(ConnectionState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def groups(self,) -> Optional[List[external_group.ExternalGroup]]:
-        """
-        Gets the groups property value. The groups property
-        Returns: Optional[List[external_group.ExternalGroup]]
-        """
-        return self._groups
-    
-    @groups.setter
-    def groups(self,value: Optional[List[external_group.ExternalGroup]] = None) -> None:
-        """
-        Sets the groups property value. The groups property
-        Args:
-            value: Value to set for the groups property.
-        """
-        self._groups = value
-    
-    @property
-    def items(self,) -> Optional[List[external_item.ExternalItem]]:
-        """
-        Gets the items property value. The items property
-        Returns: Optional[List[external_item.ExternalItem]]
-        """
-        return self._items
-    
-    @items.setter
-    def items(self,value: Optional[List[external_item.ExternalItem]] = None) -> None:
-        """
-        Sets the items property value. The items property
-        Args:
-            value: Value to set for the items property.
-        """
-        self._items = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name property
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name property
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def operations(self,) -> Optional[List[connection_operation.ConnectionOperation]]:
-        """
-        Gets the operations property value. The operations property
-        Returns: Optional[List[connection_operation.ConnectionOperation]]
-        """
-        return self._operations
-    
-    @operations.setter
-    def operations(self,value: Optional[List[connection_operation.ConnectionOperation]] = None) -> None:
-        """
-        Sets the operations property value. The operations property
-        Args:
-            value: Value to set for the operations property.
-        """
-        self._operations = value
-    
-    @property
-    def schema(self,) -> Optional[schema.Schema]:
-        """
-        Gets the schema property value. The schema property
-        Returns: Optional[schema.Schema]
-        """
-        return self._schema
-    
-    @schema.setter
-    def schema(self,value: Optional[schema.Schema] = None) -> None:
-        """
-        Sets the schema property value. The schema property
-        Args:
-            value: Value to set for the schema property.
-        """
-        self._schema = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -190,8 +88,8 @@ class ExternalConnection(entity.Entity):
         Args:
             writer: Serialization writer to use to serialize this model
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("configuration", self.configuration)
         writer.write_str_value("description", self.description)
@@ -200,22 +98,5 @@ class ExternalConnection(entity.Entity):
         writer.write_str_value("name", self.name)
         writer.write_collection_of_object_values("operations", self.operations)
         writer.write_object_value("schema", self.schema)
-    
-    @property
-    def state(self,) -> Optional[connection_state.ConnectionState]:
-        """
-        Gets the state property value. The state property
-        Returns: Optional[connection_state.ConnectionState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[connection_state.ConnectionState] = None) -> None:
-        """
-        Sets the state property value. The state property
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 
