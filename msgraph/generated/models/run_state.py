@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RunState(Enum):
+class RunState(str, Enum):
     # Unknown result.
     Unknown = "unknown",
     # Script is run successfully.

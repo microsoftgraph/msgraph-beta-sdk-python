@@ -1,144 +1,83 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, logon_user, network_interface, security_vendor_information
+    from .entity import Entity
+    from .logon_user import LogonUser
+    from .network_interface import NetworkInterface
+    from .security_vendor_information import SecurityVendorInformation
 
-from . import entity
+from .entity import Entity
 
-class HostSecurityProfile(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new HostSecurityProfile and sets the default values.
-        """
-        super().__init__()
-        # The azureSubscriptionId property
-        self._azure_subscription_id: Optional[str] = None
-        # The azureTenantId property
-        self._azure_tenant_id: Optional[str] = None
-        # The firstSeenDateTime property
-        self._first_seen_date_time: Optional[datetime] = None
-        # The fqdn property
-        self._fqdn: Optional[str] = None
-        # The isAzureAdJoined property
-        self._is_azure_ad_joined: Optional[bool] = None
-        # The isAzureAdRegistered property
-        self._is_azure_ad_registered: Optional[bool] = None
-        # The isHybridAzureDomainJoined property
-        self._is_hybrid_azure_domain_joined: Optional[bool] = None
-        # The lastSeenDateTime property
-        self._last_seen_date_time: Optional[datetime] = None
-        # The logonUsers property
-        self._logon_users: Optional[List[logon_user.LogonUser]] = None
-        # The netBiosName property
-        self._net_bios_name: Optional[str] = None
-        # The networkInterfaces property
-        self._network_interfaces: Optional[List[network_interface.NetworkInterface]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The os property
-        self._os: Optional[str] = None
-        # The osVersion property
-        self._os_version: Optional[str] = None
-        # The parentHost property
-        self._parent_host: Optional[str] = None
-        # The relatedHostIds property
-        self._related_host_ids: Optional[List[str]] = None
-        # The riskScore property
-        self._risk_score: Optional[str] = None
-        # The tags property
-        self._tags: Optional[List[str]] = None
-        # The vendorInformation property
-        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
-    
-    @property
-    def azure_subscription_id(self,) -> Optional[str]:
-        """
-        Gets the azureSubscriptionId property value. The azureSubscriptionId property
-        Returns: Optional[str]
-        """
-        return self._azure_subscription_id
-    
-    @azure_subscription_id.setter
-    def azure_subscription_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureSubscriptionId property value. The azureSubscriptionId property
-        Args:
-            value: Value to set for the azure_subscription_id property.
-        """
-        self._azure_subscription_id = value
-    
-    @property
-    def azure_tenant_id(self,) -> Optional[str]:
-        """
-        Gets the azureTenantId property value. The azureTenantId property
-        Returns: Optional[str]
-        """
-        return self._azure_tenant_id
-    
-    @azure_tenant_id.setter
-    def azure_tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureTenantId property value. The azureTenantId property
-        Args:
-            value: Value to set for the azure_tenant_id property.
-        """
-        self._azure_tenant_id = value
+@dataclass
+class HostSecurityProfile(Entity):
+    # The azureSubscriptionId property
+    azure_subscription_id: Optional[str] = None
+    # The azureTenantId property
+    azure_tenant_id: Optional[str] = None
+    # The firstSeenDateTime property
+    first_seen_date_time: Optional[datetime.datetime] = None
+    # The fqdn property
+    fqdn: Optional[str] = None
+    # The isAzureAdJoined property
+    is_azure_ad_joined: Optional[bool] = None
+    # The isAzureAdRegistered property
+    is_azure_ad_registered: Optional[bool] = None
+    # The isHybridAzureDomainJoined property
+    is_hybrid_azure_domain_joined: Optional[bool] = None
+    # The lastSeenDateTime property
+    last_seen_date_time: Optional[datetime.datetime] = None
+    # The logonUsers property
+    logon_users: Optional[List[LogonUser]] = None
+    # The netBiosName property
+    net_bios_name: Optional[str] = None
+    # The networkInterfaces property
+    network_interfaces: Optional[List[NetworkInterface]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The os property
+    os: Optional[str] = None
+    # The osVersion property
+    os_version: Optional[str] = None
+    # The parentHost property
+    parent_host: Optional[str] = None
+    # The relatedHostIds property
+    related_host_ids: Optional[List[str]] = None
+    # The riskScore property
+    risk_score: Optional[str] = None
+    # The tags property
+    tags: Optional[List[str]] = None
+    # The vendorInformation property
+    vendor_information: Optional[SecurityVendorInformation] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HostSecurityProfile:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: HostSecurityProfile
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return HostSecurityProfile()
-    
-    @property
-    def first_seen_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the firstSeenDateTime property value. The firstSeenDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._first_seen_date_time
-    
-    @first_seen_date_time.setter
-    def first_seen_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the firstSeenDateTime property value. The firstSeenDateTime property
-        Args:
-            value: Value to set for the first_seen_date_time property.
-        """
-        self._first_seen_date_time = value
-    
-    @property
-    def fqdn(self,) -> Optional[str]:
-        """
-        Gets the fqdn property value. The fqdn property
-        Returns: Optional[str]
-        """
-        return self._fqdn
-    
-    @fqdn.setter
-    def fqdn(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fqdn property value. The fqdn property
-        Args:
-            value: Value to set for the fqdn property.
-        """
-        self._fqdn = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, logon_user, network_interface, security_vendor_information
+        from .entity import Entity
+        from .logon_user import LogonUser
+        from .network_interface import NetworkInterface
+        from .security_vendor_information import SecurityVendorInformation
+
+        from .entity import Entity
+        from .logon_user import LogonUser
+        from .network_interface import NetworkInterface
+        from .security_vendor_information import SecurityVendorInformation
 
         fields: Dict[str, Callable[[Any], None]] = {
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
@@ -149,233 +88,29 @@ class HostSecurityProfile(entity.Entity):
             "isAzureAdRegistered": lambda n : setattr(self, 'is_azure_ad_registered', n.get_bool_value()),
             "isHybridAzureDomainJoined": lambda n : setattr(self, 'is_hybrid_azure_domain_joined', n.get_bool_value()),
             "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
-            "logonUsers": lambda n : setattr(self, 'logon_users', n.get_collection_of_object_values(logon_user.LogonUser)),
-            "networkInterfaces": lambda n : setattr(self, 'network_interfaces', n.get_collection_of_object_values(network_interface.NetworkInterface)),
+            "logonUsers": lambda n : setattr(self, 'logon_users', n.get_collection_of_object_values(LogonUser)),
             "netBiosName": lambda n : setattr(self, 'net_bios_name', n.get_str_value()),
+            "networkInterfaces": lambda n : setattr(self, 'network_interfaces', n.get_collection_of_object_values(NetworkInterface)),
             "os": lambda n : setattr(self, 'os', n.get_str_value()),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
             "parentHost": lambda n : setattr(self, 'parent_host', n.get_str_value()),
             "relatedHostIds": lambda n : setattr(self, 'related_host_ids', n.get_collection_of_primitive_values(str)),
             "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
+            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(SecurityVendorInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_azure_ad_joined(self,) -> Optional[bool]:
-        """
-        Gets the isAzureAdJoined property value. The isAzureAdJoined property
-        Returns: Optional[bool]
-        """
-        return self._is_azure_ad_joined
-    
-    @is_azure_ad_joined.setter
-    def is_azure_ad_joined(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isAzureAdJoined property value. The isAzureAdJoined property
-        Args:
-            value: Value to set for the is_azure_ad_joined property.
-        """
-        self._is_azure_ad_joined = value
-    
-    @property
-    def is_azure_ad_registered(self,) -> Optional[bool]:
-        """
-        Gets the isAzureAdRegistered property value. The isAzureAdRegistered property
-        Returns: Optional[bool]
-        """
-        return self._is_azure_ad_registered
-    
-    @is_azure_ad_registered.setter
-    def is_azure_ad_registered(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isAzureAdRegistered property value. The isAzureAdRegistered property
-        Args:
-            value: Value to set for the is_azure_ad_registered property.
-        """
-        self._is_azure_ad_registered = value
-    
-    @property
-    def is_hybrid_azure_domain_joined(self,) -> Optional[bool]:
-        """
-        Gets the isHybridAzureDomainJoined property value. The isHybridAzureDomainJoined property
-        Returns: Optional[bool]
-        """
-        return self._is_hybrid_azure_domain_joined
-    
-    @is_hybrid_azure_domain_joined.setter
-    def is_hybrid_azure_domain_joined(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isHybridAzureDomainJoined property value. The isHybridAzureDomainJoined property
-        Args:
-            value: Value to set for the is_hybrid_azure_domain_joined property.
-        """
-        self._is_hybrid_azure_domain_joined = value
-    
-    @property
-    def last_seen_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSeenDateTime property value. The lastSeenDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_seen_date_time
-    
-    @last_seen_date_time.setter
-    def last_seen_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSeenDateTime property value. The lastSeenDateTime property
-        Args:
-            value: Value to set for the last_seen_date_time property.
-        """
-        self._last_seen_date_time = value
-    
-    @property
-    def logon_users(self,) -> Optional[List[logon_user.LogonUser]]:
-        """
-        Gets the logonUsers property value. The logonUsers property
-        Returns: Optional[List[logon_user.LogonUser]]
-        """
-        return self._logon_users
-    
-    @logon_users.setter
-    def logon_users(self,value: Optional[List[logon_user.LogonUser]] = None) -> None:
-        """
-        Sets the logonUsers property value. The logonUsers property
-        Args:
-            value: Value to set for the logon_users property.
-        """
-        self._logon_users = value
-    
-    @property
-    def net_bios_name(self,) -> Optional[str]:
-        """
-        Gets the netBiosName property value. The netBiosName property
-        Returns: Optional[str]
-        """
-        return self._net_bios_name
-    
-    @net_bios_name.setter
-    def net_bios_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the netBiosName property value. The netBiosName property
-        Args:
-            value: Value to set for the net_bios_name property.
-        """
-        self._net_bios_name = value
-    
-    @property
-    def network_interfaces(self,) -> Optional[List[network_interface.NetworkInterface]]:
-        """
-        Gets the networkInterfaces property value. The networkInterfaces property
-        Returns: Optional[List[network_interface.NetworkInterface]]
-        """
-        return self._network_interfaces
-    
-    @network_interfaces.setter
-    def network_interfaces(self,value: Optional[List[network_interface.NetworkInterface]] = None) -> None:
-        """
-        Sets the networkInterfaces property value. The networkInterfaces property
-        Args:
-            value: Value to set for the network_interfaces property.
-        """
-        self._network_interfaces = value
-    
-    @property
-    def os(self,) -> Optional[str]:
-        """
-        Gets the os property value. The os property
-        Returns: Optional[str]
-        """
-        return self._os
-    
-    @os.setter
-    def os(self,value: Optional[str] = None) -> None:
-        """
-        Sets the os property value. The os property
-        Args:
-            value: Value to set for the os property.
-        """
-        self._os = value
-    
-    @property
-    def os_version(self,) -> Optional[str]:
-        """
-        Gets the osVersion property value. The osVersion property
-        Returns: Optional[str]
-        """
-        return self._os_version
-    
-    @os_version.setter
-    def os_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the osVersion property value. The osVersion property
-        Args:
-            value: Value to set for the os_version property.
-        """
-        self._os_version = value
-    
-    @property
-    def parent_host(self,) -> Optional[str]:
-        """
-        Gets the parentHost property value. The parentHost property
-        Returns: Optional[str]
-        """
-        return self._parent_host
-    
-    @parent_host.setter
-    def parent_host(self,value: Optional[str] = None) -> None:
-        """
-        Sets the parentHost property value. The parentHost property
-        Args:
-            value: Value to set for the parent_host property.
-        """
-        self._parent_host = value
-    
-    @property
-    def related_host_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the relatedHostIds property value. The relatedHostIds property
-        Returns: Optional[List[str]]
-        """
-        return self._related_host_ids
-    
-    @related_host_ids.setter
-    def related_host_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the relatedHostIds property value. The relatedHostIds property
-        Args:
-            value: Value to set for the related_host_ids property.
-        """
-        self._related_host_ids = value
-    
-    @property
-    def risk_score(self,) -> Optional[str]:
-        """
-        Gets the riskScore property value. The riskScore property
-        Returns: Optional[str]
-        """
-        return self._risk_score
-    
-    @risk_score.setter
-    def risk_score(self,value: Optional[str] = None) -> None:
-        """
-        Sets the riskScore property value. The riskScore property
-        Args:
-            value: Value to set for the risk_score property.
-        """
-        self._risk_score = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)
@@ -386,8 +121,8 @@ class HostSecurityProfile(entity.Entity):
         writer.write_bool_value("isHybridAzureDomainJoined", self.is_hybrid_azure_domain_joined)
         writer.write_datetime_value("lastSeenDateTime", self.last_seen_date_time)
         writer.write_collection_of_object_values("logonUsers", self.logon_users)
-        writer.write_collection_of_object_values("networkInterfaces", self.network_interfaces)
         writer.write_str_value("netBiosName", self.net_bios_name)
+        writer.write_collection_of_object_values("networkInterfaces", self.network_interfaces)
         writer.write_str_value("os", self.os)
         writer.write_str_value("osVersion", self.os_version)
         writer.write_str_value("parentHost", self.parent_host)
@@ -395,39 +130,5 @@ class HostSecurityProfile(entity.Entity):
         writer.write_str_value("riskScore", self.risk_score)
         writer.write_collection_of_primitive_values("tags", self.tags)
         writer.write_object_value("vendorInformation", self.vendor_information)
-    
-    @property
-    def tags(self,) -> Optional[List[str]]:
-        """
-        Gets the tags property value. The tags property
-        Returns: Optional[List[str]]
-        """
-        return self._tags
-    
-    @tags.setter
-    def tags(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the tags property value. The tags property
-        Args:
-            value: Value to set for the tags property.
-        """
-        self._tags = value
-    
-    @property
-    def vendor_information(self,) -> Optional[security_vendor_information.SecurityVendorInformation]:
-        """
-        Gets the vendorInformation property value. The vendorInformation property
-        Returns: Optional[security_vendor_information.SecurityVendorInformation]
-        """
-        return self._vendor_information
-    
-    @vendor_information.setter
-    def vendor_information(self,value: Optional[security_vendor_information.SecurityVendorInformation] = None) -> None:
-        """
-        Sets the vendorInformation property value. The vendorInformation property
-        Args:
-            value: Value to set for the vendor_information property.
-        """
-        self._vendor_information = value
     
 

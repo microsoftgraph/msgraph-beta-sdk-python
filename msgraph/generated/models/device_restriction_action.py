@@ -1,37 +1,35 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import dlp_action_info, restriction_action, restriction_trigger
+    from .dlp_action_info import DlpActionInfo
+    from .restriction_action import RestrictionAction
+    from .restriction_trigger import RestrictionTrigger
 
-from . import dlp_action_info
+from .dlp_action_info import DlpActionInfo
 
-class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceRestrictionAction and sets the default values.
-        """
-        super().__init__()
-        # The message property
-        self._message: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The restrictionAction property
-        self._restriction_action: Optional[restriction_action.RestrictionAction] = None
-        # The triggers property
-        self._triggers: Optional[List[restriction_trigger.RestrictionTrigger]] = None
+@dataclass
+class DeviceRestrictionAction(DlpActionInfo):
+    # The message property
+    message: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The restrictionAction property
+    restriction_action: Optional[RestrictionAction] = None
+    # The triggers property
+    triggers: Optional[List[RestrictionTrigger]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceRestrictionAction:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceRestrictionAction
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceRestrictionAction()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -39,79 +37,34 @@ class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import dlp_action_info, restriction_action, restriction_trigger
+        from .dlp_action_info import DlpActionInfo
+        from .restriction_action import RestrictionAction
+        from .restriction_trigger import RestrictionTrigger
+
+        from .dlp_action_info import DlpActionInfo
+        from .restriction_action import RestrictionAction
+        from .restriction_trigger import RestrictionTrigger
 
         fields: Dict[str, Callable[[Any], None]] = {
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
-            "restrictionAction": lambda n : setattr(self, 'restriction_action', n.get_enum_value(restriction_action.RestrictionAction)),
-            "triggers": lambda n : setattr(self, 'triggers', n.get_collection_of_enum_values(restriction_trigger.RestrictionTrigger)),
+            "restrictionAction": lambda n : setattr(self, 'restriction_action', n.get_enum_value(RestrictionAction)),
+            "triggers": lambda n : setattr(self, 'triggers', n.get_collection_of_enum_values(RestrictionTrigger)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
-    @property
-    def message(self,) -> Optional[str]:
-        """
-        Gets the message property value. The message property
-        Returns: Optional[str]
-        """
-        return self._message
-    
-    @message.setter
-    def message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the message property value. The message property
-        Args:
-            value: Value to set for the message property.
-        """
-        self._message = value
-    
-    @property
-    def restriction_action(self,) -> Optional[restriction_action.RestrictionAction]:
-        """
-        Gets the restrictionAction property value. The restrictionAction property
-        Returns: Optional[restriction_action.RestrictionAction]
-        """
-        return self._restriction_action
-    
-    @restriction_action.setter
-    def restriction_action(self,value: Optional[restriction_action.RestrictionAction] = None) -> None:
-        """
-        Sets the restrictionAction property value. The restrictionAction property
-        Args:
-            value: Value to set for the restriction_action property.
-        """
-        self._restriction_action = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("message", self.message)
         writer.write_enum_value("restrictionAction", self.restriction_action)
-        writer.write_enum_value("triggers", self.triggers)
-    
-    @property
-    def triggers(self,) -> Optional[List[restriction_trigger.RestrictionTrigger]]:
-        """
-        Gets the triggers property value. The triggers property
-        Returns: Optional[List[restriction_trigger.RestrictionTrigger]]
-        """
-        return self._triggers
-    
-    @triggers.setter
-    def triggers(self,value: Optional[List[restriction_trigger.RestrictionTrigger]] = None) -> None:
-        """
-        Sets the triggers property value. The triggers property
-        Args:
-            value: Value to set for the triggers property.
-        """
-        self._triggers = value
+        writer.write_collection_of_enum_values("triggers", self.triggers)
     
 

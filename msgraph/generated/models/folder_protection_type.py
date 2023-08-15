@@ -1,6 +1,6 @@
 from enum import Enum
 
-class FolderProtectionType(Enum):
+class FolderProtectionType(str, Enum):
     # Device default value, no intent.
     UserDefined = "userDefined",
     # Block functionality.

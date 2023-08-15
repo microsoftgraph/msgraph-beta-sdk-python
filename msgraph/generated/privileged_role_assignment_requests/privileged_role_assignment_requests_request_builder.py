@@ -1,110 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import privileged_role_assignment_request, privileged_role_assignment_request_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import privileged_role_assignment_request_item_request_builder
-    from .my import my_request_builder
+    from ..models.o_data_errors.o_data_error import ODataError
+    from ..models.privileged_role_assignment_request import PrivilegedRoleAssignmentRequest
+    from ..models.privileged_role_assignment_request_collection_response import PrivilegedRoleAssignmentRequestCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.privileged_role_assignment_request_item_request_builder import PrivilegedRoleAssignmentRequestItemRequestBuilder
+    from .my.my_request_builder import MyRequestBuilder
 
-class PrivilegedRoleAssignmentRequestsRequestBuilder():
+class PrivilegedRoleAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of privilegedRoleAssignmentRequest entities.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PrivilegedRoleAssignmentRequestsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/privilegedRoleAssignmentRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/privilegedRoleAssignmentRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_privileged_role_assignment_request_id(self,privileged_role_assignment_request_id: str) -> privileged_role_assignment_request_item_request_builder.PrivilegedRoleAssignmentRequestItemRequestBuilder:
+    def by_privileged_role_assignment_request_id(self,privileged_role_assignment_request_id: str) -> PrivilegedRoleAssignmentRequestItemRequestBuilder:
         """
         Provides operations to manage the collection of privilegedRoleAssignmentRequest entities.
-        Args:
-            privileged_role_assignment_request_id: Unique identifier of the item
-        Returns: privileged_role_assignment_request_item_request_builder.PrivilegedRoleAssignmentRequestItemRequestBuilder
+        param privileged_role_assignment_request_id: The unique identifier of privilegedRoleAssignmentRequest
+        Returns: PrivilegedRoleAssignmentRequestItemRequestBuilder
         """
-        if privileged_role_assignment_request_id is None:
-            raise Exception("privileged_role_assignment_request_id cannot be undefined")
-        from .item import privileged_role_assignment_request_item_request_builder
+        if not privileged_role_assignment_request_id:
+            raise TypeError("privileged_role_assignment_request_id cannot be null.")
+        from .item.privileged_role_assignment_request_item_request_builder import PrivilegedRoleAssignmentRequestItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["privilegedRoleAssignmentRequest%2Did"] = privileged_role_assignment_request_id
-        return privileged_role_assignment_request_item_request_builder.PrivilegedRoleAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return PrivilegedRoleAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedRoleAssignmentRequestCollectionResponse]:
         """
         Get entities from privilegedRoleAssignmentRequests
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[PrivilegedRoleAssignmentRequestCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import privileged_role_assignment_request_collection_response
+        from ..models.privileged_role_assignment_request_collection_response import PrivilegedRoleAssignmentRequestCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrivilegedRoleAssignmentRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
+    async def post(self,body: Optional[PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[PrivilegedRoleAssignmentRequest]:
         """
         Add new entity to privilegedRoleAssignmentRequests
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[PrivilegedRoleAssignmentRequest]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import privileged_role_assignment_request
+        from ..models.privileged_role_assignment_request import PrivilegedRoleAssignmentRequest
 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request.PrivilegedRoleAssignmentRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, PrivilegedRoleAssignmentRequest, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get entities from privilegedRoleAssignmentRequests
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -118,16 +106,15 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Add new entity to privilegedRoleAssignmentRequests
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +127,22 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def my(self) -> my_request_builder.MyRequestBuilder:
+    def my(self) -> MyRequestBuilder:
         """
         Provides operations to call the my method.
         """
-        from .my import my_request_builder
+        from .my.my_request_builder import MyRequestBuilder
 
-        return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
+        return MyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PrivilegedRoleAssignmentRequestsRequestBuilderGetQueryParameters():
@@ -165,12 +152,11 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -214,31 +200,27 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration():
+    class PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[PrivilegedRoleAssignmentRequestsRequestBuilder.PrivilegedRoleAssignmentRequestsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration():
+    class PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

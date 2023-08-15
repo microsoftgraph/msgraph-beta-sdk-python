@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerCrossProfileDataSharing(Enum):
+class AndroidDeviceOwnerCrossProfileDataSharing(str, Enum):
     # Not configured; this value defaults to CROSS_PROFILE_DATA_SHARING_UNSPECIFIED.
     NotConfigured = "notConfigured",
     # Data cannot be shared from both the personal profile to work profile and the work profile to the personal profile.

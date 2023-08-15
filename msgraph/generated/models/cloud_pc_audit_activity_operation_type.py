@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcAuditActivityOperationType(Enum):
+class CloudPcAuditActivityOperationType(str, Enum):
     Create = "create",
     Delete = "delete",
     Patch = "patch",

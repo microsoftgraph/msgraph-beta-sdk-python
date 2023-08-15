@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceEnrollmentConfigurationType(Enum):
+class DeviceEnrollmentConfigurationType(str, Enum):
     # Default. Set to unknown if the configuration type cannot be determined.
     Unknown = "unknown",
     # Indicates that configuration is of type limit which refers to number of devices a user is allowed to enroll.

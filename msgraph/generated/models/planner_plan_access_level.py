@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PlannerPlanAccessLevel(Enum):
+class PlannerPlanAccessLevel(str, Enum):
     ReadAccess = "readAccess",
     ReadWriteAccess = "readWriteAccess",
     FullAccess = "fullAccess",

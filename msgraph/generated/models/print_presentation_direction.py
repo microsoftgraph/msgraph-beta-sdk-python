@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PrintPresentationDirection(Enum):
+class PrintPresentationDirection(str, Enum):
     ClockwiseFromTopLeft = "clockwiseFromTopLeft",
     CounterClockwiseFromTopLeft = "counterClockwiseFromTopLeft",
     CounterClockwiseFromTopRight = "counterClockwiseFromTopRight",

@@ -1,49 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-class PublicationFacet(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new publicationFacet and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+if TYPE_CHECKING:
+    from .identity_set import IdentitySet
 
-        # The state of publication for this document. Either published or checkout. Read-only.
-        self._level: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The unique identifier for the version that is visible to the current caller. Read-only.
-        self._version_id: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+@dataclass
+class PublicationFacet(AdditionalDataHolder, Parsable):
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+
+    # The checkedOutBy property
+    checked_out_by: Optional[IdentitySet] = None
+    # The state of publication for this document. Either published or checkout. Read-only.
+    level: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The unique identifier for the version that is visible to the current caller. Read-only.
+    version_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PublicationFacet:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PublicationFacet
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return PublicationFacet()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -51,75 +36,30 @@ class PublicationFacet(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .identity_set import IdentitySet
+
+        from .identity_set import IdentitySet
+
         fields: Dict[str, Callable[[Any], None]] = {
+            "checkedOutBy": lambda n : setattr(self, 'checked_out_by', n.get_object_value(IdentitySet)),
             "level": lambda n : setattr(self, 'level', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "versionId": lambda n : setattr(self, 'version_id', n.get_str_value()),
         }
         return fields
     
-    @property
-    def level(self,) -> Optional[str]:
-        """
-        Gets the level property value. The state of publication for this document. Either published or checkout. Read-only.
-        Returns: Optional[str]
-        """
-        return self._level
-    
-    @level.setter
-    def level(self,value: Optional[str] = None) -> None:
-        """
-        Sets the level property value. The state of publication for this document. Either published or checkout. Read-only.
-        Args:
-            value: Value to set for the level property.
-        """
-        self._level = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
+        writer.write_object_value("checkedOutBy", self.checked_out_by)
         writer.write_str_value("level", self.level)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("versionId", self.version_id)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def version_id(self,) -> Optional[str]:
-        """
-        Gets the versionId property value. The unique identifier for the version that is visible to the current caller. Read-only.
-        Returns: Optional[str]
-        """
-        return self._version_id
-    
-    @version_id.setter
-    def version_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the versionId property value. The unique identifier for the version that is visible to the current caller. Read-only.
-        Args:
-            value: Value to set for the version_id property.
-        """
-        self._version_id = value
     
 

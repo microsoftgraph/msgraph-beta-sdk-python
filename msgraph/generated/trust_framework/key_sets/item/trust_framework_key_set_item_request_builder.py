@@ -1,116 +1,107 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import trust_framework_key_set
-    from ....models.o_data_errors import o_data_error
-    from .generate_key import generate_key_request_builder
-    from .get_active_key import get_active_key_request_builder
-    from .upload_certificate import upload_certificate_request_builder
-    from .upload_pkcs12 import upload_pkcs12_request_builder
-    from .upload_secret import upload_secret_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.trust_framework_key_set import TrustFrameworkKeySet
+    from .generate_key.generate_key_request_builder import GenerateKeyRequestBuilder
+    from .get_active_key.get_active_key_request_builder import GetActiveKeyRequestBuilder
+    from .upload_certificate.upload_certificate_request_builder import UploadCertificateRequestBuilder
+    from .upload_pkcs12.upload_pkcs12_request_builder import UploadPkcs12RequestBuilder
+    from .upload_secret.upload_secret_request_builder import UploadSecretRequestBuilder
 
-class TrustFrameworkKeySetItemRequestBuilder():
+class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TrustFrameworkKeySetItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/trustFramework/keySets/{trustFrameworkKeySet%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/trustFramework/keySets/{trustFrameworkKeySet%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a trustFrameworkKeySet.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
+    async def get(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
         Retrieve the properties and associations for a Trustframeworkkeyset.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[TrustFrameworkKeySet]
+        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import trust_framework_key_set
+        from ....models.trust_framework_key_set import TrustFrameworkKeySet
 
-        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, error_mapping)
+        return await self.request_adapter.send_async(request_info, TrustFrameworkKeySet, error_mapping)
     
-    async def patch(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
+    async def patch(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
         Update the properties of a trustFrameworkKeyset. This operation will replace the content of an existing keyset. Specifying the ID in the request payload is optional.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[TrustFrameworkKeySet]
+        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-update?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import trust_framework_key_set
+        from ....models.trust_framework_key_set import TrustFrameworkKeySet
 
-        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, error_mapping)
+        return await self.request_adapter.send_async(request_info, TrustFrameworkKeySet, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a trustFrameworkKeySet.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -125,8 +116,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and associations for a Trustframeworkkeyset.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -140,16 +130,15 @@ class TrustFrameworkKeySetItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a trustFrameworkKeyset. This operation will replace the content of an existing keyset. Specifying the ID in the request payload is optional.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,61 +151,59 @@ class TrustFrameworkKeySetItemRequestBuilder():
         return request_info
     
     @property
-    def generate_key(self) -> generate_key_request_builder.GenerateKeyRequestBuilder:
+    def generate_key(self) -> GenerateKeyRequestBuilder:
         """
         Provides operations to call the generateKey method.
         """
-        from .generate_key import generate_key_request_builder
+        from .generate_key.generate_key_request_builder import GenerateKeyRequestBuilder
 
-        return generate_key_request_builder.GenerateKeyRequestBuilder(self.request_adapter, self.path_parameters)
+        return GenerateKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_active_key(self) -> get_active_key_request_builder.GetActiveKeyRequestBuilder:
+    def get_active_key(self) -> GetActiveKeyRequestBuilder:
         """
         Provides operations to call the getActiveKey method.
         """
-        from .get_active_key import get_active_key_request_builder
+        from .get_active_key.get_active_key_request_builder import GetActiveKeyRequestBuilder
 
-        return get_active_key_request_builder.GetActiveKeyRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetActiveKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_certificate(self) -> upload_certificate_request_builder.UploadCertificateRequestBuilder:
+    def upload_certificate(self) -> UploadCertificateRequestBuilder:
         """
         Provides operations to call the uploadCertificate method.
         """
-        from .upload_certificate import upload_certificate_request_builder
+        from .upload_certificate.upload_certificate_request_builder import UploadCertificateRequestBuilder
 
-        return upload_certificate_request_builder.UploadCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+        return UploadCertificateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_pkcs12(self) -> upload_pkcs12_request_builder.UploadPkcs12RequestBuilder:
+    def upload_pkcs12(self) -> UploadPkcs12RequestBuilder:
         """
         Provides operations to call the uploadPkcs12 method.
         """
-        from .upload_pkcs12 import upload_pkcs12_request_builder
+        from .upload_pkcs12.upload_pkcs12_request_builder import UploadPkcs12RequestBuilder
 
-        return upload_pkcs12_request_builder.UploadPkcs12RequestBuilder(self.request_adapter, self.path_parameters)
+        return UploadPkcs12RequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_secret(self) -> upload_secret_request_builder.UploadSecretRequestBuilder:
+    def upload_secret(self) -> UploadSecretRequestBuilder:
         """
         Provides operations to call the uploadSecret method.
         """
-        from .upload_secret import upload_secret_request_builder
+        from .upload_secret.upload_secret_request_builder import UploadSecretRequestBuilder
 
-        return upload_secret_request_builder.UploadSecretRequestBuilder(self.request_adapter, self.path_parameters)
+        return UploadSecretRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration():
+    class TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class TrustFrameworkKeySetItemRequestBuilderGetQueryParameters():
@@ -226,12 +213,11 @@ class TrustFrameworkKeySetItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -245,31 +231,27 @@ class TrustFrameworkKeySetItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration():
+    class TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[TrustFrameworkKeySetItemRequestBuilder.TrustFrameworkKeySetItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration():
+    class TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,134 +1,90 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import calendar_sharing_message, contact, entity, event, event_message, event_message_request, event_message_response, message, note, outlook_task, post
+    from .calendar_sharing_message import CalendarSharingMessage
+    from .contact import Contact
+    from .entity import Entity
+    from .event import Event
+    from .event_message import EventMessage
+    from .event_message_request import EventMessageRequest
+    from .event_message_response import EventMessageResponse
+    from .message import Message
+    from .note import Note
+    from .outlook_task import OutlookTask
+    from .post import Post
 
-from . import entity
+from .entity import Entity
 
-class OutlookItem(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new outlookItem and sets the default values.
-        """
-        super().__init__()
-        # The categories property
-        self._categories: Optional[List[str]] = None
-        # The changeKey property
-        self._change_key: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._created_date_time: Optional[datetime] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def categories(self,) -> Optional[List[str]]:
-        """
-        Gets the categories property value. The categories property
-        Returns: Optional[List[str]]
-        """
-        return self._categories
-    
-    @categories.setter
-    def categories(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the categories property value. The categories property
-        Args:
-            value: Value to set for the categories property.
-        """
-        self._categories = value
-    
-    @property
-    def change_key(self,) -> Optional[str]:
-        """
-        Gets the changeKey property value. The changeKey property
-        Returns: Optional[str]
-        """
-        return self._change_key
-    
-    @change_key.setter
-    def change_key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the changeKey property value. The changeKey property
-        Args:
-            value: Value to set for the change_key property.
-        """
-        self._change_key = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+@dataclass
+class OutlookItem(Entity):
+    # The categories property
+    categories: Optional[List[str]] = None
+    # The changeKey property
+    change_key: Optional[str] = None
+    # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    created_date_time: Optional[datetime.datetime] = None
+    # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    last_modified_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OutlookItem:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: OutlookItem
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.calendarSharingMessage":
-                from . import calendar_sharing_message
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.calendarSharingMessage".casefold():
+            from .calendar_sharing_message import CalendarSharingMessage
 
-                return calendar_sharing_message.CalendarSharingMessage()
-            if mapping_value == "#microsoft.graph.contact":
-                from . import contact
+            return CalendarSharingMessage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.contact".casefold():
+            from .contact import Contact
 
-                return contact.Contact()
-            if mapping_value == "#microsoft.graph.event":
-                from . import event
+            return Contact()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.event".casefold():
+            from .event import Event
 
-                return event.Event()
-            if mapping_value == "#microsoft.graph.eventMessage":
-                from . import event_message
+            return Event()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.eventMessage".casefold():
+            from .event_message import EventMessage
 
-                return event_message.EventMessage()
-            if mapping_value == "#microsoft.graph.eventMessageRequest":
-                from . import event_message_request
+            return EventMessage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.eventMessageRequest".casefold():
+            from .event_message_request import EventMessageRequest
 
-                return event_message_request.EventMessageRequest()
-            if mapping_value == "#microsoft.graph.eventMessageResponse":
-                from . import event_message_response
+            return EventMessageRequest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.eventMessageResponse".casefold():
+            from .event_message_response import EventMessageResponse
 
-                return event_message_response.EventMessageResponse()
-            if mapping_value == "#microsoft.graph.message":
-                from . import message
+            return EventMessageResponse()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.message".casefold():
+            from .message import Message
 
-                return message.Message()
-            if mapping_value == "#microsoft.graph.note":
-                from . import note
+            return Message()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.note".casefold():
+            from .note import Note
 
-                return note.Note()
-            if mapping_value == "#microsoft.graph.outlookTask":
-                from . import outlook_task
+            return Note()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.outlookTask".casefold():
+            from .outlook_task import OutlookTask
 
-                return outlook_task.OutlookTask()
-            if mapping_value == "#microsoft.graph.post":
-                from . import post
+            return OutlookTask()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.post".casefold():
+            from .post import Post
 
-                return post.Post()
+            return Post()
         return OutlookItem()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -136,7 +92,29 @@ class OutlookItem(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import calendar_sharing_message, contact, entity, event, event_message, event_message_request, event_message_response, message, note, outlook_task, post
+        from .calendar_sharing_message import CalendarSharingMessage
+        from .contact import Contact
+        from .entity import Entity
+        from .event import Event
+        from .event_message import EventMessage
+        from .event_message_request import EventMessageRequest
+        from .event_message_response import EventMessageResponse
+        from .message import Message
+        from .note import Note
+        from .outlook_task import OutlookTask
+        from .post import Post
+
+        from .calendar_sharing_message import CalendarSharingMessage
+        from .contact import Contact
+        from .entity import Entity
+        from .event import Event
+        from .event_message import EventMessage
+        from .event_message_request import EventMessageRequest
+        from .event_message_response import EventMessageResponse
+        from .message import Message
+        from .note import Note
+        from .outlook_task import OutlookTask
+        from .post import Post
 
         fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
@@ -148,31 +126,14 @@ class OutlookItem(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_str_value("changeKey", self.change_key)

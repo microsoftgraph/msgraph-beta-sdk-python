@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AccessReviewTimeoutBehavior(Enum):
+class AccessReviewTimeoutBehavior(str, Enum):
     KeepAccess = "keepAccess",
     RemoveAccess = "removeAccess",
     AcceptAccessRecommendation = "acceptAccessRecommendation",

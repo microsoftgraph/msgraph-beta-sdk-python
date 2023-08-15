@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagementProvider(Enum):
+class ManagementProvider(str, Enum):
     Microsoft = "microsoft",
     Community = "community",
     IndirectProvider = "indirectProvider",

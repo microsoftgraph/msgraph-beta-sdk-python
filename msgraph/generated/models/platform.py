@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Platform(Enum):
+class Platform(str, Enum):
     # Unknown device platform
     Unknown = "unknown",
     # IOS device platform

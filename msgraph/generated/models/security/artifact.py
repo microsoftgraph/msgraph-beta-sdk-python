@@ -1,67 +1,81 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import host, hostname, host_component, host_cookie, host_tracker, ip_address, passive_dns_record, unclassified_artifact
-    from .. import entity
+    from ..entity import Entity
+    from .host import Host
+    from .host_component import HostComponent
+    from .host_cookie import HostCookie
+    from .hostname import Hostname
+    from .host_ssl_certificate import HostSslCertificate
+    from .host_tracker import HostTracker
+    from .ip_address import IpAddress
+    from .passive_dns_record import PassiveDnsRecord
+    from .ssl_certificate import SslCertificate
+    from .unclassified_artifact import UnclassifiedArtifact
 
-from .. import entity
+from ..entity import Entity
 
-class Artifact(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new artifact and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+@dataclass
+class Artifact(Entity):
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Artifact:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Artifact
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.security.host":
-                from . import host
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.host".casefold():
+            from .host import Host
 
-                return host.Host()
-            if mapping_value == "#microsoft.graph.security.hostComponent":
-                from . import host_component
+            return Host()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostComponent".casefold():
+            from .host_component import HostComponent
 
-                return host_component.HostComponent()
-            if mapping_value == "#microsoft.graph.security.hostCookie":
-                from . import host_cookie
+            return HostComponent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostCookie".casefold():
+            from .host_cookie import HostCookie
 
-                return host_cookie.HostCookie()
-            if mapping_value == "#microsoft.graph.security.hostname":
-                from . import hostname
+            return HostCookie()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostname".casefold():
+            from .hostname import Hostname
 
-                return hostname.Hostname()
-            if mapping_value == "#microsoft.graph.security.hostTracker":
-                from . import host_tracker
+            return Hostname()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostSslCertificate".casefold():
+            from .host_ssl_certificate import HostSslCertificate
 
-                return host_tracker.HostTracker()
-            if mapping_value == "#microsoft.graph.security.ipAddress":
-                from . import ip_address
+            return HostSslCertificate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostTracker".casefold():
+            from .host_tracker import HostTracker
 
-                return ip_address.IpAddress()
-            if mapping_value == "#microsoft.graph.security.passiveDnsRecord":
-                from . import passive_dns_record
+            return HostTracker()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ipAddress".casefold():
+            from .ip_address import IpAddress
 
-                return passive_dns_record.PassiveDnsRecord()
-            if mapping_value == "#microsoft.graph.security.unclassifiedArtifact":
-                from . import unclassified_artifact
+            return IpAddress()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.passiveDnsRecord".casefold():
+            from .passive_dns_record import PassiveDnsRecord
 
-                return unclassified_artifact.UnclassifiedArtifact()
+            return PassiveDnsRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.sslCertificate".casefold():
+            from .ssl_certificate import SslCertificate
+
+            return SslCertificate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.unclassifiedArtifact".casefold():
+            from .unclassified_artifact import UnclassifiedArtifact
+
+            return UnclassifiedArtifact()
         return Artifact()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -69,8 +83,29 @@ class Artifact(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import host, hostname, host_component, host_cookie, host_tracker, ip_address, passive_dns_record, unclassified_artifact
-        from .. import entity
+        from ..entity import Entity
+        from .host import Host
+        from .host_component import HostComponent
+        from .host_cookie import HostCookie
+        from .hostname import Hostname
+        from .host_ssl_certificate import HostSslCertificate
+        from .host_tracker import HostTracker
+        from .ip_address import IpAddress
+        from .passive_dns_record import PassiveDnsRecord
+        from .ssl_certificate import SslCertificate
+        from .unclassified_artifact import UnclassifiedArtifact
+
+        from ..entity import Entity
+        from .host import Host
+        from .host_component import HostComponent
+        from .host_cookie import HostCookie
+        from .hostname import Hostname
+        from .host_ssl_certificate import HostSslCertificate
+        from .host_tracker import HostTracker
+        from .ip_address import IpAddress
+        from .passive_dns_record import PassiveDnsRecord
+        from .ssl_certificate import SslCertificate
+        from .unclassified_artifact import UnclassifiedArtifact
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -81,11 +116,11 @@ class Artifact(entity.Entity):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

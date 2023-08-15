@@ -1,113 +1,104 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models.o_data_errors import o_data_error
-    from .......models.security import ediscovery_review_tag
-    from .child_tags import child_tags_request_builder
-    from .parent import parent_request_builder
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .......models.security.ediscovery_review_tag import EdiscoveryReviewTag
+    from .child_tags.child_tags_request_builder import ChildTagsRequestBuilder
+    from .parent.parent_request_builder import ParentRequestBuilder
 
-class EdiscoveryReviewTagItemRequestBuilder():
+class EdiscoveryReviewTagItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new EdiscoveryReviewTagItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Remove an ediscoveryReviewTag object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_tag.EdiscoveryReviewTag]:
+    async def get(self,request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EdiscoveryReviewTag]:
         """
         Read the properties and relationships of an ediscoveryReviewTag object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ediscovery_review_tag.EdiscoveryReviewTag]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EdiscoveryReviewTag]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.security import ediscovery_review_tag
+        from .......models.security.ediscovery_review_tag import EdiscoveryReviewTag
 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_tag.EdiscoveryReviewTag, error_mapping)
+        return await self.request_adapter.send_async(request_info, EdiscoveryReviewTag, error_mapping)
     
-    async def patch(self,body: Optional[ediscovery_review_tag.EdiscoveryReviewTag] = None, request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ediscovery_review_tag.EdiscoveryReviewTag]:
+    async def patch(self,body: Optional[EdiscoveryReviewTag] = None, request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EdiscoveryReviewTag]:
         """
         Update the properties of an ediscoveryReviewTag object.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ediscovery_review_tag.EdiscoveryReviewTag]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EdiscoveryReviewTag]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.security import ediscovery_review_tag
+        from .......models.security.ediscovery_review_tag import EdiscoveryReviewTag
 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_tag.EdiscoveryReviewTag, error_mapping)
+        return await self.request_adapter.send_async(request_info, EdiscoveryReviewTag, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Remove an ediscoveryReviewTag object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -122,8 +113,7 @@ class EdiscoveryReviewTagItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of an ediscoveryReviewTag object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,16 +127,15 @@ class EdiscoveryReviewTagItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ediscovery_review_tag.EdiscoveryReviewTag] = None, request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EdiscoveryReviewTag] = None, request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of an ediscoveryReviewTag object.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,34 +148,32 @@ class EdiscoveryReviewTagItemRequestBuilder():
         return request_info
     
     @property
-    def child_tags(self) -> child_tags_request_builder.ChildTagsRequestBuilder:
+    def child_tags(self) -> ChildTagsRequestBuilder:
         """
         Provides operations to manage the childTags property of the microsoft.graph.security.ediscoveryReviewTag entity.
         """
-        from .child_tags import child_tags_request_builder
+        from .child_tags.child_tags_request_builder import ChildTagsRequestBuilder
 
-        return child_tags_request_builder.ChildTagsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ChildTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def parent(self) -> parent_request_builder.ParentRequestBuilder:
+    def parent(self) -> ParentRequestBuilder:
         """
         Provides operations to manage the parent property of the microsoft.graph.security.ediscoveryReviewTag entity.
         """
-        from .parent import parent_request_builder
+        from .parent.parent_request_builder import ParentRequestBuilder
 
-        return parent_request_builder.ParentRequestBuilder(self.request_adapter, self.path_parameters)
+        return ParentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EdiscoveryReviewTagItemRequestBuilderDeleteRequestConfiguration():
+    class EdiscoveryReviewTagItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class EdiscoveryReviewTagItemRequestBuilderGetQueryParameters():
@@ -196,12 +183,11 @@ class EdiscoveryReviewTagItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -215,31 +201,27 @@ class EdiscoveryReviewTagItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EdiscoveryReviewTagItemRequestBuilderGetRequestConfiguration():
+    class EdiscoveryReviewTagItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[EdiscoveryReviewTagItemRequestBuilder.EdiscoveryReviewTagItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EdiscoveryReviewTagItemRequestBuilderPatchRequestConfiguration():
+    class EdiscoveryReviewTagItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

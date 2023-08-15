@@ -1,46 +1,46 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import b2c_identity_user_flow, b2x_identity_user_flow, entity, user_flow_type
+    from .b2c_identity_user_flow import B2cIdentityUserFlow
+    from .b2x_identity_user_flow import B2xIdentityUserFlow
+    from .entity import Entity
+    from .user_flow_type import UserFlowType
 
-from . import entity
+from .entity import Entity
 
-class IdentityUserFlow(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new identityUserFlow and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The userFlowType property
-        self._user_flow_type: Optional[user_flow_type.UserFlowType] = None
-        # The userFlowTypeVersion property
-        self._user_flow_type_version: Optional[float] = None
+@dataclass
+class IdentityUserFlow(Entity):
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The userFlowType property
+    user_flow_type: Optional[UserFlowType] = None
+    # The userFlowTypeVersion property
+    user_flow_type_version: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IdentityUserFlow:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IdentityUserFlow
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.b2cIdentityUserFlow":
-                from . import b2c_identity_user_flow
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2cIdentityUserFlow".casefold():
+            from .b2c_identity_user_flow import B2cIdentityUserFlow
 
-                return b2c_identity_user_flow.B2cIdentityUserFlow()
-            if mapping_value == "#microsoft.graph.b2xIdentityUserFlow":
-                from . import b2x_identity_user_flow
+            return B2cIdentityUserFlow()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2xIdentityUserFlow".casefold():
+            from .b2x_identity_user_flow import B2xIdentityUserFlow
 
-                return b2x_identity_user_flow.B2xIdentityUserFlow()
+            return B2xIdentityUserFlow()
         return IdentityUserFlow()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -48,10 +48,18 @@ class IdentityUserFlow(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import b2c_identity_user_flow, b2x_identity_user_flow, entity, user_flow_type
+        from .b2c_identity_user_flow import B2cIdentityUserFlow
+        from .b2x_identity_user_flow import B2xIdentityUserFlow
+        from .entity import Entity
+        from .user_flow_type import UserFlowType
+
+        from .b2c_identity_user_flow import B2cIdentityUserFlow
+        from .b2x_identity_user_flow import B2xIdentityUserFlow
+        from .entity import Entity
+        from .user_flow_type import UserFlowType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "userFlowType": lambda n : setattr(self, 'user_flow_type', n.get_enum_value(user_flow_type.UserFlowType)),
+            "userFlowType": lambda n : setattr(self, 'user_flow_type', n.get_enum_value(UserFlowType)),
             "userFlowTypeVersion": lambda n : setattr(self, 'user_flow_type_version', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -61,47 +69,13 @@ class IdentityUserFlow(entity.Entity):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("userFlowType", self.user_flow_type)
         writer.write_float_value("userFlowTypeVersion", self.user_flow_type_version)
-    
-    @property
-    def user_flow_type(self,) -> Optional[user_flow_type.UserFlowType]:
-        """
-        Gets the userFlowType property value. The userFlowType property
-        Returns: Optional[user_flow_type.UserFlowType]
-        """
-        return self._user_flow_type
-    
-    @user_flow_type.setter
-    def user_flow_type(self,value: Optional[user_flow_type.UserFlowType] = None) -> None:
-        """
-        Sets the userFlowType property value. The userFlowType property
-        Args:
-            value: Value to set for the user_flow_type property.
-        """
-        self._user_flow_type = value
-    
-    @property
-    def user_flow_type_version(self,) -> Optional[float]:
-        """
-        Gets the userFlowTypeVersion property value. The userFlowTypeVersion property
-        Returns: Optional[float]
-        """
-        return self._user_flow_type_version
-    
-    @user_flow_type_version.setter
-    def user_flow_type_version(self,value: Optional[float] = None) -> None:
-        """
-        Sets the userFlowTypeVersion property value. The userFlowTypeVersion property
-        Args:
-            value: Value to set for the user_flow_type_version property.
-        """
-        self._user_flow_type_version = value
     
 

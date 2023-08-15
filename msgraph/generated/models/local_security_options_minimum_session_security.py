@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LocalSecurityOptionsMinimumSessionSecurity(Enum):
+class LocalSecurityOptionsMinimumSessionSecurity(str, Enum):
     # Send LM & NTLM responses
     None_ = "none",
     # Send LM & NTLM-use NTLMv2 session security if negotiated

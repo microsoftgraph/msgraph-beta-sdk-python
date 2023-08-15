@@ -1,70 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import event_message_detail, identity_set
+    from .event_message_detail import EventMessageDetail
+    from .identity_set import IdentitySet
 
-from . import event_message_detail
+from .event_message_detail import EventMessageDetail
 
-class CallTranscriptEventMessageDetail(event_message_detail.EventMessageDetail):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CallTranscriptEventMessageDetail and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.callTranscriptEventMessageDetail"
-        # Unique identifier of the call.
-        self._call_id: Optional[str] = None
-        # Unique identifier for a call transcript.
-        self._call_transcript_i_cal_uid: Optional[str] = None
-        # The organizer of the meeting.
-        self._meeting_organizer: Optional[identity_set.IdentitySet] = None
-    
-    @property
-    def call_id(self,) -> Optional[str]:
-        """
-        Gets the callId property value. Unique identifier of the call.
-        Returns: Optional[str]
-        """
-        return self._call_id
-    
-    @call_id.setter
-    def call_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the callId property value. Unique identifier of the call.
-        Args:
-            value: Value to set for the call_id property.
-        """
-        self._call_id = value
-    
-    @property
-    def call_transcript_i_cal_uid(self,) -> Optional[str]:
-        """
-        Gets the callTranscriptICalUid property value. Unique identifier for a call transcript.
-        Returns: Optional[str]
-        """
-        return self._call_transcript_i_cal_uid
-    
-    @call_transcript_i_cal_uid.setter
-    def call_transcript_i_cal_uid(self,value: Optional[str] = None) -> None:
-        """
-        Sets the callTranscriptICalUid property value. Unique identifier for a call transcript.
-        Args:
-            value: Value to set for the call_transcript_i_cal_uid property.
-        """
-        self._call_transcript_i_cal_uid = value
+@dataclass
+class CallTranscriptEventMessageDetail(EventMessageDetail):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.callTranscriptEventMessageDetail"
+    # Unique identifier of the call.
+    call_id: Optional[str] = None
+    # Unique identifier for a call transcript.
+    call_transcript_i_cal_uid: Optional[str] = None
+    # The organizer of the meeting.
+    meeting_organizer: Optional[IdentitySet] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CallTranscriptEventMessageDetail:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CallTranscriptEventMessageDetail
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CallTranscriptEventMessageDetail()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -72,42 +36,29 @@ class CallTranscriptEventMessageDetail(event_message_detail.EventMessageDetail):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import event_message_detail, identity_set
+        from .event_message_detail import EventMessageDetail
+        from .identity_set import IdentitySet
+
+        from .event_message_detail import EventMessageDetail
+        from .identity_set import IdentitySet
 
         fields: Dict[str, Callable[[Any], None]] = {
             "callId": lambda n : setattr(self, 'call_id', n.get_str_value()),
             "callTranscriptICalUid": lambda n : setattr(self, 'call_transcript_i_cal_uid', n.get_str_value()),
-            "meetingOrganizer": lambda n : setattr(self, 'meeting_organizer', n.get_object_value(identity_set.IdentitySet)),
+            "meetingOrganizer": lambda n : setattr(self, 'meeting_organizer', n.get_object_value(IdentitySet)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
-    @property
-    def meeting_organizer(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the meetingOrganizer property value. The organizer of the meeting.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._meeting_organizer
-    
-    @meeting_organizer.setter
-    def meeting_organizer(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the meetingOrganizer property value. The organizer of the meeting.
-        Args:
-            value: Value to set for the meeting_organizer property.
-        """
-        self._meeting_organizer = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("callId", self.call_id)
         writer.write_str_value("callTranscriptICalUid", self.call_transcript_i_cal_uid)

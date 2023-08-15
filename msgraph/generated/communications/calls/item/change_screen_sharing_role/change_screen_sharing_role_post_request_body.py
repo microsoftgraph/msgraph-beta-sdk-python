@@ -1,48 +1,28 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import screen_sharing_role
+    from .....models.screen_sharing_role import ScreenSharingRole
 
+@dataclass
 class ChangeScreenSharingRolePostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new changeScreenSharingRolePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The role property
-        self._role: Optional[screen_sharing_role.ScreenSharingRole] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The role property
+    role: Optional[ScreenSharingRole] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChangeScreenSharingRolePostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ChangeScreenSharingRolePostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ChangeScreenSharingRolePostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -50,38 +30,23 @@ class ChangeScreenSharingRolePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .....models import screen_sharing_role
+        from .....models.screen_sharing_role import ScreenSharingRole
+
+        from .....models.screen_sharing_role import ScreenSharingRole
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "role": lambda n : setattr(self, 'role', n.get_enum_value(screen_sharing_role.ScreenSharingRole)),
+            "role": lambda n : setattr(self, 'role', n.get_enum_value(ScreenSharingRole)),
         }
         return fields
-    
-    @property
-    def role(self,) -> Optional[screen_sharing_role.ScreenSharingRole]:
-        """
-        Gets the role property value. The role property
-        Returns: Optional[screen_sharing_role.ScreenSharingRole]
-        """
-        return self._role
-    
-    @role.setter
-    def role(self,value: Optional[screen_sharing_role.ScreenSharingRole] = None) -> None:
-        """
-        Sets the role property value. The role property
-        Args:
-            value: Value to set for the role property.
-        """
-        self._role = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_enum_value("role", self.role)
         writer.write_additional_data_value(self.additional_data)
     

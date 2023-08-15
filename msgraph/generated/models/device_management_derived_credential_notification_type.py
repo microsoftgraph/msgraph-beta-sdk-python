@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementDerivedCredentialNotificationType(Enum):
+class DeviceManagementDerivedCredentialNotificationType(str, Enum):
     # None
     None_ = "none",
     # Company Portal

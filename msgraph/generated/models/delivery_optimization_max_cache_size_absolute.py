@@ -1,32 +1,32 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import delivery_optimization_max_cache_size
+    from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
 
-from . import delivery_optimization_max_cache_size
+from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
 
-class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeliveryOptimizationMaxCacheSizeAbsolute and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute"
-        # Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
-        self._maximum_cache_size_in_gigabytes: Optional[int] = None
+@dataclass
+class DeliveryOptimizationMaxCacheSizeAbsolute(DeliveryOptimizationMaxCacheSize):
+    """
+    Delivery Optimization max cache size absolute type.
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute"
+    # Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
+    maximum_cache_size_in_gigabytes: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationMaxCacheSizeAbsolute:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeliveryOptimizationMaxCacheSizeAbsolute
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeliveryOptimizationMaxCacheSizeAbsolute()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,7 +34,9 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_s
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import delivery_optimization_max_cache_size
+        from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
+
+        from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
 
         fields: Dict[str, Callable[[Any], None]] = {
             "maximumCacheSizeInGigabytes": lambda n : setattr(self, 'maximum_cache_size_in_gigabytes', n.get_int_value()),
@@ -43,31 +45,14 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_s
         fields.update(super_fields)
         return fields
     
-    @property
-    def maximum_cache_size_in_gigabytes(self,) -> Optional[int]:
-        """
-        Gets the maximumCacheSizeInGigabytes property value. Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
-        Returns: Optional[int]
-        """
-        return self._maximum_cache_size_in_gigabytes
-    
-    @maximum_cache_size_in_gigabytes.setter
-    def maximum_cache_size_in_gigabytes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumCacheSizeInGigabytes property value. Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
-        Args:
-            value: Value to set for the maximum_cache_size_in_gigabytes property.
-        """
-        self._maximum_cache_size_in_gigabytes = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("maximumCacheSizeInGigabytes", self.maximum_cache_size_in_gigabytes)
     

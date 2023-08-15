@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Code(Enum):
+class Code(str, Enum):
     # None error.
     None_ = "none",
     # Json file invalid error.

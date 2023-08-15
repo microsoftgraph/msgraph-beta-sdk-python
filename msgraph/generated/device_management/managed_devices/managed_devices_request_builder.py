@@ -1,129 +1,116 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import managed_device, managed_device_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .app_diagnostics_with_upn import app_diagnostics_with_upn_request_builder
-    from .bulk_reprovision_cloud_pc import bulk_reprovision_cloud_pc_request_builder
-    from .bulk_restore_cloud_pc import bulk_restore_cloud_pc_request_builder
-    from .bulk_set_cloud_pc_review_status import bulk_set_cloud_pc_review_status_request_builder
-    from .count import count_request_builder
-    from .download_app_diagnostics import download_app_diagnostics_request_builder
-    from .execute_action import execute_action_request_builder
-    from .item import managed_device_item_request_builder
-    from .move_devices_to_o_u import move_devices_to_o_u_request_builder
+    from ...models.managed_device import ManagedDevice
+    from ...models.managed_device_collection_response import ManagedDeviceCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .app_diagnostics_with_upn.app_diagnostics_with_upn_request_builder import AppDiagnosticsWithUpnRequestBuilder
+    from .bulk_reprovision_cloud_pc.bulk_reprovision_cloud_pc_request_builder import BulkReprovisionCloudPcRequestBuilder
+    from .bulk_restore_cloud_pc.bulk_restore_cloud_pc_request_builder import BulkRestoreCloudPcRequestBuilder
+    from .bulk_set_cloud_pc_review_status.bulk_set_cloud_pc_review_status_request_builder import BulkSetCloudPcReviewStatusRequestBuilder
+    from .count.count_request_builder import CountRequestBuilder
+    from .download_app_diagnostics.download_app_diagnostics_request_builder import DownloadAppDiagnosticsRequestBuilder
+    from .execute_action.execute_action_request_builder import ExecuteActionRequestBuilder
+    from .item.managed_device_item_request_builder import ManagedDeviceItemRequestBuilder
+    from .move_devices_to_o_u.move_devices_to_o_u_request_builder import MoveDevicesToOURequestBuilder
 
-class ManagedDevicesRequestBuilder():
+class ManagedDevicesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the managedDevices property of the microsoft.graph.deviceManagement entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ManagedDevicesRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/managedDevices{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def app_diagnostics_with_upn(self,upn: Optional[str] = None) -> app_diagnostics_with_upn_request_builder.AppDiagnosticsWithUpnRequestBuilder:
+    def app_diagnostics_with_upn(self,upn: Optional[str] = None) -> AppDiagnosticsWithUpnRequestBuilder:
         """
         Provides operations to call the appDiagnostics method.
-        Args:
-            upn: Usage: upn='{upn}'
-        Returns: app_diagnostics_with_upn_request_builder.AppDiagnosticsWithUpnRequestBuilder
+        param upn: Usage: upn='{upn}'
+        Returns: AppDiagnosticsWithUpnRequestBuilder
         """
-        if upn is None:
-            raise Exception("upn cannot be undefined")
-        from .app_diagnostics_with_upn import app_diagnostics_with_upn_request_builder
+        if not upn:
+            raise TypeError("upn cannot be null.")
+        from .app_diagnostics_with_upn.app_diagnostics_with_upn_request_builder import AppDiagnosticsWithUpnRequestBuilder
 
-        return app_diagnostics_with_upn_request_builder.AppDiagnosticsWithUpnRequestBuilder(self.request_adapter, self.path_parameters, upn)
+        return AppDiagnosticsWithUpnRequestBuilder(self.request_adapter, self.path_parameters, upn)
     
-    def by_managed_device_id(self,managed_device_id: str) -> managed_device_item_request_builder.ManagedDeviceItemRequestBuilder:
+    def by_managed_device_id(self,managed_device_id: str) -> ManagedDeviceItemRequestBuilder:
         """
         Provides operations to manage the managedDevices property of the microsoft.graph.deviceManagement entity.
-        Args:
-            managed_device_id: Unique identifier of the item
-        Returns: managed_device_item_request_builder.ManagedDeviceItemRequestBuilder
+        param managed_device_id: The unique identifier of managedDevice
+        Returns: ManagedDeviceItemRequestBuilder
         """
-        if managed_device_id is None:
-            raise Exception("managed_device_id cannot be undefined")
-        from .item import managed_device_item_request_builder
+        if not managed_device_id:
+            raise TypeError("managed_device_id cannot be null.")
+        from .item.managed_device_item_request_builder import ManagedDeviceItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedDevice%2Did"] = managed_device_id
-        return managed_device_item_request_builder.ManagedDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ManagedDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagedDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_collection_response.ManagedDeviceCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagedDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedDeviceCollectionResponse]:
         """
         The list of managed devices.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_device_collection_response.ManagedDeviceCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagedDeviceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import managed_device_collection_response
+        from ...models.managed_device_collection_response import ManagedDeviceCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, managed_device_collection_response.ManagedDeviceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedDeviceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDevicesRequestBuilderPostRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
+    async def post(self,body: Optional[ManagedDevice] = None, request_configuration: Optional[ManagedDevicesRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagedDevice]:
         """
         Create new navigation property to managedDevices for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_device.ManagedDevice]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagedDevice]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import managed_device
+        from ...models.managed_device import ManagedDevice
 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedDevice, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The list of managed devices.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,16 +124,15 @@ class ManagedDevicesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDevicesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ManagedDevice] = None, request_configuration: Optional[ManagedDevicesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to managedDevices for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,67 +145,67 @@ class ManagedDevicesRequestBuilder():
         return request_info
     
     @property
-    def bulk_reprovision_cloud_pc(self) -> bulk_reprovision_cloud_pc_request_builder.BulkReprovisionCloudPcRequestBuilder:
+    def bulk_reprovision_cloud_pc(self) -> BulkReprovisionCloudPcRequestBuilder:
         """
         Provides operations to call the bulkReprovisionCloudPc method.
         """
-        from .bulk_reprovision_cloud_pc import bulk_reprovision_cloud_pc_request_builder
+        from .bulk_reprovision_cloud_pc.bulk_reprovision_cloud_pc_request_builder import BulkReprovisionCloudPcRequestBuilder
 
-        return bulk_reprovision_cloud_pc_request_builder.BulkReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
+        return BulkReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def bulk_restore_cloud_pc(self) -> bulk_restore_cloud_pc_request_builder.BulkRestoreCloudPcRequestBuilder:
+    def bulk_restore_cloud_pc(self) -> BulkRestoreCloudPcRequestBuilder:
         """
         Provides operations to call the bulkRestoreCloudPc method.
         """
-        from .bulk_restore_cloud_pc import bulk_restore_cloud_pc_request_builder
+        from .bulk_restore_cloud_pc.bulk_restore_cloud_pc_request_builder import BulkRestoreCloudPcRequestBuilder
 
-        return bulk_restore_cloud_pc_request_builder.BulkRestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
+        return BulkRestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def bulk_set_cloud_pc_review_status(self) -> bulk_set_cloud_pc_review_status_request_builder.BulkSetCloudPcReviewStatusRequestBuilder:
+    def bulk_set_cloud_pc_review_status(self) -> BulkSetCloudPcReviewStatusRequestBuilder:
         """
         Provides operations to call the bulkSetCloudPcReviewStatus method.
         """
-        from .bulk_set_cloud_pc_review_status import bulk_set_cloud_pc_review_status_request_builder
+        from .bulk_set_cloud_pc_review_status.bulk_set_cloud_pc_review_status_request_builder import BulkSetCloudPcReviewStatusRequestBuilder
 
-        return bulk_set_cloud_pc_review_status_request_builder.BulkSetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return BulkSetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def download_app_diagnostics(self) -> download_app_diagnostics_request_builder.DownloadAppDiagnosticsRequestBuilder:
+    def download_app_diagnostics(self) -> DownloadAppDiagnosticsRequestBuilder:
         """
         Provides operations to call the downloadAppDiagnostics method.
         """
-        from .download_app_diagnostics import download_app_diagnostics_request_builder
+        from .download_app_diagnostics.download_app_diagnostics_request_builder import DownloadAppDiagnosticsRequestBuilder
 
-        return download_app_diagnostics_request_builder.DownloadAppDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DownloadAppDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def execute_action(self) -> execute_action_request_builder.ExecuteActionRequestBuilder:
+    def execute_action(self) -> ExecuteActionRequestBuilder:
         """
         Provides operations to call the executeAction method.
         """
-        from .execute_action import execute_action_request_builder
+        from .execute_action.execute_action_request_builder import ExecuteActionRequestBuilder
 
-        return execute_action_request_builder.ExecuteActionRequestBuilder(self.request_adapter, self.path_parameters)
+        return ExecuteActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def move_devices_to_o_u(self) -> move_devices_to_o_u_request_builder.MoveDevicesToOURequestBuilder:
+    def move_devices_to_o_u(self) -> MoveDevicesToOURequestBuilder:
         """
         Provides operations to call the moveDevicesToOU method.
         """
-        from .move_devices_to_o_u import move_devices_to_o_u_request_builder
+        from .move_devices_to_o_u.move_devices_to_o_u_request_builder import MoveDevicesToOURequestBuilder
 
-        return move_devices_to_o_u_request_builder.MoveDevicesToOURequestBuilder(self.request_adapter, self.path_parameters)
+        return MoveDevicesToOURequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ManagedDevicesRequestBuilderGetQueryParameters():
@@ -229,12 +215,11 @@ class ManagedDevicesRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -278,31 +263,27 @@ class ManagedDevicesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagedDevicesRequestBuilderGetRequestConfiguration():
+    class ManagedDevicesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ManagedDevicesRequestBuilder.ManagedDevicesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagedDevicesRequestBuilderPostRequestConfiguration():
+    class ManagedDevicesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

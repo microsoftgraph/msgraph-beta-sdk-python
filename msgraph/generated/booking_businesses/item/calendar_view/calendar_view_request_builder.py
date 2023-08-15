@@ -1,109 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import booking_appointment, booking_appointment_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import booking_appointment_item_request_builder
+    from ....models.booking_appointment import BookingAppointment
+    from ....models.booking_appointment_collection_response import BookingAppointmentCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.booking_appointment_item_request_builder import BookingAppointmentItemRequestBuilder
 
-class CalendarViewRequestBuilder():
+class CalendarViewRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new CalendarViewRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/bookingBusinesses/{bookingBusiness%2Did}/calendarView{?start*,end*,%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/bookingBusinesses/{bookingBusiness%2Did}/calendarView{?start*,end*,%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_booking_appointment_id(self,booking_appointment_id: str) -> booking_appointment_item_request_builder.BookingAppointmentItemRequestBuilder:
+    def by_booking_appointment_id(self,booking_appointment_id: str) -> BookingAppointmentItemRequestBuilder:
         """
         Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
-        Args:
-            booking_appointment_id: Unique identifier of the item
-        Returns: booking_appointment_item_request_builder.BookingAppointmentItemRequestBuilder
+        param booking_appointment_id: The unique identifier of bookingAppointment
+        Returns: BookingAppointmentItemRequestBuilder
         """
-        if booking_appointment_id is None:
-            raise Exception("booking_appointment_id cannot be undefined")
-        from .item import booking_appointment_item_request_builder
+        if not booking_appointment_id:
+            raise TypeError("booking_appointment_id cannot be null.")
+        from .item.booking_appointment_item_request_builder import BookingAppointmentItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["bookingAppointment%2Did"] = booking_appointment_id
-        return booking_appointment_item_request_builder.BookingAppointmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return BookingAppointmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CalendarViewRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_appointment_collection_response.BookingAppointmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[CalendarViewRequestBuilderGetRequestConfiguration] = None) -> Optional[BookingAppointmentCollectionResponse]:
         """
         The set of appointments of this business in a specified date range. Read-only. Nullable.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[booking_appointment_collection_response.BookingAppointmentCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[BookingAppointmentCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import booking_appointment_collection_response
+        from ....models.booking_appointment_collection_response import BookingAppointmentCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, booking_appointment_collection_response.BookingAppointmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, BookingAppointmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[booking_appointment.BookingAppointment] = None, request_configuration: Optional[CalendarViewRequestBuilderPostRequestConfiguration] = None) -> Optional[booking_appointment.BookingAppointment]:
+    async def post(self,body: Optional[BookingAppointment] = None, request_configuration: Optional[CalendarViewRequestBuilderPostRequestConfiguration] = None) -> Optional[BookingAppointment]:
         """
         Create new navigation property to calendarView for bookingBusinesses
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[booking_appointment.BookingAppointment]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[BookingAppointment]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import booking_appointment
+        from ....models.booking_appointment import BookingAppointment
 
-        return await self.request_adapter.send_async(request_info, booking_appointment.BookingAppointment, error_mapping)
+        return await self.request_adapter.send_async(request_info, BookingAppointment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CalendarViewRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The set of appointments of this business in a specified date range. Read-only. Nullable.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +106,15 @@ class CalendarViewRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[booking_appointment.BookingAppointment] = None, request_configuration: Optional[CalendarViewRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[BookingAppointment] = None, request_configuration: Optional[CalendarViewRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to calendarView for bookingBusinesses
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +127,13 @@ class CalendarViewRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CalendarViewRequestBuilderGetQueryParameters():
@@ -155,14 +143,15 @@ class CalendarViewRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
+            if original_name == "end":
+                return "end"
             if original_name == "expand":
                 return "%24expand"
             if original_name == "filter":
@@ -175,12 +164,10 @@ class CalendarViewRequestBuilder():
                 return "%24select"
             if original_name == "skip":
                 return "%24skip"
-            if original_name == "top":
-                return "%24top"
-            if original_name == "end":
-                return "end"
             if original_name == "start":
                 return "start"
+            if original_name == "top":
+                return "%24top"
             return original_name
         
         # Include count of items
@@ -214,31 +201,27 @@ class CalendarViewRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CalendarViewRequestBuilderGetRequestConfiguration():
+    class CalendarViewRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[CalendarViewRequestBuilder.CalendarViewRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CalendarViewRequestBuilderPostRequestConfiguration():
+    class CalendarViewRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

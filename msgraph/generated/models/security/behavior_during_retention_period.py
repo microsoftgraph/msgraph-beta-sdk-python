@@ -1,6 +1,6 @@
 from enum import Enum
 
-class BehaviorDuringRetentionPeriod(Enum):
+class BehaviorDuringRetentionPeriod(str, Enum):
     DoNotRetain = "doNotRetain",
     Retain = "retain",
     RetainAsRecord = "retainAsRecord",

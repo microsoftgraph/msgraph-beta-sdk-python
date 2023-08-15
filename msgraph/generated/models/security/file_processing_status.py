@@ -1,6 +1,6 @@
 from enum import Enum
 
-class FileProcessingStatus(Enum):
+class FileProcessingStatus(str, Enum):
     Success = "success",
     InternalError = "internalError",
     UnknownError = "unknownError",

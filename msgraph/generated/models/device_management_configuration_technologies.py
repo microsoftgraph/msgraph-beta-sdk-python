@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationTechnologies(Enum):
+class DeviceManagementConfigurationTechnologies(str, Enum):
     # Default. Setting cannot be deployed through any channel.
     None_ = "none",
     # Setting can be deployed through the MDM channel.

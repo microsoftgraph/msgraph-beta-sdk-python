@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AospDeviceOwnerWiFiSecurityType(Enum):
+class AospDeviceOwnerWiFiSecurityType(str, Enum):
     # Open (No Authentication).
     Open = "open",
     # WEP Encryption.

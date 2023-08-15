@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AggregationType(Enum):
+class AggregationType(str, Enum):
     Count = "count",
     Percentage = "percentage",
     AffectedCloudPcCount = "affectedCloudPcCount",

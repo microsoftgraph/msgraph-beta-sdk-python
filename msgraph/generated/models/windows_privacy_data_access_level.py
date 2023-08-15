@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsPrivacyDataAccessLevel(Enum):
+class WindowsPrivacyDataAccessLevel(str, Enum):
     # No access level specified, no intents. Device may behave either as in UserInControl or ForceAllow. It may depend on the privacy data been accessed, Windows versions and other factors.
     NotConfigured = "notConfigured",
     # Apps will be allowed to access the specified privacy data.

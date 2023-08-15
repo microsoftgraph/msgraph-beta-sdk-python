@@ -1,109 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import outbound_shared_user_profile, outbound_shared_user_profile_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import outbound_shared_user_profile_user_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.outbound_shared_user_profile import OutboundSharedUserProfile
+    from ...models.outbound_shared_user_profile_collection_response import OutboundSharedUserProfileCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.outbound_shared_user_profile_user_item_request_builder import OutboundSharedUserProfileUserItemRequestBuilder
 
-class OutboundSharedUserProfilesRequestBuilder():
+class OutboundSharedUserProfilesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the outboundSharedUserProfiles property of the microsoft.graph.directory entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new OutboundSharedUserProfilesRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/directory/outboundSharedUserProfiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/directory/outboundSharedUserProfiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_outbound_shared_user_profile_user_id(self,outbound_shared_user_profile_user_id: str) -> outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder:
+    def by_outbound_shared_user_profile_user_id(self,outbound_shared_user_profile_user_id: str) -> OutboundSharedUserProfileUserItemRequestBuilder:
         """
         Provides operations to manage the outboundSharedUserProfiles property of the microsoft.graph.directory entity.
-        Args:
-            outbound_shared_user_profile_user_id: Unique identifier of the item
-        Returns: outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder
+        param outbound_shared_user_profile_user_id: The unique identifier of outboundSharedUserProfile
+        Returns: OutboundSharedUserProfileUserItemRequestBuilder
         """
-        if outbound_shared_user_profile_user_id is None:
-            raise Exception("outbound_shared_user_profile_user_id cannot be undefined")
-        from .item import outbound_shared_user_profile_user_item_request_builder
+        if not outbound_shared_user_profile_user_id:
+            raise TypeError("outbound_shared_user_profile_user_id cannot be null.")
+        from .item.outbound_shared_user_profile_user_item_request_builder import OutboundSharedUserProfileUserItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["outboundSharedUserProfile%2DuserId"] = outbound_shared_user_profile_user_id
-        return outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return OutboundSharedUserProfileUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[outbound_shared_user_profile_collection_response.OutboundSharedUserProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[OutboundSharedUserProfileCollectionResponse]:
         """
         Retrieve the properties of all outboundSharedUserProfiles.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[outbound_shared_user_profile_collection_response.OutboundSharedUserProfileCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[OutboundSharedUserProfileCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/directory-list-outboundshareduserprofiles?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import outbound_shared_user_profile_collection_response
+        from ...models.outbound_shared_user_profile_collection_response import OutboundSharedUserProfileCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, outbound_shared_user_profile_collection_response.OutboundSharedUserProfileCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, OutboundSharedUserProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[outbound_shared_user_profile.OutboundSharedUserProfile] = None, request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[outbound_shared_user_profile.OutboundSharedUserProfile]:
+    async def post(self,body: Optional[OutboundSharedUserProfile] = None, request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[OutboundSharedUserProfile]:
         """
         Create new navigation property to outboundSharedUserProfiles for directory
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[outbound_shared_user_profile.OutboundSharedUserProfile]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[OutboundSharedUserProfile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import outbound_shared_user_profile
+        from ...models.outbound_shared_user_profile import OutboundSharedUserProfile
 
-        return await self.request_adapter.send_async(request_info, outbound_shared_user_profile.OutboundSharedUserProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, OutboundSharedUserProfile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties of all outboundSharedUserProfiles.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +106,15 @@ class OutboundSharedUserProfilesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[outbound_shared_user_profile.OutboundSharedUserProfile] = None, request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[OutboundSharedUserProfile] = None, request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to outboundSharedUserProfiles for directory
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +127,13 @@ class OutboundSharedUserProfilesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class OutboundSharedUserProfilesRequestBuilderGetQueryParameters():
@@ -155,12 +143,11 @@ class OutboundSharedUserProfilesRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +191,27 @@ class OutboundSharedUserProfilesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class OutboundSharedUserProfilesRequestBuilderGetRequestConfiguration():
+    class OutboundSharedUserProfilesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[OutboundSharedUserProfilesRequestBuilder.OutboundSharedUserProfilesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class OutboundSharedUserProfilesRequestBuilderPostRequestConfiguration():
+    class OutboundSharedUserProfilesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,63 +1,45 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import catalog_entry
-    from .. import entity
+    from ..entity import Entity
+    from .catalog_entry import CatalogEntry
 
-from .. import entity
+from ..entity import Entity
 
-class Catalog(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new catalog and sets the default values.
-        """
-        super().__init__()
-        # Lists the content that you can approve for deployment. Read-only.
-        self._entries: Optional[List[catalog_entry.CatalogEntry]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+@dataclass
+class Catalog(Entity):
+    # Lists the content that you can approve for deployment. Read-only.
+    entries: Optional[List[CatalogEntry]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Catalog:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Catalog
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Catalog()
-    
-    @property
-    def entries(self,) -> Optional[List[catalog_entry.CatalogEntry]]:
-        """
-        Gets the entries property value. Lists the content that you can approve for deployment. Read-only.
-        Returns: Optional[List[catalog_entry.CatalogEntry]]
-        """
-        return self._entries
-    
-    @entries.setter
-    def entries(self,value: Optional[List[catalog_entry.CatalogEntry]] = None) -> None:
-        """
-        Sets the entries property value. Lists the content that you can approve for deployment. Read-only.
-        Args:
-            value: Value to set for the entries property.
-        """
-        self._entries = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import catalog_entry
-        from .. import entity
+        from ..entity import Entity
+        from .catalog_entry import CatalogEntry
+
+        from ..entity import Entity
+        from .catalog_entry import CatalogEntry
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "entries": lambda n : setattr(self, 'entries', n.get_collection_of_object_values(catalog_entry.CatalogEntry)),
+            "entries": lambda n : setattr(self, 'entries', n.get_collection_of_object_values(CatalogEntry)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,11 +48,11 @@ class Catalog(entity.Entity):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("entries", self.entries)
     

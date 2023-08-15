@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RecordCompletionReason(Enum):
+class RecordCompletionReason(str, Enum):
     OperationCanceled = "operationCanceled",
     StopToneDetected = "stopToneDetected",
     MaxRecordDurationReached = "maxRecordDurationReached",
