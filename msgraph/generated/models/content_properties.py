@@ -1,179 +1,76 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import attachment_content_properties, content_metadata, file_content_properties
+    from .attachment_content_properties import AttachmentContentProperties
+    from .content_metadata import ContentMetadata
 
+@dataclass
 class ContentProperties(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new contentProperties and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The extensions property
-        self._extensions: Optional[List[str]] = None
-        # The lastModifiedBy property
-        self._last_modified_by: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The metadata property
-        self._metadata: Optional[content_metadata.ContentMetadata] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The extensions property
+    extensions: Optional[List[str]] = None
+    # The lastModifiedBy property
+    last_modified_by: Optional[str] = None
+    # The lastModifiedDateTime property
+    last_modified_date_time: Optional[datetime.datetime] = None
+    # The metadata property
+    metadata: Optional[ContentMetadata] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ContentProperties:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ContentProperties
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.attachmentContentProperties":
-                from . import attachment_content_properties
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.attachmentContentProperties".casefold():
+            from .attachment_content_properties import AttachmentContentProperties
 
-                return attachment_content_properties.AttachmentContentProperties()
-            if mapping_value == "#microsoft.graph.fileContentProperties":
-                from . import file_content_properties
-
-                return file_content_properties.FileContentProperties()
+            return AttachmentContentProperties()
         return ContentProperties()
-    
-    @property
-    def extensions(self,) -> Optional[List[str]]:
-        """
-        Gets the extensions property value. The extensions property
-        Returns: Optional[List[str]]
-        """
-        return self._extensions
-    
-    @extensions.setter
-    def extensions(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the extensions property value. The extensions property
-        Args:
-            value: Value to set for the extensions property.
-        """
-        self._extensions = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import attachment_content_properties, content_metadata, file_content_properties
+        from .attachment_content_properties import AttachmentContentProperties
+        from .content_metadata import ContentMetadata
+
+        from .attachment_content_properties import AttachmentContentProperties
+        from .content_metadata import ContentMetadata
 
         fields: Dict[str, Callable[[Any], None]] = {
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_primitive_values(str)),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "metadata": lambda n : setattr(self, 'metadata', n.get_object_value(content_metadata.ContentMetadata)),
+            "metadata": lambda n : setattr(self, 'metadata', n.get_object_value(ContentMetadata)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
-    @property
-    def last_modified_by(self,) -> Optional[str]:
-        """
-        Gets the lastModifiedBy property value. The lastModifiedBy property
-        Returns: Optional[str]
-        """
-        return self._last_modified_by
-    
-    @last_modified_by.setter
-    def last_modified_by(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastModifiedBy property value. The lastModifiedBy property
-        Args:
-            value: Value to set for the last_modified_by property.
-        """
-        self._last_modified_by = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def metadata(self,) -> Optional[content_metadata.ContentMetadata]:
-        """
-        Gets the metadata property value. The metadata property
-        Returns: Optional[content_metadata.ContentMetadata]
-        """
-        return self._metadata
-    
-    @metadata.setter
-    def metadata(self,value: Optional[content_metadata.ContentMetadata] = None) -> None:
-        """
-        Sets the metadata property value. The metadata property
-        Args:
-            value: Value to set for the metadata property.
-        """
-        self._metadata = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("extensions", self.extensions)
         writer.write_str_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

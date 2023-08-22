@@ -1,48 +1,28 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import device_management_exchange_connector_sync_type
+    from .....models.device_management_exchange_connector_sync_type import DeviceManagementExchangeConnectorSyncType
 
+@dataclass
 class SyncPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new syncPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The type of Exchange Connector sync requested.
-        self._sync_type: Optional[device_management_exchange_connector_sync_type.DeviceManagementExchangeConnectorSyncType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The type of Exchange Connector sync requested.
+    sync_type: Optional[DeviceManagementExchangeConnectorSyncType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SyncPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: SyncPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return SyncPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -50,39 +30,24 @@ class SyncPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .....models import device_management_exchange_connector_sync_type
+        from .....models.device_management_exchange_connector_sync_type import DeviceManagementExchangeConnectorSyncType
+
+        from .....models.device_management_exchange_connector_sync_type import DeviceManagementExchangeConnectorSyncType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "syncType": lambda n : setattr(self, 'sync_type', n.get_enum_value(device_management_exchange_connector_sync_type.DeviceManagementExchangeConnectorSyncType)),
+            "syncType": lambda n : setattr(self, 'sync_type', n.get_enum_value(DeviceManagementExchangeConnectorSyncType)),
         }
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_enum_value("syncType", self.sync_type)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def sync_type(self,) -> Optional[device_management_exchange_connector_sync_type.DeviceManagementExchangeConnectorSyncType]:
-        """
-        Gets the syncType property value. The type of Exchange Connector sync requested.
-        Returns: Optional[device_management_exchange_connector_sync_type.DeviceManagementExchangeConnectorSyncType]
-        """
-        return self._sync_type
-    
-    @sync_type.setter
-    def sync_type(self,value: Optional[device_management_exchange_connector_sync_type.DeviceManagementExchangeConnectorSyncType] = None) -> None:
-        """
-        Sets the syncType property value. The type of Exchange Connector sync requested.
-        Args:
-            value: Value to set for the sync_type property.
-        """
-        self._sync_type = value
     
 

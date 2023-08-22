@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RecommendationFeatureAreas(Enum):
+class RecommendationFeatureAreas(str, Enum):
     Users = "users",
     Groups = "groups",
     Devices = "devices",

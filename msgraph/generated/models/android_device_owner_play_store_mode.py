@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerPlayStoreMode(Enum):
+class AndroidDeviceOwnerPlayStoreMode(str, Enum):
     # Not Configured
     NotConfigured = "notConfigured",
     # Only apps that are in the policy are available and any app not in the policy will be automatically uninstalled from the device.

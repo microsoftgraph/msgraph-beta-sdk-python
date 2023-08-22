@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PowerActionType(Enum):
+class PowerActionType(str, Enum):
     # Not configured
     NotConfigured = "notConfigured",
     # No action

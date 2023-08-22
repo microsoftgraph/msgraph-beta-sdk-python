@@ -1,6 +1,6 @@
 from enum import Enum
 
-class BrowserSyncSetting(Enum):
+class BrowserSyncSetting(str, Enum):
     # Default – Allow syncing of browser settings across devices.
     NotConfigured = "notConfigured",
     # Prevent syncing of browser settings across user devices, allow user override of setting.

@@ -1,139 +1,72 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, volume_type
+    from .entity import Entity
+    from .volume_type import VolumeType
 
-from . import entity
+from .entity import Entity
 
-class BitlockerRecoveryKey(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bitlockerRecoveryKey and sets the default values.
-        """
-        super().__init__()
-        # The date and time when the key was originally backed up to Azure Active Directory.
-        self._created_date_time: Optional[datetime] = None
-        # ID of the device the BitLocker key is originally backed up from.
-        self._device_id: Optional[str] = None
-        # The BitLocker recovery key.
-        self._key: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Indicates the type of volume the BitLocker key is associated with. Possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.
-        self._volume_type: Optional[volume_type.VolumeType] = None
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time when the key was originally backed up to Azure Active Directory.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time when the key was originally backed up to Azure Active Directory.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+@dataclass
+class BitlockerRecoveryKey(Entity):
+    # The date and time when the key was originally backed up to Azure Active Directory.
+    created_date_time: Optional[datetime.datetime] = None
+    # ID of the device the BitLocker key is originally backed up from.
+    device_id: Optional[str] = None
+    # The BitLocker recovery key.
+    key: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Indicates the type of volume the BitLocker key is associated with. Possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.
+    volume_type: Optional[VolumeType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BitlockerRecoveryKey:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: BitlockerRecoveryKey
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return BitlockerRecoveryKey()
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. ID of the device the BitLocker key is originally backed up from.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. ID of the device the BitLocker key is originally backed up from.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, volume_type
+        from .entity import Entity
+        from .volume_type import VolumeType
+
+        from .entity import Entity
+        from .volume_type import VolumeType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "key": lambda n : setattr(self, 'key', n.get_str_value()),
-            "volumeType": lambda n : setattr(self, 'volume_type', n.get_enum_value(volume_type.VolumeType)),
+            "volumeType": lambda n : setattr(self, 'volume_type', n.get_enum_value(VolumeType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
-    @property
-    def key(self,) -> Optional[str]:
-        """
-        Gets the key property value. The BitLocker recovery key.
-        Returns: Optional[str]
-        """
-        return self._key
-    
-    @key.setter
-    def key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the key property value. The BitLocker recovery key.
-        Args:
-            value: Value to set for the key property.
-        """
-        self._key = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("key", self.key)
         writer.write_enum_value("volumeType", self.volume_type)
-    
-    @property
-    def volume_type(self,) -> Optional[volume_type.VolumeType]:
-        """
-        Gets the volumeType property value. Indicates the type of volume the BitLocker key is associated with. Possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.
-        Returns: Optional[volume_type.VolumeType]
-        """
-        return self._volume_type
-    
-    @volume_type.setter
-    def volume_type(self,value: Optional[volume_type.VolumeType] = None) -> None:
-        """
-        Sets the volumeType property value. Indicates the type of volume the BitLocker key is associated with. Possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.
-        Args:
-            value: Value to set for the volume_type property.
-        """
-        self._volume_type = value
     
 

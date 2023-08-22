@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ServiceStartType(Enum):
+class ServiceStartType(str, Enum):
     # Manual service start type(default)
     Manual = "manual",
     # Automatic service start type

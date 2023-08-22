@@ -1,109 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import credential_user_registration_details, credential_user_registration_details_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import credential_user_registration_details_item_request_builder
+    from ...models.credential_user_registration_details import CredentialUserRegistrationDetails
+    from ...models.credential_user_registration_details_collection_response import CredentialUserRegistrationDetailsCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.credential_user_registration_details_item_request_builder import CredentialUserRegistrationDetailsItemRequestBuilder
 
-class CredentialUserRegistrationDetailsRequestBuilder():
+class CredentialUserRegistrationDetailsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the credentialUserRegistrationDetails property of the microsoft.graph.reportRoot entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new CredentialUserRegistrationDetailsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/reports/credentialUserRegistrationDetails{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/reports/credentialUserRegistrationDetails{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_credential_user_registration_details_id(self,credential_user_registration_details_id: str) -> credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder:
+    def by_credential_user_registration_details_id(self,credential_user_registration_details_id: str) -> CredentialUserRegistrationDetailsItemRequestBuilder:
         """
         Provides operations to manage the credentialUserRegistrationDetails property of the microsoft.graph.reportRoot entity.
-        Args:
-            credential_user_registration_details_id: Unique identifier of the item
-        Returns: credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder
+        param credential_user_registration_details_id: The unique identifier of credentialUserRegistrationDetails
+        Returns: CredentialUserRegistrationDetailsItemRequestBuilder
         """
-        if credential_user_registration_details_id is None:
-            raise Exception("credential_user_registration_details_id cannot be undefined")
-        from .item import credential_user_registration_details_item_request_builder
+        if not credential_user_registration_details_id:
+            raise TypeError("credential_user_registration_details_id cannot be null.")
+        from .item.credential_user_registration_details_item_request_builder import CredentialUserRegistrationDetailsItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["credentialUserRegistrationDetails%2Did"] = credential_user_registration_details_id
-        return credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return CredentialUserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registration_details_collection_response.CredentialUserRegistrationDetailsCollectionResponse]:
+    async def get(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[CredentialUserRegistrationDetailsCollectionResponse]:
         """
         Get a list of credentialUserRegistrationDetails objects for a given tenant.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[credential_user_registration_details_collection_response.CredentialUserRegistrationDetailsCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CredentialUserRegistrationDetailsCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-list-credentialuserregistrationdetails?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import credential_user_registration_details_collection_response
+        from ...models.credential_user_registration_details_collection_response import CredentialUserRegistrationDetailsCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, credential_user_registration_details_collection_response.CredentialUserRegistrationDetailsCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, CredentialUserRegistrationDetailsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[credential_user_registration_details.CredentialUserRegistrationDetails] = None, request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration] = None) -> Optional[credential_user_registration_details.CredentialUserRegistrationDetails]:
+    async def post(self,body: Optional[CredentialUserRegistrationDetails] = None, request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration] = None) -> Optional[CredentialUserRegistrationDetails]:
         """
         Create new navigation property to credentialUserRegistrationDetails for reports
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[credential_user_registration_details.CredentialUserRegistrationDetails]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[CredentialUserRegistrationDetails]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import credential_user_registration_details
+        from ...models.credential_user_registration_details import CredentialUserRegistrationDetails
 
-        return await self.request_adapter.send_async(request_info, credential_user_registration_details.CredentialUserRegistrationDetails, error_mapping)
+        return await self.request_adapter.send_async(request_info, CredentialUserRegistrationDetails, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of credentialUserRegistrationDetails objects for a given tenant.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +106,15 @@ class CredentialUserRegistrationDetailsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[credential_user_registration_details.CredentialUserRegistrationDetails] = None, request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CredentialUserRegistrationDetails] = None, request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to credentialUserRegistrationDetails for reports
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +127,13 @@ class CredentialUserRegistrationDetailsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CredentialUserRegistrationDetailsRequestBuilderGetQueryParameters():
@@ -155,12 +143,11 @@ class CredentialUserRegistrationDetailsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +191,27 @@ class CredentialUserRegistrationDetailsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration():
+    class CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[CredentialUserRegistrationDetailsRequestBuilder.CredentialUserRegistrationDetailsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration():
+    class CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

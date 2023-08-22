@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SensitivityLabelAssignmentMethod(Enum):
+class SensitivityLabelAssignmentMethod(str, Enum):
     Standard = "standard",
     Privileged = "privileged",
     Auto = "auto",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidManagedStoreAccountEnrollmentTarget(Enum):
+class AndroidManagedStoreAccountEnrollmentTarget(str, Enum):
     None_ = "none",
     All = "all",
     Targeted = "targeted",

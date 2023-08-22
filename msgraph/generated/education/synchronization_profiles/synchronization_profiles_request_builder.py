@@ -1,109 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import education_synchronization_profile, education_synchronization_profile_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import education_synchronization_profile_item_request_builder
+    from ...models.education_synchronization_profile import EducationSynchronizationProfile
+    from ...models.education_synchronization_profile_collection_response import EducationSynchronizationProfileCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.education_synchronization_profile_item_request_builder import EducationSynchronizationProfileItemRequestBuilder
 
-class SynchronizationProfilesRequestBuilder():
+class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the synchronizationProfiles property of the microsoft.graph.educationRoot entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SynchronizationProfilesRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/education/synchronizationProfiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/education/synchronizationProfiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_education_synchronization_profile_id(self,education_synchronization_profile_id: str) -> education_synchronization_profile_item_request_builder.EducationSynchronizationProfileItemRequestBuilder:
+    def by_education_synchronization_profile_id(self,education_synchronization_profile_id: str) -> EducationSynchronizationProfileItemRequestBuilder:
         """
         Provides operations to manage the synchronizationProfiles property of the microsoft.graph.educationRoot entity.
-        Args:
-            education_synchronization_profile_id: Unique identifier of the item
-        Returns: education_synchronization_profile_item_request_builder.EducationSynchronizationProfileItemRequestBuilder
+        param education_synchronization_profile_id: The unique identifier of educationSynchronizationProfile
+        Returns: EducationSynchronizationProfileItemRequestBuilder
         """
-        if education_synchronization_profile_id is None:
-            raise Exception("education_synchronization_profile_id cannot be undefined")
-        from .item import education_synchronization_profile_item_request_builder
+        if not education_synchronization_profile_id:
+            raise TypeError("education_synchronization_profile_id cannot be null.")
+        from .item.education_synchronization_profile_item_request_builder import EducationSynchronizationProfileItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["educationSynchronizationProfile%2Did"] = education_synchronization_profile_id
-        return education_synchronization_profile_item_request_builder.EducationSynchronizationProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return EducationSynchronizationProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_synchronization_profile_collection_response.EducationSynchronizationProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationSynchronizationProfileCollectionResponse]:
         """
         Retrieve the collection of school data synchronization profiles in the tenant.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_synchronization_profile_collection_response.EducationSynchronizationProfileCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationSynchronizationProfileCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import education_synchronization_profile_collection_response
+        from ...models.education_synchronization_profile_collection_response import EducationSynchronizationProfileCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, education_synchronization_profile_collection_response.EducationSynchronizationProfileCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationSynchronizationProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[education_synchronization_profile.EducationSynchronizationProfile] = None, request_configuration: Optional[SynchronizationProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[education_synchronization_profile.EducationSynchronizationProfile]:
+    async def post(self,body: Optional[EducationSynchronizationProfile] = None, request_configuration: Optional[SynchronizationProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationSynchronizationProfile]:
         """
         Create new navigation property to synchronizationProfiles for education
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_synchronization_profile.EducationSynchronizationProfile]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationSynchronizationProfile]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import education_synchronization_profile
+        from ...models.education_synchronization_profile import EducationSynchronizationProfile
 
-        return await self.request_adapter.send_async(request_info, education_synchronization_profile.EducationSynchronizationProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationSynchronizationProfile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the collection of school data synchronization profiles in the tenant.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +106,15 @@ class SynchronizationProfilesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[education_synchronization_profile.EducationSynchronizationProfile] = None, request_configuration: Optional[SynchronizationProfilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EducationSynchronizationProfile] = None, request_configuration: Optional[SynchronizationProfilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to synchronizationProfiles for education
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +127,13 @@ class SynchronizationProfilesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SynchronizationProfilesRequestBuilderGetQueryParameters():
@@ -155,12 +143,11 @@ class SynchronizationProfilesRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +191,27 @@ class SynchronizationProfilesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SynchronizationProfilesRequestBuilderGetRequestConfiguration():
+    class SynchronizationProfilesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SynchronizationProfilesRequestBuilder.SynchronizationProfilesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SynchronizationProfilesRequestBuilderPostRequestConfiguration():
+    class SynchronizationProfilesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

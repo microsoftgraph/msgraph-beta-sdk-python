@@ -1,152 +1,66 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import membership_rule_processing_status_details
+    from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
 
+@dataclass
 class MembershipRuleProcessingStatus(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new membershipRuleProcessingStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Detailed error message if dynamic group processing ran into an error.  Optional. Read-only.
-        self._error_message: Optional[str] = None
-        # Most recent date and time when membership of a dynamic group was updated.  Optional. Read-only.
-        self._last_membership_updated: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Current status of a dynamic group processing. Possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
-        self._status: Optional[membership_rule_processing_status_details.MembershipRuleProcessingStatusDetails] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Detailed error message if dynamic group processing ran into an error.  Optional. Read-only.
+    error_message: Optional[str] = None
+    # Most recent date and time when membership of a dynamic group was updated.  Optional. Read-only.
+    last_membership_updated: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Current status of a dynamic group processing. Possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
+    status: Optional[MembershipRuleProcessingStatusDetails] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MembershipRuleProcessingStatus:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MembershipRuleProcessingStatus
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MembershipRuleProcessingStatus()
-    
-    @property
-    def error_message(self,) -> Optional[str]:
-        """
-        Gets the errorMessage property value. Detailed error message if dynamic group processing ran into an error.  Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._error_message
-    
-    @error_message.setter
-    def error_message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the errorMessage property value. Detailed error message if dynamic group processing ran into an error.  Optional. Read-only.
-        Args:
-            value: Value to set for the error_message property.
-        """
-        self._error_message = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import membership_rule_processing_status_details
+        from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
+
+        from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
 
         fields: Dict[str, Callable[[Any], None]] = {
             "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "lastMembershipUpdated": lambda n : setattr(self, 'last_membership_updated', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(membership_rule_processing_status_details.MembershipRuleProcessingStatusDetails)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(MembershipRuleProcessingStatusDetails)),
         }
         return fields
-    
-    @property
-    def last_membership_updated(self,) -> Optional[datetime]:
-        """
-        Gets the lastMembershipUpdated property value. Most recent date and time when membership of a dynamic group was updated.  Optional. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._last_membership_updated
-    
-    @last_membership_updated.setter
-    def last_membership_updated(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastMembershipUpdated property value. Most recent date and time when membership of a dynamic group was updated.  Optional. Read-only.
-        Args:
-            value: Value to set for the last_membership_updated property.
-        """
-        self._last_membership_updated = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("errorMessage", self.error_message)
         writer.write_datetime_value("lastMembershipUpdated", self.last_membership_updated)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def status(self,) -> Optional[membership_rule_processing_status_details.MembershipRuleProcessingStatusDetails]:
-        """
-        Gets the status property value. Current status of a dynamic group processing. Possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
-        Returns: Optional[membership_rule_processing_status_details.MembershipRuleProcessingStatusDetails]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[membership_rule_processing_status_details.MembershipRuleProcessingStatusDetails] = None) -> None:
-        """
-        Sets the status property value. Current status of a dynamic group processing. Possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

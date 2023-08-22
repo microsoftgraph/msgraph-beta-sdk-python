@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DefenderPotentiallyUnwantedAppAction(Enum):
+class DefenderPotentiallyUnwantedAppAction(str, Enum):
     # PUA Protection is off. Defender will not protect against potentially unwanted applications.
     DeviceDefault = "deviceDefault",
     # PUA Protection is on. Detected items are blocked. They will show in history along with other threats.

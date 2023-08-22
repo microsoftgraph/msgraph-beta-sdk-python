@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSSystemExtensionType(Enum):
+class MacOSSystemExtensionType(str, Enum):
     # Enables driver extensions.
     DriverExtensionsAllowed = "driverExtensionsAllowed",
     # Enables network extensions.

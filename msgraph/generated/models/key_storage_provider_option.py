@@ -1,6 +1,6 @@
 from enum import Enum
 
-class KeyStorageProviderOption(Enum):
+class KeyStorageProviderOption(str, Enum):
     # Import to Trusted Platform Module (TPM) KSP if present, otherwise import to Software KSP.
     UseTpmKspOtherwiseUseSoftwareKsp = "useTpmKspOtherwiseUseSoftwareKsp",
     # Import to Trusted Platform Module (TPM) KSP if present, otherwise fail.

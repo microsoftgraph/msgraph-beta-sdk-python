@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnTrafficRuleAppType(Enum):
+class VpnTrafficRuleAppType(str, Enum):
     # The traffic rule is not associated with an app.
     None_ = "none",
     # The traffic rule is associated with a desktop app.

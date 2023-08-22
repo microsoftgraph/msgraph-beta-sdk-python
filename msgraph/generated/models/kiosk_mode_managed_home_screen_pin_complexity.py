@@ -1,6 +1,6 @@
 from enum import Enum
 
-class KioskModeManagedHomeScreenPinComplexity(Enum):
+class KioskModeManagedHomeScreenPinComplexity(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Numeric values only.

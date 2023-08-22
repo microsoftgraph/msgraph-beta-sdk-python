@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerBatteryPluggedMode(Enum):
+class AndroidDeviceOwnerBatteryPluggedMode(str, Enum):
     # Not configured; this value is ignored.
     NotConfigured = "notConfigured",
     # Power source is an AC charger.

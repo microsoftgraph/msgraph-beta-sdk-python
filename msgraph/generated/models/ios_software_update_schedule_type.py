@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IosSoftwareUpdateScheduleType(Enum):
+class IosSoftwareUpdateScheduleType(str, Enum):
     # Update outside of active hours.
     UpdateOutsideOfActiveHours = "updateOutsideOfActiveHours",
     # Always update.

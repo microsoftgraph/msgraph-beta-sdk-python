@@ -1,297 +1,114 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, operating_system_upgrade_eligibility, user_experience_analytics_health_state
+    from .entity import Entity
+    from .operating_system_upgrade_eligibility import OperatingSystemUpgradeEligibility
+    from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
 
-from . import entity
+from .entity import Entity
 
-class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
+@dataclass
+class UserExperienceAnalyticsWorkFromAnywhereDevice(Entity):
     """
-    The user experience analytics Device for work from anywhere report
+    The user experience analytics device for work from anywhere report.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereDevice and sets the default values.
-        """
-        super().__init__()
-        # The user experience analytics work from anywhere intune device's autopilotProfileAssigned.
-        self._auto_pilot_profile_assigned: Optional[bool] = None
-        # The user experience work from anywhere intune device's autopilotRegistered.
-        self._auto_pilot_registered: Optional[bool] = None
-        # The user experience work from anywhere azure Ad device Id.
-        self._azure_ad_device_id: Optional[str] = None
-        # The user experience work from anywhere device's azure Ad joinType.
-        self._azure_ad_join_type: Optional[str] = None
-        # The user experience work from anywhere device's azureAdRegistered.
-        self._azure_ad_registered: Optional[bool] = None
-        # The user experience work from anywhere per device cloud identity score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_identity_score: Optional[float] = None
-        # The user experience work from anywhere per device cloud management score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_management_score: Optional[float] = None
-        # The user experience work from anywhere per device cloud provisioning score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_provisioning_score: Optional[float] = None
-        # The user experience work from anywhere device's compliancePolicySetToIntune.
-        self._compliance_policy_set_to_intune: Optional[bool] = None
-        # The user experience work from anywhere device Id.
-        self._device_id: Optional[str] = None
-        # The work from anywhere device's name.
-        self._device_name: Optional[str] = None
-        # The healthStatus property
-        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
-        # The user experience work from anywhere device's Cloud Management Gateway for Configuration Manager is enabled.
-        self._is_cloud_managed_gateway_enabled: Optional[bool] = None
-        # The user experience work from anywhere management agent of the device.
-        self._managed_by: Optional[str] = None
-        # The user experience work from anywhere device's manufacturer.
-        self._manufacturer: Optional[str] = None
-        # The user experience work from anywhere device's model.
-        self._model: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user experience work from anywhere device, Is OS check failed for device to upgrade to the latest version of windows.
-        self._os_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device's OS Description.
-        self._os_description: Optional[str] = None
-        # The user experience work from anywhere device's OS Version.
-        self._os_version: Optional[str] = None
-        # The user experience work from anywhere device's otherWorkloadsSetToIntune.
-        self._other_workloads_set_to_intune: Optional[bool] = None
-        # The user experience work from anywhere device's ownership.
-        self._ownership: Optional[str] = None
-        # The user experience work from anywhere device, Is processor hardware core count check failed for device to upgrade to the latest version of windows.
-        self._processor_core_count_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device, Is processor hardware family check failed for device to upgrade to the latest version of windows.
-        self._processor_family_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device, Is processor hardware speed check failed for device to upgrade to the latest version of windows.
-        self._processor_speed_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device, Is processor hardware 64-bit architecture check failed for device to upgrade to the latest version of windows.
-        self._processor64_bit_check_failed: Optional[bool] = None
-        # Is the user experience analytics work from anywhere device RAM hardware check failed for device to upgrade to the latest version of windows
-        self._ram_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device, Is secure boot hardware check failed for device to upgrade to the latest version of windows.
-        self._secure_boot_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device's serial number.
-        self._serial_number: Optional[str] = None
-        # The user experience work from anywhere device, Is storage hardware check failed for device to upgrade to the latest version of windows.
-        self._storage_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device's tenantAttached.
-        self._tenant_attached: Optional[bool] = None
-        # The user experience work from anywhere device, Is Trusted Platform Module (TPM) hardware check failed for device to the latest version of upgrade to windows.
-        self._tpm_check_failed: Optional[bool] = None
-        # Work From Anywhere windows device upgrade eligibility status
-        self._upgrade_eligibility: Optional[operating_system_upgrade_eligibility.OperatingSystemUpgradeEligibility] = None
-        # The user experience work from anywhere per device windows score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._windows_score: Optional[float] = None
-        # The user experience work from anywhere per device overall score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._work_from_anywhere_score: Optional[float] = None
-    
-    @property
-    def auto_pilot_profile_assigned(self,) -> Optional[bool]:
-        """
-        Gets the autoPilotProfileAssigned property value. The user experience analytics work from anywhere intune device's autopilotProfileAssigned.
-        Returns: Optional[bool]
-        """
-        return self._auto_pilot_profile_assigned
-    
-    @auto_pilot_profile_assigned.setter
-    def auto_pilot_profile_assigned(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the autoPilotProfileAssigned property value. The user experience analytics work from anywhere intune device's autopilotProfileAssigned.
-        Args:
-            value: Value to set for the auto_pilot_profile_assigned property.
-        """
-        self._auto_pilot_profile_assigned = value
-    
-    @property
-    def auto_pilot_registered(self,) -> Optional[bool]:
-        """
-        Gets the autoPilotRegistered property value. The user experience work from anywhere intune device's autopilotRegistered.
-        Returns: Optional[bool]
-        """
-        return self._auto_pilot_registered
-    
-    @auto_pilot_registered.setter
-    def auto_pilot_registered(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the autoPilotRegistered property value. The user experience work from anywhere intune device's autopilotRegistered.
-        Args:
-            value: Value to set for the auto_pilot_registered property.
-        """
-        self._auto_pilot_registered = value
-    
-    @property
-    def azure_ad_device_id(self,) -> Optional[str]:
-        """
-        Gets the azureAdDeviceId property value. The user experience work from anywhere azure Ad device Id.
-        Returns: Optional[str]
-        """
-        return self._azure_ad_device_id
-    
-    @azure_ad_device_id.setter
-    def azure_ad_device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureAdDeviceId property value. The user experience work from anywhere azure Ad device Id.
-        Args:
-            value: Value to set for the azure_ad_device_id property.
-        """
-        self._azure_ad_device_id = value
-    
-    @property
-    def azure_ad_join_type(self,) -> Optional[str]:
-        """
-        Gets the azureAdJoinType property value. The user experience work from anywhere device's azure Ad joinType.
-        Returns: Optional[str]
-        """
-        return self._azure_ad_join_type
-    
-    @azure_ad_join_type.setter
-    def azure_ad_join_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureAdJoinType property value. The user experience work from anywhere device's azure Ad joinType.
-        Args:
-            value: Value to set for the azure_ad_join_type property.
-        """
-        self._azure_ad_join_type = value
-    
-    @property
-    def azure_ad_registered(self,) -> Optional[bool]:
-        """
-        Gets the azureAdRegistered property value. The user experience work from anywhere device's azureAdRegistered.
-        Returns: Optional[bool]
-        """
-        return self._azure_ad_registered
-    
-    @azure_ad_registered.setter
-    def azure_ad_registered(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the azureAdRegistered property value. The user experience work from anywhere device's azureAdRegistered.
-        Args:
-            value: Value to set for the azure_ad_registered property.
-        """
-        self._azure_ad_registered = value
-    
-    @property
-    def cloud_identity_score(self,) -> Optional[float]:
-        """
-        Gets the cloudIdentityScore property value. The user experience work from anywhere per device cloud identity score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._cloud_identity_score
-    
-    @cloud_identity_score.setter
-    def cloud_identity_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the cloudIdentityScore property value. The user experience work from anywhere per device cloud identity score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the cloud_identity_score property.
-        """
-        self._cloud_identity_score = value
-    
-    @property
-    def cloud_management_score(self,) -> Optional[float]:
-        """
-        Gets the cloudManagementScore property value. The user experience work from anywhere per device cloud management score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._cloud_management_score
-    
-    @cloud_management_score.setter
-    def cloud_management_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the cloudManagementScore property value. The user experience work from anywhere per device cloud management score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the cloud_management_score property.
-        """
-        self._cloud_management_score = value
-    
-    @property
-    def cloud_provisioning_score(self,) -> Optional[float]:
-        """
-        Gets the cloudProvisioningScore property value. The user experience work from anywhere per device cloud provisioning score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._cloud_provisioning_score
-    
-    @cloud_provisioning_score.setter
-    def cloud_provisioning_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the cloudProvisioningScore property value. The user experience work from anywhere per device cloud provisioning score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the cloud_provisioning_score property.
-        """
-        self._cloud_provisioning_score = value
-    
-    @property
-    def compliance_policy_set_to_intune(self,) -> Optional[bool]:
-        """
-        Gets the compliancePolicySetToIntune property value. The user experience work from anywhere device's compliancePolicySetToIntune.
-        Returns: Optional[bool]
-        """
-        return self._compliance_policy_set_to_intune
-    
-    @compliance_policy_set_to_intune.setter
-    def compliance_policy_set_to_intune(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the compliancePolicySetToIntune property value. The user experience work from anywhere device's compliancePolicySetToIntune.
-        Args:
-            value: Value to set for the compliance_policy_set_to_intune property.
-        """
-        self._compliance_policy_set_to_intune = value
+    # When TRUE, indicates the intune device's autopilot profile is assigned. When FALSE, indicates it's not Assigned. Supports: $select, $OrderBy. Read-only.
+    auto_pilot_profile_assigned: Optional[bool] = None
+    # When TRUE, indicates the intune device's autopilot is registered. When FALSE, indicates it's not registered. Supports: $select, $OrderBy. Read-only.
+    auto_pilot_registered: Optional[bool] = None
+    # The Azure Active Directory (Azure AD) device Id. Supports: $select, $OrderBy. Read-only.
+    azure_ad_device_id: Optional[str] = None
+    # The work from anywhere device's Azure Active Directory (Azure AD) join type. Supports: $select, $OrderBy. Read-only.
+    azure_ad_join_type: Optional[str] = None
+    # When TRUE, indicates the device's Azure Active Directory (Azure AD) is registered. When False, indicates it's not registered. Supports: $select, $OrderBy. Read-only.
+    azure_ad_registered: Optional[bool] = None
+    # Indicates per device cloud identity score. Valid values 0 to 100. Value -1 means associated score is unavailable. Supports: $select, $OrderBy. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    cloud_identity_score: Optional[float] = None
+    # Indicates per device cloud management score. Valid values 0 to 100. Value -1 means associated score is unavailable. Supports: $select, $OrderBy. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    cloud_management_score: Optional[float] = None
+    # Indicates per device cloud provisioning score. Valid values 0 to 100. Value -1 means associated score is unavailable. Supports: $select, $OrderBy. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    cloud_provisioning_score: Optional[float] = None
+    # When TRUE, indicates the device's compliance policy is set to intune. When FALSE, indicates it's not set to intune. Supports: $select, $OrderBy. Read-only.
+    compliance_policy_set_to_intune: Optional[bool] = None
+    # The Intune device id of the device. Supports: $select, $OrderBy. Read-only.
+    device_id: Optional[str] = None
+    # The name of the device. Supports: $select, $OrderBy. Read-only.
+    device_name: Optional[str] = None
+    # The healthStatus property
+    health_status: Optional[UserExperienceAnalyticsHealthState] = None
+    # When TRUE, indicates the device's Cloud Management Gateway for Configuration Manager is enabled. When FALSE, indicates it's not enabled. Supports: $select, $OrderBy. Read-only.
+    is_cloud_managed_gateway_enabled: Optional[bool] = None
+    # The management agent of the device. Supports: $select, $OrderBy. Read-only.
+    managed_by: Optional[str] = None
+    # The manufacturer name of the device. Supports: $select, $OrderBy. Read-only.
+    manufacturer: Optional[str] = None
+    # The model name of the device. Supports: $select, $OrderBy. Read-only.
+    model: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # When TRUE, indicates OS check failed for device to upgrade to the latest version of windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    os_check_failed: Optional[bool] = None
+    # The OS description of the device. Supports: $select, $OrderBy. Read-only.
+    os_description: Optional[str] = None
+    # The OS version of the device. Supports: $select, $OrderBy. Read-only.
+    os_version: Optional[str] = None
+    # When TRUE, indicates the device's other workloads is set to intune. When FALSE, indicates it's not set to intune. Supports: $select, $OrderBy. Read-only.
+    other_workloads_set_to_intune: Optional[bool] = None
+    # Ownership of the device. Supports: $select, $OrderBy. Read-only.
+    ownership: Optional[str] = None
+    # When TRUE, indicates processor hardware core count check failed for device to upgrade to the latest version of windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    processor_core_count_check_failed: Optional[bool] = None
+    # When TRUE, indicates processor hardware family check failed for device to upgrade to the latest version of windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    processor_family_check_failed: Optional[bool] = None
+    # When TRUE, indicates processor hardware speed check failed for device to upgrade to the latest version of windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    processor_speed_check_failed: Optional[bool] = None
+    # When TRUE, indicates processor hardware 64-bit architecture check failed for device to upgrade to the latest version of windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    processor64_bit_check_failed: Optional[bool] = None
+    # When TRUE, indicates RAM hardware check failed for device to upgrade to the latest version of windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    ram_check_failed: Optional[bool] = None
+    # When TRUE, indicates secure boot hardware check failed for device to upgrade to the latest version of windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    secure_boot_check_failed: Optional[bool] = None
+    # The serial number of the device. Supports: $select, $OrderBy. Read-only.
+    serial_number: Optional[str] = None
+    # When TRUE, indicates storage hardware check failed for device to upgrade to the latest version of windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    storage_check_failed: Optional[bool] = None
+    # When TRUE, indicates the device is Tenant Attached. When FALSE, indicates it's not Tenant Attached. Supports: $select, $OrderBy. Read-only.
+    tenant_attached: Optional[bool] = None
+    # When TRUE, indicates Trusted Platform Module (TPM) hardware check failed for device to the latest version of upgrade to windows. When FALSE, indicates the check succeeded. Supports: $select, $OrderBy. Read-only.
+    tpm_check_failed: Optional[bool] = None
+    # Work From Anywhere windows device upgrade eligibility status.
+    upgrade_eligibility: Optional[OperatingSystemUpgradeEligibility] = None
+    # Indicates per device windows score. Valid values 0 to 100. Value -1 means associated score is unavailable. Supports: $select, $OrderBy. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    windows_score: Optional[float] = None
+    # Indicates work from anywhere per device overall score. Valid values 0 to 100. Value -1 means associated score is unavailable. Supports: $select, $OrderBy. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    work_from_anywhere_score: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsWorkFromAnywhereDevice:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UserExperienceAnalyticsWorkFromAnywhereDevice
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsWorkFromAnywhereDevice()
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The user experience work from anywhere device Id.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The user experience work from anywhere device Id.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
-    @property
-    def device_name(self,) -> Optional[str]:
-        """
-        Gets the deviceName property value. The work from anywhere device's name.
-        Returns: Optional[str]
-        """
-        return self._device_name
-    
-    @device_name.setter
-    def device_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceName property value. The work from anywhere device's name.
-        Args:
-            value: Value to set for the device_name property.
-        """
-        self._device_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, operating_system_upgrade_eligibility, user_experience_analytics_health_state
+        from .entity import Entity
+        from .operating_system_upgrade_eligibility import OperatingSystemUpgradeEligibility
+        from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
+
+        from .entity import Entity
+        from .operating_system_upgrade_eligibility import OperatingSystemUpgradeEligibility
+        from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "autoPilotProfileAssigned": lambda n : setattr(self, 'auto_pilot_profile_assigned', n.get_bool_value()),
@@ -305,7 +122,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
             "compliancePolicySetToIntune": lambda n : setattr(self, 'compliance_policy_set_to_intune', n.get_bool_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(UserExperienceAnalyticsHealthState)),
             "isCloudManagedGatewayEnabled": lambda n : setattr(self, 'is_cloud_managed_gateway_enabled', n.get_bool_value()),
             "managedBy": lambda n : setattr(self, 'managed_by', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
@@ -315,17 +132,17 @@ class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
             "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
             "otherWorkloadsSetToIntune": lambda n : setattr(self, 'other_workloads_set_to_intune', n.get_bool_value()),
             "ownership": lambda n : setattr(self, 'ownership', n.get_str_value()),
-            "processor64BitCheckFailed": lambda n : setattr(self, 'processor64_bit_check_failed', n.get_bool_value()),
             "processorCoreCountCheckFailed": lambda n : setattr(self, 'processor_core_count_check_failed', n.get_bool_value()),
             "processorFamilyCheckFailed": lambda n : setattr(self, 'processor_family_check_failed', n.get_bool_value()),
             "processorSpeedCheckFailed": lambda n : setattr(self, 'processor_speed_check_failed', n.get_bool_value()),
+            "processor64BitCheckFailed": lambda n : setattr(self, 'processor64_bit_check_failed', n.get_bool_value()),
             "ramCheckFailed": lambda n : setattr(self, 'ram_check_failed', n.get_bool_value()),
             "secureBootCheckFailed": lambda n : setattr(self, 'secure_boot_check_failed', n.get_bool_value()),
             "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
             "storageCheckFailed": lambda n : setattr(self, 'storage_check_failed', n.get_bool_value()),
             "tenantAttached": lambda n : setattr(self, 'tenant_attached', n.get_bool_value()),
             "tpmCheckFailed": lambda n : setattr(self, 'tpm_check_failed', n.get_bool_value()),
-            "upgradeEligibility": lambda n : setattr(self, 'upgrade_eligibility', n.get_enum_value(operating_system_upgrade_eligibility.OperatingSystemUpgradeEligibility)),
+            "upgradeEligibility": lambda n : setattr(self, 'upgrade_eligibility', n.get_enum_value(OperatingSystemUpgradeEligibility)),
             "windowsScore": lambda n : setattr(self, 'windows_score', n.get_float_value()),
             "workFromAnywhereScore": lambda n : setattr(self, 'work_from_anywhere_score', n.get_float_value()),
         }
@@ -333,303 +150,14 @@ class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def health_status(self,) -> Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState]:
-        """
-        Gets the healthStatus property value. The healthStatus property
-        Returns: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState]
-        """
-        return self._health_status
-    
-    @health_status.setter
-    def health_status(self,value: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None) -> None:
-        """
-        Sets the healthStatus property value. The healthStatus property
-        Args:
-            value: Value to set for the health_status property.
-        """
-        self._health_status = value
-    
-    @property
-    def is_cloud_managed_gateway_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isCloudManagedGatewayEnabled property value. The user experience work from anywhere device's Cloud Management Gateway for Configuration Manager is enabled.
-        Returns: Optional[bool]
-        """
-        return self._is_cloud_managed_gateway_enabled
-    
-    @is_cloud_managed_gateway_enabled.setter
-    def is_cloud_managed_gateway_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isCloudManagedGatewayEnabled property value. The user experience work from anywhere device's Cloud Management Gateway for Configuration Manager is enabled.
-        Args:
-            value: Value to set for the is_cloud_managed_gateway_enabled property.
-        """
-        self._is_cloud_managed_gateway_enabled = value
-    
-    @property
-    def managed_by(self,) -> Optional[str]:
-        """
-        Gets the managedBy property value. The user experience work from anywhere management agent of the device.
-        Returns: Optional[str]
-        """
-        return self._managed_by
-    
-    @managed_by.setter
-    def managed_by(self,value: Optional[str] = None) -> None:
-        """
-        Sets the managedBy property value. The user experience work from anywhere management agent of the device.
-        Args:
-            value: Value to set for the managed_by property.
-        """
-        self._managed_by = value
-    
-    @property
-    def manufacturer(self,) -> Optional[str]:
-        """
-        Gets the manufacturer property value. The user experience work from anywhere device's manufacturer.
-        Returns: Optional[str]
-        """
-        return self._manufacturer
-    
-    @manufacturer.setter
-    def manufacturer(self,value: Optional[str] = None) -> None:
-        """
-        Sets the manufacturer property value. The user experience work from anywhere device's manufacturer.
-        Args:
-            value: Value to set for the manufacturer property.
-        """
-        self._manufacturer = value
-    
-    @property
-    def model(self,) -> Optional[str]:
-        """
-        Gets the model property value. The user experience work from anywhere device's model.
-        Returns: Optional[str]
-        """
-        return self._model
-    
-    @model.setter
-    def model(self,value: Optional[str] = None) -> None:
-        """
-        Sets the model property value. The user experience work from anywhere device's model.
-        Args:
-            value: Value to set for the model property.
-        """
-        self._model = value
-    
-    @property
-    def os_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the osCheckFailed property value. The user experience work from anywhere device, Is OS check failed for device to upgrade to the latest version of windows.
-        Returns: Optional[bool]
-        """
-        return self._os_check_failed
-    
-    @os_check_failed.setter
-    def os_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the osCheckFailed property value. The user experience work from anywhere device, Is OS check failed for device to upgrade to the latest version of windows.
-        Args:
-            value: Value to set for the os_check_failed property.
-        """
-        self._os_check_failed = value
-    
-    @property
-    def os_description(self,) -> Optional[str]:
-        """
-        Gets the osDescription property value. The user experience work from anywhere device's OS Description.
-        Returns: Optional[str]
-        """
-        return self._os_description
-    
-    @os_description.setter
-    def os_description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the osDescription property value. The user experience work from anywhere device's OS Description.
-        Args:
-            value: Value to set for the os_description property.
-        """
-        self._os_description = value
-    
-    @property
-    def os_version(self,) -> Optional[str]:
-        """
-        Gets the osVersion property value. The user experience work from anywhere device's OS Version.
-        Returns: Optional[str]
-        """
-        return self._os_version
-    
-    @os_version.setter
-    def os_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the osVersion property value. The user experience work from anywhere device's OS Version.
-        Args:
-            value: Value to set for the os_version property.
-        """
-        self._os_version = value
-    
-    @property
-    def other_workloads_set_to_intune(self,) -> Optional[bool]:
-        """
-        Gets the otherWorkloadsSetToIntune property value. The user experience work from anywhere device's otherWorkloadsSetToIntune.
-        Returns: Optional[bool]
-        """
-        return self._other_workloads_set_to_intune
-    
-    @other_workloads_set_to_intune.setter
-    def other_workloads_set_to_intune(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the otherWorkloadsSetToIntune property value. The user experience work from anywhere device's otherWorkloadsSetToIntune.
-        Args:
-            value: Value to set for the other_workloads_set_to_intune property.
-        """
-        self._other_workloads_set_to_intune = value
-    
-    @property
-    def ownership(self,) -> Optional[str]:
-        """
-        Gets the ownership property value. The user experience work from anywhere device's ownership.
-        Returns: Optional[str]
-        """
-        return self._ownership
-    
-    @ownership.setter
-    def ownership(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ownership property value. The user experience work from anywhere device's ownership.
-        Args:
-            value: Value to set for the ownership property.
-        """
-        self._ownership = value
-    
-    @property
-    def processor_core_count_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the processorCoreCountCheckFailed property value. The user experience work from anywhere device, Is processor hardware core count check failed for device to upgrade to the latest version of windows.
-        Returns: Optional[bool]
-        """
-        return self._processor_core_count_check_failed
-    
-    @processor_core_count_check_failed.setter
-    def processor_core_count_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the processorCoreCountCheckFailed property value. The user experience work from anywhere device, Is processor hardware core count check failed for device to upgrade to the latest version of windows.
-        Args:
-            value: Value to set for the processor_core_count_check_failed property.
-        """
-        self._processor_core_count_check_failed = value
-    
-    @property
-    def processor_family_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the processorFamilyCheckFailed property value. The user experience work from anywhere device, Is processor hardware family check failed for device to upgrade to the latest version of windows.
-        Returns: Optional[bool]
-        """
-        return self._processor_family_check_failed
-    
-    @processor_family_check_failed.setter
-    def processor_family_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the processorFamilyCheckFailed property value. The user experience work from anywhere device, Is processor hardware family check failed for device to upgrade to the latest version of windows.
-        Args:
-            value: Value to set for the processor_family_check_failed property.
-        """
-        self._processor_family_check_failed = value
-    
-    @property
-    def processor_speed_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the processorSpeedCheckFailed property value. The user experience work from anywhere device, Is processor hardware speed check failed for device to upgrade to the latest version of windows.
-        Returns: Optional[bool]
-        """
-        return self._processor_speed_check_failed
-    
-    @processor_speed_check_failed.setter
-    def processor_speed_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the processorSpeedCheckFailed property value. The user experience work from anywhere device, Is processor hardware speed check failed for device to upgrade to the latest version of windows.
-        Args:
-            value: Value to set for the processor_speed_check_failed property.
-        """
-        self._processor_speed_check_failed = value
-    
-    @property
-    def processor64_bit_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the processor64BitCheckFailed property value. The user experience work from anywhere device, Is processor hardware 64-bit architecture check failed for device to upgrade to the latest version of windows.
-        Returns: Optional[bool]
-        """
-        return self._processor64_bit_check_failed
-    
-    @processor64_bit_check_failed.setter
-    def processor64_bit_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the processor64BitCheckFailed property value. The user experience work from anywhere device, Is processor hardware 64-bit architecture check failed for device to upgrade to the latest version of windows.
-        Args:
-            value: Value to set for the processor64_bit_check_failed property.
-        """
-        self._processor64_bit_check_failed = value
-    
-    @property
-    def ram_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the ramCheckFailed property value. Is the user experience analytics work from anywhere device RAM hardware check failed for device to upgrade to the latest version of windows
-        Returns: Optional[bool]
-        """
-        return self._ram_check_failed
-    
-    @ram_check_failed.setter
-    def ram_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the ramCheckFailed property value. Is the user experience analytics work from anywhere device RAM hardware check failed for device to upgrade to the latest version of windows
-        Args:
-            value: Value to set for the ram_check_failed property.
-        """
-        self._ram_check_failed = value
-    
-    @property
-    def secure_boot_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the secureBootCheckFailed property value. The user experience work from anywhere device, Is secure boot hardware check failed for device to upgrade to the latest version of windows.
-        Returns: Optional[bool]
-        """
-        return self._secure_boot_check_failed
-    
-    @secure_boot_check_failed.setter
-    def secure_boot_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the secureBootCheckFailed property value. The user experience work from anywhere device, Is secure boot hardware check failed for device to upgrade to the latest version of windows.
-        Args:
-            value: Value to set for the secure_boot_check_failed property.
-        """
-        self._secure_boot_check_failed = value
-    
-    @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. The user experience work from anywhere device's serial number.
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. The user experience work from anywhere device's serial number.
-        Args:
-            value: Value to set for the serial_number property.
-        """
-        self._serial_number = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("autoPilotProfileAssigned", self.auto_pilot_profile_assigned)
         writer.write_bool_value("autoPilotRegistered", self.auto_pilot_registered)
@@ -652,10 +180,10 @@ class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
         writer.write_str_value("osVersion", self.os_version)
         writer.write_bool_value("otherWorkloadsSetToIntune", self.other_workloads_set_to_intune)
         writer.write_str_value("ownership", self.ownership)
-        writer.write_bool_value("processor64BitCheckFailed", self.processor64_bit_check_failed)
         writer.write_bool_value("processorCoreCountCheckFailed", self.processor_core_count_check_failed)
         writer.write_bool_value("processorFamilyCheckFailed", self.processor_family_check_failed)
         writer.write_bool_value("processorSpeedCheckFailed", self.processor_speed_check_failed)
+        writer.write_bool_value("processor64BitCheckFailed", self.processor64_bit_check_failed)
         writer.write_bool_value("ramCheckFailed", self.ram_check_failed)
         writer.write_bool_value("secureBootCheckFailed", self.secure_boot_check_failed)
         writer.write_str_value("serialNumber", self.serial_number)
@@ -665,107 +193,5 @@ class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
         writer.write_enum_value("upgradeEligibility", self.upgrade_eligibility)
         writer.write_float_value("windowsScore", self.windows_score)
         writer.write_float_value("workFromAnywhereScore", self.work_from_anywhere_score)
-    
-    @property
-    def storage_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the storageCheckFailed property value. The user experience work from anywhere device, Is storage hardware check failed for device to upgrade to the latest version of windows.
-        Returns: Optional[bool]
-        """
-        return self._storage_check_failed
-    
-    @storage_check_failed.setter
-    def storage_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the storageCheckFailed property value. The user experience work from anywhere device, Is storage hardware check failed for device to upgrade to the latest version of windows.
-        Args:
-            value: Value to set for the storage_check_failed property.
-        """
-        self._storage_check_failed = value
-    
-    @property
-    def tenant_attached(self,) -> Optional[bool]:
-        """
-        Gets the tenantAttached property value. The user experience work from anywhere device's tenantAttached.
-        Returns: Optional[bool]
-        """
-        return self._tenant_attached
-    
-    @tenant_attached.setter
-    def tenant_attached(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the tenantAttached property value. The user experience work from anywhere device's tenantAttached.
-        Args:
-            value: Value to set for the tenant_attached property.
-        """
-        self._tenant_attached = value
-    
-    @property
-    def tpm_check_failed(self,) -> Optional[bool]:
-        """
-        Gets the tpmCheckFailed property value. The user experience work from anywhere device, Is Trusted Platform Module (TPM) hardware check failed for device to the latest version of upgrade to windows.
-        Returns: Optional[bool]
-        """
-        return self._tpm_check_failed
-    
-    @tpm_check_failed.setter
-    def tpm_check_failed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the tpmCheckFailed property value. The user experience work from anywhere device, Is Trusted Platform Module (TPM) hardware check failed for device to the latest version of upgrade to windows.
-        Args:
-            value: Value to set for the tpm_check_failed property.
-        """
-        self._tpm_check_failed = value
-    
-    @property
-    def upgrade_eligibility(self,) -> Optional[operating_system_upgrade_eligibility.OperatingSystemUpgradeEligibility]:
-        """
-        Gets the upgradeEligibility property value. Work From Anywhere windows device upgrade eligibility status
-        Returns: Optional[operating_system_upgrade_eligibility.OperatingSystemUpgradeEligibility]
-        """
-        return self._upgrade_eligibility
-    
-    @upgrade_eligibility.setter
-    def upgrade_eligibility(self,value: Optional[operating_system_upgrade_eligibility.OperatingSystemUpgradeEligibility] = None) -> None:
-        """
-        Sets the upgradeEligibility property value. Work From Anywhere windows device upgrade eligibility status
-        Args:
-            value: Value to set for the upgrade_eligibility property.
-        """
-        self._upgrade_eligibility = value
-    
-    @property
-    def windows_score(self,) -> Optional[float]:
-        """
-        Gets the windowsScore property value. The user experience work from anywhere per device windows score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._windows_score
-    
-    @windows_score.setter
-    def windows_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the windowsScore property value. The user experience work from anywhere per device windows score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the windows_score property.
-        """
-        self._windows_score = value
-    
-    @property
-    def work_from_anywhere_score(self,) -> Optional[float]:
-        """
-        Gets the workFromAnywhereScore property value. The user experience work from anywhere per device overall score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._work_from_anywhere_score
-    
-    @work_from_anywhere_score.setter
-    def work_from_anywhere_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the workFromAnywhereScore property value. The user experience work from anywhere per device overall score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the work_from_anywhere_score property.
-        """
-        self._work_from_anywhere_score = value
     
 

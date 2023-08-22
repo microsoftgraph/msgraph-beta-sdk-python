@@ -1,124 +1,112 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import access_review_instance_decision_item, access_review_instance_decision_item_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
-    from .item import access_review_instance_decision_item_item_request_builder
-    from .record_all_decisions import record_all_decisions_request_builder
+    from ......models.access_review_instance_decision_item import AccessReviewInstanceDecisionItem
+    from ......models.access_review_instance_decision_item_collection_response import AccessReviewInstanceDecisionItemCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder import FilterByCurrentUserWithOnRequestBuilder
+    from .item.access_review_instance_decision_item_item_request_builder import AccessReviewInstanceDecisionItemItemRequestBuilder
+    from .record_all_decisions.record_all_decisions_request_builder import RecordAllDecisionsRequestBuilder
 
-class DecisionsRequestBuilder():
+class DecisionsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the decisions property of the microsoft.graph.accessReviewInstance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DecisionsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/pendingAccessReviewInstances/{accessReviewInstance%2Did}/decisions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/pendingAccessReviewInstances/{accessReviewInstance%2Did}/decisions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_access_review_instance_decision_item_id(self,access_review_instance_decision_item_id: str) -> access_review_instance_decision_item_item_request_builder.AccessReviewInstanceDecisionItemItemRequestBuilder:
+    def by_access_review_instance_decision_item_id(self,access_review_instance_decision_item_id: str) -> AccessReviewInstanceDecisionItemItemRequestBuilder:
         """
         Provides operations to manage the decisions property of the microsoft.graph.accessReviewInstance entity.
-        Args:
-            access_review_instance_decision_item_id: Unique identifier of the item
-        Returns: access_review_instance_decision_item_item_request_builder.AccessReviewInstanceDecisionItemItemRequestBuilder
+        param access_review_instance_decision_item_id: The unique identifier of accessReviewInstanceDecisionItem
+        Returns: AccessReviewInstanceDecisionItemItemRequestBuilder
         """
-        if access_review_instance_decision_item_id is None:
-            raise Exception("access_review_instance_decision_item_id cannot be undefined")
-        from .item import access_review_instance_decision_item_item_request_builder
+        if not access_review_instance_decision_item_id:
+            raise TypeError("access_review_instance_decision_item_id cannot be null.")
+        from .item.access_review_instance_decision_item_item_request_builder import AccessReviewInstanceDecisionItemItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["accessReviewInstanceDecisionItem%2Did"] = access_review_instance_decision_item_id
-        return access_review_instance_decision_item_item_request_builder.AccessReviewInstanceDecisionItemItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AccessReviewInstanceDecisionItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
+    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
+        param on: Usage: on='{on}'
+        Returns: FilterByCurrentUserWithOnRequestBuilder
         """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+        if not on:
+            raise TypeError("on cannot be null.")
+        from .filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder import FilterByCurrentUserWithOnRequestBuilder
 
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+        return FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewInstanceDecisionItemCollectionResponse]:
         """
         Retrieve the accessReviewInstanceDecisionItem objects for a specific accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AccessReviewInstanceDecisionItemCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import access_review_instance_decision_item_collection_response
+        from ......models.access_review_instance_decision_item_collection_response import AccessReviewInstanceDecisionItemCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessReviewInstanceDecisionItemCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[DecisionsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]:
+    async def post(self,body: Optional[AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[DecisionsRequestBuilderPostRequestConfiguration] = None) -> Optional[AccessReviewInstanceDecisionItem]:
         """
         Create new navigation property to decisions for users
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AccessReviewInstanceDecisionItem]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import access_review_instance_decision_item
+        from ......models.access_review_instance_decision_item import AccessReviewInstanceDecisionItem
 
-        return await self.request_adapter.send_async(request_info, access_review_instance_decision_item.AccessReviewInstanceDecisionItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, AccessReviewInstanceDecisionItem, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the accessReviewInstanceDecisionItem objects for a specific accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -132,16 +120,15 @@ class DecisionsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[DecisionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[DecisionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to decisions for users
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -154,22 +141,22 @@ class DecisionsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def record_all_decisions(self) -> record_all_decisions_request_builder.RecordAllDecisionsRequestBuilder:
+    def record_all_decisions(self) -> RecordAllDecisionsRequestBuilder:
         """
         Provides operations to call the recordAllDecisions method.
         """
-        from .record_all_decisions import record_all_decisions_request_builder
+        from .record_all_decisions.record_all_decisions_request_builder import RecordAllDecisionsRequestBuilder
 
-        return record_all_decisions_request_builder.RecordAllDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RecordAllDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DecisionsRequestBuilderGetQueryParameters():
@@ -179,12 +166,11 @@ class DecisionsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -228,31 +214,27 @@ class DecisionsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DecisionsRequestBuilderGetRequestConfiguration():
+    class DecisionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[DecisionsRequestBuilder.DecisionsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DecisionsRequestBuilderPostRequestConfiguration():
+    class DecisionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

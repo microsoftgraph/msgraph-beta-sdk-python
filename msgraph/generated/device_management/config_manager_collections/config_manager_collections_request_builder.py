@@ -1,123 +1,110 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import config_manager_collection, config_manager_collection_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .get_policy_summary_with_policy_id import get_policy_summary_with_policy_id_request_builder
-    from .item import config_manager_collection_item_request_builder
+    from ...models.config_manager_collection import ConfigManagerCollection
+    from ...models.config_manager_collection_collection_response import ConfigManagerCollectionCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .get_policy_summary_with_policy_id.get_policy_summary_with_policy_id_request_builder import GetPolicySummaryWithPolicyIdRequestBuilder
+    from .item.config_manager_collection_item_request_builder import ConfigManagerCollectionItemRequestBuilder
 
-class ConfigManagerCollectionsRequestBuilder():
+class ConfigManagerCollectionsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the configManagerCollections property of the microsoft.graph.deviceManagement entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ConfigManagerCollectionsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/configManagerCollections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/configManagerCollections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_config_manager_collection_id(self,config_manager_collection_id: str) -> config_manager_collection_item_request_builder.ConfigManagerCollectionItemRequestBuilder:
+    def by_config_manager_collection_id(self,config_manager_collection_id: str) -> ConfigManagerCollectionItemRequestBuilder:
         """
         Provides operations to manage the configManagerCollections property of the microsoft.graph.deviceManagement entity.
-        Args:
-            config_manager_collection_id: Unique identifier of the item
-        Returns: config_manager_collection_item_request_builder.ConfigManagerCollectionItemRequestBuilder
+        param config_manager_collection_id: The unique identifier of configManagerCollection
+        Returns: ConfigManagerCollectionItemRequestBuilder
         """
-        if config_manager_collection_id is None:
-            raise Exception("config_manager_collection_id cannot be undefined")
-        from .item import config_manager_collection_item_request_builder
+        if not config_manager_collection_id:
+            raise TypeError("config_manager_collection_id cannot be null.")
+        from .item.config_manager_collection_item_request_builder import ConfigManagerCollectionItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["configManagerCollection%2Did"] = config_manager_collection_id
-        return config_manager_collection_item_request_builder.ConfigManagerCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return ConfigManagerCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ConfigManagerCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[config_manager_collection_collection_response.ConfigManagerCollectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[ConfigManagerCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[ConfigManagerCollectionCollectionResponse]:
         """
         A list of ConfigManagerCollection
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[config_manager_collection_collection_response.ConfigManagerCollectionCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ConfigManagerCollectionCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import config_manager_collection_collection_response
+        from ...models.config_manager_collection_collection_response import ConfigManagerCollectionCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, config_manager_collection_collection_response.ConfigManagerCollectionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ConfigManagerCollectionCollectionResponse, error_mapping)
     
-    def get_policy_summary_with_policy_id(self,policy_id: Optional[str] = None) -> get_policy_summary_with_policy_id_request_builder.GetPolicySummaryWithPolicyIdRequestBuilder:
+    def get_policy_summary_with_policy_id(self,policy_id: Optional[str] = None) -> GetPolicySummaryWithPolicyIdRequestBuilder:
         """
         Provides operations to call the getPolicySummary method.
-        Args:
-            policyId: Usage: policyId='{policyId}'
-        Returns: get_policy_summary_with_policy_id_request_builder.GetPolicySummaryWithPolicyIdRequestBuilder
+        param policy_id: Usage: policyId='{policyId}'
+        Returns: GetPolicySummaryWithPolicyIdRequestBuilder
         """
-        if policy_id is None:
-            raise Exception("policy_id cannot be undefined")
-        from .get_policy_summary_with_policy_id import get_policy_summary_with_policy_id_request_builder
+        if not policy_id:
+            raise TypeError("policy_id cannot be null.")
+        from .get_policy_summary_with_policy_id.get_policy_summary_with_policy_id_request_builder import GetPolicySummaryWithPolicyIdRequestBuilder
 
-        return get_policy_summary_with_policy_id_request_builder.GetPolicySummaryWithPolicyIdRequestBuilder(self.request_adapter, self.path_parameters, policy_id)
+        return GetPolicySummaryWithPolicyIdRequestBuilder(self.request_adapter, self.path_parameters, policy_id)
     
-    async def post(self,body: Optional[config_manager_collection.ConfigManagerCollection] = None, request_configuration: Optional[ConfigManagerCollectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[config_manager_collection.ConfigManagerCollection]:
+    async def post(self,body: Optional[ConfigManagerCollection] = None, request_configuration: Optional[ConfigManagerCollectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[ConfigManagerCollection]:
         """
         Create new navigation property to configManagerCollections for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[config_manager_collection.ConfigManagerCollection]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ConfigManagerCollection]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import config_manager_collection
+        from ...models.config_manager_collection import ConfigManagerCollection
 
-        return await self.request_adapter.send_async(request_info, config_manager_collection.ConfigManagerCollection, error_mapping)
+        return await self.request_adapter.send_async(request_info, ConfigManagerCollection, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ConfigManagerCollectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A list of ConfigManagerCollection
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -131,16 +118,15 @@ class ConfigManagerCollectionsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[config_manager_collection.ConfigManagerCollection] = None, request_configuration: Optional[ConfigManagerCollectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ConfigManagerCollection] = None, request_configuration: Optional[ConfigManagerCollectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to configManagerCollections for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -153,13 +139,13 @@ class ConfigManagerCollectionsRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ConfigManagerCollectionsRequestBuilderGetQueryParameters():
@@ -169,12 +155,11 @@ class ConfigManagerCollectionsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -218,31 +203,27 @@ class ConfigManagerCollectionsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ConfigManagerCollectionsRequestBuilderGetRequestConfiguration():
+    class ConfigManagerCollectionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ConfigManagerCollectionsRequestBuilder.ConfigManagerCollectionsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ConfigManagerCollectionsRequestBuilderPostRequestConfiguration():
+    class ConfigManagerCollectionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

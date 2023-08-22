@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ClassificationMethod(Enum):
+class ClassificationMethod(str, Enum):
     PatternMatch = "patternMatch",
     ExactDataMatch = "exactDataMatch",
     Fingerprint = "fingerprint",

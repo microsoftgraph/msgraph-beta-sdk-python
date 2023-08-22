@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RecommendationType(Enum):
+class RecommendationType(str, Enum):
     AdfsAppsMigration = "adfsAppsMigration",
     EnableDesktopSSO = "enableDesktopSSO",
     EnablePHS = "enablePHS",

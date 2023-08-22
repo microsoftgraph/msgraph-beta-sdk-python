@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementTemplateType(Enum):
+class DeviceManagementTemplateType(str, Enum):
     # Security baseline template
     SecurityBaseline = "securityBaseline",
     # Specialized devices template

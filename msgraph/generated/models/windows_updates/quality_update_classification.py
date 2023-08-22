@@ -1,6 +1,6 @@
 from enum import Enum
 
-class QualityUpdateClassification(Enum):
+class QualityUpdateClassification(str, Enum):
     All = "all",
     Security = "security",
     NonSecurity = "nonSecurity",

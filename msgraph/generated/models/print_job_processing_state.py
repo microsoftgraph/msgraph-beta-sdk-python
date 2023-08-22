@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PrintJobProcessingState(Enum):
+class PrintJobProcessingState(str, Enum):
     Unknown = "unknown",
     Pending = "pending",
     Processing = "processing",
@@ -9,4 +9,5 @@ class PrintJobProcessingState(Enum):
     Completed = "completed",
     Canceled = "canceled",
     Aborted = "aborted",
+    UnknownFutureValue = "unknownFutureValue",
 

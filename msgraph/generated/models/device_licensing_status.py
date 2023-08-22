@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceLicensingStatus(Enum):
+class DeviceLicensingStatus(str, Enum):
     # Default. Set to unknown when status cannot be determined.
     Unknown = "unknown",
     # This status is set when the license refresh is started.

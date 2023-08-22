@@ -1,88 +1,77 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import directory_object_collection_response
-    from ....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .graph_endpoint import graph_endpoint_request_builder
-    from .graph_service_principal import graph_service_principal_request_builder
-    from .graph_user import graph_user_request_builder
-    from .item import directory_object_item_request_builder
-    from .ref import ref_request_builder
+    from ....models.directory_object_collection_response import DirectoryObjectCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .graph_endpoint.graph_endpoint_request_builder import GraphEndpointRequestBuilder
+    from .graph_service_principal.graph_service_principal_request_builder import GraphServicePrincipalRequestBuilder
+    from .graph_user.graph_user_request_builder import GraphUserRequestBuilder
+    from .item.directory_object_item_request_builder import DirectoryObjectItemRequestBuilder
+    from .ref.ref_request_builder import RefRequestBuilder
 
-class OwnersRequestBuilder():
+class OwnersRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the owners property of the microsoft.graph.application entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new OwnersRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/applications/{application%2Did}/owners{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/applications/{application%2Did}/owners{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_directory_object_id(self,directory_object_id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+    def by_directory_object_id(self,directory_object_id: str) -> DirectoryObjectItemRequestBuilder:
         """
         Gets an item from the msgraph.generated.applications.item.owners.item collection
-        Args:
-            directory_object_id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        param directory_object_id: Unique identifier of the item
+        Returns: DirectoryObjectItemRequestBuilder
         """
-        if directory_object_id is None:
-            raise Exception("directory_object_id cannot be undefined")
-        from .item import directory_object_item_request_builder
+        if not directory_object_id:
+            raise TypeError("directory_object_id cannot be null.")
+        from .item.directory_object_item_request_builder import DirectoryObjectItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["directoryObject%2Did"] = directory_object_id
-        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[OwnersRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[OwnersRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
+        Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DirectoryObjectCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import directory_object_collection_response
+        from ....models.directory_object_collection_response import DirectoryObjectCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DirectoryObjectCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OwnersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -97,64 +86,63 @@ class OwnersRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_endpoint(self) -> graph_endpoint_request_builder.GraphEndpointRequestBuilder:
+    def graph_endpoint(self) -> GraphEndpointRequestBuilder:
         """
         Casts the previous resource to endpoint.
         """
-        from .graph_endpoint import graph_endpoint_request_builder
+        from .graph_endpoint.graph_endpoint_request_builder import GraphEndpointRequestBuilder
 
-        return graph_endpoint_request_builder.GraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_service_principal(self) -> graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder:
+    def graph_service_principal(self) -> GraphServicePrincipalRequestBuilder:
         """
         Casts the previous resource to servicePrincipal.
         """
-        from .graph_service_principal import graph_service_principal_request_builder
+        from .graph_service_principal.graph_service_principal_request_builder import GraphServicePrincipalRequestBuilder
 
-        return graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_user(self) -> graph_user_request_builder.GraphUserRequestBuilder:
+    def graph_user(self) -> GraphUserRequestBuilder:
         """
         Casts the previous resource to user.
         """
-        from .graph_user import graph_user_request_builder
+        from .graph_user.graph_user_request_builder import GraphUserRequestBuilder
 
-        return graph_user_request_builder.GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ref(self) -> ref_request_builder.RefRequestBuilder:
+    def ref(self) -> RefRequestBuilder:
         """
         Provides operations to manage the collection of application entities.
         """
-        from .ref import ref_request_builder
+        from .ref.ref_request_builder import RefRequestBuilder
 
-        return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
+        return RefRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class OwnersRequestBuilderGetQueryParameters():
         """
-        Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
+        Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -198,17 +186,15 @@ class OwnersRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class OwnersRequestBuilderGetRequestConfiguration():
+    class OwnersRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[OwnersRequestBuilder.OwnersRequestBuilderGetQueryParameters] = None
 

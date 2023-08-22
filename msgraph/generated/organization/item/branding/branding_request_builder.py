@@ -1,119 +1,110 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import organizational_branding
-    from ....models.o_data_errors import o_data_error
-    from .background_image import background_image_request_builder
-    from .banner_logo import banner_logo_request_builder
-    from .custom_c_s_s import custom_c_s_s_request_builder
-    from .favicon import favicon_request_builder
-    from .header_logo import header_logo_request_builder
-    from .localizations import localizations_request_builder
-    from .square_logo import square_logo_request_builder
-    from .square_logo_dark import square_logo_dark_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.organizational_branding import OrganizationalBranding
+    from .background_image.background_image_request_builder import BackgroundImageRequestBuilder
+    from .banner_logo.banner_logo_request_builder import BannerLogoRequestBuilder
+    from .custom_c_s_s.custom_c_s_s_request_builder import CustomCSSRequestBuilder
+    from .favicon.favicon_request_builder import FaviconRequestBuilder
+    from .header_logo.header_logo_request_builder import HeaderLogoRequestBuilder
+    from .localizations.localizations_request_builder import LocalizationsRequestBuilder
+    from .square_logo.square_logo_request_builder import SquareLogoRequestBuilder
+    from .square_logo_dark.square_logo_dark_request_builder import SquareLogoDarkRequestBuilder
 
-class BrandingRequestBuilder():
+class BrandingRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the branding property of the microsoft.graph.organization entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new BrandingRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/organization/{organization%2Did}/branding{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/organization/{organization%2Did}/branding{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[BrandingRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete the default organizational branding object. To delete the organizationalBranding object, all images (Stream types) must first be removed from the object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/organizationalbranding-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[BrandingRequestBuilderGetRequestConfiguration] = None) -> Optional[organizational_branding.OrganizationalBranding]:
+    async def get(self,request_configuration: Optional[BrandingRequestBuilderGetRequestConfiguration] = None) -> Optional[OrganizationalBranding]:
         """
-        Retrieve the default organizational branding object, if the **Accept-Language** header is set to `0` or `default`. If no default organizational branding object exists, this method returns a `404 Not Found` error. If the **Accept-Language** header is set to an existing locale identified by the value of its **id**, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, **usernameHintText** and **signInPageText**. To retrieve Stream types of the default branding, for example, **bannerLogo** and **backgroundImage**, use the GET organizationalBrandingLocalization method.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[organizational_branding.OrganizationalBranding]
+        Retrieve the default organizational branding object, if the Accept-Language header is set to 0 or default. If no default organizational branding object exists, this method returns a 404 Not Found error. If the Accept-Language header is set to an existing locale identified by the value of its id, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, usernameHintText and signInPageText. To retrieve Stream types of the default branding, for example, bannerLogo and backgroundImage, use the GET organizationalBrandingLocalization method.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[OrganizationalBranding]
+        Find more info here: https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import organizational_branding
+        from ....models.organizational_branding import OrganizationalBranding
 
-        return await self.request_adapter.send_async(request_info, organizational_branding.OrganizationalBranding, error_mapping)
+        return await self.request_adapter.send_async(request_info, OrganizationalBranding, error_mapping)
     
-    async def patch(self,body: Optional[organizational_branding.OrganizationalBranding] = None, request_configuration: Optional[BrandingRequestBuilderPatchRequestConfiguration] = None) -> Optional[organizational_branding.OrganizationalBranding]:
+    async def patch(self,body: Optional[OrganizationalBranding] = None, request_configuration: Optional[BrandingRequestBuilderPatchRequestConfiguration] = None) -> Optional[OrganizationalBranding]:
         """
         Update the properties of the default branding object specified by the organizationalBranding resource.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[organizational_branding.OrganizationalBranding]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[OrganizationalBranding]
+        Find more info here: https://learn.microsoft.com/graph/api/organizationalbranding-update?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import organizational_branding
+        from ....models.organizational_branding import OrganizationalBranding
 
-        return await self.request_adapter.send_async(request_info, organizational_branding.OrganizationalBranding, error_mapping)
+        return await self.request_adapter.send_async(request_info, OrganizationalBranding, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[BrandingRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete the default organizational branding object. To delete the organizationalBranding object, all images (Stream types) must first be removed from the object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -127,9 +118,8 @@ class BrandingRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BrandingRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the default organizational branding object, if the **Accept-Language** header is set to `0` or `default`. If no default organizational branding object exists, this method returns a `404 Not Found` error. If the **Accept-Language** header is set to an existing locale identified by the value of its **id**, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, **usernameHintText** and **signInPageText**. To retrieve Stream types of the default branding, for example, **bannerLogo** and **backgroundImage**, use the GET organizationalBrandingLocalization method.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Retrieve the default organizational branding object, if the Accept-Language header is set to 0 or default. If no default organizational branding object exists, this method returns a 404 Not Found error. If the Accept-Language header is set to an existing locale identified by the value of its id, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, usernameHintText and signInPageText. To retrieve Stream types of the default branding, for example, bannerLogo and backgroundImage, use the GET organizationalBrandingLocalization method.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -143,16 +133,15 @@ class BrandingRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[organizational_branding.OrganizationalBranding] = None, request_configuration: Optional[BrandingRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[OrganizationalBranding] = None, request_configuration: Optional[BrandingRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of the default branding object specified by the organizationalBranding resource.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -165,103 +154,100 @@ class BrandingRequestBuilder():
         return request_info
     
     @property
-    def background_image(self) -> background_image_request_builder.BackgroundImageRequestBuilder:
+    def background_image(self) -> BackgroundImageRequestBuilder:
         """
         Provides operations to manage the media for the organization entity.
         """
-        from .background_image import background_image_request_builder
+        from .background_image.background_image_request_builder import BackgroundImageRequestBuilder
 
-        return background_image_request_builder.BackgroundImageRequestBuilder(self.request_adapter, self.path_parameters)
+        return BackgroundImageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def banner_logo(self) -> banner_logo_request_builder.BannerLogoRequestBuilder:
+    def banner_logo(self) -> BannerLogoRequestBuilder:
         """
         Provides operations to manage the media for the organization entity.
         """
-        from .banner_logo import banner_logo_request_builder
+        from .banner_logo.banner_logo_request_builder import BannerLogoRequestBuilder
 
-        return banner_logo_request_builder.BannerLogoRequestBuilder(self.request_adapter, self.path_parameters)
+        return BannerLogoRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def custom_c_s_s(self) -> custom_c_s_s_request_builder.CustomCSSRequestBuilder:
+    def custom_c_s_s(self) -> CustomCSSRequestBuilder:
         """
         Provides operations to manage the media for the organization entity.
         """
-        from .custom_c_s_s import custom_c_s_s_request_builder
+        from .custom_c_s_s.custom_c_s_s_request_builder import CustomCSSRequestBuilder
 
-        return custom_c_s_s_request_builder.CustomCSSRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustomCSSRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def favicon(self) -> favicon_request_builder.FaviconRequestBuilder:
+    def favicon(self) -> FaviconRequestBuilder:
         """
         Provides operations to manage the media for the organization entity.
         """
-        from .favicon import favicon_request_builder
+        from .favicon.favicon_request_builder import FaviconRequestBuilder
 
-        return favicon_request_builder.FaviconRequestBuilder(self.request_adapter, self.path_parameters)
+        return FaviconRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def header_logo(self) -> header_logo_request_builder.HeaderLogoRequestBuilder:
+    def header_logo(self) -> HeaderLogoRequestBuilder:
         """
         Provides operations to manage the media for the organization entity.
         """
-        from .header_logo import header_logo_request_builder
+        from .header_logo.header_logo_request_builder import HeaderLogoRequestBuilder
 
-        return header_logo_request_builder.HeaderLogoRequestBuilder(self.request_adapter, self.path_parameters)
+        return HeaderLogoRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def localizations(self) -> localizations_request_builder.LocalizationsRequestBuilder:
+    def localizations(self) -> LocalizationsRequestBuilder:
         """
         Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.
         """
-        from .localizations import localizations_request_builder
+        from .localizations.localizations_request_builder import LocalizationsRequestBuilder
 
-        return localizations_request_builder.LocalizationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return LocalizationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def square_logo(self) -> square_logo_request_builder.SquareLogoRequestBuilder:
+    def square_logo(self) -> SquareLogoRequestBuilder:
         """
         Provides operations to manage the media for the organization entity.
         """
-        from .square_logo import square_logo_request_builder
+        from .square_logo.square_logo_request_builder import SquareLogoRequestBuilder
 
-        return square_logo_request_builder.SquareLogoRequestBuilder(self.request_adapter, self.path_parameters)
+        return SquareLogoRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def square_logo_dark(self) -> square_logo_dark_request_builder.SquareLogoDarkRequestBuilder:
+    def square_logo_dark(self) -> SquareLogoDarkRequestBuilder:
         """
         Provides operations to manage the media for the organization entity.
         """
-        from .square_logo_dark import square_logo_dark_request_builder
+        from .square_logo_dark.square_logo_dark_request_builder import SquareLogoDarkRequestBuilder
 
-        return square_logo_dark_request_builder.SquareLogoDarkRequestBuilder(self.request_adapter, self.path_parameters)
+        return SquareLogoDarkRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class BrandingRequestBuilderDeleteRequestConfiguration():
+    class BrandingRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class BrandingRequestBuilderGetQueryParameters():
         """
-        Retrieve the default organizational branding object, if the **Accept-Language** header is set to `0` or `default`. If no default organizational branding object exists, this method returns a `404 Not Found` error. If the **Accept-Language** header is set to an existing locale identified by the value of its **id**, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, **usernameHintText** and **signInPageText**. To retrieve Stream types of the default branding, for example, **bannerLogo** and **backgroundImage**, use the GET organizationalBrandingLocalization method.
+        Retrieve the default organizational branding object, if the Accept-Language header is set to 0 or default. If no default organizational branding object exists, this method returns a 404 Not Found error. If the Accept-Language header is set to an existing locale identified by the value of its id, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, usernameHintText and signInPageText. To retrieve Stream types of the default branding, for example, bannerLogo and backgroundImage, use the GET organizationalBrandingLocalization method.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -275,31 +261,27 @@ class BrandingRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class BrandingRequestBuilderGetRequestConfiguration():
+    class BrandingRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[BrandingRequestBuilder.BrandingRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class BrandingRequestBuilderPatchRequestConfiguration():
+    class BrandingRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

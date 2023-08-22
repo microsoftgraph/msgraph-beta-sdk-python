@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementCertificationAuthority(Enum):
+class DeviceManagementCertificationAuthority(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # Microsoft Certification Authority type.

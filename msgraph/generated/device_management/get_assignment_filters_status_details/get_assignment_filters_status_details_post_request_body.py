@@ -1,72 +1,35 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class GetAssignmentFiltersStatusDetailsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new getAssignmentFiltersStatusDetailsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The assignmentFilterIds property
-        self._assignment_filter_ids: Optional[List[str]] = None
-        # The managedDeviceId property
-        self._managed_device_id: Optional[str] = None
-        # The payloadId property
-        self._payload_id: Optional[str] = None
-        # The skip property
-        self._skip: Optional[int] = None
-        # The top property
-        self._top: Optional[int] = None
-        # The userId property
-        self._user_id: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def assignment_filter_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the assignmentFilterIds property value. The assignmentFilterIds property
-        Returns: Optional[List[str]]
-        """
-        return self._assignment_filter_ids
-    
-    @assignment_filter_ids.setter
-    def assignment_filter_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the assignmentFilterIds property value. The assignmentFilterIds property
-        Args:
-            value: Value to set for the assignment_filter_ids property.
-        """
-        self._assignment_filter_ids = value
+    # The assignmentFilterIds property
+    assignment_filter_ids: Optional[List[str]] = None
+    # The managedDeviceId property
+    managed_device_id: Optional[str] = None
+    # The payloadId property
+    payload_id: Optional[str] = None
+    # The skip property
+    skip: Optional[int] = None
+    # The top property
+    top: Optional[int] = None
+    # The userId property
+    user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetAssignmentFiltersStatusDetailsPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: GetAssignmentFiltersStatusDetailsPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return GetAssignmentFiltersStatusDetailsPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -84,48 +47,14 @@ class GetAssignmentFiltersStatusDetailsPostRequestBody(AdditionalDataHolder, Par
         }
         return fields
     
-    @property
-    def managed_device_id(self,) -> Optional[str]:
-        """
-        Gets the managedDeviceId property value. The managedDeviceId property
-        Returns: Optional[str]
-        """
-        return self._managed_device_id
-    
-    @managed_device_id.setter
-    def managed_device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the managedDeviceId property value. The managedDeviceId property
-        Args:
-            value: Value to set for the managed_device_id property.
-        """
-        self._managed_device_id = value
-    
-    @property
-    def payload_id(self,) -> Optional[str]:
-        """
-        Gets the payloadId property value. The payloadId property
-        Returns: Optional[str]
-        """
-        return self._payload_id
-    
-    @payload_id.setter
-    def payload_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the payloadId property value. The payloadId property
-        Args:
-            value: Value to set for the payload_id property.
-        """
-        self._payload_id = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("assignmentFilterIds", self.assignment_filter_ids)
         writer.write_str_value("managedDeviceId", self.managed_device_id)
         writer.write_str_value("payloadId", self.payload_id)
@@ -133,56 +62,5 @@ class GetAssignmentFiltersStatusDetailsPostRequestBody(AdditionalDataHolder, Par
         writer.write_int_value("top", self.top)
         writer.write_str_value("userId", self.user_id)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def skip(self,) -> Optional[int]:
-        """
-        Gets the skip property value. The skip property
-        Returns: Optional[int]
-        """
-        return self._skip
-    
-    @skip.setter
-    def skip(self,value: Optional[int] = None) -> None:
-        """
-        Sets the skip property value. The skip property
-        Args:
-            value: Value to set for the skip property.
-        """
-        self._skip = value
-    
-    @property
-    def top(self,) -> Optional[int]:
-        """
-        Gets the top property value. The top property
-        Returns: Optional[int]
-        """
-        return self._top
-    
-    @top.setter
-    def top(self,value: Optional[int] = None) -> None:
-        """
-        Sets the top property value. The top property
-        Args:
-            value: Value to set for the top property.
-        """
-        self._top = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The userId property
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The userId property
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcAuditActivityResult(Enum):
+class CloudPcAuditActivityResult(str, Enum):
     Success = "success",
     ClientError = "clientError",
     Failure = "failure",

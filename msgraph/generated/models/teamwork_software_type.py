@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TeamworkSoftwareType(Enum):
+class TeamworkSoftwareType(str, Enum):
     AdminAgent = "adminAgent",
     OperatingSystem = "operatingSystem",
     TeamsClient = "teamsClient",

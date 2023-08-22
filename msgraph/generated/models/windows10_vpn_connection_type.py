@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Windows10VpnConnectionType(Enum):
+class Windows10VpnConnectionType(str, Enum):
     # Pulse Secure.
     PulseSecure = "pulseSecure",
     # F5 Edge Client.

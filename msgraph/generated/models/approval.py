@@ -1,33 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import approval_step, entity
+    from .approval_step import ApprovalStep
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class Approval(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new approval and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The steps property
-        self._steps: Optional[List[approval_step.ApprovalStep]] = None
+@dataclass
+class Approval(Entity):
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Used to represent the decision associated with a single step in the approval process configured in approvalStage.
+    steps: Optional[List[ApprovalStep]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Approval:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Approval
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Approval()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -35,10 +32,14 @@ class Approval(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import approval_step, entity
+        from .approval_step import ApprovalStep
+        from .entity import Entity
+
+        from .approval_step import ApprovalStep
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "steps": lambda n : setattr(self, 'steps', n.get_collection_of_object_values(approval_step.ApprovalStep)),
+            "steps": lambda n : setattr(self, 'steps', n.get_collection_of_object_values(ApprovalStep)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,29 +48,12 @@ class Approval(entity.Entity):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("steps", self.steps)
-    
-    @property
-    def steps(self,) -> Optional[List[approval_step.ApprovalStep]]:
-        """
-        Gets the steps property value. The steps property
-        Returns: Optional[List[approval_step.ApprovalStep]]
-        """
-        return self._steps
-    
-    @steps.setter
-    def steps(self,value: Optional[List[approval_step.ApprovalStep]] = None) -> None:
-        """
-        Sets the steps property value. The steps property
-        Args:
-            value: Value to set for the steps property.
-        """
-        self._steps = value
     
 

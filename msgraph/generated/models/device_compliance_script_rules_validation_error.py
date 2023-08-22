@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceComplianceScriptRulesValidationError(Enum):
+class DeviceComplianceScriptRulesValidationError(str, Enum):
     # None error.
     None_ = "none",
     # Json file invalid error.

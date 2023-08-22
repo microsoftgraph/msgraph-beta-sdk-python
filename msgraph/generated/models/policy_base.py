@@ -1,139 +1,150 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import activity_based_timeout_policy, app_management_policy, authorization_policy, claims_mapping_policy, cross_tenant_access_policy, directory_object, external_identities_policy, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, permission_grant_policy, service_principal_creation_policy, sts_policy, tenant_app_management_policy, tenant_relationship_access_policy_base, token_issuance_policy, token_lifetime_policy
+    from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
+    from .app_management_policy import AppManagementPolicy
+    from .authorization_policy import AuthorizationPolicy
+    from .claims_mapping_policy import ClaimsMappingPolicy
+    from .cross_tenant_access_policy import CrossTenantAccessPolicy
+    from .directory_object import DirectoryObject
+    from .external_identities_policy import ExternalIdentitiesPolicy
+    from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+    from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+    from .permission_grant_policy import PermissionGrantPolicy
+    from .service_principal_creation_policy import ServicePrincipalCreationPolicy
+    from .sts_policy import StsPolicy
+    from .tenant_app_management_policy import TenantAppManagementPolicy
+    from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
+    from .token_issuance_policy import TokenIssuancePolicy
+    from .token_lifetime_policy import TokenLifetimePolicy
 
-from . import directory_object
+from .directory_object import DirectoryObject
 
-class PolicyBase(directory_object.DirectoryObject):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new policyBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.policyBase"
-        # Description for this policy. Required.
-        self._description: Optional[str] = None
-        # Display name for this policy. Required.
-        self._display_name: Optional[str] = None
+@dataclass
+class PolicyBase(DirectoryObject):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.policyBase"
+    # Description for this policy. Required.
+    description: Optional[str] = None
+    # Display name for this policy. Required.
+    display_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PolicyBase:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PolicyBase
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.activityBasedTimeoutPolicy":
-                from . import activity_based_timeout_policy
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.activityBasedTimeoutPolicy".casefold():
+            from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
 
-                return activity_based_timeout_policy.ActivityBasedTimeoutPolicy()
-            if mapping_value == "#microsoft.graph.appManagementPolicy":
-                from . import app_management_policy
+            return ActivityBasedTimeoutPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appManagementPolicy".casefold():
+            from .app_management_policy import AppManagementPolicy
 
-                return app_management_policy.AppManagementPolicy()
-            if mapping_value == "#microsoft.graph.authorizationPolicy":
-                from . import authorization_policy
+            return AppManagementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authorizationPolicy".casefold():
+            from .authorization_policy import AuthorizationPolicy
 
-                return authorization_policy.AuthorizationPolicy()
-            if mapping_value == "#microsoft.graph.claimsMappingPolicy":
-                from . import claims_mapping_policy
+            return AuthorizationPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.claimsMappingPolicy".casefold():
+            from .claims_mapping_policy import ClaimsMappingPolicy
 
-                return claims_mapping_policy.ClaimsMappingPolicy()
-            if mapping_value == "#microsoft.graph.crossTenantAccessPolicy":
-                from . import cross_tenant_access_policy
+            return ClaimsMappingPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantAccessPolicy".casefold():
+            from .cross_tenant_access_policy import CrossTenantAccessPolicy
 
-                return cross_tenant_access_policy.CrossTenantAccessPolicy()
-            if mapping_value == "#microsoft.graph.externalIdentitiesPolicy":
-                from . import external_identities_policy
+            return CrossTenantAccessPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalIdentitiesPolicy".casefold():
+            from .external_identities_policy import ExternalIdentitiesPolicy
 
-                return external_identities_policy.ExternalIdentitiesPolicy()
-            if mapping_value == "#microsoft.graph.homeRealmDiscoveryPolicy":
-                from . import home_realm_discovery_policy
+            return ExternalIdentitiesPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.homeRealmDiscoveryPolicy".casefold():
+            from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
 
-                return home_realm_discovery_policy.HomeRealmDiscoveryPolicy()
-            if mapping_value == "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy":
-                from . import identity_security_defaults_enforcement_policy
+            return HomeRealmDiscoveryPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy".casefold():
+            from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
 
-                return identity_security_defaults_enforcement_policy.IdentitySecurityDefaultsEnforcementPolicy()
-            if mapping_value == "#microsoft.graph.permissionGrantPolicy":
-                from . import permission_grant_policy
+            return IdentitySecurityDefaultsEnforcementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionGrantPolicy".casefold():
+            from .permission_grant_policy import PermissionGrantPolicy
 
-                return permission_grant_policy.PermissionGrantPolicy()
-            if mapping_value == "#microsoft.graph.servicePrincipalCreationPolicy":
-                from . import service_principal_creation_policy
+            return PermissionGrantPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.servicePrincipalCreationPolicy".casefold():
+            from .service_principal_creation_policy import ServicePrincipalCreationPolicy
 
-                return service_principal_creation_policy.ServicePrincipalCreationPolicy()
-            if mapping_value == "#microsoft.graph.stsPolicy":
-                from . import sts_policy
+            return ServicePrincipalCreationPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.stsPolicy".casefold():
+            from .sts_policy import StsPolicy
 
-                return sts_policy.StsPolicy()
-            if mapping_value == "#microsoft.graph.tenantAppManagementPolicy":
-                from . import tenant_app_management_policy
+            return StsPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantAppManagementPolicy".casefold():
+            from .tenant_app_management_policy import TenantAppManagementPolicy
 
-                return tenant_app_management_policy.TenantAppManagementPolicy()
-            if mapping_value == "#microsoft.graph.tenantRelationshipAccessPolicyBase":
-                from . import tenant_relationship_access_policy_base
+            return TenantAppManagementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantRelationshipAccessPolicyBase".casefold():
+            from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
 
-                return tenant_relationship_access_policy_base.TenantRelationshipAccessPolicyBase()
-            if mapping_value == "#microsoft.graph.tokenIssuancePolicy":
-                from . import token_issuance_policy
+            return TenantRelationshipAccessPolicyBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tokenIssuancePolicy".casefold():
+            from .token_issuance_policy import TokenIssuancePolicy
 
-                return token_issuance_policy.TokenIssuancePolicy()
-            if mapping_value == "#microsoft.graph.tokenLifetimePolicy":
-                from . import token_lifetime_policy
+            return TokenIssuancePolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tokenLifetimePolicy".casefold():
+            from .token_lifetime_policy import TokenLifetimePolicy
 
-                return token_lifetime_policy.TokenLifetimePolicy()
+            return TokenLifetimePolicy()
         return PolicyBase()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Description for this policy. Required.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Description for this policy. Required.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Display name for this policy. Required.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Display name for this policy. Required.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import activity_based_timeout_policy, app_management_policy, authorization_policy, claims_mapping_policy, cross_tenant_access_policy, directory_object, external_identities_policy, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, permission_grant_policy, service_principal_creation_policy, sts_policy, tenant_app_management_policy, tenant_relationship_access_policy_base, token_issuance_policy, token_lifetime_policy
+        from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
+        from .app_management_policy import AppManagementPolicy
+        from .authorization_policy import AuthorizationPolicy
+        from .claims_mapping_policy import ClaimsMappingPolicy
+        from .cross_tenant_access_policy import CrossTenantAccessPolicy
+        from .directory_object import DirectoryObject
+        from .external_identities_policy import ExternalIdentitiesPolicy
+        from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+        from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+        from .permission_grant_policy import PermissionGrantPolicy
+        from .service_principal_creation_policy import ServicePrincipalCreationPolicy
+        from .sts_policy import StsPolicy
+        from .tenant_app_management_policy import TenantAppManagementPolicy
+        from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
+        from .token_issuance_policy import TokenIssuancePolicy
+        from .token_lifetime_policy import TokenLifetimePolicy
+
+        from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
+        from .app_management_policy import AppManagementPolicy
+        from .authorization_policy import AuthorizationPolicy
+        from .claims_mapping_policy import ClaimsMappingPolicy
+        from .cross_tenant_access_policy import CrossTenantAccessPolicy
+        from .directory_object import DirectoryObject
+        from .external_identities_policy import ExternalIdentitiesPolicy
+        from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+        from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+        from .permission_grant_policy import PermissionGrantPolicy
+        from .service_principal_creation_policy import ServicePrincipalCreationPolicy
+        from .sts_policy import StsPolicy
+        from .tenant_app_management_policy import TenantAppManagementPolicy
+        from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
+        from .token_issuance_policy import TokenIssuancePolicy
+        from .token_lifetime_policy import TokenLifetimePolicy
 
         fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -146,11 +157,11 @@ class PolicyBase(directory_object.DirectoryObject):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AzureADDeviceRegistrationErrorReason(Enum):
+class AzureADDeviceRegistrationErrorReason(str, Enum):
     InvalidGlobalDeviceId = "invalidGlobalDeviceId",
     InvalidAzureADDeviceId = "invalidAzureADDeviceId",
     MissingTrustType = "missingTrustType",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagementState(Enum):
+class ManagementState(str, Enum):
     # The device is under management
     Managed = "managed",
     # A retire command is occuring on the device and in the process of unenrolling from management

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceAppManagementTaskPriority(Enum):
+class DeviceAppManagementTaskPriority(str, Enum):
     # No priority set.
     None_ = "none",
     # High priority.

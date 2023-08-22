@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ZebraFotaNetworkType(Enum):
+class ZebraFotaNetworkType(str, Enum):
     # The device will install the update regardless of current network type.
     Any = "any",
     # The device will install the update only when connected to WiFi network.

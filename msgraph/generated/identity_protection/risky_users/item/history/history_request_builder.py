@@ -1,109 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import risky_user_history_item, risky_user_history_item_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import risky_user_history_item_item_request_builder
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.risky_user_history_item import RiskyUserHistoryItem
+    from .....models.risky_user_history_item_collection_response import RiskyUserHistoryItemCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.risky_user_history_item_item_request_builder import RiskyUserHistoryItemItemRequestBuilder
 
-class HistoryRequestBuilder():
+class HistoryRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the history property of the microsoft.graph.riskyUser entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new HistoryRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}/history{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}/history{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_risky_user_history_item_id(self,risky_user_history_item_id: str) -> risky_user_history_item_item_request_builder.RiskyUserHistoryItemItemRequestBuilder:
+    def by_risky_user_history_item_id(self,risky_user_history_item_id: str) -> RiskyUserHistoryItemItemRequestBuilder:
         """
         Provides operations to manage the history property of the microsoft.graph.riskyUser entity.
-        Args:
-            risky_user_history_item_id: Unique identifier of the item
-        Returns: risky_user_history_item_item_request_builder.RiskyUserHistoryItemItemRequestBuilder
+        param risky_user_history_item_id: The unique identifier of riskyUserHistoryItem
+        Returns: RiskyUserHistoryItemItemRequestBuilder
         """
-        if risky_user_history_item_id is None:
-            raise Exception("risky_user_history_item_id cannot be undefined")
-        from .item import risky_user_history_item_item_request_builder
+        if not risky_user_history_item_id:
+            raise TypeError("risky_user_history_item_id cannot be null.")
+        from .item.risky_user_history_item_item_request_builder import RiskyUserHistoryItemItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["riskyUserHistoryItem%2Did"] = risky_user_history_item_id
-        return risky_user_history_item_item_request_builder.RiskyUserHistoryItemItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return RiskyUserHistoryItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> Optional[risky_user_history_item_collection_response.RiskyUserHistoryItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> Optional[RiskyUserHistoryItemCollectionResponse]:
         """
         Get the risk history of a riskyUser resource.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[risky_user_history_item_collection_response.RiskyUserHistoryItemCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RiskyUserHistoryItemCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import risky_user_history_item_collection_response
+        from .....models.risky_user_history_item_collection_response import RiskyUserHistoryItemCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, risky_user_history_item_collection_response.RiskyUserHistoryItemCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, RiskyUserHistoryItemCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[risky_user_history_item.RiskyUserHistoryItem] = None, request_configuration: Optional[HistoryRequestBuilderPostRequestConfiguration] = None) -> Optional[risky_user_history_item.RiskyUserHistoryItem]:
+    async def post(self,body: Optional[RiskyUserHistoryItem] = None, request_configuration: Optional[HistoryRequestBuilderPostRequestConfiguration] = None) -> Optional[RiskyUserHistoryItem]:
         """
         Create new navigation property to history for identityProtection
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[risky_user_history_item.RiskyUserHistoryItem]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[RiskyUserHistoryItem]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import risky_user_history_item
+        from .....models.risky_user_history_item import RiskyUserHistoryItem
 
-        return await self.request_adapter.send_async(request_info, risky_user_history_item.RiskyUserHistoryItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, RiskyUserHistoryItem, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get the risk history of a riskyUser resource.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +106,15 @@ class HistoryRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[risky_user_history_item.RiskyUserHistoryItem] = None, request_configuration: Optional[HistoryRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[RiskyUserHistoryItem] = None, request_configuration: Optional[HistoryRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to history for identityProtection
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +127,13 @@ class HistoryRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class HistoryRequestBuilderGetQueryParameters():
@@ -155,12 +143,11 @@ class HistoryRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +191,27 @@ class HistoryRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class HistoryRequestBuilderGetRequestConfiguration():
+    class HistoryRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[HistoryRequestBuilder.HistoryRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class HistoryRequestBuilderPostRequestConfiguration():
+    class HistoryRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

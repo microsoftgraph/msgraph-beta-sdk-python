@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TitleAreaLayoutType(Enum):
+class TitleAreaLayoutType(str, Enum):
     ImageAndTitle = "imageAndTitle",
     Plain = "plain",
     ColorBlock = "colorBlock",

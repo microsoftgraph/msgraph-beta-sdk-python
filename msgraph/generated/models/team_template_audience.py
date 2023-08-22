@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TeamTemplateAudience(Enum):
+class TeamTemplateAudience(str, Enum):
     Organization = "organization",
     User = "user",
     Public = "public",

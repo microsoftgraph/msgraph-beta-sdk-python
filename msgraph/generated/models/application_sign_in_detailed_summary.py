@@ -1,93 +1,39 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, sign_in_status
+    from .entity import Entity
+    from .sign_in_status import SignInStatus
 
-from . import entity
+from .entity import Entity
 
-class ApplicationSignInDetailedSummary(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ApplicationSignInDetailedSummary and sets the default values.
-        """
-        super().__init__()
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._aggregated_event_date_time: Optional[datetime] = None
-        # Name of the application that the user signed in to.
-        self._app_display_name: Optional[str] = None
-        # ID of the application that the user signed in to.
-        self._app_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Count of sign-ins made by the application.
-        self._sign_in_count: Optional[int] = None
-        # Details of the sign-in status.
-        self._status: Optional[sign_in_status.SignInStatus] = None
-    
-    @property
-    def aggregated_event_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the aggregatedEventDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._aggregated_event_date_time
-    
-    @aggregated_event_date_time.setter
-    def aggregated_event_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the aggregatedEventDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the aggregated_event_date_time property.
-        """
-        self._aggregated_event_date_time = value
-    
-    @property
-    def app_display_name(self,) -> Optional[str]:
-        """
-        Gets the appDisplayName property value. Name of the application that the user signed in to.
-        Returns: Optional[str]
-        """
-        return self._app_display_name
-    
-    @app_display_name.setter
-    def app_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appDisplayName property value. Name of the application that the user signed in to.
-        Args:
-            value: Value to set for the app_display_name property.
-        """
-        self._app_display_name = value
-    
-    @property
-    def app_id(self,) -> Optional[str]:
-        """
-        Gets the appId property value. ID of the application that the user signed in to.
-        Returns: Optional[str]
-        """
-        return self._app_id
-    
-    @app_id.setter
-    def app_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appId property value. ID of the application that the user signed in to.
-        Args:
-            value: Value to set for the app_id property.
-        """
-        self._app_id = value
+@dataclass
+class ApplicationSignInDetailedSummary(Entity):
+    # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    aggregated_event_date_time: Optional[datetime.datetime] = None
+    # Name of the application that the user signed in to.
+    app_display_name: Optional[str] = None
+    # ID of the application that the user signed in to.
+    app_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Count of sign-ins made by the application.
+    sign_in_count: Optional[int] = None
+    # Details of the sign-in status.
+    status: Optional[SignInStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApplicationSignInDetailedSummary:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ApplicationSignInDetailedSummary
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ApplicationSignInDetailedSummary()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -95,14 +41,18 @@ class ApplicationSignInDetailedSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, sign_in_status
+        from .entity import Entity
+        from .sign_in_status import SignInStatus
+
+        from .entity import Entity
+        from .sign_in_status import SignInStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
             "aggregatedEventDateTime": lambda n : setattr(self, 'aggregated_event_date_time', n.get_datetime_value()),
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "signInCount": lambda n : setattr(self, 'sign_in_count', n.get_int_value()),
-            "status": lambda n : setattr(self, 'status', n.get_object_value(sign_in_status.SignInStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_object_value(SignInStatus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -111,50 +61,16 @@ class ApplicationSignInDetailedSummary(entity.Entity):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("aggregatedEventDateTime", self.aggregated_event_date_time)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
         writer.write_int_value("signInCount", self.sign_in_count)
         writer.write_object_value("status", self.status)
-    
-    @property
-    def sign_in_count(self,) -> Optional[int]:
-        """
-        Gets the signInCount property value. Count of sign-ins made by the application.
-        Returns: Optional[int]
-        """
-        return self._sign_in_count
-    
-    @sign_in_count.setter
-    def sign_in_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the signInCount property value. Count of sign-ins made by the application.
-        Args:
-            value: Value to set for the sign_in_count property.
-        """
-        self._sign_in_count = value
-    
-    @property
-    def status(self,) -> Optional[sign_in_status.SignInStatus]:
-        """
-        Gets the status property value. Details of the sign-in status.
-        Returns: Optional[sign_in_status.SignInStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[sign_in_status.SignInStatus] = None) -> None:
-        """
-        Sets the status property value. Details of the sign-in status.
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

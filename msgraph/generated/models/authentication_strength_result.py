@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AuthenticationStrengthResult(Enum):
+class AuthenticationStrengthResult(str, Enum):
     NotSet = "notSet",
     SkippedForProofUp = "skippedForProofUp",
     Satisfied = "satisfied",

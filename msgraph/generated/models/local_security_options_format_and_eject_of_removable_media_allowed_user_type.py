@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType(Enum):
+class LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType(str, Enum):
     # Not Configured
     NotConfigured = "notConfigured",
     # Administrators

@@ -1,109 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import education_grading_category, education_grading_category_collection_response
-    from ......models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import education_grading_category_item_request_builder
+    from ......models.education_grading_category import EducationGradingCategory
+    from ......models.education_grading_category_collection_response import EducationGradingCategoryCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.education_grading_category_item_request_builder import EducationGradingCategoryItemRequestBuilder
 
-class GradingCategoriesRequestBuilder():
+class GradingCategoriesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the gradingCategories property of the microsoft.graph.educationAssignmentSettings entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GradingCategoriesRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/education/classes/{educationClass%2Did}/assignmentSettings/gradingCategories{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/education/classes/{educationClass%2Did}/assignmentSettings/gradingCategories{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_education_grading_category_id(self,education_grading_category_id: str) -> education_grading_category_item_request_builder.EducationGradingCategoryItemRequestBuilder:
+    def by_education_grading_category_id(self,education_grading_category_id: str) -> EducationGradingCategoryItemRequestBuilder:
         """
         Provides operations to manage the gradingCategories property of the microsoft.graph.educationAssignmentSettings entity.
-        Args:
-            education_grading_category_id: Unique identifier of the item
-        Returns: education_grading_category_item_request_builder.EducationGradingCategoryItemRequestBuilder
+        param education_grading_category_id: The unique identifier of educationGradingCategory
+        Returns: EducationGradingCategoryItemRequestBuilder
         """
-        if education_grading_category_id is None:
-            raise Exception("education_grading_category_id cannot be undefined")
-        from .item import education_grading_category_item_request_builder
+        if not education_grading_category_id:
+            raise TypeError("education_grading_category_id cannot be null.")
+        from .item.education_grading_category_item_request_builder import EducationGradingCategoryItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["educationGradingCategory%2Did"] = education_grading_category_id
-        return education_grading_category_item_request_builder.EducationGradingCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return EducationGradingCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GradingCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_grading_category_collection_response.EducationGradingCategoryCollectionResponse]:
+    async def get(self,request_configuration: Optional[GradingCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationGradingCategoryCollectionResponse]:
         """
         Get a list of the educationGradingCategory objects and their properties.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_grading_category_collection_response.EducationGradingCategoryCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationGradingCategoryCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/educationassignment-list-gradingcategory?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import education_grading_category_collection_response
+        from ......models.education_grading_category_collection_response import EducationGradingCategoryCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, education_grading_category_collection_response.EducationGradingCategoryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationGradingCategoryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[education_grading_category.EducationGradingCategory] = None, request_configuration: Optional[GradingCategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[education_grading_category.EducationGradingCategory]:
+    async def post(self,body: Optional[EducationGradingCategory] = None, request_configuration: Optional[GradingCategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationGradingCategory]:
         """
         Create new navigation property to gradingCategories for education
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_grading_category.EducationGradingCategory]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationGradingCategory]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import education_grading_category
+        from ......models.education_grading_category import EducationGradingCategory
 
-        return await self.request_adapter.send_async(request_info, education_grading_category.EducationGradingCategory, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationGradingCategory, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GradingCategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the educationGradingCategory objects and their properties.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +106,15 @@ class GradingCategoriesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[education_grading_category.EducationGradingCategory] = None, request_configuration: Optional[GradingCategoriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EducationGradingCategory] = None, request_configuration: Optional[GradingCategoriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to gradingCategories for education
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +127,13 @@ class GradingCategoriesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GradingCategoriesRequestBuilderGetQueryParameters():
@@ -155,12 +143,11 @@ class GradingCategoriesRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +191,27 @@ class GradingCategoriesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GradingCategoriesRequestBuilderGetRequestConfiguration():
+    class GradingCategoriesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[GradingCategoriesRequestBuilder.GradingCategoriesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GradingCategoriesRequestBuilderPostRequestConfiguration():
+    class GradingCategoriesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

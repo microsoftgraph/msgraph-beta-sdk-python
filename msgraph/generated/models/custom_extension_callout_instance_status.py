@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CustomExtensionCalloutInstanceStatus(Enum):
+class CustomExtensionCalloutInstanceStatus(str, Enum):
     CalloutSent = "calloutSent",
     CallbackReceived = "callbackReceived",
     CalloutFailed = "calloutFailed",

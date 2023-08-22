@@ -1,138 +1,125 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import device_management_intent
-    from ....models.o_data_errors import o_data_error
-    from .assign import assign_request_builder
-    from .assignments import assignments_request_builder
-    from .categories import categories_request_builder
-    from .compare_with_template_id import compare_with_template_id_request_builder
-    from .create_copy import create_copy_request_builder
-    from .device_setting_state_summaries import device_setting_state_summaries_request_builder
-    from .device_states import device_states_request_builder
-    from .device_state_summary import device_state_summary_request_builder
-    from .get_customized_settings import get_customized_settings_request_builder
-    from .migrate_to_template import migrate_to_template_request_builder
-    from .settings import settings_request_builder
-    from .update_settings import update_settings_request_builder
-    from .user_states import user_states_request_builder
-    from .user_state_summary import user_state_summary_request_builder
+    from ....models.device_management_intent import DeviceManagementIntent
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .assign.assign_request_builder import AssignRequestBuilder
+    from .assignments.assignments_request_builder import AssignmentsRequestBuilder
+    from .categories.categories_request_builder import CategoriesRequestBuilder
+    from .compare_with_template_id.compare_with_template_id_request_builder import CompareWithTemplateIdRequestBuilder
+    from .create_copy.create_copy_request_builder import CreateCopyRequestBuilder
+    from .device_setting_state_summaries.device_setting_state_summaries_request_builder import DeviceSettingStateSummariesRequestBuilder
+    from .device_states.device_states_request_builder import DeviceStatesRequestBuilder
+    from .device_state_summary.device_state_summary_request_builder import DeviceStateSummaryRequestBuilder
+    from .get_customized_settings.get_customized_settings_request_builder import GetCustomizedSettingsRequestBuilder
+    from .migrate_to_template.migrate_to_template_request_builder import MigrateToTemplateRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
+    from .update_settings.update_settings_request_builder import UpdateSettingsRequestBuilder
+    from .user_states.user_states_request_builder import UserStatesRequestBuilder
+    from .user_state_summary.user_state_summary_request_builder import UserStateSummaryRequestBuilder
 
-class DeviceManagementIntentItemRequestBuilder():
+class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the intents property of the microsoft.graph.deviceManagement entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementIntentItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/intents/{deviceManagementIntent%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/intents/{deviceManagementIntent%2Did}{?%24select,%24expand}", path_parameters)
     
-    def compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
+    def compare_with_template_id(self,template_id: Optional[str] = None) -> CompareWithTemplateIdRequestBuilder:
         """
         Provides operations to call the compare method.
-        Args:
-            templateId: Usage: templateId='{templateId}'
-        Returns: compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder
+        param template_id: Usage: templateId='{templateId}'
+        Returns: CompareWithTemplateIdRequestBuilder
         """
-        if template_id is None:
-            raise Exception("template_id cannot be undefined")
-        from .compare_with_template_id import compare_with_template_id_request_builder
+        if not template_id:
+            raise TypeError("template_id cannot be null.")
+        from .compare_with_template_id.compare_with_template_id_request_builder import CompareWithTemplateIdRequestBuilder
 
-        return compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, template_id)
+        return CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, template_id)
     
     async def delete(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property intents for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_intent.DeviceManagementIntent]:
+    async def get(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementIntent]:
         """
         The device management intents
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_intent.DeviceManagementIntent]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceManagementIntent]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import device_management_intent
+        from ....models.device_management_intent import DeviceManagementIntent
 
-        return await self.request_adapter.send_async(request_info, device_management_intent.DeviceManagementIntent, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementIntent, error_mapping)
     
-    async def patch(self,body: Optional[device_management_intent.DeviceManagementIntent] = None, request_configuration: Optional[DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_intent.DeviceManagementIntent]:
+    async def patch(self,body: Optional[DeviceManagementIntent] = None, request_configuration: Optional[DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementIntent]:
         """
         Update the navigation property intents in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_management_intent.DeviceManagementIntent]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceManagementIntent]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import device_management_intent
+        from ....models.device_management_intent import DeviceManagementIntent
 
-        return await self.request_adapter.send_async(request_info, device_management_intent.DeviceManagementIntent, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementIntent, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property intents for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -147,8 +134,7 @@ class DeviceManagementIntentItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The device management intents
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -162,16 +148,15 @@ class DeviceManagementIntentItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[device_management_intent.DeviceManagementIntent] = None, request_configuration: Optional[DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementIntent] = None, request_configuration: Optional[DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property intents in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -184,133 +169,131 @@ class DeviceManagementIntentItemRequestBuilder():
         return request_info
     
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+    def assign(self) -> AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
-        from .assign import assign_request_builder
+        from .assign.assign_request_builder import AssignRequestBuilder
 
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+    def assignments(self) -> AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementIntent entity.
         """
-        from .assignments import assignments_request_builder
+        from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
+    def categories(self) -> CategoriesRequestBuilder:
         """
         Provides operations to manage the categories property of the microsoft.graph.deviceManagementIntent entity.
         """
-        from .categories import categories_request_builder
+        from .categories.categories_request_builder import CategoriesRequestBuilder
 
-        return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_copy(self) -> create_copy_request_builder.CreateCopyRequestBuilder:
+    def create_copy(self) -> CreateCopyRequestBuilder:
         """
         Provides operations to call the createCopy method.
         """
-        from .create_copy import create_copy_request_builder
+        from .create_copy.create_copy_request_builder import CreateCopyRequestBuilder
 
-        return create_copy_request_builder.CreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_setting_state_summaries(self) -> device_setting_state_summaries_request_builder.DeviceSettingStateSummariesRequestBuilder:
+    def device_setting_state_summaries(self) -> DeviceSettingStateSummariesRequestBuilder:
         """
         Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceManagementIntent entity.
         """
-        from .device_setting_state_summaries import device_setting_state_summaries_request_builder
+        from .device_setting_state_summaries.device_setting_state_summaries_request_builder import DeviceSettingStateSummariesRequestBuilder
 
-        return device_setting_state_summaries_request_builder.DeviceSettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceSettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_states(self) -> device_states_request_builder.DeviceStatesRequestBuilder:
+    def device_states(self) -> DeviceStatesRequestBuilder:
         """
         Provides operations to manage the deviceStates property of the microsoft.graph.deviceManagementIntent entity.
         """
-        from .device_states import device_states_request_builder
+        from .device_states.device_states_request_builder import DeviceStatesRequestBuilder
 
-        return device_states_request_builder.DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_state_summary(self) -> device_state_summary_request_builder.DeviceStateSummaryRequestBuilder:
+    def device_state_summary(self) -> DeviceStateSummaryRequestBuilder:
         """
         Provides operations to manage the deviceStateSummary property of the microsoft.graph.deviceManagementIntent entity.
         """
-        from .device_state_summary import device_state_summary_request_builder
+        from .device_state_summary.device_state_summary_request_builder import DeviceStateSummaryRequestBuilder
 
-        return device_state_summary_request_builder.DeviceStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_customized_settings(self) -> get_customized_settings_request_builder.GetCustomizedSettingsRequestBuilder:
+    def get_customized_settings(self) -> GetCustomizedSettingsRequestBuilder:
         """
         Provides operations to call the getCustomizedSettings method.
         """
-        from .get_customized_settings import get_customized_settings_request_builder
+        from .get_customized_settings.get_customized_settings_request_builder import GetCustomizedSettingsRequestBuilder
 
-        return get_customized_settings_request_builder.GetCustomizedSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetCustomizedSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def migrate_to_template(self) -> migrate_to_template_request_builder.MigrateToTemplateRequestBuilder:
+    def migrate_to_template(self) -> MigrateToTemplateRequestBuilder:
         """
         Provides operations to call the migrateToTemplate method.
         """
-        from .migrate_to_template import migrate_to_template_request_builder
+        from .migrate_to_template.migrate_to_template_request_builder import MigrateToTemplateRequestBuilder
 
-        return migrate_to_template_request_builder.MigrateToTemplateRequestBuilder(self.request_adapter, self.path_parameters)
+        return MigrateToTemplateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+    def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementIntent entity.
         """
-        from .settings import settings_request_builder
+        from .settings.settings_request_builder import SettingsRequestBuilder
 
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_settings(self) -> update_settings_request_builder.UpdateSettingsRequestBuilder:
+    def update_settings(self) -> UpdateSettingsRequestBuilder:
         """
         Provides operations to call the updateSettings method.
         """
-        from .update_settings import update_settings_request_builder
+        from .update_settings.update_settings_request_builder import UpdateSettingsRequestBuilder
 
-        return update_settings_request_builder.UpdateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_states(self) -> user_states_request_builder.UserStatesRequestBuilder:
+    def user_states(self) -> UserStatesRequestBuilder:
         """
         Provides operations to manage the userStates property of the microsoft.graph.deviceManagementIntent entity.
         """
-        from .user_states import user_states_request_builder
+        from .user_states.user_states_request_builder import UserStatesRequestBuilder
 
-        return user_states_request_builder.UserStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_state_summary(self) -> user_state_summary_request_builder.UserStateSummaryRequestBuilder:
+    def user_state_summary(self) -> UserStateSummaryRequestBuilder:
         """
         Provides operations to manage the userStateSummary property of the microsoft.graph.deviceManagementIntent entity.
         """
-        from .user_state_summary import user_state_summary_request_builder
+        from .user_state_summary.user_state_summary_request_builder import UserStateSummaryRequestBuilder
 
-        return user_state_summary_request_builder.UserStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration():
+    class DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class DeviceManagementIntentItemRequestBuilderGetQueryParameters():
@@ -320,12 +303,11 @@ class DeviceManagementIntentItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -339,31 +321,27 @@ class DeviceManagementIntentItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DeviceManagementIntentItemRequestBuilderGetRequestConfiguration():
+    class DeviceManagementIntentItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[DeviceManagementIntentItemRequestBuilder.DeviceManagementIntentItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration():
+    class DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

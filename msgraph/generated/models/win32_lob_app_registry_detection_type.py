@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Win32LobAppRegistryDetectionType(Enum):
+class Win32LobAppRegistryDetectionType(str, Enum):
     # Not configured.
     NotConfigured = "notConfigured",
     # The specified registry key or value exists.

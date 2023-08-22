@@ -1,109 +1,97 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import feature_rollout_policy, feature_rollout_policy_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import feature_rollout_policy_item_request_builder
+    from ...models.feature_rollout_policy import FeatureRolloutPolicy
+    from ...models.feature_rollout_policy_collection_response import FeatureRolloutPolicyCollectionResponse
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.feature_rollout_policy_item_request_builder import FeatureRolloutPolicyItemRequestBuilder
 
-class FeatureRolloutPoliciesRequestBuilder():
+class FeatureRolloutPoliciesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.directory entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new FeatureRolloutPoliciesRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/directory/featureRolloutPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/directory/featureRolloutPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_feature_rollout_policy_id(self,feature_rollout_policy_id: str) -> feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder:
+    def by_feature_rollout_policy_id(self,feature_rollout_policy_id: str) -> FeatureRolloutPolicyItemRequestBuilder:
         """
         Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.directory entity.
-        Args:
-            feature_rollout_policy_id: Unique identifier of the item
-        Returns: feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder
+        param feature_rollout_policy_id: The unique identifier of featureRolloutPolicy
+        Returns: FeatureRolloutPolicyItemRequestBuilder
         """
-        if feature_rollout_policy_id is None:
-            raise Exception("feature_rollout_policy_id cannot be undefined")
-        from .item import feature_rollout_policy_item_request_builder
+        if not feature_rollout_policy_id:
+            raise TypeError("feature_rollout_policy_id cannot be null.")
+        from .item.feature_rollout_policy_item_request_builder import FeatureRolloutPolicyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["featureRolloutPolicy%2Did"] = feature_rollout_policy_id
-        return feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return FeatureRolloutPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[FeatureRolloutPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[feature_rollout_policy_collection_response.FeatureRolloutPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[FeatureRolloutPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[FeatureRolloutPolicyCollectionResponse]:
         """
         Get featureRolloutPolicies from directory
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[feature_rollout_policy_collection_response.FeatureRolloutPolicyCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[FeatureRolloutPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import feature_rollout_policy_collection_response
+        from ...models.feature_rollout_policy_collection_response import FeatureRolloutPolicyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, feature_rollout_policy_collection_response.FeatureRolloutPolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, FeatureRolloutPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[feature_rollout_policy.FeatureRolloutPolicy] = None, request_configuration: Optional[FeatureRolloutPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[feature_rollout_policy.FeatureRolloutPolicy]:
+    async def post(self,body: Optional[FeatureRolloutPolicy] = None, request_configuration: Optional[FeatureRolloutPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[FeatureRolloutPolicy]:
         """
         Create new navigation property to featureRolloutPolicies for directory
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[feature_rollout_policy.FeatureRolloutPolicy]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[FeatureRolloutPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import feature_rollout_policy
+        from ...models.feature_rollout_policy import FeatureRolloutPolicy
 
-        return await self.request_adapter.send_async(request_info, feature_rollout_policy.FeatureRolloutPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, FeatureRolloutPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[FeatureRolloutPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get featureRolloutPolicies from directory
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +105,15 @@ class FeatureRolloutPoliciesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[feature_rollout_policy.FeatureRolloutPolicy] = None, request_configuration: Optional[FeatureRolloutPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[FeatureRolloutPolicy] = None, request_configuration: Optional[FeatureRolloutPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to featureRolloutPolicies for directory
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +126,13 @@ class FeatureRolloutPoliciesRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class FeatureRolloutPoliciesRequestBuilderGetQueryParameters():
@@ -155,12 +142,11 @@ class FeatureRolloutPoliciesRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +190,27 @@ class FeatureRolloutPoliciesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class FeatureRolloutPoliciesRequestBuilderGetRequestConfiguration():
+    class FeatureRolloutPoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[FeatureRolloutPoliciesRequestBuilder.FeatureRolloutPoliciesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class FeatureRolloutPoliciesRequestBuilderPostRequestConfiguration():
+    class FeatureRolloutPoliciesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

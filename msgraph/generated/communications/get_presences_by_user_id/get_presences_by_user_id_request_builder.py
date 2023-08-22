@@ -1,75 +1,66 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import get_presences_by_user_id_post_request_body, get_presences_by_user_id_response
-    from ...models.o_data_errors import o_data_error
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .get_presences_by_user_id_post_request_body import GetPresencesByUserIdPostRequestBody
+    from .get_presences_by_user_id_response import GetPresencesByUserIdResponse
 
-class GetPresencesByUserIdRequestBuilder():
+class GetPresencesByUserIdRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the getPresencesByUserId method.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GetPresencesByUserIdRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/communications/getPresencesByUserId"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/communications/getPresencesByUserId", path_parameters)
     
-    async def post(self,body: Optional[get_presences_by_user_id_post_request_body.GetPresencesByUserIdPostRequestBody] = None, request_configuration: Optional[GetPresencesByUserIdRequestBuilderPostRequestConfiguration] = None) -> Optional[get_presences_by_user_id_response.GetPresencesByUserIdResponse]:
+    async def post(self,body: Optional[GetPresencesByUserIdPostRequestBody] = None, request_configuration: Optional[GetPresencesByUserIdRequestBuilderPostRequestConfiguration] = None) -> Optional[GetPresencesByUserIdResponse]:
         """
         Get the presence information for multiple users.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[get_presences_by_user_id_response.GetPresencesByUserIdResponse]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GetPresencesByUserIdResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from . import get_presences_by_user_id_response
+        from .get_presences_by_user_id_response import GetPresencesByUserIdResponse
 
-        return await self.request_adapter.send_async(request_info, get_presences_by_user_id_response.GetPresencesByUserIdResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetPresencesByUserIdResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[get_presences_by_user_id_post_request_body.GetPresencesByUserIdPostRequestBody] = None, request_configuration: Optional[GetPresencesByUserIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GetPresencesByUserIdPostRequestBody] = None, request_configuration: Optional[GetPresencesByUserIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Get the presence information for multiple users.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -81,16 +72,14 @@ class GetPresencesByUserIdRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GetPresencesByUserIdRequestBuilderPostRequestConfiguration():
+    class GetPresencesByUserIdRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 
