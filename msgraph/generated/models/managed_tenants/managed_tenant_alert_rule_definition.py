@@ -1,147 +1,64 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import alert_rule_definition_template, managed_tenant_alert_rule
-    from .. import entity
+    from ..entity import Entity
+    from .alert_rule_definition_template import AlertRuleDefinitionTemplate
+    from .managed_tenant_alert_rule import ManagedTenantAlertRule
 
-from .. import entity
+from ..entity import Entity
 
-class ManagedTenantAlertRuleDefinition(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedTenantAlertRuleDefinition and sets the default values.
-        """
-        super().__init__()
-        # The alertRules property
-        self._alert_rules: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]] = None
-        # The createdByUserId property
-        self._created_by_user_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The definitionTemplate property
-        self._definition_template: Optional[alert_rule_definition_template.AlertRuleDefinitionTemplate] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastActionByUserId property
-        self._last_action_by_user_id: Optional[str] = None
-        # The lastActionDateTime property
-        self._last_action_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def alert_rules(self,) -> Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]]:
-        """
-        Gets the alertRules property value. The alertRules property
-        Returns: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]]
-        """
-        return self._alert_rules
-    
-    @alert_rules.setter
-    def alert_rules(self,value: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]] = None) -> None:
-        """
-        Sets the alertRules property value. The alertRules property
-        Args:
-            value: Value to set for the alert_rules property.
-        """
-        self._alert_rules = value
-    
-    @property
-    def created_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the createdByUserId property value. The createdByUserId property
-        Returns: Optional[str]
-        """
-        return self._created_by_user_id
-    
-    @created_by_user_id.setter
-    def created_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the createdByUserId property value. The createdByUserId property
-        Args:
-            value: Value to set for the created_by_user_id property.
-        """
-        self._created_by_user_id = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The createdDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The createdDateTime property
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+@dataclass
+class ManagedTenantAlertRuleDefinition(Entity):
+    # The alertRules property
+    alert_rules: Optional[List[ManagedTenantAlertRule]] = None
+    # The createdByUserId property
+    created_by_user_id: Optional[str] = None
+    # The createdDateTime property
+    created_date_time: Optional[datetime.datetime] = None
+    # The definitionTemplate property
+    definition_template: Optional[AlertRuleDefinitionTemplate] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The lastActionByUserId property
+    last_action_by_user_id: Optional[str] = None
+    # The lastActionDateTime property
+    last_action_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedTenantAlertRuleDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ManagedTenantAlertRuleDefinition
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ManagedTenantAlertRuleDefinition()
-    
-    @property
-    def definition_template(self,) -> Optional[alert_rule_definition_template.AlertRuleDefinitionTemplate]:
-        """
-        Gets the definitionTemplate property value. The definitionTemplate property
-        Returns: Optional[alert_rule_definition_template.AlertRuleDefinitionTemplate]
-        """
-        return self._definition_template
-    
-    @definition_template.setter
-    def definition_template(self,value: Optional[alert_rule_definition_template.AlertRuleDefinitionTemplate] = None) -> None:
-        """
-        Sets the definitionTemplate property value. The definitionTemplate property
-        Args:
-            value: Value to set for the definition_template property.
-        """
-        self._definition_template = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import alert_rule_definition_template, managed_tenant_alert_rule
-        from .. import entity
+        from ..entity import Entity
+        from .alert_rule_definition_template import AlertRuleDefinitionTemplate
+        from .managed_tenant_alert_rule import ManagedTenantAlertRule
+
+        from ..entity import Entity
+        from .alert_rule_definition_template import AlertRuleDefinitionTemplate
+        from .managed_tenant_alert_rule import ManagedTenantAlertRule
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "alertRules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(managed_tenant_alert_rule.ManagedTenantAlertRule)),
+            "alertRules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(ManagedTenantAlertRule)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "definitionTemplate": lambda n : setattr(self, 'definition_template', n.get_object_value(alert_rule_definition_template.AlertRuleDefinitionTemplate)),
+            "definitionTemplate": lambda n : setattr(self, 'definition_template', n.get_object_value(AlertRuleDefinitionTemplate)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
             "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
@@ -150,48 +67,14 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_action_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the lastActionByUserId property value. The lastActionByUserId property
-        Returns: Optional[str]
-        """
-        return self._last_action_by_user_id
-    
-    @last_action_by_user_id.setter
-    def last_action_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastActionByUserId property value. The lastActionByUserId property
-        Args:
-            value: Value to set for the last_action_by_user_id property.
-        """
-        self._last_action_by_user_id = value
-    
-    @property
-    def last_action_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastActionDateTime property value. The lastActionDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_action_date_time
-    
-    @last_action_date_time.setter
-    def last_action_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastActionDateTime property value. The lastActionDateTime property
-        Args:
-            value: Value to set for the last_action_date_time property.
-        """
-        self._last_action_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("alertRules", self.alert_rules)
         writer.write_str_value("createdByUserId", self.created_by_user_id)

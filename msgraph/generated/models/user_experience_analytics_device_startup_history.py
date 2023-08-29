@@ -1,143 +1,76 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, user_experience_analytics_operating_system_restart_category
+    from .entity import Entity
+    from .user_experience_analytics_operating_system_restart_category import UserExperienceAnalyticsOperatingSystemRestartCategory
 
-from . import entity
+from .entity import Entity
 
-class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
+@dataclass
+class UserExperienceAnalyticsDeviceStartupHistory(Entity):
     """
     The user experience analytics device startup history entity contains device boot performance history details.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsDeviceStartupHistory and sets the default values.
-        """
-        super().__init__()
-        # The user experience analytics device core boot time in milliseconds.
-        self._core_boot_time_in_ms: Optional[int] = None
-        # The user experience analytics device core login time in milliseconds.
-        self._core_login_time_in_ms: Optional[int] = None
-        # The user experience analytics device id.
-        self._device_id: Optional[str] = None
-        # The user experience analytics device feature update time in milliseconds.
-        self._feature_update_boot_time_in_ms: Optional[int] = None
-        # The User experience analytics Device group policy boot time in milliseconds.
-        self._group_policy_boot_time_in_ms: Optional[int] = None
-        # The User experience analytics Device group policy login time in milliseconds.
-        self._group_policy_login_time_in_ms: Optional[int] = None
-        # The user experience analytics device boot record is a feature update.
-        self._is_feature_update: Optional[bool] = None
-        # The user experience analytics device first login.
-        self._is_first_login: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user experience analytics device boot record's operating system version.
-        self._operating_system_version: Optional[str] = None
-        # The user experience analytics responsive desktop time in milliseconds.
-        self._responsive_desktop_time_in_ms: Optional[int] = None
-        # Operating System restart category
-        self._restart_category: Optional[user_experience_analytics_operating_system_restart_category.UserExperienceAnalyticsOperatingSystemRestartCategory] = None
-        # OS restart fault bucket. The fault bucket is used to find additional information about a system crash.
-        self._restart_fault_bucket: Optional[str] = None
-        # OS restart stop code. This shows the bug check code which can be used to look up the blue screen reason.
-        self._restart_stop_code: Optional[str] = None
-        # The user experience analytics device boot start time.
-        self._start_time: Optional[datetime] = None
-        # The user experience analytics device total boot time in milliseconds.
-        self._total_boot_time_in_ms: Optional[int] = None
-        # The user experience analytics device total login time in milliseconds.
-        self._total_login_time_in_ms: Optional[int] = None
-    
-    @property
-    def core_boot_time_in_ms(self,) -> Optional[int]:
-        """
-        Gets the coreBootTimeInMs property value. The user experience analytics device core boot time in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._core_boot_time_in_ms
-    
-    @core_boot_time_in_ms.setter
-    def core_boot_time_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the coreBootTimeInMs property value. The user experience analytics device core boot time in milliseconds.
-        Args:
-            value: Value to set for the core_boot_time_in_ms property.
-        """
-        self._core_boot_time_in_ms = value
-    
-    @property
-    def core_login_time_in_ms(self,) -> Optional[int]:
-        """
-        Gets the coreLoginTimeInMs property value. The user experience analytics device core login time in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._core_login_time_in_ms
-    
-    @core_login_time_in_ms.setter
-    def core_login_time_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the coreLoginTimeInMs property value. The user experience analytics device core login time in milliseconds.
-        Args:
-            value: Value to set for the core_login_time_in_ms property.
-        """
-        self._core_login_time_in_ms = value
+    # The device core boot time in milliseconds. Supports: $select, $OrderBy. Read-only.
+    core_boot_time_in_ms: Optional[int] = None
+    # The device core login time in milliseconds. Supports: $select, $OrderBy. Read-only.
+    core_login_time_in_ms: Optional[int] = None
+    # The Intune device id of the device. Supports: $select, $OrderBy. Read-only.
+    device_id: Optional[str] = None
+    # The impact of device feature updates on boot time in milliseconds. Supports: $select, $OrderBy. Read-only.
+    feature_update_boot_time_in_ms: Optional[int] = None
+    # The impact of device group policy client on boot time in milliseconds. Supports: $select, $OrderBy. Read-only.
+    group_policy_boot_time_in_ms: Optional[int] = None
+    # The impact of device group policy client on login time in milliseconds. Supports: $select, $OrderBy. Read-only.
+    group_policy_login_time_in_ms: Optional[int] = None
+    # When TRUE, indicates the device boot record is associated with feature updates. When FALSE, indicates the device boot record is not associated with feature updates. Supports: $select, $OrderBy. Read-only.
+    is_feature_update: Optional[bool] = None
+    # When TRUE, indicates the device login is the first login after a reboot. When FALSE, indicates the device login is not the first login after a reboot. Supports: $select, $OrderBy. Read-only.
+    is_first_login: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The user experience analytics device boot record's operating system version. Supports: $select, $OrderBy. Read-only.
+    operating_system_version: Optional[str] = None
+    # The time for desktop to become responsive during login process in milliseconds. Supports: $select, $OrderBy. Read-only.
+    responsive_desktop_time_in_ms: Optional[int] = None
+    # Operating System restart category.
+    restart_category: Optional[UserExperienceAnalyticsOperatingSystemRestartCategory] = None
+    # OS restart fault bucket. The fault bucket is used to find additional information about a system crash. Supports: $select, $OrderBy. Read-only.
+    restart_fault_bucket: Optional[str] = None
+    # OS restart stop code. This shows the bug check code which can be used to look up the blue screen reason. Supports: $select, $OrderBy. Read-only.
+    restart_stop_code: Optional[str] = None
+    # The device boot start time. The value cannot be modified and is automatically populated when the device performs a reboot. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2022 would look like this: '2022-01-01T00:00:00Z'. Returned by default. Read-only.
+    start_time: Optional[datetime.datetime] = None
+    # The device total boot time in milliseconds. Supports: $select, $OrderBy. Read-only.
+    total_boot_time_in_ms: Optional[int] = None
+    # The device total login time in milliseconds. Supports: $select, $OrderBy. Read-only.
+    total_login_time_in_ms: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsDeviceStartupHistory:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UserExperienceAnalyticsDeviceStartupHistory
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsDeviceStartupHistory()
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The user experience analytics device id.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The user experience analytics device id.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
-    @property
-    def feature_update_boot_time_in_ms(self,) -> Optional[int]:
-        """
-        Gets the featureUpdateBootTimeInMs property value. The user experience analytics device feature update time in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._feature_update_boot_time_in_ms
-    
-    @feature_update_boot_time_in_ms.setter
-    def feature_update_boot_time_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the featureUpdateBootTimeInMs property value. The user experience analytics device feature update time in milliseconds.
-        Args:
-            value: Value to set for the feature_update_boot_time_in_ms property.
-        """
-        self._feature_update_boot_time_in_ms = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, user_experience_analytics_operating_system_restart_category
+        from .entity import Entity
+        from .user_experience_analytics_operating_system_restart_category import UserExperienceAnalyticsOperatingSystemRestartCategory
+
+        from .entity import Entity
+        from .user_experience_analytics_operating_system_restart_category import UserExperienceAnalyticsOperatingSystemRestartCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
             "coreBootTimeInMs": lambda n : setattr(self, 'core_boot_time_in_ms', n.get_int_value()),
@@ -150,7 +83,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
             "isFirstLogin": lambda n : setattr(self, 'is_first_login', n.get_bool_value()),
             "operatingSystemVersion": lambda n : setattr(self, 'operating_system_version', n.get_str_value()),
             "responsiveDesktopTimeInMs": lambda n : setattr(self, 'responsive_desktop_time_in_ms', n.get_int_value()),
-            "restartCategory": lambda n : setattr(self, 'restart_category', n.get_enum_value(user_experience_analytics_operating_system_restart_category.UserExperienceAnalyticsOperatingSystemRestartCategory)),
+            "restartCategory": lambda n : setattr(self, 'restart_category', n.get_enum_value(UserExperienceAnalyticsOperatingSystemRestartCategory)),
             "restartFaultBucket": lambda n : setattr(self, 'restart_fault_bucket', n.get_str_value()),
             "restartStopCode": lambda n : setattr(self, 'restart_stop_code', n.get_str_value()),
             "startTime": lambda n : setattr(self, 'start_time', n.get_datetime_value()),
@@ -161,167 +94,14 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def group_policy_boot_time_in_ms(self,) -> Optional[int]:
-        """
-        Gets the groupPolicyBootTimeInMs property value. The User experience analytics Device group policy boot time in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._group_policy_boot_time_in_ms
-    
-    @group_policy_boot_time_in_ms.setter
-    def group_policy_boot_time_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the groupPolicyBootTimeInMs property value. The User experience analytics Device group policy boot time in milliseconds.
-        Args:
-            value: Value to set for the group_policy_boot_time_in_ms property.
-        """
-        self._group_policy_boot_time_in_ms = value
-    
-    @property
-    def group_policy_login_time_in_ms(self,) -> Optional[int]:
-        """
-        Gets the groupPolicyLoginTimeInMs property value. The User experience analytics Device group policy login time in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._group_policy_login_time_in_ms
-    
-    @group_policy_login_time_in_ms.setter
-    def group_policy_login_time_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the groupPolicyLoginTimeInMs property value. The User experience analytics Device group policy login time in milliseconds.
-        Args:
-            value: Value to set for the group_policy_login_time_in_ms property.
-        """
-        self._group_policy_login_time_in_ms = value
-    
-    @property
-    def is_feature_update(self,) -> Optional[bool]:
-        """
-        Gets the isFeatureUpdate property value. The user experience analytics device boot record is a feature update.
-        Returns: Optional[bool]
-        """
-        return self._is_feature_update
-    
-    @is_feature_update.setter
-    def is_feature_update(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isFeatureUpdate property value. The user experience analytics device boot record is a feature update.
-        Args:
-            value: Value to set for the is_feature_update property.
-        """
-        self._is_feature_update = value
-    
-    @property
-    def is_first_login(self,) -> Optional[bool]:
-        """
-        Gets the isFirstLogin property value. The user experience analytics device first login.
-        Returns: Optional[bool]
-        """
-        return self._is_first_login
-    
-    @is_first_login.setter
-    def is_first_login(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isFirstLogin property value. The user experience analytics device first login.
-        Args:
-            value: Value to set for the is_first_login property.
-        """
-        self._is_first_login = value
-    
-    @property
-    def operating_system_version(self,) -> Optional[str]:
-        """
-        Gets the operatingSystemVersion property value. The user experience analytics device boot record's operating system version.
-        Returns: Optional[str]
-        """
-        return self._operating_system_version
-    
-    @operating_system_version.setter
-    def operating_system_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the operatingSystemVersion property value. The user experience analytics device boot record's operating system version.
-        Args:
-            value: Value to set for the operating_system_version property.
-        """
-        self._operating_system_version = value
-    
-    @property
-    def responsive_desktop_time_in_ms(self,) -> Optional[int]:
-        """
-        Gets the responsiveDesktopTimeInMs property value. The user experience analytics responsive desktop time in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._responsive_desktop_time_in_ms
-    
-    @responsive_desktop_time_in_ms.setter
-    def responsive_desktop_time_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the responsiveDesktopTimeInMs property value. The user experience analytics responsive desktop time in milliseconds.
-        Args:
-            value: Value to set for the responsive_desktop_time_in_ms property.
-        """
-        self._responsive_desktop_time_in_ms = value
-    
-    @property
-    def restart_category(self,) -> Optional[user_experience_analytics_operating_system_restart_category.UserExperienceAnalyticsOperatingSystemRestartCategory]:
-        """
-        Gets the restartCategory property value. Operating System restart category
-        Returns: Optional[user_experience_analytics_operating_system_restart_category.UserExperienceAnalyticsOperatingSystemRestartCategory]
-        """
-        return self._restart_category
-    
-    @restart_category.setter
-    def restart_category(self,value: Optional[user_experience_analytics_operating_system_restart_category.UserExperienceAnalyticsOperatingSystemRestartCategory] = None) -> None:
-        """
-        Sets the restartCategory property value. Operating System restart category
-        Args:
-            value: Value to set for the restart_category property.
-        """
-        self._restart_category = value
-    
-    @property
-    def restart_fault_bucket(self,) -> Optional[str]:
-        """
-        Gets the restartFaultBucket property value. OS restart fault bucket. The fault bucket is used to find additional information about a system crash.
-        Returns: Optional[str]
-        """
-        return self._restart_fault_bucket
-    
-    @restart_fault_bucket.setter
-    def restart_fault_bucket(self,value: Optional[str] = None) -> None:
-        """
-        Sets the restartFaultBucket property value. OS restart fault bucket. The fault bucket is used to find additional information about a system crash.
-        Args:
-            value: Value to set for the restart_fault_bucket property.
-        """
-        self._restart_fault_bucket = value
-    
-    @property
-    def restart_stop_code(self,) -> Optional[str]:
-        """
-        Gets the restartStopCode property value. OS restart stop code. This shows the bug check code which can be used to look up the blue screen reason.
-        Returns: Optional[str]
-        """
-        return self._restart_stop_code
-    
-    @restart_stop_code.setter
-    def restart_stop_code(self,value: Optional[str] = None) -> None:
-        """
-        Sets the restartStopCode property value. OS restart stop code. This shows the bug check code which can be used to look up the blue screen reason.
-        Args:
-            value: Value to set for the restart_stop_code property.
-        """
-        self._restart_stop_code = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("coreBootTimeInMs", self.core_boot_time_in_ms)
         writer.write_int_value("coreLoginTimeInMs", self.core_login_time_in_ms)
@@ -339,56 +119,5 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         writer.write_datetime_value("startTime", self.start_time)
         writer.write_int_value("totalBootTimeInMs", self.total_boot_time_in_ms)
         writer.write_int_value("totalLoginTimeInMs", self.total_login_time_in_ms)
-    
-    @property
-    def start_time(self,) -> Optional[datetime]:
-        """
-        Gets the startTime property value. The user experience analytics device boot start time.
-        Returns: Optional[datetime]
-        """
-        return self._start_time
-    
-    @start_time.setter
-    def start_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the startTime property value. The user experience analytics device boot start time.
-        Args:
-            value: Value to set for the start_time property.
-        """
-        self._start_time = value
-    
-    @property
-    def total_boot_time_in_ms(self,) -> Optional[int]:
-        """
-        Gets the totalBootTimeInMs property value. The user experience analytics device total boot time in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._total_boot_time_in_ms
-    
-    @total_boot_time_in_ms.setter
-    def total_boot_time_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalBootTimeInMs property value. The user experience analytics device total boot time in milliseconds.
-        Args:
-            value: Value to set for the total_boot_time_in_ms property.
-        """
-        self._total_boot_time_in_ms = value
-    
-    @property
-    def total_login_time_in_ms(self,) -> Optional[int]:
-        """
-        Gets the totalLoginTimeInMs property value. The user experience analytics device total login time in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._total_login_time_in_ms
-    
-    @total_login_time_in_ms.setter
-    def total_login_time_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalLoginTimeInMs property value. The user experience analytics device total login time in milliseconds.
-        Args:
-            value: Value to set for the total_login_time_in_ms property.
-        """
-        self._total_login_time_in_ms = value
     
 

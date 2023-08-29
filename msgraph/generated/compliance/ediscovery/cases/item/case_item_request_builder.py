@@ -1,121 +1,112 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.ediscovery import case
-    from .....models.o_data_errors import o_data_error
-    from .custodians import custodians_request_builder
-    from .legal_holds import legal_holds_request_builder
-    from .microsoft_graph_ediscovery_close import microsoft_graph_ediscovery_close_request_builder
-    from .microsoft_graph_ediscovery_reopen import microsoft_graph_ediscovery_reopen_request_builder
-    from .noncustodial_data_sources import noncustodial_data_sources_request_builder
-    from .operations import operations_request_builder
-    from .review_sets import review_sets_request_builder
-    from .settings import settings_request_builder
-    from .source_collections import source_collections_request_builder
-    from .tags import tags_request_builder
+    from .....models.ediscovery.case import Case
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .custodians.custodians_request_builder import CustodiansRequestBuilder
+    from .legal_holds.legal_holds_request_builder import LegalHoldsRequestBuilder
+    from .microsoft_graph_ediscovery_close.microsoft_graph_ediscovery_close_request_builder import MicrosoftGraphEdiscoveryCloseRequestBuilder
+    from .microsoft_graph_ediscovery_reopen.microsoft_graph_ediscovery_reopen_request_builder import MicrosoftGraphEdiscoveryReopenRequestBuilder
+    from .noncustodial_data_sources.noncustodial_data_sources_request_builder import NoncustodialDataSourcesRequestBuilder
+    from .operations.operations_request_builder import OperationsRequestBuilder
+    from .review_sets.review_sets_request_builder import ReviewSetsRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
+    from .source_collections.source_collections_request_builder import SourceCollectionsRequestBuilder
+    from .tags.tags_request_builder import TagsRequestBuilder
 
-class CaseItemRequestBuilder():
+class CaseItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the cases property of the microsoft.graph.ediscovery.ediscoveryroot entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new CaseItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/compliance/ediscovery/cases/{case%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/compliance/ediscovery/cases/{case%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[CaseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a case object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None) -> Optional[case.Case]:
+    async def get(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Case]:
         """
         Retrieve the properties and relationships of a case object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[case.Case]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Case]
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.ediscovery import case
+        from .....models.ediscovery.case import Case
 
-        return await self.request_adapter.send_async(request_info, case.Case, error_mapping)
+        return await self.request_adapter.send_async(request_info, Case, error_mapping)
     
-    async def patch(self,body: Optional[case.Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[case.Case]:
+    async def patch(self,body: Optional[Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Case]:
         """
         Update the properties of a case object.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[case.Case]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Case]
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-update?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.ediscovery import case
+        from .....models.ediscovery.case import Case
 
-        return await self.request_adapter.send_async(request_info, case.Case, error_mapping)
+        return await self.request_adapter.send_async(request_info, Case, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CaseItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a case object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -130,8 +121,7 @@ class CaseItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of a case object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -145,16 +135,15 @@ class CaseItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[case.Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a case object.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -167,106 +156,104 @@ class CaseItemRequestBuilder():
         return request_info
     
     @property
-    def custodians(self) -> custodians_request_builder.CustodiansRequestBuilder:
+    def custodians(self) -> CustodiansRequestBuilder:
         """
         Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
         """
-        from .custodians import custodians_request_builder
+        from .custodians.custodians_request_builder import CustodiansRequestBuilder
 
-        return custodians_request_builder.CustodiansRequestBuilder(self.request_adapter, self.path_parameters)
+        return CustodiansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def legal_holds(self) -> legal_holds_request_builder.LegalHoldsRequestBuilder:
+    def legal_holds(self) -> LegalHoldsRequestBuilder:
         """
         Provides operations to manage the legalHolds property of the microsoft.graph.ediscovery.case entity.
         """
-        from .legal_holds import legal_holds_request_builder
+        from .legal_holds.legal_holds_request_builder import LegalHoldsRequestBuilder
 
-        return legal_holds_request_builder.LegalHoldsRequestBuilder(self.request_adapter, self.path_parameters)
+        return LegalHoldsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_ediscovery_close(self) -> microsoft_graph_ediscovery_close_request_builder.MicrosoftGraphEdiscoveryCloseRequestBuilder:
+    def microsoft_graph_ediscovery_close(self) -> MicrosoftGraphEdiscoveryCloseRequestBuilder:
         """
         Provides operations to call the close method.
         """
-        from .microsoft_graph_ediscovery_close import microsoft_graph_ediscovery_close_request_builder
+        from .microsoft_graph_ediscovery_close.microsoft_graph_ediscovery_close_request_builder import MicrosoftGraphEdiscoveryCloseRequestBuilder
 
-        return microsoft_graph_ediscovery_close_request_builder.MicrosoftGraphEdiscoveryCloseRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphEdiscoveryCloseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_ediscovery_reopen(self) -> microsoft_graph_ediscovery_reopen_request_builder.MicrosoftGraphEdiscoveryReopenRequestBuilder:
+    def microsoft_graph_ediscovery_reopen(self) -> MicrosoftGraphEdiscoveryReopenRequestBuilder:
         """
         Provides operations to call the reopen method.
         """
-        from .microsoft_graph_ediscovery_reopen import microsoft_graph_ediscovery_reopen_request_builder
+        from .microsoft_graph_ediscovery_reopen.microsoft_graph_ediscovery_reopen_request_builder import MicrosoftGraphEdiscoveryReopenRequestBuilder
 
-        return microsoft_graph_ediscovery_reopen_request_builder.MicrosoftGraphEdiscoveryReopenRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphEdiscoveryReopenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def noncustodial_data_sources(self) -> noncustodial_data_sources_request_builder.NoncustodialDataSourcesRequestBuilder:
+    def noncustodial_data_sources(self) -> NoncustodialDataSourcesRequestBuilder:
         """
         Provides operations to manage the noncustodialDataSources property of the microsoft.graph.ediscovery.case entity.
         """
-        from .noncustodial_data_sources import noncustodial_data_sources_request_builder
+        from .noncustodial_data_sources.noncustodial_data_sources_request_builder import NoncustodialDataSourcesRequestBuilder
 
-        return noncustodial_data_sources_request_builder.NoncustodialDataSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return NoncustodialDataSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
+    def operations(self) -> OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
         """
-        from .operations import operations_request_builder
+        from .operations.operations_request_builder import OperationsRequestBuilder
 
-        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def review_sets(self) -> review_sets_request_builder.ReviewSetsRequestBuilder:
+    def review_sets(self) -> ReviewSetsRequestBuilder:
         """
         Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
         """
-        from .review_sets import review_sets_request_builder
+        from .review_sets.review_sets_request_builder import ReviewSetsRequestBuilder
 
-        return review_sets_request_builder.ReviewSetsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReviewSetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+    def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.ediscovery.case entity.
         """
-        from .settings import settings_request_builder
+        from .settings.settings_request_builder import SettingsRequestBuilder
 
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def source_collections(self) -> source_collections_request_builder.SourceCollectionsRequestBuilder:
+    def source_collections(self) -> SourceCollectionsRequestBuilder:
         """
         Provides operations to manage the sourceCollections property of the microsoft.graph.ediscovery.case entity.
         """
-        from .source_collections import source_collections_request_builder
+        from .source_collections.source_collections_request_builder import SourceCollectionsRequestBuilder
 
-        return source_collections_request_builder.SourceCollectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SourceCollectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tags(self) -> tags_request_builder.TagsRequestBuilder:
+    def tags(self) -> TagsRequestBuilder:
         """
         Provides operations to manage the tags property of the microsoft.graph.ediscovery.case entity.
         """
-        from .tags import tags_request_builder
+        from .tags.tags_request_builder import TagsRequestBuilder
 
-        return tags_request_builder.TagsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TagsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CaseItemRequestBuilderDeleteRequestConfiguration():
+    class CaseItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class CaseItemRequestBuilderGetQueryParameters():
@@ -276,12 +263,11 @@ class CaseItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -295,31 +281,27 @@ class CaseItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CaseItemRequestBuilderGetRequestConfiguration():
+    class CaseItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[CaseItemRequestBuilder.CaseItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class CaseItemRequestBuilderPatchRequestConfiguration():
+    class CaseItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

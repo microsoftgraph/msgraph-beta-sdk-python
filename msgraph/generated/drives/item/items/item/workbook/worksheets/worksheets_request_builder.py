@@ -1,110 +1,99 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import workbook_worksheet, workbook_worksheet_collection_response
-    from .......models.o_data_errors import o_data_error
-    from .add import add_request_builder
-    from .count import count_request_builder
-    from .item import workbook_worksheet_item_request_builder
+    from .......models.o_data_errors.o_data_error import ODataError
+    from .......models.workbook_worksheet import WorkbookWorksheet
+    from .......models.workbook_worksheet_collection_response import WorkbookWorksheetCollectionResponse
+    from .add.add_request_builder import AddRequestBuilder
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.workbook_worksheet_item_request_builder import WorkbookWorksheetItemRequestBuilder
 
-class WorksheetsRequestBuilder():
+class WorksheetsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the worksheets property of the microsoft.graph.workbook entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new WorksheetsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_workbook_worksheet_id(self,workbook_worksheet_id: str) -> workbook_worksheet_item_request_builder.WorkbookWorksheetItemRequestBuilder:
+    def by_workbook_worksheet_id(self,workbook_worksheet_id: str) -> WorkbookWorksheetItemRequestBuilder:
         """
         Provides operations to manage the worksheets property of the microsoft.graph.workbook entity.
-        Args:
-            workbook_worksheet_id: Unique identifier of the item
-        Returns: workbook_worksheet_item_request_builder.WorkbookWorksheetItemRequestBuilder
+        param workbook_worksheet_id: The unique identifier of workbookWorksheet
+        Returns: WorkbookWorksheetItemRequestBuilder
         """
-        if workbook_worksheet_id is None:
-            raise Exception("workbook_worksheet_id cannot be undefined")
-        from .item import workbook_worksheet_item_request_builder
+        if not workbook_worksheet_id:
+            raise TypeError("workbook_worksheet_id cannot be null.")
+        from .item.workbook_worksheet_item_request_builder import WorkbookWorksheetItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["workbookWorksheet%2Did"] = workbook_worksheet_id
-        return workbook_worksheet_item_request_builder.WorkbookWorksheetItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WorkbookWorksheetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WorksheetsRequestBuilderGetRequestConfiguration] = None) -> Optional[workbook_worksheet_collection_response.WorkbookWorksheetCollectionResponse]:
+    async def get(self,request_configuration: Optional[WorksheetsRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookWorksheetCollectionResponse]:
         """
         Retrieve a list of worksheet objects.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_worksheet_collection_response.WorkbookWorksheetCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WorkbookWorksheetCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/worksheet-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import workbook_worksheet_collection_response
+        from .......models.workbook_worksheet_collection_response import WorkbookWorksheetCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, workbook_worksheet_collection_response.WorkbookWorksheetCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookWorksheetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[workbook_worksheet.WorkbookWorksheet] = None, request_configuration: Optional[WorksheetsRequestBuilderPostRequestConfiguration] = None) -> Optional[workbook_worksheet.WorkbookWorksheet]:
+    async def post(self,body: Optional[WorkbookWorksheet] = None, request_configuration: Optional[WorksheetsRequestBuilderPostRequestConfiguration] = None) -> Optional[WorkbookWorksheet]:
         """
         Create new navigation property to worksheets for drives
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[workbook_worksheet.WorkbookWorksheet]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WorkbookWorksheet]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors import o_data_error
+        from .......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models import workbook_worksheet
+        from .......models.workbook_worksheet import WorkbookWorksheet
 
-        return await self.request_adapter.send_async(request_info, workbook_worksheet.WorkbookWorksheet, error_mapping)
+        return await self.request_adapter.send_async(request_info, WorkbookWorksheet, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WorksheetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of worksheet objects.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -118,16 +107,15 @@ class WorksheetsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[workbook_worksheet.WorkbookWorksheet] = None, request_configuration: Optional[WorksheetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WorkbookWorksheet] = None, request_configuration: Optional[WorksheetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to worksheets for drives
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -140,22 +128,22 @@ class WorksheetsRequestBuilder():
         return request_info
     
     @property
-    def add(self) -> add_request_builder.AddRequestBuilder:
+    def add(self) -> AddRequestBuilder:
         """
         Provides operations to call the add method.
         """
-        from .add import add_request_builder
+        from .add.add_request_builder import AddRequestBuilder
 
-        return add_request_builder.AddRequestBuilder(self.request_adapter, self.path_parameters)
+        return AddRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WorksheetsRequestBuilderGetQueryParameters():
@@ -165,12 +153,11 @@ class WorksheetsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -214,31 +201,27 @@ class WorksheetsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WorksheetsRequestBuilderGetRequestConfiguration():
+    class WorksheetsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[WorksheetsRequestBuilder.WorksheetsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WorksheetsRequestBuilderPostRequestConfiguration():
+    class WorksheetsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

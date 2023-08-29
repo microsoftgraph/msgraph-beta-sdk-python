@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WatermarkLayout(Enum):
+class WatermarkLayout(str, Enum):
     Horizontal = "horizontal",
     Diagonal = "diagonal",
 

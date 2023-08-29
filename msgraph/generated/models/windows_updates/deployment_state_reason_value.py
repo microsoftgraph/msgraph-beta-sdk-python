@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeploymentStateReasonValue(Enum):
+class DeploymentStateReasonValue(str, Enum):
     ScheduledByOfferWindow = "scheduledByOfferWindow",
     OfferingByRequest = "offeringByRequest",
     PausedByRequest = "pausedByRequest",

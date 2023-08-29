@@ -1,119 +1,107 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import android_managed_store_account_enterprise_settings
-    from ...models.o_data_errors import o_data_error
-    from .add_apps import add_apps_request_builder
-    from .approve_apps import approve_apps_request_builder
-    from .complete_signup import complete_signup_request_builder
-    from .create_google_play_web_token import create_google_play_web_token_request_builder
-    from .request_signup_url import request_signup_url_request_builder
-    from .set_android_device_owner_fully_managed_enrollment_state import set_android_device_owner_fully_managed_enrollment_state_request_builder
-    from .sync_apps import sync_apps_request_builder
-    from .unbind import unbind_request_builder
+    from ...models.android_managed_store_account_enterprise_settings import AndroidManagedStoreAccountEnterpriseSettings
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .add_apps.add_apps_request_builder import AddAppsRequestBuilder
+    from .approve_apps.approve_apps_request_builder import ApproveAppsRequestBuilder
+    from .complete_signup.complete_signup_request_builder import CompleteSignupRequestBuilder
+    from .create_google_play_web_token.create_google_play_web_token_request_builder import CreateGooglePlayWebTokenRequestBuilder
+    from .request_signup_url.request_signup_url_request_builder import RequestSignupUrlRequestBuilder
+    from .set_android_device_owner_fully_managed_enrollment_state.set_android_device_owner_fully_managed_enrollment_state_request_builder import SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder
+    from .sync_apps.sync_apps_request_builder import SyncAppsRequestBuilder
+    from .unbind.unbind_request_builder import UnbindRequestBuilder
 
-class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
+class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the androidManagedStoreAccountEnterpriseSettings property of the microsoft.graph.deviceManagement entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/androidManagedStoreAccountEnterpriseSettings{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/androidManagedStoreAccountEnterpriseSettings{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property androidManagedStoreAccountEnterpriseSettings for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
+    async def get(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[AndroidManagedStoreAccountEnterpriseSettings]:
         """
         The singleton Android managed store account enterprise settings entity.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AndroidManagedStoreAccountEnterpriseSettings]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import android_managed_store_account_enterprise_settings
+        from ...models.android_managed_store_account_enterprise_settings import AndroidManagedStoreAccountEnterpriseSettings
 
-        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
     
-    async def patch(self,body: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
+    async def patch(self,body: Optional[AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[AndroidManagedStoreAccountEnterpriseSettings]:
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AndroidManagedStoreAccountEnterpriseSettings]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import android_managed_store_account_enterprise_settings
+        from ...models.android_managed_store_account_enterprise_settings import AndroidManagedStoreAccountEnterpriseSettings
 
-        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property androidManagedStoreAccountEnterpriseSettings for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -128,8 +116,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The singleton Android managed store account enterprise settings entity.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -143,16 +130,15 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -165,88 +151,86 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         return request_info
     
     @property
-    def add_apps(self) -> add_apps_request_builder.AddAppsRequestBuilder:
+    def add_apps(self) -> AddAppsRequestBuilder:
         """
         Provides operations to call the addApps method.
         """
-        from .add_apps import add_apps_request_builder
+        from .add_apps.add_apps_request_builder import AddAppsRequestBuilder
 
-        return add_apps_request_builder.AddAppsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AddAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def approve_apps(self) -> approve_apps_request_builder.ApproveAppsRequestBuilder:
+    def approve_apps(self) -> ApproveAppsRequestBuilder:
         """
         Provides operations to call the approveApps method.
         """
-        from .approve_apps import approve_apps_request_builder
+        from .approve_apps.approve_apps_request_builder import ApproveAppsRequestBuilder
 
-        return approve_apps_request_builder.ApproveAppsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApproveAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def complete_signup(self) -> complete_signup_request_builder.CompleteSignupRequestBuilder:
+    def complete_signup(self) -> CompleteSignupRequestBuilder:
         """
         Provides operations to call the completeSignup method.
         """
-        from .complete_signup import complete_signup_request_builder
+        from .complete_signup.complete_signup_request_builder import CompleteSignupRequestBuilder
 
-        return complete_signup_request_builder.CompleteSignupRequestBuilder(self.request_adapter, self.path_parameters)
+        return CompleteSignupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_google_play_web_token(self) -> create_google_play_web_token_request_builder.CreateGooglePlayWebTokenRequestBuilder:
+    def create_google_play_web_token(self) -> CreateGooglePlayWebTokenRequestBuilder:
         """
         Provides operations to call the createGooglePlayWebToken method.
         """
-        from .create_google_play_web_token import create_google_play_web_token_request_builder
+        from .create_google_play_web_token.create_google_play_web_token_request_builder import CreateGooglePlayWebTokenRequestBuilder
 
-        return create_google_play_web_token_request_builder.CreateGooglePlayWebTokenRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreateGooglePlayWebTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def request_signup_url(self) -> request_signup_url_request_builder.RequestSignupUrlRequestBuilder:
+    def request_signup_url(self) -> RequestSignupUrlRequestBuilder:
         """
         Provides operations to call the requestSignupUrl method.
         """
-        from .request_signup_url import request_signup_url_request_builder
+        from .request_signup_url.request_signup_url_request_builder import RequestSignupUrlRequestBuilder
 
-        return request_signup_url_request_builder.RequestSignupUrlRequestBuilder(self.request_adapter, self.path_parameters)
+        return RequestSignupUrlRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_android_device_owner_fully_managed_enrollment_state(self) -> set_android_device_owner_fully_managed_enrollment_state_request_builder.SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder:
+    def set_android_device_owner_fully_managed_enrollment_state(self) -> SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder:
         """
         Provides operations to call the setAndroidDeviceOwnerFullyManagedEnrollmentState method.
         """
-        from .set_android_device_owner_fully_managed_enrollment_state import set_android_device_owner_fully_managed_enrollment_state_request_builder
+        from .set_android_device_owner_fully_managed_enrollment_state.set_android_device_owner_fully_managed_enrollment_state_request_builder import SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder
 
-        return set_android_device_owner_fully_managed_enrollment_state_request_builder.SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sync_apps(self) -> sync_apps_request_builder.SyncAppsRequestBuilder:
+    def sync_apps(self) -> SyncAppsRequestBuilder:
         """
         Provides operations to call the syncApps method.
         """
-        from .sync_apps import sync_apps_request_builder
+        from .sync_apps.sync_apps_request_builder import SyncAppsRequestBuilder
 
-        return sync_apps_request_builder.SyncAppsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SyncAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unbind(self) -> unbind_request_builder.UnbindRequestBuilder:
+    def unbind(self) -> UnbindRequestBuilder:
         """
         Provides operations to call the unbind method.
         """
-        from .unbind import unbind_request_builder
+        from .unbind.unbind_request_builder import UnbindRequestBuilder
 
-        return unbind_request_builder.UnbindRequestBuilder(self.request_adapter, self.path_parameters)
+        return UnbindRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration():
+    class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetQueryParameters():
@@ -256,12 +240,11 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -275,31 +258,27 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration():
+    class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder.AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration():
+    class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

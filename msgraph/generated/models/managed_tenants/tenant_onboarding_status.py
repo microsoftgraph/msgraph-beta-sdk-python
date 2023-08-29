@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TenantOnboardingStatus(Enum):
+class TenantOnboardingStatus(str, Enum):
     Ineligible = "ineligible",
     InProcess = "inProcess",
     Active = "active",

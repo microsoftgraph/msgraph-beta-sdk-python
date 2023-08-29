@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsAppStartLayoutTileSize(Enum):
+class WindowsAppStartLayoutTileSize(str, Enum):
     # Hidden.
     Hidden = "hidden",
     # Small 1x1.

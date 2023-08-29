@@ -1,112 +1,100 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import internet_explorer_mode
-    from ....models.o_data_errors import o_data_error
-    from .site_lists import site_lists_request_builder
+    from ....models.internet_explorer_mode import InternetExplorerMode
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .site_lists.site_lists_request_builder import SiteListsRequestBuilder
 
-class InternetExplorerModeRequestBuilder():
+class InternetExplorerModeRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the internetExplorerMode property of the microsoft.graph.edge entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new InternetExplorerModeRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/admin/edge/internetExplorerMode{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/admin/edge/internetExplorerMode{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[InternetExplorerModeRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property internetExplorerMode for admin
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[InternetExplorerModeRequestBuilderGetRequestConfiguration] = None) -> Optional[internet_explorer_mode.InternetExplorerMode]:
+    async def get(self,request_configuration: Optional[InternetExplorerModeRequestBuilderGetRequestConfiguration] = None) -> Optional[InternetExplorerMode]:
         """
         A container for Internet Explorer mode resources.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[internet_explorer_mode.InternetExplorerMode]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[InternetExplorerMode]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import internet_explorer_mode
+        from ....models.internet_explorer_mode import InternetExplorerMode
 
-        return await self.request_adapter.send_async(request_info, internet_explorer_mode.InternetExplorerMode, error_mapping)
+        return await self.request_adapter.send_async(request_info, InternetExplorerMode, error_mapping)
     
-    async def patch(self,body: Optional[internet_explorer_mode.InternetExplorerMode] = None, request_configuration: Optional[InternetExplorerModeRequestBuilderPatchRequestConfiguration] = None) -> Optional[internet_explorer_mode.InternetExplorerMode]:
+    async def patch(self,body: Optional[InternetExplorerMode] = None, request_configuration: Optional[InternetExplorerModeRequestBuilderPatchRequestConfiguration] = None) -> Optional[InternetExplorerMode]:
         """
         Update the navigation property internetExplorerMode in admin
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[internet_explorer_mode.InternetExplorerMode]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[InternetExplorerMode]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import internet_explorer_mode
+        from ....models.internet_explorer_mode import InternetExplorerMode
 
-        return await self.request_adapter.send_async(request_info, internet_explorer_mode.InternetExplorerMode, error_mapping)
+        return await self.request_adapter.send_async(request_info, InternetExplorerMode, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[InternetExplorerModeRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property internetExplorerMode for admin
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -121,8 +109,7 @@ class InternetExplorerModeRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[InternetExplorerModeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A container for Internet Explorer mode resources.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -136,16 +123,15 @@ class InternetExplorerModeRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[internet_explorer_mode.InternetExplorerMode] = None, request_configuration: Optional[InternetExplorerModeRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[InternetExplorerMode] = None, request_configuration: Optional[InternetExplorerModeRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property internetExplorerMode in admin
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,25 +144,23 @@ class InternetExplorerModeRequestBuilder():
         return request_info
     
     @property
-    def site_lists(self) -> site_lists_request_builder.SiteListsRequestBuilder:
+    def site_lists(self) -> SiteListsRequestBuilder:
         """
         Provides operations to manage the siteLists property of the microsoft.graph.internetExplorerMode entity.
         """
-        from .site_lists import site_lists_request_builder
+        from .site_lists.site_lists_request_builder import SiteListsRequestBuilder
 
-        return site_lists_request_builder.SiteListsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SiteListsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class InternetExplorerModeRequestBuilderDeleteRequestConfiguration():
+    class InternetExplorerModeRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class InternetExplorerModeRequestBuilderGetQueryParameters():
@@ -186,12 +170,11 @@ class InternetExplorerModeRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -205,31 +188,27 @@ class InternetExplorerModeRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class InternetExplorerModeRequestBuilderGetRequestConfiguration():
+    class InternetExplorerModeRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[InternetExplorerModeRequestBuilder.InternetExplorerModeRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class InternetExplorerModeRequestBuilderPatchRequestConfiguration():
+    class InternetExplorerModeRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

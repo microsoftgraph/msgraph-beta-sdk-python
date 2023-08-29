@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PerfectForwardSecrecyGroup(Enum):
+class PerfectForwardSecrecyGroup(str, Enum):
     # PFS1
     Pfs1 = "pfs1",
     # PFS2

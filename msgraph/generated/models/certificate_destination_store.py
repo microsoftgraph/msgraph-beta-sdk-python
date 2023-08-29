@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CertificateDestinationStore(Enum):
+class CertificateDestinationStore(str, Enum):
     # Computer Certificate Store - Root.
     ComputerCertStoreRoot = "computerCertStoreRoot",
     # Computer Certificate Store - Intermediate.

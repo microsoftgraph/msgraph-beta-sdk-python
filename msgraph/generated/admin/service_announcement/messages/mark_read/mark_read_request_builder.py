@@ -1,75 +1,66 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import mark_read_post_request_body, mark_read_response
-    from .....models.o_data_errors import o_data_error
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .mark_read_post_request_body import MarkReadPostRequestBody
+    from .mark_read_response import MarkReadResponse
 
-class MarkReadRequestBuilder():
+class MarkReadRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the markRead method.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new MarkReadRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/admin/serviceAnnouncement/messages/markRead"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/admin/serviceAnnouncement/messages/markRead", path_parameters)
     
-    async def post(self,body: Optional[mark_read_post_request_body.MarkReadPostRequestBody] = None, request_configuration: Optional[MarkReadRequestBuilderPostRequestConfiguration] = None) -> Optional[mark_read_response.MarkReadResponse]:
+    async def post(self,body: Optional[MarkReadPostRequestBody] = None, request_configuration: Optional[MarkReadRequestBuilderPostRequestConfiguration] = None) -> Optional[MarkReadResponse]:
         """
-        Mark a list of serviceUpdateMessages as **read** for the signed in user.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mark_read_response.MarkReadResponse]
+        Mark a list of serviceUpdateMessages as read for the signed in user.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[MarkReadResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceupdatemessage-markread?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from . import mark_read_response
+        from .mark_read_response import MarkReadResponse
 
-        return await self.request_adapter.send_async(request_info, mark_read_response.MarkReadResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, MarkReadResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[mark_read_post_request_body.MarkReadPostRequestBody] = None, request_configuration: Optional[MarkReadRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MarkReadPostRequestBody] = None, request_configuration: Optional[MarkReadRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Mark a list of serviceUpdateMessages as **read** for the signed in user.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Mark a list of serviceUpdateMessages as read for the signed in user.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -81,16 +72,14 @@ class MarkReadRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MarkReadRequestBuilderPostRequestConfiguration():
+    class MarkReadRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

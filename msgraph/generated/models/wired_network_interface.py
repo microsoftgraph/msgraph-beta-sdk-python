@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WiredNetworkInterface(Enum):
+class WiredNetworkInterface(str, Enum):
     # Any Ethernet.
     AnyEthernet = "anyEthernet",
     # First active Ethernet.

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DiscoverySource(Enum):
+class DiscoverySource(str, Enum):
     # DiscoverySource is Unknown.
     Unknown = "unknown",
     # Device is imported by admin.

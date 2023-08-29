@@ -1,120 +1,109 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import shared_drive_item
-    from ...models.o_data_errors import o_data_error
-    from .created_by_user import created_by_user_request_builder
-    from .drive_item import drive_item_request_builder
-    from .items import items_request_builder
-    from .last_modified_by_user import last_modified_by_user_request_builder
-    from .list import list_request_builder
-    from .list_item import list_item_request_builder
-    from .permission import permission_request_builder
-    from .root import root_request_builder
-    from .site import site_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.shared_drive_item import SharedDriveItem
+    from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
+    from .drive_item.drive_item_request_builder import DriveItemRequestBuilder
+    from .items.items_request_builder import ItemsRequestBuilder
+    from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
+    from .list_item.list_item_request_builder import ListItemRequestBuilder
+    from .list_.list_request_builder import ListRequestBuilder
+    from .permission.permission_request_builder import PermissionRequestBuilder
+    from .root.root_request_builder import RootRequestBuilder
+    from .site.site_request_builder import SiteRequestBuilder
 
-class SharedDriveItemItemRequestBuilder():
+class SharedDriveItemItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of sharedDriveItem entities.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SharedDriveItemItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/shares/{sharedDriveItem%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/shares/{sharedDriveItem%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[SharedDriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from shares
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SharedDriveItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[shared_drive_item.SharedDriveItem]:
+    async def get(self,request_configuration: Optional[SharedDriveItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SharedDriveItem]:
         """
-        Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[shared_drive_item.SharedDriveItem]
+        Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SharedDriveItem]
+        Find more info here: https://learn.microsoft.com/graph/api/shares-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import shared_drive_item
+        from ...models.shared_drive_item import SharedDriveItem
 
-        return await self.request_adapter.send_async(request_info, shared_drive_item.SharedDriveItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, SharedDriveItem, error_mapping)
     
-    async def patch(self,body: Optional[shared_drive_item.SharedDriveItem] = None, request_configuration: Optional[SharedDriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[shared_drive_item.SharedDriveItem]:
+    async def patch(self,body: Optional[SharedDriveItem] = None, request_configuration: Optional[SharedDriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SharedDriveItem]:
         """
         Update entity in shares
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[shared_drive_item.SharedDriveItem]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SharedDriveItem]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import shared_drive_item
+        from ...models.shared_drive_item import SharedDriveItem
 
-        return await self.request_adapter.send_async(request_info, shared_drive_item.SharedDriveItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, SharedDriveItem, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SharedDriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete entity from shares
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -128,9 +117,8 @@ class SharedDriveItemItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SharedDriveItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -144,16 +132,15 @@ class SharedDriveItemItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[shared_drive_item.SharedDriveItem] = None, request_configuration: Optional[SharedDriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SharedDriveItem] = None, request_configuration: Optional[SharedDriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update entity in shares
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -166,112 +153,109 @@ class SharedDriveItemItemRequestBuilder():
         return request_info
     
     @property
-    def created_by_user(self) -> created_by_user_request_builder.CreatedByUserRequestBuilder:
+    def created_by_user(self) -> CreatedByUserRequestBuilder:
         """
         Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         """
-        from .created_by_user import created_by_user_request_builder
+        from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
 
-        return created_by_user_request_builder.CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def drive_item(self) -> drive_item_request_builder.DriveItemRequestBuilder:
+    def drive_item(self) -> DriveItemRequestBuilder:
         """
         Provides operations to manage the driveItem property of the microsoft.graph.sharedDriveItem entity.
         """
-        from .drive_item import drive_item_request_builder
+        from .drive_item.drive_item_request_builder import DriveItemRequestBuilder
 
-        return drive_item_request_builder.DriveItemRequestBuilder(self.request_adapter, self.path_parameters)
+        return DriveItemRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def items(self) -> items_request_builder.ItemsRequestBuilder:
+    def items(self) -> ItemsRequestBuilder:
         """
         Provides operations to manage the items property of the microsoft.graph.sharedDriveItem entity.
         """
-        from .items import items_request_builder
+        from .items.items_request_builder import ItemsRequestBuilder
 
-        return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def last_modified_by_user(self) -> last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder:
+    def last_modified_by_user(self) -> LastModifiedByUserRequestBuilder:
         """
         Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         """
-        from .last_modified_by_user import last_modified_by_user_request_builder
+        from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
 
-        return last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def list(self) -> list_request_builder.ListRequestBuilder:
+    def list_(self) -> ListRequestBuilder:
         """
         Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.
         """
-        from .list import list_request_builder
+        from .list_.list_request_builder import ListRequestBuilder
 
-        return list_request_builder.ListRequestBuilder(self.request_adapter, self.path_parameters)
+        return ListRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def list_item(self) -> list_item_request_builder.ListItemRequestBuilder:
+    def list_item(self) -> ListItemRequestBuilder:
         """
         Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.
         """
-        from .list_item import list_item_request_builder
+        from .list_item.list_item_request_builder import ListItemRequestBuilder
 
-        return list_item_request_builder.ListItemRequestBuilder(self.request_adapter, self.path_parameters)
+        return ListItemRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def permission(self) -> permission_request_builder.PermissionRequestBuilder:
+    def permission(self) -> PermissionRequestBuilder:
         """
         Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.
         """
-        from .permission import permission_request_builder
+        from .permission.permission_request_builder import PermissionRequestBuilder
 
-        return permission_request_builder.PermissionRequestBuilder(self.request_adapter, self.path_parameters)
+        return PermissionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def root(self) -> root_request_builder.RootRequestBuilder:
+    def root(self) -> RootRequestBuilder:
         """
         Provides operations to manage the root property of the microsoft.graph.sharedDriveItem entity.
         """
-        from .root import root_request_builder
+        from .root.root_request_builder import RootRequestBuilder
 
-        return root_request_builder.RootRequestBuilder(self.request_adapter, self.path_parameters)
+        return RootRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def site(self) -> site_request_builder.SiteRequestBuilder:
+    def site(self) -> SiteRequestBuilder:
         """
         Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.
         """
-        from .site import site_request_builder
+        from .site.site_request_builder import SiteRequestBuilder
 
-        return site_request_builder.SiteRequestBuilder(self.request_adapter, self.path_parameters)
+        return SiteRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SharedDriveItemItemRequestBuilderDeleteRequestConfiguration():
+    class SharedDriveItemItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class SharedDriveItemItemRequestBuilderGetQueryParameters():
         """
-        Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
+        Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -285,31 +269,27 @@ class SharedDriveItemItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SharedDriveItemItemRequestBuilderGetRequestConfiguration():
+    class SharedDriveItemItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SharedDriveItemItemRequestBuilder.SharedDriveItemItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SharedDriveItemItemRequestBuilderPatchRequestConfiguration():
+    class SharedDriveItemItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

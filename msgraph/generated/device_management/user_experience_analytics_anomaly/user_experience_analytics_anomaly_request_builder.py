@@ -1,109 +1,97 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models import user_experience_analytics_anomaly, user_experience_analytics_anomaly_collection_response
-    from ...models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import user_experience_analytics_anomaly_item_request_builder
+    from ...models.o_data_errors.o_data_error import ODataError
+    from ...models.user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
+    from ...models.user_experience_analytics_anomaly_collection_response import UserExperienceAnalyticsAnomalyCollectionResponse
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.user_experience_analytics_anomaly_item_request_builder import UserExperienceAnalyticsAnomalyItemRequestBuilder
 
-class UserExperienceAnalyticsAnomalyRequestBuilder():
+class UserExperienceAnalyticsAnomalyRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the userExperienceAnalyticsAnomaly property of the microsoft.graph.deviceManagement entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new UserExperienceAnalyticsAnomalyRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/userExperienceAnalyticsAnomaly{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsAnomaly{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_user_experience_analytics_anomaly_id(self,user_experience_analytics_anomaly_id: str) -> user_experience_analytics_anomaly_item_request_builder.UserExperienceAnalyticsAnomalyItemRequestBuilder:
+    def by_user_experience_analytics_anomaly_id(self,user_experience_analytics_anomaly_id: str) -> UserExperienceAnalyticsAnomalyItemRequestBuilder:
         """
         Provides operations to manage the userExperienceAnalyticsAnomaly property of the microsoft.graph.deviceManagement entity.
-        Args:
-            user_experience_analytics_anomaly_id: Unique identifier of the item
-        Returns: user_experience_analytics_anomaly_item_request_builder.UserExperienceAnalyticsAnomalyItemRequestBuilder
+        param user_experience_analytics_anomaly_id: The unique identifier of userExperienceAnalyticsAnomaly
+        Returns: UserExperienceAnalyticsAnomalyItemRequestBuilder
         """
-        if user_experience_analytics_anomaly_id is None:
-            raise Exception("user_experience_analytics_anomaly_id cannot be undefined")
-        from .item import user_experience_analytics_anomaly_item_request_builder
+        if not user_experience_analytics_anomaly_id:
+            raise TypeError("user_experience_analytics_anomaly_id cannot be null.")
+        from .item.user_experience_analytics_anomaly_item_request_builder import UserExperienceAnalyticsAnomalyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userExperienceAnalyticsAnomaly%2Did"] = user_experience_analytics_anomaly_id
-        return user_experience_analytics_anomaly_item_request_builder.UserExperienceAnalyticsAnomalyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return UserExperienceAnalyticsAnomalyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_anomaly_collection_response.UserExperienceAnalyticsAnomalyCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomalyCollectionResponse]:
         """
         The user experience analytics anomaly entity contains anomaly details.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_experience_analytics_anomaly_collection_response.UserExperienceAnalyticsAnomalyCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UserExperienceAnalyticsAnomalyCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import user_experience_analytics_anomaly_collection_response
+        from ...models.user_experience_analytics_anomaly_collection_response import UserExperienceAnalyticsAnomalyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_anomaly_collection_response.UserExperienceAnalyticsAnomalyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsAnomalyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly]:
+    async def post(self,body: Optional[UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomaly]:
         """
         Create new navigation property to userExperienceAnalyticsAnomaly for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UserExperienceAnalyticsAnomaly]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models import user_experience_analytics_anomaly
+        from ...models.user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsAnomaly, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The user experience analytics anomaly entity contains anomaly details.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +105,15 @@ class UserExperienceAnalyticsAnomalyRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to userExperienceAnalyticsAnomaly for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,13 +126,13 @@ class UserExperienceAnalyticsAnomalyRequestBuilder():
         return request_info
     
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UserExperienceAnalyticsAnomalyRequestBuilderGetQueryParameters():
@@ -155,12 +142,11 @@ class UserExperienceAnalyticsAnomalyRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +190,27 @@ class UserExperienceAnalyticsAnomalyRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration():
+    class UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[UserExperienceAnalyticsAnomalyRequestBuilder.UserExperienceAnalyticsAnomalyRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration():
+    class UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

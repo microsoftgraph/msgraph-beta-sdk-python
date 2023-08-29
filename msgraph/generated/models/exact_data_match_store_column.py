@@ -1,53 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ExactDataMatchStoreColumn(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new exactDataMatchStoreColumn and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The ignoredDelimiters property
-        self._ignored_delimiters: Optional[List[str]] = None
-        # The isCaseInsensitive property
-        self._is_case_insensitive: Optional[bool] = None
-        # The isSearchable property
-        self._is_searchable: Optional[bool] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The ignoredDelimiters property
+    ignored_delimiters: Optional[List[str]] = None
+    # The isCaseInsensitive property
+    is_case_insensitive: Optional[bool] = None
+    # The isSearchable property
+    is_searchable: Optional[bool] = None
+    # The name property
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactDataMatchStoreColumn:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ExactDataMatchStoreColumn
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ExactDataMatchStoreColumn()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -64,99 +44,14 @@ class ExactDataMatchStoreColumn(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def ignored_delimiters(self,) -> Optional[List[str]]:
-        """
-        Gets the ignoredDelimiters property value. The ignoredDelimiters property
-        Returns: Optional[List[str]]
-        """
-        return self._ignored_delimiters
-    
-    @ignored_delimiters.setter
-    def ignored_delimiters(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the ignoredDelimiters property value. The ignoredDelimiters property
-        Args:
-            value: Value to set for the ignored_delimiters property.
-        """
-        self._ignored_delimiters = value
-    
-    @property
-    def is_case_insensitive(self,) -> Optional[bool]:
-        """
-        Gets the isCaseInsensitive property value. The isCaseInsensitive property
-        Returns: Optional[bool]
-        """
-        return self._is_case_insensitive
-    
-    @is_case_insensitive.setter
-    def is_case_insensitive(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isCaseInsensitive property value. The isCaseInsensitive property
-        Args:
-            value: Value to set for the is_case_insensitive property.
-        """
-        self._is_case_insensitive = value
-    
-    @property
-    def is_searchable(self,) -> Optional[bool]:
-        """
-        Gets the isSearchable property value. The isSearchable property
-        Returns: Optional[bool]
-        """
-        return self._is_searchable
-    
-    @is_searchable.setter
-    def is_searchable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isSearchable property value. The isSearchable property
-        Args:
-            value: Value to set for the is_searchable property.
-        """
-        self._is_searchable = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name property
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name property
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("ignoredDelimiters", self.ignored_delimiters)
         writer.write_bool_value("isCaseInsensitive", self.is_case_insensitive)
         writer.write_bool_value("isSearchable", self.is_searchable)

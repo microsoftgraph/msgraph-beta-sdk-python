@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementAutopilotPolicyComplianceStatus(Enum):
+class DeviceManagementAutopilotPolicyComplianceStatus(str, Enum):
     Unknown = "unknown",
     Compliant = "compliant",
     Installed = "installed",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnAuthenticationMethod(Enum):
+class VpnAuthenticationMethod(str, Enum):
     # Authenticate with a certificate.
     Certificate = "certificate",
     # Use username and password for authentication.

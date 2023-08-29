@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RetentionTrigger(Enum):
+class RetentionTrigger(str, Enum):
     DateLabeled = "dateLabeled",
     DateCreated = "dateCreated",
     DateModified = "dateModified",

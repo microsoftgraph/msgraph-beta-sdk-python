@@ -1,6 +1,6 @@
 from enum import Enum
 
-class GroupPolicyUploadedDefinitionFileStatus(Enum):
+class GroupPolicyUploadedDefinitionFileStatus(str, Enum):
     # Group Policy uploaded definition file invalid upload status.
     None_ = "none",
     # Group Policy uploaded definition file upload in progress.

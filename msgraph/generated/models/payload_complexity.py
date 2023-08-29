@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PayloadComplexity(Enum):
+class PayloadComplexity(str, Enum):
     Unknown = "unknown",
     Low = "low",
     Medium = "medium",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSPriority(Enum):
+class MacOSPriority(str, Enum):
     # Indicates low scheduling priority for downloading and preparing the requested update
     Low = "low",
     # Indicates high scheduling priority for downloading and preparing the requested update

@@ -1,130 +1,59 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ExcludedApps(AdditionalDataHolder, Parsable):
     """
     Contains properties for Excluded Office365 Apps.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new excludedApps and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The value for if MS Office Access should be excluded or not.
-        self._access: Optional[bool] = None
-        # The value for if Microsoft Search as default should be excluded or not.
-        self._bing: Optional[bool] = None
-        # The value for if MS Office Excel should be excluded or not.
-        self._excel: Optional[bool] = None
-        # The value for if MS Office OneDrive for Business - Groove should be excluded or not.
-        self._groove: Optional[bool] = None
-        # The value for if MS Office InfoPath should be excluded or not.
-        self._info_path: Optional[bool] = None
-        # The value for if MS Office Skype for Business - Lync should be excluded or not.
-        self._lync: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The value for if MS Office OneDrive should be excluded or not.
-        self._one_drive: Optional[bool] = None
-        # The value for if MS Office OneNote should be excluded or not.
-        self._one_note: Optional[bool] = None
-        # The value for if MS Office Outlook should be excluded or not.
-        self._outlook: Optional[bool] = None
-        # The value for if MS Office PowerPoint should be excluded or not.
-        self._power_point: Optional[bool] = None
-        # The value for if MS Office Publisher should be excluded or not.
-        self._publisher: Optional[bool] = None
-        # The value for if MS Office SharePointDesigner should be excluded or not.
-        self._share_point_designer: Optional[bool] = None
-        # The value for if MS Office Teams should be excluded or not.
-        self._teams: Optional[bool] = None
-        # The value for if MS Office Visio should be excluded or not.
-        self._visio: Optional[bool] = None
-        # The value for if MS Office Word should be excluded or not.
-        self._word: Optional[bool] = None
-    
-    @property
-    def access(self,) -> Optional[bool]:
-        """
-        Gets the access property value. The value for if MS Office Access should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._access
-    
-    @access.setter
-    def access(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the access property value. The value for if MS Office Access should be excluded or not.
-        Args:
-            value: Value to set for the access property.
-        """
-        self._access = value
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def bing(self,) -> Optional[bool]:
-        """
-        Gets the bing property value. The value for if Microsoft Search as default should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._bing
-    
-    @bing.setter
-    def bing(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bing property value. The value for if Microsoft Search as default should be excluded or not.
-        Args:
-            value: Value to set for the bing property.
-        """
-        self._bing = value
+    # The value for if MS Office Access should be excluded or not.
+    access: Optional[bool] = None
+    # The value for if Microsoft Search as default should be excluded or not.
+    bing: Optional[bool] = None
+    # The value for if MS Office Excel should be excluded or not.
+    excel: Optional[bool] = None
+    # The value for if MS Office OneDrive for Business - Groove should be excluded or not.
+    groove: Optional[bool] = None
+    # The value for if MS Office InfoPath should be excluded or not.
+    info_path: Optional[bool] = None
+    # The value for if MS Office Skype for Business - Lync should be excluded or not.
+    lync: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The value for if MS Office OneDrive should be excluded or not.
+    one_drive: Optional[bool] = None
+    # The value for if MS Office OneNote should be excluded or not.
+    one_note: Optional[bool] = None
+    # The value for if MS Office Outlook should be excluded or not.
+    outlook: Optional[bool] = None
+    # The value for if MS Office PowerPoint should be excluded or not.
+    power_point: Optional[bool] = None
+    # The value for if MS Office Publisher should be excluded or not.
+    publisher: Optional[bool] = None
+    # The value for if MS Office SharePointDesigner should be excluded or not.
+    share_point_designer: Optional[bool] = None
+    # The value for if MS Office Teams should be excluded or not.
+    teams: Optional[bool] = None
+    # The value for if MS Office Visio should be excluded or not.
+    visio: Optional[bool] = None
+    # The value for if MS Office Word should be excluded or not.
+    word: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExcludedApps:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ExcludedApps
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return ExcludedApps()
-    
-    @property
-    def excel(self,) -> Optional[bool]:
-        """
-        Gets the excel property value. The value for if MS Office Excel should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._excel
-    
-    @excel.setter
-    def excel(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the excel property value. The value for if MS Office Excel should be excluded or not.
-        Args:
-            value: Value to set for the excel property.
-        """
-        self._excel = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -151,167 +80,14 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def groove(self,) -> Optional[bool]:
-        """
-        Gets the groove property value. The value for if MS Office OneDrive for Business - Groove should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._groove
-    
-    @groove.setter
-    def groove(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the groove property value. The value for if MS Office OneDrive for Business - Groove should be excluded or not.
-        Args:
-            value: Value to set for the groove property.
-        """
-        self._groove = value
-    
-    @property
-    def info_path(self,) -> Optional[bool]:
-        """
-        Gets the infoPath property value. The value for if MS Office InfoPath should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._info_path
-    
-    @info_path.setter
-    def info_path(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the infoPath property value. The value for if MS Office InfoPath should be excluded or not.
-        Args:
-            value: Value to set for the info_path property.
-        """
-        self._info_path = value
-    
-    @property
-    def lync(self,) -> Optional[bool]:
-        """
-        Gets the lync property value. The value for if MS Office Skype for Business - Lync should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._lync
-    
-    @lync.setter
-    def lync(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the lync property value. The value for if MS Office Skype for Business - Lync should be excluded or not.
-        Args:
-            value: Value to set for the lync property.
-        """
-        self._lync = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def one_drive(self,) -> Optional[bool]:
-        """
-        Gets the oneDrive property value. The value for if MS Office OneDrive should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._one_drive
-    
-    @one_drive.setter
-    def one_drive(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the oneDrive property value. The value for if MS Office OneDrive should be excluded or not.
-        Args:
-            value: Value to set for the one_drive property.
-        """
-        self._one_drive = value
-    
-    @property
-    def one_note(self,) -> Optional[bool]:
-        """
-        Gets the oneNote property value. The value for if MS Office OneNote should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._one_note
-    
-    @one_note.setter
-    def one_note(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the oneNote property value. The value for if MS Office OneNote should be excluded or not.
-        Args:
-            value: Value to set for the one_note property.
-        """
-        self._one_note = value
-    
-    @property
-    def outlook(self,) -> Optional[bool]:
-        """
-        Gets the outlook property value. The value for if MS Office Outlook should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._outlook
-    
-    @outlook.setter
-    def outlook(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the outlook property value. The value for if MS Office Outlook should be excluded or not.
-        Args:
-            value: Value to set for the outlook property.
-        """
-        self._outlook = value
-    
-    @property
-    def power_point(self,) -> Optional[bool]:
-        """
-        Gets the powerPoint property value. The value for if MS Office PowerPoint should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._power_point
-    
-    @power_point.setter
-    def power_point(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the powerPoint property value. The value for if MS Office PowerPoint should be excluded or not.
-        Args:
-            value: Value to set for the power_point property.
-        """
-        self._power_point = value
-    
-    @property
-    def publisher(self,) -> Optional[bool]:
-        """
-        Gets the publisher property value. The value for if MS Office Publisher should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._publisher
-    
-    @publisher.setter
-    def publisher(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the publisher property value. The value for if MS Office Publisher should be excluded or not.
-        Args:
-            value: Value to set for the publisher property.
-        """
-        self._publisher = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_bool_value("access", self.access)
         writer.write_bool_value("bing", self.bing)
         writer.write_bool_value("excel", self.excel)
@@ -329,73 +105,5 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         writer.write_bool_value("visio", self.visio)
         writer.write_bool_value("word", self.word)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def share_point_designer(self,) -> Optional[bool]:
-        """
-        Gets the sharePointDesigner property value. The value for if MS Office SharePointDesigner should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._share_point_designer
-    
-    @share_point_designer.setter
-    def share_point_designer(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the sharePointDesigner property value. The value for if MS Office SharePointDesigner should be excluded or not.
-        Args:
-            value: Value to set for the share_point_designer property.
-        """
-        self._share_point_designer = value
-    
-    @property
-    def teams(self,) -> Optional[bool]:
-        """
-        Gets the teams property value. The value for if MS Office Teams should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._teams
-    
-    @teams.setter
-    def teams(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the teams property value. The value for if MS Office Teams should be excluded or not.
-        Args:
-            value: Value to set for the teams property.
-        """
-        self._teams = value
-    
-    @property
-    def visio(self,) -> Optional[bool]:
-        """
-        Gets the visio property value. The value for if MS Office Visio should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._visio
-    
-    @visio.setter
-    def visio(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the visio property value. The value for if MS Office Visio should be excluded or not.
-        Args:
-            value: Value to set for the visio property.
-        """
-        self._visio = value
-    
-    @property
-    def word(self,) -> Optional[bool]:
-        """
-        Gets the word property value. The value for if MS Office Word should be excluded or not.
-        Returns: Optional[bool]
-        """
-        return self._word
-    
-    @word.setter
-    def word(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the word property value. The value for if MS Office Word should be excluded or not.
-        Args:
-            value: Value to set for the word property.
-        """
-        self._word = value
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DiamondModel(Enum):
+class DiamondModel(str, Enum):
     Unknown = "unknown",
     Adversary = "adversary",
     Capability = "capability",

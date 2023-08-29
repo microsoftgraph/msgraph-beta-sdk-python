@@ -1,218 +1,98 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_methods_policy_migration_state, authentication_method_configuration, entity, registration_enforcement, system_credential_preferences
+    from .authentication_method_configuration import AuthenticationMethodConfiguration
+    from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
+    from .entity import Entity
+    from .registration_enforcement import RegistrationEnforcement
+    from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
+    from .system_credential_preferences import SystemCredentialPreferences
 
-from . import entity
+from .entity import Entity
 
-class AuthenticationMethodsPolicy(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AuthenticationMethodsPolicy and sets the default values.
-        """
-        super().__init__()
-        # Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
-        self._authentication_method_configurations: Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]] = None
-        # A description of the policy.
-        self._description: Optional[str] = None
-        # The name of the policy.
-        self._display_name: Optional[str] = None
-        # The date and time of the last update to the policy.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
-        self._policy_migration_state: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState] = None
-        # The version of the policy in use.
-        self._policy_version: Optional[str] = None
-        # Days before the user will be asked to reconfirm their method.
-        self._reconfirmation_in_days: Optional[int] = None
-        # Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
-        self._registration_enforcement: Optional[registration_enforcement.RegistrationEnforcement] = None
-        # Prompt users with their most-preferred credential for multifactor authentication.
-        self._system_credential_preferences: Optional[system_credential_preferences.SystemCredentialPreferences] = None
-    
-    @property
-    def authentication_method_configurations(self,) -> Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]]:
-        """
-        Gets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
-        Returns: Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]]
-        """
-        return self._authentication_method_configurations
-    
-    @authentication_method_configurations.setter
-    def authentication_method_configurations(self,value: Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]] = None) -> None:
-        """
-        Sets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
-        Args:
-            value: Value to set for the authentication_method_configurations property.
-        """
-        self._authentication_method_configurations = value
+@dataclass
+class AuthenticationMethodsPolicy(Entity):
+    # Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
+    authentication_method_configurations: Optional[List[AuthenticationMethodConfiguration]] = None
+    # A description of the policy.
+    description: Optional[str] = None
+    # The name of the policy.
+    display_name: Optional[str] = None
+    # The date and time of the last update to the policy.
+    last_modified_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+    policy_migration_state: Optional[AuthenticationMethodsPolicyMigrationState] = None
+    # The version of the policy in use.
+    policy_version: Optional[str] = None
+    # Days before the user will be asked to reconfirm their method.
+    reconfirmation_in_days: Optional[int] = None
+    # Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
+    registration_enforcement: Optional[RegistrationEnforcement] = None
+    # Enable users to report unexpected voice call or phone app notification multi-factor authentication prompts as suspicious.
+    report_suspicious_activity_settings: Optional[ReportSuspiciousActivitySettings] = None
+    # Prompt users with their most-preferred credential for multifactor authentication.
+    system_credential_preferences: Optional[SystemCredentialPreferences] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationMethodsPolicy:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AuthenticationMethodsPolicy
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AuthenticationMethodsPolicy()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. A description of the policy.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. A description of the policy.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The name of the policy.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The name of the policy.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_methods_policy_migration_state, authentication_method_configuration, entity, registration_enforcement, system_credential_preferences
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
+        from .entity import Entity
+        from .registration_enforcement import RegistrationEnforcement
+        from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
+        from .system_credential_preferences import SystemCredentialPreferences
+
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
+        from .entity import Entity
+        from .registration_enforcement import RegistrationEnforcement
+        from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
+        from .system_credential_preferences import SystemCredentialPreferences
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "authenticationMethodConfigurations": lambda n : setattr(self, 'authentication_method_configurations', n.get_collection_of_object_values(authentication_method_configuration.AuthenticationMethodConfiguration)),
+            "authenticationMethodConfigurations": lambda n : setattr(self, 'authentication_method_configurations', n.get_collection_of_object_values(AuthenticationMethodConfiguration)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "policyMigrationState": lambda n : setattr(self, 'policy_migration_state', n.get_enum_value(authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState)),
+            "policyMigrationState": lambda n : setattr(self, 'policy_migration_state', n.get_enum_value(AuthenticationMethodsPolicyMigrationState)),
             "policyVersion": lambda n : setattr(self, 'policy_version', n.get_str_value()),
             "reconfirmationInDays": lambda n : setattr(self, 'reconfirmation_in_days', n.get_int_value()),
-            "registrationEnforcement": lambda n : setattr(self, 'registration_enforcement', n.get_object_value(registration_enforcement.RegistrationEnforcement)),
-            "systemCredentialPreferences": lambda n : setattr(self, 'system_credential_preferences', n.get_object_value(system_credential_preferences.SystemCredentialPreferences)),
+            "registrationEnforcement": lambda n : setattr(self, 'registration_enforcement', n.get_object_value(RegistrationEnforcement)),
+            "reportSuspiciousActivitySettings": lambda n : setattr(self, 'report_suspicious_activity_settings', n.get_object_value(ReportSuspiciousActivitySettings)),
+            "systemCredentialPreferences": lambda n : setattr(self, 'system_credential_preferences', n.get_object_value(SystemCredentialPreferences)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date and time of the last update to the policy.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date and time of the last update to the policy.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def policy_migration_state(self,) -> Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState]:
-        """
-        Gets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
-        Returns: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState]
-        """
-        return self._policy_migration_state
-    
-    @policy_migration_state.setter
-    def policy_migration_state(self,value: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState] = None) -> None:
-        """
-        Sets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
-        Args:
-            value: Value to set for the policy_migration_state property.
-        """
-        self._policy_migration_state = value
-    
-    @property
-    def policy_version(self,) -> Optional[str]:
-        """
-        Gets the policyVersion property value. The version of the policy in use.
-        Returns: Optional[str]
-        """
-        return self._policy_version
-    
-    @policy_version.setter
-    def policy_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the policyVersion property value. The version of the policy in use.
-        Args:
-            value: Value to set for the policy_version property.
-        """
-        self._policy_version = value
-    
-    @property
-    def reconfirmation_in_days(self,) -> Optional[int]:
-        """
-        Gets the reconfirmationInDays property value. Days before the user will be asked to reconfirm their method.
-        Returns: Optional[int]
-        """
-        return self._reconfirmation_in_days
-    
-    @reconfirmation_in_days.setter
-    def reconfirmation_in_days(self,value: Optional[int] = None) -> None:
-        """
-        Sets the reconfirmationInDays property value. Days before the user will be asked to reconfirm their method.
-        Args:
-            value: Value to set for the reconfirmation_in_days property.
-        """
-        self._reconfirmation_in_days = value
-    
-    @property
-    def registration_enforcement(self,) -> Optional[registration_enforcement.RegistrationEnforcement]:
-        """
-        Gets the registrationEnforcement property value. Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
-        Returns: Optional[registration_enforcement.RegistrationEnforcement]
-        """
-        return self._registration_enforcement
-    
-    @registration_enforcement.setter
-    def registration_enforcement(self,value: Optional[registration_enforcement.RegistrationEnforcement] = None) -> None:
-        """
-        Sets the registrationEnforcement property value. Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
-        Args:
-            value: Value to set for the registration_enforcement property.
-        """
-        self._registration_enforcement = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("authenticationMethodConfigurations", self.authentication_method_configurations)
         writer.write_str_value("description", self.description)
@@ -222,23 +102,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         writer.write_str_value("policyVersion", self.policy_version)
         writer.write_int_value("reconfirmationInDays", self.reconfirmation_in_days)
         writer.write_object_value("registrationEnforcement", self.registration_enforcement)
+        writer.write_object_value("reportSuspiciousActivitySettings", self.report_suspicious_activity_settings)
         writer.write_object_value("systemCredentialPreferences", self.system_credential_preferences)
-    
-    @property
-    def system_credential_preferences(self,) -> Optional[system_credential_preferences.SystemCredentialPreferences]:
-        """
-        Gets the systemCredentialPreferences property value. Prompt users with their most-preferred credential for multifactor authentication.
-        Returns: Optional[system_credential_preferences.SystemCredentialPreferences]
-        """
-        return self._system_credential_preferences
-    
-    @system_credential_preferences.setter
-    def system_credential_preferences(self,value: Optional[system_credential_preferences.SystemCredentialPreferences] = None) -> None:
-        """
-        Sets the systemCredentialPreferences property value. Prompt users with their most-preferred credential for multifactor authentication.
-        Args:
-            value: Value to set for the system_credential_preferences property.
-        """
-        self._system_credential_preferences = value
     
 

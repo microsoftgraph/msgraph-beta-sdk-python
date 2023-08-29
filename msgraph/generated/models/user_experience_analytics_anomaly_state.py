@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserExperienceAnalyticsAnomalyState(Enum):
+class UserExperienceAnalyticsAnomalyState(str, Enum):
     # Indicates the state of anomaly is new.
     New = "new",
     # Indicates the state of anomaly is active.

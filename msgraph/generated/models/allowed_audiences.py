@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AllowedAudiences(Enum):
+class AllowedAudiences(str, Enum):
     Me = "me",
     Family = "family",
     Contacts = "contacts",

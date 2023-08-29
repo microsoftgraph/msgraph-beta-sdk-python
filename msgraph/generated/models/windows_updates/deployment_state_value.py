@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeploymentStateValue(Enum):
+class DeploymentStateValue(str, Enum):
     Scheduled = "scheduled",
     Offering = "offering",
     Paused = "paused",

@@ -1,32 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import windows_kiosk_app_configuration, windows_kiosk_u_w_p_app
+    from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
+    from .windows_kiosk_u_w_p_app import WindowsKioskUWPApp
 
-from . import windows_kiosk_app_configuration
+from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
 
-class WindowsKioskSingleUWPApp(windows_kiosk_app_configuration.WindowsKioskAppConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsKioskSingleUWPApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsKioskSingleUWPApp"
-        # The uwpApp property
-        self._uwp_app: Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp] = None
+@dataclass
+class WindowsKioskSingleUWPApp(WindowsKioskAppConfiguration):
+    """
+    The class used to identify the UWP app info for the kiosk configuration
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.windowsKioskSingleUWPApp"
+    # The uwpApp property
+    uwp_app: Optional[WindowsKioskUWPApp] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskSingleUWPApp:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WindowsKioskSingleUWPApp
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WindowsKioskSingleUWPApp()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,10 +35,14 @@ class WindowsKioskSingleUWPApp(windows_kiosk_app_configuration.WindowsKioskAppCo
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import windows_kiosk_app_configuration, windows_kiosk_u_w_p_app
+        from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
+        from .windows_kiosk_u_w_p_app import WindowsKioskUWPApp
+
+        from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
+        from .windows_kiosk_u_w_p_app import WindowsKioskUWPApp
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "uwpApp": lambda n : setattr(self, 'uwp_app', n.get_object_value(windows_kiosk_u_w_p_app.WindowsKioskUWPApp)),
+            "uwpApp": lambda n : setattr(self, 'uwp_app', n.get_object_value(WindowsKioskUWPApp)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -46,29 +51,12 @@ class WindowsKioskSingleUWPApp(windows_kiosk_app_configuration.WindowsKioskAppCo
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("uwpApp", self.uwp_app)
-    
-    @property
-    def uwp_app(self,) -> Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp]:
-        """
-        Gets the uwpApp property value. The uwpApp property
-        Returns: Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp]
-        """
-        return self._uwp_app
-    
-    @uwp_app.setter
-    def uwp_app(self,value: Optional[windows_kiosk_u_w_p_app.WindowsKioskUWPApp] = None) -> None:
-        """
-        Sets the uwpApp property value. The uwpApp property
-        Args:
-            value: Value to set for the uwp_app property.
-        """
-        self._uwp_app = value
     
 

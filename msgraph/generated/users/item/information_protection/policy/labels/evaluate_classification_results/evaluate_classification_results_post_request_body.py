@@ -1,84 +1,31 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models import classification_result, content_info
+    from .......models.classification_result import ClassificationResult
+    from .......models.content_info import ContentInfo
 
+@dataclass
 class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateClassificationResultsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The classificationResults property
-        self._classification_results: Optional[List[classification_result.ClassificationResult]] = None
-        # The contentInfo property
-        self._content_info: Optional[content_info.ContentInfo] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def classification_results(self,) -> Optional[List[classification_result.ClassificationResult]]:
-        """
-        Gets the classificationResults property value. The classificationResults property
-        Returns: Optional[List[classification_result.ClassificationResult]]
-        """
-        return self._classification_results
-    
-    @classification_results.setter
-    def classification_results(self,value: Optional[List[classification_result.ClassificationResult]] = None) -> None:
-        """
-        Sets the classificationResults property value. The classificationResults property
-        Args:
-            value: Value to set for the classification_results property.
-        """
-        self._classification_results = value
-    
-    @property
-    def content_info(self,) -> Optional[content_info.ContentInfo]:
-        """
-        Gets the contentInfo property value. The contentInfo property
-        Returns: Optional[content_info.ContentInfo]
-        """
-        return self._content_info
-    
-    @content_info.setter
-    def content_info(self,value: Optional[content_info.ContentInfo] = None) -> None:
-        """
-        Sets the contentInfo property value. The contentInfo property
-        Args:
-            value: Value to set for the content_info property.
-        """
-        self._content_info = value
+    # The classificationResults property
+    classification_results: Optional[List[ClassificationResult]] = None
+    # The contentInfo property
+    content_info: Optional[ContentInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluateClassificationResultsPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: EvaluateClassificationResultsPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return EvaluateClassificationResultsPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -86,22 +33,26 @@ class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsabl
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .......models import classification_result, content_info
+        from .......models.classification_result import ClassificationResult
+        from .......models.content_info import ContentInfo
+
+        from .......models.classification_result import ClassificationResult
+        from .......models.content_info import ContentInfo
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "classificationResults": lambda n : setattr(self, 'classification_results', n.get_collection_of_object_values(classification_result.ClassificationResult)),
-            "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
+            "classificationResults": lambda n : setattr(self, 'classification_results', n.get_collection_of_object_values(ClassificationResult)),
+            "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(ContentInfo)),
         }
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("classificationResults", self.classification_results)
         writer.write_object_value("contentInfo", self.content_info)
         writer.write_additional_data_value(self.additional_data)

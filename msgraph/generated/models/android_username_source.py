@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidUsernameSource(Enum):
+class AndroidUsernameSource(str, Enum):
     # The username.
     Username = "username",
     # The user principal name.

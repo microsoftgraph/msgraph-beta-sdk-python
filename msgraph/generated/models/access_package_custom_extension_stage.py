@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AccessPackageCustomExtensionStage(Enum):
+class AccessPackageCustomExtensionStage(str, Enum):
     AssignmentRequestCreated = "assignmentRequestCreated",
     AssignmentRequestApproved = "assignmentRequestApproved",
     AssignmentRequestGranted = "assignmentRequestGranted",

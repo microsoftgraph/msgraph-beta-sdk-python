@@ -1,57 +1,42 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import android_permission_action, android_profile_applicability, managed_device_mobile_app_configuration
+    from .android_permission_action import AndroidPermissionAction
+    from .android_profile_applicability import AndroidProfileApplicability
+    from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
 
-from . import managed_device_mobile_app_configuration
+from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
 
-class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidForWorkMobileAppConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidForWorkMobileAppConfiguration"
-        # Setting to specify whether to allow ConnectedApps experience for this app.
-        self._connected_apps_enabled: Optional[bool] = None
-        # Android For Work app configuration package id.
-        self._package_id: Optional[str] = None
-        # Android For Work app configuration JSON payload.
-        self._payload_json: Optional[str] = None
-        # List of Android app permissions and corresponding permission actions.
-        self._permission_actions: Optional[List[android_permission_action.AndroidPermissionAction]] = None
-        # Android profile applicability
-        self._profile_applicability: Optional[android_profile_applicability.AndroidProfileApplicability] = None
-    
-    @property
-    def connected_apps_enabled(self,) -> Optional[bool]:
-        """
-        Gets the connectedAppsEnabled property value. Setting to specify whether to allow ConnectedApps experience for this app.
-        Returns: Optional[bool]
-        """
-        return self._connected_apps_enabled
-    
-    @connected_apps_enabled.setter
-    def connected_apps_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the connectedAppsEnabled property value. Setting to specify whether to allow ConnectedApps experience for this app.
-        Args:
-            value: Value to set for the connected_apps_enabled property.
-        """
-        self._connected_apps_enabled = value
+@dataclass
+class AndroidForWorkMobileAppConfiguration(ManagedDeviceMobileAppConfiguration):
+    """
+    Contains properties, inherited properties and actions for AFW mobile app configurations.
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.androidForWorkMobileAppConfiguration"
+    # Setting to specify whether to allow ConnectedApps experience for this app.
+    connected_apps_enabled: Optional[bool] = None
+    # Android For Work app configuration package id.
+    package_id: Optional[str] = None
+    # Android For Work app configuration JSON payload.
+    payload_json: Optional[str] = None
+    # List of Android app permissions and corresponding permission actions.
+    permission_actions: Optional[List[AndroidPermissionAction]] = None
+    # Android profile applicability
+    profile_applicability: Optional[AndroidProfileApplicability] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkMobileAppConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AndroidForWorkMobileAppConfiguration
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AndroidForWorkMobileAppConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -59,95 +44,33 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import android_permission_action, android_profile_applicability, managed_device_mobile_app_configuration
+        from .android_permission_action import AndroidPermissionAction
+        from .android_profile_applicability import AndroidProfileApplicability
+        from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
+
+        from .android_permission_action import AndroidPermissionAction
+        from .android_profile_applicability import AndroidProfileApplicability
+        from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "connectedAppsEnabled": lambda n : setattr(self, 'connected_apps_enabled', n.get_bool_value()),
             "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
             "payloadJson": lambda n : setattr(self, 'payload_json', n.get_str_value()),
-            "permissionActions": lambda n : setattr(self, 'permission_actions', n.get_collection_of_object_values(android_permission_action.AndroidPermissionAction)),
-            "profileApplicability": lambda n : setattr(self, 'profile_applicability', n.get_enum_value(android_profile_applicability.AndroidProfileApplicability)),
+            "permissionActions": lambda n : setattr(self, 'permission_actions', n.get_collection_of_object_values(AndroidPermissionAction)),
+            "profileApplicability": lambda n : setattr(self, 'profile_applicability', n.get_enum_value(AndroidProfileApplicability)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
-    @property
-    def package_id(self,) -> Optional[str]:
-        """
-        Gets the packageId property value. Android For Work app configuration package id.
-        Returns: Optional[str]
-        """
-        return self._package_id
-    
-    @package_id.setter
-    def package_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the packageId property value. Android For Work app configuration package id.
-        Args:
-            value: Value to set for the package_id property.
-        """
-        self._package_id = value
-    
-    @property
-    def payload_json(self,) -> Optional[str]:
-        """
-        Gets the payloadJson property value. Android For Work app configuration JSON payload.
-        Returns: Optional[str]
-        """
-        return self._payload_json
-    
-    @payload_json.setter
-    def payload_json(self,value: Optional[str] = None) -> None:
-        """
-        Sets the payloadJson property value. Android For Work app configuration JSON payload.
-        Args:
-            value: Value to set for the payload_json property.
-        """
-        self._payload_json = value
-    
-    @property
-    def permission_actions(self,) -> Optional[List[android_permission_action.AndroidPermissionAction]]:
-        """
-        Gets the permissionActions property value. List of Android app permissions and corresponding permission actions.
-        Returns: Optional[List[android_permission_action.AndroidPermissionAction]]
-        """
-        return self._permission_actions
-    
-    @permission_actions.setter
-    def permission_actions(self,value: Optional[List[android_permission_action.AndroidPermissionAction]] = None) -> None:
-        """
-        Sets the permissionActions property value. List of Android app permissions and corresponding permission actions.
-        Args:
-            value: Value to set for the permission_actions property.
-        """
-        self._permission_actions = value
-    
-    @property
-    def profile_applicability(self,) -> Optional[android_profile_applicability.AndroidProfileApplicability]:
-        """
-        Gets the profileApplicability property value. Android profile applicability
-        Returns: Optional[android_profile_applicability.AndroidProfileApplicability]
-        """
-        return self._profile_applicability
-    
-    @profile_applicability.setter
-    def profile_applicability(self,value: Optional[android_profile_applicability.AndroidProfileApplicability] = None) -> None:
-        """
-        Sets the profileApplicability property value. Android profile applicability
-        Args:
-            value: Value to set for the profile_applicability property.
-        """
-        self._profile_applicability = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("connectedAppsEnabled", self.connected_apps_enabled)
         writer.write_str_value("packageId", self.package_id)

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationAzureAdTrustType(Enum):
+class DeviceManagementConfigurationAzureAdTrustType(str, Enum):
     # No AAD Trust Type specified
     None_ = "none",
     # AAD Joined Trust Type

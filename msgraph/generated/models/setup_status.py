@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SetupStatus(Enum):
+class SetupStatus(str, Enum):
     Unknown = "unknown",
     NotRegisteredYet = "notRegisteredYet",
     RegisteredSetupNotStarted = "registeredSetupNotStarted",

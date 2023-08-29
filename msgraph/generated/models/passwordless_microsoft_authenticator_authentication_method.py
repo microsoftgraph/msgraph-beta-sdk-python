@@ -1,120 +1,54 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_method, device
+    from .authentication_method import AuthenticationMethod
+    from .device import Device
 
-from . import authentication_method
+from .authentication_method import AuthenticationMethod
 
-class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(authentication_method.AuthenticationMethod):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PasswordlessMicrosoftAuthenticatorAuthenticationMethod and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.passwordlessMicrosoftAuthenticatorAuthenticationMethod"
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The timestamp when this method was registered to the user.
-        self._creation_date_time: Optional[datetime] = None
-        # The device property
-        self._device: Optional[device.Device] = None
-        # The display name of the mobile device as given by the user.
-        self._display_name: Optional[str] = None
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The createdDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The createdDateTime property
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+@dataclass
+class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.passwordlessMicrosoftAuthenticatorAuthenticationMethod"
+    # The createdDateTime property
+    created_date_time: Optional[datetime.datetime] = None
+    # The timestamp when this method was registered to the user.
+    creation_date_time: Optional[datetime.datetime] = None
+    # The device property
+    device: Optional[Device] = None
+    # The display name of the mobile device as given by the user.
+    display_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PasswordlessMicrosoftAuthenticatorAuthenticationMethod:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return PasswordlessMicrosoftAuthenticatorAuthenticationMethod()
-    
-    @property
-    def creation_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the creationDateTime property value. The timestamp when this method was registered to the user.
-        Returns: Optional[datetime]
-        """
-        return self._creation_date_time
-    
-    @creation_date_time.setter
-    def creation_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the creationDateTime property value. The timestamp when this method was registered to the user.
-        Args:
-            value: Value to set for the creation_date_time property.
-        """
-        self._creation_date_time = value
-    
-    @property
-    def device(self,) -> Optional[device.Device]:
-        """
-        Gets the device property value. The device property
-        Returns: Optional[device.Device]
-        """
-        return self._device
-    
-    @device.setter
-    def device(self,value: Optional[device.Device] = None) -> None:
-        """
-        Sets the device property value. The device property
-        Args:
-            value: Value to set for the device property.
-        """
-        self._device = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name of the mobile device as given by the user.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name of the mobile device as given by the user.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_method, device
+        from .authentication_method import AuthenticationMethod
+        from .device import Device
+
+        from .authentication_method import AuthenticationMethod
+        from .device import Device
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
-            "device": lambda n : setattr(self, 'device', n.get_object_value(device.Device)),
+            "device": lambda n : setattr(self, 'device', n.get_object_value(Device)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -124,11 +58,11 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(authentication_meth
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)

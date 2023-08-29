@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DelegatedPrivilegeStatus(Enum):
+class DelegatedPrivilegeStatus(str, Enum):
     None_ = "none",
     DelegatedAdminPrivileges = "delegatedAdminPrivileges",
     UnknownFutureValue = "unknownFutureValue",

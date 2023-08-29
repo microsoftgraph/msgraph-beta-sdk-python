@@ -1,320 +1,113 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import add_to_review_set_operation, data_source, data_source_scopes, estimate_statistics_operation, noncustodial_data_source
-    from .. import entity, identity_set
+    from ..entity import Entity
+    from ..identity_set import IdentitySet
+    from .add_to_review_set_operation import AddToReviewSetOperation
+    from .data_source import DataSource
+    from .data_source_scopes import DataSourceScopes
+    from .estimate_statistics_operation import EstimateStatisticsOperation
+    from .noncustodial_data_source import NoncustodialDataSource
 
-from .. import entity
+from ..entity import Entity
 
-class SourceCollection(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sourceCollection and sets the default values.
-        """
-        super().__init__()
-        # Adds the results of the sourceCollection to the specified reviewSet.
-        self._add_to_review_set_operation: Optional[add_to_review_set_operation.AddToReviewSetOperation] = None
-        # Adds an additional source to the sourceCollection.
-        self._additional_sources: Optional[List[data_source.DataSource]] = None
-        # The query string in KQL (Keyword Query Language) query. For details, see Keyword queries and search conditions for Content Search and eDiscovery. You can refine searches by using fields paired with values; for example, subject:'Quarterly Financials' AND Date>=06/01/2016 AND Date<=07/01/2016.
-        self._content_query: Optional[str] = None
-        # The user who created the sourceCollection.
-        self._created_by: Optional[identity_set.IdentitySet] = None
-        # The date and time the sourceCollection was created.
-        self._created_date_time: Optional[datetime] = None
-        # Custodian sources that are included in the sourceCollection.
-        self._custodian_sources: Optional[List[data_source.DataSource]] = None
-        # When specified, the collection will span across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
-        self._data_source_scopes: Optional[data_source_scopes.DataSourceScopes] = None
-        # The description of the sourceCollection.
-        self._description: Optional[str] = None
-        # The display name of the sourceCollection.
-        self._display_name: Optional[str] = None
-        # The last estimate operation associated with the sourceCollection.
-        self._last_estimate_statistics_operation: Optional[estimate_statistics_operation.EstimateStatisticsOperation] = None
-        # The last user who modified the sourceCollection.
-        self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The last date and time the sourceCollection was modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # noncustodialDataSource sources that are included in the sourceCollection
-        self._noncustodial_sources: Optional[List[noncustodial_data_source.NoncustodialDataSource]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def add_to_review_set_operation(self,) -> Optional[add_to_review_set_operation.AddToReviewSetOperation]:
-        """
-        Gets the addToReviewSetOperation property value. Adds the results of the sourceCollection to the specified reviewSet.
-        Returns: Optional[add_to_review_set_operation.AddToReviewSetOperation]
-        """
-        return self._add_to_review_set_operation
-    
-    @add_to_review_set_operation.setter
-    def add_to_review_set_operation(self,value: Optional[add_to_review_set_operation.AddToReviewSetOperation] = None) -> None:
-        """
-        Sets the addToReviewSetOperation property value. Adds the results of the sourceCollection to the specified reviewSet.
-        Args:
-            value: Value to set for the add_to_review_set_operation property.
-        """
-        self._add_to_review_set_operation = value
-    
-    @property
-    def additional_sources(self,) -> Optional[List[data_source.DataSource]]:
-        """
-        Gets the additionalSources property value. Adds an additional source to the sourceCollection.
-        Returns: Optional[List[data_source.DataSource]]
-        """
-        return self._additional_sources
-    
-    @additional_sources.setter
-    def additional_sources(self,value: Optional[List[data_source.DataSource]] = None) -> None:
-        """
-        Sets the additionalSources property value. Adds an additional source to the sourceCollection.
-        Args:
-            value: Value to set for the additional_sources property.
-        """
-        self._additional_sources = value
-    
-    @property
-    def content_query(self,) -> Optional[str]:
-        """
-        Gets the contentQuery property value. The query string in KQL (Keyword Query Language) query. For details, see Keyword queries and search conditions for Content Search and eDiscovery. You can refine searches by using fields paired with values; for example, subject:'Quarterly Financials' AND Date>=06/01/2016 AND Date<=07/01/2016.
-        Returns: Optional[str]
-        """
-        return self._content_query
-    
-    @content_query.setter
-    def content_query(self,value: Optional[str] = None) -> None:
-        """
-        Sets the contentQuery property value. The query string in KQL (Keyword Query Language) query. For details, see Keyword queries and search conditions for Content Search and eDiscovery. You can refine searches by using fields paired with values; for example, subject:'Quarterly Financials' AND Date>=06/01/2016 AND Date<=07/01/2016.
-        Args:
-            value: Value to set for the content_query property.
-        """
-        self._content_query = value
-    
-    @property
-    def created_by(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the createdBy property value. The user who created the sourceCollection.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._created_by
-    
-    @created_by.setter
-    def created_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the createdBy property value. The user who created the sourceCollection.
-        Args:
-            value: Value to set for the created_by property.
-        """
-        self._created_by = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time the sourceCollection was created.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time the sourceCollection was created.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+@dataclass
+class SourceCollection(Entity):
+    # Adds the results of the sourceCollection to the specified reviewSet.
+    add_to_review_set_operation: Optional[AddToReviewSetOperation] = None
+    # Adds an additional source to the sourceCollection.
+    additional_sources: Optional[List[DataSource]] = None
+    # The query string in KQL (Keyword Query Language) query. For details, see Keyword queries and search conditions for Content Search and eDiscovery. You can refine searches by using fields paired with values; for example, subject:'Quarterly Financials' AND Date>=06/01/2016 AND Date<=07/01/2016.
+    content_query: Optional[str] = None
+    # The user who created the sourceCollection.
+    created_by: Optional[IdentitySet] = None
+    # The date and time the sourceCollection was created.
+    created_date_time: Optional[datetime.datetime] = None
+    # Custodian sources that are included in the sourceCollection.
+    custodian_sources: Optional[List[DataSource]] = None
+    # When specified, the collection will span across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
+    data_source_scopes: Optional[DataSourceScopes] = None
+    # The description of the sourceCollection.
+    description: Optional[str] = None
+    # The display name of the sourceCollection.
+    display_name: Optional[str] = None
+    # The last estimate operation associated with the sourceCollection.
+    last_estimate_statistics_operation: Optional[EstimateStatisticsOperation] = None
+    # The last user who modified the sourceCollection.
+    last_modified_by: Optional[IdentitySet] = None
+    # The last date and time the sourceCollection was modified.
+    last_modified_date_time: Optional[datetime.datetime] = None
+    # noncustodialDataSource sources that are included in the sourceCollection
+    noncustodial_sources: Optional[List[NoncustodialDataSource]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SourceCollection:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: SourceCollection
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return SourceCollection()
-    
-    @property
-    def custodian_sources(self,) -> Optional[List[data_source.DataSource]]:
-        """
-        Gets the custodianSources property value. Custodian sources that are included in the sourceCollection.
-        Returns: Optional[List[data_source.DataSource]]
-        """
-        return self._custodian_sources
-    
-    @custodian_sources.setter
-    def custodian_sources(self,value: Optional[List[data_source.DataSource]] = None) -> None:
-        """
-        Sets the custodianSources property value. Custodian sources that are included in the sourceCollection.
-        Args:
-            value: Value to set for the custodian_sources property.
-        """
-        self._custodian_sources = value
-    
-    @property
-    def data_source_scopes(self,) -> Optional[data_source_scopes.DataSourceScopes]:
-        """
-        Gets the dataSourceScopes property value. When specified, the collection will span across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
-        Returns: Optional[data_source_scopes.DataSourceScopes]
-        """
-        return self._data_source_scopes
-    
-    @data_source_scopes.setter
-    def data_source_scopes(self,value: Optional[data_source_scopes.DataSourceScopes] = None) -> None:
-        """
-        Sets the dataSourceScopes property value. When specified, the collection will span across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
-        Args:
-            value: Value to set for the data_source_scopes property.
-        """
-        self._data_source_scopes = value
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description of the sourceCollection.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description of the sourceCollection.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name of the sourceCollection.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name of the sourceCollection.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import add_to_review_set_operation, data_source, data_source_scopes, estimate_statistics_operation, noncustodial_data_source
-        from .. import entity, identity_set
+        from ..entity import Entity
+        from ..identity_set import IdentitySet
+        from .add_to_review_set_operation import AddToReviewSetOperation
+        from .data_source import DataSource
+        from .data_source_scopes import DataSourceScopes
+        from .estimate_statistics_operation import EstimateStatisticsOperation
+        from .noncustodial_data_source import NoncustodialDataSource
+
+        from ..entity import Entity
+        from ..identity_set import IdentitySet
+        from .add_to_review_set_operation import AddToReviewSetOperation
+        from .data_source import DataSource
+        from .data_source_scopes import DataSourceScopes
+        from .estimate_statistics_operation import EstimateStatisticsOperation
+        from .noncustodial_data_source import NoncustodialDataSource
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "additionalSources": lambda n : setattr(self, 'additional_sources', n.get_collection_of_object_values(data_source.DataSource)),
-            "addToReviewSetOperation": lambda n : setattr(self, 'add_to_review_set_operation', n.get_object_value(add_to_review_set_operation.AddToReviewSetOperation)),
+            "addToReviewSetOperation": lambda n : setattr(self, 'add_to_review_set_operation', n.get_object_value(AddToReviewSetOperation)),
+            "additionalSources": lambda n : setattr(self, 'additional_sources', n.get_collection_of_object_values(DataSource)),
             "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
-            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "custodianSources": lambda n : setattr(self, 'custodian_sources', n.get_collection_of_object_values(data_source.DataSource)),
-            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_enum_value(data_source_scopes.DataSourceScopes)),
+            "custodianSources": lambda n : setattr(self, 'custodian_sources', n.get_collection_of_object_values(DataSource)),
+            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_enum_value(DataSourceScopes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "lastEstimateStatisticsOperation": lambda n : setattr(self, 'last_estimate_statistics_operation', n.get_object_value(estimate_statistics_operation.EstimateStatisticsOperation)),
-            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastEstimateStatisticsOperation": lambda n : setattr(self, 'last_estimate_statistics_operation', n.get_object_value(EstimateStatisticsOperation)),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "noncustodialSources": lambda n : setattr(self, 'noncustodial_sources', n.get_collection_of_object_values(noncustodial_data_source.NoncustodialDataSource)),
+            "noncustodialSources": lambda n : setattr(self, 'noncustodial_sources', n.get_collection_of_object_values(NoncustodialDataSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_estimate_statistics_operation(self,) -> Optional[estimate_statistics_operation.EstimateStatisticsOperation]:
-        """
-        Gets the lastEstimateStatisticsOperation property value. The last estimate operation associated with the sourceCollection.
-        Returns: Optional[estimate_statistics_operation.EstimateStatisticsOperation]
-        """
-        return self._last_estimate_statistics_operation
-    
-    @last_estimate_statistics_operation.setter
-    def last_estimate_statistics_operation(self,value: Optional[estimate_statistics_operation.EstimateStatisticsOperation] = None) -> None:
-        """
-        Sets the lastEstimateStatisticsOperation property value. The last estimate operation associated with the sourceCollection.
-        Args:
-            value: Value to set for the last_estimate_statistics_operation property.
-        """
-        self._last_estimate_statistics_operation = value
-    
-    @property
-    def last_modified_by(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the lastModifiedBy property value. The last user who modified the sourceCollection.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._last_modified_by
-    
-    @last_modified_by.setter
-    def last_modified_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the lastModifiedBy property value. The last user who modified the sourceCollection.
-        Args:
-            value: Value to set for the last_modified_by property.
-        """
-        self._last_modified_by = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The last date and time the sourceCollection was modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The last date and time the sourceCollection was modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def noncustodial_sources(self,) -> Optional[List[noncustodial_data_source.NoncustodialDataSource]]:
-        """
-        Gets the noncustodialSources property value. noncustodialDataSource sources that are included in the sourceCollection
-        Returns: Optional[List[noncustodial_data_source.NoncustodialDataSource]]
-        """
-        return self._noncustodial_sources
-    
-    @noncustodial_sources.setter
-    def noncustodial_sources(self,value: Optional[List[noncustodial_data_source.NoncustodialDataSource]] = None) -> None:
-        """
-        Sets the noncustodialSources property value. noncustodialDataSource sources that are included in the sourceCollection
-        Args:
-            value: Value to set for the noncustodial_sources property.
-        """
-        self._noncustodial_sources = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("additionalSources", self.additional_sources)
         writer.write_object_value("addToReviewSetOperation", self.add_to_review_set_operation)
+        writer.write_collection_of_object_values("additionalSources", self.additional_sources)
         writer.write_str_value("contentQuery", self.content_query)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

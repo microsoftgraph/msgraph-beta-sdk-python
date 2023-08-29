@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSContentCachingPeerPolicy(Enum):
+class MacOSContentCachingPeerPolicy(str, Enum):
     # Defaults to peers in local network.
     NotConfigured = "notConfigured",
     # Content caches will only peer with caches in their immediate local network.

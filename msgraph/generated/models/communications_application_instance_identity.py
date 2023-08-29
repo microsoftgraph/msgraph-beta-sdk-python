@@ -1,34 +1,31 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import identity
+    from .identity import Identity
 
-from . import identity
+from .identity import Identity
 
-class CommunicationsApplicationInstanceIdentity(identity.Identity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CommunicationsApplicationInstanceIdentity and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.communicationsApplicationInstanceIdentity"
-        # True if the participant would not like to be shown in other participants' rosters.
-        self._hidden: Optional[bool] = None
-        # The application's tenant ID.
-        self._tenant_id: Optional[str] = None
+@dataclass
+class CommunicationsApplicationInstanceIdentity(Identity):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.communicationsApplicationInstanceIdentity"
+    # True if the participant would not like to be shown in other participants' rosters.
+    hidden: Optional[bool] = None
+    # The application's tenant ID.
+    tenant_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CommunicationsApplicationInstanceIdentity:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CommunicationsApplicationInstanceIdentity
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CommunicationsApplicationInstanceIdentity()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,7 +33,9 @@ class CommunicationsApplicationInstanceIdentity(identity.Identity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import identity
+        from .identity import Identity
+
+        from .identity import Identity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "hidden": lambda n : setattr(self, 'hidden', n.get_bool_value()),
@@ -46,50 +45,16 @@ class CommunicationsApplicationInstanceIdentity(identity.Identity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def hidden(self,) -> Optional[bool]:
-        """
-        Gets the hidden property value. True if the participant would not like to be shown in other participants' rosters.
-        Returns: Optional[bool]
-        """
-        return self._hidden
-    
-    @hidden.setter
-    def hidden(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the hidden property value. True if the participant would not like to be shown in other participants' rosters.
-        Args:
-            value: Value to set for the hidden property.
-        """
-        self._hidden = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("hidden", self.hidden)
         writer.write_str_value("tenantId", self.tenant_id)
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. The application's tenant ID.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. The application's tenant ID.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
     
 

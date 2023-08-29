@@ -1,51 +1,35 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_configuration_setting_instance, device_management_configuration_setting_value
+    from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+    from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
 
-from . import device_management_configuration_setting_value
+from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
 
-class DeviceManagementConfigurationChoiceSettingValue(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationChoiceSettingValue and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue"
-        # Child settings.
-        self._children: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None
-        # Choice setting value: an OptionDefinition ItemId.
-        self._value: Optional[str] = None
-    
-    @property
-    def children(self,) -> Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]]:
-        """
-        Gets the children property value. Child settings.
-        Returns: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]]
-        """
-        return self._children
-    
-    @children.setter
-    def children(self,value: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None) -> None:
-        """
-        Sets the children property value. Child settings.
-        Args:
-            value: Value to set for the children property.
-        """
-        self._children = value
+@dataclass
+class DeviceManagementConfigurationChoiceSettingValue(DeviceManagementConfigurationSettingValue):
+    """
+    Setting value
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue"
+    # Child settings.
+    children: Optional[List[DeviceManagementConfigurationSettingInstance]] = None
+    # Choice setting value: an OptionDefinition ItemId.
+    value: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingValue:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationChoiceSettingValue
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationChoiceSettingValue()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -53,10 +37,14 @@ class DeviceManagementConfigurationChoiceSettingValue(device_management_configur
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_configuration_setting_instance, device_management_configuration_setting_value
+        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+        from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
+
+        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+        from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance)),
+            "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(DeviceManagementConfigurationSettingInstance)),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -66,30 +54,13 @@ class DeviceManagementConfigurationChoiceSettingValue(device_management_configur
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("children", self.children)
         writer.write_str_value("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[str]:
-        """
-        Gets the value property value. Choice setting value: an OptionDefinition ItemId.
-        Returns: Optional[str]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[str] = None) -> None:
-        """
-        Sets the value property value. Choice setting value: an OptionDefinition ItemId.
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 
