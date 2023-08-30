@@ -1,51 +1,42 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import mobile_app
+    from .mobile_app import MobileApp
 
-from . import mobile_app
+from .mobile_app import MobileApp
 
-class IosiPadOSWebClip(mobile_app.MobileApp):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosiPadOSWebClip and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosiPadOSWebClip"
-        # Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
-        self._app_url: Optional[str] = None
-        # Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.
-        self._use_managed_browser: Optional[bool] = None
-    
-    @property
-    def app_url(self,) -> Optional[str]:
-        """
-        Gets the appUrl property value. Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
-        Returns: Optional[str]
-        """
-        return self._app_url
-    
-    @app_url.setter
-    def app_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appUrl property value. Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
-        Args:
-            value: Value to set for the app_url property.
-        """
-        self._app_url = value
+@dataclass
+class IosiPadOSWebClip(MobileApp):
+    """
+    Contains properties and inherited properties for iOS web apps.
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.iosiPadOSWebClip"
+    # Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
+    app_url: Optional[str] = None
+    # Whether or not to open the web clip as a full-screen web app. Defaults to false. If TRUE, opens the web clip as a full-screen web app. If FALSE, the web clip opens inside of another app, such as Safari or the app specified with targetApplicationBundleIdentifier.
+    full_screen_enabled: Optional[bool] = None
+    # Whether or not a full screen web clip can navigate to an external web site without showing the Safari UI. Defaults to false. If FALSE, the Safari UI appears when navigating away. If TRUE, the Safari UI will not be shown.
+    ignore_manifest_scope: Optional[bool] = None
+    # Whether or not the icon for the app is precomosed. Defaults to false. If TRUE, prevents SpringBoard from adding 'shine' to the icon. If FALSE, SpringBoard can add 'shine'.
+    pre_composed_icon_enabled: Optional[bool] = None
+    # Specifies the application bundle identifier which opens the URL. Available in iOS 14 and later.
+    target_application_bundle_identifier: Optional[str] = None
+    # Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.
+    use_managed_browser: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosiPadOSWebClip:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IosiPadOSWebClip
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return IosiPadOSWebClip()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -53,10 +44,16 @@ class IosiPadOSWebClip(mobile_app.MobileApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import mobile_app
+        from .mobile_app import MobileApp
+
+        from .mobile_app import MobileApp
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appUrl": lambda n : setattr(self, 'app_url', n.get_str_value()),
+            "fullScreenEnabled": lambda n : setattr(self, 'full_screen_enabled', n.get_bool_value()),
+            "ignoreManifestScope": lambda n : setattr(self, 'ignore_manifest_scope', n.get_bool_value()),
+            "preComposedIconEnabled": lambda n : setattr(self, 'pre_composed_icon_enabled', n.get_bool_value()),
+            "targetApplicationBundleIdentifier": lambda n : setattr(self, 'target_application_bundle_identifier', n.get_str_value()),
             "useManagedBrowser": lambda n : setattr(self, 'use_managed_browser', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -66,30 +63,17 @@ class IosiPadOSWebClip(mobile_app.MobileApp):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appUrl", self.app_url)
+        writer.write_bool_value("fullScreenEnabled", self.full_screen_enabled)
+        writer.write_bool_value("ignoreManifestScope", self.ignore_manifest_scope)
+        writer.write_bool_value("preComposedIconEnabled", self.pre_composed_icon_enabled)
+        writer.write_str_value("targetApplicationBundleIdentifier", self.target_application_bundle_identifier)
         writer.write_bool_value("useManagedBrowser", self.use_managed_browser)
-    
-    @property
-    def use_managed_browser(self,) -> Optional[bool]:
-        """
-        Gets the useManagedBrowser property value. Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.
-        Returns: Optional[bool]
-        """
-        return self._use_managed_browser
-    
-    @use_managed_browser.setter
-    def use_managed_browser(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the useManagedBrowser property value. Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.
-        Args:
-            value: Value to set for the use_managed_browser property.
-        """
-        self._use_managed_browser = value
     
 

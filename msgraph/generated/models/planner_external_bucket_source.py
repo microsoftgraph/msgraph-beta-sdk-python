@@ -1,95 +1,43 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import planner_bucket_creation
+    from .planner_bucket_creation import PlannerBucketCreation
 
-from . import planner_bucket_creation
+from .planner_bucket_creation import PlannerBucketCreation
 
-class PlannerExternalBucketSource(planner_bucket_creation.PlannerBucketCreation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PlannerExternalBucketSource and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.plannerExternalBucketSource"
-        # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
-        self._context_scenario_id: Optional[str] = None
-        # Nullable. The id of the external entity's containing entity or context.
-        self._external_context_id: Optional[str] = None
-        # Nullable. The id of the entity that an external service associates with a bucket.
-        self._external_object_id: Optional[str] = None
-    
-    @property
-    def context_scenario_id(self,) -> Optional[str]:
-        """
-        Gets the contextScenarioId property value. Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
-        Returns: Optional[str]
-        """
-        return self._context_scenario_id
-    
-    @context_scenario_id.setter
-    def context_scenario_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the contextScenarioId property value. Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
-        Args:
-            value: Value to set for the context_scenario_id property.
-        """
-        self._context_scenario_id = value
+@dataclass
+class PlannerExternalBucketSource(PlannerBucketCreation):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.plannerExternalBucketSource"
+    # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
+    context_scenario_id: Optional[str] = None
+    # Nullable. The id of the external entity's containing entity or context.
+    external_context_id: Optional[str] = None
+    # Nullable. The id of the entity that an external service associates with a bucket.
+    external_object_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerExternalBucketSource:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PlannerExternalBucketSource
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return PlannerExternalBucketSource()
-    
-    @property
-    def external_context_id(self,) -> Optional[str]:
-        """
-        Gets the externalContextId property value. Nullable. The id of the external entity's containing entity or context.
-        Returns: Optional[str]
-        """
-        return self._external_context_id
-    
-    @external_context_id.setter
-    def external_context_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the externalContextId property value. Nullable. The id of the external entity's containing entity or context.
-        Args:
-            value: Value to set for the external_context_id property.
-        """
-        self._external_context_id = value
-    
-    @property
-    def external_object_id(self,) -> Optional[str]:
-        """
-        Gets the externalObjectId property value. Nullable. The id of the entity that an external service associates with a bucket.
-        Returns: Optional[str]
-        """
-        return self._external_object_id
-    
-    @external_object_id.setter
-    def external_object_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the externalObjectId property value. Nullable. The id of the entity that an external service associates with a bucket.
-        Args:
-            value: Value to set for the external_object_id property.
-        """
-        self._external_object_id = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import planner_bucket_creation
+        from .planner_bucket_creation import PlannerBucketCreation
+
+        from .planner_bucket_creation import PlannerBucketCreation
 
         fields: Dict[str, Callable[[Any], None]] = {
             "contextScenarioId": lambda n : setattr(self, 'context_scenario_id', n.get_str_value()),
@@ -103,11 +51,11 @@ class PlannerExternalBucketSource(planner_bucket_creation.PlannerBucketCreation)
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("contextScenarioId", self.context_scenario_id)
         writer.write_str_value("externalContextId", self.external_context_id)

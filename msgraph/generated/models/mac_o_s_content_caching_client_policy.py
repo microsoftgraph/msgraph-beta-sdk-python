@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSContentCachingClientPolicy(Enum):
+class MacOSContentCachingClientPolicy(str, Enum):
     # Defaults to clients in local network.
     NotConfigured = "notConfigured",
     # Content caches will provide content to devices only in their immediate local network.

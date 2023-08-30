@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsDeviceHealthState(Enum):
+class WindowsDeviceHealthState(str, Enum):
     # Computer is clean and no action is required
     Clean = "clean",
     # Computer is in pending full scan state

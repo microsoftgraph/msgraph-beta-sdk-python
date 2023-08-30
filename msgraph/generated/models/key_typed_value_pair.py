@@ -1,72 +1,59 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import key_boolean_value_pair, key_integer_value_pair, key_real_value_pair, key_string_value_pair
+    from .key_boolean_value_pair import KeyBooleanValuePair
+    from .key_integer_value_pair import KeyIntegerValuePair
+    from .key_real_value_pair import KeyRealValuePair
+    from .key_string_value_pair import KeyStringValuePair
 
-class KeyTypedValuePair(AdditionalDataHolder, Parsable):
+@dataclass
+class KeyTypedValuePair(AdditionalDataHolder, BackedModel, Parsable):
     """
     A key-value pair with a string key and a typed value.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new keyTypedValuePair and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The string key of the key-value pair.
-        self._key: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The string key of the key-value pair.
+    key: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> KeyTypedValuePair:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: KeyTypedValuePair
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.keyBooleanValuePair":
-                from . import key_boolean_value_pair
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.keyBooleanValuePair".casefold():
+            from .key_boolean_value_pair import KeyBooleanValuePair
 
-                return key_boolean_value_pair.KeyBooleanValuePair()
-            if mapping_value == "#microsoft.graph.keyIntegerValuePair":
-                from . import key_integer_value_pair
+            return KeyBooleanValuePair()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.keyIntegerValuePair".casefold():
+            from .key_integer_value_pair import KeyIntegerValuePair
 
-                return key_integer_value_pair.KeyIntegerValuePair()
-            if mapping_value == "#microsoft.graph.keyRealValuePair":
-                from . import key_real_value_pair
+            return KeyIntegerValuePair()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.keyRealValuePair".casefold():
+            from .key_real_value_pair import KeyRealValuePair
 
-                return key_real_value_pair.KeyRealValuePair()
-            if mapping_value == "#microsoft.graph.keyStringValuePair":
-                from . import key_string_value_pair
+            return KeyRealValuePair()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.keyStringValuePair".casefold():
+            from .key_string_value_pair import KeyStringValuePair
 
-                return key_string_value_pair.KeyStringValuePair()
+            return KeyStringValuePair()
         return KeyTypedValuePair()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -74,7 +61,15 @@ class KeyTypedValuePair(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import key_boolean_value_pair, key_integer_value_pair, key_real_value_pair, key_string_value_pair
+        from .key_boolean_value_pair import KeyBooleanValuePair
+        from .key_integer_value_pair import KeyIntegerValuePair
+        from .key_real_value_pair import KeyRealValuePair
+        from .key_string_value_pair import KeyStringValuePair
+
+        from .key_boolean_value_pair import KeyBooleanValuePair
+        from .key_integer_value_pair import KeyIntegerValuePair
+        from .key_real_value_pair import KeyRealValuePair
+        from .key_string_value_pair import KeyStringValuePair
 
         fields: Dict[str, Callable[[Any], None]] = {
             "key": lambda n : setattr(self, 'key', n.get_str_value()),
@@ -82,48 +77,14 @@ class KeyTypedValuePair(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def key(self,) -> Optional[str]:
-        """
-        Gets the key property value. The string key of the key-value pair.
-        Returns: Optional[str]
-        """
-        return self._key
-    
-    @key.setter
-    def key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the key property value. The string key of the key-value pair.
-        Args:
-            value: Value to set for the key property.
-        """
-        self._key = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("key", self.key)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

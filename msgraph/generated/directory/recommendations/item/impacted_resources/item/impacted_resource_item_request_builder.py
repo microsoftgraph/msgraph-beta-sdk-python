@@ -1,115 +1,103 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import impacted_resource
-    from ......models.o_data_errors import o_data_error
-    from .complete import complete_request_builder
-    from .dismiss import dismiss_request_builder
-    from .postpone import postpone_request_builder
-    from .reactivate import reactivate_request_builder
+    from ......models.impacted_resource import ImpactedResource
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .complete.complete_request_builder import CompleteRequestBuilder
+    from .dismiss.dismiss_request_builder import DismissRequestBuilder
+    from .postpone.postpone_request_builder import PostponeRequestBuilder
+    from .reactivate.reactivate_request_builder import ReactivateRequestBuilder
 
-class ImpactedResourceItemRequestBuilder():
+class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the impactedResources property of the microsoft.graph.recommendationBase entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ImpactedResourceItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/directory/recommendations/{recommendation%2Did}/impactedResources/{impactedResource%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/directory/recommendations/{recommendation%2Did}/impactedResources/{impactedResource%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property impactedResources for directory
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[impacted_resource.ImpactedResource]:
+    async def get(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ImpactedResource]:
         """
         The list of directory objects associated with the recommendation.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[impacted_resource.ImpactedResource]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ImpactedResource]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import impacted_resource
+        from ......models.impacted_resource import ImpactedResource
 
-        return await self.request_adapter.send_async(request_info, impacted_resource.ImpactedResource, error_mapping)
+        return await self.request_adapter.send_async(request_info, ImpactedResource, error_mapping)
     
-    async def patch(self,body: Optional[impacted_resource.ImpactedResource] = None, request_configuration: Optional[ImpactedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[impacted_resource.ImpactedResource]:
+    async def patch(self,body: Optional[ImpactedResource] = None, request_configuration: Optional[ImpactedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ImpactedResource]:
         """
         Update the navigation property impactedResources in directory
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[impacted_resource.ImpactedResource]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ImpactedResource]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import impacted_resource
+        from ......models.impacted_resource import ImpactedResource
 
-        return await self.request_adapter.send_async(request_info, impacted_resource.ImpactedResource, error_mapping)
+        return await self.request_adapter.send_async(request_info, ImpactedResource, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property impactedResources for directory
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -124,8 +112,7 @@ class ImpactedResourceItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The list of directory objects associated with the recommendation.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -139,16 +126,15 @@ class ImpactedResourceItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[impacted_resource.ImpactedResource] = None, request_configuration: Optional[ImpactedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ImpactedResource] = None, request_configuration: Optional[ImpactedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property impactedResources in directory
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,53 +146,61 @@ class ImpactedResourceItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> ImpactedResourceItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: ImpactedResourceItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return ImpactedResourceItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def complete(self) -> complete_request_builder.CompleteRequestBuilder:
+    def complete(self) -> CompleteRequestBuilder:
         """
         Provides operations to call the complete method.
         """
-        from .complete import complete_request_builder
+        from .complete.complete_request_builder import CompleteRequestBuilder
 
-        return complete_request_builder.CompleteRequestBuilder(self.request_adapter, self.path_parameters)
+        return CompleteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def dismiss(self) -> dismiss_request_builder.DismissRequestBuilder:
+    def dismiss(self) -> DismissRequestBuilder:
         """
         Provides operations to call the dismiss method.
         """
-        from .dismiss import dismiss_request_builder
+        from .dismiss.dismiss_request_builder import DismissRequestBuilder
 
-        return dismiss_request_builder.DismissRequestBuilder(self.request_adapter, self.path_parameters)
+        return DismissRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def postpone(self) -> postpone_request_builder.PostponeRequestBuilder:
+    def postpone(self) -> PostponeRequestBuilder:
         """
         Provides operations to call the postpone method.
         """
-        from .postpone import postpone_request_builder
+        from .postpone.postpone_request_builder import PostponeRequestBuilder
 
-        return postpone_request_builder.PostponeRequestBuilder(self.request_adapter, self.path_parameters)
+        return PostponeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reactivate(self) -> reactivate_request_builder.ReactivateRequestBuilder:
+    def reactivate(self) -> ReactivateRequestBuilder:
         """
         Provides operations to call the reactivate method.
         """
-        from .reactivate import reactivate_request_builder
+        from .reactivate.reactivate_request_builder import ReactivateRequestBuilder
 
-        return reactivate_request_builder.ReactivateRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReactivateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ImpactedResourceItemRequestBuilderDeleteRequestConfiguration():
+    class ImpactedResourceItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class ImpactedResourceItemRequestBuilderGetQueryParameters():
@@ -216,12 +210,11 @@ class ImpactedResourceItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -235,31 +228,27 @@ class ImpactedResourceItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ImpactedResourceItemRequestBuilderGetRequestConfiguration():
+    class ImpactedResourceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ImpactedResourceItemRequestBuilder.ImpactedResourceItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ImpactedResourceItemRequestBuilderPatchRequestConfiguration():
+    class ImpactedResourceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

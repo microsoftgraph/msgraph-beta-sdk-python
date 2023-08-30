@@ -1,141 +1,82 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import planner_creation_source_kind, planner_external_task_source, planner_teams_publication_info
+    from .planner_creation_source_kind import PlannerCreationSourceKind
+    from .planner_external_task_source import PlannerExternalTaskSource
+    from .planner_teams_publication_info import PlannerTeamsPublicationInfo
 
-class PlannerTaskCreation(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerTaskCreation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class PlannerTaskCreation(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # Specifies what kind of creation source the task is created with. The possible values are: external, publication and unknownFutureValue.
-        self._creation_source_kind: Optional[planner_creation_source_kind.PlannerCreationSourceKind] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Information about the publication process that created this task. This field is deprecated and clients should move to using the new inheritance model.
-        self._teams_publication_info: Optional[planner_teams_publication_info.PlannerTeamsPublicationInfo] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # Specifies what kind of creation source the task is created with. The possible values are: external, publication and unknownFutureValue.
+    creation_source_kind: Optional[PlannerCreationSourceKind] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Information about the publication process that created this task. This field is deprecated and clients should move to using the new inheritance model.
+    teams_publication_info: Optional[PlannerTeamsPublicationInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskCreation:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PlannerTaskCreation
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.plannerExternalTaskSource":
-                from . import planner_external_task_source
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerExternalTaskSource".casefold():
+            from .planner_external_task_source import PlannerExternalTaskSource
 
-                return planner_external_task_source.PlannerExternalTaskSource()
-            if mapping_value == "#microsoft.graph.plannerTeamsPublicationInfo":
-                from . import planner_teams_publication_info
+            return PlannerExternalTaskSource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerTeamsPublicationInfo".casefold():
+            from .planner_teams_publication_info import PlannerTeamsPublicationInfo
 
-                return planner_teams_publication_info.PlannerTeamsPublicationInfo()
+            return PlannerTeamsPublicationInfo()
         return PlannerTaskCreation()
-    
-    @property
-    def creation_source_kind(self,) -> Optional[planner_creation_source_kind.PlannerCreationSourceKind]:
-        """
-        Gets the creationSourceKind property value. Specifies what kind of creation source the task is created with. The possible values are: external, publication and unknownFutureValue.
-        Returns: Optional[planner_creation_source_kind.PlannerCreationSourceKind]
-        """
-        return self._creation_source_kind
-    
-    @creation_source_kind.setter
-    def creation_source_kind(self,value: Optional[planner_creation_source_kind.PlannerCreationSourceKind] = None) -> None:
-        """
-        Sets the creationSourceKind property value. Specifies what kind of creation source the task is created with. The possible values are: external, publication and unknownFutureValue.
-        Args:
-            value: Value to set for the creation_source_kind property.
-        """
-        self._creation_source_kind = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import planner_creation_source_kind, planner_external_task_source, planner_teams_publication_info
+        from .planner_creation_source_kind import PlannerCreationSourceKind
+        from .planner_external_task_source import PlannerExternalTaskSource
+        from .planner_teams_publication_info import PlannerTeamsPublicationInfo
+
+        from .planner_creation_source_kind import PlannerCreationSourceKind
+        from .planner_external_task_source import PlannerExternalTaskSource
+        from .planner_teams_publication_info import PlannerTeamsPublicationInfo
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "creationSourceKind": lambda n : setattr(self, 'creation_source_kind', n.get_enum_value(planner_creation_source_kind.PlannerCreationSourceKind)),
+            "creationSourceKind": lambda n : setattr(self, 'creation_source_kind', n.get_enum_value(PlannerCreationSourceKind)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "teamsPublicationInfo": lambda n : setattr(self, 'teams_publication_info', n.get_object_value(planner_teams_publication_info.PlannerTeamsPublicationInfo)),
+            "teamsPublicationInfo": lambda n : setattr(self, 'teams_publication_info', n.get_object_value(PlannerTeamsPublicationInfo)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_enum_value("creationSourceKind", self.creation_source_kind)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("teamsPublicationInfo", self.teams_publication_info)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def teams_publication_info(self,) -> Optional[planner_teams_publication_info.PlannerTeamsPublicationInfo]:
-        """
-        Gets the teamsPublicationInfo property value. Information about the publication process that created this task. This field is deprecated and clients should move to using the new inheritance model.
-        Returns: Optional[planner_teams_publication_info.PlannerTeamsPublicationInfo]
-        """
-        return self._teams_publication_info
-    
-    @teams_publication_info.setter
-    def teams_publication_info(self,value: Optional[planner_teams_publication_info.PlannerTeamsPublicationInfo] = None) -> None:
-        """
-        Sets the teamsPublicationInfo property value. Information about the publication process that created this task. This field is deprecated and clients should move to using the new inheritance model.
-        Args:
-            value: Value to set for the teams_publication_info property.
-        """
-        self._teams_publication_info = value
     
 

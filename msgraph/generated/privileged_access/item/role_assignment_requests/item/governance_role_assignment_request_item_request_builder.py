@@ -1,116 +1,104 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import governance_role_assignment_request
-    from .....models.o_data_errors import o_data_error
-    from .cancel import cancel_request_builder
-    from .resource import resource_request_builder
-    from .role_definition import role_definition_request_builder
-    from .subject import subject_request_builder
-    from .update_request import update_request_request_builder
+    from .....models.governance_role_assignment_request import GovernanceRoleAssignmentRequest
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .cancel.cancel_request_builder import CancelRequestBuilder
+    from .resource.resource_request_builder import ResourceRequestBuilder
+    from .role_definition.role_definition_request_builder import RoleDefinitionRequestBuilder
+    from .subject.subject_request_builder import SubjectRequestBuilder
+    from .update_request.update_request_request_builder import UpdateRequestRequestBuilder
 
-class GovernanceRoleAssignmentRequestItemRequestBuilder():
+class GovernanceRoleAssignmentRequestItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the roleAssignmentRequests property of the microsoft.graph.privilegedAccess entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GovernanceRoleAssignmentRequestItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/privilegedAccess/{privilegedAccess%2Did}/roleAssignmentRequests/{governanceRoleAssignmentRequest%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/privilegedAccess/{privilegedAccess%2Did}/roleAssignmentRequests/{governanceRoleAssignmentRequest%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleAssignmentRequests for privilegedAccess
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]:
+    async def get(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[GovernanceRoleAssignmentRequest]:
         """
         A collection of role assignment requests for the provider.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GovernanceRoleAssignmentRequest]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import governance_role_assignment_request
+        from .....models.governance_role_assignment_request import GovernanceRoleAssignmentRequest
 
-        return await self.request_adapter.send_async(request_info, governance_role_assignment_request.GovernanceRoleAssignmentRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, GovernanceRoleAssignmentRequest, error_mapping)
     
-    async def patch(self,body: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]:
+    async def patch(self,body: Optional[GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[GovernanceRoleAssignmentRequest]:
         """
         Update the navigation property roleAssignmentRequests in privilegedAccess
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GovernanceRoleAssignmentRequest]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import governance_role_assignment_request
+        from .....models.governance_role_assignment_request import GovernanceRoleAssignmentRequest
 
-        return await self.request_adapter.send_async(request_info, governance_role_assignment_request.GovernanceRoleAssignmentRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, GovernanceRoleAssignmentRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property roleAssignmentRequests for privilegedAccess
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -125,8 +113,7 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A collection of role assignment requests for the provider.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -140,16 +127,15 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property roleAssignmentRequests in privilegedAccess
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -161,62 +147,70 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> GovernanceRoleAssignmentRequestItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: GovernanceRoleAssignmentRequestItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return GovernanceRoleAssignmentRequestItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+    def cancel(self) -> CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
-        from .cancel import cancel_request_builder
+        from .cancel.cancel_request_builder import CancelRequestBuilder
 
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+        return CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def resource(self) -> resource_request_builder.ResourceRequestBuilder:
+    def resource(self) -> ResourceRequestBuilder:
         """
         Provides operations to manage the resource property of the microsoft.graph.governanceRoleAssignmentRequest entity.
         """
-        from .resource import resource_request_builder
+        from .resource.resource_request_builder import ResourceRequestBuilder
 
-        return resource_request_builder.ResourceRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
+    def role_definition(self) -> RoleDefinitionRequestBuilder:
         """
         Provides operations to manage the roleDefinition property of the microsoft.graph.governanceRoleAssignmentRequest entity.
         """
-        from .role_definition import role_definition_request_builder
+        from .role_definition.role_definition_request_builder import RoleDefinitionRequestBuilder
 
-        return role_definition_request_builder.RoleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+        return RoleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def subject(self) -> subject_request_builder.SubjectRequestBuilder:
+    def subject(self) -> SubjectRequestBuilder:
         """
         Provides operations to manage the subject property of the microsoft.graph.governanceRoleAssignmentRequest entity.
         """
-        from .subject import subject_request_builder
+        from .subject.subject_request_builder import SubjectRequestBuilder
 
-        return subject_request_builder.SubjectRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_request(self) -> update_request_request_builder.UpdateRequestRequestBuilder:
+    def update_request(self) -> UpdateRequestRequestBuilder:
         """
         Provides operations to call the updateRequest method.
         """
-        from .update_request import update_request_request_builder
+        from .update_request.update_request_request_builder import UpdateRequestRequestBuilder
 
-        return update_request_request_builder.UpdateRequestRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GovernanceRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration():
+    class GovernanceRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class GovernanceRoleAssignmentRequestItemRequestBuilderGetQueryParameters():
@@ -226,12 +220,11 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -245,31 +238,27 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GovernanceRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration():
+    class GovernanceRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[GovernanceRoleAssignmentRequestItemRequestBuilder.GovernanceRoleAssignmentRequestItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GovernanceRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration():
+    class GovernanceRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

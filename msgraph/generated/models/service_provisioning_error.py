@@ -1,83 +1,51 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import service_provisioning_resource_error, service_provisioning_xml_error
+    from .service_provisioning_resource_error import ServiceProvisioningResourceError
+    from .service_provisioning_xml_error import ServiceProvisioningXmlError
 
-class ServiceProvisioningError(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new serviceProvisioningError and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class ServiceProvisioningError(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The date and time at which the error occurred.
-        self._created_date_time: Optional[datetime] = None
-        # Indicates whether the Error has been attended to.
-        self._is_resolved: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
-        self._service_instance: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time at which the error occurred.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time at which the error occurred.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The date and time at which the error occurred.
+    created_date_time: Optional[datetime.datetime] = None
+    # Indicates whether the Error has been attended to.
+    is_resolved: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
+    service_instance: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServiceProvisioningError:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ServiceProvisioningError
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.serviceProvisioningResourceError":
-                from . import service_provisioning_resource_error
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceProvisioningResourceError".casefold():
+            from .service_provisioning_resource_error import ServiceProvisioningResourceError
 
-                return service_provisioning_resource_error.ServiceProvisioningResourceError()
-            if mapping_value == "#microsoft.graph.serviceProvisioningXmlError":
-                from . import service_provisioning_xml_error
+            return ServiceProvisioningResourceError()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceProvisioningXmlError".casefold():
+            from .service_provisioning_xml_error import ServiceProvisioningXmlError
 
-                return service_provisioning_xml_error.ServiceProvisioningXmlError()
+            return ServiceProvisioningXmlError()
         return ServiceProvisioningError()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -85,7 +53,11 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import service_provisioning_resource_error, service_provisioning_xml_error
+        from .service_provisioning_resource_error import ServiceProvisioningResourceError
+        from .service_provisioning_xml_error import ServiceProvisioningXmlError
+
+        from .service_provisioning_resource_error import ServiceProvisioningResourceError
+        from .service_provisioning_xml_error import ServiceProvisioningXmlError
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -95,69 +67,18 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def is_resolved(self,) -> Optional[bool]:
-        """
-        Gets the isResolved property value. Indicates whether the Error has been attended to.
-        Returns: Optional[bool]
-        """
-        return self._is_resolved
-    
-    @is_resolved.setter
-    def is_resolved(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isResolved property value. Indicates whether the Error has been attended to.
-        Args:
-            value: Value to set for the is_resolved property.
-        """
-        self._is_resolved = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_bool_value("isResolved", self.is_resolved)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("serviceInstance", self.service_instance)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def service_instance(self,) -> Optional[str]:
-        """
-        Gets the serviceInstance property value. Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
-        Returns: Optional[str]
-        """
-        return self._service_instance
-    
-    @service_instance.setter
-    def service_instance(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serviceInstance property value. Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
-        Args:
-            value: Value to set for the service_instance property.
-        """
-        self._service_instance = value
     
 

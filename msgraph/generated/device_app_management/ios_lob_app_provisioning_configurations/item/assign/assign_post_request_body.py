@@ -1,67 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import ios_lob_app_provisioning_configuration_assignment, mobile_app_provisioning_config_group_assignment
+    from .....models.ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
+    from .....models.mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
 
-class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The appProvisioningConfigurationGroupAssignments property
-        self._app_provisioning_configuration_group_assignments: Optional[List[mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment]] = None
-        # The iOSLobAppProvisioningConfigAssignments property
-        self._i_o_s_lob_app_provisioning_config_assignments: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def app_provisioning_configuration_group_assignments(self,) -> Optional[List[mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment]]:
-        """
-        Gets the appProvisioningConfigurationGroupAssignments property value. The appProvisioningConfigurationGroupAssignments property
-        Returns: Optional[List[mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment]]
-        """
-        return self._app_provisioning_configuration_group_assignments
-    
-    @app_provisioning_configuration_group_assignments.setter
-    def app_provisioning_configuration_group_assignments(self,value: Optional[List[mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment]] = None) -> None:
-        """
-        Sets the appProvisioningConfigurationGroupAssignments property value. The appProvisioningConfigurationGroupAssignments property
-        Args:
-            value: Value to set for the app_provisioning_configuration_group_assignments property.
-        """
-        self._app_provisioning_configuration_group_assignments = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The appProvisioningConfigurationGroupAssignments property
+    app_provisioning_configuration_group_assignments: Optional[List[MobileAppProvisioningConfigGroupAssignment]] = None
+    # The iOSLobAppProvisioningConfigAssignments property
+    i_o_s_lob_app_provisioning_config_assignments: Optional[List[IosLobAppProvisioningConfigurationAssignment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AssignPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AssignPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -69,39 +36,26 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .....models import ios_lob_app_provisioning_configuration_assignment, mobile_app_provisioning_config_group_assignment
+        from .....models.ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
+        from .....models.mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
+
+        from .....models.ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
+        from .....models.mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "appProvisioningConfigurationGroupAssignments": lambda n : setattr(self, 'app_provisioning_configuration_group_assignments', n.get_collection_of_object_values(mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment)),
-            "iOSLobAppProvisioningConfigAssignments": lambda n : setattr(self, 'i_o_s_lob_app_provisioning_config_assignments', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment)),
+            "appProvisioningConfigurationGroupAssignments": lambda n : setattr(self, 'app_provisioning_configuration_group_assignments', n.get_collection_of_object_values(MobileAppProvisioningConfigGroupAssignment)),
+            "iOSLobAppProvisioningConfigAssignments": lambda n : setattr(self, 'i_o_s_lob_app_provisioning_config_assignments', n.get_collection_of_object_values(IosLobAppProvisioningConfigurationAssignment)),
         }
         return fields
-    
-    @property
-    def i_o_s_lob_app_provisioning_config_assignments(self,) -> Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]]:
-        """
-        Gets the iOSLobAppProvisioningConfigAssignments property value. The iOSLobAppProvisioningConfigAssignments property
-        Returns: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]]
-        """
-        return self._i_o_s_lob_app_provisioning_config_assignments
-    
-    @i_o_s_lob_app_provisioning_config_assignments.setter
-    def i_o_s_lob_app_provisioning_config_assignments(self,value: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]] = None) -> None:
-        """
-        Sets the iOSLobAppProvisioningConfigAssignments property value. The iOSLobAppProvisioningConfigAssignments property
-        Args:
-            value: Value to set for the i_o_s_lob_app_provisioning_config_assignments property.
-        """
-        self._i_o_s_lob_app_provisioning_config_assignments = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("appProvisioningConfigurationGroupAssignments", self.app_provisioning_configuration_group_assignments)
         writer.write_collection_of_object_values("iOSLobAppProvisioningConfigAssignments", self.i_o_s_lob_app_provisioning_config_assignments)
         writer.write_additional_data_value(self.additional_data)

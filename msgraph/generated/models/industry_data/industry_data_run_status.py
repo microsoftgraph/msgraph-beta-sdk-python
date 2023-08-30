@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IndustryDataRunStatus(Enum):
+class IndustryDataRunStatus(str, Enum):
     Running = "running",
     Failed = "failed",
     Completed = "completed",

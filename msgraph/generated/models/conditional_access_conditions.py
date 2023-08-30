@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConditionalAccessConditions(Enum):
+class ConditionalAccessConditions(str, Enum):
     None_ = "none",
     Application = "application",
     Users = "users",
@@ -17,4 +17,6 @@ class ConditionalAccessConditions(Enum):
     UnknownFutureValue = "unknownFutureValue",
     ServicePrincipals = "servicePrincipals",
     ServicePrincipalRisk = "servicePrincipalRisk",
+    AuthenticationFlows = "authenticationFlows",
+    InsiderRisk = "insiderRisk",
 

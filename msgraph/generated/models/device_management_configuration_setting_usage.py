@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationSettingUsage(Enum):
+class DeviceManagementConfigurationSettingUsage(str, Enum):
     # Default. No setting type specified.
     None_ = "none",
     # Configuration setting type.

@@ -1,49 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import windows_package_information, windows_phone81_app_x
+    from .windows_package_information import WindowsPackageInformation
+    from .windows_phone81_app_x import WindowsPhone81AppX
 
-from . import windows_phone81_app_x
+from .windows_phone81_app_x import WindowsPhone81AppX
 
-class WindowsPhone81AppXBundle(windows_phone81_app_x.WindowsPhone81AppX):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsPhone81AppXBundle and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsPhone81AppXBundle"
-        # The list of AppX Package Information.
-        self._app_x_package_information_list: Optional[List[windows_package_information.WindowsPackageInformation]] = None
-    
-    @property
-    def app_x_package_information_list(self,) -> Optional[List[windows_package_information.WindowsPackageInformation]]:
-        """
-        Gets the appXPackageInformationList property value. The list of AppX Package Information.
-        Returns: Optional[List[windows_package_information.WindowsPackageInformation]]
-        """
-        return self._app_x_package_information_list
-    
-    @app_x_package_information_list.setter
-    def app_x_package_information_list(self,value: Optional[List[windows_package_information.WindowsPackageInformation]] = None) -> None:
-        """
-        Sets the appXPackageInformationList property value. The list of AppX Package Information.
-        Args:
-            value: Value to set for the app_x_package_information_list property.
-        """
-        self._app_x_package_information_list = value
+@dataclass
+class WindowsPhone81AppXBundle(WindowsPhone81AppX):
+    """
+    Contains properties and inherited properties for Windows Phone 8.1 AppX Bundle Line Of Business apps. Inherits from graph.windowsPhone81AppX (which is also to be deprecated at the same time). Will be deprecated in February 2023.
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.windowsPhone81AppXBundle"
+    # The list of AppX Package Information.
+    app_x_package_information_list: Optional[List[WindowsPackageInformation]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPhone81AppXBundle:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WindowsPhone81AppXBundle
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WindowsPhone81AppXBundle()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -51,10 +35,14 @@ class WindowsPhone81AppXBundle(windows_phone81_app_x.WindowsPhone81AppX):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import windows_package_information, windows_phone81_app_x
+        from .windows_package_information import WindowsPackageInformation
+        from .windows_phone81_app_x import WindowsPhone81AppX
+
+        from .windows_package_information import WindowsPackageInformation
+        from .windows_phone81_app_x import WindowsPhone81AppX
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "appXPackageInformationList": lambda n : setattr(self, 'app_x_package_information_list', n.get_collection_of_object_values(windows_package_information.WindowsPackageInformation)),
+            "appXPackageInformationList": lambda n : setattr(self, 'app_x_package_information_list', n.get_collection_of_object_values(WindowsPackageInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,11 +51,11 @@ class WindowsPhone81AppXBundle(windows_phone81_app_x.WindowsPhone81AppX):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("appXPackageInformationList", self.app_x_package_information_list)
     

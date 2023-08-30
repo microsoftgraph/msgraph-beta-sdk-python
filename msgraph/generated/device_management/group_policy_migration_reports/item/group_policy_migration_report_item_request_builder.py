@@ -1,114 +1,102 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import group_policy_migration_report
-    from ....models.o_data_errors import o_data_error
-    from .group_policy_setting_mappings import group_policy_setting_mappings_request_builder
-    from .unsupported_group_policy_extensions import unsupported_group_policy_extensions_request_builder
-    from .update_scope_tags import update_scope_tags_request_builder
+    from ....models.group_policy_migration_report import GroupPolicyMigrationReport
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .group_policy_setting_mappings.group_policy_setting_mappings_request_builder import GroupPolicySettingMappingsRequestBuilder
+    from .unsupported_group_policy_extensions.unsupported_group_policy_extensions_request_builder import UnsupportedGroupPolicyExtensionsRequestBuilder
+    from .update_scope_tags.update_scope_tags_request_builder import UpdateScopeTagsRequestBuilder
 
-class GroupPolicyMigrationReportItemRequestBuilder():
+class GroupPolicyMigrationReportItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the groupPolicyMigrationReports property of the microsoft.graph.deviceManagement entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GroupPolicyMigrationReportItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/groupPolicyMigrationReports/{groupPolicyMigrationReport%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/groupPolicyMigrationReports/{groupPolicyMigrationReport%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property groupPolicyMigrationReports for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
+    async def get(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicyMigrationReport]:
         """
         A list of Group Policy migration reports.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_migration_report.GroupPolicyMigrationReport]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GroupPolicyMigrationReport]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import group_policy_migration_report
+        from ....models.group_policy_migration_report import GroupPolicyMigrationReport
 
-        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicyMigrationReport, error_mapping)
     
-    async def patch(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
+    async def patch(self,body: Optional[GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[GroupPolicyMigrationReport]:
         """
         Update the navigation property groupPolicyMigrationReports in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_policy_migration_report.GroupPolicyMigrationReport]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GroupPolicyMigrationReport]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import group_policy_migration_report
+        from ....models.group_policy_migration_report import GroupPolicyMigrationReport
 
-        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupPolicyMigrationReport, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property groupPolicyMigrationReports for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -123,8 +111,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A list of Group Policy migration reports.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -138,16 +125,15 @@ class GroupPolicyMigrationReportItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property groupPolicyMigrationReports in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,44 +145,52 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> GroupPolicyMigrationReportItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: GroupPolicyMigrationReportItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return GroupPolicyMigrationReportItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def group_policy_setting_mappings(self) -> group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder:
+    def group_policy_setting_mappings(self) -> GroupPolicySettingMappingsRequestBuilder:
         """
         Provides operations to manage the groupPolicySettingMappings property of the microsoft.graph.groupPolicyMigrationReport entity.
         """
-        from .group_policy_setting_mappings import group_policy_setting_mappings_request_builder
+        from .group_policy_setting_mappings.group_policy_setting_mappings_request_builder import GroupPolicySettingMappingsRequestBuilder
 
-        return group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GroupPolicySettingMappingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unsupported_group_policy_extensions(self) -> unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder:
+    def unsupported_group_policy_extensions(self) -> UnsupportedGroupPolicyExtensionsRequestBuilder:
         """
         Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
         """
-        from .unsupported_group_policy_extensions import unsupported_group_policy_extensions_request_builder
+        from .unsupported_group_policy_extensions.unsupported_group_policy_extensions_request_builder import UnsupportedGroupPolicyExtensionsRequestBuilder
 
-        return unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UnsupportedGroupPolicyExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_scope_tags(self) -> update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder:
+    def update_scope_tags(self) -> UpdateScopeTagsRequestBuilder:
         """
         Provides operations to call the updateScopeTags method.
         """
-        from .update_scope_tags import update_scope_tags_request_builder
+        from .update_scope_tags.update_scope_tags_request_builder import UpdateScopeTagsRequestBuilder
 
-        return update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UpdateScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration():
+    class GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class GroupPolicyMigrationReportItemRequestBuilderGetQueryParameters():
@@ -206,12 +200,11 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -225,31 +218,27 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration():
+    class GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[GroupPolicyMigrationReportItemRequestBuilder.GroupPolicyMigrationReportItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration():
+    class GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

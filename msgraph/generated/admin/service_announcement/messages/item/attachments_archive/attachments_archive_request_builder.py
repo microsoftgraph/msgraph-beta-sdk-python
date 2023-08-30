@@ -1,54 +1,45 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors import o_data_error
+    from ......models.o_data_errors.o_data_error import ODataError
 
-class AttachmentsArchiveRequestBuilder():
+class AttachmentsArchiveRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the media for the admin entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AttachmentsArchiveRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage%2Did}/attachmentsArchive"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage%2Did}/attachmentsArchive", path_parameters)
     
     async def get(self,request_configuration: Optional[AttachmentsArchiveRequestBuilderGetRequestConfiguration] = None) -> bytes:
         """
         The zip file of all attachments for a message.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -57,21 +48,20 @@ class AttachmentsArchiveRequestBuilder():
     async def put(self,body: bytes, request_configuration: Optional[AttachmentsArchiveRequestBuilderPutRequestConfiguration] = None) -> bytes:
         """
         The zip file of all attachments for a message.
-        Args:
-            body: Binary request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: Binary request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_put_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -80,8 +70,7 @@ class AttachmentsArchiveRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[AttachmentsArchiveRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The zip file of all attachments for a message.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -96,13 +85,12 @@ class AttachmentsArchiveRequestBuilder():
     def to_put_request_information(self,body: bytes, request_configuration: Optional[AttachmentsArchiveRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
         The zip file of all attachments for a message.
-        Args:
-            body: Binary request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: Binary request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -113,28 +101,34 @@ class AttachmentsArchiveRequestBuilder():
         request_info.set_stream_content(body)
         return request_info
     
-    @dataclass
-    class AttachmentsArchiveRequestBuilderGetRequestConfiguration():
+    def with_url(self,raw_url: Optional[str] = None) -> AttachmentsArchiveRequestBuilder:
         """
-        Configuration for the request such as headers, query parameters, and middleware options.
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: AttachmentsArchiveRequestBuilder
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return AttachmentsArchiveRequestBuilder(raw_url, self.request_adapter)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AttachmentsArchiveRequestBuilderPutRequestConfiguration():
+    class AttachmentsArchiveRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
-        # Request options
-        options: Optional[List[RequestOption]] = None
+    @dataclass
+    class AttachmentsArchiveRequestBuilderPutRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

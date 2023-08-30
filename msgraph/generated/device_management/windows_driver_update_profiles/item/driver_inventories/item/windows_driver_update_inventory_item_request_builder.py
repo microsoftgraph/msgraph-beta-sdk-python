@@ -1,111 +1,99 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import windows_driver_update_inventory
-    from ......models.o_data_errors import o_data_error
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.windows_driver_update_inventory import WindowsDriverUpdateInventory
 
-class WindowsDriverUpdateInventoryItemRequestBuilder():
+class WindowsDriverUpdateInventoryItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the driverInventories property of the microsoft.graph.windowsDriverUpdateProfile entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new WindowsDriverUpdateInventoryItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/windowsDriverUpdateProfiles/{windowsDriverUpdateProfile%2Did}/driverInventories/{windowsDriverUpdateInventory%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/windowsDriverUpdateProfiles/{windowsDriverUpdateProfile%2Did}/driverInventories/{windowsDriverUpdateInventory%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property driverInventories for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_driver_update_inventory.WindowsDriverUpdateInventory]:
+    async def get(self,request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsDriverUpdateInventory]:
         """
         Driver inventories for this profile.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_driver_update_inventory.WindowsDriverUpdateInventory]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WindowsDriverUpdateInventory]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import windows_driver_update_inventory
+        from ......models.windows_driver_update_inventory import WindowsDriverUpdateInventory
 
-        return await self.request_adapter.send_async(request_info, windows_driver_update_inventory.WindowsDriverUpdateInventory, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDriverUpdateInventory, error_mapping)
     
-    async def patch(self,body: Optional[windows_driver_update_inventory.WindowsDriverUpdateInventory] = None, request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_driver_update_inventory.WindowsDriverUpdateInventory]:
+    async def patch(self,body: Optional[WindowsDriverUpdateInventory] = None, request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WindowsDriverUpdateInventory]:
         """
         Update the navigation property driverInventories in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[windows_driver_update_inventory.WindowsDriverUpdateInventory]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[WindowsDriverUpdateInventory]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import windows_driver_update_inventory
+        from ......models.windows_driver_update_inventory import WindowsDriverUpdateInventory
 
-        return await self.request_adapter.send_async(request_info, windows_driver_update_inventory.WindowsDriverUpdateInventory, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDriverUpdateInventory, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property driverInventories for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -120,8 +108,7 @@ class WindowsDriverUpdateInventoryItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Driver inventories for this profile.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -135,16 +122,15 @@ class WindowsDriverUpdateInventoryItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[windows_driver_update_inventory.WindowsDriverUpdateInventory] = None, request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WindowsDriverUpdateInventory] = None, request_configuration: Optional[WindowsDriverUpdateInventoryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property driverInventories in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -156,17 +142,25 @@ class WindowsDriverUpdateInventoryItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> WindowsDriverUpdateInventoryItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: WindowsDriverUpdateInventoryItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return WindowsDriverUpdateInventoryItemRequestBuilder(raw_url, self.request_adapter)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WindowsDriverUpdateInventoryItemRequestBuilderDeleteRequestConfiguration():
+    class WindowsDriverUpdateInventoryItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class WindowsDriverUpdateInventoryItemRequestBuilderGetQueryParameters():
@@ -176,12 +170,11 @@ class WindowsDriverUpdateInventoryItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -195,31 +188,27 @@ class WindowsDriverUpdateInventoryItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WindowsDriverUpdateInventoryItemRequestBuilderGetRequestConfiguration():
+    class WindowsDriverUpdateInventoryItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[WindowsDriverUpdateInventoryItemRequestBuilder.WindowsDriverUpdateInventoryItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class WindowsDriverUpdateInventoryItemRequestBuilderPatchRequestConfiguration():
+    class WindowsDriverUpdateInventoryItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

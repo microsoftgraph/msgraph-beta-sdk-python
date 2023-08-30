@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PagePromotionType(Enum):
+class PagePromotionType(str, Enum):
     MicrosoftReserved = "microsoftReserved",
     Page = "page",
     NewsPost = "newsPost",

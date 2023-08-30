@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PayloadIndustry(Enum):
+class PayloadIndustry(str, Enum):
     Unknown = "unknown",
     Other = "other",
     Banking = "banking",

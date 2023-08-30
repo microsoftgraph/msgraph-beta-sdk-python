@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ContentFormat(Enum):
+class ContentFormat(str, Enum):
     Text = "text",
     Html = "html",
     Markdown = "markdown",

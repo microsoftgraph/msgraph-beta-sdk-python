@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RestrictedAppsState(Enum):
+class RestrictedAppsState(str, Enum):
     # Prohibited apps
     ProhibitedApps = "prohibitedApps",
     # Not approved apps

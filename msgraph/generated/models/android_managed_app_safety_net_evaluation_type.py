@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidManagedAppSafetyNetEvaluationType(Enum):
+class AndroidManagedAppSafetyNetEvaluationType(str, Enum):
     # Require basic evaluation
     Basic = "basic",
     # Require hardware backed evaluation

@@ -1,116 +1,74 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_health_script_boolean_parameter, device_health_script_integer_parameter, device_health_script_string_parameter
+    from .device_health_script_boolean_parameter import DeviceHealthScriptBooleanParameter
+    from .device_health_script_integer_parameter import DeviceHealthScriptIntegerParameter
+    from .device_health_script_string_parameter import DeviceHealthScriptStringParameter
 
-class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
+@dataclass
+class DeviceHealthScriptParameter(AdditionalDataHolder, BackedModel, Parsable):
     """
     Base properties of the script parameter.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceHealthScriptParameter and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # Whether Apply DefaultValue When Not Assigned
-        self._apply_default_value_when_not_assigned: Optional[bool] = None
-        # The description of the param
-        self._description: Optional[str] = None
-        # Whether the param is required
-        self._is_required: Optional[bool] = None
-        # The name of the param
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def apply_default_value_when_not_assigned(self,) -> Optional[bool]:
-        """
-        Gets the applyDefaultValueWhenNotAssigned property value. Whether Apply DefaultValue When Not Assigned
-        Returns: Optional[bool]
-        """
-        return self._apply_default_value_when_not_assigned
-    
-    @apply_default_value_when_not_assigned.setter
-    def apply_default_value_when_not_assigned(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applyDefaultValueWhenNotAssigned property value. Whether Apply DefaultValue When Not Assigned
-        Args:
-            value: Value to set for the apply_default_value_when_not_assigned property.
-        """
-        self._apply_default_value_when_not_assigned = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # Whether Apply DefaultValue When Not Assigned
+    apply_default_value_when_not_assigned: Optional[bool] = None
+    # The description of the param
+    description: Optional[str] = None
+    # Whether the param is required
+    is_required: Optional[bool] = None
+    # The name of the param
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptParameter:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceHealthScriptParameter
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.deviceHealthScriptBooleanParameter":
-                from . import device_health_script_boolean_parameter
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptBooleanParameter".casefold():
+            from .device_health_script_boolean_parameter import DeviceHealthScriptBooleanParameter
 
-                return device_health_script_boolean_parameter.DeviceHealthScriptBooleanParameter()
-            if mapping_value == "#microsoft.graph.deviceHealthScriptIntegerParameter":
-                from . import device_health_script_integer_parameter
+            return DeviceHealthScriptBooleanParameter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptIntegerParameter".casefold():
+            from .device_health_script_integer_parameter import DeviceHealthScriptIntegerParameter
 
-                return device_health_script_integer_parameter.DeviceHealthScriptIntegerParameter()
-            if mapping_value == "#microsoft.graph.deviceHealthScriptStringParameter":
-                from . import device_health_script_string_parameter
+            return DeviceHealthScriptIntegerParameter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptStringParameter".casefold():
+            from .device_health_script_string_parameter import DeviceHealthScriptStringParameter
 
-                return device_health_script_string_parameter.DeviceHealthScriptStringParameter()
+            return DeviceHealthScriptStringParameter()
         return DeviceHealthScriptParameter()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description of the param
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description of the param
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_health_script_boolean_parameter, device_health_script_integer_parameter, device_health_script_string_parameter
+        from .device_health_script_boolean_parameter import DeviceHealthScriptBooleanParameter
+        from .device_health_script_integer_parameter import DeviceHealthScriptIntegerParameter
+        from .device_health_script_string_parameter import DeviceHealthScriptStringParameter
+
+        from .device_health_script_boolean_parameter import DeviceHealthScriptBooleanParameter
+        from .device_health_script_integer_parameter import DeviceHealthScriptIntegerParameter
+        from .device_health_script_string_parameter import DeviceHealthScriptStringParameter
 
         fields: Dict[str, Callable[[Any], None]] = {
             "applyDefaultValueWhenNotAssigned": lambda n : setattr(self, 'apply_default_value_when_not_assigned', n.get_bool_value()),
@@ -121,65 +79,14 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def is_required(self,) -> Optional[bool]:
-        """
-        Gets the isRequired property value. Whether the param is required
-        Returns: Optional[bool]
-        """
-        return self._is_required
-    
-    @is_required.setter
-    def is_required(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isRequired property value. Whether the param is required
-        Args:
-            value: Value to set for the is_required property.
-        """
-        self._is_required = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name of the param
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name of the param
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_bool_value("applyDefaultValueWhenNotAssigned", self.apply_default_value_when_not_assigned)
         writer.write_str_value("description", self.description)
         writer.write_bool_value("isRequired", self.is_required)

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnOnDemandRuleConnectionAction(Enum):
+class VpnOnDemandRuleConnectionAction(str, Enum):
     # Connect.
     Connect = "connect",
     # Evaluate Connection.

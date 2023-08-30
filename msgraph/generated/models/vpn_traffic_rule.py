@@ -1,124 +1,60 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import i_pv4_range, number_range, vpn_traffic_direction, vpn_traffic_rule_app_type, vpn_traffic_rule_routing_policy_type
+    from .i_pv4_range import IPv4Range
+    from .number_range import NumberRange
+    from .vpn_traffic_direction import VpnTrafficDirection
+    from .vpn_traffic_rule_app_type import VpnTrafficRuleAppType
+    from .vpn_traffic_rule_routing_policy_type import VpnTrafficRuleRoutingPolicyType
 
-class VpnTrafficRule(AdditionalDataHolder, Parsable):
+@dataclass
+class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
     """
     VPN Traffic Rule definition.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new vpnTrafficRule and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # App identifier, if this traffic rule is triggered by an app.
-        self._app_id: Optional[str] = None
-        # Indicates the type of app that a VPN traffic rule is associated with.
-        self._app_type: Optional[vpn_traffic_rule_app_type.VpnTrafficRuleAppType] = None
-        # Claims associated with this traffic rule.
-        self._claims: Optional[str] = None
-        # Local address range. This collection can contain a maximum of 500 elements.
-        self._local_address_ranges: Optional[List[i_pv4_range.IPv4Range]] = None
-        # Local port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
-        self._local_port_ranges: Optional[List[number_range.NumberRange]] = None
-        # Name.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Protocols (0-255). Valid values 0 to 255
-        self._protocols: Optional[int] = None
-        # Remote address range. This collection can contain a maximum of 500 elements.
-        self._remote_address_ranges: Optional[List[i_pv4_range.IPv4Range]] = None
-        # Remote port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
-        self._remote_port_ranges: Optional[List[number_range.NumberRange]] = None
-        # Specifies the routing policy for a VPN traffic rule.
-        self._routing_policy_type: Optional[vpn_traffic_rule_routing_policy_type.VpnTrafficRuleRoutingPolicyType] = None
-        # Specify whether the rule applies to inbound traffic or outbound traffic.
-        self._vpn_traffic_direction: Optional[vpn_traffic_direction.VpnTrafficDirection] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def app_id(self,) -> Optional[str]:
-        """
-        Gets the appId property value. App identifier, if this traffic rule is triggered by an app.
-        Returns: Optional[str]
-        """
-        return self._app_id
-    
-    @app_id.setter
-    def app_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appId property value. App identifier, if this traffic rule is triggered by an app.
-        Args:
-            value: Value to set for the app_id property.
-        """
-        self._app_id = value
-    
-    @property
-    def app_type(self,) -> Optional[vpn_traffic_rule_app_type.VpnTrafficRuleAppType]:
-        """
-        Gets the appType property value. Indicates the type of app that a VPN traffic rule is associated with.
-        Returns: Optional[vpn_traffic_rule_app_type.VpnTrafficRuleAppType]
-        """
-        return self._app_type
-    
-    @app_type.setter
-    def app_type(self,value: Optional[vpn_traffic_rule_app_type.VpnTrafficRuleAppType] = None) -> None:
-        """
-        Sets the appType property value. Indicates the type of app that a VPN traffic rule is associated with.
-        Args:
-            value: Value to set for the app_type property.
-        """
-        self._app_type = value
-    
-    @property
-    def claims(self,) -> Optional[str]:
-        """
-        Gets the claims property value. Claims associated with this traffic rule.
-        Returns: Optional[str]
-        """
-        return self._claims
-    
-    @claims.setter
-    def claims(self,value: Optional[str] = None) -> None:
-        """
-        Sets the claims property value. Claims associated with this traffic rule.
-        Args:
-            value: Value to set for the claims property.
-        """
-        self._claims = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # App identifier, if this traffic rule is triggered by an app.
+    app_id: Optional[str] = None
+    # Indicates the type of app that a VPN traffic rule is associated with.
+    app_type: Optional[VpnTrafficRuleAppType] = None
+    # Claims associated with this traffic rule.
+    claims: Optional[str] = None
+    # Local address range. This collection can contain a maximum of 500 elements.
+    local_address_ranges: Optional[List[IPv4Range]] = None
+    # Local port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
+    local_port_ranges: Optional[List[NumberRange]] = None
+    # Name.
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Protocols (0-255). Valid values 0 to 255
+    protocols: Optional[int] = None
+    # Remote address range. This collection can contain a maximum of 500 elements.
+    remote_address_ranges: Optional[List[IPv4Range]] = None
+    # Remote port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
+    remote_port_ranges: Optional[List[NumberRange]] = None
+    # Specifies the routing policy for a VPN traffic rule.
+    routing_policy_type: Optional[VpnTrafficRuleRoutingPolicyType] = None
+    # Specify whether the rule applies to inbound traffic or outbound traffic.
+    vpn_traffic_direction: Optional[VpnTrafficDirection] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VpnTrafficRule:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: VpnTrafficRule
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return VpnTrafficRule()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -126,168 +62,42 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import i_pv4_range, number_range, vpn_traffic_direction, vpn_traffic_rule_app_type, vpn_traffic_rule_routing_policy_type
+        from .i_pv4_range import IPv4Range
+        from .number_range import NumberRange
+        from .vpn_traffic_direction import VpnTrafficDirection
+        from .vpn_traffic_rule_app_type import VpnTrafficRuleAppType
+        from .vpn_traffic_rule_routing_policy_type import VpnTrafficRuleRoutingPolicyType
+
+        from .i_pv4_range import IPv4Range
+        from .number_range import NumberRange
+        from .vpn_traffic_direction import VpnTrafficDirection
+        from .vpn_traffic_rule_app_type import VpnTrafficRuleAppType
+        from .vpn_traffic_rule_routing_policy_type import VpnTrafficRuleRoutingPolicyType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(vpn_traffic_rule_app_type.VpnTrafficRuleAppType)),
+            "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(VpnTrafficRuleAppType)),
             "claims": lambda n : setattr(self, 'claims', n.get_str_value()),
-            "localAddressRanges": lambda n : setattr(self, 'local_address_ranges', n.get_collection_of_object_values(i_pv4_range.IPv4Range)),
-            "localPortRanges": lambda n : setattr(self, 'local_port_ranges', n.get_collection_of_object_values(number_range.NumberRange)),
+            "localAddressRanges": lambda n : setattr(self, 'local_address_ranges', n.get_collection_of_object_values(IPv4Range)),
+            "localPortRanges": lambda n : setattr(self, 'local_port_ranges', n.get_collection_of_object_values(NumberRange)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "protocols": lambda n : setattr(self, 'protocols', n.get_int_value()),
-            "remoteAddressRanges": lambda n : setattr(self, 'remote_address_ranges', n.get_collection_of_object_values(i_pv4_range.IPv4Range)),
-            "remotePortRanges": lambda n : setattr(self, 'remote_port_ranges', n.get_collection_of_object_values(number_range.NumberRange)),
-            "routingPolicyType": lambda n : setattr(self, 'routing_policy_type', n.get_enum_value(vpn_traffic_rule_routing_policy_type.VpnTrafficRuleRoutingPolicyType)),
-            "vpnTrafficDirection": lambda n : setattr(self, 'vpn_traffic_direction', n.get_enum_value(vpn_traffic_direction.VpnTrafficDirection)),
+            "remoteAddressRanges": lambda n : setattr(self, 'remote_address_ranges', n.get_collection_of_object_values(IPv4Range)),
+            "remotePortRanges": lambda n : setattr(self, 'remote_port_ranges', n.get_collection_of_object_values(NumberRange)),
+            "routingPolicyType": lambda n : setattr(self, 'routing_policy_type', n.get_enum_value(VpnTrafficRuleRoutingPolicyType)),
+            "vpnTrafficDirection": lambda n : setattr(self, 'vpn_traffic_direction', n.get_enum_value(VpnTrafficDirection)),
         }
         return fields
-    
-    @property
-    def local_address_ranges(self,) -> Optional[List[i_pv4_range.IPv4Range]]:
-        """
-        Gets the localAddressRanges property value. Local address range. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[i_pv4_range.IPv4Range]]
-        """
-        return self._local_address_ranges
-    
-    @local_address_ranges.setter
-    def local_address_ranges(self,value: Optional[List[i_pv4_range.IPv4Range]] = None) -> None:
-        """
-        Sets the localAddressRanges property value. Local address range. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the local_address_ranges property.
-        """
-        self._local_address_ranges = value
-    
-    @property
-    def local_port_ranges(self,) -> Optional[List[number_range.NumberRange]]:
-        """
-        Gets the localPortRanges property value. Local port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[number_range.NumberRange]]
-        """
-        return self._local_port_ranges
-    
-    @local_port_ranges.setter
-    def local_port_ranges(self,value: Optional[List[number_range.NumberRange]] = None) -> None:
-        """
-        Sets the localPortRanges property value. Local port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the local_port_ranges property.
-        """
-        self._local_port_ranges = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. Name.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. Name.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def protocols(self,) -> Optional[int]:
-        """
-        Gets the protocols property value. Protocols (0-255). Valid values 0 to 255
-        Returns: Optional[int]
-        """
-        return self._protocols
-    
-    @protocols.setter
-    def protocols(self,value: Optional[int] = None) -> None:
-        """
-        Sets the protocols property value. Protocols (0-255). Valid values 0 to 255
-        Args:
-            value: Value to set for the protocols property.
-        """
-        self._protocols = value
-    
-    @property
-    def remote_address_ranges(self,) -> Optional[List[i_pv4_range.IPv4Range]]:
-        """
-        Gets the remoteAddressRanges property value. Remote address range. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[i_pv4_range.IPv4Range]]
-        """
-        return self._remote_address_ranges
-    
-    @remote_address_ranges.setter
-    def remote_address_ranges(self,value: Optional[List[i_pv4_range.IPv4Range]] = None) -> None:
-        """
-        Sets the remoteAddressRanges property value. Remote address range. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the remote_address_ranges property.
-        """
-        self._remote_address_ranges = value
-    
-    @property
-    def remote_port_ranges(self,) -> Optional[List[number_range.NumberRange]]:
-        """
-        Gets the remotePortRanges property value. Remote port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[number_range.NumberRange]]
-        """
-        return self._remote_port_ranges
-    
-    @remote_port_ranges.setter
-    def remote_port_ranges(self,value: Optional[List[number_range.NumberRange]] = None) -> None:
-        """
-        Sets the remotePortRanges property value. Remote port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the remote_port_ranges property.
-        """
-        self._remote_port_ranges = value
-    
-    @property
-    def routing_policy_type(self,) -> Optional[vpn_traffic_rule_routing_policy_type.VpnTrafficRuleRoutingPolicyType]:
-        """
-        Gets the routingPolicyType property value. Specifies the routing policy for a VPN traffic rule.
-        Returns: Optional[vpn_traffic_rule_routing_policy_type.VpnTrafficRuleRoutingPolicyType]
-        """
-        return self._routing_policy_type
-    
-    @routing_policy_type.setter
-    def routing_policy_type(self,value: Optional[vpn_traffic_rule_routing_policy_type.VpnTrafficRuleRoutingPolicyType] = None) -> None:
-        """
-        Sets the routingPolicyType property value. Specifies the routing policy for a VPN traffic rule.
-        Args:
-            value: Value to set for the routing_policy_type property.
-        """
-        self._routing_policy_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("appId", self.app_id)
         writer.write_enum_value("appType", self.app_type)
         writer.write_str_value("claims", self.claims)
@@ -301,22 +111,5 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         writer.write_enum_value("routingPolicyType", self.routing_policy_type)
         writer.write_enum_value("vpnTrafficDirection", self.vpn_traffic_direction)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def vpn_traffic_direction(self,) -> Optional[vpn_traffic_direction.VpnTrafficDirection]:
-        """
-        Gets the vpnTrafficDirection property value. Specify whether the rule applies to inbound traffic or outbound traffic.
-        Returns: Optional[vpn_traffic_direction.VpnTrafficDirection]
-        """
-        return self._vpn_traffic_direction
-    
-    @vpn_traffic_direction.setter
-    def vpn_traffic_direction(self,value: Optional[vpn_traffic_direction.VpnTrafficDirection] = None) -> None:
-        """
-        Sets the vpnTrafficDirection property value. Specify whether the rule applies to inbound traffic or outbound traffic.
-        Args:
-            value: Value to set for the vpn_traffic_direction property.
-        """
-        self._vpn_traffic_direction = value
     
 

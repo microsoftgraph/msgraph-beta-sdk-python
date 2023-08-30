@@ -1,168 +1,68 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import cloud_pc_connectivity_event_result
+    from .cloud_pc_connectivity_event_result import CloudPcConnectivityEventResult
 
-class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcHealthCheckItem and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class CloudPcHealthCheckItem(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # Additional message for this health check.
-        self._additional_details: Optional[str] = None
-        # The connectivity health check item name.
-        self._display_name: Optional[str] = None
-        # Timestamp when the last check occurs. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        self._last_health_check_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The result property
-        self._result: Optional[cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def additional_details(self,) -> Optional[str]:
-        """
-        Gets the additionalDetails property value. Additional message for this health check.
-        Returns: Optional[str]
-        """
-        return self._additional_details
-    
-    @additional_details.setter
-    def additional_details(self,value: Optional[str] = None) -> None:
-        """
-        Sets the additionalDetails property value. Additional message for this health check.
-        Args:
-            value: Value to set for the additional_details property.
-        """
-        self._additional_details = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # Additional message for this health check.
+    additional_details: Optional[str] = None
+    # The connectivity health check item name.
+    display_name: Optional[str] = None
+    # Timestamp when the last check occurs. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
+    last_health_check_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The result property
+    result: Optional[CloudPcConnectivityEventResult] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcHealthCheckItem:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CloudPcHealthCheckItem
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return CloudPcHealthCheckItem()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The connectivity health check item name.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The connectivity health check item name.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import cloud_pc_connectivity_event_result
+        from .cloud_pc_connectivity_event_result import CloudPcConnectivityEventResult
+
+        from .cloud_pc_connectivity_event_result import CloudPcConnectivityEventResult
 
         fields: Dict[str, Callable[[Any], None]] = {
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastHealthCheckDateTime": lambda n : setattr(self, 'last_health_check_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "result": lambda n : setattr(self, 'result', n.get_enum_value(cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult)),
+            "result": lambda n : setattr(self, 'result', n.get_enum_value(CloudPcConnectivityEventResult)),
         }
         return fields
-    
-    @property
-    def last_health_check_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastHealthCheckDateTime property value. Timestamp when the last check occurs. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._last_health_check_date_time
-    
-    @last_health_check_date_time.setter
-    def last_health_check_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastHealthCheckDateTime property value. Timestamp when the last check occurs. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the last_health_check_date_time property.
-        """
-        self._last_health_check_date_time = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def result(self,) -> Optional[cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult]:
-        """
-        Gets the result property value. The result property
-        Returns: Optional[cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult]
-        """
-        return self._result
-    
-    @result.setter
-    def result(self,value: Optional[cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult] = None) -> None:
-        """
-        Sets the result property value. The result property
-        Args:
-            value: Value to set for the result property.
-        """
-        self._result = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("additionalDetails", self.additional_details)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastHealthCheckDateTime", self.last_health_check_date_time)

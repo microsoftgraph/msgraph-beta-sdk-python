@@ -1,67 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.ediscovery import additional_data_options, source_collection
+    from ........models.ediscovery.additional_data_options import AdditionalDataOptions
+    from ........models.ediscovery.source_collection import SourceCollection
 
-class AddToReviewSetPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new addToReviewSetPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class AddToReviewSetPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The additionalDataOptions property
-        self._additional_data_options: Optional[additional_data_options.AdditionalDataOptions] = None
-        # The sourceCollection property
-        self._source_collection: Optional[source_collection.SourceCollection] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def additional_data_options(self,) -> Optional[additional_data_options.AdditionalDataOptions]:
-        """
-        Gets the additionalDataOptions property value. The additionalDataOptions property
-        Returns: Optional[additional_data_options.AdditionalDataOptions]
-        """
-        return self._additional_data_options
-    
-    @additional_data_options.setter
-    def additional_data_options(self,value: Optional[additional_data_options.AdditionalDataOptions] = None) -> None:
-        """
-        Sets the additionalDataOptions property value. The additionalDataOptions property
-        Args:
-            value: Value to set for the additional_data_options property.
-        """
-        self._additional_data_options = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The additionalDataOptions property
+    additional_data_options: Optional[AdditionalDataOptions] = None
+    # The sourceCollection property
+    source_collection: Optional[SourceCollection] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddToReviewSetPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AddToReviewSetPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return AddToReviewSetPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -69,41 +36,28 @@ class AddToReviewSetPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ........models.ediscovery import additional_data_options, source_collection
+        from ........models.ediscovery.additional_data_options import AdditionalDataOptions
+        from ........models.ediscovery.source_collection import SourceCollection
+
+        from ........models.ediscovery.additional_data_options import AdditionalDataOptions
+        from ........models.ediscovery.source_collection import SourceCollection
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "additionalDataOptions": lambda n : setattr(self, 'additional_data_options', n.get_enum_value(additional_data_options.AdditionalDataOptions)),
-            "sourceCollection": lambda n : setattr(self, 'source_collection', n.get_object_value(source_collection.SourceCollection)),
+            "additionalDataOptions": lambda n : setattr(self, 'additional_data_options', n.get_enum_value(AdditionalDataOptions)),
+            "sourceCollection": lambda n : setattr(self, 'source_collection', n.get_object_value(SourceCollection)),
         }
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_enum_value("additionalDataOptions", self.additional_data_options)
         writer.write_object_value("sourceCollection", self.source_collection)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def source_collection(self,) -> Optional[source_collection.SourceCollection]:
-        """
-        Gets the sourceCollection property value. The sourceCollection property
-        Returns: Optional[source_collection.SourceCollection]
-        """
-        return self._source_collection
-    
-    @source_collection.setter
-    def source_collection(self,value: Optional[source_collection.SourceCollection] = None) -> None:
-        """
-        Sets the sourceCollection property value. The sourceCollection property
-        Args:
-            value: Value to set for the source_collection property.
-        """
-        self._source_collection = value
     
 

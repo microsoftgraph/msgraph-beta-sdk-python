@@ -1,115 +1,104 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import business_scenario_planner
-    from .....models.o_data_errors import o_data_error
-    from .get_plan import get_plan_request_builder
-    from .plan_configuration import plan_configuration_request_builder
-    from .task_configuration import task_configuration_request_builder
-    from .tasks import tasks_request_builder
+    from .....models.business_scenario_planner import BusinessScenarioPlanner
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .get_plan.get_plan_request_builder import GetPlanRequestBuilder
+    from .plan_configuration.plan_configuration_request_builder import PlanConfigurationRequestBuilder
+    from .task_configuration.task_configuration_request_builder import TaskConfigurationRequestBuilder
+    from .tasks.tasks_request_builder import TasksRequestBuilder
 
-class PlannerRequestBuilder():
+class PlannerRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the planner property of the microsoft.graph.businessScenario entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PlannerRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/solutions/businessScenarios/{businessScenario%2Did}/planner{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/solutions/businessScenarios/{businessScenario%2Did}/planner{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property planner for solutions
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
+    async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[BusinessScenarioPlanner]:
         """
         Read the properties and relationships of a businessScenarioPlanner object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[business_scenario_planner.BusinessScenarioPlanner]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[BusinessScenarioPlanner]
+        Find more info here: https://learn.microsoft.com/graph/api/businessscenarioplanner-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import business_scenario_planner
+        from .....models.business_scenario_planner import BusinessScenarioPlanner
 
-        return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, error_mapping)
+        return await self.request_adapter.send_async(request_info, BusinessScenarioPlanner, error_mapping)
     
-    async def patch(self,body: Optional[business_scenario_planner.BusinessScenarioPlanner] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
+    async def patch(self,body: Optional[BusinessScenarioPlanner] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> Optional[BusinessScenarioPlanner]:
         """
         Update the navigation property planner in solutions
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[business_scenario_planner.BusinessScenarioPlanner]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[BusinessScenarioPlanner]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import business_scenario_planner
+        from .....models.business_scenario_planner import BusinessScenarioPlanner
 
-        return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, error_mapping)
+        return await self.request_adapter.send_async(request_info, BusinessScenarioPlanner, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property planner for solutions
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -124,8 +113,7 @@ class PlannerRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a businessScenarioPlanner object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -139,16 +127,15 @@ class PlannerRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[business_scenario_planner.BusinessScenarioPlanner] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[BusinessScenarioPlanner] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property planner in solutions
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,53 +147,61 @@ class PlannerRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> PlannerRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: PlannerRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return PlannerRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def get_plan(self) -> get_plan_request_builder.GetPlanRequestBuilder:
+    def get_plan(self) -> GetPlanRequestBuilder:
         """
         Provides operations to call the getPlan method.
         """
-        from .get_plan import get_plan_request_builder
+        from .get_plan.get_plan_request_builder import GetPlanRequestBuilder
 
-        return get_plan_request_builder.GetPlanRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetPlanRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def plan_configuration(self) -> plan_configuration_request_builder.PlanConfigurationRequestBuilder:
+    def plan_configuration(self) -> PlanConfigurationRequestBuilder:
         """
         Provides operations to manage the planConfiguration property of the microsoft.graph.businessScenarioPlanner entity.
         """
-        from .plan_configuration import plan_configuration_request_builder
+        from .plan_configuration.plan_configuration_request_builder import PlanConfigurationRequestBuilder
 
-        return plan_configuration_request_builder.PlanConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+        return PlanConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def task_configuration(self) -> task_configuration_request_builder.TaskConfigurationRequestBuilder:
+    def task_configuration(self) -> TaskConfigurationRequestBuilder:
         """
         Provides operations to manage the taskConfiguration property of the microsoft.graph.businessScenarioPlanner entity.
         """
-        from .task_configuration import task_configuration_request_builder
+        from .task_configuration.task_configuration_request_builder import TaskConfigurationRequestBuilder
 
-        return task_configuration_request_builder.TaskConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+        return TaskConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
+    def tasks(self) -> TasksRequestBuilder:
         """
         Provides operations to manage the tasks property of the microsoft.graph.businessScenarioPlanner entity.
         """
-        from .tasks import tasks_request_builder
+        from .tasks.tasks_request_builder import TasksRequestBuilder
 
-        return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
+        return TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PlannerRequestBuilderDeleteRequestConfiguration():
+    class PlannerRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class PlannerRequestBuilderGetQueryParameters():
@@ -216,12 +211,11 @@ class PlannerRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -235,31 +229,27 @@ class PlannerRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PlannerRequestBuilderGetRequestConfiguration():
+    class PlannerRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[PlannerRequestBuilder.PlannerRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PlannerRequestBuilderPatchRequestConfiguration():
+    class PlannerRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

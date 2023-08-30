@@ -1,6 +1,6 @@
 from enum import Enum
 
-class OperatorType(Enum):
+class OperatorType(str, Enum):
     GreaterOrEqual = "greaterOrEqual",
     Equal = "equal",
     Greater = "greater",

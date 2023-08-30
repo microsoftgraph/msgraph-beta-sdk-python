@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MicrosoftTunnelLogCollectionStatus(Enum):
+class MicrosoftTunnelLogCollectionStatus(str, Enum):
     # Indicates that the log collection is in progress
     Pending = "pending",
     # Indicates that the log collection is completed

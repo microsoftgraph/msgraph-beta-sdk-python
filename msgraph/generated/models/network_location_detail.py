@@ -1,52 +1,35 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import network_type
+    from .network_type import NetworkType
 
-class NetworkLocationDetail(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new networkLocationDetail and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class NetworkLocationDetail(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # Provides the name of the network used when signing in.
-        self._network_names: Optional[List[str]] = None
-        # Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
-        self._network_type: Optional[network_type.NetworkType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # Provides the name of the network used when signing in.
+    network_names: Optional[List[str]] = None
+    # Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
+    network_type: Optional[NetworkType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NetworkLocationDetail:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: NetworkLocationDetail
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return NetworkLocationDetail()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -54,74 +37,25 @@ class NetworkLocationDetail(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import network_type
+        from .network_type import NetworkType
+
+        from .network_type import NetworkType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "networkNames": lambda n : setattr(self, 'network_names', n.get_collection_of_primitive_values(str)),
-            "networkType": lambda n : setattr(self, 'network_type', n.get_enum_value(network_type.NetworkType)),
+            "networkType": lambda n : setattr(self, 'network_type', n.get_enum_value(NetworkType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
-    @property
-    def network_names(self,) -> Optional[List[str]]:
-        """
-        Gets the networkNames property value. Provides the name of the network used when signing in.
-        Returns: Optional[List[str]]
-        """
-        return self._network_names
-    
-    @network_names.setter
-    def network_names(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the networkNames property value. Provides the name of the network used when signing in.
-        Args:
-            value: Value to set for the network_names property.
-        """
-        self._network_names = value
-    
-    @property
-    def network_type(self,) -> Optional[network_type.NetworkType]:
-        """
-        Gets the networkType property value. Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
-        Returns: Optional[network_type.NetworkType]
-        """
-        return self._network_type
-    
-    @network_type.setter
-    def network_type(self,value: Optional[network_type.NetworkType] = None) -> None:
-        """
-        Sets the networkType property value. Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
-        Args:
-            value: Value to set for the network_type property.
-        """
-        self._network_type = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("networkNames", self.network_names)
         writer.write_enum_value("networkType", self.network_type)
         writer.write_str_value("@odata.type", self.odata_type)

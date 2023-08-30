@@ -1,79 +1,68 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_troubleshooting_error_details, mobile_app_troubleshooting_app_policy_creation_history, mobile_app_troubleshooting_app_state_history, mobile_app_troubleshooting_app_target_history, mobile_app_troubleshooting_app_update_history, mobile_app_troubleshooting_device_checkin_history
+    from .device_management_troubleshooting_error_details import DeviceManagementTroubleshootingErrorDetails
+    from .mobile_app_troubleshooting_app_policy_creation_history import MobileAppTroubleshootingAppPolicyCreationHistory
+    from .mobile_app_troubleshooting_app_state_history import MobileAppTroubleshootingAppStateHistory
+    from .mobile_app_troubleshooting_app_target_history import MobileAppTroubleshootingAppTargetHistory
+    from .mobile_app_troubleshooting_app_update_history import MobileAppTroubleshootingAppUpdateHistory
+    from .mobile_app_troubleshooting_device_checkin_history import MobileAppTroubleshootingDeviceCheckinHistory
 
-class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, Parsable):
+@dataclass
+class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, BackedModel, Parsable):
     """
     History Item contained in the Mobile App Troubleshooting Event.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mobileAppTroubleshootingHistoryItem and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # Time when the history item occurred.
-        self._occurrence_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Object containing detailed information about the error and its remediation.
-        self._troubleshooting_error_details: Optional[device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # Time when the history item occurred.
+    occurrence_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Object containing detailed information about the error and its remediation.
+    troubleshooting_error_details: Optional[DeviceManagementTroubleshootingErrorDetails] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppTroubleshootingHistoryItem:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MobileAppTroubleshootingHistoryItem
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
-        mapping_value_node = parse_node.get_child_node("@odata.type")
-        if mapping_value_node:
-            mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.mobileAppTroubleshootingAppPolicyCreationHistory":
-                from . import mobile_app_troubleshooting_app_policy_creation_history
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppPolicyCreationHistory".casefold():
+            from .mobile_app_troubleshooting_app_policy_creation_history import MobileAppTroubleshootingAppPolicyCreationHistory
 
-                return mobile_app_troubleshooting_app_policy_creation_history.MobileAppTroubleshootingAppPolicyCreationHistory()
-            if mapping_value == "#microsoft.graph.mobileAppTroubleshootingAppStateHistory":
-                from . import mobile_app_troubleshooting_app_state_history
+            return MobileAppTroubleshootingAppPolicyCreationHistory()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppStateHistory".casefold():
+            from .mobile_app_troubleshooting_app_state_history import MobileAppTroubleshootingAppStateHistory
 
-                return mobile_app_troubleshooting_app_state_history.MobileAppTroubleshootingAppStateHistory()
-            if mapping_value == "#microsoft.graph.mobileAppTroubleshootingAppTargetHistory":
-                from . import mobile_app_troubleshooting_app_target_history
+            return MobileAppTroubleshootingAppStateHistory()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppTargetHistory".casefold():
+            from .mobile_app_troubleshooting_app_target_history import MobileAppTroubleshootingAppTargetHistory
 
-                return mobile_app_troubleshooting_app_target_history.MobileAppTroubleshootingAppTargetHistory()
-            if mapping_value == "#microsoft.graph.mobileAppTroubleshootingAppUpdateHistory":
-                from . import mobile_app_troubleshooting_app_update_history
+            return MobileAppTroubleshootingAppTargetHistory()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppUpdateHistory".casefold():
+            from .mobile_app_troubleshooting_app_update_history import MobileAppTroubleshootingAppUpdateHistory
 
-                return mobile_app_troubleshooting_app_update_history.MobileAppTroubleshootingAppUpdateHistory()
-            if mapping_value == "#microsoft.graph.mobileAppTroubleshootingDeviceCheckinHistory":
-                from . import mobile_app_troubleshooting_device_checkin_history
+            return MobileAppTroubleshootingAppUpdateHistory()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingDeviceCheckinHistory".casefold():
+            from .mobile_app_troubleshooting_device_checkin_history import MobileAppTroubleshootingDeviceCheckinHistory
 
-                return mobile_app_troubleshooting_device_checkin_history.MobileAppTroubleshootingDeviceCheckinHistory()
+            return MobileAppTroubleshootingDeviceCheckinHistory()
         return MobileAppTroubleshootingHistoryItem()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -81,77 +70,38 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_troubleshooting_error_details, mobile_app_troubleshooting_app_policy_creation_history, mobile_app_troubleshooting_app_state_history, mobile_app_troubleshooting_app_target_history, mobile_app_troubleshooting_app_update_history, mobile_app_troubleshooting_device_checkin_history
+        from .device_management_troubleshooting_error_details import DeviceManagementTroubleshootingErrorDetails
+        from .mobile_app_troubleshooting_app_policy_creation_history import MobileAppTroubleshootingAppPolicyCreationHistory
+        from .mobile_app_troubleshooting_app_state_history import MobileAppTroubleshootingAppStateHistory
+        from .mobile_app_troubleshooting_app_target_history import MobileAppTroubleshootingAppTargetHistory
+        from .mobile_app_troubleshooting_app_update_history import MobileAppTroubleshootingAppUpdateHistory
+        from .mobile_app_troubleshooting_device_checkin_history import MobileAppTroubleshootingDeviceCheckinHistory
+
+        from .device_management_troubleshooting_error_details import DeviceManagementTroubleshootingErrorDetails
+        from .mobile_app_troubleshooting_app_policy_creation_history import MobileAppTroubleshootingAppPolicyCreationHistory
+        from .mobile_app_troubleshooting_app_state_history import MobileAppTroubleshootingAppStateHistory
+        from .mobile_app_troubleshooting_app_target_history import MobileAppTroubleshootingAppTargetHistory
+        from .mobile_app_troubleshooting_app_update_history import MobileAppTroubleshootingAppUpdateHistory
+        from .mobile_app_troubleshooting_device_checkin_history import MobileAppTroubleshootingDeviceCheckinHistory
 
         fields: Dict[str, Callable[[Any], None]] = {
             "occurrenceDateTime": lambda n : setattr(self, 'occurrence_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "troubleshootingErrorDetails": lambda n : setattr(self, 'troubleshooting_error_details', n.get_object_value(device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails)),
+            "troubleshootingErrorDetails": lambda n : setattr(self, 'troubleshooting_error_details', n.get_object_value(DeviceManagementTroubleshootingErrorDetails)),
         }
         return fields
-    
-    @property
-    def occurrence_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the occurrenceDateTime property value. Time when the history item occurred.
-        Returns: Optional[datetime]
-        """
-        return self._occurrence_date_time
-    
-    @occurrence_date_time.setter
-    def occurrence_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the occurrenceDateTime property value. Time when the history item occurred.
-        Args:
-            value: Value to set for the occurrence_date_time property.
-        """
-        self._occurrence_date_time = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_datetime_value("occurrenceDateTime", self.occurrence_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("troubleshootingErrorDetails", self.troubleshooting_error_details)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def troubleshooting_error_details(self,) -> Optional[device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails]:
-        """
-        Gets the troubleshootingErrorDetails property value. Object containing detailed information about the error and its remediation.
-        Returns: Optional[device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails]
-        """
-        return self._troubleshooting_error_details
-    
-    @troubleshooting_error_details.setter
-    def troubleshooting_error_details(self,value: Optional[device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails] = None) -> None:
-        """
-        Sets the troubleshootingErrorDetails property value. Object containing detailed information about the error and its remediation.
-        Args:
-            value: Value to set for the troubleshooting_error_details property.
-        """
-        self._troubleshooting_error_details = value
     
 

@@ -1,120 +1,109 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import channel
-    from ....models.o_data_errors import o_data_error
-    from .complete_migration import complete_migration_request_builder
-    from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name import does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder
-    from .files_folder import files_folder_request_builder
-    from .members import members_request_builder
-    from .messages import messages_request_builder
-    from .provision_email import provision_email_request_builder
-    from .remove_email import remove_email_request_builder
-    from .shared_with_teams import shared_with_teams_request_builder
-    from .tabs import tabs_request_builder
+    from ....models.channel import Channel
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .complete_migration.complete_migration_request_builder import CompleteMigrationRequestBuilder
+    from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder import DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder
+    from .files_folder.files_folder_request_builder import FilesFolderRequestBuilder
+    from .members.members_request_builder import MembersRequestBuilder
+    from .messages.messages_request_builder import MessagesRequestBuilder
+    from .provision_email.provision_email_request_builder import ProvisionEmailRequestBuilder
+    from .remove_email.remove_email_request_builder import RemoveEmailRequestBuilder
+    from .shared_with_teams.shared_with_teams_request_builder import SharedWithTeamsRequestBuilder
+    from .tabs.tabs_request_builder import TabsRequestBuilder
 
-class PrimaryChannelRequestBuilder():
+class PrimaryChannelRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PrimaryChannelRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/teams/{team%2Did}/primaryChannel{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/teams/{team%2Did}/primaryChannel{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[PrimaryChannelRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property primaryChannel for teams
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrimaryChannelRequestBuilderGetRequestConfiguration] = None) -> Optional[channel.Channel]:
+    async def get(self,request_configuration: Optional[PrimaryChannelRequestBuilderGetRequestConfiguration] = None) -> Optional[Channel]:
         """
-        Get the default channel, **General**, of a team.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[channel.Channel]
+        Get the default channel, General, of a team.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Channel]
+        Find more info here: https://learn.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import channel
+        from ....models.channel import Channel
 
-        return await self.request_adapter.send_async(request_info, channel.Channel, error_mapping)
+        return await self.request_adapter.send_async(request_info, Channel, error_mapping)
     
-    async def patch(self,body: Optional[channel.Channel] = None, request_configuration: Optional[PrimaryChannelRequestBuilderPatchRequestConfiguration] = None) -> Optional[channel.Channel]:
+    async def patch(self,body: Optional[Channel] = None, request_configuration: Optional[PrimaryChannelRequestBuilderPatchRequestConfiguration] = None) -> Optional[Channel]:
         """
         Update the navigation property primaryChannel in teams
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[channel.Channel]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Channel]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import channel
+        from ....models.channel import Channel
 
-        return await self.request_adapter.send_async(request_info, channel.Channel, error_mapping)
+        return await self.request_adapter.send_async(request_info, Channel, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrimaryChannelRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property primaryChannel for teams
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -128,9 +117,8 @@ class PrimaryChannelRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrimaryChannelRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the default channel, **General**, of a team.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Get the default channel, General, of a team.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -144,16 +132,15 @@ class PrimaryChannelRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[channel.Channel] = None, request_configuration: Optional[PrimaryChannelRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Channel] = None, request_configuration: Optional[PrimaryChannelRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property primaryChannel in teams
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -165,113 +152,120 @@ class PrimaryChannelRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> PrimaryChannelRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: PrimaryChannelRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return PrimaryChannelRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def complete_migration(self) -> complete_migration_request_builder.CompleteMigrationRequestBuilder:
+    def complete_migration(self) -> CompleteMigrationRequestBuilder:
         """
         Provides operations to call the completeMigration method.
         """
-        from .complete_migration import complete_migration_request_builder
+        from .complete_migration.complete_migration_request_builder import CompleteMigrationRequestBuilder
 
-        return complete_migration_request_builder.CompleteMigrationRequestBuilder(self.request_adapter, self.path_parameters)
+        return CompleteMigrationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name(self) -> does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder:
+    def does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name(self) -> DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder:
         """
         Provides operations to call the doesUserHaveAccess method.
         """
-        from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name import does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder
+        from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder import DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder
 
-        return does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters)
+        return DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def files_folder(self) -> files_folder_request_builder.FilesFolderRequestBuilder:
+    def files_folder(self) -> FilesFolderRequestBuilder:
         """
         Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
         """
-        from .files_folder import files_folder_request_builder
+        from .files_folder.files_folder_request_builder import FilesFolderRequestBuilder
 
-        return files_folder_request_builder.FilesFolderRequestBuilder(self.request_adapter, self.path_parameters)
+        return FilesFolderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def members(self) -> members_request_builder.MembersRequestBuilder:
+    def members(self) -> MembersRequestBuilder:
         """
         Provides operations to manage the members property of the microsoft.graph.channel entity.
         """
-        from .members import members_request_builder
+        from .members.members_request_builder import MembersRequestBuilder
 
-        return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
+        return MembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def messages(self) -> messages_request_builder.MessagesRequestBuilder:
+    def messages(self) -> MessagesRequestBuilder:
         """
         Provides operations to manage the messages property of the microsoft.graph.channel entity.
         """
-        from .messages import messages_request_builder
+        from .messages.messages_request_builder import MessagesRequestBuilder
 
-        return messages_request_builder.MessagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return MessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def provision_email(self) -> provision_email_request_builder.ProvisionEmailRequestBuilder:
+    def provision_email(self) -> ProvisionEmailRequestBuilder:
         """
         Provides operations to call the provisionEmail method.
         """
-        from .provision_email import provision_email_request_builder
+        from .provision_email.provision_email_request_builder import ProvisionEmailRequestBuilder
 
-        return provision_email_request_builder.ProvisionEmailRequestBuilder(self.request_adapter, self.path_parameters)
+        return ProvisionEmailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_email(self) -> remove_email_request_builder.RemoveEmailRequestBuilder:
+    def remove_email(self) -> RemoveEmailRequestBuilder:
         """
         Provides operations to call the removeEmail method.
         """
-        from .remove_email import remove_email_request_builder
+        from .remove_email.remove_email_request_builder import RemoveEmailRequestBuilder
 
-        return remove_email_request_builder.RemoveEmailRequestBuilder(self.request_adapter, self.path_parameters)
+        return RemoveEmailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def shared_with_teams(self) -> shared_with_teams_request_builder.SharedWithTeamsRequestBuilder:
+    def shared_with_teams(self) -> SharedWithTeamsRequestBuilder:
         """
         Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.
         """
-        from .shared_with_teams import shared_with_teams_request_builder
+        from .shared_with_teams.shared_with_teams_request_builder import SharedWithTeamsRequestBuilder
 
-        return shared_with_teams_request_builder.SharedWithTeamsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SharedWithTeamsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tabs(self) -> tabs_request_builder.TabsRequestBuilder:
+    def tabs(self) -> TabsRequestBuilder:
         """
         Provides operations to manage the tabs property of the microsoft.graph.channel entity.
         """
-        from .tabs import tabs_request_builder
+        from .tabs.tabs_request_builder import TabsRequestBuilder
 
-        return tabs_request_builder.TabsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TabsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PrimaryChannelRequestBuilderDeleteRequestConfiguration():
+    class PrimaryChannelRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class PrimaryChannelRequestBuilderGetQueryParameters():
         """
-        Get the default channel, **General**, of a team.
+        Get the default channel, General, of a team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -285,31 +279,27 @@ class PrimaryChannelRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PrimaryChannelRequestBuilderGetRequestConfiguration():
+    class PrimaryChannelRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[PrimaryChannelRequestBuilder.PrimaryChannelRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PrimaryChannelRequestBuilderPatchRequestConfiguration():
+    class PrimaryChannelRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

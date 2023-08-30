@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EasServices(Enum):
+class EasServices(str, Enum):
     None_ = "none",
     # Enables synchronization of calendars.
     Calendars = "calendars",

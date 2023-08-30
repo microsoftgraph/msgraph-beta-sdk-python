@@ -1,71 +1,36 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import planner_category_descriptions, planner_delta, planner_plan_context_details_collection, planner_user_ids
+    from .planner_category_descriptions import PlannerCategoryDescriptions
+    from .planner_delta import PlannerDelta
+    from .planner_plan_context_details_collection import PlannerPlanContextDetailsCollection
+    from .planner_user_ids import PlannerUserIds
 
-from . import planner_delta
+from .planner_delta import PlannerDelta
 
-class PlannerPlanDetails(planner_delta.PlannerDelta):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerPlanDetails and sets the default values.
-        """
-        super().__init__()
-        # An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.
-        self._category_descriptions: Optional[planner_category_descriptions.PlannerCategoryDescriptions] = None
-        # A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.
-        self._context_details: Optional[planner_plan_context_details_collection.PlannerPlanContextDetailsCollection] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The set of user IDs that this plan is shared with. If you are using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it is not required in order for them to access the plan owned by the group.
-        self._shared_with: Optional[planner_user_ids.PlannerUserIds] = None
-    
-    @property
-    def category_descriptions(self,) -> Optional[planner_category_descriptions.PlannerCategoryDescriptions]:
-        """
-        Gets the categoryDescriptions property value. An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.
-        Returns: Optional[planner_category_descriptions.PlannerCategoryDescriptions]
-        """
-        return self._category_descriptions
-    
-    @category_descriptions.setter
-    def category_descriptions(self,value: Optional[planner_category_descriptions.PlannerCategoryDescriptions] = None) -> None:
-        """
-        Sets the categoryDescriptions property value. An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.
-        Args:
-            value: Value to set for the category_descriptions property.
-        """
-        self._category_descriptions = value
-    
-    @property
-    def context_details(self,) -> Optional[planner_plan_context_details_collection.PlannerPlanContextDetailsCollection]:
-        """
-        Gets the contextDetails property value. A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.
-        Returns: Optional[planner_plan_context_details_collection.PlannerPlanContextDetailsCollection]
-        """
-        return self._context_details
-    
-    @context_details.setter
-    def context_details(self,value: Optional[planner_plan_context_details_collection.PlannerPlanContextDetailsCollection] = None) -> None:
-        """
-        Sets the contextDetails property value. A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.
-        Args:
-            value: Value to set for the context_details property.
-        """
-        self._context_details = value
+@dataclass
+class PlannerPlanDetails(PlannerDelta):
+    # An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.
+    category_descriptions: Optional[PlannerCategoryDescriptions] = None
+    # A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.
+    context_details: Optional[PlannerPlanContextDetailsCollection] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The set of user IDs that this plan is shared with. If you are using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it is not required in order for them to access the plan owned by the group.
+    shared_with: Optional[PlannerUserIds] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerPlanDetails:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PlannerPlanDetails
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return PlannerPlanDetails()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -73,12 +38,20 @@ class PlannerPlanDetails(planner_delta.PlannerDelta):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import planner_category_descriptions, planner_delta, planner_plan_context_details_collection, planner_user_ids
+        from .planner_category_descriptions import PlannerCategoryDescriptions
+        from .planner_delta import PlannerDelta
+        from .planner_plan_context_details_collection import PlannerPlanContextDetailsCollection
+        from .planner_user_ids import PlannerUserIds
+
+        from .planner_category_descriptions import PlannerCategoryDescriptions
+        from .planner_delta import PlannerDelta
+        from .planner_plan_context_details_collection import PlannerPlanContextDetailsCollection
+        from .planner_user_ids import PlannerUserIds
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "categoryDescriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(planner_category_descriptions.PlannerCategoryDescriptions)),
-            "contextDetails": lambda n : setattr(self, 'context_details', n.get_object_value(planner_plan_context_details_collection.PlannerPlanContextDetailsCollection)),
-            "sharedWith": lambda n : setattr(self, 'shared_with', n.get_object_value(planner_user_ids.PlannerUserIds)),
+            "categoryDescriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(PlannerCategoryDescriptions)),
+            "contextDetails": lambda n : setattr(self, 'context_details', n.get_object_value(PlannerPlanContextDetailsCollection)),
+            "sharedWith": lambda n : setattr(self, 'shared_with', n.get_object_value(PlannerUserIds)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -87,31 +60,14 @@ class PlannerPlanDetails(planner_delta.PlannerDelta):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("categoryDescriptions", self.category_descriptions)
         writer.write_object_value("contextDetails", self.context_details)
         writer.write_object_value("sharedWith", self.shared_with)
-    
-    @property
-    def shared_with(self,) -> Optional[planner_user_ids.PlannerUserIds]:
-        """
-        Gets the sharedWith property value. The set of user IDs that this plan is shared with. If you are using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it is not required in order for them to access the plan owned by the group.
-        Returns: Optional[planner_user_ids.PlannerUserIds]
-        """
-        return self._shared_with
-    
-    @shared_with.setter
-    def shared_with(self,value: Optional[planner_user_ids.PlannerUserIds] = None) -> None:
-        """
-        Sets the sharedWith property value. The set of user IDs that this plan is shared with. If you are using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it is not required in order for them to access the plan owned by the group.
-        Args:
-            value: Value to set for the shared_with property.
-        """
-        self._shared_with = value
     
 

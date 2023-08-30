@@ -1,109 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import agreement_file_localization, agreement_file_localization_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import agreement_file_localization_item_request_builder
+    from .....models.agreement_file_localization import AgreementFileLocalization
+    from .....models.agreement_file_localization_collection_response import AgreementFileLocalizationCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.agreement_file_localization_item_request_builder import AgreementFileLocalizationItemRequestBuilder
 
-class LocalizationsRequestBuilder():
+class LocalizationsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the localizations property of the microsoft.graph.agreementFile entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new LocalizationsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/agreements/{agreement%2Did}/file/localizations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/agreements/{agreement%2Did}/file/localizations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_agreement_file_localization_id(self,agreement_file_localization_id: str) -> agreement_file_localization_item_request_builder.AgreementFileLocalizationItemRequestBuilder:
+    def by_agreement_file_localization_id(self,agreement_file_localization_id: str) -> AgreementFileLocalizationItemRequestBuilder:
         """
         Provides operations to manage the localizations property of the microsoft.graph.agreementFile entity.
-        Args:
-            agreement_file_localization_id: Unique identifier of the item
-        Returns: agreement_file_localization_item_request_builder.AgreementFileLocalizationItemRequestBuilder
+        param agreement_file_localization_id: The unique identifier of agreementFileLocalization
+        Returns: AgreementFileLocalizationItemRequestBuilder
         """
-        if agreement_file_localization_id is None:
-            raise Exception("agreement_file_localization_id cannot be undefined")
-        from .item import agreement_file_localization_item_request_builder
+        if not agreement_file_localization_id:
+            raise TypeError("agreement_file_localization_id cannot be null.")
+        from .item.agreement_file_localization_item_request_builder import AgreementFileLocalizationItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["agreementFileLocalization%2Did"] = agreement_file_localization_id
-        return agreement_file_localization_item_request_builder.AgreementFileLocalizationItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return AgreementFileLocalizationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> Optional[agreement_file_localization_collection_response.AgreementFileLocalizationCollectionResponse]:
+    async def get(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> Optional[AgreementFileLocalizationCollectionResponse]:
         """
-        The localized version of the terms of use agreement files attached to the agreement.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[agreement_file_localization_collection_response.AgreementFileLocalizationCollectionResponse]
+        Get a list of the default and localized agreement files.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AgreementFileLocalizationCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/agreementfile-list-localizations?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import agreement_file_localization_collection_response
+        from .....models.agreement_file_localization_collection_response import AgreementFileLocalizationCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, agreement_file_localization_collection_response.AgreementFileLocalizationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AgreementFileLocalizationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[agreement_file_localization.AgreementFileLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> Optional[agreement_file_localization.AgreementFileLocalization]:
+    async def post(self,body: Optional[AgreementFileLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> Optional[AgreementFileLocalization]:
         """
         Create new navigation property to localizations for agreements
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[agreement_file_localization.AgreementFileLocalization]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AgreementFileLocalization]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import agreement_file_localization
+        from .....models.agreement_file_localization import AgreementFileLocalization
 
-        return await self.request_adapter.send_async(request_info, agreement_file_localization.AgreementFileLocalization, error_mapping)
+        return await self.request_adapter.send_async(request_info, AgreementFileLocalization, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The localized version of the terms of use agreement files attached to the agreement.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Get a list of the default and localized agreement files.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +106,15 @@ class LocalizationsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[agreement_file_localization.AgreementFileLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AgreementFileLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to localizations for agreements
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -138,29 +126,38 @@ class LocalizationsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> LocalizationsRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: LocalizationsRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return LocalizationsRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class LocalizationsRequestBuilderGetQueryParameters():
         """
-        The localized version of the terms of use agreement files attached to the agreement.
+        Get a list of the default and localized agreement files.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +201,27 @@ class LocalizationsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LocalizationsRequestBuilderGetRequestConfiguration():
+    class LocalizationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[LocalizationsRequestBuilder.LocalizationsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LocalizationsRequestBuilderPostRequestConfiguration():
+    class LocalizationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

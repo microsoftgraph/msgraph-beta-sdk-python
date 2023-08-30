@@ -1,151 +1,68 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models import json
+    from ........models.json import Json
 
-class WorkDay_IntlPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new workDay_IntlPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class WorkDay_IntlPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The days property
-        self._days: Optional[json.Json] = None
-        # The holidays property
-        self._holidays: Optional[json.Json] = None
-        # The startDate property
-        self._start_date: Optional[json.Json] = None
-        # The weekend property
-        self._weekend: Optional[json.Json] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The days property
+    days: Optional[Json] = None
+    # The holidays property
+    holidays: Optional[Json] = None
+    # The startDate property
+    start_date: Optional[Json] = None
+    # The weekend property
+    weekend: Optional[Json] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkDay_IntlPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WorkDay_IntlPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return WorkDay_IntlPostRequestBody()
-    
-    @property
-    def days(self,) -> Optional[json.Json]:
-        """
-        Gets the days property value. The days property
-        Returns: Optional[json.Json]
-        """
-        return self._days
-    
-    @days.setter
-    def days(self,value: Optional[json.Json] = None) -> None:
-        """
-        Sets the days property value. The days property
-        Args:
-            value: Value to set for the days property.
-        """
-        self._days = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ........models import json
+        from ........models.json import Json
+
+        from ........models.json import Json
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "days": lambda n : setattr(self, 'days', n.get_object_value(json.Json)),
-            "holidays": lambda n : setattr(self, 'holidays', n.get_object_value(json.Json)),
-            "startDate": lambda n : setattr(self, 'start_date', n.get_object_value(json.Json)),
-            "weekend": lambda n : setattr(self, 'weekend', n.get_object_value(json.Json)),
+            "days": lambda n : setattr(self, 'days', n.get_object_value(Json)),
+            "holidays": lambda n : setattr(self, 'holidays', n.get_object_value(Json)),
+            "startDate": lambda n : setattr(self, 'start_date', n.get_object_value(Json)),
+            "weekend": lambda n : setattr(self, 'weekend', n.get_object_value(Json)),
         }
         return fields
-    
-    @property
-    def holidays(self,) -> Optional[json.Json]:
-        """
-        Gets the holidays property value. The holidays property
-        Returns: Optional[json.Json]
-        """
-        return self._holidays
-    
-    @holidays.setter
-    def holidays(self,value: Optional[json.Json] = None) -> None:
-        """
-        Sets the holidays property value. The holidays property
-        Args:
-            value: Value to set for the holidays property.
-        """
-        self._holidays = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_object_value("days", self.days)
         writer.write_object_value("holidays", self.holidays)
         writer.write_object_value("startDate", self.start_date)
         writer.write_object_value("weekend", self.weekend)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def start_date(self,) -> Optional[json.Json]:
-        """
-        Gets the startDate property value. The startDate property
-        Returns: Optional[json.Json]
-        """
-        return self._start_date
-    
-    @start_date.setter
-    def start_date(self,value: Optional[json.Json] = None) -> None:
-        """
-        Sets the startDate property value. The startDate property
-        Args:
-            value: Value to set for the start_date property.
-        """
-        self._start_date = value
-    
-    @property
-    def weekend(self,) -> Optional[json.Json]:
-        """
-        Gets the weekend property value. The weekend property
-        Returns: Optional[json.Json]
-        """
-        return self._weekend
-    
-    @weekend.setter
-    def weekend(self,value: Optional[json.Json] = None) -> None:
-        """
-        Sets the weekend property value. The weekend property
-        Args:
-            value: Value to set for the weekend property.
-        """
-        self._weekend = value
     
 

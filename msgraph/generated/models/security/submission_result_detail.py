@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SubmissionResultDetail(Enum):
+class SubmissionResultDetail(str, Enum):
     None_ = "none",
     UnderInvestigation = "underInvestigation",
     SimulatedThreat = "simulatedThreat",

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class KerberosSignOnMappingAttributeType(Enum):
+class KerberosSignOnMappingAttributeType(str, Enum):
     UserPrincipalName = "userPrincipalName",
     OnPremisesUserPrincipalName = "onPremisesUserPrincipalName",
     UserPrincipalUsername = "userPrincipalUsername",

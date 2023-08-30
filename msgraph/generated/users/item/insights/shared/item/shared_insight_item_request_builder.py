@@ -1,113 +1,101 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import shared_insight
-    from ......models.o_data_errors import o_data_error
-    from .last_shared_method import last_shared_method_request_builder
-    from .resource import resource_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.shared_insight import SharedInsight
+    from .last_shared_method.last_shared_method_request_builder import LastSharedMethodRequestBuilder
+    from .resource.resource_request_builder import ResourceRequestBuilder
 
-class SharedInsightItemRequestBuilder():
+class SharedInsightItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the shared property of the microsoft.graph.officeGraphInsights entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SharedInsightItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/insights/shared/{sharedInsight%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/insights/shared/{sharedInsight%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[SharedInsightItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property shared for users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SharedInsightItemRequestBuilderGetRequestConfiguration] = None) -> Optional[shared_insight.SharedInsight]:
+    async def get(self,request_configuration: Optional[SharedInsightItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SharedInsight]:
         """
         Access this property from the derived type itemInsights.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[shared_insight.SharedInsight]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SharedInsight]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import shared_insight
+        from ......models.shared_insight import SharedInsight
 
-        return await self.request_adapter.send_async(request_info, shared_insight.SharedInsight, error_mapping)
+        return await self.request_adapter.send_async(request_info, SharedInsight, error_mapping)
     
-    async def patch(self,body: Optional[shared_insight.SharedInsight] = None, request_configuration: Optional[SharedInsightItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[shared_insight.SharedInsight]:
+    async def patch(self,body: Optional[SharedInsight] = None, request_configuration: Optional[SharedInsightItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SharedInsight]:
         """
         Update the navigation property shared in users
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[shared_insight.SharedInsight]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[SharedInsight]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import shared_insight
+        from ......models.shared_insight import SharedInsight
 
-        return await self.request_adapter.send_async(request_info, shared_insight.SharedInsight, error_mapping)
+        return await self.request_adapter.send_async(request_info, SharedInsight, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SharedInsightItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property shared for users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -122,8 +110,7 @@ class SharedInsightItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[SharedInsightItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Access this property from the derived type itemInsights.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,16 +124,15 @@ class SharedInsightItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[shared_insight.SharedInsight] = None, request_configuration: Optional[SharedInsightItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SharedInsight] = None, request_configuration: Optional[SharedInsightItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property shared in users
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,35 +144,43 @@ class SharedInsightItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> SharedInsightItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: SharedInsightItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return SharedInsightItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def last_shared_method(self) -> last_shared_method_request_builder.LastSharedMethodRequestBuilder:
+    def last_shared_method(self) -> LastSharedMethodRequestBuilder:
         """
         Provides operations to manage the lastSharedMethod property of the microsoft.graph.sharedInsight entity.
         """
-        from .last_shared_method import last_shared_method_request_builder
+        from .last_shared_method.last_shared_method_request_builder import LastSharedMethodRequestBuilder
 
-        return last_shared_method_request_builder.LastSharedMethodRequestBuilder(self.request_adapter, self.path_parameters)
+        return LastSharedMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def resource(self) -> resource_request_builder.ResourceRequestBuilder:
+    def resource(self) -> ResourceRequestBuilder:
         """
         Provides operations to manage the resource property of the microsoft.graph.sharedInsight entity.
         """
-        from .resource import resource_request_builder
+        from .resource.resource_request_builder import ResourceRequestBuilder
 
-        return resource_request_builder.ResourceRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SharedInsightItemRequestBuilderDeleteRequestConfiguration():
+    class SharedInsightItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class SharedInsightItemRequestBuilderGetQueryParameters():
@@ -196,12 +190,11 @@ class SharedInsightItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -215,31 +208,27 @@ class SharedInsightItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SharedInsightItemRequestBuilderGetRequestConfiguration():
+    class SharedInsightItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[SharedInsightItemRequestBuilder.SharedInsightItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class SharedInsightItemRequestBuilderPatchRequestConfiguration():
+    class SharedInsightItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

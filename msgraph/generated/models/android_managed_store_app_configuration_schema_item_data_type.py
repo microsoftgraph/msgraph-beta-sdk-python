@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidManagedStoreAppConfigurationSchemaItemDataType(Enum):
+class AndroidManagedStoreAppConfigurationSchemaItemDataType(str, Enum):
     Bool = "bool",
     Integer = "integer",
     String = "string",

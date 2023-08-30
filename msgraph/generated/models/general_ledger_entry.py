@@ -1,200 +1,68 @@
 from __future__ import annotations
-from datetime import date, datetime
-from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+import datetime
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
-    from . import account, entity
+    from .account import Account
 
-from . import entity
+@dataclass
+class GeneralLedgerEntry(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-class GeneralLedgerEntry(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new generalLedgerEntry and sets the default values.
-        """
-        super().__init__()
-        # The account property
-        self._account: Optional[account.Account] = None
-        # The accountId property
-        self._account_id: Optional[UUID] = None
-        # The accountNumber property
-        self._account_number: Optional[str] = None
-        # The creditAmount property
-        self._credit_amount: Optional[float] = None
-        # The debitAmount property
-        self._debit_amount: Optional[float] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The documentNumber property
-        self._document_number: Optional[str] = None
-        # The documentType property
-        self._document_type: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The postingDate property
-        self._posting_date: Optional[date] = None
-    
-    @property
-    def account(self,) -> Optional[account.Account]:
-        """
-        Gets the account property value. The account property
-        Returns: Optional[account.Account]
-        """
-        return self._account
-    
-    @account.setter
-    def account(self,value: Optional[account.Account] = None) -> None:
-        """
-        Sets the account property value. The account property
-        Args:
-            value: Value to set for the account property.
-        """
-        self._account = value
-    
-    @property
-    def account_id(self,) -> Optional[UUID]:
-        """
-        Gets the accountId property value. The accountId property
-        Returns: Optional[UUID]
-        """
-        return self._account_id
-    
-    @account_id.setter
-    def account_id(self,value: Optional[UUID] = None) -> None:
-        """
-        Sets the accountId property value. The accountId property
-        Args:
-            value: Value to set for the account_id property.
-        """
-        self._account_id = value
-    
-    @property
-    def account_number(self,) -> Optional[str]:
-        """
-        Gets the accountNumber property value. The accountNumber property
-        Returns: Optional[str]
-        """
-        return self._account_number
-    
-    @account_number.setter
-    def account_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountNumber property value. The accountNumber property
-        Args:
-            value: Value to set for the account_number property.
-        """
-        self._account_number = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The account property
+    account: Optional[Account] = None
+    # The accountId property
+    account_id: Optional[UUID] = None
+    # The accountNumber property
+    account_number: Optional[str] = None
+    # The creditAmount property
+    credit_amount: Optional[float] = None
+    # The debitAmount property
+    debit_amount: Optional[float] = None
+    # The description property
+    description: Optional[str] = None
+    # The documentNumber property
+    document_number: Optional[str] = None
+    # The documentType property
+    document_type: Optional[str] = None
+    # The id property
+    id: Optional[UUID] = None
+    # The lastModifiedDateTime property
+    last_modified_date_time: Optional[datetime.datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The postingDate property
+    posting_date: Optional[datetime.date] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GeneralLedgerEntry:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: GeneralLedgerEntry
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return GeneralLedgerEntry()
-    
-    @property
-    def credit_amount(self,) -> Optional[float]:
-        """
-        Gets the creditAmount property value. The creditAmount property
-        Returns: Optional[float]
-        """
-        return self._credit_amount
-    
-    @credit_amount.setter
-    def credit_amount(self,value: Optional[float] = None) -> None:
-        """
-        Sets the creditAmount property value. The creditAmount property
-        Args:
-            value: Value to set for the credit_amount property.
-        """
-        self._credit_amount = value
-    
-    @property
-    def debit_amount(self,) -> Optional[float]:
-        """
-        Gets the debitAmount property value. The debitAmount property
-        Returns: Optional[float]
-        """
-        return self._debit_amount
-    
-    @debit_amount.setter
-    def debit_amount(self,value: Optional[float] = None) -> None:
-        """
-        Sets the debitAmount property value. The debitAmount property
-        Args:
-            value: Value to set for the debit_amount property.
-        """
-        self._debit_amount = value
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description property
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description property
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def document_number(self,) -> Optional[str]:
-        """
-        Gets the documentNumber property value. The documentNumber property
-        Returns: Optional[str]
-        """
-        return self._document_number
-    
-    @document_number.setter
-    def document_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the documentNumber property value. The documentNumber property
-        Args:
-            value: Value to set for the document_number property.
-        """
-        self._document_number = value
-    
-    @property
-    def document_type(self,) -> Optional[str]:
-        """
-        Gets the documentType property value. The documentType property
-        Returns: Optional[str]
-        """
-        return self._document_type
-    
-    @document_type.setter
-    def document_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the documentType property value. The documentType property
-        Args:
-            value: Value to set for the document_type property.
-        """
-        self._document_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import account, entity
+        from .account import Account
+
+        from .account import Account
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
+            "account": lambda n : setattr(self, 'account', n.get_object_value(Account)),
             "accountId": lambda n : setattr(self, 'account_id', n.get_uuid_value()),
             "accountNumber": lambda n : setattr(self, 'account_number', n.get_str_value()),
             "creditAmount": lambda n : setattr(self, 'credit_amount', n.get_float_value()),
@@ -202,56 +70,21 @@ class GeneralLedgerEntry(entity.Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "documentNumber": lambda n : setattr(self, 'document_number', n.get_str_value()),
             "documentType": lambda n : setattr(self, 'document_type', n.get_str_value()),
+            "id": lambda n : setattr(self, 'id', n.get_uuid_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "postingDate": lambda n : setattr(self, 'posting_date', n.get_date_value()),
         }
-        super_fields = super().get_field_deserializers()
-        fields.update(super_fields)
         return fields
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def posting_date(self,) -> Optional[date]:
-        """
-        Gets the postingDate property value. The postingDate property
-        Returns: Optional[date]
-        """
-        return self._posting_date
-    
-    @posting_date.setter
-    def posting_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the postingDate property value. The postingDate property
-        Args:
-            value: Value to set for the posting_date property.
-        """
-        self._posting_date = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
-        super().serialize(writer)
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_object_value("account", self.account)
         writer.write_uuid_value("accountId", self.account_id)
         writer.write_str_value("accountNumber", self.account_number)
@@ -260,7 +93,10 @@ class GeneralLedgerEntry(entity.Entity):
         writer.write_str_value("description", self.description)
         writer.write_str_value("documentNumber", self.document_number)
         writer.write_str_value("documentType", self.document_type)
+        writer.write_uuid_value("id", self.id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_date_value("postingDate", self.posting_date)
+        writer.write_additional_data_value(self.additional_data)
     
 

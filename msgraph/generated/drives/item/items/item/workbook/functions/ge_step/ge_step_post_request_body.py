@@ -1,50 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models import json
+    from ........models.json import Json
 
-class GeStepPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new geStepPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class GeStepPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The number property
-        self._number: Optional[json.Json] = None
-        # The step property
-        self._step: Optional[json.Json] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The number property
+    number: Optional[Json] = None
+    # The step property
+    step: Optional[Json] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GeStepPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: GeStepPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return GeStepPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -52,58 +35,26 @@ class GeStepPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ........models import json
+        from ........models.json import Json
+
+        from ........models.json import Json
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "number": lambda n : setattr(self, 'number', n.get_object_value(json.Json)),
-            "step": lambda n : setattr(self, 'step', n.get_object_value(json.Json)),
+            "number": lambda n : setattr(self, 'number', n.get_object_value(Json)),
+            "step": lambda n : setattr(self, 'step', n.get_object_value(Json)),
         }
         return fields
-    
-    @property
-    def number(self,) -> Optional[json.Json]:
-        """
-        Gets the number property value. The number property
-        Returns: Optional[json.Json]
-        """
-        return self._number
-    
-    @number.setter
-    def number(self,value: Optional[json.Json] = None) -> None:
-        """
-        Sets the number property value. The number property
-        Args:
-            value: Value to set for the number property.
-        """
-        self._number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_object_value("number", self.number)
         writer.write_object_value("step", self.step)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def step(self,) -> Optional[json.Json]:
-        """
-        Gets the step property value. The step property
-        Returns: Optional[json.Json]
-        """
-        return self._step
-    
-    @step.setter
-    def step(self,value: Optional[json.Json] = None) -> None:
-        """
-        Sets the step property value. The step property
-        Args:
-            value: Value to set for the step property.
-        """
-        self._step = value
     
 

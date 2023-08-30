@@ -1,6 +1,6 @@
 from enum import Enum
 
-class GroupPolicyConfigurationIngestionType(Enum):
+class GroupPolicyConfigurationIngestionType(str, Enum):
     # Unknown policy configuration ingestion type
     Unknown = "unknown",
     # Indicates policy created have definitions ingested by IT admin with sufficient permissions through custom ingestion process

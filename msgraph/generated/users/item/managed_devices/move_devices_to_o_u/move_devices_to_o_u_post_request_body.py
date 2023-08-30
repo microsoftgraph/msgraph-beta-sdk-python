@@ -1,66 +1,32 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
-class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new moveDevicesToOUPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The deviceIds property
-        self._device_ids: Optional[List[UUID]] = None
-        # The organizationalUnitPath property
-        self._organizational_unit_path: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The deviceIds property
+    device_ids: Optional[List[UUID]] = None
+    # The organizationalUnitPath property
+    organizational_unit_path: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MoveDevicesToOUPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MoveDevicesToOUPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return MoveDevicesToOUPostRequestBody()
-    
-    @property
-    def device_ids(self,) -> Optional[List[UUID]]:
-        """
-        Gets the deviceIds property value. The deviceIds property
-        Returns: Optional[List[UUID]]
-        """
-        return self._device_ids
-    
-    @device_ids.setter
-    def device_ids(self,value: Optional[List[UUID]] = None) -> None:
-        """
-        Sets the deviceIds property value. The deviceIds property
-        Args:
-            value: Value to set for the device_ids property.
-        """
-        self._device_ids = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -73,31 +39,14 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def organizational_unit_path(self,) -> Optional[str]:
-        """
-        Gets the organizationalUnitPath property value. The organizationalUnitPath property
-        Returns: Optional[str]
-        """
-        return self._organizational_unit_path
-    
-    @organizational_unit_path.setter
-    def organizational_unit_path(self,value: Optional[str] = None) -> None:
-        """
-        Sets the organizationalUnitPath property value. The organizationalUnitPath property
-        Args:
-            value: Value to set for the organizational_unit_path property.
-        """
-        self._organizational_unit_path = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("deviceIds", self.device_ids)
         writer.write_str_value("organizationalUnitPath", self.organizational_unit_path)
         writer.write_additional_data_value(self.additional_data)

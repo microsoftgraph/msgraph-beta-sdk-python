@@ -1,6 +1,6 @@
 from enum import Enum
 
-class NonEapAuthenticationMethodForEapTtlsType(Enum):
+class NonEapAuthenticationMethodForEapTtlsType(str, Enum):
     # Unencrypted password (PAP).
     UnencryptedPassword = "unencryptedPassword",
     # Challenge Handshake Authentication Protocol (CHAP).

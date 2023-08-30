@@ -1,6 +1,6 @@
 from enum import Enum
 
-class OfficeSuiteDefaultFileFormatType(Enum):
+class OfficeSuiteDefaultFileFormatType(str, Enum):
     # No file format selected
     NotConfigured = "notConfigured",
     # Office Open XML Format selected

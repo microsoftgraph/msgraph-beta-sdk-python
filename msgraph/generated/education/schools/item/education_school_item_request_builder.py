@@ -1,114 +1,105 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import education_school
-    from ....models.o_data_errors import o_data_error
-    from .administrative_unit import administrative_unit_request_builder
-    from .classes import classes_request_builder
-    from .users import users_request_builder
+    from ....models.education_school import EducationSchool
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .administrative_unit.administrative_unit_request_builder import AdministrativeUnitRequestBuilder
+    from .classes.classes_request_builder import ClassesRequestBuilder
+    from .users.users_request_builder import UsersRequestBuilder
 
-class EducationSchoolItemRequestBuilder():
+class EducationSchoolItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new EducationSchoolItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/education/schools/{educationSchool%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/education/schools/{educationSchool%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[EducationSchoolItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a school.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/educationschool-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EducationSchoolItemRequestBuilderGetRequestConfiguration] = None) -> Optional[education_school.EducationSchool]:
+    async def get(self,request_configuration: Optional[EducationSchoolItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationSchool]:
         """
         Retrieve the properties and relationships of the school object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_school.EducationSchool]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationSchool]
+        Find more info here: https://learn.microsoft.com/graph/api/educationschool-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import education_school
+        from ....models.education_school import EducationSchool
 
-        return await self.request_adapter.send_async(request_info, education_school.EducationSchool, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationSchool, error_mapping)
     
-    async def patch(self,body: Optional[education_school.EducationSchool] = None, request_configuration: Optional[EducationSchoolItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_school.EducationSchool]:
+    async def patch(self,body: Optional[EducationSchool] = None, request_configuration: Optional[EducationSchoolItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EducationSchool]:
         """
         Update the properties of a school object.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_school.EducationSchool]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationSchool]
+        Find more info here: https://learn.microsoft.com/graph/api/educationschool-update?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import education_school
+        from ....models.education_school import EducationSchool
 
-        return await self.request_adapter.send_async(request_info, education_school.EducationSchool, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationSchool, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EducationSchoolItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a school.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -123,8 +114,7 @@ class EducationSchoolItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[EducationSchoolItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of the school object.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -138,16 +128,15 @@ class EducationSchoolItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[education_school.EducationSchool] = None, request_configuration: Optional[EducationSchoolItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EducationSchool] = None, request_configuration: Optional[EducationSchoolItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a school object.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -159,44 +148,52 @@ class EducationSchoolItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> EducationSchoolItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: EducationSchoolItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return EducationSchoolItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def administrative_unit(self) -> administrative_unit_request_builder.AdministrativeUnitRequestBuilder:
+    def administrative_unit(self) -> AdministrativeUnitRequestBuilder:
         """
         Provides operations to manage the administrativeUnit property of the microsoft.graph.educationSchool entity.
         """
-        from .administrative_unit import administrative_unit_request_builder
+        from .administrative_unit.administrative_unit_request_builder import AdministrativeUnitRequestBuilder
 
-        return administrative_unit_request_builder.AdministrativeUnitRequestBuilder(self.request_adapter, self.path_parameters)
+        return AdministrativeUnitRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def classes(self) -> classes_request_builder.ClassesRequestBuilder:
+    def classes(self) -> ClassesRequestBuilder:
         """
         Provides operations to manage the classes property of the microsoft.graph.educationSchool entity.
         """
-        from .classes import classes_request_builder
+        from .classes.classes_request_builder import ClassesRequestBuilder
 
-        return classes_request_builder.ClassesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ClassesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def users(self) -> users_request_builder.UsersRequestBuilder:
+    def users(self) -> UsersRequestBuilder:
         """
         Provides operations to manage the users property of the microsoft.graph.educationSchool entity.
         """
-        from .users import users_request_builder
+        from .users.users_request_builder import UsersRequestBuilder
 
-        return users_request_builder.UsersRequestBuilder(self.request_adapter, self.path_parameters)
+        return UsersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EducationSchoolItemRequestBuilderDeleteRequestConfiguration():
+    class EducationSchoolItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class EducationSchoolItemRequestBuilderGetQueryParameters():
@@ -206,12 +203,11 @@ class EducationSchoolItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -225,31 +221,27 @@ class EducationSchoolItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EducationSchoolItemRequestBuilderGetRequestConfiguration():
+    class EducationSchoolItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[EducationSchoolItemRequestBuilder.EducationSchoolItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EducationSchoolItemRequestBuilderPatchRequestConfiguration():
+    class EducationSchoolItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

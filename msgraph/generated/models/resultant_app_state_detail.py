@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ResultantAppStateDetail(Enum):
+class ResultantAppStateDetail(str, Enum):
     # Device architecture (e.g. x86/amd64) is not applicable for the application.
     ProcessorArchitectureNotApplicable = "processorArchitectureNotApplicable",
     # Available disk space on the target device is less than the configured minimum.

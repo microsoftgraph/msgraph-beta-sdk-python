@@ -1,109 +1,98 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import education_synchronization_error, education_synchronization_error_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import education_synchronization_error_item_request_builder
+    from .....models.education_synchronization_error import EducationSynchronizationError
+    from .....models.education_synchronization_error_collection_response import EducationSynchronizationErrorCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.education_synchronization_error_item_request_builder import EducationSynchronizationErrorItemRequestBuilder
 
-class ErrorsRequestBuilder():
+class ErrorsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the errors property of the microsoft.graph.educationSynchronizationProfile entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ErrorsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/education/synchronizationProfiles/{educationSynchronizationProfile%2Did}/errors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/education/synchronizationProfiles/{educationSynchronizationProfile%2Did}/errors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_education_synchronization_error_id(self,education_synchronization_error_id: str) -> education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder:
+    def by_education_synchronization_error_id(self,education_synchronization_error_id: str) -> EducationSynchronizationErrorItemRequestBuilder:
         """
         Provides operations to manage the errors property of the microsoft.graph.educationSynchronizationProfile entity.
-        Args:
-            education_synchronization_error_id: Unique identifier of the item
-        Returns: education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder
+        param education_synchronization_error_id: The unique identifier of educationSynchronizationError
+        Returns: EducationSynchronizationErrorItemRequestBuilder
         """
-        if education_synchronization_error_id is None:
-            raise Exception("education_synchronization_error_id cannot be undefined")
-        from .item import education_synchronization_error_item_request_builder
+        if not education_synchronization_error_id:
+            raise TypeError("education_synchronization_error_id cannot be null.")
+        from .item.education_synchronization_error_item_request_builder import EducationSynchronizationErrorItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["educationSynchronizationError%2Did"] = education_synchronization_error_id
-        return education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return EducationSynchronizationErrorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ErrorsRequestBuilderGetRequestConfiguration] = None) -> Optional[education_synchronization_error_collection_response.EducationSynchronizationErrorCollectionResponse]:
+    async def get(self,request_configuration: Optional[ErrorsRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationSynchronizationErrorCollectionResponse]:
         """
         Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_synchronization_error_collection_response.EducationSynchronizationErrorCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationSynchronizationErrorCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationerrors-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import education_synchronization_error_collection_response
+        from .....models.education_synchronization_error_collection_response import EducationSynchronizationErrorCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, education_synchronization_error_collection_response.EducationSynchronizationErrorCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationSynchronizationErrorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[education_synchronization_error.EducationSynchronizationError] = None, request_configuration: Optional[ErrorsRequestBuilderPostRequestConfiguration] = None) -> Optional[education_synchronization_error.EducationSynchronizationError]:
+    async def post(self,body: Optional[EducationSynchronizationError] = None, request_configuration: Optional[ErrorsRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationSynchronizationError]:
         """
         Create new navigation property to errors for education
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_synchronization_error.EducationSynchronizationError]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationSynchronizationError]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import education_synchronization_error
+        from .....models.education_synchronization_error import EducationSynchronizationError
 
-        return await self.request_adapter.send_async(request_info, education_synchronization_error.EducationSynchronizationError, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationSynchronizationError, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ErrorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +106,15 @@ class ErrorsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[education_synchronization_error.EducationSynchronizationError] = None, request_configuration: Optional[ErrorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EducationSynchronizationError] = None, request_configuration: Optional[ErrorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to errors for education
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -138,14 +126,24 @@ class ErrorsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> ErrorsRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: ErrorsRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return ErrorsRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ErrorsRequestBuilderGetQueryParameters():
@@ -155,12 +153,11 @@ class ErrorsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +201,27 @@ class ErrorsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ErrorsRequestBuilderGetRequestConfiguration():
+    class ErrorsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ErrorsRequestBuilder.ErrorsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ErrorsRequestBuilderPostRequestConfiguration():
+    class ErrorsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

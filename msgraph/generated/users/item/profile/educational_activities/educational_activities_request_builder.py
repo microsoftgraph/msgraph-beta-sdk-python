@@ -1,109 +1,99 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import educational_activity, educational_activity_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import educational_activity_item_request_builder
+    from .....models.educational_activity import EducationalActivity
+    from .....models.educational_activity_collection_response import EducationalActivityCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.educational_activity_item_request_builder import EducationalActivityItemRequestBuilder
 
-class EducationalActivitiesRequestBuilder():
+class EducationalActivitiesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the educationalActivities property of the microsoft.graph.profile entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new EducationalActivitiesRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/profile/educationalActivities{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/profile/educationalActivities{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_educational_activity_id(self,educational_activity_id: str) -> educational_activity_item_request_builder.EducationalActivityItemRequestBuilder:
+    def by_educational_activity_id(self,educational_activity_id: str) -> EducationalActivityItemRequestBuilder:
         """
         Provides operations to manage the educationalActivities property of the microsoft.graph.profile entity.
-        Args:
-            educational_activity_id: Unique identifier of the item
-        Returns: educational_activity_item_request_builder.EducationalActivityItemRequestBuilder
+        param educational_activity_id: The unique identifier of educationalActivity
+        Returns: EducationalActivityItemRequestBuilder
         """
-        if educational_activity_id is None:
-            raise Exception("educational_activity_id cannot be undefined")
-        from .item import educational_activity_item_request_builder
+        if not educational_activity_id:
+            raise TypeError("educational_activity_id cannot be null.")
+        from .item.educational_activity_item_request_builder import EducationalActivityItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["educationalActivity%2Did"] = educational_activity_id
-        return educational_activity_item_request_builder.EducationalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return EducationalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[EducationalActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[educational_activity_collection_response.EducationalActivityCollectionResponse]:
+    async def get(self,request_configuration: Optional[EducationalActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationalActivityCollectionResponse]:
         """
         Retrieve a list of educationalActivity objects from a user's profile.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[educational_activity_collection_response.EducationalActivityCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationalActivityCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/profile-list-educationalactivities?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import educational_activity_collection_response
+        from .....models.educational_activity_collection_response import EducationalActivityCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, educational_activity_collection_response.EducationalActivityCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationalActivityCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[educational_activity.EducationalActivity] = None, request_configuration: Optional[EducationalActivitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[educational_activity.EducationalActivity]:
+    async def post(self,body: Optional[EducationalActivity] = None, request_configuration: Optional[EducationalActivitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationalActivity]:
         """
         Create a new educationalActivity in a user's profile.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[educational_activity.EducationalActivity]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationalActivity]
+        Find more info here: https://learn.microsoft.com/graph/api/profile-post-educationalactivities?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import educational_activity
+        from .....models.educational_activity import EducationalActivity
 
-        return await self.request_adapter.send_async(request_info, educational_activity.EducationalActivity, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationalActivity, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EducationalActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of educationalActivity objects from a user's profile.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +107,15 @@ class EducationalActivitiesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[educational_activity.EducationalActivity] = None, request_configuration: Optional[EducationalActivitiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EducationalActivity] = None, request_configuration: Optional[EducationalActivitiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new educationalActivity in a user's profile.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -138,14 +127,24 @@ class EducationalActivitiesRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> EducationalActivitiesRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: EducationalActivitiesRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return EducationalActivitiesRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EducationalActivitiesRequestBuilderGetQueryParameters():
@@ -155,12 +154,11 @@ class EducationalActivitiesRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +202,27 @@ class EducationalActivitiesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EducationalActivitiesRequestBuilderGetRequestConfiguration():
+    class EducationalActivitiesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[EducationalActivitiesRequestBuilder.EducationalActivitiesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EducationalActivitiesRequestBuilderPostRequestConfiguration():
+    class EducationalActivitiesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

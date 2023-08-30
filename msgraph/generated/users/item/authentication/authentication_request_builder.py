@@ -1,122 +1,110 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import authentication
-    from ....models.o_data_errors import o_data_error
-    from .email_methods import email_methods_request_builder
-    from .fido2_methods import fido2_methods_request_builder
-    from .methods import methods_request_builder
-    from .microsoft_authenticator_methods import microsoft_authenticator_methods_request_builder
-    from .operations import operations_request_builder
-    from .passwordless_microsoft_authenticator_methods import passwordless_microsoft_authenticator_methods_request_builder
-    from .password_methods import password_methods_request_builder
-    from .phone_methods import phone_methods_request_builder
-    from .software_oath_methods import software_oath_methods_request_builder
-    from .temporary_access_pass_methods import temporary_access_pass_methods_request_builder
-    from .windows_hello_for_business_methods import windows_hello_for_business_methods_request_builder
+    from ....models.authentication import Authentication
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .email_methods.email_methods_request_builder import EmailMethodsRequestBuilder
+    from .fido2_methods.fido2_methods_request_builder import Fido2MethodsRequestBuilder
+    from .methods.methods_request_builder import MethodsRequestBuilder
+    from .microsoft_authenticator_methods.microsoft_authenticator_methods_request_builder import MicrosoftAuthenticatorMethodsRequestBuilder
+    from .operations.operations_request_builder import OperationsRequestBuilder
+    from .passwordless_microsoft_authenticator_methods.passwordless_microsoft_authenticator_methods_request_builder import PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
+    from .password_methods.password_methods_request_builder import PasswordMethodsRequestBuilder
+    from .phone_methods.phone_methods_request_builder import PhoneMethodsRequestBuilder
+    from .software_oath_methods.software_oath_methods_request_builder import SoftwareOathMethodsRequestBuilder
+    from .temporary_access_pass_methods.temporary_access_pass_methods_request_builder import TemporaryAccessPassMethodsRequestBuilder
+    from .windows_hello_for_business_methods.windows_hello_for_business_methods_request_builder import WindowsHelloForBusinessMethodsRequestBuilder
 
-class AuthenticationRequestBuilder():
+class AuthenticationRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the authentication property of the microsoft.graph.user entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AuthenticationRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/authentication{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/authentication{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[AuthenticationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property authentication for users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication.Authentication]:
+    async def get(self,request_configuration: Optional[AuthenticationRequestBuilderGetRequestConfiguration] = None) -> Optional[Authentication]:
         """
-        Get authentication from users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[authentication.Authentication]
+        The authentication methods that are supported for the user.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Authentication]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import authentication
+        from ....models.authentication import Authentication
 
-        return await self.request_adapter.send_async(request_info, authentication.Authentication, error_mapping)
+        return await self.request_adapter.send_async(request_info, Authentication, error_mapping)
     
-    async def patch(self,body: Optional[authentication.Authentication] = None, request_configuration: Optional[AuthenticationRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication.Authentication]:
+    async def patch(self,body: Optional[Authentication] = None, request_configuration: Optional[AuthenticationRequestBuilderPatchRequestConfiguration] = None) -> Optional[Authentication]:
         """
         Update the navigation property authentication in users
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[authentication.Authentication]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Authentication]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import authentication
+        from ....models.authentication import Authentication
 
-        return await self.request_adapter.send_async(request_info, authentication.Authentication, error_mapping)
+        return await self.request_adapter.send_async(request_info, Authentication, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property authentication for users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -130,9 +118,8 @@ class AuthenticationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get authentication from users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        The authentication methods that are supported for the user.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -146,16 +133,15 @@ class AuthenticationRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[authentication.Authentication] = None, request_configuration: Optional[AuthenticationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Authentication] = None, request_configuration: Optional[AuthenticationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property authentication in users
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -167,131 +153,138 @@ class AuthenticationRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> AuthenticationRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: AuthenticationRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return AuthenticationRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def email_methods(self) -> email_methods_request_builder.EmailMethodsRequestBuilder:
+    def email_methods(self) -> EmailMethodsRequestBuilder:
         """
         Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
         """
-        from .email_methods import email_methods_request_builder
+        from .email_methods.email_methods_request_builder import EmailMethodsRequestBuilder
 
-        return email_methods_request_builder.EmailMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EmailMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def fido2_methods(self) -> fido2_methods_request_builder.Fido2MethodsRequestBuilder:
+    def fido2_methods(self) -> Fido2MethodsRequestBuilder:
         """
         Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
         """
-        from .fido2_methods import fido2_methods_request_builder
+        from .fido2_methods.fido2_methods_request_builder import Fido2MethodsRequestBuilder
 
-        return fido2_methods_request_builder.Fido2MethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return Fido2MethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def methods(self) -> methods_request_builder.MethodsRequestBuilder:
+    def methods(self) -> MethodsRequestBuilder:
         """
         Provides operations to manage the methods property of the microsoft.graph.authentication entity.
         """
-        from .methods import methods_request_builder
+        from .methods.methods_request_builder import MethodsRequestBuilder
 
-        return methods_request_builder.MethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_authenticator_methods(self) -> microsoft_authenticator_methods_request_builder.MicrosoftAuthenticatorMethodsRequestBuilder:
+    def microsoft_authenticator_methods(self) -> MicrosoftAuthenticatorMethodsRequestBuilder:
         """
         Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         """
-        from .microsoft_authenticator_methods import microsoft_authenticator_methods_request_builder
+        from .microsoft_authenticator_methods.microsoft_authenticator_methods_request_builder import MicrosoftAuthenticatorMethodsRequestBuilder
 
-        return microsoft_authenticator_methods_request_builder.MicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
+    def operations(self) -> OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.authentication entity.
         """
-        from .operations import operations_request_builder
+        from .operations.operations_request_builder import OperationsRequestBuilder
 
-        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def passwordless_microsoft_authenticator_methods(self) -> passwordless_microsoft_authenticator_methods_request_builder.PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder:
+    def passwordless_microsoft_authenticator_methods(self) -> PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder:
         """
         Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         """
-        from .passwordless_microsoft_authenticator_methods import passwordless_microsoft_authenticator_methods_request_builder
+        from .passwordless_microsoft_authenticator_methods.passwordless_microsoft_authenticator_methods_request_builder import PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
 
-        return passwordless_microsoft_authenticator_methods_request_builder.PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def password_methods(self) -> password_methods_request_builder.PasswordMethodsRequestBuilder:
+    def password_methods(self) -> PasswordMethodsRequestBuilder:
         """
         Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
         """
-        from .password_methods import password_methods_request_builder
+        from .password_methods.password_methods_request_builder import PasswordMethodsRequestBuilder
 
-        return password_methods_request_builder.PasswordMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PasswordMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def phone_methods(self) -> phone_methods_request_builder.PhoneMethodsRequestBuilder:
+    def phone_methods(self) -> PhoneMethodsRequestBuilder:
         """
         Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
         """
-        from .phone_methods import phone_methods_request_builder
+        from .phone_methods.phone_methods_request_builder import PhoneMethodsRequestBuilder
 
-        return phone_methods_request_builder.PhoneMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return PhoneMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def software_oath_methods(self) -> software_oath_methods_request_builder.SoftwareOathMethodsRequestBuilder:
+    def software_oath_methods(self) -> SoftwareOathMethodsRequestBuilder:
         """
         Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
         """
-        from .software_oath_methods import software_oath_methods_request_builder
+        from .software_oath_methods.software_oath_methods_request_builder import SoftwareOathMethodsRequestBuilder
 
-        return software_oath_methods_request_builder.SoftwareOathMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SoftwareOathMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def temporary_access_pass_methods(self) -> temporary_access_pass_methods_request_builder.TemporaryAccessPassMethodsRequestBuilder:
+    def temporary_access_pass_methods(self) -> TemporaryAccessPassMethodsRequestBuilder:
         """
         Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
         """
-        from .temporary_access_pass_methods import temporary_access_pass_methods_request_builder
+        from .temporary_access_pass_methods.temporary_access_pass_methods_request_builder import TemporaryAccessPassMethodsRequestBuilder
 
-        return temporary_access_pass_methods_request_builder.TemporaryAccessPassMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return TemporaryAccessPassMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_hello_for_business_methods(self) -> windows_hello_for_business_methods_request_builder.WindowsHelloForBusinessMethodsRequestBuilder:
+    def windows_hello_for_business_methods(self) -> WindowsHelloForBusinessMethodsRequestBuilder:
         """
         Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
         """
-        from .windows_hello_for_business_methods import windows_hello_for_business_methods_request_builder
+        from .windows_hello_for_business_methods.windows_hello_for_business_methods_request_builder import WindowsHelloForBusinessMethodsRequestBuilder
 
-        return windows_hello_for_business_methods_request_builder.WindowsHelloForBusinessMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+        return WindowsHelloForBusinessMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AuthenticationRequestBuilderDeleteRequestConfiguration():
+    class AuthenticationRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class AuthenticationRequestBuilderGetQueryParameters():
         """
-        Get authentication from users
+        The authentication methods that are supported for the user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -305,31 +298,27 @@ class AuthenticationRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AuthenticationRequestBuilderGetRequestConfiguration():
+    class AuthenticationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AuthenticationRequestBuilder.AuthenticationRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AuthenticationRequestBuilderPatchRequestConfiguration():
+    class AuthenticationRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

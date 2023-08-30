@@ -1,115 +1,103 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import vendor
-    from ......models.o_data_errors import o_data_error
-    from .currency import currency_request_builder
-    from .payment_method import payment_method_request_builder
-    from .payment_term import payment_term_request_builder
-    from .picture import picture_request_builder
+    from ......models.o_data_errors.o_data_error import ODataError
+    from ......models.vendor import Vendor
+    from .currency.currency_request_builder import CurrencyRequestBuilder
+    from .payment_method.payment_method_request_builder import PaymentMethodRequestBuilder
+    from .payment_term.payment_term_request_builder import PaymentTermRequestBuilder
+    from .picture.picture_request_builder import PictureRequestBuilder
 
-class VendorItemRequestBuilder():
+class VendorItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the vendors property of the microsoft.graph.company entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new VendorItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/vendors/{vendor%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/financials/companies/{company%2Did}/vendors/{vendor%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[VendorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property vendors for financials
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[VendorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[vendor.Vendor]:
+    async def get(self,request_configuration: Optional[VendorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Vendor]:
         """
         Get vendors from financials
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[vendor.Vendor]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Vendor]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import vendor
+        from ......models.vendor import Vendor
 
-        return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
+        return await self.request_adapter.send_async(request_info, Vendor, error_mapping)
     
-    async def patch(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[vendor.Vendor]:
+    async def patch(self,body: Optional[Vendor] = None, request_configuration: Optional[VendorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Vendor]:
         """
         Update the navigation property vendors in financials
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[vendor.Vendor]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Vendor]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import vendor
+        from ......models.vendor import Vendor
 
-        return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
+        return await self.request_adapter.send_async(request_info, Vendor, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[VendorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property vendors for financials
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -124,8 +112,7 @@ class VendorItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[VendorItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get vendors from financials
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -139,16 +126,15 @@ class VendorItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Vendor] = None, request_configuration: Optional[VendorItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property vendors in financials
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -160,53 +146,61 @@ class VendorItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> VendorItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: VendorItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return VendorItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
+    def currency(self) -> CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.vendor entity.
         """
-        from .currency import currency_request_builder
+        from .currency.currency_request_builder import CurrencyRequestBuilder
 
-        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
+        return CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payment_method(self) -> payment_method_request_builder.PaymentMethodRequestBuilder:
+    def payment_method(self) -> PaymentMethodRequestBuilder:
         """
         Provides operations to manage the paymentMethod property of the microsoft.graph.vendor entity.
         """
-        from .payment_method import payment_method_request_builder
+        from .payment_method.payment_method_request_builder import PaymentMethodRequestBuilder
 
-        return payment_method_request_builder.PaymentMethodRequestBuilder(self.request_adapter, self.path_parameters)
+        return PaymentMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
+    def payment_term(self) -> PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.vendor entity.
         """
-        from .payment_term import payment_term_request_builder
+        from .payment_term.payment_term_request_builder import PaymentTermRequestBuilder
 
-        return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
+        return PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def picture(self) -> picture_request_builder.PictureRequestBuilder:
+    def picture(self) -> PictureRequestBuilder:
         """
         Provides operations to manage the picture property of the microsoft.graph.vendor entity.
         """
-        from .picture import picture_request_builder
+        from .picture.picture_request_builder import PictureRequestBuilder
 
-        return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
+        return PictureRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class VendorItemRequestBuilderDeleteRequestConfiguration():
+    class VendorItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class VendorItemRequestBuilderGetQueryParameters():
@@ -216,12 +210,11 @@ class VendorItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -235,31 +228,27 @@ class VendorItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class VendorItemRequestBuilderGetRequestConfiguration():
+    class VendorItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[VendorItemRequestBuilder.VendorItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class VendorItemRequestBuilderPatchRequestConfiguration():
+    class VendorItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 
