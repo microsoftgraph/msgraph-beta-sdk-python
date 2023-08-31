@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DefenderProtectionType(Enum):
+class DefenderProtectionType(str, Enum):
     # Device default value, no intent.
     UserDefined = "userDefined",
     # Block functionality.

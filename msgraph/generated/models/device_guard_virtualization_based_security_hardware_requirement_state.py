@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceGuardVirtualizationBasedSecurityHardwareRequirementState(Enum):
+class DeviceGuardVirtualizationBasedSecurityHardwareRequirementState(str, Enum):
     # System meets hardware configuration requirements
     MeetHardwareRequirements = "meetHardwareRequirements",
     # Secure boot required

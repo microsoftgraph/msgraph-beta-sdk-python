@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CallDisposition(Enum):
+class CallDisposition(str, Enum):
     Default = "default",
     SimultaneousRing = "simultaneousRing",
     Forward = "forward",

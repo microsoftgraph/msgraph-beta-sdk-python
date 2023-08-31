@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConfigurationUsage(Enum):
+class ConfigurationUsage(str, Enum):
     # Disallowed.
     Blocked = "blocked",
     # Required.

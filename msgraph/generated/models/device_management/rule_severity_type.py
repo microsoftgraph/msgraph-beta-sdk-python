@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RuleSeverityType(Enum):
+class RuleSeverityType(str, Enum):
     Unknown = "unknown",
     Informational = "informational",
     Warning = "warning",

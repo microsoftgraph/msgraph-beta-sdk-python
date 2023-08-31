@@ -1,110 +1,100 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import group_lifecycle_policy, group_lifecycle_policy_collection_response
-    from ..models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import group_lifecycle_policy_item_request_builder
-    from .renew_group import renew_group_request_builder
+    from ..models.group_lifecycle_policy import GroupLifecyclePolicy
+    from ..models.group_lifecycle_policy_collection_response import GroupLifecyclePolicyCollectionResponse
+    from ..models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.group_lifecycle_policy_item_request_builder import GroupLifecyclePolicyItemRequestBuilder
+    from .renew_group.renew_group_request_builder import RenewGroupRequestBuilder
 
-class GroupLifecyclePoliciesRequestBuilder():
+class GroupLifecyclePoliciesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of groupLifecyclePolicy entities.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GroupLifecyclePoliciesRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/groupLifecyclePolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/groupLifecyclePolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_group_lifecycle_policy_id(self,group_lifecycle_policy_id: str) -> group_lifecycle_policy_item_request_builder.GroupLifecyclePolicyItemRequestBuilder:
+    def by_group_lifecycle_policy_id(self,group_lifecycle_policy_id: str) -> GroupLifecyclePolicyItemRequestBuilder:
         """
         Provides operations to manage the collection of groupLifecyclePolicy entities.
-        Args:
-            group_lifecycle_policy_id: Unique identifier of the item
-        Returns: group_lifecycle_policy_item_request_builder.GroupLifecyclePolicyItemRequestBuilder
+        param group_lifecycle_policy_id: The unique identifier of groupLifecyclePolicy
+        Returns: GroupLifecyclePolicyItemRequestBuilder
         """
-        if group_lifecycle_policy_id is None:
-            raise Exception("group_lifecycle_policy_id cannot be undefined")
-        from .item import group_lifecycle_policy_item_request_builder
+        if not group_lifecycle_policy_id:
+            raise TypeError("group_lifecycle_policy_id cannot be null.")
+        from .item.group_lifecycle_policy_item_request_builder import GroupLifecyclePolicyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["groupLifecyclePolicy%2Did"] = group_lifecycle_policy_id
-        return group_lifecycle_policy_item_request_builder.GroupLifecyclePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return GroupLifecyclePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[group_lifecycle_policy_collection_response.GroupLifecyclePolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupLifecyclePolicyCollectionResponse]:
         """
         List all the groupLifecyclePolicies.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_lifecycle_policy_collection_response.GroupLifecyclePolicyCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GroupLifecyclePolicyCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import group_lifecycle_policy_collection_response
+        from ..models.group_lifecycle_policy_collection_response import GroupLifecyclePolicyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, group_lifecycle_policy_collection_response.GroupLifecyclePolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupLifecyclePolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group_lifecycle_policy.GroupLifecyclePolicy] = None, request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[group_lifecycle_policy.GroupLifecyclePolicy]:
+    async def post(self,body: Optional[GroupLifecyclePolicy] = None, request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[GroupLifecyclePolicy]:
         """
         Creates a new groupLifecyclePolicy.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[group_lifecycle_policy.GroupLifecyclePolicy]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[GroupLifecyclePolicy]
+        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-post-grouplifecyclepolicies?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ..models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import group_lifecycle_policy
+        from ..models.group_lifecycle_policy import GroupLifecyclePolicy
 
-        return await self.request_adapter.send_async(request_info, group_lifecycle_policy.GroupLifecyclePolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, GroupLifecyclePolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         List all the groupLifecyclePolicies.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -118,16 +108,15 @@ class GroupLifecyclePoliciesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[group_lifecycle_policy.GroupLifecyclePolicy] = None, request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GroupLifecyclePolicy] = None, request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Creates a new groupLifecyclePolicy.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -139,23 +128,33 @@ class GroupLifecyclePoliciesRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> GroupLifecyclePoliciesRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: GroupLifecyclePoliciesRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return GroupLifecyclePoliciesRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def renew_group(self) -> renew_group_request_builder.RenewGroupRequestBuilder:
+    def renew_group(self) -> RenewGroupRequestBuilder:
         """
         Provides operations to call the renewGroup method.
         """
-        from .renew_group import renew_group_request_builder
+        from .renew_group.renew_group_request_builder import RenewGroupRequestBuilder
 
-        return renew_group_request_builder.RenewGroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return RenewGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupLifecyclePoliciesRequestBuilderGetQueryParameters():
@@ -165,12 +164,11 @@ class GroupLifecyclePoliciesRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -214,31 +212,27 @@ class GroupLifecyclePoliciesRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration():
+    class GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[GroupLifecyclePoliciesRequestBuilder.GroupLifecyclePoliciesRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class GroupLifecyclePoliciesRequestBuilderPostRequestConfiguration():
+    class GroupLifecyclePoliciesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

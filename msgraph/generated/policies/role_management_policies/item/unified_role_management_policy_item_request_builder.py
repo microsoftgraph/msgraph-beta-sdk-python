@@ -1,113 +1,101 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import unified_role_management_policy
-    from ....models.o_data_errors import o_data_error
-    from .effective_rules import effective_rules_request_builder
-    from .rules import rules_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.unified_role_management_policy import UnifiedRoleManagementPolicy
+    from .effective_rules.effective_rules_request_builder import EffectiveRulesRequestBuilder
+    from .rules.rules_request_builder import RulesRequestBuilder
 
-class UnifiedRoleManagementPolicyItemRequestBuilder():
+class UnifiedRoleManagementPolicyItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new UnifiedRoleManagementPolicyItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/policies/roleManagementPolicies/{unifiedRoleManagementPolicy%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/policies/roleManagementPolicies/{unifiedRoleManagementPolicy%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleManagementPolicies for policies
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_policy.UnifiedRoleManagementPolicy]:
+    async def get(self,request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementPolicy]:
         """
-        Retrieve the details of a role management policy. To read a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[unified_role_management_policy.UnifiedRoleManagementPolicy]
+        Represents the role management policies.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UnifiedRoleManagementPolicy]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import unified_role_management_policy
+        from ....models.unified_role_management_policy import UnifiedRoleManagementPolicy
 
-        return await self.request_adapter.send_async(request_info, unified_role_management_policy.UnifiedRoleManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRoleManagementPolicy, error_mapping)
     
-    async def patch(self,body: Optional[unified_role_management_policy.UnifiedRoleManagementPolicy] = None, request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_role_management_policy.UnifiedRoleManagementPolicy]:
+    async def patch(self,body: Optional[UnifiedRoleManagementPolicy] = None, request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UnifiedRoleManagementPolicy]:
         """
         Update the navigation property roleManagementPolicies in policies
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[unified_role_management_policy.UnifiedRoleManagementPolicy]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[UnifiedRoleManagementPolicy]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import unified_role_management_policy
+        from ....models.unified_role_management_policy import UnifiedRoleManagementPolicy
 
-        return await self.request_adapter.send_async(request_info, unified_role_management_policy.UnifiedRoleManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRoleManagementPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property roleManagementPolicies for policies
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -121,9 +109,8 @@ class UnifiedRoleManagementPolicyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the details of a role management policy. To read a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Represents the role management policies.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,16 +124,15 @@ class UnifiedRoleManagementPolicyItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[unified_role_management_policy.UnifiedRoleManagementPolicy] = None, request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UnifiedRoleManagementPolicy] = None, request_configuration: Optional[UnifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property roleManagementPolicies in policies
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,50 +144,57 @@ class UnifiedRoleManagementPolicyItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> UnifiedRoleManagementPolicyItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: UnifiedRoleManagementPolicyItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return UnifiedRoleManagementPolicyItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def effective_rules(self) -> effective_rules_request_builder.EffectiveRulesRequestBuilder:
+    def effective_rules(self) -> EffectiveRulesRequestBuilder:
         """
         Provides operations to manage the effectiveRules property of the microsoft.graph.unifiedRoleManagementPolicy entity.
         """
-        from .effective_rules import effective_rules_request_builder
+        from .effective_rules.effective_rules_request_builder import EffectiveRulesRequestBuilder
 
-        return effective_rules_request_builder.EffectiveRulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return EffectiveRulesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def rules(self) -> rules_request_builder.RulesRequestBuilder:
+    def rules(self) -> RulesRequestBuilder:
         """
         Provides operations to manage the rules property of the microsoft.graph.unifiedRoleManagementPolicy entity.
         """
-        from .rules import rules_request_builder
+        from .rules.rules_request_builder import RulesRequestBuilder
 
-        return rules_request_builder.RulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return RulesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UnifiedRoleManagementPolicyItemRequestBuilderDeleteRequestConfiguration():
+    class UnifiedRoleManagementPolicyItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the details of a role management policy. To read a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
+        Represents the role management policies.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -215,31 +208,27 @@ class UnifiedRoleManagementPolicyItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UnifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration():
+    class UnifiedRoleManagementPolicyItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[UnifiedRoleManagementPolicyItemRequestBuilder.UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class UnifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration():
+    class UnifiedRoleManagementPolicyItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

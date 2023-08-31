@@ -1,6 +1,6 @@
 from enum import Enum
 
-class HealthState(Enum):
+class HealthState(str, Enum):
     # Unknown state.
     Unknown = "unknown",
     # Healthy state.

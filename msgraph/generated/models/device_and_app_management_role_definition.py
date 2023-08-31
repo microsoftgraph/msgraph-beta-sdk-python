@@ -1,30 +1,30 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import role_definition
+    from .role_definition import RoleDefinition
 
-from . import role_definition
+from .role_definition import RoleDefinition
 
-class DeviceAndAppManagementRoleDefinition(role_definition.RoleDefinition):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceAndAppManagementRoleDefinition and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceAndAppManagementRoleDefinition"
+@dataclass
+class DeviceAndAppManagementRoleDefinition(RoleDefinition):
+    """
+    The Role Definition resource. The role definition is the foundation of role based access in Intune. The role combines an Intune resource such as a Mobile App and associated role permissions such as Create or Read for the resource. There are two types of roles, built-in and custom. Built-in roles cannot be modified. Both built-in roles and custom roles must have assignments to be enforced. Create custom roles if you want to define a role that allows any of the available resources and role permissions to be combined into a single role.
+    """
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.deviceAndAppManagementRoleDefinition"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceAndAppManagementRoleDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceAndAppManagementRoleDefinition
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceAndAppManagementRoleDefinition()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -32,7 +32,9 @@ class DeviceAndAppManagementRoleDefinition(role_definition.RoleDefinition):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import role_definition
+        from .role_definition import RoleDefinition
+
+        from .role_definition import RoleDefinition
 
         fields: Dict[str, Callable[[Any], None]] = {
         }
@@ -43,11 +45,11 @@ class DeviceAndAppManagementRoleDefinition(role_definition.RoleDefinition):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
     
 

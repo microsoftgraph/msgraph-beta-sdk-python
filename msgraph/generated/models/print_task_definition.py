@@ -1,84 +1,54 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import app_identity, entity, print_task
+    from .app_identity import AppIdentity
+    from .entity import Entity
+    from .print_task import PrintTask
 
-from . import entity
+from .entity import Entity
 
-class PrintTaskDefinition(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new printTaskDefinition and sets the default values.
-        """
-        super().__init__()
-        # The createdBy property
-        self._created_by: Optional[app_identity.AppIdentity] = None
-        # The name of the printTaskDefinition.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
-        self._tasks: Optional[List[print_task.PrintTask]] = None
-    
-    @property
-    def created_by(self,) -> Optional[app_identity.AppIdentity]:
-        """
-        Gets the createdBy property value. The createdBy property
-        Returns: Optional[app_identity.AppIdentity]
-        """
-        return self._created_by
-    
-    @created_by.setter
-    def created_by(self,value: Optional[app_identity.AppIdentity] = None) -> None:
-        """
-        Sets the createdBy property value. The createdBy property
-        Args:
-            value: Value to set for the created_by property.
-        """
-        self._created_by = value
+@dataclass
+class PrintTaskDefinition(Entity):
+    # The createdBy property
+    created_by: Optional[AppIdentity] = None
+    # The name of the printTaskDefinition.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
+    tasks: Optional[List[PrintTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrintTaskDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PrintTaskDefinition
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return PrintTaskDefinition()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The name of the printTaskDefinition.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The name of the printTaskDefinition.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import app_identity, entity, print_task
+        from .app_identity import AppIdentity
+        from .entity import Entity
+        from .print_task import PrintTask
+
+        from .app_identity import AppIdentity
+        from .entity import Entity
+        from .print_task import PrintTask
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(app_identity.AppIdentity)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(AppIdentity)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(print_task.PrintTask)),
+            "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(PrintTask)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -87,31 +57,14 @@ class PrintTaskDefinition(entity.Entity):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("tasks", self.tasks)
-    
-    @property
-    def tasks(self,) -> Optional[List[print_task.PrintTask]]:
-        """
-        Gets the tasks property value. A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
-        Returns: Optional[List[print_task.PrintTask]]
-        """
-        return self._tasks
-    
-    @tasks.setter
-    def tasks(self,value: Optional[List[print_task.PrintTask]] = None) -> None:
-        """
-        Sets the tasks property value. A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
-        Args:
-            value: Value to set for the tasks property.
-        """
-        self._tasks = value
     
 

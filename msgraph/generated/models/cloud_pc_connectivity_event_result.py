@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcConnectivityEventResult(Enum):
+class CloudPcConnectivityEventResult(str, Enum):
     Unknown = "unknown",
     Success = "success",
     Failure = "failure",

@@ -1,110 +1,67 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import data_source_container, site_source, unified_group_source, user_source
+    from .data_source_container import DataSourceContainer
+    from .site_source import SiteSource
+    from .unified_group_source import UnifiedGroupSource
+    from .user_source import UserSource
 
-from . import data_source_container
+from .data_source_container import DataSourceContainer
 
-class Custodian(data_source_container.DataSourceContainer):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Custodian and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.ediscovery.custodian"
-        # Date and time the custodian acknowledged a hold notification.
-        self._acknowledged_date_time: Optional[datetime] = None
-        # Identifies whether a custodian's sources were placed on hold during creation.
-        self._apply_hold_to_sources: Optional[bool] = None
-        # Email address of the custodian.
-        self._email: Optional[str] = None
-        # Data source entity for SharePoint sites associated with the custodian.
-        self._site_sources: Optional[List[site_source.SiteSource]] = None
-        # Data source entity for groups associated with the custodian.
-        self._unified_group_sources: Optional[List[unified_group_source.UnifiedGroupSource]] = None
-        # Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
-        self._user_sources: Optional[List[user_source.UserSource]] = None
-    
-    @property
-    def acknowledged_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the acknowledgedDateTime property value. Date and time the custodian acknowledged a hold notification.
-        Returns: Optional[datetime]
-        """
-        return self._acknowledged_date_time
-    
-    @acknowledged_date_time.setter
-    def acknowledged_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the acknowledgedDateTime property value. Date and time the custodian acknowledged a hold notification.
-        Args:
-            value: Value to set for the acknowledged_date_time property.
-        """
-        self._acknowledged_date_time = value
-    
-    @property
-    def apply_hold_to_sources(self,) -> Optional[bool]:
-        """
-        Gets the applyHoldToSources property value. Identifies whether a custodian's sources were placed on hold during creation.
-        Returns: Optional[bool]
-        """
-        return self._apply_hold_to_sources
-    
-    @apply_hold_to_sources.setter
-    def apply_hold_to_sources(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applyHoldToSources property value. Identifies whether a custodian's sources were placed on hold during creation.
-        Args:
-            value: Value to set for the apply_hold_to_sources property.
-        """
-        self._apply_hold_to_sources = value
+@dataclass
+class Custodian(DataSourceContainer):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.ediscovery.custodian"
+    # Date and time the custodian acknowledged a hold notification.
+    acknowledged_date_time: Optional[datetime.datetime] = None
+    # Identifies whether a custodian's sources were placed on hold during creation.
+    apply_hold_to_sources: Optional[bool] = None
+    # Email address of the custodian.
+    email: Optional[str] = None
+    # Data source entity for SharePoint sites associated with the custodian.
+    site_sources: Optional[List[SiteSource]] = None
+    # Data source entity for groups associated with the custodian.
+    unified_group_sources: Optional[List[UnifiedGroupSource]] = None
+    # Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
+    user_sources: Optional[List[UserSource]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Custodian:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Custodian
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return Custodian()
-    
-    @property
-    def email(self,) -> Optional[str]:
-        """
-        Gets the email property value. Email address of the custodian.
-        Returns: Optional[str]
-        """
-        return self._email
-    
-    @email.setter
-    def email(self,value: Optional[str] = None) -> None:
-        """
-        Sets the email property value. Email address of the custodian.
-        Args:
-            value: Value to set for the email property.
-        """
-        self._email = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import data_source_container, site_source, unified_group_source, user_source
+        from .data_source_container import DataSourceContainer
+        from .site_source import SiteSource
+        from .unified_group_source import UnifiedGroupSource
+        from .user_source import UserSource
+
+        from .data_source_container import DataSourceContainer
+        from .site_source import SiteSource
+        from .unified_group_source import UnifiedGroupSource
+        from .user_source import UserSource
 
         fields: Dict[str, Callable[[Any], None]] = {
             "acknowledgedDateTime": lambda n : setattr(self, 'acknowledged_date_time', n.get_datetime_value()),
             "applyHoldToSources": lambda n : setattr(self, 'apply_hold_to_sources', n.get_bool_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "siteSources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(site_source.SiteSource)),
-            "unifiedGroupSources": lambda n : setattr(self, 'unified_group_sources', n.get_collection_of_object_values(unified_group_source.UnifiedGroupSource)),
-            "userSources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(user_source.UserSource)),
+            "siteSources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(SiteSource)),
+            "unifiedGroupSources": lambda n : setattr(self, 'unified_group_sources', n.get_collection_of_object_values(UnifiedGroupSource)),
+            "userSources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(UserSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -113,11 +70,11 @@ class Custodian(data_source_container.DataSourceContainer):
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("acknowledgedDateTime", self.acknowledged_date_time)
         writer.write_bool_value("applyHoldToSources", self.apply_hold_to_sources)
@@ -125,56 +82,5 @@ class Custodian(data_source_container.DataSourceContainer):
         writer.write_collection_of_object_values("siteSources", self.site_sources)
         writer.write_collection_of_object_values("unifiedGroupSources", self.unified_group_sources)
         writer.write_collection_of_object_values("userSources", self.user_sources)
-    
-    @property
-    def site_sources(self,) -> Optional[List[site_source.SiteSource]]:
-        """
-        Gets the siteSources property value. Data source entity for SharePoint sites associated with the custodian.
-        Returns: Optional[List[site_source.SiteSource]]
-        """
-        return self._site_sources
-    
-    @site_sources.setter
-    def site_sources(self,value: Optional[List[site_source.SiteSource]] = None) -> None:
-        """
-        Sets the siteSources property value. Data source entity for SharePoint sites associated with the custodian.
-        Args:
-            value: Value to set for the site_sources property.
-        """
-        self._site_sources = value
-    
-    @property
-    def unified_group_sources(self,) -> Optional[List[unified_group_source.UnifiedGroupSource]]:
-        """
-        Gets the unifiedGroupSources property value. Data source entity for groups associated with the custodian.
-        Returns: Optional[List[unified_group_source.UnifiedGroupSource]]
-        """
-        return self._unified_group_sources
-    
-    @unified_group_sources.setter
-    def unified_group_sources(self,value: Optional[List[unified_group_source.UnifiedGroupSource]] = None) -> None:
-        """
-        Sets the unifiedGroupSources property value. Data source entity for groups associated with the custodian.
-        Args:
-            value: Value to set for the unified_group_sources property.
-        """
-        self._unified_group_sources = value
-    
-    @property
-    def user_sources(self,) -> Optional[List[user_source.UserSource]]:
-        """
-        Gets the userSources property value. Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
-        Returns: Optional[List[user_source.UserSource]]
-        """
-        return self._user_sources
-    
-    @user_sources.setter
-    def user_sources(self,value: Optional[List[user_source.UserSource]] = None) -> None:
-        """
-        Sets the userSources property value. Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
-        Args:
-            value: Value to set for the user_sources property.
-        """
-        self._user_sources = value
     
 

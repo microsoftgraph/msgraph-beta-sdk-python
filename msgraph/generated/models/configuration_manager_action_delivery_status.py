@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConfigurationManagerActionDeliveryStatus(Enum):
+class ConfigurationManagerActionDeliveryStatus(str, Enum):
     # Pending to deliver the action to ConfigurationManager
     Unknown = "unknown",
     # Pending to deliver the action to ConfigurationManager

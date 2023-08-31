@@ -1,109 +1,97 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import device_log_collection_response, device_log_collection_response_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import device_log_collection_response_item_request_builder
+    from .....models.device_log_collection_response import DeviceLogCollectionResponse
+    from .....models.device_log_collection_response_collection_response import DeviceLogCollectionResponseCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.device_log_collection_response_item_request_builder import DeviceLogCollectionResponseItemRequestBuilder
 
-class LogCollectionRequestsRequestBuilder():
+class LogCollectionRequestsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new LogCollectionRequestsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/logCollectionRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/logCollectionRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_device_log_collection_response_id(self,device_log_collection_response_id: str) -> device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder:
+    def by_device_log_collection_response_id(self,device_log_collection_response_id: str) -> DeviceLogCollectionResponseItemRequestBuilder:
         """
         Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
-        Args:
-            device_log_collection_response_id: Unique identifier of the item
-        Returns: device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder
+        param device_log_collection_response_id: The unique identifier of deviceLogCollectionResponse
+        Returns: DeviceLogCollectionResponseItemRequestBuilder
         """
-        if device_log_collection_response_id is None:
-            raise Exception("device_log_collection_response_id cannot be undefined")
-        from .item import device_log_collection_response_item_request_builder
+        if not device_log_collection_response_id:
+            raise TypeError("device_log_collection_response_id cannot be null.")
+        from .item.device_log_collection_response_item_request_builder import DeviceLogCollectionResponseItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceLogCollectionResponse%2Did"] = device_log_collection_response_id
-        return device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceLogCollectionResponseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[LogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse]:
+    async def get(self,request_configuration: Optional[LogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceLogCollectionResponseCollectionResponse]:
         """
         List of log collection requests
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceLogCollectionResponseCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import device_log_collection_response_collection_response
+        from .....models.device_log_collection_response_collection_response import DeviceLogCollectionResponseCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceLogCollectionResponseCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_log_collection_response.DeviceLogCollectionResponse] = None, request_configuration: Optional[LogCollectionRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_log_collection_response.DeviceLogCollectionResponse]:
+    async def post(self,body: Optional[DeviceLogCollectionResponse] = None, request_configuration: Optional[LogCollectionRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceLogCollectionResponse]:
         """
         Create new navigation property to logCollectionRequests for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[device_log_collection_response.DeviceLogCollectionResponse]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DeviceLogCollectionResponse]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import device_log_collection_response
+        from .....models.device_log_collection_response import DeviceLogCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, device_log_collection_response.DeviceLogCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceLogCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         List of log collection requests
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +105,15 @@ class LogCollectionRequestsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[device_log_collection_response.DeviceLogCollectionResponse] = None, request_configuration: Optional[LogCollectionRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceLogCollectionResponse] = None, request_configuration: Optional[LogCollectionRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to logCollectionRequests for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -138,14 +125,24 @@ class LogCollectionRequestsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> LogCollectionRequestsRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: LogCollectionRequestsRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return LogCollectionRequestsRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class LogCollectionRequestsRequestBuilderGetQueryParameters():
@@ -155,12 +152,11 @@ class LogCollectionRequestsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +200,27 @@ class LogCollectionRequestsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LogCollectionRequestsRequestBuilderGetRequestConfiguration():
+    class LogCollectionRequestsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[LogCollectionRequestsRequestBuilder.LogCollectionRequestsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class LogCollectionRequestsRequestBuilderPostRequestConfiguration():
+    class LogCollectionRequestsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CoachmarkLocationType(Enum):
+class CoachmarkLocationType(str, Enum):
     Unknown = "unknown",
     FromEmail = "fromEmail",
     Subject = "subject",

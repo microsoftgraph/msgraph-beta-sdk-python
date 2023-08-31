@@ -1,6 +1,6 @@
 from enum import Enum
 
-class BookingStaffMembershipStatus(Enum):
+class BookingStaffMembershipStatus(str, Enum):
     Active = "active",
     PendingAcceptance = "pendingAcceptance",
     RejectedByStaff = "rejectedByStaff",

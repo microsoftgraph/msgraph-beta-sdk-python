@@ -1,67 +1,56 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import download_apple_push_notification_certificate_signing_request_response
-    from ....models.o_data_errors import o_data_error
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .download_apple_push_notification_certificate_signing_request_response import DownloadApplePushNotificationCertificateSigningRequestResponse
 
-class DownloadApplePushNotificationCertificateSigningRequestRequestBuilder():
+class DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DownloadApplePushNotificationCertificateSigningRequestRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/applePushNotificationCertificate/downloadApplePushNotificationCertificateSigningRequest()"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/applePushNotificationCertificate/downloadApplePushNotificationCertificateSigningRequest()", path_parameters)
     
-    async def get(self,request_configuration: Optional[DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration] = None) -> Optional[download_apple_push_notification_certificate_signing_request_response.DownloadApplePushNotificationCertificateSigningRequestResponse]:
+    async def get(self,request_configuration: Optional[DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration] = None) -> Optional[DownloadApplePushNotificationCertificateSigningRequestResponse]:
         """
         Download Apple push notification certificate signing request
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[download_apple_push_notification_certificate_signing_request_response.DownloadApplePushNotificationCertificateSigningRequestResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DownloadApplePushNotificationCertificateSigningRequestResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from . import download_apple_push_notification_certificate_signing_request_response
+        from .download_apple_push_notification_certificate_signing_request_response import DownloadApplePushNotificationCertificateSigningRequestResponse
 
-        return await self.request_adapter.send_async(request_info, download_apple_push_notification_certificate_signing_request_response.DownloadApplePushNotificationCertificateSigningRequestResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DownloadApplePushNotificationCertificateSigningRequestResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Download Apple push notification certificate signing request
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -74,16 +63,24 @@ class DownloadApplePushNotificationCertificateSigningRequestRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> DownloadApplePushNotificationCertificateSigningRequestRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: DownloadApplePushNotificationCertificateSigningRequestRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(raw_url, self.request_adapter)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration():
+    class DownloadApplePushNotificationCertificateSigningRequestRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

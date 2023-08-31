@@ -1,6 +1,6 @@
 from enum import Enum
 
-class EducationSynchronizationStatus(Enum):
+class EducationSynchronizationStatus(str, Enum):
     Paused = "paused",
     InProgress = "inProgress",
     Success = "success",

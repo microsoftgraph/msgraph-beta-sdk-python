@@ -1,115 +1,65 @@
 from __future__ import annotations
-from datetime import datetime
+import datetime
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
-    from . import app_log_upload_state, entity
+    from .app_log_upload_state import AppLogUploadState
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class DeviceLogCollectionResponse(entity.Entity):
+@dataclass
+class DeviceLogCollectionResponse(Entity):
     """
     Windows Log Collection request entity.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceLogCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The User Principal Name (UPN) of the user that enrolled the device.
-        self._enrolled_by_user: Optional[str] = None
-        # The error code, if any. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
-        self._error_code: Optional[int] = None
-        # The DateTime of the expiration of the logs.
-        self._expiration_date_time_u_t_c: Optional[datetime] = None
-        # The UPN for who initiated the request.
-        self._initiated_by_user_principal_name: Optional[str] = None
-        # Indicates Intune device unique identifier.
-        self._managed_device_id: Optional[UUID] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The DateTime the request was received.
-        self._received_date_time_u_t_c: Optional[datetime] = None
-        # The DateTime of the request.
-        self._requested_date_time_u_t_c: Optional[datetime] = None
-        # The size of the logs. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._size: Optional[float] = None
-        # The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._size_in_k_b: Optional[float] = None
-        # AppLogUploadStatus
-        self._status: Optional[app_log_upload_state.AppLogUploadState] = None
+    # The User Principal Name (UPN) of the user that enrolled the device.
+    enrolled_by_user: Optional[str] = None
+    # The error code, if any. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
+    error_code: Optional[int] = None
+    # The DateTime of the expiration of the logs.
+    expiration_date_time_u_t_c: Optional[datetime.datetime] = None
+    # The UPN for who initiated the request.
+    initiated_by_user_principal_name: Optional[str] = None
+    # Indicates Intune device unique identifier.
+    managed_device_id: Optional[UUID] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The DateTime the request was received.
+    received_date_time_u_t_c: Optional[datetime.datetime] = None
+    # The DateTime of the request.
+    requested_date_time_u_t_c: Optional[datetime.datetime] = None
+    # The size of the logs. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    size: Optional[float] = None
+    # The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    size_in_k_b: Optional[float] = None
+    # AppLogUploadStatus
+    status: Optional[AppLogUploadState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceLogCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceLogCollectionResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return DeviceLogCollectionResponse()
-    
-    @property
-    def enrolled_by_user(self,) -> Optional[str]:
-        """
-        Gets the enrolledByUser property value. The User Principal Name (UPN) of the user that enrolled the device.
-        Returns: Optional[str]
-        """
-        return self._enrolled_by_user
-    
-    @enrolled_by_user.setter
-    def enrolled_by_user(self,value: Optional[str] = None) -> None:
-        """
-        Sets the enrolledByUser property value. The User Principal Name (UPN) of the user that enrolled the device.
-        Args:
-            value: Value to set for the enrolled_by_user property.
-        """
-        self._enrolled_by_user = value
-    
-    @property
-    def error_code(self,) -> Optional[int]:
-        """
-        Gets the errorCode property value. The error code, if any. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
-        Returns: Optional[int]
-        """
-        return self._error_code
-    
-    @error_code.setter
-    def error_code(self,value: Optional[int] = None) -> None:
-        """
-        Sets the errorCode property value. The error code, if any. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
-        Args:
-            value: Value to set for the error_code property.
-        """
-        self._error_code = value
-    
-    @property
-    def expiration_date_time_u_t_c(self,) -> Optional[datetime]:
-        """
-        Gets the expirationDateTimeUTC property value. The DateTime of the expiration of the logs.
-        Returns: Optional[datetime]
-        """
-        return self._expiration_date_time_u_t_c
-    
-    @expiration_date_time_u_t_c.setter
-    def expiration_date_time_u_t_c(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the expirationDateTimeUTC property value. The DateTime of the expiration of the logs.
-        Args:
-            value: Value to set for the expiration_date_time_u_t_c property.
-        """
-        self._expiration_date_time_u_t_c = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import app_log_upload_state, entity
+        from .app_log_upload_state import AppLogUploadState
+        from .entity import Entity
+
+        from .app_log_upload_state import AppLogUploadState
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "enrolledByUser": lambda n : setattr(self, 'enrolled_by_user', n.get_str_value()),
@@ -121,88 +71,20 @@ class DeviceLogCollectionResponse(entity.Entity):
             "requestedDateTimeUTC": lambda n : setattr(self, 'requested_date_time_u_t_c', n.get_datetime_value()),
             "size": lambda n : setattr(self, 'size', n.get_float_value()),
             "sizeInKB": lambda n : setattr(self, 'size_in_k_b', n.get_float_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(app_log_upload_state.AppLogUploadState)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(AppLogUploadState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
-    @property
-    def initiated_by_user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the initiatedByUserPrincipalName property value. The UPN for who initiated the request.
-        Returns: Optional[str]
-        """
-        return self._initiated_by_user_principal_name
-    
-    @initiated_by_user_principal_name.setter
-    def initiated_by_user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the initiatedByUserPrincipalName property value. The UPN for who initiated the request.
-        Args:
-            value: Value to set for the initiated_by_user_principal_name property.
-        """
-        self._initiated_by_user_principal_name = value
-    
-    @property
-    def managed_device_id(self,) -> Optional[UUID]:
-        """
-        Gets the managedDeviceId property value. Indicates Intune device unique identifier.
-        Returns: Optional[UUID]
-        """
-        return self._managed_device_id
-    
-    @managed_device_id.setter
-    def managed_device_id(self,value: Optional[UUID] = None) -> None:
-        """
-        Sets the managedDeviceId property value. Indicates Intune device unique identifier.
-        Args:
-            value: Value to set for the managed_device_id property.
-        """
-        self._managed_device_id = value
-    
-    @property
-    def received_date_time_u_t_c(self,) -> Optional[datetime]:
-        """
-        Gets the receivedDateTimeUTC property value. The DateTime the request was received.
-        Returns: Optional[datetime]
-        """
-        return self._received_date_time_u_t_c
-    
-    @received_date_time_u_t_c.setter
-    def received_date_time_u_t_c(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the receivedDateTimeUTC property value. The DateTime the request was received.
-        Args:
-            value: Value to set for the received_date_time_u_t_c property.
-        """
-        self._received_date_time_u_t_c = value
-    
-    @property
-    def requested_date_time_u_t_c(self,) -> Optional[datetime]:
-        """
-        Gets the requestedDateTimeUTC property value. The DateTime of the request.
-        Returns: Optional[datetime]
-        """
-        return self._requested_date_time_u_t_c
-    
-    @requested_date_time_u_t_c.setter
-    def requested_date_time_u_t_c(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the requestedDateTimeUTC property value. The DateTime of the request.
-        Args:
-            value: Value to set for the requested_date_time_u_t_c property.
-        """
-        self._requested_date_time_u_t_c = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("enrolledByUser", self.enrolled_by_user)
         writer.write_int_value("errorCode", self.error_code)
@@ -214,56 +96,5 @@ class DeviceLogCollectionResponse(entity.Entity):
         writer.write_float_value("size", self.size)
         writer.write_float_value("sizeInKB", self.size_in_k_b)
         writer.write_enum_value("status", self.status)
-    
-    @property
-    def size(self,) -> Optional[float]:
-        """
-        Gets the size property value. The size of the logs. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._size
-    
-    @size.setter
-    def size(self,value: Optional[float] = None) -> None:
-        """
-        Sets the size property value. The size of the logs. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the size property.
-        """
-        self._size = value
-    
-    @property
-    def size_in_k_b(self,) -> Optional[float]:
-        """
-        Gets the sizeInKB property value. The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._size_in_k_b
-    
-    @size_in_k_b.setter
-    def size_in_k_b(self,value: Optional[float] = None) -> None:
-        """
-        Sets the sizeInKB property value. The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the size_in_k_b property.
-        """
-        self._size_in_k_b = value
-    
-    @property
-    def status(self,) -> Optional[app_log_upload_state.AppLogUploadState]:
-        """
-        Gets the status property value. AppLogUploadStatus
-        Returns: Optional[app_log_upload_state.AppLogUploadState]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[app_log_upload_state.AppLogUploadState] = None) -> None:
-        """
-        Sets the status property value. AppLogUploadStatus
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

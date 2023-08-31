@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ReadinessStatus(Enum):
+class ReadinessStatus(str, Enum):
     NotReady = "notReady",
     Ready = "ready",
     Failed = "failed",

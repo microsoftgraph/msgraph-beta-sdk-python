@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AssociatedAssignmentPayloadType(Enum):
+class AssociatedAssignmentPayloadType(str, Enum):
     # Invalid payload type
     Unknown = "unknown",
     # Indicates that this filter is associated with a configuration or compliance policy payload type

@@ -1,113 +1,101 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.device_management import monitoring
-    from ...models.o_data_errors import o_data_error
-    from .alert_records import alert_records_request_builder
-    from .alert_rules import alert_rules_request_builder
+    from ...models.device_management.monitoring import Monitoring
+    from ...models.o_data_errors.o_data_error import ODataError
+    from .alert_records.alert_records_request_builder import AlertRecordsRequestBuilder
+    from .alert_rules.alert_rules_request_builder import AlertRulesRequestBuilder
 
-class MonitoringRequestBuilder():
+class MonitoringRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the monitoring property of the microsoft.graph.deviceManagement entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new MonitoringRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/monitoring{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/monitoring{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[MonitoringRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property monitoring for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MonitoringRequestBuilderGetRequestConfiguration] = None) -> Optional[monitoring.Monitoring]:
+    async def get(self,request_configuration: Optional[MonitoringRequestBuilderGetRequestConfiguration] = None) -> Optional[Monitoring]:
         """
         Get monitoring from deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[monitoring.Monitoring]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Monitoring]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.device_management import monitoring
+        from ...models.device_management.monitoring import Monitoring
 
-        return await self.request_adapter.send_async(request_info, monitoring.Monitoring, error_mapping)
+        return await self.request_adapter.send_async(request_info, Monitoring, error_mapping)
     
-    async def patch(self,body: Optional[monitoring.Monitoring] = None, request_configuration: Optional[MonitoringRequestBuilderPatchRequestConfiguration] = None) -> Optional[monitoring.Monitoring]:
+    async def patch(self,body: Optional[Monitoring] = None, request_configuration: Optional[MonitoringRequestBuilderPatchRequestConfiguration] = None) -> Optional[Monitoring]:
         """
         Update the navigation property monitoring in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[monitoring.Monitoring]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Monitoring]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ...models.o_data_errors import o_data_error
+        from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.device_management import monitoring
+        from ...models.device_management.monitoring import Monitoring
 
-        return await self.request_adapter.send_async(request_info, monitoring.Monitoring, error_mapping)
+        return await self.request_adapter.send_async(request_info, Monitoring, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MonitoringRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property monitoring for deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -122,8 +110,7 @@ class MonitoringRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[MonitoringRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get monitoring from deviceManagement
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -137,16 +124,15 @@ class MonitoringRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[monitoring.Monitoring] = None, request_configuration: Optional[MonitoringRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Monitoring] = None, request_configuration: Optional[MonitoringRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property monitoring in deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -158,35 +144,43 @@ class MonitoringRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> MonitoringRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: MonitoringRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return MonitoringRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def alert_records(self) -> alert_records_request_builder.AlertRecordsRequestBuilder:
+    def alert_records(self) -> AlertRecordsRequestBuilder:
         """
         Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
         """
-        from .alert_records import alert_records_request_builder
+        from .alert_records.alert_records_request_builder import AlertRecordsRequestBuilder
 
-        return alert_records_request_builder.AlertRecordsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlertRecordsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def alert_rules(self) -> alert_rules_request_builder.AlertRulesRequestBuilder:
+    def alert_rules(self) -> AlertRulesRequestBuilder:
         """
         Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
         """
-        from .alert_rules import alert_rules_request_builder
+        from .alert_rules.alert_rules_request_builder import AlertRulesRequestBuilder
 
-        return alert_rules_request_builder.AlertRulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlertRulesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MonitoringRequestBuilderDeleteRequestConfiguration():
+    class MonitoringRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class MonitoringRequestBuilderGetQueryParameters():
@@ -196,12 +190,11 @@ class MonitoringRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -215,31 +208,27 @@ class MonitoringRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MonitoringRequestBuilderGetRequestConfiguration():
+    class MonitoringRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[MonitoringRequestBuilder.MonitoringRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class MonitoringRequestBuilderPatchRequestConfiguration():
+    class MonitoringRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

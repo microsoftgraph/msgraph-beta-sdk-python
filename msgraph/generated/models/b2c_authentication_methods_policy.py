@@ -1,37 +1,33 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity
+    from .entity import Entity
 
-from . import entity
+from .entity import Entity
 
-class B2cAuthenticationMethodsPolicy(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new B2cAuthenticationMethodsPolicy and sets the default values.
-        """
-        super().__init__()
-        # The tenant admin can configure local accounts using email if the email and password authentication method is enabled.
-        self._is_email_password_authentication_enabled: Optional[bool] = None
-        # The tenant admin can configure local accounts using phone number if the phone number and one-time password authentication method is enabled.
-        self._is_phone_one_time_password_authentication_enabled: Optional[bool] = None
-        # The tenant admin can configure local accounts using username if the username and password authentication method is enabled.
-        self._is_user_name_authentication_enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+@dataclass
+class B2cAuthenticationMethodsPolicy(Entity):
+    # The tenant admin can configure local accounts using email if the email and password authentication method is enabled.
+    is_email_password_authentication_enabled: Optional[bool] = None
+    # The tenant admin can configure local accounts using phone number if the phone number and one-time password authentication method is enabled.
+    is_phone_one_time_password_authentication_enabled: Optional[bool] = None
+    # The tenant admin can configure local accounts using username if the username and password authentication method is enabled.
+    is_user_name_authentication_enabled: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> B2cAuthenticationMethodsPolicy:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: B2cAuthenticationMethodsPolicy
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return B2cAuthenticationMethodsPolicy()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -39,7 +35,9 @@ class B2cAuthenticationMethodsPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity
+        from .entity import Entity
+
+        from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "isEmailPasswordAuthenticationEnabled": lambda n : setattr(self, 'is_email_password_authentication_enabled', n.get_bool_value()),
@@ -50,65 +48,14 @@ class B2cAuthenticationMethodsPolicy(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_email_password_authentication_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isEmailPasswordAuthenticationEnabled property value. The tenant admin can configure local accounts using email if the email and password authentication method is enabled.
-        Returns: Optional[bool]
-        """
-        return self._is_email_password_authentication_enabled
-    
-    @is_email_password_authentication_enabled.setter
-    def is_email_password_authentication_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEmailPasswordAuthenticationEnabled property value. The tenant admin can configure local accounts using email if the email and password authentication method is enabled.
-        Args:
-            value: Value to set for the is_email_password_authentication_enabled property.
-        """
-        self._is_email_password_authentication_enabled = value
-    
-    @property
-    def is_phone_one_time_password_authentication_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isPhoneOneTimePasswordAuthenticationEnabled property value. The tenant admin can configure local accounts using phone number if the phone number and one-time password authentication method is enabled.
-        Returns: Optional[bool]
-        """
-        return self._is_phone_one_time_password_authentication_enabled
-    
-    @is_phone_one_time_password_authentication_enabled.setter
-    def is_phone_one_time_password_authentication_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isPhoneOneTimePasswordAuthenticationEnabled property value. The tenant admin can configure local accounts using phone number if the phone number and one-time password authentication method is enabled.
-        Args:
-            value: Value to set for the is_phone_one_time_password_authentication_enabled property.
-        """
-        self._is_phone_one_time_password_authentication_enabled = value
-    
-    @property
-    def is_user_name_authentication_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isUserNameAuthenticationEnabled property value. The tenant admin can configure local accounts using username if the username and password authentication method is enabled.
-        Returns: Optional[bool]
-        """
-        return self._is_user_name_authentication_enabled
-    
-    @is_user_name_authentication_enabled.setter
-    def is_user_name_authentication_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isUserNameAuthenticationEnabled property value. The tenant admin can configure local accounts using username if the username and password authentication method is enabled.
-        Args:
-            value: Value to set for the is_user_name_authentication_enabled property.
-        """
-        self._is_user_name_authentication_enabled = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("isEmailPasswordAuthenticationEnabled", self.is_email_password_authentication_enabled)
         writer.write_bool_value("isPhoneOneTimePasswordAuthenticationEnabled", self.is_phone_one_time_password_authentication_enabled)

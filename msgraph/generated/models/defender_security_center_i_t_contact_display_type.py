@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DefenderSecurityCenterITContactDisplayType(Enum):
+class DefenderSecurityCenterITContactDisplayType(str, Enum):
     # Not Configured
     NotConfigured = "notConfigured",
     # Display in app and in notifications

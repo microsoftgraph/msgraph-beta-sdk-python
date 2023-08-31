@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementDerivedCredentialIssuer(Enum):
+class DeviceManagementDerivedCredentialIssuer(str, Enum):
     # Intercede
     Intercede = "intercede",
     # Entrust

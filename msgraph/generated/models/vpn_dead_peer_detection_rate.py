@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnDeadPeerDetectionRate(Enum):
+class VpnDeadPeerDetectionRate(str, Enum):
     # Medium
     Medium = "medium",
     # None

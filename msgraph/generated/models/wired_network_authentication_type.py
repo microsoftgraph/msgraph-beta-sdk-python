@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WiredNetworkAuthenticationType(Enum):
+class WiredNetworkAuthenticationType(str, Enum):
     # None
     None_ = "none",
     # User Authentication

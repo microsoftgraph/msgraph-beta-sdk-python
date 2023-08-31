@@ -1,116 +1,104 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.managed_tenants import managed_tenant_alert
-    from .....models.o_data_errors import o_data_error
-    from .alert_logs import alert_logs_request_builder
-    from .alert_rule import alert_rule_request_builder
-    from .api_notifications import api_notifications_request_builder
-    from .email_notifications import email_notifications_request_builder
-    from .microsoft_graph_managed_tenants_add_user_input_log import microsoft_graph_managed_tenants_add_user_input_log_request_builder
+    from .....models.managed_tenants.managed_tenant_alert import ManagedTenantAlert
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .alert_logs.alert_logs_request_builder import AlertLogsRequestBuilder
+    from .alert_rule.alert_rule_request_builder import AlertRuleRequestBuilder
+    from .api_notifications.api_notifications_request_builder import ApiNotificationsRequestBuilder
+    from .email_notifications.email_notifications_request_builder import EmailNotificationsRequestBuilder
+    from .microsoft_graph_managed_tenants_add_user_input_log.microsoft_graph_managed_tenants_add_user_input_log_request_builder import MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder
 
-class ManagedTenantAlertItemRequestBuilder():
+class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the managedTenantAlerts property of the microsoft.graph.managedTenants.managedTenant entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ManagedTenantAlertItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/managedTenantAlerts/{managedTenantAlert%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managedTenantAlerts/{managedTenantAlert%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managedTenantAlerts for tenantRelationships
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
+    async def get(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
         """
         Get managedTenantAlerts from tenantRelationships
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagedTenantAlert]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.managed_tenants import managed_tenant_alert
+        from .....models.managed_tenants.managed_tenant_alert import ManagedTenantAlert
 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedTenantAlert, error_mapping)
     
-    async def patch(self,body: Optional[managed_tenant_alert.ManagedTenantAlert] = None, request_configuration: Optional[ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
+    async def patch(self,body: Optional[ManagedTenantAlert] = None, request_configuration: Optional[ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
         """
         Update the navigation property managedTenantAlerts in tenantRelationships
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[ManagedTenantAlert]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.managed_tenants import managed_tenant_alert
+        from .....models.managed_tenants.managed_tenant_alert import ManagedTenantAlert
 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, error_mapping)
+        return await self.request_adapter.send_async(request_info, ManagedTenantAlert, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property managedTenantAlerts for tenantRelationships
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -125,8 +113,7 @@ class ManagedTenantAlertItemRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get managedTenantAlerts from tenantRelationships
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -140,16 +127,15 @@ class ManagedTenantAlertItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[managed_tenant_alert.ManagedTenantAlert] = None, request_configuration: Optional[ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ManagedTenantAlert] = None, request_configuration: Optional[ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property managedTenantAlerts in tenantRelationships
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -161,62 +147,70 @@ class ManagedTenantAlertItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> ManagedTenantAlertItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: ManagedTenantAlertItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return ManagedTenantAlertItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def alert_logs(self) -> alert_logs_request_builder.AlertLogsRequestBuilder:
+    def alert_logs(self) -> AlertLogsRequestBuilder:
         """
         Provides operations to manage the alertLogs property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         """
-        from .alert_logs import alert_logs_request_builder
+        from .alert_logs.alert_logs_request_builder import AlertLogsRequestBuilder
 
-        return alert_logs_request_builder.AlertLogsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlertLogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def alert_rule(self) -> alert_rule_request_builder.AlertRuleRequestBuilder:
+    def alert_rule(self) -> AlertRuleRequestBuilder:
         """
         Provides operations to manage the alertRule property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         """
-        from .alert_rule import alert_rule_request_builder
+        from .alert_rule.alert_rule_request_builder import AlertRuleRequestBuilder
 
-        return alert_rule_request_builder.AlertRuleRequestBuilder(self.request_adapter, self.path_parameters)
+        return AlertRuleRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def api_notifications(self) -> api_notifications_request_builder.ApiNotificationsRequestBuilder:
+    def api_notifications(self) -> ApiNotificationsRequestBuilder:
         """
         Provides operations to manage the apiNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         """
-        from .api_notifications import api_notifications_request_builder
+        from .api_notifications.api_notifications_request_builder import ApiNotificationsRequestBuilder
 
-        return api_notifications_request_builder.ApiNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApiNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def email_notifications(self) -> email_notifications_request_builder.EmailNotificationsRequestBuilder:
+    def email_notifications(self) -> EmailNotificationsRequestBuilder:
         """
         Provides operations to manage the emailNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         """
-        from .email_notifications import email_notifications_request_builder
+        from .email_notifications.email_notifications_request_builder import EmailNotificationsRequestBuilder
 
-        return email_notifications_request_builder.EmailNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EmailNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_managed_tenants_add_user_input_log(self) -> microsoft_graph_managed_tenants_add_user_input_log_request_builder.MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder:
+    def microsoft_graph_managed_tenants_add_user_input_log(self) -> MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder:
         """
         Provides operations to call the addUserInputLog method.
         """
-        from .microsoft_graph_managed_tenants_add_user_input_log import microsoft_graph_managed_tenants_add_user_input_log_request_builder
+        from .microsoft_graph_managed_tenants_add_user_input_log.microsoft_graph_managed_tenants_add_user_input_log_request_builder import MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder
 
-        return microsoft_graph_managed_tenants_add_user_input_log_request_builder.MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration():
+    class ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class ManagedTenantAlertItemRequestBuilderGetQueryParameters():
@@ -226,12 +220,11 @@ class ManagedTenantAlertItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -245,31 +238,27 @@ class ManagedTenantAlertItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagedTenantAlertItemRequestBuilderGetRequestConfiguration():
+    class ManagedTenantAlertItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[ManagedTenantAlertItemRequestBuilder.ManagedTenantAlertItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration():
+    class ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

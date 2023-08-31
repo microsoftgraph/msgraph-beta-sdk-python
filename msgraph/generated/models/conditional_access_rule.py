@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConditionalAccessRule(Enum):
+class ConditionalAccessRule(str, Enum):
     AllApps = "allApps",
     FirstPartyApps = "firstPartyApps",
     Office365 = "office365",
@@ -35,4 +35,7 @@ class ConditionalAccessRule(Enum):
     OtherExternalUser = "otherExternalUser",
     ServiceProvider = "serviceProvider",
     MicrosoftAdminPortals = "microsoftAdminPortals",
+    DeviceCodeFlow = "deviceCodeFlow",
+    AuthenticationTransfer = "authenticationTransfer",
+    InsiderRisk = "insiderRisk",
 

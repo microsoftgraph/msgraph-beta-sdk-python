@@ -1,117 +1,107 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import planner_user
-    from ....models.o_data_errors import o_data_error
-    from .all import all_request_builder
-    from .favorite_plans import favorite_plans_request_builder
-    from .plans import plans_request_builder
-    from .recent_plans import recent_plans_request_builder
-    from .roster_plans import roster_plans_request_builder
-    from .tasks import tasks_request_builder
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.planner_user import PlannerUser
+    from .all.all_request_builder import AllRequestBuilder
+    from .favorite_plans.favorite_plans_request_builder import FavoritePlansRequestBuilder
+    from .plans.plans_request_builder import PlansRequestBuilder
+    from .recent_plans.recent_plans_request_builder import RecentPlansRequestBuilder
+    from .roster_plans.roster_plans_request_builder import RosterPlansRequestBuilder
+    from .tasks.tasks_request_builder import TasksRequestBuilder
 
-class PlannerRequestBuilder():
+class PlannerRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the planner property of the microsoft.graph.user entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PlannerRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/planner{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/planner{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property planner for users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_user.PlannerUser]:
+    async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerUser]:
         """
         Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans. 
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[planner_user.PlannerUser]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[PlannerUser]
+        Find more info here: https://learn.microsoft.com/graph/api/planneruser-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import planner_user
+        from ....models.planner_user import PlannerUser
 
-        return await self.request_adapter.send_async(request_info, planner_user.PlannerUser, error_mapping)
+        return await self.request_adapter.send_async(request_info, PlannerUser, error_mapping)
     
-    async def patch(self,body: Optional[planner_user.PlannerUser] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_user.PlannerUser]:
+    async def patch(self,body: Optional[PlannerUser] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> Optional[PlannerUser]:
         """
         Update the navigation property planner in users
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[planner_user.PlannerUser]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[PlannerUser]
+        Find more info here: https://learn.microsoft.com/graph/api/planneruser-update?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models import planner_user
+        from ....models.planner_user import PlannerUser
 
-        return await self.request_adapter.send_async(request_info, planner_user.PlannerUser, error_mapping)
+        return await self.request_adapter.send_async(request_info, PlannerUser, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property planner for users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -126,8 +116,7 @@ class PlannerRequestBuilder():
     def to_get_request_information(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans. 
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -141,16 +130,15 @@ class PlannerRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[planner_user.PlannerUser] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PlannerUser] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property planner in users
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -162,71 +150,79 @@ class PlannerRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> PlannerRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: PlannerRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return PlannerRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def all(self) -> all_request_builder.AllRequestBuilder:
+    def all(self) -> AllRequestBuilder:
         """
         Provides operations to manage the all property of the microsoft.graph.plannerUser entity.
         """
-        from .all import all_request_builder
+        from .all.all_request_builder import AllRequestBuilder
 
-        return all_request_builder.AllRequestBuilder(self.request_adapter, self.path_parameters)
+        return AllRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def favorite_plans(self) -> favorite_plans_request_builder.FavoritePlansRequestBuilder:
+    def favorite_plans(self) -> FavoritePlansRequestBuilder:
         """
         Provides operations to manage the favoritePlans property of the microsoft.graph.plannerUser entity.
         """
-        from .favorite_plans import favorite_plans_request_builder
+        from .favorite_plans.favorite_plans_request_builder import FavoritePlansRequestBuilder
 
-        return favorite_plans_request_builder.FavoritePlansRequestBuilder(self.request_adapter, self.path_parameters)
+        return FavoritePlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def plans(self) -> plans_request_builder.PlansRequestBuilder:
+    def plans(self) -> PlansRequestBuilder:
         """
         Provides operations to manage the plans property of the microsoft.graph.plannerUser entity.
         """
-        from .plans import plans_request_builder
+        from .plans.plans_request_builder import PlansRequestBuilder
 
-        return plans_request_builder.PlansRequestBuilder(self.request_adapter, self.path_parameters)
+        return PlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def recent_plans(self) -> recent_plans_request_builder.RecentPlansRequestBuilder:
+    def recent_plans(self) -> RecentPlansRequestBuilder:
         """
         Provides operations to manage the recentPlans property of the microsoft.graph.plannerUser entity.
         """
-        from .recent_plans import recent_plans_request_builder
+        from .recent_plans.recent_plans_request_builder import RecentPlansRequestBuilder
 
-        return recent_plans_request_builder.RecentPlansRequestBuilder(self.request_adapter, self.path_parameters)
+        return RecentPlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def roster_plans(self) -> roster_plans_request_builder.RosterPlansRequestBuilder:
+    def roster_plans(self) -> RosterPlansRequestBuilder:
         """
         Provides operations to manage the rosterPlans property of the microsoft.graph.plannerUser entity.
         """
-        from .roster_plans import roster_plans_request_builder
+        from .roster_plans.roster_plans_request_builder import RosterPlansRequestBuilder
 
-        return roster_plans_request_builder.RosterPlansRequestBuilder(self.request_adapter, self.path_parameters)
+        return RosterPlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
+    def tasks(self) -> TasksRequestBuilder:
         """
         Provides operations to manage the tasks property of the microsoft.graph.plannerUser entity.
         """
-        from .tasks import tasks_request_builder
+        from .tasks.tasks_request_builder import TasksRequestBuilder
 
-        return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
+        return TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PlannerRequestBuilderDeleteRequestConfiguration():
+    class PlannerRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class PlannerRequestBuilderGetQueryParameters():
@@ -236,12 +232,11 @@ class PlannerRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -255,31 +250,27 @@ class PlannerRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PlannerRequestBuilderGetRequestConfiguration():
+    class PlannerRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[PlannerRequestBuilder.PlannerRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class PlannerRequestBuilderPatchRequestConfiguration():
+    class PlannerRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

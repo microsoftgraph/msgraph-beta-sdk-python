@@ -1,73 +1,62 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import directory_object
-    from .....models.o_data_errors import o_data_error
-    from .graph_application import graph_application_request_builder
-    from .graph_device import graph_device_request_builder
-    from .graph_group import graph_group_request_builder
-    from .graph_org_contact import graph_org_contact_request_builder
-    from .graph_service_principal import graph_service_principal_request_builder
-    from .graph_user import graph_user_request_builder
+    from .....models.directory_object import DirectoryObject
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .graph_application.graph_application_request_builder import GraphApplicationRequestBuilder
+    from .graph_device.graph_device_request_builder import GraphDeviceRequestBuilder
+    from .graph_group.graph_group_request_builder import GraphGroupRequestBuilder
+    from .graph_org_contact.graph_org_contact_request_builder import GraphOrgContactRequestBuilder
+    from .graph_service_principal.graph_service_principal_request_builder import GraphServicePrincipalRequestBuilder
+    from .graph_user.graph_user_request_builder import GraphUserRequestBuilder
 
-class DirectoryObjectItemRequestBuilder():
+class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/groups/{group%2Did}/transitiveMembers/{directoryObject%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/transitiveMembers/{directoryObject%2Did}{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
+    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObject]:
         """
         The direct and transitive members of a group. Nullable.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[directory_object.DirectoryObject]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[DirectoryObject]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import directory_object
+        from .....models.directory_object import DirectoryObject
 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
+        return await self.request_adapter.send_async(request_info, DirectoryObject, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The direct and transitive members of a group. Nullable.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -81,59 +70,69 @@ class DirectoryObjectItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> DirectoryObjectItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: DirectoryObjectItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return DirectoryObjectItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def graph_application(self) -> graph_application_request_builder.GraphApplicationRequestBuilder:
+    def graph_application(self) -> GraphApplicationRequestBuilder:
         """
         Casts the previous resource to application.
         """
-        from .graph_application import graph_application_request_builder
+        from .graph_application.graph_application_request_builder import GraphApplicationRequestBuilder
 
-        return graph_application_request_builder.GraphApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_device(self) -> graph_device_request_builder.GraphDeviceRequestBuilder:
+    def graph_device(self) -> GraphDeviceRequestBuilder:
         """
         Casts the previous resource to device.
         """
-        from .graph_device import graph_device_request_builder
+        from .graph_device.graph_device_request_builder import GraphDeviceRequestBuilder
 
-        return graph_device_request_builder.GraphDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_group(self) -> graph_group_request_builder.GraphGroupRequestBuilder:
+    def graph_group(self) -> GraphGroupRequestBuilder:
         """
         Casts the previous resource to group.
         """
-        from .graph_group import graph_group_request_builder
+        from .graph_group.graph_group_request_builder import GraphGroupRequestBuilder
 
-        return graph_group_request_builder.GraphGroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_org_contact(self) -> graph_org_contact_request_builder.GraphOrgContactRequestBuilder:
+    def graph_org_contact(self) -> GraphOrgContactRequestBuilder:
         """
         Casts the previous resource to orgContact.
         """
-        from .graph_org_contact import graph_org_contact_request_builder
+        from .graph_org_contact.graph_org_contact_request_builder import GraphOrgContactRequestBuilder
 
-        return graph_org_contact_request_builder.GraphOrgContactRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphOrgContactRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_service_principal(self) -> graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder:
+    def graph_service_principal(self) -> GraphServicePrincipalRequestBuilder:
         """
         Casts the previous resource to servicePrincipal.
         """
-        from .graph_service_principal import graph_service_principal_request_builder
+        from .graph_service_principal.graph_service_principal_request_builder import GraphServicePrincipalRequestBuilder
 
-        return graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_user(self) -> graph_user_request_builder.GraphUserRequestBuilder:
+    def graph_user(self) -> GraphUserRequestBuilder:
         """
         Casts the previous resource to user.
         """
-        from .graph_user import graph_user_request_builder
+        from .graph_user.graph_user_request_builder import GraphUserRequestBuilder
 
-        return graph_user_request_builder.GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DirectoryObjectItemRequestBuilderGetQueryParameters():
@@ -143,12 +142,11 @@ class DirectoryObjectItemRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -162,17 +160,15 @@ class DirectoryObjectItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class DirectoryObjectItemRequestBuilderGetRequestConfiguration():
+    class DirectoryObjectItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[DirectoryObjectItemRequestBuilder.DirectoryObjectItemRequestBuilderGetQueryParameters] = None
 

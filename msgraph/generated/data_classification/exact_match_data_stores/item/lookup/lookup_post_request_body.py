@@ -1,49 +1,32 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-class LookupPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new lookupPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class LookupPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The key property
-        self._key: Optional[str] = None
-        # The resultColumnNames property
-        self._result_column_names: Optional[List[str]] = None
-        # The values property
-        self._values: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The key property
+    key: Optional[str] = None
+    # The resultColumnNames property
+    result_column_names: Optional[List[str]] = None
+    # The values property
+    values: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LookupPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: LookupPostRequestBody
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return LookupPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -58,68 +41,17 @@ class LookupPostRequestBody(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def key(self,) -> Optional[str]:
-        """
-        Gets the key property value. The key property
-        Returns: Optional[str]
-        """
-        return self._key
-    
-    @key.setter
-    def key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the key property value. The key property
-        Args:
-            value: Value to set for the key property.
-        """
-        self._key = value
-    
-    @property
-    def result_column_names(self,) -> Optional[List[str]]:
-        """
-        Gets the resultColumnNames property value. The resultColumnNames property
-        Returns: Optional[List[str]]
-        """
-        return self._result_column_names
-    
-    @result_column_names.setter
-    def result_column_names(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the resultColumnNames property value. The resultColumnNames property
-        Args:
-            value: Value to set for the result_column_names property.
-        """
-        self._result_column_names = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_str_value("key", self.key)
         writer.write_collection_of_primitive_values("resultColumnNames", self.result_column_names)
         writer.write_collection_of_primitive_values("values", self.values)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def values(self,) -> Optional[List[str]]:
-        """
-        Gets the values property value. The values property
-        Returns: Optional[List[str]]
-        """
-        return self._values
-    
-    @values.setter
-    def values(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the values property value. The values property
-        Args:
-            value: Value to set for the values property.
-        """
-        self._values = value
     
 

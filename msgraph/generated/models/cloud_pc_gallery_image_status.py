@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcGalleryImageStatus(Enum):
+class CloudPcGalleryImageStatus(str, Enum):
     Supported = "supported",
     SupportedWithWarning = "supportedWithWarning",
     NotSupported = "notSupported",

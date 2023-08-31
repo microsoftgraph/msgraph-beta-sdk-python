@@ -1,31 +1,28 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import base_collection_pagination_count_response, privileged_access_group_eligibility_schedule
+    from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+    from .privileged_access_group_eligibility_schedule import PrivilegedAccessGroupEligibilitySchedule
 
-from . import base_collection_pagination_count_response
+from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
-class PrivilegedAccessGroupEligibilityScheduleCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PrivilegedAccessGroupEligibilityScheduleCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]] = None
+@dataclass
+class PrivilegedAccessGroupEligibilityScheduleCollectionResponse(BaseCollectionPaginationCountResponse):
+    # The value property
+    value: Optional[List[PrivilegedAccessGroupEligibilitySchedule]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessGroupEligibilityScheduleCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PrivilegedAccessGroupEligibilityScheduleCollectionResponse
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return PrivilegedAccessGroupEligibilityScheduleCollectionResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -33,10 +30,14 @@ class PrivilegedAccessGroupEligibilityScheduleCollectionResponse(base_collection
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import base_collection_pagination_count_response, privileged_access_group_eligibility_schedule
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .privileged_access_group_eligibility_schedule import PrivilegedAccessGroupEligibilitySchedule
+
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .privileged_access_group_eligibility_schedule import PrivilegedAccessGroupEligibilitySchedule
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule)),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(PrivilegedAccessGroupEligibilitySchedule)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -45,29 +46,12 @@ class PrivilegedAccessGroupEligibilityScheduleCollectionResponse(base_collection
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

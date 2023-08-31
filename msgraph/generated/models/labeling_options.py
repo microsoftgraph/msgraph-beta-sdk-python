@@ -1,167 +1,73 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import assignment_method, downgrade_justification, key_value_pair
+    from .assignment_method import AssignmentMethod
+    from .downgrade_justification import DowngradeJustification
+    from .key_value_pair import KeyValuePair
 
-class LabelingOptions(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new labelingOptions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+@dataclass
+class LabelingOptions(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
-        # The assignmentMethod property
-        self._assignment_method: Optional[assignment_method.AssignmentMethod] = None
-        # The downgrade justification object that indicates if downgrade was justified and, if so, the reason.
-        self._downgrade_justification: Optional[downgrade_justification.DowngradeJustification] = None
-        # Extended properties will be parsed and returned in the standard MIP labeled metadata format as part of the label information.
-        self._extended_properties: Optional[List[key_value_pair.KeyValuePair]] = None
-        # The GUID of the label that should be applied to the information.
-        self._label_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def assignment_method(self,) -> Optional[assignment_method.AssignmentMethod]:
-        """
-        Gets the assignmentMethod property value. The assignmentMethod property
-        Returns: Optional[assignment_method.AssignmentMethod]
-        """
-        return self._assignment_method
-    
-    @assignment_method.setter
-    def assignment_method(self,value: Optional[assignment_method.AssignmentMethod] = None) -> None:
-        """
-        Sets the assignmentMethod property value. The assignmentMethod property
-        Args:
-            value: Value to set for the assignment_method property.
-        """
-        self._assignment_method = value
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The assignmentMethod property
+    assignment_method: Optional[AssignmentMethod] = None
+    # The downgrade justification object that indicates if downgrade was justified and, if so, the reason.
+    downgrade_justification: Optional[DowngradeJustification] = None
+    # Extended properties will be parsed and returned in the standard MIP labeled metadata format as part of the label information.
+    extended_properties: Optional[List[KeyValuePair]] = None
+    # The GUID of the label that should be applied to the information.
+    label_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LabelingOptions:
         """
         Creates a new instance of the appropriate class based on discriminator value
-        Args:
-            parseNode: The parse node to use to read the discriminator value and create the object
+        param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: LabelingOptions
         """
-        if parse_node is None:
-            raise Exception("parse_node cannot be undefined")
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
         return LabelingOptions()
-    
-    @property
-    def downgrade_justification(self,) -> Optional[downgrade_justification.DowngradeJustification]:
-        """
-        Gets the downgradeJustification property value. The downgrade justification object that indicates if downgrade was justified and, if so, the reason.
-        Returns: Optional[downgrade_justification.DowngradeJustification]
-        """
-        return self._downgrade_justification
-    
-    @downgrade_justification.setter
-    def downgrade_justification(self,value: Optional[downgrade_justification.DowngradeJustification] = None) -> None:
-        """
-        Sets the downgradeJustification property value. The downgrade justification object that indicates if downgrade was justified and, if so, the reason.
-        Args:
-            value: Value to set for the downgrade_justification property.
-        """
-        self._downgrade_justification = value
-    
-    @property
-    def extended_properties(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the extendedProperties property value. Extended properties will be parsed and returned in the standard MIP labeled metadata format as part of the label information.
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._extended_properties
-    
-    @extended_properties.setter
-    def extended_properties(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the extendedProperties property value. Extended properties will be parsed and returned in the standard MIP labeled metadata format as part of the label information.
-        Args:
-            value: Value to set for the extended_properties property.
-        """
-        self._extended_properties = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import assignment_method, downgrade_justification, key_value_pair
+        from .assignment_method import AssignmentMethod
+        from .downgrade_justification import DowngradeJustification
+        from .key_value_pair import KeyValuePair
+
+        from .assignment_method import AssignmentMethod
+        from .downgrade_justification import DowngradeJustification
+        from .key_value_pair import KeyValuePair
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
-            "downgradeJustification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(downgrade_justification.DowngradeJustification)),
-            "extendedProperties": lambda n : setattr(self, 'extended_properties', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(AssignmentMethod)),
+            "downgradeJustification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(DowngradeJustification)),
+            "extendedProperties": lambda n : setattr(self, 'extended_properties', n.get_collection_of_object_values(KeyValuePair)),
             "labelId": lambda n : setattr(self, 'label_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
-    @property
-    def label_id(self,) -> Optional[str]:
-        """
-        Gets the labelId property value. The GUID of the label that should be applied to the information.
-        Returns: Optional[str]
-        """
-        return self._label_id
-    
-    @label_id.setter
-    def label_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the labelId property value. The GUID of the label that should be applied to the information.
-        Args:
-            value: Value to set for the label_id property.
-        """
-        self._label_id = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
-        Args:
-            writer: Serialization writer to use to serialize this model
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
         """
-        if writer is None:
-            raise Exception("writer cannot be undefined")
+        if not writer:
+            raise TypeError("writer cannot be null.")
         writer.write_enum_value("assignmentMethod", self.assignment_method)
         writer.write_object_value("downgradeJustification", self.downgrade_justification)
         writer.write_collection_of_object_values("extendedProperties", self.extended_properties)

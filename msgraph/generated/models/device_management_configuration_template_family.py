@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceManagementConfigurationTemplateFamily(Enum):
+class DeviceManagementConfigurationTemplateFamily(str, Enum):
     # Default for Template Family when Policy is not linked to a Template
     None_ = "none",
     # Template Family for EndpointSecurityAntivirus that manages the discrete group of antivirus settings for managed devices
@@ -29,4 +29,6 @@ class DeviceManagementConfigurationTemplateFamily(Enum):
     UnknownFutureValue = "unknownFutureValue",
     # Template Family for device configuration scripts
     DeviceConfigurationScripts = "deviceConfigurationScripts",
+    # Template Family for device configuration policies
+    DeviceConfigurationPolicies = "deviceConfigurationPolicies",
 

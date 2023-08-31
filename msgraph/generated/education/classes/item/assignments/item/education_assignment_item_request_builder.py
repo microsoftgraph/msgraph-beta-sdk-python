@@ -1,121 +1,112 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import education_assignment
-    from ......models.o_data_errors import o_data_error
-    from .activate import activate_request_builder
-    from .categories import categories_request_builder
-    from .deactivate import deactivate_request_builder
-    from .grading_category import grading_category_request_builder
-    from .publish import publish_request_builder
-    from .resources import resources_request_builder
-    from .rubric import rubric_request_builder
-    from .set_up_feedback_resources_folder import set_up_feedback_resources_folder_request_builder
-    from .set_up_resources_folder import set_up_resources_folder_request_builder
-    from .submissions import submissions_request_builder
+    from ......models.education_assignment import EducationAssignment
+    from ......models.o_data_errors.o_data_error import ODataError
+    from .activate.activate_request_builder import ActivateRequestBuilder
+    from .categories.categories_request_builder import CategoriesRequestBuilder
+    from .deactivate.deactivate_request_builder import DeactivateRequestBuilder
+    from .grading_category.grading_category_request_builder import GradingCategoryRequestBuilder
+    from .publish.publish_request_builder import PublishRequestBuilder
+    from .resources.resources_request_builder import ResourcesRequestBuilder
+    from .rubric.rubric_request_builder import RubricRequestBuilder
+    from .set_up_feedback_resources_folder.set_up_feedback_resources_folder_request_builder import SetUpFeedbackResourcesFolderRequestBuilder
+    from .set_up_resources_folder.set_up_resources_folder_request_builder import SetUpResourcesFolderRequestBuilder
+    from .submissions.submissions_request_builder import SubmissionsRequestBuilder
 
-class EducationAssignmentItemRequestBuilder():
+class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new EducationAssignmentItemRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}{?%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete an existing assignment. Only teachers within a class can delete assignments.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/educationassignment-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[education_assignment.EducationAssignment]:
+    async def get(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationAssignment]:
         """
-        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the `Prefer` header in your request to get the `inactive` status in case the assignment is deactivated; otherwise, you will get an `unknownFutureValue` value in the response.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_assignment.EducationAssignment]
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationAssignment]
+        Find more info here: https://learn.microsoft.com/graph/api/educationassignment-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import education_assignment
+        from ......models.education_assignment import EducationAssignment
 
-        return await self.request_adapter.send_async(request_info, education_assignment.EducationAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationAssignment, error_mapping)
     
-    async def patch(self,body: Optional[education_assignment.EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_assignment.EducationAssignment]:
+    async def patch(self,body: Optional[EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EducationAssignment]:
         """
-        Update an educationAssignment object.  Only teachers in the class can do this. Note that you can't use a PATCH request to change the status of an **assignment**. Use the publish action to change the **assignment** status.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[education_assignment.EducationAssignment]
+        Update an educationAssignment object.  Only teachers in the class can do this. Note that you can't use a PATCH request to change the status of an assignment. Use the publish action to change the assignment status.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EducationAssignment]
+        Find more info here: https://learn.microsoft.com/graph/api/educationassignment-update?view=graph-rest-1.0
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import education_assignment
+        from ......models.education_assignment import EducationAssignment
 
-        return await self.request_adapter.send_async(request_info, education_assignment.EducationAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, EducationAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete an existing assignment. Only teachers within a class can delete assignments.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -129,9 +120,8 @@ class EducationAssignmentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the `Prefer` header in your request to get the `inactive` status in case the assignment is deactivated; otherwise, you will get an `unknownFutureValue` value in the response.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -145,16 +135,15 @@ class EducationAssignmentItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[education_assignment.EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an educationAssignment object.  Only teachers in the class can do this. Note that you can't use a PATCH request to change the status of an **assignment**. Use the publish action to change the **assignment** status.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Update an educationAssignment object.  Only teachers in the class can do this. Note that you can't use a PATCH request to change the status of an assignment. Use the publish action to change the assignment status.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -166,122 +155,129 @@ class EducationAssignmentItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> EducationAssignmentItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: EducationAssignmentItemRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return EducationAssignmentItemRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def activate(self) -> activate_request_builder.ActivateRequestBuilder:
+    def activate(self) -> ActivateRequestBuilder:
         """
         Provides operations to call the activate method.
         """
-        from .activate import activate_request_builder
+        from .activate.activate_request_builder import ActivateRequestBuilder
 
-        return activate_request_builder.ActivateRequestBuilder(self.request_adapter, self.path_parameters)
+        return ActivateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
+    def categories(self) -> CategoriesRequestBuilder:
         """
         Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.
         """
-        from .categories import categories_request_builder
+        from .categories.categories_request_builder import CategoriesRequestBuilder
 
-        return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+        return CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def deactivate(self) -> deactivate_request_builder.DeactivateRequestBuilder:
+    def deactivate(self) -> DeactivateRequestBuilder:
         """
         Provides operations to call the deactivate method.
         """
-        from .deactivate import deactivate_request_builder
+        from .deactivate.deactivate_request_builder import DeactivateRequestBuilder
 
-        return deactivate_request_builder.DeactivateRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeactivateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def grading_category(self) -> grading_category_request_builder.GradingCategoryRequestBuilder:
+    def grading_category(self) -> GradingCategoryRequestBuilder:
         """
         Provides operations to manage the gradingCategory property of the microsoft.graph.educationAssignment entity.
         """
-        from .grading_category import grading_category_request_builder
+        from .grading_category.grading_category_request_builder import GradingCategoryRequestBuilder
 
-        return grading_category_request_builder.GradingCategoryRequestBuilder(self.request_adapter, self.path_parameters)
+        return GradingCategoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+    def publish(self) -> PublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
-        from .publish import publish_request_builder
+        from .publish.publish_request_builder import PublishRequestBuilder
 
-        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+        return PublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def resources(self) -> resources_request_builder.ResourcesRequestBuilder:
+    def resources(self) -> ResourcesRequestBuilder:
         """
         Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.
         """
-        from .resources import resources_request_builder
+        from .resources.resources_request_builder import ResourcesRequestBuilder
 
-        return resources_request_builder.ResourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return ResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def rubric(self) -> rubric_request_builder.RubricRequestBuilder:
+    def rubric(self) -> RubricRequestBuilder:
         """
         Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.
         """
-        from .rubric import rubric_request_builder
+        from .rubric.rubric_request_builder import RubricRequestBuilder
 
-        return rubric_request_builder.RubricRequestBuilder(self.request_adapter, self.path_parameters)
+        return RubricRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_up_feedback_resources_folder(self) -> set_up_feedback_resources_folder_request_builder.SetUpFeedbackResourcesFolderRequestBuilder:
+    def set_up_feedback_resources_folder(self) -> SetUpFeedbackResourcesFolderRequestBuilder:
         """
         Provides operations to call the setUpFeedbackResourcesFolder method.
         """
-        from .set_up_feedback_resources_folder import set_up_feedback_resources_folder_request_builder
+        from .set_up_feedback_resources_folder.set_up_feedback_resources_folder_request_builder import SetUpFeedbackResourcesFolderRequestBuilder
 
-        return set_up_feedback_resources_folder_request_builder.SetUpFeedbackResourcesFolderRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetUpFeedbackResourcesFolderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_up_resources_folder(self) -> set_up_resources_folder_request_builder.SetUpResourcesFolderRequestBuilder:
+    def set_up_resources_folder(self) -> SetUpResourcesFolderRequestBuilder:
         """
         Provides operations to call the setUpResourcesFolder method.
         """
-        from .set_up_resources_folder import set_up_resources_folder_request_builder
+        from .set_up_resources_folder.set_up_resources_folder_request_builder import SetUpResourcesFolderRequestBuilder
 
-        return set_up_resources_folder_request_builder.SetUpResourcesFolderRequestBuilder(self.request_adapter, self.path_parameters)
+        return SetUpResourcesFolderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def submissions(self) -> submissions_request_builder.SubmissionsRequestBuilder:
+    def submissions(self) -> SubmissionsRequestBuilder:
         """
         Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.
         """
-        from .submissions import submissions_request_builder
+        from .submissions.submissions_request_builder import SubmissionsRequestBuilder
 
-        return submissions_request_builder.SubmissionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return SubmissionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EducationAssignmentItemRequestBuilderDeleteRequestConfiguration():
+    class EducationAssignmentItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
     @dataclass
     class EducationAssignmentItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the `Prefer` header in your request to get the `inactive` status in case the assignment is deactivated; otherwise, you will get an `unknownFutureValue` value in the response.
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
@@ -295,31 +291,27 @@ class EducationAssignmentItemRequestBuilder():
         select: Optional[List[str]] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EducationAssignmentItemRequestBuilderGetRequestConfiguration():
+    class EducationAssignmentItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[EducationAssignmentItemRequestBuilder.EducationAssignmentItemRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class EducationAssignmentItemRequestBuilderPatchRequestConfiguration():
+    class EducationAssignmentItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

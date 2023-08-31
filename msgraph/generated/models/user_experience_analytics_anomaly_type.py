@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserExperienceAnalyticsAnomalyType(Enum):
+class UserExperienceAnalyticsAnomalyType(str, Enum):
     # Indicates the detected anomaly is due to certain devices.
     Device = "device",
     # Indicates the detected anomaly is due to a specific application.

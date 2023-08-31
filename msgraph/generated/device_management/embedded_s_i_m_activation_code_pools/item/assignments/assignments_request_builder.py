@@ -1,109 +1,97 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
-from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models import embedded_s_i_m_activation_code_pool_assignment, embedded_s_i_m_activation_code_pool_assignment_collection_response
-    from .....models.o_data_errors import o_data_error
-    from .count import count_request_builder
-    from .item import embedded_s_i_m_activation_code_pool_assignment_item_request_builder
+    from .....models.embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
+    from .....models.embedded_s_i_m_activation_code_pool_assignment_collection_response import EmbeddedSIMActivationCodePoolAssignmentCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .count.count_request_builder import CountRequestBuilder
+    from .item.embedded_s_i_m_activation_code_pool_assignment_item_request_builder import EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder
 
-class AssignmentsRequestBuilder():
+class AssignmentsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the assignments property of the microsoft.graph.embeddedSIMActivationCodePool entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AssignmentsRequestBuilder and sets the default values.
-        Args:
-            pathParameters: The raw url or the Url template parameters for the request.
-            requestAdapter: The request adapter to use to execute the requests.
+        param path_parameters: The raw url or the Url template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
         """
-        if path_parameters is None:
-            raise Exception("path_parameters cannot be undefined")
-        if request_adapter is None:
-            raise Exception("request_adapter cannot be undefined")
-        # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/embeddedSIMActivationCodePools/{embeddedSIMActivationCodePool%2Did}/assignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
-
-        url_tpl_params = get_path_parameters(path_parameters)
-        self.path_parameters = url_tpl_params
-        self.request_adapter = request_adapter
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/embeddedSIMActivationCodePools/{embeddedSIMActivationCodePool%2Did}/assignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
     
-    def by_embedded_s_i_m_activation_code_pool_assignment_id(self,embedded_s_i_m_activation_code_pool_assignment_id: str) -> embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder:
+    def by_embedded_s_i_m_activation_code_pool_assignment_id(self,embedded_s_i_m_activation_code_pool_assignment_id: str) -> EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.embeddedSIMActivationCodePool entity.
-        Args:
-            embedded_s_i_m_activation_code_pool_assignment_id: Unique identifier of the item
-        Returns: embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder
+        param embedded_s_i_m_activation_code_pool_assignment_id: The unique identifier of embeddedSIMActivationCodePoolAssignment
+        Returns: EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder
         """
-        if embedded_s_i_m_activation_code_pool_assignment_id is None:
-            raise Exception("embedded_s_i_m_activation_code_pool_assignment_id cannot be undefined")
-        from .item import embedded_s_i_m_activation_code_pool_assignment_item_request_builder
+        if not embedded_s_i_m_activation_code_pool_assignment_id:
+            raise TypeError("embedded_s_i_m_activation_code_pool_assignment_id cannot be null.")
+        from .item.embedded_s_i_m_activation_code_pool_assignment_item_request_builder import EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["embeddedSIMActivationCodePoolAssignment%2Did"] = embedded_s_i_m_activation_code_pool_assignment_id
-        return embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool_assignment_collection_response.EmbeddedSIMActivationCodePoolAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePoolAssignmentCollectionResponse]:
         """
         Navigational property to a list of targets to which this pool is assigned.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[embedded_s_i_m_activation_code_pool_assignment_collection_response.EmbeddedSIMActivationCodePoolAssignmentCollectionResponse]
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EmbeddedSIMActivationCodePoolAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import embedded_s_i_m_activation_code_pool_assignment_collection_response
+        from .....models.embedded_s_i_m_activation_code_pool_assignment_collection_response import EmbeddedSIMActivationCodePoolAssignmentCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool_assignment_collection_response.EmbeddedSIMActivationCodePoolAssignmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, EmbeddedSIMActivationCodePoolAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]:
+    async def post(self,body: Optional[EmbeddedSIMActivationCodePoolAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePoolAssignment]:
         """
         Create new navigation property to assignments for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[EmbeddedSIMActivationCodePoolAssignment]
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors import o_data_error
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models import embedded_s_i_m_activation_code_pool_assignment
+        from .....models.embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, EmbeddedSIMActivationCodePoolAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Navigational property to a list of targets to which this pool is assigned.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
@@ -117,16 +105,15 @@ class AssignmentsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EmbeddedSIMActivationCodePoolAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to assignments for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if body is None:
-            raise Exception("body cannot be undefined")
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -138,14 +125,24 @@ class AssignmentsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def with_url(self,raw_url: Optional[str] = None) -> AssignmentsRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: AssignmentsRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return AssignmentsRequestBuilder(raw_url, self.request_adapter)
+    
     @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
+    def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
-        from .count import count_request_builder
+        from .count.count_request_builder import CountRequestBuilder
 
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+        return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AssignmentsRequestBuilderGetQueryParameters():
@@ -155,12 +152,11 @@ class AssignmentsRequestBuilder():
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
+            param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
             if original_name == "expand":
@@ -204,31 +200,27 @@ class AssignmentsRequestBuilder():
         top: Optional[int] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AssignmentsRequestBuilderGetRequestConfiguration():
+    class AssignmentsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
         # Request query parameters
         query_parameters: Optional[AssignmentsRequestBuilder.AssignmentsRequestBuilderGetQueryParameters] = None
 
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
     @dataclass
-    class AssignmentsRequestBuilderPostRequestConfiguration():
+    class AssignmentsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request headers
-        headers: Optional[Dict[str, Union[str, List[str]]]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
-
     
 

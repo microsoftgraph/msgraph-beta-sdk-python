@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CertificateRevocationStatus(Enum):
+class CertificateRevocationStatus(str, Enum):
     # Not revoked.
     None_ = "none",
     # Revocation pending.

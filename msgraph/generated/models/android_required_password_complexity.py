@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidRequiredPasswordComplexity(Enum):
+class AndroidRequiredPasswordComplexity(str, Enum):
     # Device default value, no password.
     None_ = "none",
     # The required password complexity on the device is of type low as defined by the Android documentation.

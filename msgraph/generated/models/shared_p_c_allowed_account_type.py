@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SharedPCAllowedAccountType(Enum):
+class SharedPCAllowedAccountType(str, Enum):
     # Not configured. Default value.
     NotConfigured = "notConfigured",
     # Only guest accounts.
