@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "57832f41a48eff5b9012142e17330d3c657b06527ee32b01970e0f3f0e8302e5"
+            "sha256": "5a383e7e1e05646f8aa020e03149d7777cd8b46a221905f295aa356e23ceecbb"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -117,11 +117,11 @@
         },
         "anyio": {
             "hashes": [
-                "sha256:44a3c9aba0f5defa43261a8b3efb97891f2bd7d804e0e1f56419befa1adfc780",
-                "sha256:91dee416e570e92c64041bd18b900d1d6fa78dff7048769ce5ac5ddad004fbb5"
+                "sha256:cfdb2b588b9fc25ede96d8db56ed50848b0b649dca3dd1df0b11f683bb9e0b5f",
+                "sha256:f7ed51751b2c2add651e5747c891b47e26d2a21be5d32d9311dfe9692f3e5d7a"
             ],
-            "markers": "python_version >= '3.7'",
-            "version": "==3.7.1"
+            "markers": "python_version >= '3.8'",
+            "version": "==4.0.0"
         },
         "async-timeout": {
             "hashes": [
@@ -141,11 +141,11 @@
         },
         "azure-core": {
             "hashes": [
-                "sha256:8e6602f322dc1070caf7e17754beb53b69ffa09df0f4786009a3107e9a00c793",
-                "sha256:beb0fe88d1043d8457318e8fb841d9caa648211092eda213c16b376401f3710d"
+                "sha256:c92700af982e71c8c73de9f4c20da8b3f03ce2c22d13066e4d416b4629c87903",
+                "sha256:f8b2910f92b66293d93bd00564924ad20ad48f4a1e150577cf18d1e7d4f9263c"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.29.2"
+            "version": "==1.29.3"
         },
         "azure-identity": {
             "hashes": [
@@ -469,11 +469,11 @@
         },
         "microsoft-kiota-abstractions": {
             "hashes": [
-                "sha256:080a2fe924a7a48633fd514b346f73cc438fd7e62bdfbae865dc6636732c524c",
-                "sha256:545528d104bc7528558af2610b2c49703ba359448ddc41bb2d56bb81aef8892e"
+                "sha256:7c343f4e93e21bedfe82053080d76495289cb8506c503b3faa463cccf3f828e2",
+                "sha256:93cd85c1c9d393944b0e75136c451c229ee614afd30e9358993ef89e7a00ec6b"
             ],
             "index": "pypi",
-            "version": "==0.7.1"
+            "version": "==0.8.0"
         },
         "microsoft-kiota-authentication-azure": {
             "hashes": [
