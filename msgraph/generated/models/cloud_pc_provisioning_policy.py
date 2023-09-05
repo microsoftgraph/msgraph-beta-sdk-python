@@ -107,7 +107,7 @@ class CloudPcProvisioningPolicy(Entity):
             "imageId": lambda n : setattr(self, 'image_id', n.get_str_value()),
             "imageType": lambda n : setattr(self, 'image_type', n.get_enum_value(CloudPcProvisioningPolicyImageType)),
             "localAdminEnabled": lambda n : setattr(self, 'local_admin_enabled', n.get_bool_value()),
-            "managedBy": lambda n : setattr(self, 'managed_by', n.get_enum_value(CloudPcManagementService)),
+            "managedBy": lambda n : setattr(self, 'managed_by', n.get_collection_of_enum_values(CloudPcManagementService)),
             "microsoftManagedDesktop": lambda n : setattr(self, 'microsoft_managed_desktop', n.get_object_value(MicrosoftManagedDesktop)),
             "onPremisesConnectionId": lambda n : setattr(self, 'on_premises_connection_id', n.get_str_value()),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),

@@ -24,7 +24,7 @@ from .artifact import Artifact
 class Host(Artifact):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.host"
-    # The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.
+    # The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
     child_host_pairs: Optional[List[HostPair]] = None
     # The hostComponents that are associated with this host.
     components: Optional[List[HostComponent]] = None
@@ -50,7 +50,7 @@ class Host(Artifact):
     subdomains: Optional[List[Subdomain]] = None
     # The hostTrackers that are associated with this host.
     trackers: Optional[List[HostTracker]] = None
-    # The whois property
+    # The most recent whoisRecord for this host.
     whois: Optional[WhoisRecord] = None
     
     @staticmethod

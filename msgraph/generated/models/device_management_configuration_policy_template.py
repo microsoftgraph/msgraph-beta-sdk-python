@@ -82,10 +82,10 @@ class DeviceManagementConfigurationPolicyTemplate(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
             "lifecycleState": lambda n : setattr(self, 'lifecycle_state', n.get_enum_value(DeviceManagementTemplateLifecycleState)),
-            "platforms": lambda n : setattr(self, 'platforms', n.get_enum_value(DeviceManagementConfigurationPlatforms)),
+            "platforms": lambda n : setattr(self, 'platforms', n.get_collection_of_enum_values(DeviceManagementConfigurationPlatforms)),
             "settingTemplateCount": lambda n : setattr(self, 'setting_template_count', n.get_int_value()),
             "settingTemplates": lambda n : setattr(self, 'setting_templates', n.get_collection_of_object_values(DeviceManagementConfigurationSettingTemplate)),
-            "technologies": lambda n : setattr(self, 'technologies', n.get_enum_value(DeviceManagementConfigurationTechnologies)),
+            "technologies": lambda n : setattr(self, 'technologies', n.get_collection_of_enum_values(DeviceManagementConfigurationTechnologies)),
             "templateFamily": lambda n : setattr(self, 'template_family', n.get_enum_value(DeviceManagementConfigurationTemplateFamily)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }

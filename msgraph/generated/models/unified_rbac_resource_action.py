@@ -22,7 +22,7 @@ class UnifiedRbacResourceAction(Entity):
     description: Optional[str] = None
     # The isAuthenticationContextSettable property
     is_authentication_context_settable: Optional[bool] = None
-    # The isPrivileged property
+    # Flag indicating if the action is a sensitive resource action. Applies only for actions in the microsoft.directory resource namespace. Read-only. Supports $filter (eq).
     is_privileged: Optional[bool] = None
     # Name for the action within the resource namespace, such as microsoft.insights/programs/update. Can include slash character (/). Case insensitive. Required. Supports $filter (eq).
     name: Optional[str] = None

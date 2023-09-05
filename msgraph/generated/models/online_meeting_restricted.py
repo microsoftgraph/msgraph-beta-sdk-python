@@ -45,9 +45,9 @@ class OnlineMeetingRestricted(AdditionalDataHolder, BackedModel, Parsable):
         from .online_meeting_video_disabled_reason import OnlineMeetingVideoDisabledReason
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "contentSharingDisabled": lambda n : setattr(self, 'content_sharing_disabled', n.get_enum_value(OnlineMeetingContentSharingDisabledReason)),
+            "contentSharingDisabled": lambda n : setattr(self, 'content_sharing_disabled', n.get_collection_of_enum_values(OnlineMeetingContentSharingDisabledReason)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "videoDisabled": lambda n : setattr(self, 'video_disabled', n.get_enum_value(OnlineMeetingVideoDisabledReason)),
+            "videoDisabled": lambda n : setattr(self, 'video_disabled', n.get_collection_of_enum_values(OnlineMeetingVideoDisabledReason)),
         }
         return fields
     

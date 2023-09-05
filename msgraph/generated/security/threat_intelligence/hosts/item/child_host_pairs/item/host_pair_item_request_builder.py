@@ -28,7 +28,7 @@ class HostPairItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostPairItemRequestBuilderGetRequestConfiguration] = None) -> Optional[HostPair]:
         """
-        The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.
+        The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostPair]
         """
@@ -49,7 +49,7 @@ class HostPairItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HostPairItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.
+        The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +77,7 @@ class HostPairItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HostPairItemRequestBuilderGetQueryParameters():
         """
-        The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.
+        The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

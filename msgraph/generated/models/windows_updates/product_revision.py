@@ -13,19 +13,19 @@ from ..entity import Entity
 
 @dataclass
 class ProductRevision(Entity):
-    # The displayName property
+    # The display name of the content. Read-only.
     display_name: Optional[str] = None
-    # The knowledgeBaseArticle property
+    # The knowledge base article associated with the product revision.
     knowledge_base_article: Optional[KnowledgeBaseArticle] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The osBuild property
     os_build: Optional[BuildVersionDetails] = None
-    # The product property
+    # The product of the revision. Possible values are: Windows 10, Windows 11. Read-only.
     product: Optional[str] = None
-    # The releaseDateTime property
+    # The release date for the content. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     release_date_time: Optional[datetime.datetime] = None
-    # The version property
+    # The version of the feature update. Read-only.
     version: Optional[str] = None
     
     @staticmethod

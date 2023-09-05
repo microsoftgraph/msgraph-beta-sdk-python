@@ -10,35 +10,31 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.o_data_errors.o_data_error import ODataError
-    from .get_autopilot_deployment_device_information_post_request_body import GetAutopilotDeploymentDeviceInformationPostRequestBody
+    from .....models.o_data_errors.o_data_error import ODataError
 
-class GetAutopilotDeploymentDeviceInformationRequestBuilder(BaseRequestBuilder):
+class AllowNextEnrollmentRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to call the getAutopilotDeploymentDeviceInformation method.
+    Provides operations to call the allowNextEnrollment method.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
-        Instantiates a new GetAutopilotDeploymentDeviceInformationRequestBuilder and sets the default values.
+        Instantiates a new AllowNextEnrollmentRequestBuilder and sets the default values.
         param path_parameters: The raw url or the Url template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/reports/getAutopilotDeploymentDeviceInformation", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}/allowNextEnrollment", path_parameters)
     
-    async def post(self,body: Optional[GetAutopilotDeploymentDeviceInformationPostRequestBody] = None, request_configuration: Optional[GetAutopilotDeploymentDeviceInformationRequestBuilderPostRequestConfiguration] = None) -> bytes:
+    async def post(self,request_configuration: Optional[AllowNextEnrollmentRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action getAutopilotDeploymentDeviceInformation
-        param body: The request body
+        Unblocks next autopilot enrollment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: bytes
+        Returns: None
         """
-        if not body:
-            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
-            body, request_configuration
+            request_configuration
         )
-        from ....models.o_data_errors.o_data_error import ODataError
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": ODataError,
@@ -46,17 +42,14 @@ class GetAutopilotDeploymentDeviceInformationRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def to_post_request_information(self,body: Optional[GetAutopilotDeploymentDeviceInformationPostRequestBody] = None, request_configuration: Optional[GetAutopilotDeploymentDeviceInformationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,request_configuration: Optional[AllowNextEnrollmentRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action getAutopilotDeploymentDeviceInformation
-        param body: The request body
+        Unblocks next autopilot enrollment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
-            raise TypeError("body cannot be null.")
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -64,23 +57,22 @@ class GetAutopilotDeploymentDeviceInformationRequestBuilder(BaseRequestBuilder):
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> GetAutopilotDeploymentDeviceInformationRequestBuilder:
+    def with_url(self,raw_url: Optional[str] = None) -> AllowNextEnrollmentRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: GetAutopilotDeploymentDeviceInformationRequestBuilder
+        Returns: AllowNextEnrollmentRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetAutopilotDeploymentDeviceInformationRequestBuilder(raw_url, self.request_adapter)
+        return AllowNextEnrollmentRequestBuilder(raw_url, self.request_adapter)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
-    class GetAutopilotDeploymentDeviceInformationRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+    class AllowNextEnrollmentRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
         from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
         """

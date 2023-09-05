@@ -1582,6 +1582,7 @@ if TYPE_CHECKING:
     from .windows_kiosk_configuration import WindowsKioskConfiguration
     from .windows_malware_information import WindowsMalwareInformation
     from .windows_managed_app_protection import WindowsManagedAppProtection
+    from .windows_managed_app_registration import WindowsManagedAppRegistration
     from .windows_managed_device import WindowsManagedDevice
     from .windows_management_app import WindowsManagementApp
     from .windows_management_app_health_state import WindowsManagementAppHealthState
@@ -8076,6 +8077,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_managed_app_protection import WindowsManagedAppProtection
 
             return WindowsManagedAppProtection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsManagedAppRegistration".casefold():
+            from .windows_managed_app_registration import WindowsManagedAppRegistration
+
+            return WindowsManagedAppRegistration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsManagedDevice".casefold():
             from .windows_managed_device import WindowsManagedDevice
 
@@ -10097,6 +10102,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_kiosk_configuration import WindowsKioskConfiguration
         from .windows_malware_information import WindowsMalwareInformation
         from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_managed_app_registration import WindowsManagedAppRegistration
         from .windows_managed_device import WindowsManagedDevice
         from .windows_management_app import WindowsManagementApp
         from .windows_management_app_health_state import WindowsManagementAppHealthState
@@ -11784,6 +11790,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_kiosk_configuration import WindowsKioskConfiguration
         from .windows_malware_information import WindowsMalwareInformation
         from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_managed_app_registration import WindowsManagedAppRegistration
         from .windows_managed_device import WindowsManagedDevice
         from .windows_management_app import WindowsManagementApp
         from .windows_management_app_health_state import WindowsManagementAppHealthState

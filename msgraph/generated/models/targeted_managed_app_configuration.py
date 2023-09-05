@@ -72,7 +72,7 @@ class TargetedManagedAppConfiguration(ManagedAppConfiguration):
             "deployedAppCount": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
             "deploymentSummary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(ManagedAppPolicyDeploymentSummary)),
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
-            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_enum_value(AppManagementLevel)),
+            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_collection_of_enum_values(AppManagementLevel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -98,7 +98,7 @@ class Win32LobApp(MobileLobApp):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowAvailableUninstall": lambda n : setattr(self, 'allow_available_uninstall', n.get_bool_value()),
-            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(WindowsArchitecture)),
+            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "detectionRules": lambda n : setattr(self, 'detection_rules', n.get_collection_of_object_values(Win32LobAppDetection)),
             "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
             "installCommandLine": lambda n : setattr(self, 'install_command_line', n.get_str_value()),

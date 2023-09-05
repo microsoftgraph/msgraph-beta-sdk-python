@@ -53,7 +53,7 @@ class DirectoryDefinition(Entity):
         from .object_definition import ObjectDefinition
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "discoverabilities": lambda n : setattr(self, 'discoverabilities', n.get_enum_value(DirectoryDefinitionDiscoverabilities)),
+            "discoverabilities": lambda n : setattr(self, 'discoverabilities', n.get_collection_of_enum_values(DirectoryDefinitionDiscoverabilities)),
             "discoveryDateTime": lambda n : setattr(self, 'discovery_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "objects": lambda n : setattr(self, 'objects', n.get_collection_of_object_values(ObjectDefinition)),

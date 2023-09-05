@@ -39,7 +39,7 @@ class CollectInvestigationPackageResponseAction(ResponseAction):
         from .response_action import ResponseAction
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "identifier": lambda n : setattr(self, 'identifier', n.get_enum_value(DeviceIdEntityIdentifier)),
+            "identifier": lambda n : setattr(self, 'identifier', n.get_collection_of_enum_values(DeviceIdEntityIdentifier)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

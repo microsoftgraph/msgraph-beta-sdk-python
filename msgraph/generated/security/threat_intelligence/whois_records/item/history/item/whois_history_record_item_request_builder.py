@@ -28,7 +28,7 @@ class WhoisHistoryRecordItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WhoisHistoryRecordItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WhoisHistoryRecord]:
         """
-        Get history from security
+        The collection of historical records associated to this WHOIS object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WhoisHistoryRecord]
         """
@@ -49,7 +49,7 @@ class WhoisHistoryRecordItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WhoisHistoryRecordItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get history from security
+        The collection of historical records associated to this WHOIS object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +77,7 @@ class WhoisHistoryRecordItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WhoisHistoryRecordItemRequestBuilderGetQueryParameters():
         """
-        Get history from security
+        The collection of historical records associated to this WHOIS object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

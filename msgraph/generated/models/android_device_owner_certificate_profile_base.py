@@ -96,7 +96,7 @@ class AndroidDeviceOwnerCertificateProfileBase(DeviceConfiguration):
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
             "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(AndroidDeviceOwnerTrustedRootCertificate)),
-            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(SubjectAlternativeNameType)),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_collection_of_enum_values(SubjectAlternativeNameType)),
             "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(SubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()

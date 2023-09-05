@@ -48,7 +48,7 @@ class Win32LobAppProductCodeDetection(Win32LobAppDetection):
         fields: Dict[str, Callable[[Any], None]] = {
             "productCode": lambda n : setattr(self, 'product_code', n.get_str_value()),
             "productVersion": lambda n : setattr(self, 'product_version', n.get_str_value()),
-            "productVersionOperator": lambda n : setattr(self, 'product_version_operator', n.get_enum_value(Win32LobAppDetectionOperator)),
+            "productVersionOperator": lambda n : setattr(self, 'product_version_operator', n.get_collection_of_enum_values(Win32LobAppDetectionOperator)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

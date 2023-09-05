@@ -41,7 +41,7 @@ class SynchronizationJobRestartCriteria(AdditionalDataHolder, BackedModel, Parsa
 
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "resetScope": lambda n : setattr(self, 'reset_scope', n.get_enum_value(SynchronizationJobRestartScope)),
+            "resetScope": lambda n : setattr(self, 'reset_scope', n.get_collection_of_enum_values(SynchronizationJobRestartScope)),
         }
         return fields
     
