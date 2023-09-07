@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9ee76926213c397a15b19ffa53ef107747b5b2235855c988456a6581b355263e"
+            "sha256": "197cb79c21a9dd138b722a46a2138c8e11e3e458a5ec75677dad7e4385fc1847"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -627,27 +627,27 @@
         },
         "opentelemetry-api": {
             "hashes": [
-                "sha256:db374fb5bea00f3c7aa290f5d94cea50b659e6ea9343384c5f6c2bb5d5e8db65",
-                "sha256:dcd2a0ad34b691964947e1d50f9e8c415c32827a1d87f0459a72deb9afdf5597"
+                "sha256:06abe351db7572f8afdd0fb889ce53f3c992dbf6f6262507b385cc1963e06983",
+                "sha256:982b76036fec0fdaf490ae3dfd9f28c81442a33414f737abc687a32758cdcba5"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.19.0"
+            "version": "==1.20.0"
         },
         "opentelemetry-sdk": {
             "hashes": [
-                "sha256:765928956262c7a7766eaba27127b543fb40ef710499cad075f261f52163a87f",
-                "sha256:bb67ad676b1bc671766a40d7fc9d9563854c186fa11f0dc8fa2284e004bd4263"
+                "sha256:702e432a457fa717fd2ddfd30640180e69938f85bb7fec3e479f85f61c1843f8",
+                "sha256:f2230c276ff4c63ea09b3cb2e2ac6b1265f90af64e8d16bbf275c81a9ce8e804"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.19.0"
+            "version": "==1.20.0"
         },
         "opentelemetry-semantic-conventions": {
             "hashes": [
-                "sha256:5a7a491873b15ab7c4907bbfd8737645cc87ca55a0a326c1755d1b928d8a0fae",
-                "sha256:7ebbaf86755a0948902e68637e3ae516c50222c30455e55af154ad3ffe283839"
+                "sha256:0ce5b040b8a3fc816ea5879a743b3d6fe5db61f6485e4def94c6ee4d402e1eb7",
+                "sha256:45404391ed9e50998183a4925ad1b497c01c143f06500c3b9c3d0013492bb0f2"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==0.40b0"
+            "version": "==0.41b0"
         },
         "portalocker": {
             "hashes": [
@@ -1107,11 +1107,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:3d4dfa6d95f1b101d695a6160a7626e15583af71a5f52176efa5d39a054d475d",
-                "sha256:3d8083eed2d13afc9426f227b24fd1659489ec107c0e86cec2ffdde5c92e790b"
+                "sha256:00478ca80aeebeecb2f288d3206b0de568df5cd2b8fada1209843cc9a8d88a48",
+                "sha256:af3d5949030c3f493f550876b2fd1dd5ec66689c4ee5d5344f009746f71fd5a8"
             ],
             "index": "pypi",
-            "version": "==68.1.2"
+            "version": "==68.2.0"
         },
         "toml": {
             "hashes": [
