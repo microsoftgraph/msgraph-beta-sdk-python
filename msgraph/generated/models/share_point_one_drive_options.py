@@ -40,7 +40,7 @@ class SharePointOneDriveOptions(AdditionalDataHolder, BackedModel, Parsable):
         from .search_content import SearchContent
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "includeContent": lambda n : setattr(self, 'include_content', n.get_enum_value(SearchContent)),
+            "includeContent": lambda n : setattr(self, 'include_content', n.get_collection_of_enum_values(SearchContent)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

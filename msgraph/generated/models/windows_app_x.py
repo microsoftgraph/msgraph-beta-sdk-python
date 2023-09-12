@@ -57,7 +57,7 @@ class WindowsAppX(MobileLobApp):
         from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(WindowsArchitecture)),
+            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
             "identityPublisherHash": lambda n : setattr(self, 'identity_publisher_hash', n.get_str_value()),
             "identityResourceIdentifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),

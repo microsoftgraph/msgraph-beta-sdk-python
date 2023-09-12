@@ -45,9 +45,10 @@ class WhoisRecordsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WhoisRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[WhoisRecordCollectionResponse]:
         """
-        Get whoisRecords from security
+        Get a list of whoisRecord objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WhoisRecordCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-whoisrecord-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +91,7 @@ class WhoisRecordsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WhoisRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get whoisRecords from security
+        Get a list of whoisRecord objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +148,7 @@ class WhoisRecordsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WhoisRecordsRequestBuilderGetQueryParameters():
         """
-        Get whoisRecords from security
+        Get a list of whoisRecord objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

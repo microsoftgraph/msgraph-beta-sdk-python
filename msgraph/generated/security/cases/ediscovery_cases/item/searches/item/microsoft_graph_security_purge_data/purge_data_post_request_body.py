@@ -43,7 +43,7 @@ class PurgeDataPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from ........models.security.purge_type import PurgeType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "purgeAreas": lambda n : setattr(self, 'purge_areas', n.get_enum_value(PurgeAreas)),
+            "purgeAreas": lambda n : setattr(self, 'purge_areas', n.get_collection_of_enum_values(PurgeAreas)),
             "purgeType": lambda n : setattr(self, 'purge_type', n.get_enum_value(PurgeType)),
         }
         return fields

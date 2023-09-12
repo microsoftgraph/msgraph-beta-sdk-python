@@ -72,7 +72,7 @@ class Win32LobAppRequirement(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "operator": lambda n : setattr(self, 'operator', n.get_enum_value(Win32LobAppDetectionOperator)),
+            "operator": lambda n : setattr(self, 'operator', n.get_collection_of_enum_values(Win32LobAppDetectionOperator)),
         }
         return fields
     

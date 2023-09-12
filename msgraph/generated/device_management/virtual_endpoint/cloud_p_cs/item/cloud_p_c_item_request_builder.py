@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.cloud_p_c import CloudPC
     from .....models.o_data_errors.o_data_error import ODataError
     from .change_user_account_type.change_user_account_type_request_builder import ChangeUserAccountTypeRequestBuilder
+    from .create_snapshot.create_snapshot_request_builder import CreateSnapshotRequestBuilder
     from .end_grace_period.end_grace_period_request_builder import EndGracePeriodRequestBuilder
     from .get_cloud_pc_connectivity_history.get_cloud_pc_connectivity_history_request_builder import GetCloudPcConnectivityHistoryRequestBuilder
     from .get_cloud_pc_launch_info.get_cloud_pc_launch_info_request_builder import GetCloudPcLaunchInfoRequestBuilder
@@ -23,6 +24,7 @@ if TYPE_CHECKING:
     from .reboot.reboot_request_builder import RebootRequestBuilder
     from .rename.rename_request_builder import RenameRequestBuilder
     from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
+    from .resize.resize_request_builder import ResizeRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
     from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
     from .start.start_request_builder import StartRequestBuilder
@@ -179,6 +181,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         return ChangeUserAccountTypeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def create_snapshot(self) -> CreateSnapshotRequestBuilder:
+        """
+        Provides operations to call the createSnapshot method.
+        """
+        from .create_snapshot.create_snapshot_request_builder import CreateSnapshotRequestBuilder
+
+        return CreateSnapshotRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def end_grace_period(self) -> EndGracePeriodRequestBuilder:
         """
         Provides operations to call the endGracePeriod method.
@@ -267,6 +278,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
 
         return ReprovisionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resize(self) -> ResizeRequestBuilder:
+        """
+        Provides operations to call the resize method.
+        """
+        from .resize.resize_request_builder import ResizeRequestBuilder
+
+        return ResizeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def restore(self) -> RestoreRequestBuilder:

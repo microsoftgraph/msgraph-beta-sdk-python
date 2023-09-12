@@ -65,7 +65,7 @@ class OpenIdConnectIdentityProvider(IdentityProviderBase):
             "domainHint": lambda n : setattr(self, 'domain_hint', n.get_str_value()),
             "metadataUrl": lambda n : setattr(self, 'metadata_url', n.get_str_value()),
             "responseMode": lambda n : setattr(self, 'response_mode', n.get_enum_value(OpenIdConnectResponseMode)),
-            "responseType": lambda n : setattr(self, 'response_type', n.get_enum_value(OpenIdConnectResponseTypes)),
+            "responseType": lambda n : setattr(self, 'response_type', n.get_collection_of_enum_values(OpenIdConnectResponseTypes)),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

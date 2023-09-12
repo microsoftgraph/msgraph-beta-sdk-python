@@ -22,7 +22,7 @@ class Device(DirectoryObject):
     account_enabled: Optional[bool] = None
     # For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
     alternative_security_ids: Optional[List[AlternativeSecurityId]] = None
-    # The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderBy.
+    # The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderby.
     approximate_last_sign_in_date_time: Optional[datetime.datetime] = None
     # Set of commands sent to this device.
     commands: Optional[List[Command]] = None
@@ -38,7 +38,7 @@ class Device(DirectoryObject):
     device_ownership: Optional[str] = None
     # For internal use only.
     device_version: Optional[int] = None
-    # The display name for the device. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    # The display name for the device. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
     # The on-premises domain name of Hybrid Azure AD joined devices. This property is set by Intune.
     domain_name: Optional[str] = None

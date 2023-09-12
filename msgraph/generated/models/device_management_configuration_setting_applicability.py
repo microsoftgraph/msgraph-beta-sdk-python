@@ -80,8 +80,8 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Ba
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "deviceMode": lambda n : setattr(self, 'device_mode', n.get_enum_value(DeviceManagementConfigurationDeviceMode)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "platform": lambda n : setattr(self, 'platform', n.get_enum_value(DeviceManagementConfigurationPlatforms)),
-            "technologies": lambda n : setattr(self, 'technologies', n.get_enum_value(DeviceManagementConfigurationTechnologies)),
+            "platform": lambda n : setattr(self, 'platform', n.get_collection_of_enum_values(DeviceManagementConfigurationPlatforms)),
+            "technologies": lambda n : setattr(self, 'technologies', n.get_collection_of_enum_values(DeviceManagementConfigurationTechnologies)),
         }
         return fields
     

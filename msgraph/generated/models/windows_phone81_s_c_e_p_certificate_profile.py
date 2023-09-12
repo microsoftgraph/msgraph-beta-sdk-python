@@ -68,9 +68,9 @@ class WindowsPhone81SCEPCertificateProfile(WindowsPhone81CertificateProfileBase)
         from .windows_phone81_trusted_root_certificate import WindowsPhone81TrustedRootCertificate
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(HashAlgorithms)),
+            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
-            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(KeyUsages)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_collection_of_enum_values(KeyUsages)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
             "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(WindowsPhone81TrustedRootCertificate)),
             "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),

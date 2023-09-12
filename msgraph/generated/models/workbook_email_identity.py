@@ -11,11 +11,11 @@ class WorkbookEmailIdentity(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The displayName property
+    # Display name of the user.
     display_name: Optional[str] = None
-    # The email property
+    # Email address of the user.
     email: Optional[str] = None
-    # The id property
+    # The unique identifier of the user.
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

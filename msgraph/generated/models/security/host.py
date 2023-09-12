@@ -44,13 +44,13 @@ class Host(Artifact):
     passive_dns_reverse: Optional[List[PassiveDnsRecord]] = None
     # Represents a calculated reputation of this host.
     reputation: Optional[HostReputation] = None
-    # The sslCertificates property
+    # The hostSslCertificates that are associated with this host.
     ssl_certificates: Optional[List[HostSslCertificate]] = None
     # The subdomains that are associated with this host.
     subdomains: Optional[List[Subdomain]] = None
     # The hostTrackers that are associated with this host.
     trackers: Optional[List[HostTracker]] = None
-    # The whois property
+    # The most recent whoisRecord for this host.
     whois: Optional[WhoisRecord] = None
     
     @staticmethod

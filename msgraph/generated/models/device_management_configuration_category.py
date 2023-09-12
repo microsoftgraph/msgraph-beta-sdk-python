@@ -75,10 +75,10 @@ class DeviceManagementConfigurationCategory(Entity):
             "helpText": lambda n : setattr(self, 'help_text', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "parentCategoryId": lambda n : setattr(self, 'parent_category_id', n.get_str_value()),
-            "platforms": lambda n : setattr(self, 'platforms', n.get_enum_value(DeviceManagementConfigurationPlatforms)),
+            "platforms": lambda n : setattr(self, 'platforms', n.get_collection_of_enum_values(DeviceManagementConfigurationPlatforms)),
             "rootCategoryId": lambda n : setattr(self, 'root_category_id', n.get_str_value()),
-            "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_enum_value(DeviceManagementConfigurationSettingUsage)),
-            "technologies": lambda n : setattr(self, 'technologies', n.get_enum_value(DeviceManagementConfigurationTechnologies)),
+            "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingUsage)),
+            "technologies": lambda n : setattr(self, 'technologies', n.get_collection_of_enum_values(DeviceManagementConfigurationTechnologies)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

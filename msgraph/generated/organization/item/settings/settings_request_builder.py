@@ -16,8 +16,6 @@ if TYPE_CHECKING:
     from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
     from .microsoft_application_data_access.microsoft_application_data_access_request_builder import MicrosoftApplicationDataAccessRequestBuilder
     from .people_insights.people_insights_request_builder import PeopleInsightsRequestBuilder
-    from .profile_card_properties.profile_card_properties_request_builder import ProfileCardPropertiesRequestBuilder
-    from .pronouns.pronouns_request_builder import PronounsRequestBuilder
 
 class SettingsRequestBuilder(BaseRequestBuilder):
     """
@@ -193,24 +191,6 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         from .people_insights.people_insights_request_builder import PeopleInsightsRequestBuilder
 
         return PeopleInsightsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def profile_card_properties(self) -> ProfileCardPropertiesRequestBuilder:
-        """
-        Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
-        """
-        from .profile_card_properties.profile_card_properties_request_builder import ProfileCardPropertiesRequestBuilder
-
-        return ProfileCardPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def pronouns(self) -> PronounsRequestBuilder:
-        """
-        Provides operations to manage the pronouns property of the microsoft.graph.organizationSettings entity.
-        """
-        from .pronouns.pronouns_request_builder import PronounsRequestBuilder
-
-        return PronounsRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -62,7 +62,7 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
             "detectedFiles": lambda n : setattr(self, 'detected_files', n.get_collection_of_object_values(SubmissionDetectedFile)),
             "detectedUrls": lambda n : setattr(self, 'detected_urls', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "userMailboxSetting": lambda n : setattr(self, 'user_mailbox_setting', n.get_enum_value(UserMailboxSetting)),
+            "userMailboxSetting": lambda n : setattr(self, 'user_mailbox_setting', n.get_collection_of_enum_values(UserMailboxSetting)),
         }
         return fields
     

@@ -45,7 +45,7 @@ class DeletedChatsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeletedChatsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeletedChatCollectionResponse]:
         """
-        Get deletedChats from teamwork
+        Read the properties and relationships of a deletedChat object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeletedChatCollectionResponse]
         """
@@ -90,7 +90,7 @@ class DeletedChatsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeletedChatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get deletedChats from teamwork
+        Read the properties and relationships of a deletedChat object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class DeletedChatsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeletedChatsRequestBuilderGetQueryParameters():
         """
-        Get deletedChats from teamwork
+        Read the properties and relationships of a deletedChat object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -19,7 +19,6 @@ if TYPE_CHECKING:
     from .get_all_certificates_report.get_all_certificates_report_request_builder import GetAllCertificatesReportRequestBuilder
     from .get_apps_install_summary_report.get_apps_install_summary_report_request_builder import GetAppsInstallSummaryReportRequestBuilder
     from .get_app_status_overview_report.get_app_status_overview_report_request_builder import GetAppStatusOverviewReportRequestBuilder
-    from .get_autopilot_deployment_device_information.get_autopilot_deployment_device_information_request_builder import GetAutopilotDeploymentDeviceInformationRequestBuilder
     from .get_cached_report.get_cached_report_request_builder import GetCachedReportRequestBuilder
     from .get_certificates_report.get_certificates_report_request_builder import GetCertificatesReportRequestBuilder
     from .get_compliance_policies_report_for_device.get_compliance_policies_report_for_device_request_builder import GetCompliancePoliciesReportForDeviceRequestBuilder
@@ -287,15 +286,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_app_status_overview_report.get_app_status_overview_report_request_builder import GetAppStatusOverviewReportRequestBuilder
 
         return GetAppStatusOverviewReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_autopilot_deployment_device_information(self) -> GetAutopilotDeploymentDeviceInformationRequestBuilder:
-        """
-        Provides operations to call the getAutopilotDeploymentDeviceInformation method.
-        """
-        from .get_autopilot_deployment_device_information.get_autopilot_deployment_device_information_request_builder import GetAutopilotDeploymentDeviceInformationRequestBuilder
-
-        return GetAutopilotDeploymentDeviceInformationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_cached_report(self) -> GetCachedReportRequestBuilder:

@@ -38,7 +38,7 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from ......models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_enum_value(CloudPcPolicySettingType)),
+            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_collection_of_enum_values(CloudPcPolicySettingType)),
         }
         return fields
     

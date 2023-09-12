@@ -42,7 +42,7 @@ class DelegatedAdminRelationship(Entity):
     operations: Optional[List[DelegatedAdminRelationshipOperation]] = None
     # The requests associated with the delegated admin relationship.
     requests: Optional[List[DelegatedAdminRelationshipRequest]] = None
-    # The status of the relationship. Read Only. The possible values are: activating, active, approvalPending, approved, created, expired, expiring, terminated, terminating, terminationRequested, unknownFutureValue. Supports $orderBy.
+    # The status of the relationship. Read Only. The possible values are: activating, active, approvalPending, approved, created, expired, expiring, terminated, terminating, terminationRequested, unknownFutureValue. Supports $orderby.
     status: Optional[DelegatedAdminRelationshipStatus] = None
     
     @staticmethod

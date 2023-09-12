@@ -230,7 +230,7 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration):
             "softwareUpdatesEnforcedDelayInDays": lambda n : setattr(self, 'software_updates_enforced_delay_in_days', n.get_int_value()),
             "spotlightBlockInternetResults": lambda n : setattr(self, 'spotlight_block_internet_results', n.get_bool_value()),
             "touchIdTimeoutInHours": lambda n : setattr(self, 'touch_id_timeout_in_hours', n.get_int_value()),
-            "updateDelayPolicy": lambda n : setattr(self, 'update_delay_policy', n.get_enum_value(MacOSSoftwareUpdateDelayPolicy)),
+            "updateDelayPolicy": lambda n : setattr(self, 'update_delay_policy', n.get_collection_of_enum_values(MacOSSoftwareUpdateDelayPolicy)),
             "wallpaperModificationBlocked": lambda n : setattr(self, 'wallpaper_modification_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()

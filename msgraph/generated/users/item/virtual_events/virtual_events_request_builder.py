@@ -10,32 +10,33 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.pronouns_settings import PronounsSettings
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.user_virtual_events_root import UserVirtualEventsRoot
+    from .webinars.webinars_request_builder import WebinarsRequestBuilder
 
-class PronounsRequestBuilder(BaseRequestBuilder):
+class VirtualEventsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the pronouns property of the microsoft.graph.organizationSettings entity.
+    Provides operations to manage the virtualEvents property of the microsoft.graph.user entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
-        Instantiates a new PronounsRequestBuilder and sets the default values.
+        Instantiates a new VirtualEventsRequestBuilder and sets the default values.
         param path_parameters: The raw url or the Url template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/organization/{organization%2Did}/settings/pronouns{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/virtualEvents{?%24select,%24expand}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[PronounsRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[VirtualEventsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property pronouns for organization
+        Delete navigation property virtualEvents for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors.o_data_error import ODataError
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": ODataError,
@@ -45,16 +46,16 @@ class PronounsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PronounsRequestBuilderGetRequestConfiguration] = None) -> Optional[PronounsSettings]:
+    async def get(self,request_configuration: Optional[VirtualEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[UserVirtualEventsRoot]:
         """
-        Get pronouns from organization
+        Get virtualEvents from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[PronounsSettings]
+        Returns: Optional[UserVirtualEventsRoot]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors.o_data_error import ODataError
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": ODataError,
@@ -62,23 +63,23 @@ class PronounsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.pronouns_settings import PronounsSettings
+        from ....models.user_virtual_events_root import UserVirtualEventsRoot
 
-        return await self.request_adapter.send_async(request_info, PronounsSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserVirtualEventsRoot, error_mapping)
     
-    async def patch(self,body: Optional[PronounsSettings] = None, request_configuration: Optional[PronounsRequestBuilderPatchRequestConfiguration] = None) -> Optional[PronounsSettings]:
+    async def patch(self,body: Optional[UserVirtualEventsRoot] = None, request_configuration: Optional[VirtualEventsRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserVirtualEventsRoot]:
         """
-        Update the navigation property pronouns in organization
+        Update the navigation property virtualEvents in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[PronounsSettings]
+        Returns: Optional[UserVirtualEventsRoot]
         """
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors.o_data_error import ODataError
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": ODataError,
@@ -86,13 +87,13 @@ class PronounsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.pronouns_settings import PronounsSettings
+        from ....models.user_virtual_events_root import UserVirtualEventsRoot
 
-        return await self.request_adapter.send_async(request_info, PronounsSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserVirtualEventsRoot, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[PronounsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[VirtualEventsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property pronouns for organization
+        Delete navigation property virtualEvents for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,9 +106,9 @@ class PronounsRequestBuilder(BaseRequestBuilder):
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[PronounsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[VirtualEventsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get pronouns from organization
+        Get virtualEvents from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,9 +123,9 @@ class PronounsRequestBuilder(BaseRequestBuilder):
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PronounsSettings] = None, request_configuration: Optional[PronounsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserVirtualEventsRoot] = None, request_configuration: Optional[VirtualEventsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property pronouns in organization
+        Update the navigation property virtualEvents in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -142,20 +143,29 @@ class PronounsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> PronounsRequestBuilder:
+    def with_url(self,raw_url: Optional[str] = None) -> VirtualEventsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: PronounsRequestBuilder
+        Returns: VirtualEventsRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PronounsRequestBuilder(raw_url, self.request_adapter)
+        return VirtualEventsRequestBuilder(raw_url, self.request_adapter)
+    
+    @property
+    def webinars(self) -> WebinarsRequestBuilder:
+        """
+        Provides operations to manage the webinars property of the microsoft.graph.userVirtualEventsRoot entity.
+        """
+        from .webinars.webinars_request_builder import WebinarsRequestBuilder
+
+        return WebinarsRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
-    class PronounsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+    class VirtualEventsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
         from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
         """
@@ -163,9 +173,9 @@ class PronounsRequestBuilder(BaseRequestBuilder):
         """
     
     @dataclass
-    class PronounsRequestBuilderGetQueryParameters():
+    class VirtualEventsRequestBuilderGetQueryParameters():
         """
-        Get pronouns from organization
+        Get virtualEvents from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -191,20 +201,20 @@ class PronounsRequestBuilder(BaseRequestBuilder):
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
-    class PronounsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+    class VirtualEventsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
         from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request query parameters
-        query_parameters: Optional[PronounsRequestBuilder.PronounsRequestBuilderGetQueryParameters] = None
+        query_parameters: Optional[VirtualEventsRequestBuilder.VirtualEventsRequestBuilderGetQueryParameters] = None
 
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
-    class PronounsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+    class VirtualEventsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
         from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
         """

@@ -81,7 +81,7 @@ class TeamsAppDefinition(Entity):
         from .teamwork_bot import TeamworkBot
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_enum_value(TeamsAppInstallationScopes)),
+            "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_collection_of_enum_values(TeamsAppInstallationScopes)),
             "authorization": lambda n : setattr(self, 'authorization', n.get_object_value(TeamsAppAuthorization)),
             "azureADAppId": lambda n : setattr(self, 'azure_a_d_app_id', n.get_str_value()),
             "bot": lambda n : setattr(self, 'bot', n.get_object_value(TeamworkBot)),

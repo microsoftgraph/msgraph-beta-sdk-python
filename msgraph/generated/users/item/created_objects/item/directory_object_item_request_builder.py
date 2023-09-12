@@ -29,7 +29,7 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObject]:
         """
-        Directory objects that were created by the user. Read-only. Nullable.
+        Directory objects that the user created. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObject]
         """
@@ -50,7 +50,7 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Directory objects that were created by the user. Read-only. Nullable.
+        Directory objects that the user created. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -87,7 +87,7 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DirectoryObjectItemRequestBuilderGetQueryParameters():
         """
-        Directory objects that were created by the user. Read-only. Nullable.
+        Directory objects that the user created. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -4,8 +4,11 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .....models.cloud_pc_report_name import CloudPcReportName
+
 @dataclass
-class GetAutopilotDeploymentDeviceInformationPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
+class GetFrontlineReportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
@@ -15,45 +18,46 @@ class GetAutopilotDeploymentDeviceInformationPostRequestBody(AdditionalDataHolde
     filter: Optional[str] = None
     # The groupBy property
     group_by: Optional[List[str]] = None
-    # The name property
-    name: Optional[str] = None
     # The orderBy property
     order_by: Optional[List[str]] = None
+    # The reportName property
+    report_name: Optional[CloudPcReportName] = None
     # The search property
     search: Optional[str] = None
     # The select property
     select: Optional[List[str]] = None
-    # The sessionId property
-    session_id: Optional[str] = None
     # The skip property
     skip: Optional[int] = None
     # The top property
     top: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetAutopilotDeploymentDeviceInformationPostRequestBody:
+    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetFrontlineReportPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: GetAutopilotDeploymentDeviceInformationPostRequestBody
+        Returns: GetFrontlineReportPostRequestBody
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
-        return GetAutopilotDeploymentDeviceInformationPostRequestBody()
+        return GetFrontlineReportPostRequestBody()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .....models.cloud_pc_report_name import CloudPcReportName
+
+        from .....models.cloud_pc_report_name import CloudPcReportName
+
         fields: Dict[str, Callable[[Any], None]] = {
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
             "groupBy": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
-            "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
+            "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(CloudPcReportName)),
             "search": lambda n : setattr(self, 'search', n.get_str_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
-            "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
             "skip": lambda n : setattr(self, 'skip', n.get_int_value()),
             "top": lambda n : setattr(self, 'top', n.get_int_value()),
         }
@@ -69,11 +73,10 @@ class GetAutopilotDeploymentDeviceInformationPostRequestBody(AdditionalDataHolde
             raise TypeError("writer cannot be null.")
         writer.write_str_value("filter", self.filter)
         writer.write_collection_of_primitive_values("groupBy", self.group_by)
-        writer.write_str_value("name", self.name)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)
+        writer.write_enum_value("reportName", self.report_name)
         writer.write_str_value("search", self.search)
         writer.write_collection_of_primitive_values("select", self.select)
-        writer.write_str_value("sessionId", self.session_id)
         writer.write_int_value("skip", self.skip)
         writer.write_int_value("top", self.top)
         writer.write_additional_data_value(self.additional_data)

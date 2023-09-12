@@ -57,12 +57,12 @@ class ChatMessagePolicyViolation(AdditionalDataHolder, BackedModel, Parsable):
         from .chat_message_policy_violation_verdict_details_types import ChatMessagePolicyViolationVerdictDetailsTypes
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "dlpAction": lambda n : setattr(self, 'dlp_action', n.get_enum_value(ChatMessagePolicyViolationDlpActionTypes)),
+            "dlpAction": lambda n : setattr(self, 'dlp_action', n.get_collection_of_enum_values(ChatMessagePolicyViolationDlpActionTypes)),
             "justificationText": lambda n : setattr(self, 'justification_text', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyTip": lambda n : setattr(self, 'policy_tip', n.get_object_value(ChatMessagePolicyViolationPolicyTip)),
-            "userAction": lambda n : setattr(self, 'user_action', n.get_enum_value(ChatMessagePolicyViolationUserActionTypes)),
-            "verdictDetails": lambda n : setattr(self, 'verdict_details', n.get_enum_value(ChatMessagePolicyViolationVerdictDetailsTypes)),
+            "userAction": lambda n : setattr(self, 'user_action', n.get_collection_of_enum_values(ChatMessagePolicyViolationUserActionTypes)),
+            "verdictDetails": lambda n : setattr(self, 'verdict_details', n.get_collection_of_enum_values(ChatMessagePolicyViolationVerdictDetailsTypes)),
         }
         return fields
     

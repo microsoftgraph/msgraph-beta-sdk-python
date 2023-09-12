@@ -65,7 +65,7 @@ class ObjectMapping(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "attributeMappings": lambda n : setattr(self, 'attribute_mappings', n.get_collection_of_object_values(AttributeMapping)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "flowTypes": lambda n : setattr(self, 'flow_types', n.get_enum_value(ObjectFlowTypes)),
+            "flowTypes": lambda n : setattr(self, 'flow_types', n.get_collection_of_enum_values(ObjectFlowTypes)),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(ObjectMappingMetadataEntry)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

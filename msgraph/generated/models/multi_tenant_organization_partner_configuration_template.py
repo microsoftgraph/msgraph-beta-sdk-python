@@ -66,7 +66,7 @@ class MultiTenantOrganizationPartnerConfigurationTemplate(Entity):
             "b2bDirectConnectInbound": lambda n : setattr(self, 'b2b_direct_connect_inbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "b2bDirectConnectOutbound": lambda n : setattr(self, 'b2b_direct_connect_outbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "inboundTrust": lambda n : setattr(self, 'inbound_trust', n.get_object_value(CrossTenantAccessPolicyInboundTrust)),
-            "templateApplicationLevel": lambda n : setattr(self, 'template_application_level', n.get_enum_value(TemplateApplicationLevel)),
+            "templateApplicationLevel": lambda n : setattr(self, 'template_application_level', n.get_collection_of_enum_values(TemplateApplicationLevel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

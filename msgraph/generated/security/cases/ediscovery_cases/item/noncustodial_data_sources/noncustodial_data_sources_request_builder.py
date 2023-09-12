@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .item.ediscovery_noncustodial_data_source_item_request_builder import EdiscoveryNoncustodialDataSourceItemRequestBuilder
     from .microsoft_graph_security_apply_hold.microsoft_graph_security_apply_hold_request_builder import MicrosoftGraphSecurityApplyHoldRequestBuilder
     from .microsoft_graph_security_remove_hold.microsoft_graph_security_remove_hold_request_builder import MicrosoftGraphSecurityRemoveHoldRequestBuilder
+    from .microsoft_graph_security_update_index.microsoft_graph_security_update_index_request_builder import MicrosoftGraphSecurityUpdateIndexRequestBuilder
 
 class NoncustodialDataSourcesRequestBuilder(BaseRequestBuilder):
     """
@@ -164,6 +165,15 @@ class NoncustodialDataSourcesRequestBuilder(BaseRequestBuilder):
         from .microsoft_graph_security_remove_hold.microsoft_graph_security_remove_hold_request_builder import MicrosoftGraphSecurityRemoveHoldRequestBuilder
 
         return MicrosoftGraphSecurityRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_update_index(self) -> MicrosoftGraphSecurityUpdateIndexRequestBuilder:
+        """
+        Provides operations to call the updateIndex method.
+        """
+        from .microsoft_graph_security_update_index.microsoft_graph_security_update_index_request_builder import MicrosoftGraphSecurityUpdateIndexRequestBuilder
+
+        return MicrosoftGraphSecurityUpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NoncustodialDataSourcesRequestBuilderGetQueryParameters():

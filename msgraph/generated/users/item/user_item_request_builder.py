@@ -110,6 +110,7 @@ if TYPE_CHECKING:
     from .translate_exchange_ids.translate_exchange_ids_request_builder import TranslateExchangeIdsRequestBuilder
     from .unblock_managed_apps.unblock_managed_apps_request_builder import UnblockManagedAppsRequestBuilder
     from .usage_rights.usage_rights_request_builder import UsageRightsRequestBuilder
+    from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
     from .windows_information_protection_device_registrations.windows_information_protection_device_registrations_request_builder import WindowsInformationProtectionDeviceRegistrationsRequestBuilder
     from .wipe_and_block_managed_apps.wipe_and_block_managed_apps_request_builder import WipeAndBlockManagedAppsRequestBuilder
     from .wipe_managed_app_registration_by_device_tag.wipe_managed_app_registration_by_device_tag_request_builder import WipeManagedAppRegistrationByDeviceTagRequestBuilder
@@ -1154,6 +1155,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .usage_rights.usage_rights_request_builder import UsageRightsRequestBuilder
 
         return UsageRightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def virtual_events(self) -> VirtualEventsRequestBuilder:
+        """
+        Provides operations to manage the virtualEvents property of the microsoft.graph.user entity.
+        """
+        from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
+
+        return VirtualEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def windows_information_protection_device_registrations(self) -> WindowsInformationProtectionDeviceRegistrationsRequestBuilder:
