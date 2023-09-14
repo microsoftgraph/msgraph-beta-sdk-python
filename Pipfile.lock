@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ba09ec7a9231d6a9315f2ffc0835f8fb9a96679ae52bfa5298a71269365d6df5"
+            "sha256": "2c294f517060dbb0d993aedbc3fe05ec2d07754a7f13667fe61f94e402b72e0b"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -485,11 +485,11 @@
         },
         "microsoft-kiota-abstractions": {
             "hashes": [
-                "sha256:205a59c429a75dfe39062c4caff655061db131fa7cdb41a5273e6a350eebe689",
-                "sha256:f7f74731a6514d44a5633013b16d86dcd22830bbd4385711124109be63f21821"
+                "sha256:52599aa0c714eba2a2b7d0cb1d56e5def9df3b9fb4db7207e18826a7fd2cb65b",
+                "sha256:688cbb2c6570bbe1bad53fdc3aa339f70e9a38dcb92cd9242692f0a834bbc790"
             ],
             "index": "pypi",
-            "version": "==0.8.1"
+            "version": "==0.8.3"
         },
         "microsoft-kiota-authentication-azure": {
             "hashes": [
@@ -708,6 +708,14 @@
             "markers": "python_version >= '3.7'",
             "version": "==1.3.0"
         },
+        "std-uritemplate": {
+            "hashes": [
+                "sha256:09eafcf1b140873036c5c77594e79e71176fd3f98c2ea0388b96288a61cf204f",
+                "sha256:d8484281f76240a987341b28ac617a435c80ab2d1b326df0499f56858bc0de0a"
+            ],
+            "markers": "python_version >= '3.8' and python_version < '4.0'",
+            "version": "==0.0.40"
+        },
         "typing-extensions": {
             "hashes": [
                 "sha256:440d5dd3af93b060174bf433bccd69b0babc3b15b1a8dca43789fd7f61514b36",
@@ -715,14 +723,6 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==4.7.1"
-        },
-        "uritemplate": {
-            "hashes": [
-                "sha256:4346edfc5c3b79f694bccd6d6099a322bbeb628dbf2cd86eea55a456ce5124f0",
-                "sha256:830c08b8d99bdd312ea4ead05994a38e8936266f84b9a7878232db50b044e02e"
-            ],
-            "markers": "python_version >= '3.6'",
-            "version": "==4.1.1"
         },
         "urllib3": {
             "hashes": [
