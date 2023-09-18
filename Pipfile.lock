@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "70fb75999c667ebe4a7277b86e95d01bf6917f0be30797616466104adfb5d035"
+            "sha256": "2e4b81c776effb86baf3829793b3dc5b64709d417f1d9ef2dd0fb61eafeff5bf"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -485,11 +485,11 @@
         },
         "microsoft-kiota-abstractions": {
             "hashes": [
-                "sha256:217976f1f9eecbb62d8d3b4bbd3beec93a43b3400c7e7cb5c234dbbf3ed6f80e",
-                "sha256:65ffcc9476dd15b284b6e803f9e3645fce904788e6d9a85f41d95d49c027cf61"
+                "sha256:abcef5380c4aba1d48b7168c25124aa612db73b46535df20368ff5264fb24c06",
+                "sha256:fc1d946bea05cbda8567f3133187c7d63849433709caf3712ac8c6812a63f404"
             ],
             "index": "pypi",
-            "version": "==0.8.4"
+            "version": "==0.8.5"
         },
         "microsoft-kiota-authentication-azure": {
             "hashes": [
@@ -652,11 +652,11 @@
         },
         "portalocker": {
             "hashes": [
-                "sha256:032e81d534a88ec1736d03f780ba073f047a06c478b06e2937486f334e955c51",
-                "sha256:a07c5b4f3985c3cf4798369631fb7011adb498e2a46d8440efc75a8f29a0f983"
+                "sha256:2b035aa7828e46c58e9b31390ee1f169b98e1066ab10b9a6a861fe7e25ee4f33",
+                "sha256:cfb86acc09b9aa7c3b43594e19be1345b9d16af3feb08bf92f23d4dce513a28e"
             ],
             "markers": "python_version >= '3.5' and platform_system != 'Windows'",
-            "version": "==2.7.0"
+            "version": "==2.8.2"
         },
         "pycparser": {
             "hashes": [
