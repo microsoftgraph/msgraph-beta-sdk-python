@@ -47,7 +47,7 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CertificateAuthorityAsEntityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CertificateAuthorityAsEntity]:
         """
-        Get trustedCertificateAuthorities from directory
+        Collection of trusted certificate authorities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateAuthorityAsEntity]
         """
@@ -107,7 +107,7 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CertificateAuthorityAsEntityItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get trustedCertificateAuthorities from directory
+        Collection of trusted certificate authorities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -165,7 +165,7 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CertificateAuthorityAsEntityItemRequestBuilderGetQueryParameters():
         """
-        Get trustedCertificateAuthorities from directory
+        Collection of trusted certificate authorities.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

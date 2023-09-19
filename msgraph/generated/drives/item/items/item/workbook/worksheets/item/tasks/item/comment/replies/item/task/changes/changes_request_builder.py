@@ -46,7 +46,7 @@ class ChangesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ChangesRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookDocumentTaskChangeCollectionResponse]:
         """
-        Get changes from drives
+        A collection of task change histories.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookDocumentTaskChangeCollectionResponse]
         """
@@ -103,7 +103,7 @@ class ChangesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ChangesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get changes from drives
+        A collection of task change histories.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +160,7 @@ class ChangesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChangesRequestBuilderGetQueryParameters():
         """
-        Get changes from drives
+        A collection of task change histories.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

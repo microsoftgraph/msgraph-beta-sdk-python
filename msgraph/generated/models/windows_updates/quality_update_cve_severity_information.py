@@ -17,7 +17,7 @@ class QualityUpdateCveSeverityInformation(AdditionalDataHolder, BackedModel, Par
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The exploitedCves property
     exploited_cves: Optional[List[CveInformation]] = None
-    # The maxBaseScore property
+    # Highest base score that occurs of any CVE addressed by the quality update. Read-only.
     max_base_score: Optional[float] = None
     # The maxSeverity property
     max_severity: Optional[CveSeverityLevel] = None

@@ -82,7 +82,7 @@ class IosScepCertificateProfile(IosCertificateProfileBase):
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
-            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(KeyUsages)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_collection_of_enum_values(KeyUsages)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
             "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(IosTrustedRootCertificate)),
             "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),

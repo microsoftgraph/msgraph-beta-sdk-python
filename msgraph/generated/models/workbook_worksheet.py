@@ -32,9 +32,9 @@ class WorkbookWorksheet(Entity):
     protection: Optional[WorkbookWorksheetProtection] = None
     # Collection of tables that are part of the worksheet. Read-only.
     tables: Optional[List[WorkbookTable]] = None
-    # The tasks property
+    # Collection of document tasks on this worksheet. Read-only.
     tasks: Optional[List[WorkbookDocumentTask]] = None
-    # The Visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
+    # The visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
     visibility: Optional[str] = None
     
     @staticmethod

@@ -26,7 +26,7 @@ class AuthorizationPolicy(PolicyBase):
     allowed_to_sign_up_email_based_subscriptions: Optional[bool] = None
     # Indicates whether the Admin Self-Serve Password Reset feature is enabled on the tenant.
     allowed_to_use_s_s_p_r: Optional[bool] = None
-    # To disable the use of the MSOnline PowerShell module set this property to true. This will also disable user-based access to the legacy service endpoint used by the MSOnline PowerShell module. This does not affect Azure AD Connect or Microsoft Graph.
+    # To disable the use of the MSOnline PowerShell module set this property to true. This will also disable user-based access to the legacy service endpoint used by the MSOnline PowerShell module. This doesn't affect Azure AD Connect or Microsoft Graph.
     block_msol_power_shell: Optional[bool] = None
     # The defaultUserRoleOverrides property
     default_user_role_overrides: Optional[List[DefaultUserRoleOverride]] = None

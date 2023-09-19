@@ -14,9 +14,9 @@ from .entity import Entity
 class AccessReviewDecision(Entity):
     # The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
     access_recommendation: Optional[str] = None
-    # The feature-generated id of the access review.
+    # The feature-generated ID of the access review.
     access_review_id: Optional[str] = None
-    # When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was auto-applied, the userPrincipalName is empty.
+    # When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was autoapplied, the userPrincipalName is empty.
     applied_by: Optional[UserIdentity] = None
     # The date and time when the review decision was applied.
     applied_date_time: Optional[datetime.datetime] = None

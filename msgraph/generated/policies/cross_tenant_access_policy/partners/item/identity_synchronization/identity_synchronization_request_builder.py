@@ -68,17 +68,16 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CrossTenantIdentitySyncPolicyPartner, error_mapping)
     
-    async def patch(self,body: Optional[CrossTenantIdentitySyncPolicyPartner] = None, request_configuration: Optional[IdentitySynchronizationRequestBuilderPatchRequestConfiguration] = None) -> Optional[CrossTenantIdentitySyncPolicyPartner]:
+    async def put(self,body: Optional[CrossTenantIdentitySyncPolicyPartner] = None, request_configuration: Optional[IdentitySynchronizationRequestBuilderPutRequestConfiguration] = None) -> Optional[CrossTenantIdentitySyncPolicyPartner]:
         """
-        Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        Update the navigation property identitySynchronization in policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantIdentitySyncPolicyPartner]
-        Find more info here: https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = self.to_patch_request_information(
+        request_info = self.to_put_request_information(
             body, request_configuration
         )
         from ......models.o_data_errors.o_data_error import ODataError
@@ -125,9 +124,9 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[CrossTenantIdentitySyncPolicyPartner] = None, request_configuration: Optional[IdentitySynchronizationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_put_request_information(self,body: Optional[CrossTenantIdentitySyncPolicyPartner] = None, request_configuration: Optional[IdentitySynchronizationRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        Update the navigation property identitySynchronization in policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +136,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.PATCH
+        request_info.http_method = Method.PUT
         request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
@@ -207,7 +206,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
-    class IdentitySynchronizationRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+    class IdentitySynchronizationRequestBuilderPutRequestConfiguration(BaseRequestConfiguration):
         from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
         """

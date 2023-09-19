@@ -62,7 +62,7 @@ class CaseExportOperation(CaseOperation):
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "exportOptions": lambda n : setattr(self, 'export_options', n.get_enum_value(ExportOptions)),
+            "exportOptions": lambda n : setattr(self, 'export_options', n.get_collection_of_enum_values(ExportOptions)),
             "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(ExportFileStructure)),
             "outputFolderId": lambda n : setattr(self, 'output_folder_id', n.get_str_value()),
             "outputName": lambda n : setattr(self, 'output_name', n.get_str_value()),

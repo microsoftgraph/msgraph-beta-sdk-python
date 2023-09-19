@@ -13,7 +13,7 @@ from .whois_base_record import WhoisBaseRecord
 class WhoisRecord(WhoisBaseRecord):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.whoisRecord"
-    # The history property
+    # The collection of historical records associated to this WHOIS object.
     history: Optional[List[WhoisHistoryRecord]] = None
     
     @staticmethod

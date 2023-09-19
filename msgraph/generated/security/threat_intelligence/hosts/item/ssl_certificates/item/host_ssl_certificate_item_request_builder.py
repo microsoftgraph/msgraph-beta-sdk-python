@@ -28,7 +28,7 @@ class HostSslCertificateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostSslCertificateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[HostSslCertificate]:
         """
-        Get sslCertificates from security
+        The hostSslCertificates that are associated with this host.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostSslCertificate]
         """
@@ -49,7 +49,7 @@ class HostSslCertificateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HostSslCertificateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get sslCertificates from security
+        The hostSslCertificates that are associated with this host.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +77,7 @@ class HostSslCertificateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HostSslCertificateItemRequestBuilderGetQueryParameters():
         """
-        Get sslCertificates from security
+        The hostSslCertificates that are associated with this host.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .parent_host_pairs.parent_host_pairs_request_builder import ParentHostPairsRequestBuilder
     from .passive_dns.passive_dns_request_builder import PassiveDnsRequestBuilder
     from .passive_dns_reverse.passive_dns_reverse_request_builder import PassiveDnsReverseRequestBuilder
+    from .ports.ports_request_builder import PortsRequestBuilder
     from .reputation.reputation_request_builder import ReputationRequestBuilder
     from .ssl_certificates.ssl_certificates_request_builder import SslCertificatesRequestBuilder
     from .subdomains.subdomains_request_builder import SubdomainsRequestBuilder
@@ -227,6 +228,15 @@ class HostItemRequestBuilder(BaseRequestBuilder):
         from .passive_dns_reverse.passive_dns_reverse_request_builder import PassiveDnsReverseRequestBuilder
 
         return PassiveDnsReverseRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ports(self) -> PortsRequestBuilder:
+        """
+        Provides operations to manage the ports property of the microsoft.graph.security.host entity.
+        """
+        from .ports.ports_request_builder import PortsRequestBuilder
+
+        return PortsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def reputation(self) -> ReputationRequestBuilder:

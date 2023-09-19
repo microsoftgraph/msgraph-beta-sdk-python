@@ -49,7 +49,7 @@ class TaskRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TaskRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookDocumentTask]:
         """
-        Get task from drives
+        The task associated with the comment thread.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookDocumentTask]
         """
@@ -109,7 +109,7 @@ class TaskRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TaskRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get task from drives
+        The task associated with the comment thread.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -185,7 +185,7 @@ class TaskRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TaskRequestBuilderGetQueryParameters():
         """
-        Get task from drives
+        The task associated with the comment thread.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

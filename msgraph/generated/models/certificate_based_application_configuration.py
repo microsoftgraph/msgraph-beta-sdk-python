@@ -12,9 +12,9 @@ from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuth
 class CertificateBasedApplicationConfiguration(TrustedCertificateAuthorityAsEntityBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.certificateBasedApplicationConfiguration"
-    # The description property
+    # The description of the trusted certificate authorities.
     description: Optional[str] = None
-    # The displayName property
+    # The display name of the trusted certificate authorities.
     display_name: Optional[str] = None
     
     @staticmethod

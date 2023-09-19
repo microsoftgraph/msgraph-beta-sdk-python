@@ -42,7 +42,7 @@ class RequestSignatureVerification(AdditionalDataHolder, BackedModel, Parsable):
         from .weak_algorithms import WeakAlgorithms
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedWeakAlgorithms": lambda n : setattr(self, 'allowed_weak_algorithms', n.get_enum_value(WeakAlgorithms)),
+            "allowedWeakAlgorithms": lambda n : setattr(self, 'allowed_weak_algorithms', n.get_collection_of_enum_values(WeakAlgorithms)),
             "isSignedRequestRequired": lambda n : setattr(self, 'is_signed_request_required', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

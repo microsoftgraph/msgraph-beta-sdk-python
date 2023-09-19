@@ -45,7 +45,7 @@ class RoleDefinitionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[GovernanceRoleDefinitionCollectionResponse]:
         """
-        The collection of role defintions for the resource.
+        The collection of role definitions for the resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GovernanceRoleDefinitionCollectionResponse]
         """
@@ -90,7 +90,7 @@ class RoleDefinitionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of role defintions for the resource.
+        The collection of role definitions for the resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class RoleDefinitionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RoleDefinitionsRequestBuilderGetQueryParameters():
         """
-        The collection of role defintions for the resource.
+        The collection of role definitions for the resource.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

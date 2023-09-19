@@ -75,7 +75,7 @@ class SensitivityLabel(Entity):
         from .sensitivity_label_target import SensitivityLabelTarget
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(SensitivityLabelTarget)),
+            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_collection_of_enum_values(SensitivityLabelTarget)),
             "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(ApplicationMode)),
             "assignedPolicies": lambda n : setattr(self, 'assigned_policies', n.get_collection_of_object_values(LabelPolicy)),
             "autoLabeling": lambda n : setattr(self, 'auto_labeling', n.get_object_value(AutoLabeling)),

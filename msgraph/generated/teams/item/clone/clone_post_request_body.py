@@ -55,7 +55,7 @@ class ClonePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "mailNickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
-            "partsToClone": lambda n : setattr(self, 'parts_to_clone', n.get_enum_value(ClonableTeamParts)),
+            "partsToClone": lambda n : setattr(self, 'parts_to_clone', n.get_collection_of_enum_values(ClonableTeamParts)),
             "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(TeamVisibilityType)),
         }
         return fields

@@ -185,12 +185,12 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
             """
             if not original_name:
                 raise TypeError("original_name cannot be null.")
-            if original_name == "end":
-                return "end"
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
                 return "%24select"
+            if original_name == "end":
+                return "end"
             if original_name == "start":
                 return "start"
             return original_name

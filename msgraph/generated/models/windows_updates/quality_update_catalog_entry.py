@@ -16,19 +16,19 @@ from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
 class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.qualityUpdateCatalogEntry"
-    # The catalogName property
+    # The catalog name of the content. Read-only.
     catalog_name: Optional[str] = None
-    # The cveSeverityInformation property
+    # Severity information of the Common Vulnerabilities and Exposures associated with the content.
     cve_severity_information: Optional[QualityUpdateCveSeverityInformation] = None
     # Indicates whether the content can be deployed as an expedited quality update. Read-only.
     is_expeditable: Optional[bool] = None
-    # The productRevisions property
+    # The operating system product revisions that are released as part of this quality update.
     product_revisions: Optional[List[ProductRevision]] = None
-    # The qualityUpdateCadence property
+    # The publishing cadence of the quality update. Possible values are: monthly, outOfBand, unknownFutureValue. Read-only.
     quality_update_cadence: Optional[QualityUpdateCadence] = None
     # The qualityUpdateClassification property
     quality_update_classification: Optional[QualityUpdateClassification] = None
-    # The shortName property
+    # The short name of the content. Read-only.
     short_name: Optional[str] = None
     
     @staticmethod

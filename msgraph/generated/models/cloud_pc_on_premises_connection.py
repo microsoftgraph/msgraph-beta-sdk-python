@@ -88,7 +88,7 @@ class CloudPcOnPremisesConnection(Entity):
             "healthCheckStatus": lambda n : setattr(self, 'health_check_status', n.get_enum_value(CloudPcOnPremisesConnectionStatus)),
             "healthCheckStatusDetails": lambda n : setattr(self, 'health_check_status_details', n.get_object_value(CloudPcOnPremisesConnectionStatusDetails)),
             "inUse": lambda n : setattr(self, 'in_use', n.get_bool_value()),
-            "managedBy": lambda n : setattr(self, 'managed_by', n.get_enum_value(CloudPcManagementService)),
+            "managedBy": lambda n : setattr(self, 'managed_by', n.get_collection_of_enum_values(CloudPcManagementService)),
             "organizationalUnit": lambda n : setattr(self, 'organizational_unit', n.get_str_value()),
             "resourceGroupId": lambda n : setattr(self, 'resource_group_id', n.get_str_value()),
             "subnetId": lambda n : setattr(self, 'subnet_id', n.get_str_value()),

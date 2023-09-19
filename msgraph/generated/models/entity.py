@@ -1219,6 +1219,7 @@ if TYPE_CHECKING:
     from .security.host_cookie import HostCookie
     from .security.hostname import Hostname
     from .security.host_pair import HostPair
+    from .security.host_port import HostPort
     from .security.host_reputation import HostReputation
     from .security.host_ssl_certificate import HostSslCertificate
     from .security.host_tracker import HostTracker
@@ -1496,6 +1497,7 @@ if TYPE_CHECKING:
     from .user_settings import UserSettings
     from .user_sign_in_insight import UserSignInInsight
     from .user_teamwork import UserTeamwork
+    from .user_virtual_events_root import UserVirtualEventsRoot
     from .vertical_section import VerticalSection
     from .virtual_endpoint import VirtualEndpoint
     from .virtual_event import VirtualEvent
@@ -1582,6 +1584,7 @@ if TYPE_CHECKING:
     from .windows_kiosk_configuration import WindowsKioskConfiguration
     from .windows_malware_information import WindowsMalwareInformation
     from .windows_managed_app_protection import WindowsManagedAppProtection
+    from .windows_managed_app_registration import WindowsManagedAppRegistration
     from .windows_managed_device import WindowsManagedDevice
     from .windows_management_app import WindowsManagementApp
     from .windows_management_app_health_state import WindowsManagementAppHealthState
@@ -6614,6 +6617,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.host_pair import HostPair
 
             return HostPair()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostPort".casefold():
+            from .security.host_port import HostPort
+
+            return HostPort()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostReputation".casefold():
             from .security.host_reputation import HostReputation
 
@@ -7731,6 +7738,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_teamwork import UserTeamwork
 
             return UserTeamwork()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userVirtualEventsRoot".casefold():
+            from .user_virtual_events_root import UserVirtualEventsRoot
+
+            return UserVirtualEventsRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.verticalSection".casefold():
             from .vertical_section import VerticalSection
 
@@ -8076,6 +8087,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_managed_app_protection import WindowsManagedAppProtection
 
             return WindowsManagedAppProtection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsManagedAppRegistration".casefold():
+            from .windows_managed_app_registration import WindowsManagedAppRegistration
+
+            return WindowsManagedAppRegistration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsManagedDevice".casefold():
             from .windows_managed_device import WindowsManagedDevice
 
@@ -9734,6 +9749,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.host_cookie import HostCookie
         from .security.hostname import Hostname
         from .security.host_pair import HostPair
+        from .security.host_port import HostPort
         from .security.host_reputation import HostReputation
         from .security.host_ssl_certificate import HostSslCertificate
         from .security.host_tracker import HostTracker
@@ -10011,6 +10027,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_settings import UserSettings
         from .user_sign_in_insight import UserSignInInsight
         from .user_teamwork import UserTeamwork
+        from .user_virtual_events_root import UserVirtualEventsRoot
         from .vertical_section import VerticalSection
         from .virtual_endpoint import VirtualEndpoint
         from .virtual_event import VirtualEvent
@@ -10097,6 +10114,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_kiosk_configuration import WindowsKioskConfiguration
         from .windows_malware_information import WindowsMalwareInformation
         from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_managed_app_registration import WindowsManagedAppRegistration
         from .windows_managed_device import WindowsManagedDevice
         from .windows_management_app import WindowsManagementApp
         from .windows_management_app_health_state import WindowsManagementAppHealthState
@@ -11421,6 +11439,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.host_cookie import HostCookie
         from .security.hostname import Hostname
         from .security.host_pair import HostPair
+        from .security.host_port import HostPort
         from .security.host_reputation import HostReputation
         from .security.host_ssl_certificate import HostSslCertificate
         from .security.host_tracker import HostTracker
@@ -11698,6 +11717,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_settings import UserSettings
         from .user_sign_in_insight import UserSignInInsight
         from .user_teamwork import UserTeamwork
+        from .user_virtual_events_root import UserVirtualEventsRoot
         from .vertical_section import VerticalSection
         from .virtual_endpoint import VirtualEndpoint
         from .virtual_event import VirtualEvent
@@ -11784,6 +11804,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_kiosk_configuration import WindowsKioskConfiguration
         from .windows_malware_information import WindowsMalwareInformation
         from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_managed_app_registration import WindowsManagedAppRegistration
         from .windows_managed_device import WindowsManagedDevice
         from .windows_management_app import WindowsManagementApp
         from .windows_management_app_health_state import WindowsManagementAppHealthState

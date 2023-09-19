@@ -75,7 +75,7 @@ class TargetedManagedAppProtection(ManagedAppProtection):
             "appGroupType": lambda n : setattr(self, 'app_group_type', n.get_enum_value(TargetedManagedAppGroupType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(TargetedManagedAppPolicyAssignment)),
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
-            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_enum_value(AppManagementLevel)),
+            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_collection_of_enum_values(AppManagementLevel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

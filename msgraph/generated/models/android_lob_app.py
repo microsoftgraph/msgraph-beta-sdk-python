@@ -61,7 +61,7 @@ class AndroidLobApp(MobileLobApp):
             "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
             "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(AndroidMinimumOperatingSystem)),
             "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
-            "targetedPlatforms": lambda n : setattr(self, 'targeted_platforms', n.get_enum_value(AndroidTargetedPlatforms)),
+            "targetedPlatforms": lambda n : setattr(self, 'targeted_platforms', n.get_collection_of_enum_values(AndroidTargetedPlatforms)),
             "versionCode": lambda n : setattr(self, 'version_code', n.get_str_value()),
             "versionName": lambda n : setattr(self, 'version_name', n.get_str_value()),
         }

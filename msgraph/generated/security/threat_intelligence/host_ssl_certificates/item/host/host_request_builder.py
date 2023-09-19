@@ -28,7 +28,7 @@ class HostRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostRequestBuilderGetRequestConfiguration] = None) -> Optional[Host]:
         """
-        Get host from security
+        The host for this hostSslCertificate.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Host]
         """
@@ -49,7 +49,7 @@ class HostRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HostRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get host from security
+        The host for this hostSslCertificate.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +77,7 @@ class HostRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HostRequestBuilderGetQueryParameters():
         """
-        Get host from security
+        The host for this hostSslCertificate.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

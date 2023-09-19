@@ -30,10 +30,10 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an azureDataLakeConnector object.
+        Delete an industryDataConnector object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,10 +50,10 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[IndustryDataConnector]:
         """
-        Read the properties and relationships of an industryDataConnector object.
+        Read the properties and relationships of an azureDataLakeConnector object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnector]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -97,7 +97,7 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an azureDataLakeConnector object.
+        Delete an industryDataConnector object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an industryDataConnector object.
+        Read the properties and relationships of an azureDataLakeConnector object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -188,7 +188,7 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IndustryDataConnectorItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an industryDataConnector object.
+        Read the properties and relationships of an azureDataLakeConnector object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

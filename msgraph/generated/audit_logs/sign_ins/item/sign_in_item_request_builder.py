@@ -47,7 +47,7 @@ class SignInItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SignInItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SignIn]:
         """
-        Get a signIn object that contains a specific user sign-in event for your tenant. This includes sign-ins where a user is asked to enter a username or password, and session tokens.
+        Get a signIn object that contains a specific user sign-in event for your tenant that includes sign-ins where a user is asked to enter a username or password, and session tokens.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SignIn]
         Find more info here: https://learn.microsoft.com/graph/api/signin-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class SignInItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SignInItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a signIn object that contains a specific user sign-in event for your tenant. This includes sign-ins where a user is asked to enter a username or password, and session tokens.
+        Get a signIn object that contains a specific user sign-in event for your tenant that includes sign-ins where a user is asked to enter a username or password, and session tokens.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +166,7 @@ class SignInItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SignInItemRequestBuilderGetQueryParameters():
         """
-        Get a signIn object that contains a specific user sign-in event for your tenant. This includes sign-ins where a user is asked to enter a username or password, and session tokens.
+        Get a signIn object that contains a specific user sign-in event for your tenant that includes sign-ins where a user is asked to enter a username or password, and session tokens.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

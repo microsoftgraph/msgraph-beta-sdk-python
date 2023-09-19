@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class CertificateAuthorityPath(Entity):
-    # The certificateBasedApplicationConfigurations property
+    # Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
     certificate_based_application_configurations: Optional[List[CertificateBasedApplicationConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -91,8 +91,6 @@ class GetAllMessagesRequestBuilder(BaseRequestBuilder):
                 return "%24count"
             if original_name == "filter":
                 return "%24filter"
-            if original_name == "model":
-                return "model"
             if original_name == "orderby":
                 return "%24orderby"
             if original_name == "search":
@@ -103,6 +101,8 @@ class GetAllMessagesRequestBuilder(BaseRequestBuilder):
                 return "%24skip"
             if original_name == "top":
                 return "%24top"
+            if original_name == "model":
+                return "model"
             return original_name
         
         # Include count of items

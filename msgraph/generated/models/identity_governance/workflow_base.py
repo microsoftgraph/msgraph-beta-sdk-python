@@ -32,9 +32,9 @@ class WorkflowBase(AdditionalDataHolder, BackedModel, Parsable):
     display_name: Optional[str] = None
     # Defines when and for who the workflow will run.
     execution_conditions: Optional[WorkflowExecutionConditions] = None
-    # Whether the workflow is enabled or disabled. If this setting is true, the workflow can be run on demand or on schedule when isSchedulingEnabled is true.
+    # Determines whether the workflow is enabled or disabled. If this setting is true, the workflow can be run on demand or on schedule when isSchedulingEnabled is true.
     is_enabled: Optional[bool] = None
-    # If true, the Lifecycle Workflow engine executes the workflow based on the schedule defined by tenant settings. Cannot be true for a disabled workflow (where isEnabled is false).
+    # If true, the Lifecycle Workflow engine executes the workflow based on the schedule defined by tenant settings. Can't be true for a disabled workflow (where isEnabled is false).
     is_scheduling_enabled: Optional[bool] = None
     # The user who last modified the workflow.
     last_modified_by: Optional[User] = None

@@ -46,6 +46,8 @@ class Site(BaseItem):
     external_columns: Optional[List[ColumnDefinition]] = None
     # The informationProtection property
     information_protection: Optional[InformationProtection] = None
+    # The isPersonalSite property
+    is_personal_site: Optional[bool] = None
     # Used to address any item contained in this site. This collection cannot be enumerated.
     items: Optional[List[BaseItem]] = None
     # The collection of lists under this site.
@@ -133,6 +135,7 @@ class Site(BaseItem):
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_object_values(Drive)),
             "externalColumns": lambda n : setattr(self, 'external_columns', n.get_collection_of_object_values(ColumnDefinition)),
             "informationProtection": lambda n : setattr(self, 'information_protection', n.get_object_value(InformationProtection)),
+            "isPersonalSite": lambda n : setattr(self, 'is_personal_site', n.get_bool_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(BaseItem)),
             "lists": lambda n : setattr(self, 'lists', n.get_collection_of_object_values(List_)),
             "onenote": lambda n : setattr(self, 'onenote', n.get_object_value(Onenote)),
@@ -168,6 +171,7 @@ class Site(BaseItem):
         writer.write_collection_of_object_values("drives", self.drives)
         writer.write_collection_of_object_values("externalColumns", self.external_columns)
         writer.write_object_value("informationProtection", self.information_protection)
+        writer.write_bool_value("isPersonalSite", self.is_personal_site)
         writer.write_collection_of_object_values("items", self.items)
         writer.write_collection_of_object_values("lists", self.lists)
         writer.write_object_value("onenote", self.onenote)

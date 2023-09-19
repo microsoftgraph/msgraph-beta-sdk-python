@@ -28,9 +28,10 @@ class RetentionLabelRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RetentionLabelRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property retentionLabel for drives
+        Remove a retention label from a driveItem. For information about retention labels from an administrator's perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/driveitem-removeretentionlabel?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -47,7 +48,7 @@ class RetentionLabelRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RetentionLabelRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemRetentionLabel]:
         """
-        Get retentionLabel from drives
+        Information about retention label and settings enforced on the driveItem. Read-write.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemRetentionLabel]
         """
@@ -68,10 +69,11 @@ class RetentionLabelRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ItemRetentionLabel] = None, request_configuration: Optional[RetentionLabelRequestBuilderPatchRequestConfiguration] = None) -> Optional[ItemRetentionLabel]:
         """
-        Update the navigation property retentionLabel in drives
+        Apply (set) a retention label on a driveItem (files and folders). Retention labels don't need to be published in a retention label policy to be applied using this method. When a retention label is applied to a folder, all the items in the folder are tagged with the same retention label. Conflict resolution is based on the following principle: explicit wins over implicit. For example, if a file in the folder has already been explicitly tagged with a label, that file doesn't inherit the label of the parent. For information about retention labels from an administrator's perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemRetentionLabel]
+        Find more info here: https://learn.microsoft.com/graph/api/driveitem-setretentionlabel?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class RetentionLabelRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RetentionLabelRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property retentionLabel for drives
+        Remove a retention label from a driveItem. For information about retention labels from an administrator's perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +109,7 @@ class RetentionLabelRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RetentionLabelRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get retentionLabel from drives
+        Information about retention label and settings enforced on the driveItem. Read-write.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -124,7 +126,7 @@ class RetentionLabelRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ItemRetentionLabel] = None, request_configuration: Optional[RetentionLabelRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property retentionLabel in drives
+        Apply (set) a retention label on a driveItem (files and folders). Retention labels don't need to be published in a retention label policy to be applied using this method. When a retention label is applied to a folder, all the items in the folder are tagged with the same retention label. Conflict resolution is based on the following principle: explicit wins over implicit. For example, if a file in the folder has already been explicitly tagged with a label, that file doesn't inherit the label of the parent. For information about retention labels from an administrator's perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -165,7 +167,7 @@ class RetentionLabelRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RetentionLabelRequestBuilderGetQueryParameters():
         """
-        Get retentionLabel from drives
+        Information about retention label and settings enforced on the driveItem. Read-write.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

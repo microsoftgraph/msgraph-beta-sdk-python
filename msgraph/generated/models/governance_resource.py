@@ -31,7 +31,7 @@ class GovernanceResource(Entity):
     role_assignment_requests: Optional[List[GovernanceRoleAssignmentRequest]] = None
     # The collection of role assignments for the resource.
     role_assignments: Optional[List[GovernanceRoleAssignment]] = None
-    # The collection of role defintions for the resource.
+    # The collection of role definitions for the resource.
     role_definitions: Optional[List[GovernanceRoleDefinition]] = None
     # The collection of role settings for the resource.
     role_settings: Optional[List[GovernanceRoleSetting]] = None

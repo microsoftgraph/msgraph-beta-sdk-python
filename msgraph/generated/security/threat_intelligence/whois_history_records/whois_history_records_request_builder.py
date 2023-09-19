@@ -45,7 +45,7 @@ class WhoisHistoryRecordsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WhoisHistoryRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[WhoisHistoryRecordCollectionResponse]:
         """
-        Get whoisHistoryRecords from security
+        Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WhoisHistoryRecordCollectionResponse]
         """
@@ -90,7 +90,7 @@ class WhoisHistoryRecordsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WhoisHistoryRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get whoisHistoryRecords from security
+        Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class WhoisHistoryRecordsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WhoisHistoryRecordsRequestBuilderGetQueryParameters():
         """
-        Get whoisHistoryRecords from security
+        Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

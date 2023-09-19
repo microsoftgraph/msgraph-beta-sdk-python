@@ -48,7 +48,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
     
     async def get(self,request_configuration: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
         """
-        The various configurations of an alert for Azure AD roles. The configurations are pre-defined and cannot be created or deleted, but some of the configurations can be modified.
+        The various configurations of an alert for Azure AD roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRoleManagementAlertConfiguration]
         """
@@ -108,7 +108,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The various configurations of an alert for Azure AD roles. The configurations are pre-defined and cannot be created or deleted, but some of the configurations can be modified.
+        The various configurations of an alert for Azure AD roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -175,7 +175,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
     @dataclass
     class UnifiedRoleManagementAlertConfigurationItemRequestBuilderGetQueryParameters():
         """
-        The various configurations of an alert for Azure AD roles. The configurations are pre-defined and cannot be created or deleted, but some of the configurations can be modified.
+        The various configurations of an alert for Azure AD roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
