@@ -147,7 +147,7 @@ class AssignmentScheduleInstancesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AssignmentScheduleInstancesRequestBuilder(raw_url, self.request_adapter)
+        return AssignmentScheduleInstancesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

@@ -17,7 +17,7 @@ class LicenseAssignmentState(AdditionalDataHolder, BackedModel, Parsable):
     assigned_by_group: Optional[str] = None
     # The service plans that are disabled in this assignment. Read-Only.
     disabled_plans: Optional[List[UUID]] = None
-    # License assignment failure error. If the license is assigned successfully, this field will be Null. Read-Only. The possible values are CountViolation, MutuallyExclusiveViolation, DependencyViolation, ProhibitedInUsageLocationViolation, UniquenessViolation, and Other. For more information on how to identify and resolve license assignment errors see here.
+    # License assignment failure error. If the license is assigned successfully, this field will be Null. Read-Only. The possible values are CountViolation, MutuallyExclusiveViolation, DependencyViolation, ProhibitedInUsageLocationViolation, UniquenessViolation, and Other. For more information on how to identify and resolve license assignment errors, see here.
     error: Optional[str] = None
     # The timestamp when the state of the license assignment was last updated.
     last_updated_date_time: Optional[datetime.datetime] = None

@@ -187,7 +187,7 @@ class ManagedTenantsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedTenantsRequestBuilder(raw_url, self.request_adapter)
+        return ManagedTenantsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def aggregated_policy_compliances(self) -> AggregatedPolicyCompliancesRequestBuilder:

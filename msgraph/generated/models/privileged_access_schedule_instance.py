@@ -13,11 +13,11 @@ from .entity import Entity
 
 @dataclass
 class PrivilegedAccessScheduleInstance(Entity):
-    # When the schedule instance ends. Required.
+    # When the schedule instance ends, and is required.
     end_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # When this instance starts. Required.
+    # When this instance starts, and is required.
     start_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

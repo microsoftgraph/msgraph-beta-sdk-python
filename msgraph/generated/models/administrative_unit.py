@@ -16,7 +16,7 @@ class AdministrativeUnit(DirectoryObject):
     odata_type: Optional[str] = "#microsoft.graph.administrativeUnit"
     # An optional description for the administrative unit. Supports $filter (eq, ne, in, startsWith), $search.
     description: Optional[str] = None
-    # Display name for the administrative unit. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    # Display name for the administrative unit. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
     # The collection of open extensions defined for this administrative unit. Nullable.
     extensions: Optional[List[Extension]] = None

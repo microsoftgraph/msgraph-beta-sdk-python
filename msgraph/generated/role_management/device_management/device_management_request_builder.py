@@ -153,7 +153,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def resource_namespaces(self) -> ResourceNamespacesRequestBuilder:

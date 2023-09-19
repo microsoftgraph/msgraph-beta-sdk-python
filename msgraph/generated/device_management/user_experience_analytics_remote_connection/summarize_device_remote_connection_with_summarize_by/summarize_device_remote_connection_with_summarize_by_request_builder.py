@@ -73,7 +73,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(raw_url, self.request_adapter)
+        return SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetQueryParameters():

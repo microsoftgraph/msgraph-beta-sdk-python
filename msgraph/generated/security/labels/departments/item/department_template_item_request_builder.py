@@ -152,7 +152,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DepartmentTemplateItemRequestBuilder(raw_url, self.request_adapter)
+        return DepartmentTemplateItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

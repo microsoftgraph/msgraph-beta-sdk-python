@@ -151,7 +151,7 @@ class JournalLineItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return JournalLineItemRequestBuilder(raw_url, self.request_adapter)
+        return JournalLineItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def account(self) -> AccountRequestBuilder:

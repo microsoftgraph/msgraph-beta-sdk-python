@@ -13,7 +13,7 @@ from ..entity import Entity
 class TenantStatus(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
-    # Reflects a message to the user in case of an error.
+    # Reflects a message to the user if there's an error.
     onboarding_error_message: Optional[str] = None
     # The onboardingStatus property
     onboarding_status: Optional[OnboardingStatus] = None

@@ -54,7 +54,7 @@ class CloudPcSupportedRegion(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(CloudPcRegionGroup)),
             "regionStatus": lambda n : setattr(self, 'region_status', n.get_enum_value(CloudPcSupportedRegionStatus)),
-            "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_enum_value(CloudPcManagementService)),
+            "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_collection_of_enum_values(CloudPcManagementService)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

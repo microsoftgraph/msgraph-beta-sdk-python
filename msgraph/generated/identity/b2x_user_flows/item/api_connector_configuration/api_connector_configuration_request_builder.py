@@ -31,7 +31,7 @@ class ApiConnectorConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ApiConnectorConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[UserFlowApiConnectorConfiguration]:
         """
-        Configuration for enabling an API connector for use as part of the self-service sign up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
+        Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserFlowApiConnectorConfiguration]
         """
@@ -52,7 +52,7 @@ class ApiConnectorConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ApiConnectorConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Configuration for enabling an API connector for use as part of the self-service sign up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
+        Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -75,7 +75,7 @@ class ApiConnectorConfigurationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ApiConnectorConfigurationRequestBuilder(raw_url, self.request_adapter)
+        return ApiConnectorConfigurationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def post_attribute_collection(self) -> PostAttributeCollectionRequestBuilder:
@@ -107,7 +107,7 @@ class ApiConnectorConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApiConnectorConfigurationRequestBuilderGetQueryParameters():
         """
-        Configuration for enabling an API connector for use as part of the self-service sign up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
+        Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

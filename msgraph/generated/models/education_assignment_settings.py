@@ -15,7 +15,7 @@ class EducationAssignmentSettings(Entity):
     grading_categories: Optional[List[EducationGradingCategory]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates whether turn-in celebration animation will be shown. If true, the animation will not be shown. The default value is false.
+    # Indicates whether turn-in celebration animation will be shown. If true, the animation won't be shown. The default value is false.
     submission_animation_disabled: Optional[bool] = None
     
     @staticmethod

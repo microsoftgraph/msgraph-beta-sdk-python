@@ -159,7 +159,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SynchronizationJobItemRequestBuilder(raw_url, self.request_adapter)
+        return SynchronizationJobItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def bulk_upload(self) -> BulkUploadRequestBuilder:

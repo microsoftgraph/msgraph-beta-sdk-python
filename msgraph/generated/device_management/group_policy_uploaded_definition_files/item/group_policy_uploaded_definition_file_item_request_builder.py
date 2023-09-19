@@ -157,7 +157,7 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupPolicyUploadedDefinitionFileItemRequestBuilder(raw_url, self.request_adapter)
+        return GroupPolicyUploadedDefinitionFileItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def add_language_files(self) -> AddLanguageFilesRequestBuilder:

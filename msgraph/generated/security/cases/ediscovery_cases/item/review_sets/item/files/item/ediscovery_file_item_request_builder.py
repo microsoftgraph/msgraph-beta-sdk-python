@@ -155,7 +155,7 @@ class EdiscoveryFileItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EdiscoveryFileItemRequestBuilder(raw_url, self.request_adapter)
+        return EdiscoveryFileItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def content(self) -> ContentRequestBuilder:

@@ -14,7 +14,7 @@ class TimeClockSettings(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The aprroved location of the timeClock.
+    # The approved location of the timeClock.
     approved_location: Optional[GeoCoordinates] = None
     # The OdataType property
     odata_type: Optional[str] = None

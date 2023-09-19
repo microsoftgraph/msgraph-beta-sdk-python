@@ -73,7 +73,7 @@ class GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder(BaseRequestBu
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilderGetQueryParameters():

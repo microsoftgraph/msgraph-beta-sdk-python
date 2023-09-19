@@ -48,10 +48,10 @@ class NamedLocationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[NamedLocationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[NamedLocation]:
         """
-        Retrieve the properties and relationships of a namedLocation object.
+        Retrieve the properties and relationships of an ipNamedLocation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NamedLocation]
-        Find more info here: https://learn.microsoft.com/graph/api/namedlocation-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -110,7 +110,7 @@ class NamedLocationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[NamedLocationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a namedLocation object.
+        Retrieve the properties and relationships of an ipNamedLocation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class NamedLocationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return NamedLocationItemRequestBuilder(raw_url, self.request_adapter)
+        return NamedLocationItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class NamedLocationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class NamedLocationItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a namedLocation object.
+        Retrieve the properties and relationships of an ipNamedLocation object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

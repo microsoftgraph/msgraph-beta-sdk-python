@@ -80,13 +80,13 @@ class ManagedDeviceEncryptionState(Entity):
         from .file_vault_state import FileVaultState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "advancedBitLockerStates": lambda n : setattr(self, 'advanced_bit_locker_states', n.get_enum_value(AdvancedBitLockerState)),
+            "advancedBitLockerStates": lambda n : setattr(self, 'advanced_bit_locker_states', n.get_collection_of_enum_values(AdvancedBitLockerState)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(DeviceTypes)),
             "encryptionPolicySettingState": lambda n : setattr(self, 'encryption_policy_setting_state', n.get_enum_value(ComplianceStatus)),
             "encryptionReadinessState": lambda n : setattr(self, 'encryption_readiness_state', n.get_enum_value(EncryptionReadinessState)),
             "encryptionState": lambda n : setattr(self, 'encryption_state', n.get_enum_value(EncryptionState)),
-            "fileVaultStates": lambda n : setattr(self, 'file_vault_states', n.get_enum_value(FileVaultState)),
+            "fileVaultStates": lambda n : setattr(self, 'file_vault_states', n.get_collection_of_enum_values(FileVaultState)),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
             "policyDetails": lambda n : setattr(self, 'policy_details', n.get_collection_of_object_values(EncryptionReportPolicyDetails)),
             "tpmSpecificationVersion": lambda n : setattr(self, 'tpm_specification_version', n.get_str_value()),

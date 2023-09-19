@@ -1660,7 +1660,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReportsRequestBuilder(raw_url, self.request_adapter)
+        return ReportsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def app_credential_sign_in_activities(self) -> AppCredentialSignInActivitiesRequestBuilder:

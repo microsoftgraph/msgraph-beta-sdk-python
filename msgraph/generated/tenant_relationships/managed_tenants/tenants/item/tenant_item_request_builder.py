@@ -153,7 +153,7 @@ class TenantItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantItemRequestBuilder(raw_url, self.request_adapter)
+        return TenantItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_managed_tenants_offboard_tenant(self) -> MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder:

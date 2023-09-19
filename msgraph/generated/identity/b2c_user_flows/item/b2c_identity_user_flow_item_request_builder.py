@@ -157,7 +157,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return B2cIdentityUserFlowItemRequestBuilder(raw_url, self.request_adapter)
+        return B2cIdentityUserFlowItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def identity_providers(self) -> IdentityProvidersRequestBuilder:

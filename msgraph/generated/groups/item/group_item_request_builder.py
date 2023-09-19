@@ -197,7 +197,7 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupItemRequestBuilder(raw_url, self.request_adapter)
+        return GroupItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def accepted_senders(self) -> AcceptedSendersRequestBuilder:

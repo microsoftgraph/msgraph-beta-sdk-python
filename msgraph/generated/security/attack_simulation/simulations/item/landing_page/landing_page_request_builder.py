@@ -72,7 +72,7 @@ class LandingPageRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return LandingPageRequestBuilder(raw_url, self.request_adapter)
+        return LandingPageRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class LandingPageRequestBuilderGetQueryParameters():

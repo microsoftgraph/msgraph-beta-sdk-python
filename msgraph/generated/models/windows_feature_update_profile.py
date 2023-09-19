@@ -30,6 +30,8 @@ class WindowsFeatureUpdateProfile(Entity):
     end_of_support_date: Optional[datetime.datetime] = None
     # The feature update version that will be deployed to the devices targeted by this profile. The version could be any supported version for example 1709, 1803 or 1809 and so on.
     feature_update_version: Optional[str] = None
+    # If true, the latest Microsoft Windows 10 update will be installed on devices ineligible for Microsoft Windows 11
+    install_latest_windows10_on_windows11_ineligible_device: Optional[bool] = None
     # The date time that the profile was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -71,6 +73,7 @@ class WindowsFeatureUpdateProfile(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "endOfSupportDate": lambda n : setattr(self, 'end_of_support_date', n.get_datetime_value()),
             "featureUpdateVersion": lambda n : setattr(self, 'feature_update_version', n.get_str_value()),
+            "installLatestWindows10OnWindows11IneligibleDevice": lambda n : setattr(self, 'install_latest_windows10_on_windows11_ineligible_device', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "rolloutSettings": lambda n : setattr(self, 'rollout_settings', n.get_object_value(WindowsUpdateRolloutSettings)),
@@ -95,6 +98,7 @@ class WindowsFeatureUpdateProfile(Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("endOfSupportDate", self.end_of_support_date)
         writer.write_str_value("featureUpdateVersion", self.feature_update_version)
+        writer.write_bool_value("installLatestWindows10OnWindows11IneligibleDevice", self.install_latest_windows10_on_windows11_ineligible_device)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
         writer.write_object_value("rolloutSettings", self.rollout_settings)

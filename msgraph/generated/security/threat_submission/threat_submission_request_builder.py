@@ -154,7 +154,7 @@ class ThreatSubmissionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ThreatSubmissionRequestBuilder(raw_url, self.request_adapter)
+        return ThreatSubmissionRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def email_threats(self) -> EmailThreatsRequestBuilder:

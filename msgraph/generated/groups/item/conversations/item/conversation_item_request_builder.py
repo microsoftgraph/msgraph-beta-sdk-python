@@ -29,10 +29,10 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ConversationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a conversation object.
+        Delete conversation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/group-delete-conversation?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/conversation-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -71,7 +71,7 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ConversationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a conversation object.
+        Delete conversation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConversationItemRequestBuilder(raw_url, self.request_adapter)
+        return ConversationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def threads(self) -> ThreadsRequestBuilder:

@@ -29,7 +29,7 @@ class InferenceClassificationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[InferenceClassificationRequestBuilderGetRequestConfiguration] = None) -> Optional[InferenceClassification]:
         """
-        Relevance classification of the user's messages based on explicit designations which override inferred relevance or importance.
+        Relevance classification of the user's messages based on explicit designations that override inferred relevance or importance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InferenceClassification]
         """
@@ -74,7 +74,7 @@ class InferenceClassificationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[InferenceClassificationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Relevance classification of the user's messages based on explicit designations which override inferred relevance or importance.
+        Relevance classification of the user's messages based on explicit designations that override inferred relevance or importance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +117,7 @@ class InferenceClassificationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return InferenceClassificationRequestBuilder(raw_url, self.request_adapter)
+        return InferenceClassificationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def overrides(self) -> OverridesRequestBuilder:
@@ -131,7 +131,7 @@ class InferenceClassificationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InferenceClassificationRequestBuilderGetQueryParameters():
         """
-        Relevance classification of the user's messages based on explicit designations which override inferred relevance or importance.
+        Relevance classification of the user's messages based on explicit designations that override inferred relevance or importance.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

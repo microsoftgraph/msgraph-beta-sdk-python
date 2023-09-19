@@ -151,7 +151,7 @@ class ProgramRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ProgramRequestBuilder(raw_url, self.request_adapter)
+        return ProgramRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def controls(self) -> ControlsRequestBuilder:

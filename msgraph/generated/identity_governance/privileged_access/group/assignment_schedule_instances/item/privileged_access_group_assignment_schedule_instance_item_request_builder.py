@@ -154,7 +154,7 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(BaseRequ
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(raw_url, self.request_adapter)
+        return PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activated_using(self) -> ActivatedUsingRequestBuilder:

@@ -152,7 +152,7 @@ class HostedContentRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HostedContentRequestBuilder(raw_url, self.request_adapter)
+        return HostedContentRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def content(self) -> ContentRequestBuilder:

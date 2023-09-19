@@ -27,7 +27,7 @@ class RetryPartnerAgentInstallationRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RetryPartnerAgentInstallationRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Retry installation for the partner agents which failed to install on the Cloud PC. Service side will check which agent installation failed firstly and retry.
+        Retry installation for the partner agents that failed to install on the Cloud PC. Service side checks which agent installation failed firstly and retry.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpc-retrypartneragentinstallation?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class RetryPartnerAgentInstallationRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RetryPartnerAgentInstallationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Retry installation for the partner agents which failed to install on the Cloud PC. Service side will check which agent installation failed firstly and retry.
+        Retry installation for the partner agents that failed to install on the Cloud PC. Service side checks which agent installation failed firstly and retry.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class RetryPartnerAgentInstallationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RetryPartnerAgentInstallationRequestBuilder(raw_url, self.request_adapter)
+        return RetryPartnerAgentInstallationRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

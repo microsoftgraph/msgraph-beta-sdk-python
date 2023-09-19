@@ -152,7 +152,7 @@ class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OutlookTaskGroupItemRequestBuilder(raw_url, self.request_adapter)
+        return OutlookTaskGroupItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def task_folders(self) -> TaskFoldersRequestBuilder:

@@ -72,7 +72,7 @@ class AlertDefinitionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AlertDefinitionRequestBuilder(raw_url, self.request_adapter)
+        return AlertDefinitionRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class AlertDefinitionRequestBuilderGetQueryParameters():

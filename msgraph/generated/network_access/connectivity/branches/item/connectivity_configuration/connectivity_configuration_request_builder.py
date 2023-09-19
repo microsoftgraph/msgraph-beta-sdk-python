@@ -151,7 +151,7 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConnectivityConfigurationRequestBuilder(raw_url, self.request_adapter)
+        return ConnectivityConfigurationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def links(self) -> LinksRequestBuilder:

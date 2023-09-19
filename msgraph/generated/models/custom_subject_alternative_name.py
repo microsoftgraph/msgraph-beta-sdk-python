@@ -47,7 +47,7 @@ class CustomSubjectAlternativeName(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sanType": lambda n : setattr(self, 'san_type', n.get_enum_value(SubjectAlternativeNameType)),
+            "sanType": lambda n : setattr(self, 'san_type', n.get_collection_of_enum_values(SubjectAlternativeNameType)),
         }
         return fields
     

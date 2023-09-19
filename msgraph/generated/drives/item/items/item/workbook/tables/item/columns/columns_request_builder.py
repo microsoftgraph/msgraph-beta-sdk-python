@@ -50,7 +50,7 @@ class ColumnsRequestBuilder(BaseRequestBuilder):
         Retrieve a list of tablecolumn objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookTableColumnCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/tablecolumn-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -149,7 +149,7 @@ class ColumnsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ColumnsRequestBuilder(raw_url, self.request_adapter)
+        return ColumnsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def add(self) -> AddRequestBuilder:

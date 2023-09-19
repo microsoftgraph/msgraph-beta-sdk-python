@@ -154,7 +154,7 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AndroidForWorkSettingsRequestBuilder(raw_url, self.request_adapter)
+        return AndroidForWorkSettingsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def complete_signup(self) -> CompleteSignupRequestBuilder:

@@ -28,7 +28,7 @@ class SupportedLanguagesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SupportedLanguagesRequestBuilderGetRequestConfiguration] = None) -> Optional[SupportedLanguagesResponse]:
         """
-        Get the list of locales and languages that are supported for the user, as configured on the user's mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language by getting the user's mailbox settings.
+        Get the list of locales and languages that are supported for the user, as configured on the user's mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language bygetting the user's mailbox settings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SupportedLanguagesResponse]
         Find more info here: https://learn.microsoft.com/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class SupportedLanguagesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SupportedLanguagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of locales and languages that are supported for the user, as configured on the user's mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language by getting the user's mailbox settings.
+        Get the list of locales and languages that are supported for the user, as configured on the user's mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language bygetting the user's mailbox settings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,12 +73,12 @@ class SupportedLanguagesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SupportedLanguagesRequestBuilder(raw_url, self.request_adapter)
+        return SupportedLanguagesRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class SupportedLanguagesRequestBuilderGetQueryParameters():
         """
-        Get the list of locales and languages that are supported for the user, as configured on the user's mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language by getting the user's mailbox settings.
+        Get the list of locales and languages that are supported for the user, as configured on the user's mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language bygetting the user's mailbox settings.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

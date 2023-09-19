@@ -155,7 +155,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(BaseRequ
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(raw_url, self.request_adapter)
+        return PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cancel(self) -> CancelRequestBuilder:

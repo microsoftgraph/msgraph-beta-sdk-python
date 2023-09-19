@@ -133,7 +133,7 @@ class LoginPagesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return LoginPagesRequestBuilder(raw_url, self.request_adapter)
+        return LoginPagesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

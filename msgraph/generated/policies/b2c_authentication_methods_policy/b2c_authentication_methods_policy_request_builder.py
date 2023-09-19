@@ -152,7 +152,7 @@ class B2cAuthenticationMethodsPolicyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return B2cAuthenticationMethodsPolicyRequestBuilder(raw_url, self.request_adapter)
+        return B2cAuthenticationMethodsPolicyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -76,7 +76,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return VirtualEventSessionItemRequestBuilder(raw_url, self.request_adapter)
+        return VirtualEventSessionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def alternative_recording(self) -> AlternativeRecordingRequestBuilder:

@@ -154,7 +154,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeploymentItemRequestBuilder(raw_url, self.request_adapter)
+        return DeploymentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def audience(self) -> AudienceRequestBuilder:

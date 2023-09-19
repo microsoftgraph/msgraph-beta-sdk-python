@@ -72,7 +72,7 @@ class GetCustomizedSettingsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetCustomizedSettingsRequestBuilder(raw_url, self.request_adapter)
+        return GetCustomizedSettingsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetCustomizedSettingsRequestBuilderGetQueryParameters():

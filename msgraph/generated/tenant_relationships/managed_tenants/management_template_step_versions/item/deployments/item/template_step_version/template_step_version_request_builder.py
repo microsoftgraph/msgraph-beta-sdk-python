@@ -72,7 +72,7 @@ class TemplateStepVersionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TemplateStepVersionRequestBuilder(raw_url, self.request_adapter)
+        return TemplateStepVersionRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class TemplateStepVersionRequestBuilderGetQueryParameters():

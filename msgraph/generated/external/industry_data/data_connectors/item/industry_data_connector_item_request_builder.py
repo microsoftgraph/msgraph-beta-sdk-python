@@ -72,11 +72,11 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[IndustryDataConnector] = None, request_configuration: Optional[IndustryDataConnectorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[IndustryDataConnector]:
         """
-        Update the properties of an azureDataLakeConnector object.
+        Update the properties of an industryDataConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnector]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -129,7 +129,7 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[IndustryDataConnector] = None, request_configuration: Optional[IndustryDataConnectorItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an azureDataLakeConnector object.
+        Update the properties of an industryDataConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -155,7 +155,7 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IndustryDataConnectorItemRequestBuilder(raw_url, self.request_adapter)
+        return IndustryDataConnectorItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_industry_data_validate(self) -> MicrosoftGraphIndustryDataValidateRequestBuilder:

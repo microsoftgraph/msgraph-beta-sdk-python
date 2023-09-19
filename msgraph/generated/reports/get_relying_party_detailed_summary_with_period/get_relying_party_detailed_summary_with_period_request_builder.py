@@ -73,7 +73,7 @@ class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(BaseRequestBuilder)
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilderGetQueryParameters():

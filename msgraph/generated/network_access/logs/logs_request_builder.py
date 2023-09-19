@@ -151,7 +151,7 @@ class LogsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return LogsRequestBuilder(raw_url, self.request_adapter)
+        return LogsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def traffic(self) -> TrafficRequestBuilder:

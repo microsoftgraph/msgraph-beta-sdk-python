@@ -176,7 +176,7 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementIntentItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementIntentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:

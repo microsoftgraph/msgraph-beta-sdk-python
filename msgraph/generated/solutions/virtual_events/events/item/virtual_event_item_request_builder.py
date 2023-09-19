@@ -152,7 +152,7 @@ class VirtualEventItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return VirtualEventItemRequestBuilder(raw_url, self.request_adapter)
+        return VirtualEventItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def presenters(self) -> PresentersRequestBuilder:

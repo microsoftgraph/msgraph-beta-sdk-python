@@ -49,7 +49,7 @@ class SeriesRequestBuilder(BaseRequestBuilder):
         Retrieve a list of chartseries objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookChartSeriesCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/chart-list-series?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/chartseries-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -148,7 +148,7 @@ class SeriesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SeriesRequestBuilder(raw_url, self.request_adapter)
+        return SeriesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

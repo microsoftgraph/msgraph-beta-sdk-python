@@ -70,11 +70,11 @@ class ConversationMemberItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ConversationMember] = None, request_configuration: Optional[ConversationMemberItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ConversationMember]:
         """
-        Update the role of a conversationMember in a team.or channel.
+        Update the role of a conversationMember in a channel. This operation is allowed only for channels with a membershipType value of private or shared.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConversationMember]
-        Find more info here: https://learn.microsoft.com/graph/api/conversationmember-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -127,7 +127,7 @@ class ConversationMemberItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ConversationMember] = None, request_configuration: Optional[ConversationMemberItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the role of a conversationMember in a team.or channel.
+        Update the role of a conversationMember in a channel. This operation is allowed only for channels with a membershipType value of private or shared.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class ConversationMemberItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConversationMemberItemRequestBuilder(raw_url, self.request_adapter)
+        return ConversationMemberItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

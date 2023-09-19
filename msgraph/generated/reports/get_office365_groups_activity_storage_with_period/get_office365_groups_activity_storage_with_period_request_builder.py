@@ -73,7 +73,7 @@ class GetOffice365GroupsActivityStorageWithPeriodRequestBuilder(BaseRequestBuild
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetOffice365GroupsActivityStorageWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetOffice365GroupsActivityStorageWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetOffice365GroupsActivityStorageWithPeriodRequestBuilderGetQueryParameters():

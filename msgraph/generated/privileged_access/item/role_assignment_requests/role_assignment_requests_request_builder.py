@@ -134,7 +134,7 @@ class RoleAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RoleAssignmentRequestsRequestBuilder(raw_url, self.request_adapter)
+        return RoleAssignmentRequestsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

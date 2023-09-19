@@ -152,7 +152,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EdiscoveryHoldPolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return EdiscoveryHoldPolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def site_sources(self) -> SiteSourcesRequestBuilder:

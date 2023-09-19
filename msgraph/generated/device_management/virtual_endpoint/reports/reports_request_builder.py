@@ -15,7 +15,9 @@ if TYPE_CHECKING:
     from .export_jobs.export_jobs_request_builder import ExportJobsRequestBuilder
     from .get_connection_quality_reports.get_connection_quality_reports_request_builder import GetConnectionQualityReportsRequestBuilder
     from .get_daily_aggregated_remote_connection_reports.get_daily_aggregated_remote_connection_reports_request_builder import GetDailyAggregatedRemoteConnectionReportsRequestBuilder
+    from .get_frontline_report.get_frontline_report_request_builder import GetFrontlineReportRequestBuilder
     from .get_inaccessible_cloud_pc_reports.get_inaccessible_cloud_pc_reports_request_builder import GetInaccessibleCloudPcReportsRequestBuilder
+    from .get_raw_remote_connection_reports.get_raw_remote_connection_reports_request_builder import GetRawRemoteConnectionReportsRequestBuilder
     from .get_real_time_remote_connection_latency_with_cloud_pc_id.get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder
     from .get_real_time_remote_connection_status_with_cloud_pc_id.get_real_time_remote_connection_status_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder
     from .get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder import GetRemoteConnectionHistoricalReportsRequestBuilder
@@ -183,7 +185,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReportsRequestBuilder(raw_url, self.request_adapter)
+        return ReportsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def export_jobs(self) -> ExportJobsRequestBuilder:
@@ -213,6 +215,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetDailyAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_frontline_report(self) -> GetFrontlineReportRequestBuilder:
+        """
+        Provides operations to call the getFrontlineReport method.
+        """
+        from .get_frontline_report.get_frontline_report_request_builder import GetFrontlineReportRequestBuilder
+
+        return GetFrontlineReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_inaccessible_cloud_pc_reports(self) -> GetInaccessibleCloudPcReportsRequestBuilder:
         """
         Provides operations to call the getInaccessibleCloudPcReports method.
@@ -220,6 +231,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_inaccessible_cloud_pc_reports.get_inaccessible_cloud_pc_reports_request_builder import GetInaccessibleCloudPcReportsRequestBuilder
 
         return GetInaccessibleCloudPcReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_raw_remote_connection_reports(self) -> GetRawRemoteConnectionReportsRequestBuilder:
+        """
+        Provides operations to call the getRawRemoteConnectionReports method.
+        """
+        from .get_raw_remote_connection_reports.get_raw_remote_connection_reports_request_builder import GetRawRemoteConnectionReportsRequestBuilder
+
+        return GetRawRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_remote_connection_historical_reports(self) -> GetRemoteConnectionHistoricalReportsRequestBuilder:

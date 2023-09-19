@@ -152,7 +152,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CloudPCsRequestBuilder(raw_url, self.request_adapter)
+        return CloudPCsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def bulk_resize(self) -> BulkResizeRequestBuilder:

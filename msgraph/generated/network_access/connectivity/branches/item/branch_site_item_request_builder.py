@@ -156,7 +156,7 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BranchSiteItemRequestBuilder(raw_url, self.request_adapter)
+        return BranchSiteItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def connectivity_configuration(self) -> ConnectivityConfigurationRequestBuilder:

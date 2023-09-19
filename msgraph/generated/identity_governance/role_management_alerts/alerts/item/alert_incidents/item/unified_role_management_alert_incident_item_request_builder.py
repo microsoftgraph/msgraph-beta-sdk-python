@@ -152,7 +152,7 @@ class UnifiedRoleManagementAlertIncidentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UnifiedRoleManagementAlertIncidentItemRequestBuilder(raw_url, self.request_adapter)
+        return UnifiedRoleManagementAlertIncidentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def remediate(self) -> RemediateRequestBuilder:

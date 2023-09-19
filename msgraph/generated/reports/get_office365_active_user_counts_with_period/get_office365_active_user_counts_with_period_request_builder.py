@@ -73,7 +73,7 @@ class GetOffice365ActiveUserCountsWithPeriodRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetOffice365ActiveUserCountsWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetOffice365ActiveUserCountsWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetOffice365ActiveUserCountsWithPeriodRequestBuilderGetQueryParameters():

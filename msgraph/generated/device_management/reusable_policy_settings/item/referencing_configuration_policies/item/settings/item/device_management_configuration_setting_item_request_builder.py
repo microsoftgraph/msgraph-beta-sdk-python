@@ -151,7 +151,7 @@ class DeviceManagementConfigurationSettingItemRequestBuilder(BaseRequestBuilder)
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementConfigurationSettingItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementConfigurationSettingItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def setting_definitions(self) -> SettingDefinitionsRequestBuilder:

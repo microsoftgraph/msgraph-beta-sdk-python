@@ -43,7 +43,7 @@ class AddToReviewSetPostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
         from ........models.ediscovery.source_collection import SourceCollection
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "additionalDataOptions": lambda n : setattr(self, 'additional_data_options', n.get_enum_value(AdditionalDataOptions)),
+            "additionalDataOptions": lambda n : setattr(self, 'additional_data_options', n.get_collection_of_enum_values(AdditionalDataOptions)),
             "sourceCollection": lambda n : setattr(self, 'source_collection', n.get_object_value(SourceCollection)),
         }
         return fields

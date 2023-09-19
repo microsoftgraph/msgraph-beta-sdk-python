@@ -151,7 +151,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CloudPcProvisioningPolicyAssignmentItemRequestBuilder(raw_url, self.request_adapter)
+        return CloudPcProvisioningPolicyAssignmentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assigned_users(self) -> AssignedUsersRequestBuilder:

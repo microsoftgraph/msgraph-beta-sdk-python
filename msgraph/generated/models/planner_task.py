@@ -160,7 +160,7 @@ class PlannerTask(PlannerDelta):
             "progressTaskBoardFormat": lambda n : setattr(self, 'progress_task_board_format', n.get_object_value(PlannerProgressTaskBoardTaskFormat)),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(PlannerTaskRecurrence)),
             "referenceCount": lambda n : setattr(self, 'reference_count', n.get_int_value()),
-            "specifiedCompletionRequirements": lambda n : setattr(self, 'specified_completion_requirements', n.get_enum_value(PlannerTaskCompletionRequirements)),
+            "specifiedCompletionRequirements": lambda n : setattr(self, 'specified_completion_requirements', n.get_collection_of_enum_values(PlannerTaskCompletionRequirements)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }

@@ -153,7 +153,7 @@ class ForwardingPolicyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ForwardingPolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return ForwardingPolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_networkaccess_update_policy_rules(self) -> MicrosoftGraphNetworkaccessUpdatePolicyRulesRequestBuilder:

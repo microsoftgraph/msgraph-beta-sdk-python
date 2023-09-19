@@ -155,7 +155,7 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IosLobAppProvisioningConfigurationItemRequestBuilder(raw_url, self.request_adapter)
+        return IosLobAppProvisioningConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:

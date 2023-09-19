@@ -72,7 +72,7 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserConfigurationItemRequestBuilder(raw_url, self.request_adapter)
+        return UserConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class UserConfigurationItemRequestBuilderGetQueryParameters():

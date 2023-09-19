@@ -67,11 +67,11 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[IndustryDataConnector]:
         """
-        Create a new azureDataLakeConnector object.
+        Create a new industryDataConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnector]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-post?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -109,7 +109,7 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new azureDataLakeConnector object.
+        Create a new industryDataConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DataConnectorsRequestBuilder(raw_url, self.request_adapter)
+        return DataConnectorsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

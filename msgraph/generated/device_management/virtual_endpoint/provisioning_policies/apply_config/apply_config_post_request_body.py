@@ -41,7 +41,7 @@ class ApplyConfigPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "cloudPcIds": lambda n : setattr(self, 'cloud_pc_ids', n.get_collection_of_primitive_values(str)),
-            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_enum_value(CloudPcPolicySettingType)),
+            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_collection_of_enum_values(CloudPcPolicySettingType)),
         }
         return fields
     

@@ -207,7 +207,7 @@ class ItemFacet(Entity):
         from .work_position import WorkPosition
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedAudiences": lambda n : setattr(self, 'allowed_audiences', n.get_enum_value(AllowedAudiences)),
+            "allowedAudiences": lambda n : setattr(self, 'allowed_audiences', n.get_collection_of_enum_values(AllowedAudiences)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "inference": lambda n : setattr(self, 'inference', n.get_object_value(InferenceData)),

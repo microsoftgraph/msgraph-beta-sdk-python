@@ -159,7 +159,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessPackageCatalogItemRequestBuilder(raw_url, self.request_adapter)
+        return AccessPackageCatalogItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def access_package_custom_workflow_extensions(self) -> AccessPackageCustomWorkflowExtensionsRequestBuilder:

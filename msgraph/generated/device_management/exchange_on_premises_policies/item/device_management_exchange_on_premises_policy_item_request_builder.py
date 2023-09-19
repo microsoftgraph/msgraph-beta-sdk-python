@@ -151,7 +151,7 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder(BaseRequestBuil
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def conditional_access_settings(self) -> ConditionalAccessSettingsRequestBuilder:

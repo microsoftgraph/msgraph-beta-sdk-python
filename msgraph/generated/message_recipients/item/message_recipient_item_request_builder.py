@@ -151,7 +151,7 @@ class MessageRecipientItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MessageRecipientItemRequestBuilder(raw_url, self.request_adapter)
+        return MessageRecipientItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def events(self) -> EventsRequestBuilder:

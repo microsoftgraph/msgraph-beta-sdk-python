@@ -73,7 +73,7 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilderGetQueryParameters():

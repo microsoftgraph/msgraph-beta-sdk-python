@@ -153,7 +153,7 @@ class DeviceEnrollmentConfigurationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceEnrollmentConfigurationItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceEnrollmentConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:

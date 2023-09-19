@@ -153,7 +153,7 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CustomAuthenticationExtensionItemRequestBuilder(raw_url, self.request_adapter)
+        return CustomAuthenticationExtensionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def validate_authentication_configuration(self) -> ValidateAuthenticationConfigurationRequestBuilder:

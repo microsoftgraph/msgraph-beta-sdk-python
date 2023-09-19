@@ -154,7 +154,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SettingsRequestBuilder(raw_url, self.request_adapter)
+        return SettingsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def contact_merge_suggestions(self) -> ContactMergeSuggestionsRequestBuilder:

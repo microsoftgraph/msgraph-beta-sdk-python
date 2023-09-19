@@ -134,7 +134,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SharedUseServicePlansRequestBuilder(raw_url, self.request_adapter)
+        return SharedUseServicePlansRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

@@ -72,7 +72,7 @@ class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RegistrationConfigurationRequestBuilder(raw_url, self.request_adapter)
+        return RegistrationConfigurationRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class RegistrationConfigurationRequestBuilderGetQueryParameters():

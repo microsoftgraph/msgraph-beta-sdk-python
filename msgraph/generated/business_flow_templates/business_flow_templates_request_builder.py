@@ -134,7 +134,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BusinessFlowTemplatesRequestBuilder(raw_url, self.request_adapter)
+        return BusinessFlowTemplatesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

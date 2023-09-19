@@ -151,7 +151,7 @@ class ManagementTemplateCollectionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagementTemplateCollectionItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagementTemplateCollectionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def management_templates(self) -> ManagementTemplatesRequestBuilder:

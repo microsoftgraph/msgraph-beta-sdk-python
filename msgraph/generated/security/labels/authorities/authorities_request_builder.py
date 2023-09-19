@@ -135,7 +135,7 @@ class AuthoritiesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthoritiesRequestBuilder(raw_url, self.request_adapter)
+        return AuthoritiesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

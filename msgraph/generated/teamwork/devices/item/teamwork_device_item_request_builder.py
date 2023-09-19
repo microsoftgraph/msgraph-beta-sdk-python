@@ -158,7 +158,7 @@ class TeamworkDeviceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TeamworkDeviceItemRequestBuilder(raw_url, self.request_adapter)
+        return TeamworkDeviceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activity(self) -> ActivityRequestBuilder:

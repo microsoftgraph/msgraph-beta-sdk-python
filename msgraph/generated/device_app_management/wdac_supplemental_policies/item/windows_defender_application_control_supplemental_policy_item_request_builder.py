@@ -154,7 +154,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder(Base
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:

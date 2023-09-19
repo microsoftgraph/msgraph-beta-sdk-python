@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class DelegatedAdminCustomer(Entity):
-    # The Azure AD display name of the customer tenant. Read-only. Supports $orderBy.
+    # The Azure AD display name of the customer tenant. Read-only. Supports $orderby.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

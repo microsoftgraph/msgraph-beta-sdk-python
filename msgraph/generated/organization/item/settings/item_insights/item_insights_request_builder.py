@@ -69,7 +69,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[InsightsSettings] = None, request_configuration: Optional[ItemInsightsRequestBuilderPatchRequestConfiguration] = None) -> Optional[InsightsSettings]:
         """
-        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
+        Update privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InsightsSettings]
@@ -126,7 +126,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[InsightsSettings] = None, request_configuration: Optional[ItemInsightsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
+        Update privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ItemInsightsRequestBuilder(raw_url, self.request_adapter)
+        return ItemInsightsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

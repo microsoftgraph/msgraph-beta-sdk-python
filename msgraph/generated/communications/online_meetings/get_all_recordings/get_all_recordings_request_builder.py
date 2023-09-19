@@ -72,7 +72,7 @@ class GetAllRecordingsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetAllRecordingsRequestBuilder(raw_url, self.request_adapter)
+        return GetAllRecordingsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetAllRecordingsRequestBuilderGetQueryParameters():
