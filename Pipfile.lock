@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bf2d2e81303b93a41e1d7c2f6091a8298a22cdd0c94b177399b010fe4c3d11aa"
+            "sha256": "03782d2298c9d4d0f91110aa0cf11044193e8f375a151b1296b5995539716d78"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -153,6 +153,7 @@
                 "sha256:edabf0e010eb85760e1dd19424d5e8f97ba2c9caff73a16e7b30ccbdbcce369b"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==1.14.0"
         },
         "certifi": {
@@ -310,7 +311,7 @@
                 "sha256:f779d3ad205f108d14e99bb3859aa7dd8e9c68874617c72354d7ecaec2a054ac",
                 "sha256:f87f746ee241d30d6ed93969de31e5ffd09a2961a051e60ae6bddde9ec3583aa"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_full_version >= '3.7.0'",
             "version": "==3.2.0"
         },
         "cryptography": {
@@ -544,6 +545,7 @@
                 "sha256:cfb1b743a4b08384c40cee53d230a49adf15de0787ca5207011cfe612087b9ee"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.6'",
             "version": "==1.0.0a4"
         },
         "multidict": {
@@ -905,11 +907,11 @@
     "develop": {
         "astroid": {
             "hashes": [
-                "sha256:389656ca57b6108f939cf5d2f9a2a825a3be50ba9d589670f393236e0a03b91c",
-                "sha256:903f024859b7c7687d7a7f3a3f73b17301f8e42dfd9cc9df9d4418172d3e2dbd"
+                "sha256:958f280532e36ca84a13023f15cb1556fb6792d193acb87e1f3ca536b6fa6bd2",
+                "sha256:c522f2832a900e27a7d284b9b6ef670d2495f760ede3c8c0b004a5641d3c5987"
             ],
             "markers": "python_full_version >= '3.7.2'",
-            "version": "==2.15.6"
+            "version": "==2.15.7"
         },
         "build": {
             "hashes": [
@@ -917,6 +919,7 @@
                 "sha256:589bf99a67df7c9cf07ec0ac0e5e2ea5d4b37ac63301c4986d1acb126aa83f8f"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==1.0.3"
         },
         "bumpver": {
@@ -925,6 +928,7 @@
                 "sha256:85f79632d0283aa24ba4576d3275f82f143dc21e5641c9019420da8dddc8e31e"
             ],
             "index": "pypi",
+            "markers": "python_version >= '2.7'",
             "version": "==2023.1126"
         },
         "click": {
@@ -965,6 +969,7 @@
                 "sha256:f84c2818376e66cf843d497486ea8fed8700b340f308f076c6fb1229dff318b6"
             ],
             "index": "pypi",
+            "markers": "python_full_version >= '3.8.0'",
             "version": "==5.12.0"
         },
         "lazy-object-proxy": {
@@ -1064,6 +1069,7 @@
                 "sha256:ff0cedc84184115202475bbb46dd99f8dcb87fe24d5d0ddfc0fe6b8575c88d2f"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==1.5.1"
         },
         "mypy-extensions": {
@@ -1096,6 +1102,7 @@
                 "sha256:f7b601cbc06fef7e62a754e2b41294c2aa31f1cb659624b9a85bcba29eaf8252"
             ],
             "index": "pypi",
+            "markers": "python_full_version >= '3.7.2'",
             "version": "==2.17.5"
         },
         "pyproject-hooks": {
@@ -1112,6 +1119,7 @@
                 "sha256:b454a35605876da60632df1a60f736524eb73cc47bbc9f3f1ef1b644de74fd2a"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==68.2.2"
         },
         "toml": {
@@ -1229,11 +1237,12 @@
         },
         "yapf": {
             "hashes": [
-                "sha256:958587eb5c8ec6c860119a9c25d02addf30a44f75aa152a4220d30e56a98037c",
-                "sha256:b8bfc1f280949153e795181768ca14ef43d7312629a06c43e7abd279323af313"
+                "sha256:4dab8a5ed7134e26d57c1647c7483afb3f136878b579062b786c9ba16b94637b",
+                "sha256:adc8b5dd02c0143108878c499284205adb258aad6db6634e5b869e7ee2bd548b"
             ],
             "index": "pypi",
-            "version": "==0.40.1"
+            "markers": "python_version >= '3.7'",
+            "version": "==0.40.2"
         },
         "zipp": {
             "hashes": [
