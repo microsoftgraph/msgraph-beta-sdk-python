@@ -152,7 +152,7 @@ class ItemActivityOLDItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ItemActivityOLDItemRequestBuilder(raw_url, self.request_adapter)
+        return ItemActivityOLDItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def drive_item(self) -> DriveItemRequestBuilder:

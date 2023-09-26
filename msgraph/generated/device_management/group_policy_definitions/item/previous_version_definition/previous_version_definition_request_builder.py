@@ -154,7 +154,7 @@ class PreviousVersionDefinitionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PreviousVersionDefinitionRequestBuilder(raw_url, self.request_adapter)
+        return PreviousVersionDefinitionRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def category(self) -> CategoryRequestBuilder:

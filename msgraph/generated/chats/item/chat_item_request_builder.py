@@ -41,9 +41,10 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ChatItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete entity from chats
+        Soft-delete a chat. When invoked with delegated permissions, this operation only works for tenant admins and Teams service admins.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/chat-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -107,7 +108,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ChatItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from chats
+        Soft-delete a chat. When invoked with delegated permissions, this operation only works for tenant admins and Teams service admins.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -165,7 +166,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ChatItemRequestBuilder(raw_url, self.request_adapter)
+        return ChatItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def hide_for_user(self) -> HideForUserRequestBuilder:

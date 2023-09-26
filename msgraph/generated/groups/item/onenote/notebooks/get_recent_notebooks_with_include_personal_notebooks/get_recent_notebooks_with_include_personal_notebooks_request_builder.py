@@ -25,6 +25,8 @@ class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(BaseRequestBu
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['includePersonalNotebooks'] = str(include_personal_notebooks)
         super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/onenote/notebooks/getRecentNotebooks(includePersonalNotebooks={includePersonalNotebooks}){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetRequestConfiguration] = None) -> Optional[GetRecentNotebooksWithIncludePersonalNotebooksResponse]:
@@ -73,7 +75,7 @@ class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(BaseRequestBu
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(raw_url, self.request_adapter)
+        return GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetQueryParameters():

@@ -12,6 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.room_list import RoomList
+    from .rooms.rooms_request_builder import RoomsRequestBuilder
+    from .workspaces.workspaces_request_builder import WorkspacesRequestBuilder
 
 class GraphRoomListRequestBuilder(BaseRequestBuilder):
     """
@@ -72,7 +74,25 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GraphRoomListRequestBuilder(raw_url, self.request_adapter)
+        return GraphRoomListRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def rooms(self) -> RoomsRequestBuilder:
+        """
+        Provides operations to manage the rooms property of the microsoft.graph.roomList entity.
+        """
+        from .rooms.rooms_request_builder import RoomsRequestBuilder
+
+        return RoomsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def workspaces(self) -> WorkspacesRequestBuilder:
+        """
+        Provides operations to manage the workspaces property of the microsoft.graph.roomList entity.
+        """
+        from .workspaces.workspaces_request_builder import WorkspacesRequestBuilder
+
+        return WorkspacesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GraphRoomListRequestBuilderGetQueryParameters():

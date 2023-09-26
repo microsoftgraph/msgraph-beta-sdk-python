@@ -133,7 +133,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder(BaseRequestBui
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder(raw_url, self.request_adapter)
+        return UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

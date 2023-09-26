@@ -67,11 +67,11 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[InboundFlow]:
         """
-        Create a new inboundFileFlow object. The following prerequisite resources are required when you create an inboundFileFlow:
+        Create a new inboundFlow object. The following prerequisite resources are required when you create an inboundFlow:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-post?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -109,7 +109,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new inboundFileFlow object. The following prerequisite resources are required when you create an inboundFileFlow:
+        Create a new inboundFlow object. The following prerequisite resources are required when you create an inboundFlow:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return InboundFlowsRequestBuilder(raw_url, self.request_adapter)
+        return InboundFlowsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

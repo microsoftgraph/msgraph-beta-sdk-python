@@ -135,7 +135,7 @@ class WorksheetsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WorksheetsRequestBuilder(raw_url, self.request_adapter)
+        return WorksheetsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def add(self) -> AddRequestBuilder:

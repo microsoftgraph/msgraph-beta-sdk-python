@@ -72,7 +72,7 @@ class AllMessagesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AllMessagesRequestBuilder(raw_url, self.request_adapter)
+        return AllMessagesRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class AllMessagesRequestBuilderGetQueryParameters():

@@ -155,7 +155,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return InboundFlowItemRequestBuilder(raw_url, self.request_adapter)
+        return InboundFlowItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def data_connector(self) -> DataConnectorRequestBuilder:

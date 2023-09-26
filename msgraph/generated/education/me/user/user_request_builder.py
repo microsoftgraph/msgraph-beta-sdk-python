@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.user import User
     from .mailbox_settings.mailbox_settings_request_builder import MailboxSettingsRequestBuilder
+    from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
 
 class UserRequestBuilder(BaseRequestBuilder):
     """
@@ -74,7 +75,7 @@ class UserRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserRequestBuilder(raw_url, self.request_adapter)
+        return UserRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def mailbox_settings(self) -> MailboxSettingsRequestBuilder:
@@ -84,6 +85,15 @@ class UserRequestBuilder(BaseRequestBuilder):
         from .mailbox_settings.mailbox_settings_request_builder import MailboxSettingsRequestBuilder
 
         return MailboxSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def service_provisioning_errors(self) -> ServiceProvisioningErrorsRequestBuilder:
+        """
+        The serviceProvisioningErrors property
+        """
+        from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
+
+        return ServiceProvisioningErrorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UserRequestBuilderGetQueryParameters():

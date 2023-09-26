@@ -25,6 +25,8 @@ class SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(BaseReques
         param summarize_by: Usage: summarizeBy='{summarizeBy}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['summarizeBy'] = str(summarize_by)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsResourcePerformance/summarizeDeviceResourcePerformance(summarizeBy='{summarizeBy}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilderGetRequestConfiguration] = None) -> Optional[SummarizeDeviceResourcePerformanceWithSummarizeByResponse]:
@@ -73,7 +75,7 @@ class SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(BaseReques
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(raw_url, self.request_adapter)
+        return SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilderGetQueryParameters():

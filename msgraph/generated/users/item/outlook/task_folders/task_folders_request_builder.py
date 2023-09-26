@@ -135,7 +135,7 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TaskFoldersRequestBuilder(raw_url, self.request_adapter)
+        return TaskFoldersRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

@@ -154,7 +154,7 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ImpactedResourceItemRequestBuilder(raw_url, self.request_adapter)
+        return ImpactedResourceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def complete(self) -> CompleteRequestBuilder:

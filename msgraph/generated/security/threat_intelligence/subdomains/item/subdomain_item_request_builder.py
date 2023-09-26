@@ -152,7 +152,7 @@ class SubdomainItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SubdomainItemRequestBuilder(raw_url, self.request_adapter)
+        return SubdomainItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def host(self) -> HostRequestBuilder:

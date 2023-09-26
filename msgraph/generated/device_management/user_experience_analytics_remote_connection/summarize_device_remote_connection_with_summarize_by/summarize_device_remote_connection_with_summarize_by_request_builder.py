@@ -25,6 +25,8 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
         param summarize_by: Usage: summarizeBy='{summarizeBy}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['summarizeBy'] = str(summarize_by)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsRemoteConnection/summarizeDeviceRemoteConnection(summarizeBy='{summarizeBy}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetRequestConfiguration] = None) -> Optional[SummarizeDeviceRemoteConnectionWithSummarizeByResponse]:
@@ -73,7 +75,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(raw_url, self.request_adapter)
+        return SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetQueryParameters():

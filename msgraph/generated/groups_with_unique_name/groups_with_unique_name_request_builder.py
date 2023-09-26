@@ -25,6 +25,8 @@ class GroupsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         param unique_name: Alternate key of group
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['uniqueName'] = str(unique_name)
         super().__init__(request_adapter, "{+baseurl}/groups(uniqueName='{uniqueName}'){?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[GroupsWithUniqueNameRequestBuilderDeleteRequestConfiguration] = None) -> None:
@@ -154,7 +156,7 @@ class GroupsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupsWithUniqueNameRequestBuilder(raw_url, self.request_adapter)
+        return GroupsWithUniqueNameRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

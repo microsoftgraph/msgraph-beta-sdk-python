@@ -25,6 +25,8 @@ class GetRoleScopeTagsByResourceWithResourceRequestBuilder(BaseRequestBuilder):
         param resource: Usage: resource='{resource}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['resource'] = str(resource)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/getRoleScopeTagsByResource(resource='{resource}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetRoleScopeTagsByResourceWithResourceRequestBuilderGetRequestConfiguration] = None) -> Optional[GetRoleScopeTagsByResourceWithResourceResponse]:
@@ -73,7 +75,7 @@ class GetRoleScopeTagsByResourceWithResourceRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetRoleScopeTagsByResourceWithResourceRequestBuilder(raw_url, self.request_adapter)
+        return GetRoleScopeTagsByResourceWithResourceRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetRoleScopeTagsByResourceWithResourceRequestBuilderGetQueryParameters():

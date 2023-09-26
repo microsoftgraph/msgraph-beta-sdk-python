@@ -12,17 +12,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.directory_object import DirectoryObject
     from ....models.o_data_errors.o_data_error import ODataError
-    from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
-    from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
-    from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
-    from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
     from .graph_administrative_unit.graph_administrative_unit_request_builder import GraphAdministrativeUnitRequestBuilder
     from .graph_application.graph_application_request_builder import GraphApplicationRequestBuilder
     from .graph_device.graph_device_request_builder import GraphDeviceRequestBuilder
     from .graph_group.graph_group_request_builder import GraphGroupRequestBuilder
     from .graph_service_principal.graph_service_principal_request_builder import GraphServicePrincipalRequestBuilder
     from .graph_user.graph_user_request_builder import GraphUserRequestBuilder
-    from .restore.restore_request_builder import RestoreRequestBuilder
 
 class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
     """
@@ -36,25 +31,6 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/directory/deletedItems/{directoryObject%2Did}{?%24select,%24expand}", path_parameters)
-    
-    async def delete(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
-        """
-        Delete navigation property deletedItems for directory
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: None
-        """
-        request_info = self.to_delete_request_information(
-            request_configuration
-        )
-        from ....models.o_data_errors.o_data_error import ODataError
-
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObject]:
         """
@@ -77,45 +53,6 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectoryObject, error_mapping)
     
-    async def patch(self,body: Optional[DirectoryObject] = None, request_configuration: Optional[DirectoryObjectItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DirectoryObject]:
-        """
-        Update the navigation property deletedItems in directory
-        param body: The request body
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DirectoryObject]
-        """
-        if not body:
-            raise TypeError("body cannot be null.")
-        request_info = self.to_patch_request_information(
-            body, request_configuration
-        )
-        from ....models.o_data_errors.o_data_error import ODataError
-
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        from ....models.directory_object import DirectoryObject
-
-        return await self.request_adapter.send_async(request_info, DirectoryObject, error_mapping)
-    
-    def to_delete_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
-        """
-        Delete navigation property deletedItems for directory
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
     def to_get_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get deletedItems from directory
@@ -133,26 +70,6 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DirectoryObject] = None, request_configuration: Optional[DirectoryObjectItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
-        """
-        Update the navigation property deletedItems in directory
-        param body: The request body
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if not body:
-            raise TypeError("body cannot be null.")
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
-        return request_info
-    
     def with_url(self,raw_url: Optional[str] = None) -> DirectoryObjectItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
@@ -161,43 +78,7 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DirectoryObjectItemRequestBuilder(raw_url, self.request_adapter)
-    
-    @property
-    def check_member_groups(self) -> CheckMemberGroupsRequestBuilder:
-        """
-        Provides operations to call the checkMemberGroups method.
-        """
-        from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
-
-        return CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def check_member_objects(self) -> CheckMemberObjectsRequestBuilder:
-        """
-        Provides operations to call the checkMemberObjects method.
-        """
-        from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
-
-        return CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_member_groups(self) -> GetMemberGroupsRequestBuilder:
-        """
-        Provides operations to call the getMemberGroups method.
-        """
-        from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
-
-        return GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_member_objects(self) -> GetMemberObjectsRequestBuilder:
-        """
-        Provides operations to call the getMemberObjects method.
-        """
-        from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
-
-        return GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DirectoryObjectItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def graph_administrative_unit(self) -> GraphAdministrativeUnitRequestBuilder:
@@ -253,25 +134,6 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
 
         return GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
-    @property
-    def restore(self) -> RestoreRequestBuilder:
-        """
-        Provides operations to call the restore method.
-        """
-        from .restore.restore_request_builder import RestoreRequestBuilder
-
-        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DirectoryObjectItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class DirectoryObjectItemRequestBuilderGetQueryParameters():
         """
@@ -310,15 +172,5 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
         # Request query parameters
         query_parameters: Optional[DirectoryObjectItemRequestBuilder.DirectoryObjectItemRequestBuilderGetQueryParameters] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DirectoryObjectItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

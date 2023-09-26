@@ -72,7 +72,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ServicePrincipalItemRequestBuilder(raw_url, self.request_adapter)
+        return ServicePrincipalItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class ServicePrincipalItemRequestBuilderGetQueryParameters():

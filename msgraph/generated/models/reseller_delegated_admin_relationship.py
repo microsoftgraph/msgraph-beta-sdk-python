@@ -10,9 +10,9 @@ from .delegated_admin_relationship import DelegatedAdminRelationship
 
 @dataclass
 class ResellerDelegatedAdminRelationship(DelegatedAdminRelationship):
-    # The indirectProviderTenantId property
+    # The tenant ID of the indirect provider partner who created the relationship for the indirect reseller partner.
     indirect_provider_tenant_id: Optional[str] = None
-    # The isPartnerConsentPending property
+    # Indicates the indirect reseller partner consent status. true indicates that the partner has yet to review the relationship; false indicates that the partner has already provided consent by approving or rejecting the relationship.
     is_partner_consent_pending: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

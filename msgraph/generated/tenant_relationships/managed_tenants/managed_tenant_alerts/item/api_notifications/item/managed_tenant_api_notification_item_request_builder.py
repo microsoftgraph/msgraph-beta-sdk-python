@@ -72,7 +72,7 @@ class ManagedTenantApiNotificationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedTenantApiNotificationItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagedTenantApiNotificationItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class ManagedTenantApiNotificationItemRequestBuilderGetQueryParameters():

@@ -25,6 +25,8 @@ class FilterByCurrentUserWithOnRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['on'] = str(on)
         super().__init__(request_adapter, "{+baseurl}/roleManagement/enterpriseApps/{rbacApplication%2Did}/roleAssignmentScheduleInstances/filterByCurrentUser(on='{on}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[FilterByCurrentUserWithOnRequestBuilderGetRequestConfiguration] = None) -> Optional[FilterByCurrentUserWithOnResponse]:
@@ -73,7 +75,7 @@ class FilterByCurrentUserWithOnRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return FilterByCurrentUserWithOnRequestBuilder(raw_url, self.request_adapter)
+        return FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class FilterByCurrentUserWithOnRequestBuilderGetQueryParameters():

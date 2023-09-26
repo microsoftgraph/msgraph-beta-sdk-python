@@ -154,7 +154,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReviewSetQueryItemRequestBuilder(raw_url, self.request_adapter)
+        return ReviewSetQueryItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_ediscovery_apply_tags(self) -> MicrosoftGraphEdiscoveryApplyTagsRequestBuilder:

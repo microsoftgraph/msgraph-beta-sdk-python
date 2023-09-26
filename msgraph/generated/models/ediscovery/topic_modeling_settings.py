@@ -15,7 +15,7 @@ class TopicModelingSettings(AdditionalDataHolder, BackedModel, Parsable):
     dynamically_adjust_topic_count: Optional[bool] = None
     # To learn more, see Include numbers in themes.
     ignore_numbers: Optional[bool] = None
-    # Indicates whether themes is enabled for the case.
+    # Indicates whether themes are enabled for the case.
     is_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

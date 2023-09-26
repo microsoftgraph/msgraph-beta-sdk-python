@@ -61,11 +61,11 @@ class WorkforceIntegration(ChangeTrackedEntity):
         fields: Dict[str, Callable[[Any], None]] = {
             "apiVersion": lambda n : setattr(self, 'api_version', n.get_int_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "eligibilityFilteringEnabledEntities": lambda n : setattr(self, 'eligibility_filtering_enabled_entities', n.get_enum_value(EligibilityFilteringEnabledEntities)),
+            "eligibilityFilteringEnabledEntities": lambda n : setattr(self, 'eligibility_filtering_enabled_entities', n.get_collection_of_enum_values(EligibilityFilteringEnabledEntities)),
             "encryption": lambda n : setattr(self, 'encryption', n.get_object_value(WorkforceIntegrationEncryption)),
             "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
-            "supportedEntities": lambda n : setattr(self, 'supported_entities', n.get_enum_value(WorkforceIntegrationSupportedEntities)),
-            "supports": lambda n : setattr(self, 'supports', n.get_enum_value(WorkforceIntegrationSupportedEntities)),
+            "supportedEntities": lambda n : setattr(self, 'supported_entities', n.get_collection_of_enum_values(WorkforceIntegrationSupportedEntities)),
+            "supports": lambda n : setattr(self, 'supports', n.get_collection_of_enum_values(WorkforceIntegrationSupportedEntities)),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

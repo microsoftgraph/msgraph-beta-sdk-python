@@ -154,7 +154,7 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MultiTenantOrganizationRequestBuilder(raw_url, self.request_adapter)
+        return MultiTenantOrganizationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def join_request(self) -> JoinRequestRequestBuilder:

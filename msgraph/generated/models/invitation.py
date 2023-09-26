@@ -21,13 +21,13 @@ class Invitation(Entity):
     invited_user: Optional[User] = None
     # The display name of the user being invited.
     invited_user_display_name: Optional[str] = None
-    # The email address of the user being invited. Required. The following special characters are not permitted in the email address:Tilde (~)Exclamation point (!)At sign (@)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Hyphen (-)Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (`
+    # The email address of the user being invited. Required. The following special characters aren't permitted in the email address:Tilde (~)Exclamation point (!)At sign (@)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Hyphen (-)Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (`
     invited_user_email_address: Optional[str] = None
     # Additional configuration for the message being sent to the invited user, including customizing message text, language and cc recipient list.
     invited_user_message_info: Optional[InvitedUserMessageInfo] = None
     # The users or groups who are sponsors of the invited user. Sponsors are users and groups that are responsible for guest users' privileges in the tenant and for keeping the guest users' information and access up to date.
     invited_user_sponsors: Optional[List[DirectoryObject]] = None
-    # The userType of the user being invited. By default, this is Guest. You can invite as Member if you're are company administrator. The default is false.
+    # The userType of the user being invited. By default, this is Guest. You can invite as Member if you're a company administrator. The default is false.
     invited_user_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

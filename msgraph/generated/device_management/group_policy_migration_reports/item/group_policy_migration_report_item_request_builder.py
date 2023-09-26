@@ -153,7 +153,7 @@ class GroupPolicyMigrationReportItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupPolicyMigrationReportItemRequestBuilder(raw_url, self.request_adapter)
+        return GroupPolicyMigrationReportItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def group_policy_setting_mappings(self) -> GroupPolicySettingMappingsRequestBuilder:

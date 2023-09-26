@@ -47,7 +47,7 @@ class WorkbookDocumentTaskChangeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WorkbookDocumentTaskChangeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookDocumentTaskChange]:
         """
-        Get changes from drives
+        A collection of task change histories.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookDocumentTaskChange]
         """
@@ -107,7 +107,7 @@ class WorkbookDocumentTaskChangeItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WorkbookDocumentTaskChangeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get changes from drives
+        A collection of task change histories.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -150,7 +150,7 @@ class WorkbookDocumentTaskChangeItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WorkbookDocumentTaskChangeItemRequestBuilder(raw_url, self.request_adapter)
+        return WorkbookDocumentTaskChangeItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -165,7 +165,7 @@ class WorkbookDocumentTaskChangeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WorkbookDocumentTaskChangeItemRequestBuilderGetQueryParameters():
         """
-        Get changes from drives
+        A collection of task change histories.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

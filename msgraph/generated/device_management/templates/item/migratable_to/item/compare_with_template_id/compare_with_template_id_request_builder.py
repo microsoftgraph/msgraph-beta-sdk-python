@@ -25,6 +25,8 @@ class CompareWithTemplateIdRequestBuilder(BaseRequestBuilder):
         param template_id: Usage: templateId='{templateId}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['templateId'] = str(template_id)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/{deviceManagementTemplate%2Did1}/compare(templateId='{templateId}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[CompareWithTemplateIdRequestBuilderGetRequestConfiguration] = None) -> Optional[CompareWithTemplateIdResponse]:
@@ -73,7 +75,7 @@ class CompareWithTemplateIdRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CompareWithTemplateIdRequestBuilder(raw_url, self.request_adapter)
+        return CompareWithTemplateIdRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class CompareWithTemplateIdRequestBuilderGetQueryParameters():

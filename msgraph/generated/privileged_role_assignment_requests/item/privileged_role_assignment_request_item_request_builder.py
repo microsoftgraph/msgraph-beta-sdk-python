@@ -152,7 +152,7 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrivilegedRoleAssignmentRequestItemRequestBuilder(raw_url, self.request_adapter)
+        return PrivilegedRoleAssignmentRequestItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cancel(self) -> CancelRequestBuilder:

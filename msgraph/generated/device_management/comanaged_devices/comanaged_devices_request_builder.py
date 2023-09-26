@@ -152,7 +152,7 @@ class ComanagedDevicesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ComanagedDevicesRequestBuilder(raw_url, self.request_adapter)
+        return ComanagedDevicesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def bulk_reprovision_cloud_pc(self) -> BulkReprovisionCloudPcRequestBuilder:

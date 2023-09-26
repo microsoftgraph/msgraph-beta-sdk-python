@@ -32,10 +32,10 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an updatableAssetGroup object. When an updatableAssetGroup object, its member updatableAsset objects are not deleted.
+        Delete an azureADDevice object. When an Azure AD device is deleted, it is unregistered from the deployment service and automatically unenrolled from management by the service for all update categories, as well as removed from every deploymentAudience and updatableAssetGroup.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatableassetgroup-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-azureaddevice-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -98,7 +98,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an updatableAssetGroup object. When an updatableAssetGroup object, its member updatableAsset objects are not deleted.
+        Delete an azureADDevice object. When an Azure AD device is deleted, it is unregistered from the deployment service and automatically unenrolled from management by the service for all update categories, as well as removed from every deploymentAudience and updatableAssetGroup.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -156,7 +156,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpdatableAssetItemRequestBuilder(raw_url, self.request_adapter)
+        return UpdatableAssetItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_windows_updates_add_members(self) -> MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder:

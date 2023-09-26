@@ -44,7 +44,7 @@ class IsolateDeviceResponseAction(ResponseAction):
         from .response_action import ResponseAction
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "identifier": lambda n : setattr(self, 'identifier', n.get_enum_value(DeviceIdEntityIdentifier)),
+            "identifier": lambda n : setattr(self, 'identifier', n.get_collection_of_enum_values(DeviceIdEntityIdentifier)),
             "isolationType": lambda n : setattr(self, 'isolation_type', n.get_enum_value(IsolationType)),
         }
         super_fields = super().get_field_deserializers()

@@ -28,7 +28,7 @@ class StartRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> Optional[StartResponse]:
         """
-        Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization will start on the profile. Otherwise, the response will contain errors and warnings. If the response contains errors, the synchronization will not start. If the response contains only warnings, synchronization will start.
+        Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization starts on the profile. Otherwise, the response contains errors and warnings. If the response contains errors, the synchronization won't start. If the response contains only warnings, synchronization starts.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StartResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-start?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class StartRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization will start on the profile. Otherwise, the response will contain errors and warnings. If the response contains errors, the synchronization will not start. If the response contains only warnings, synchronization will start.
+        Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization starts on the profile. Otherwise, the response contains errors and warnings. If the response contains errors, the synchronization won't start. If the response contains only warnings, synchronization starts.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +72,7 @@ class StartRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return StartRequestBuilder(raw_url, self.request_adapter)
+        return StartRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

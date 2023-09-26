@@ -155,7 +155,7 @@ class OnPremisesAgentGroupItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnPremisesAgentGroupItemRequestBuilder(raw_url, self.request_adapter)
+        return OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def agents(self) -> AgentsRequestBuilder:

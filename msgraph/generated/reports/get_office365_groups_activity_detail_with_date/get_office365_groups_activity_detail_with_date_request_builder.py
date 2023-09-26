@@ -26,6 +26,8 @@ class GetOffice365GroupsActivityDetailWithDateRequestBuilder(BaseRequestBuilder)
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['date'] = str(date)
         super().__init__(request_adapter, "{+baseurl}/reports/getOffice365GroupsActivityDetail(date={date}){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration] = None) -> Optional[GetOffice365GroupsActivityDetailWithDateResponse]:
@@ -74,7 +76,7 @@ class GetOffice365GroupsActivityDetailWithDateRequestBuilder(BaseRequestBuilder)
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetOffice365GroupsActivityDetailWithDateRequestBuilder(raw_url, self.request_adapter)
+        return GetOffice365GroupsActivityDetailWithDateRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetOffice365GroupsActivityDetailWithDateRequestBuilderGetQueryParameters():

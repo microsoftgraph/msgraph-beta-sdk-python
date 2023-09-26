@@ -152,7 +152,7 @@ class SecurityActionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SecurityActionItemRequestBuilder(raw_url, self.request_adapter)
+        return SecurityActionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cancel_security_action(self) -> CancelSecurityActionRequestBuilder:

@@ -91,12 +91,12 @@ class DeviceManagementConfigurationPolicy(Entity):
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "platforms": lambda n : setattr(self, 'platforms', n.get_enum_value(DeviceManagementConfigurationPlatforms)),
+            "platforms": lambda n : setattr(self, 'platforms', n.get_collection_of_enum_values(DeviceManagementConfigurationPlatforms)),
             "priorityMetaData": lambda n : setattr(self, 'priority_meta_data', n.get_object_value(DeviceManagementPriorityMetaData)),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "settingCount": lambda n : setattr(self, 'setting_count', n.get_int_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(DeviceManagementConfigurationSetting)),
-            "technologies": lambda n : setattr(self, 'technologies', n.get_enum_value(DeviceManagementConfigurationTechnologies)),
+            "technologies": lambda n : setattr(self, 'technologies', n.get_collection_of_enum_values(DeviceManagementConfigurationTechnologies)),
             "templateReference": lambda n : setattr(self, 'template_reference', n.get_object_value(DeviceManagementConfigurationPolicyTemplateReference)),
         }
         super_fields = super().get_field_deserializers()

@@ -27,6 +27,10 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['deviceId'] = str(device_id)
+            path_parameters['id'] = str(id)
+            path_parameters['policyId'] = str(policy_id)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/comanagedDevices/{managedDevice%2Did}/deviceHealthScriptStates/id='{id}',policyId='{policyId}',deviceId='{deviceId}'{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
@@ -153,7 +157,7 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WithIdWithPolicyIdWithDeviceIdRequestBuilder(raw_url, self.request_adapter)
+        return WithIdWithPolicyIdWithDeviceIdRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.windows_autopilot_device_identity import WindowsAutopilotDeviceIdentity
+    from .allow_next_enrollment.allow_next_enrollment_request_builder import AllowNextEnrollmentRequestBuilder
     from .assign_resource_account_to_device.assign_resource_account_to_device_request_builder import AssignResourceAccountToDeviceRequestBuilder
     from .assign_user_to_device.assign_user_to_device_request_builder import AssignUserToDeviceRequestBuilder
     from .deployment_profile.deployment_profile_request_builder import DeploymentProfileRequestBuilder
@@ -157,7 +158,16 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WindowsAutopilotDeviceIdentityItemRequestBuilder(raw_url, self.request_adapter)
+        return WindowsAutopilotDeviceIdentityItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def allow_next_enrollment(self) -> AllowNextEnrollmentRequestBuilder:
+        """
+        Provides operations to call the allowNextEnrollment method.
+        """
+        from .allow_next_enrollment.allow_next_enrollment_request_builder import AllowNextEnrollmentRequestBuilder
+
+        return AllowNextEnrollmentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def assign_resource_account_to_device(self) -> AssignResourceAccountToDeviceRequestBuilder:

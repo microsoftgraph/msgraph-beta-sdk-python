@@ -101,6 +101,7 @@ if TYPE_CHECKING:
     from .scoped_role_member_of.scoped_role_member_of_request_builder import ScopedRoleMemberOfRequestBuilder
     from .security.security_request_builder import SecurityRequestBuilder
     from .send_mail.send_mail_request_builder import SendMailRequestBuilder
+    from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .sponsors.sponsors_request_builder import SponsorsRequestBuilder
     from .teamwork.teamwork_request_builder import TeamworkRequestBuilder
@@ -110,6 +111,7 @@ if TYPE_CHECKING:
     from .translate_exchange_ids.translate_exchange_ids_request_builder import TranslateExchangeIdsRequestBuilder
     from .unblock_managed_apps.unblock_managed_apps_request_builder import UnblockManagedAppsRequestBuilder
     from .usage_rights.usage_rights_request_builder import UsageRightsRequestBuilder
+    from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
     from .windows_information_protection_device_registrations.windows_information_protection_device_registrations_request_builder import WindowsInformationProtectionDeviceRegistrationsRequestBuilder
     from .wipe_and_block_managed_apps.wipe_and_block_managed_apps_request_builder import WipeAndBlockManagedAppsRequestBuilder
     from .wipe_managed_app_registration_by_device_tag.wipe_managed_app_registration_by_device_tag_request_builder import WipeManagedAppRegistrationByDeviceTagRequestBuilder
@@ -298,7 +300,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserItemRequestBuilder(raw_url, self.request_adapter)
+        return UserItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activities(self) -> ActivitiesRequestBuilder:
@@ -1075,6 +1077,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         return SendMailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def service_provisioning_errors(self) -> ServiceProvisioningErrorsRequestBuilder:
+        """
+        The serviceProvisioningErrors property
+        """
+        from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
+
+        return ServiceProvisioningErrorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.user entity.
@@ -1154,6 +1165,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .usage_rights.usage_rights_request_builder import UsageRightsRequestBuilder
 
         return UsageRightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def virtual_events(self) -> VirtualEventsRequestBuilder:
+        """
+        Provides operations to manage the virtualEvents property of the microsoft.graph.user entity.
+        """
+        from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
+
+        return VirtualEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def windows_information_protection_device_registrations(self) -> WindowsInformationProtectionDeviceRegistrationsRequestBuilder:

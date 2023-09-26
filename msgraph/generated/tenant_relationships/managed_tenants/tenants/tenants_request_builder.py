@@ -134,7 +134,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantsRequestBuilder(raw_url, self.request_adapter)
+        return TenantsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

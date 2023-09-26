@@ -28,7 +28,7 @@ class IdentityProviderItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[IdentityProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an identity provider from a b2xIdentityUserFlow object. For self-service sign up user flows, the values can be Google-OAUTH or Facebook-OAUTH.
+        Delete an identity provider from a b2xIdentityUserFlow object. For self-service sign-up user flows, the values can be Google-OAUTH or Facebook-OAUTH.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/b2xidentityuserflow-delete-identityproviders?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class IdentityProviderItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[IdentityProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an identity provider from a b2xIdentityUserFlow object. For self-service sign up user flows, the values can be Google-OAUTH or Facebook-OAUTH.
+        Delete an identity provider from a b2xIdentityUserFlow object. For self-service sign-up user flows, the values can be Google-OAUTH or Facebook-OAUTH.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +107,7 @@ class IdentityProviderItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IdentityProviderItemRequestBuilder(raw_url, self.request_adapter)
+        return IdentityProviderItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

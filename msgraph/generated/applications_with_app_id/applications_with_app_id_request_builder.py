@@ -25,6 +25,8 @@ class ApplicationsWithAppIdRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['appId'] = str(app_id)
         super().__init__(request_adapter, "{+baseurl}/applications(appId='{appId}'){?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ApplicationsWithAppIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
@@ -154,7 +156,7 @@ class ApplicationsWithAppIdRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ApplicationsWithAppIdRequestBuilder(raw_url, self.request_adapter)
+        return ApplicationsWithAppIdRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

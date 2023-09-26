@@ -152,7 +152,7 @@ class CertificateConnectorDetailsItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CertificateConnectorDetailsItemRequestBuilder(raw_url, self.request_adapter)
+        return CertificateConnectorDetailsItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def get_health_metrics(self) -> GetHealthMetricsRequestBuilder:

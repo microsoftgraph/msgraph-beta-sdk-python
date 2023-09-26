@@ -120,7 +120,7 @@ class AuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthenticationMethodItemRequestBuilder(raw_url, self.request_adapter)
+        return AuthenticationMethodItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def disable_sms_sign_in(self) -> DisableSmsSignInRequestBuilder:

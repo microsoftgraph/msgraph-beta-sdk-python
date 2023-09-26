@@ -25,6 +25,8 @@ class ScopedForResourceWithResourceRequestBuilder(BaseRequestBuilder):
         param resource: Usage: resource='{resource}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['resource'] = str(resource)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/scopedForResource(resource='{resource}')", path_parameters)
     
     async def get(self,request_configuration: Optional[ScopedForResourceWithResourceRequestBuilderGetRequestConfiguration] = None) -> Optional[ScopedForResourceWithResourceResponse]:
@@ -72,7 +74,7 @@ class ScopedForResourceWithResourceRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ScopedForResourceWithResourceRequestBuilder(raw_url, self.request_adapter)
+        return ScopedForResourceWithResourceRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

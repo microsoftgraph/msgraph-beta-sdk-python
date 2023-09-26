@@ -67,7 +67,7 @@ class RotateBitLockerKeysRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RotateBitLockerKeysRequestBuilder(raw_url, self.request_adapter)
+        return RotateBitLockerKeysRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

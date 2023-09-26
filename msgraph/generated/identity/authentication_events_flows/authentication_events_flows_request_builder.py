@@ -135,7 +135,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthenticationEventsFlowsRequestBuilder(raw_url, self.request_adapter)
+        return AuthenticationEventsFlowsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

@@ -25,6 +25,8 @@ class SupportedTimeZonesWithTimeZoneStandardRequestBuilder(BaseRequestBuilder):
         param time_zone_standard: Usage: TimeZoneStandard='{TimeZoneStandard}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['TimeZoneStandard'] = str(time_zone_standard)
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/outlook/supportedTimeZones(TimeZoneStandard='{TimeZoneStandard}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[SupportedTimeZonesWithTimeZoneStandardRequestBuilderGetRequestConfiguration] = None) -> Optional[SupportedTimeZonesWithTimeZoneStandardResponse]:
@@ -73,7 +75,7 @@ class SupportedTimeZonesWithTimeZoneStandardRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SupportedTimeZonesWithTimeZoneStandardRequestBuilder(raw_url, self.request_adapter)
+        return SupportedTimeZonesWithTimeZoneStandardRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class SupportedTimeZonesWithTimeZoneStandardRequestBuilderGetQueryParameters():

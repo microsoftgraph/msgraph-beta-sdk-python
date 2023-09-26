@@ -25,6 +25,8 @@ class GetPlatformSupportedPropertiesWithPlatformRequestBuilder(BaseRequestBuilde
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['platform'] = str(platform)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/assignmentFilters/getPlatformSupportedProperties(platform='{platform}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetPlatformSupportedPropertiesWithPlatformRequestBuilderGetRequestConfiguration] = None) -> Optional[GetPlatformSupportedPropertiesWithPlatformResponse]:
@@ -73,7 +75,7 @@ class GetPlatformSupportedPropertiesWithPlatformRequestBuilder(BaseRequestBuilde
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetPlatformSupportedPropertiesWithPlatformRequestBuilder(raw_url, self.request_adapter)
+        return GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetPlatformSupportedPropertiesWithPlatformRequestBuilderGetQueryParameters():

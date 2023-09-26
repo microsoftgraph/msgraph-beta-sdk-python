@@ -72,7 +72,7 @@ class DeviceManagementConfigurationSettingDefinitionItemRequestBuilder(BaseReque
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementConfigurationSettingDefinitionItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementConfigurationSettingDefinitionItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DeviceManagementConfigurationSettingDefinitionItemRequestBuilderGetQueryParameters():

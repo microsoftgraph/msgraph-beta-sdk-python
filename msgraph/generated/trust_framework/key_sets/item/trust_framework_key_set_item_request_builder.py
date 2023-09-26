@@ -158,7 +158,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TrustFrameworkKeySetItemRequestBuilder(raw_url, self.request_adapter)
+        return TrustFrameworkKeySetItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def generate_key(self) -> GenerateKeyRequestBuilder:

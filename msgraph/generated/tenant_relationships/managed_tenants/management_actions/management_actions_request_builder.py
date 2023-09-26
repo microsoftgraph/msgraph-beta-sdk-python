@@ -134,7 +134,7 @@ class ManagementActionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagementActionsRequestBuilder(raw_url, self.request_adapter)
+        return ManagementActionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

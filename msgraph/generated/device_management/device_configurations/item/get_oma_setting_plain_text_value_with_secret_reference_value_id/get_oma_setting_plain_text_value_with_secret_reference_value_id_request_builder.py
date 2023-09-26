@@ -25,6 +25,8 @@ class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(BaseRe
         param secret_reference_value_id: Usage: secretReferenceValueId='{secretReferenceValueId}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['secretReferenceValueId'] = str(secret_reference_value_id)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilderGetRequestConfiguration] = None) -> Optional[GetOmaSettingPlainTextValueWithSecretReferenceValueIdResponse]:
@@ -72,7 +74,7 @@ class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(BaseRe
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(raw_url, self.request_adapter)
+        return GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

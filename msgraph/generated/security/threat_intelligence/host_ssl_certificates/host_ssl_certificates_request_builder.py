@@ -45,7 +45,7 @@ class HostSslCertificatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostSslCertificatesRequestBuilderGetRequestConfiguration] = None) -> Optional[HostSslCertificateCollectionResponse]:
         """
-        Get hostSslCertificates from security
+        Get the properties and relationships of a hostSslCertificate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostSslCertificateCollectionResponse]
         """
@@ -90,7 +90,7 @@ class HostSslCertificatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HostSslCertificatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get hostSslCertificates from security
+        Get the properties and relationships of a hostSslCertificate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +133,7 @@ class HostSslCertificatesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HostSslCertificatesRequestBuilder(raw_url, self.request_adapter)
+        return HostSslCertificatesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -147,7 +147,7 @@ class HostSslCertificatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HostSslCertificatesRequestBuilderGetQueryParameters():
         """
-        Get hostSslCertificates from security
+        Get the properties and relationships of a hostSslCertificate object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -154,7 +154,7 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RoleManagementAlertsRequestBuilder(raw_url, self.request_adapter)
+        return RoleManagementAlertsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def alert_configurations(self) -> AlertConfigurationsRequestBuilder:

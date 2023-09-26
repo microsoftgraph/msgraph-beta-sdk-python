@@ -26,6 +26,9 @@ class ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(BaseRequestBuil
         param start_date_time: Usage: StartDateTime='{StartDateTime}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['EndDateTime'] = str(end_date_time)
+            path_parameters['StartDateTime'] = str(start_date_time)
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/reminderView(StartDateTime='{StartDateTime}',EndDateTime='{EndDateTime}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[ReminderViewWithStartDateTimeWithEndDateTimeResponse]:
@@ -74,7 +77,7 @@ class ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(BaseRequestBuil
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(raw_url, self.request_adapter)
+        return ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters():

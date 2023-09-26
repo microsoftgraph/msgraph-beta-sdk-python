@@ -151,7 +151,7 @@ class TenantReferenceTenantItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantReferenceTenantItemRequestBuilder(raw_url, self.request_adapter)
+        return TenantReferenceTenantItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def remove_personal_data(self) -> RemovePersonalDataRequestBuilder:

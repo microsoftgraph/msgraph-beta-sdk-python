@@ -72,7 +72,7 @@ class MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(BaseReq
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilderGetQueryParameters():

@@ -161,7 +161,7 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthenticationRequestBuilder(raw_url, self.request_adapter)
+        return AuthenticationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def email_methods(self) -> EmailMethodsRequestBuilder:

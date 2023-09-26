@@ -14,6 +14,8 @@ class SubjectRightsRequestEnumeratedMailboxLocation(SubjectRightsRequestMailboxL
     odata_type: Optional[str] = "#microsoft.graph.subjectRightsRequestEnumeratedMailboxLocation"
     # Collection of mailboxes that should be included in the search. Includes the UPN (user principal name) of each mailbox, for example, Monica.Thompson@contoso.com.
     upns: Optional[List[str]] = None
+    # The userPrincipalNames property
+    user_principal_names: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SubjectRightsRequestEnumeratedMailboxLocation:
@@ -37,6 +39,7 @@ class SubjectRightsRequestEnumeratedMailboxLocation(SubjectRightsRequestMailboxL
 
         fields: Dict[str, Callable[[Any], None]] = {
             "upns": lambda n : setattr(self, 'upns', n.get_collection_of_primitive_values(str)),
+            "userPrincipalNames": lambda n : setattr(self, 'user_principal_names', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,5 +55,6 @@ class SubjectRightsRequestEnumeratedMailboxLocation(SubjectRightsRequestMailboxL
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("upns", self.upns)
+        writer.write_collection_of_primitive_values("userPrincipalNames", self.user_principal_names)
     
 

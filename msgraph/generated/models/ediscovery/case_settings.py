@@ -19,7 +19,7 @@ class CaseSettings(Entity):
     odata_type: Optional[str] = None
     # The redundancy (near duplicate and email threading) detection settings for the case.
     redundancy_detection: Optional[RedundancyDetectionSettings] = None
-    # The Topic Modeling (Themes) settings for the case.
+    # The article Modeling (Themes) settings for the case.
     topic_modeling: Optional[TopicModelingSettings] = None
     
     @staticmethod

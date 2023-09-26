@@ -25,6 +25,8 @@ class AppDiagnosticsWithUpnRequestBuilder(BaseRequestBuilder):
         param upn: Usage: upn='{upn}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['upn'] = str(upn)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/appDiagnostics(upn='{upn}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[AppDiagnosticsWithUpnRequestBuilderGetRequestConfiguration] = None) -> Optional[AppDiagnosticsWithUpnResponse]:
@@ -73,7 +75,7 @@ class AppDiagnosticsWithUpnRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AppDiagnosticsWithUpnRequestBuilder(raw_url, self.request_adapter)
+        return AppDiagnosticsWithUpnRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class AppDiagnosticsWithUpnRequestBuilderGetQueryParameters():

@@ -127,7 +127,7 @@ class DataClassificationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DataClassificationRequestBuilder(raw_url, self.request_adapter)
+        return DataClassificationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def classify_exact_matches(self) -> ClassifyExactMatchesRequestBuilder:

@@ -15,29 +15,29 @@ from .entity import Entity
 
 @dataclass
 class WorkbookDocumentTask(Entity):
-    # The assignees property
+    # A collection of user identities the task is assigned to.
     assignees: Optional[List[WorkbookEmailIdentity]] = None
-    # The changes property
+    # A collection of task change histories.
     changes: Optional[List[WorkbookDocumentTaskChange]] = None
-    # The comment property
+    # The comment that the task is associated with.
     comment: Optional[WorkbookComment] = None
-    # The completedBy property
+    # The identity of the user who completed the task. Nullable.
     completed_by: Optional[WorkbookEmailIdentity] = None
-    # The completedDateTime property
+    # Date and time when the task was completed. Nullable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     completed_date_time: Optional[datetime.datetime] = None
-    # The createdBy property
+    # A user identity that creates the task. Nullable.
     created_by: Optional[WorkbookEmailIdentity] = None
-    # The createdDateTime property
+    # Date and time when the task was created. Nullable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The percentComplete property
+    # An integer value from 0 to 100 that represents the percentage of the completion of the task. 100 means that the task is completed. Nullable.
     percent_complete: Optional[int] = None
-    # The priority property
+    # An integer value from 0 to 10 that represents the priority of the task. A lower value indicates a higher priority. Nullable.
     priority: Optional[int] = None
-    # The startAndDueDateTime property
+    # Start and due date of the task. Nullable.
     start_and_due_date_time: Optional[WorkbookDocumentTaskSchedule] = None
-    # The title property
+    # The title of the task.
     title: Optional[str] = None
     
     @staticmethod

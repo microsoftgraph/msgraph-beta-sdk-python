@@ -27,6 +27,9 @@ class MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateT
         param to_date_time: Usage: toDateTime={toDateTime}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['fromDateTime'] = str(from_date_time)
+            path_parameters['toDateTime'] = str(to_date_time)
         super().__init__(request_adapter, "{+baseurl}/communications/callRecords/microsoft.graph.callRecords.getPstnBlockedUsersLog(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeResponse]:
@@ -75,7 +78,7 @@ class MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateT
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters():

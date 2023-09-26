@@ -151,7 +151,7 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CertificateBasedApplicationConfigurationItemRequestBuilder(raw_url, self.request_adapter)
+        return CertificateBasedApplicationConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def trusted_certificate_authorities(self) -> TrustedCertificateAuthoritiesRequestBuilder:

@@ -25,6 +25,8 @@ class FindTenantInformationByDomainNameWithDomainNameRequestBuilder(BaseRequestB
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['domainName'] = str(domain_name)
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/findTenantInformationByDomainName(domainName='{domainName}')", path_parameters)
     
     async def get(self,request_configuration: Optional[FindTenantInformationByDomainNameWithDomainNameRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantInformation]:
@@ -72,7 +74,7 @@ class FindTenantInformationByDomainNameWithDomainNameRequestBuilder(BaseRequestB
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return FindTenantInformationByDomainNameWithDomainNameRequestBuilder(raw_url, self.request_adapter)
+        return FindTenantInformationByDomainNameWithDomainNameRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

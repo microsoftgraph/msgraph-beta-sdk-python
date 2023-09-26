@@ -73,7 +73,7 @@ class DetectedSensitiveContent(DetectedSensitiveContentBase):
             "classificationAttributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(ClassificationAttribute)),
             "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(ClassificationMethod)),
             "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(SensitiveContentLocation)),
-            "scope": lambda n : setattr(self, 'scope', n.get_enum_value(SensitiveTypeScope)),
+            "scope": lambda n : setattr(self, 'scope', n.get_collection_of_enum_values(SensitiveTypeScope)),
             "sensitiveTypeSource": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(SensitiveTypeSource)),
         }
         super_fields = super().get_field_deserializers()

@@ -20,7 +20,7 @@ class WorkbookComment(Entity):
     odata_type: Optional[str] = None
     # The replies property
     replies: Optional[List[WorkbookCommentReply]] = None
-    # The task property
+    # The task associated with the comment. Read-only. Nullable.
     task: Optional[WorkbookDocumentTask] = None
     
     @staticmethod

@@ -25,6 +25,8 @@ class ItemAtWithIndexRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['index'] = str(index)
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/task/changes/itemAt(index={index})", path_parameters)
     
     async def get(self,request_configuration: Optional[ItemAtWithIndexRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookDocumentTaskChange]:
@@ -72,7 +74,7 @@ class ItemAtWithIndexRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ItemAtWithIndexRequestBuilder(raw_url, self.request_adapter)
+        return ItemAtWithIndexRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -67,7 +67,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[EducationModule] = None, request_configuration: Optional[ModulesRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationModule]:
         """
-        Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students will not see the modules until publication.
+        Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students won't see the modules until publication.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationModule]
@@ -109,7 +109,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[EducationModule] = None, request_configuration: Optional[ModulesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students will not see the modules until publication.
+        Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students won't see the modules until publication.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ModulesRequestBuilder(raw_url, self.request_adapter)
+        return ModulesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

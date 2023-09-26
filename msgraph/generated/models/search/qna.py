@@ -15,13 +15,13 @@ from .search_answer import SearchAnswer
 
 @dataclass
 class Qna(SearchAnswer):
-    # Timestamp of when the qna will stop to appear as a search result. Set as null for always available.
+    # Timestamp of when the qna stops to appear as a search result. Set as null for always available.
     availability_end_date_time: Optional[datetime.datetime] = None
-    # Timestamp of when the qna will start to appear as a search result. Set as null for always available.
+    # Timestamp of when the qna starts to appear as a search result. Set as null for always available.
     availability_start_date_time: Optional[datetime.datetime] = None
     # List of security groups able to view this qna.
     group_ids: Optional[List[str]] = None
-    # True if this qna was suggested to the admin by a user or was mined and suggested by Microsoft. Read-only.
+    # True if a user or Microsoft suggested this qna to the admin. Read-only.
     is_suggested: Optional[bool] = None
     # Keywords that trigger this qna to appear in search results.
     keywords: Optional[AnswerKeyword] = None
@@ -33,7 +33,7 @@ class Qna(SearchAnswer):
     platforms: Optional[List[DevicePlatformType]] = None
     # The state property
     state: Optional[AnswerState] = None
-    # Variations of a qna for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings will apply to all variations.
+    # Variations of a qna for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings apply to all variations.
     targeted_variations: Optional[List[AnswerVariant]] = None
     
     @staticmethod

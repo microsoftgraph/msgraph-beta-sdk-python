@@ -133,7 +133,7 @@ class ManagementTemplateStepVersionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagementTemplateStepVersionsRequestBuilder(raw_url, self.request_adapter)
+        return ManagementTemplateStepVersionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

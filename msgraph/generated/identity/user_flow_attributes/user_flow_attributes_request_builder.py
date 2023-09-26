@@ -67,7 +67,7 @@ class UserFlowAttributesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[IdentityUserFlowAttribute] = None, request_configuration: Optional[UserFlowAttributesRequestBuilderPostRequestConfiguration] = None) -> Optional[IdentityUserFlowAttribute]:
         """
-        Create a new identityUserFlowAttribute object.
+        Create a new custom identityUserFlowAttribute object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlowAttribute]
@@ -109,7 +109,7 @@ class UserFlowAttributesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[IdentityUserFlowAttribute] = None, request_configuration: Optional[UserFlowAttributesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new identityUserFlowAttribute object.
+        Create a new custom identityUserFlowAttribute object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class UserFlowAttributesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserFlowAttributesRequestBuilder(raw_url, self.request_adapter)
+        return UserFlowAttributesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

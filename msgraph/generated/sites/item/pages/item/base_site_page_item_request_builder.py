@@ -153,7 +153,7 @@ class BaseSitePageItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BaseSitePageItemRequestBuilder(raw_url, self.request_adapter)
+        return BaseSitePageItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def created_by_user(self) -> CreatedByUserRequestBuilder:

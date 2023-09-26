@@ -152,7 +152,7 @@ class ColorIconRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ColorIconRequestBuilder(raw_url, self.request_adapter)
+        return ColorIconRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def hosted_content(self) -> HostedContentRequestBuilder:

@@ -25,6 +25,8 @@ class GetLicensesForAppWithBundleIdRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['bundleId'] = str(bundle_id)
         super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/vppTokens/getLicensesForApp(bundleId='{bundleId}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetLicensesForAppWithBundleIdRequestBuilderGetRequestConfiguration] = None) -> Optional[GetLicensesForAppWithBundleIdResponse]:
@@ -73,7 +75,7 @@ class GetLicensesForAppWithBundleIdRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetLicensesForAppWithBundleIdRequestBuilder(raw_url, self.request_adapter)
+        return GetLicensesForAppWithBundleIdRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetLicensesForAppWithBundleIdRequestBuilderGetQueryParameters():

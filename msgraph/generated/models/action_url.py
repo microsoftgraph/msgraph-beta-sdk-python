@@ -15,7 +15,7 @@ class ActionUrl(AdditionalDataHolder, BackedModel, Parsable):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The URL to the documentation or Azure portal page.
+    # The URL to the documentation or Microsoft Entra admin center page.
     url: Optional[str] = None
     
     @staticmethod

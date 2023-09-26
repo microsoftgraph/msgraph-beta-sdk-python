@@ -117,7 +117,7 @@ class FinancialsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return FinancialsRequestBuilder(raw_url, self.request_adapter)
+        return FinancialsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def companies(self) -> CompaniesRequestBuilder:

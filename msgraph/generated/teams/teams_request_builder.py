@@ -137,7 +137,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TeamsRequestBuilder(raw_url, self.request_adapter)
+        return TeamsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def all_messages(self) -> AllMessagesRequestBuilder:

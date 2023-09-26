@@ -72,7 +72,7 @@ class MicrosoftGraphSecurityRunRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphSecurityRunRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphSecurityRunRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class MicrosoftGraphSecurityRunRequestBuilderGetQueryParameters():

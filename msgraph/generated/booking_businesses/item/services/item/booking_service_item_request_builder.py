@@ -70,7 +70,7 @@ class BookingServiceItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[BookingService] = None, request_configuration: Optional[BookingServiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[BookingService]:
         """
-        Update the properties of a bookingService object in the specified bookingBusiness. The following are some examples you can customize for a service:- Price- Typical length of an appointment- Reminders- Any time buffer to set up before or finish up after the service- Scheduling policy parameters such as minimum notice to book or cancel, and whether customers can select specific staff members for an appointment.
+        Update the properties of a bookingService object in the specified bookingBusiness. The following are some examples you can customize for a service:- Price- Typical length of an appointment- Reminders- Any, time buffer to set up before or finish up after the service- Scheduling policy parameters such as minimum notice to book or cancel, and whether customers can select specific staff members for an appointment.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingService]
@@ -127,7 +127,7 @@ class BookingServiceItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[BookingService] = None, request_configuration: Optional[BookingServiceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a bookingService object in the specified bookingBusiness. The following are some examples you can customize for a service:- Price- Typical length of an appointment- Reminders- Any time buffer to set up before or finish up after the service- Scheduling policy parameters such as minimum notice to book or cancel, and whether customers can select specific staff members for an appointment.
+        Update the properties of a bookingService object in the specified bookingBusiness. The following are some examples you can customize for a service:- Price- Typical length of an appointment- Reminders- Any, time buffer to set up before or finish up after the service- Scheduling policy parameters such as minimum notice to book or cancel, and whether customers can select specific staff members for an appointment.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class BookingServiceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BookingServiceItemRequestBuilder(raw_url, self.request_adapter)
+        return BookingServiceItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

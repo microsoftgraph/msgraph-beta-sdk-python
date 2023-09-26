@@ -89,7 +89,7 @@ class PurchaseInvoicesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PurchaseInvoicesRequestBuilder(raw_url, self.request_adapter)
+        return PurchaseInvoicesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

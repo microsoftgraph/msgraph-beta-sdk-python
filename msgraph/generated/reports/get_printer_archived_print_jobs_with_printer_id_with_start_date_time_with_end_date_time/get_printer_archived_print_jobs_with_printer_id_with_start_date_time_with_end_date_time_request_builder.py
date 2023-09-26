@@ -28,6 +28,10 @@ class GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRe
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['endDateTime'] = str(end_date_time)
+            path_parameters['printerId'] = str(printer_id)
+            path_parameters['startDateTime'] = str(start_date_time)
         super().__init__(request_adapter, "{+baseurl}/reports/getPrinterArchivedPrintJobs(printerId='{printerId}',startDateTime={startDateTime},endDateTime={endDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeResponse]:
@@ -76,7 +80,7 @@ class GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRe
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilder(raw_url, self.request_adapter)
+        return GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters():

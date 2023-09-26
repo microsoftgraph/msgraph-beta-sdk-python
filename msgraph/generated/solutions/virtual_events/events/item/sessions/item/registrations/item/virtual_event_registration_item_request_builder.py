@@ -28,7 +28,7 @@ class VirtualEventRegistrationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[VirtualEventRegistrationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
         """
-        Get registrations from solutions
+        Registration records of this virtual event session.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventRegistration]
         """
@@ -49,7 +49,7 @@ class VirtualEventRegistrationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[VirtualEventRegistrationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get registrations from solutions
+        Registration records of this virtual event session.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,12 +72,12 @@ class VirtualEventRegistrationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return VirtualEventRegistrationItemRequestBuilder(raw_url, self.request_adapter)
+        return VirtualEventRegistrationItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class VirtualEventRegistrationItemRequestBuilderGetQueryParameters():
         """
-        Get registrations from solutions
+        Registration records of this virtual event session.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

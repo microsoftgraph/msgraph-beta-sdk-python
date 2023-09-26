@@ -45,7 +45,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
         from .mac_o_s_system_extension_type import MacOSSystemExtensionType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedTypes": lambda n : setattr(self, 'allowed_types', n.get_enum_value(MacOSSystemExtensionType)),
+            "allowedTypes": lambda n : setattr(self, 'allowed_types', n.get_collection_of_enum_values(MacOSSystemExtensionType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
         }

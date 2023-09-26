@@ -151,7 +151,7 @@ class DeviceConfigurationGroupAssignmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceConfigurationGroupAssignmentItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceConfigurationGroupAssignmentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def device_configuration(self) -> DeviceConfigurationRequestBuilder:

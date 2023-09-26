@@ -154,7 +154,7 @@ class UnifiedRoleManagementAlertItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UnifiedRoleManagementAlertItemRequestBuilder(raw_url, self.request_adapter)
+        return UnifiedRoleManagementAlertItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def alert_configuration(self) -> AlertConfigurationRequestBuilder:

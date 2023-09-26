@@ -51,7 +51,7 @@ class DriveItem(BaseItem):
     audio: Optional[Audio] = None
     # Bundle metadata, if the item is a bundle. Read-only.
     bundle: Optional[Bundle] = None
-    # An eTag for the content of the item. This eTag is not changed if only the metadata is changed. Note This property is not returned if the item is a folder. Read-only.
+    # An eTag for the content of the item. This eTag isn't changed if only the metadata is changed. Note This property isn't returned if the item is a folder. Read-only.
     c_tag: Optional[str] = None
     # Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
     children: Optional[List[DriveItem]] = None
@@ -83,11 +83,11 @@ class DriveItem(BaseItem):
     permissions: Optional[List[Permission]] = None
     # Photo metadata, if the item is a photo. Read-only.
     photo: Optional[Photo] = None
-    # Provides information about the published or checked-out state of an item, in locations that support such actions. This property is not returned by default. Read-only.
+    # Provides information about the published or checked-out state of an item, in locations that support such actions. This property isn't returned by default. Read-only.
     publication: Optional[PublicationFacet] = None
     # Remote item data, if the item is shared from a drive other than the one being accessed. Read-only.
     remote_item: Optional[RemoteItem] = None
-    # The retentionLabel property
+    # Information about retention label and settings enforced on the driveItem. Read-write.
     retention_label: Optional[ItemRetentionLabel] = None
     # If this property is non-null, it indicates that the driveItem is the top-most driveItem in the drive.
     root: Optional[Root] = None
@@ -113,7 +113,7 @@ class DriveItem(BaseItem):
     video: Optional[Video] = None
     # WebDAV compatible URL for the item.
     web_dav_url: Optional[str] = None
-    # For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+    # For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
     workbook: Optional[Workbook] = None
     
     @staticmethod

@@ -73,7 +73,7 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetCredentialUserRegistrationCountRequestBuilder(raw_url, self.request_adapter)
+        return GetCredentialUserRegistrationCountRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetCredentialUserRegistrationCountRequestBuilderGetQueryParameters():

@@ -153,7 +153,7 @@ class HostPairItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HostPairItemRequestBuilder(raw_url, self.request_adapter)
+        return HostPairItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def child_host(self) -> ChildHostRequestBuilder:
