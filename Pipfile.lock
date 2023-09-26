@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "03782d2298c9d4d0f91110aa0cf11044193e8f375a151b1296b5995539716d78"
+            "sha256": "53a0158fa2001585e9318e907e13fd2949b929443b71cbeecc728875f3258355"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -1098,12 +1098,12 @@
         },
         "pylint": {
             "hashes": [
-                "sha256:73995fb8216d3bed149c8d51bba25b2c52a8251a2c8ac846ec668ce38fab5413",
-                "sha256:f7b601cbc06fef7e62a754e2b41294c2aa31f1cb659624b9a85bcba29eaf8252"
+                "sha256:18a1412e873caf8ffb56b760ce1b5643675af23e6173a247b502406b24c716af",
+                "sha256:be928cce5c76bf9acdc65ad01447a1e0b1a7bccffc609fb7fc40f2513045bd05"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.7.2'",
-            "version": "==2.17.5"
+            "version": "==2.17.6"
         },
         "pyproject-hooks": {
             "hashes": [
