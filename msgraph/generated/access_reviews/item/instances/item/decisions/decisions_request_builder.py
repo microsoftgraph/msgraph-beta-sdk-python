@@ -45,7 +45,7 @@ class DecisionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewDecisionCollectionResponse]:
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a decisions relationship.  Instead, the caller must navigate the instance relationship to find an accessReview object for a current or past instance of the access review.
+        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a decisions relationship.  Instead, the caller must navigate the instance relationship to find an accessReview object for a current or past instance of the access review. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewDecisionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accessreview-listdecisions?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class DecisionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a decisions relationship.  Instead, the caller must navigate the instance relationship to find an accessReview object for a current or past instance of the access review.
+        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a decisions relationship.  Instead, the caller must navigate the instance relationship to find an accessReview object for a current or past instance of the access review. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class DecisionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DecisionsRequestBuilder(raw_url, self.request_adapter)
+        return DecisionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class DecisionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DecisionsRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a decisions relationship.  Instead, the caller must navigate the instance relationship to find an accessReview object for a current or past instance of the access review.
+        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a decisions relationship.  Instead, the caller must navigate the instance relationship to find an accessReview object for a current or past instance of the access review. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

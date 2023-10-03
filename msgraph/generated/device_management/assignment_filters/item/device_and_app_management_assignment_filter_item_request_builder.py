@@ -151,7 +151,7 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder(BaseRequestBuilde
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceAndAppManagementAssignmentFilterItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceAndAppManagementAssignmentFilterItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def get_supported_properties(self) -> GetSupportedPropertiesRequestBuilder:

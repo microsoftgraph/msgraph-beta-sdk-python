@@ -154,7 +154,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpdatableAssetItemRequestBuilder(raw_url, self.request_adapter)
+        return UpdatableAssetItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_windows_updates_add_members(self) -> MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder:

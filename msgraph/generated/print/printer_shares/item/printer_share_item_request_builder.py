@@ -154,7 +154,7 @@ class PrinterShareItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrinterShareItemRequestBuilder(raw_url, self.request_adapter)
+        return PrinterShareItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def allowed_groups(self) -> AllowedGroupsRequestBuilder:

@@ -47,7 +47,7 @@ class AdminConsentRequestPolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AdminConsentRequestPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[AdminConsentRequestPolicy]:
         """
-        Read the properties and relationships of an adminConsentRequestPolicy object.
+        Read the properties and relationships of an adminConsentRequestPolicy object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdminConsentRequestPolicy]
         Find more info here: https://learn.microsoft.com/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class AdminConsentRequestPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AdminConsentRequestPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an adminConsentRequestPolicy object.
+        Read the properties and relationships of an adminConsentRequestPolicy object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class AdminConsentRequestPolicyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AdminConsentRequestPolicyRequestBuilder(raw_url, self.request_adapter)
+        return AdminConsentRequestPolicyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class AdminConsentRequestPolicyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AdminConsentRequestPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an adminConsentRequestPolicy object.
+        Read the properties and relationships of an adminConsentRequestPolicy object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

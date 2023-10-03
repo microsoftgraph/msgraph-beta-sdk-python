@@ -154,7 +154,7 @@ class VendorItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return VendorItemRequestBuilder(raw_url, self.request_adapter)
+        return VendorItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def currency(self) -> CurrencyRequestBuilder:

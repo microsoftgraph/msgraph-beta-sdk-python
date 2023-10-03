@@ -28,7 +28,7 @@ class UpgradeRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[UpgradePostRequestBody] = None, request_configuration: Optional[UpgradeRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Upgrade an app installation within a chat.
+        Upgrade an app installation within a chat. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class UpgradeRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[UpgradePostRequestBody] = None, request_configuration: Optional[UpgradeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Upgrade an app installation within a chat.
+        Upgrade an app installation within a chat. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class UpgradeRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpgradeRequestBuilder(raw_url, self.request_adapter)
+        return UpgradeRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

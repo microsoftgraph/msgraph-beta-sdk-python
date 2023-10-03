@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .export_response import ExportResponse
+    from .export_get_response import ExportGetResponse
 
 class ExportRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class ExportRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/governanceResources/{governanceResource%2Did}/roleAssignments/export(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[ExportRequestBuilderGetRequestConfiguration] = None) -> Optional[ExportResponse]:
+    async def get(self,request_configuration: Optional[ExportRequestBuilderGetRequestConfiguration] = None) -> Optional[ExportGetResponse]:
         """
         Invoke function export
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ExportResponse]
+        Returns: Optional[ExportGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class ExportRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .export_response import ExportResponse
+        from .export_get_response import ExportGetResponse
 
-        return await self.request_adapter.send_async(request_info, ExportResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ExportGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExportRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class ExportRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ExportRequestBuilder(raw_url, self.request_adapter)
+        return ExportRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class ExportRequestBuilderGetQueryParameters():

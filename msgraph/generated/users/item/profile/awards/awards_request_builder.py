@@ -45,7 +45,7 @@ class AwardsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AwardsRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonAwardCollectionResponse]:
         """
-        Retrieve a list of personAward objects from a user's profile.
+        Retrieve a list of personAward objects from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAwardCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/profile-list-awards?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class AwardsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PersonAward] = None, request_configuration: Optional[AwardsRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonAward]:
         """
-        Create a new personAward object in a user's profile.
+        Create a new personAward object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAward]
@@ -92,7 +92,7 @@ class AwardsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AwardsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personAward objects from a user's profile.
+        Retrieve a list of personAward objects from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class AwardsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PersonAward] = None, request_configuration: Optional[AwardsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personAward object in a user's profile.
+        Create a new personAward object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class AwardsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AwardsRequestBuilder(raw_url, self.request_adapter)
+        return AwardsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class AwardsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AwardsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personAward objects from a user's profile.
+        Retrieve a list of personAward objects from a user's profile. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

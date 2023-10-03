@@ -29,11 +29,11 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # A list of supported bottom margins(in microns) for the printer.
     bottom_margins: Optional[List[int]] = None
-    # True if the printer supports collating when printing muliple copies of a multi-page document; false otherwise.
+    # True if the printer supports collating when printing multiple copies of a multi-page document; false otherwise.
     collation: Optional[bool] = None
     # The color modes supported by the printer. Valid values are described in the following table.
     color_modes: Optional[List[PrintColorMode]] = None
-    # A list of supported content (MIME) types that the printer supports. It is not guaranteed that the Universal Print service supports printing all of these MIME types.
+    # A list of supported content (MIME) types that the printer supports. It isn't guaranteed that the Universal Print service supports printing all of these MIME types.
     content_types: Optional[List[str]] = None
     # The range of copies per job supported by the printer.
     copies_per_job: Optional[IntegerRange] = None
@@ -55,7 +55,7 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     is_page_range_supported: Optional[bool] = None
     # A list of supported left margins(in microns) for the printer.
     left_margins: Optional[List[int]] = None
-    # The media (i.e., paper) colors supported by the printer.
+    # The media (that is, paper) colors supported by the printer.
     media_colors: Optional[List[str]] = None
     # The media sizes supported by the printer. Supports standard size names for ISO and ANSI media sizes. Valid values are in the following table.
     media_sizes: Optional[List[str]] = None

@@ -28,7 +28,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetRemoteConnectionHistoricalReportsPostRequestBody] = None, request_configuration: Optional[GetRemoteConnectionHistoricalReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get the remote connection history records of a Cloud PC during a given period.
+        Get the remote connection history records of a Cloud PC during a given period. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
@@ -51,7 +51,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetRemoteConnectionHistoricalReportsPostRequestBody] = None, request_configuration: Optional[GetRemoteConnectionHistoricalReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the remote connection history records of a Cloud PC during a given period.
+        Get the remote connection history records of a Cloud PC during a given period. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetRemoteConnectionHistoricalReportsRequestBuilder(raw_url, self.request_adapter)
+        return GetRemoteConnectionHistoricalReportsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

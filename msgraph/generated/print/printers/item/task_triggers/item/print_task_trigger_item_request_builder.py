@@ -29,7 +29,7 @@ class PrintTaskTriggerItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[PrintTaskTriggerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a printer's task trigger to prevent related print events from triggering tasks on the specified printer.
+        Delete a printer's task trigger to prevent related print events from triggering tasks on the specified printer. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class PrintTaskTriggerItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PrintTaskTriggerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PrintTaskTrigger]:
         """
-        Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrintTaskTrigger]
         Find more info here: https://learn.microsoft.com/graph/api/printtasktrigger-get?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class PrintTaskTriggerItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[PrintTaskTriggerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a printer's task trigger to prevent related print events from triggering tasks on the specified printer.
+        Delete a printer's task trigger to prevent related print events from triggering tasks on the specified printer. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class PrintTaskTriggerItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PrintTaskTriggerItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class PrintTaskTriggerItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrintTaskTriggerItemRequestBuilder(raw_url, self.request_adapter)
+        return PrintTaskTriggerItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def definition(self) -> DefinitionRequestBuilder:
@@ -177,7 +177,7 @@ class PrintTaskTriggerItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PrintTaskTriggerItemRequestBuilderGetQueryParameters():
         """
-        Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

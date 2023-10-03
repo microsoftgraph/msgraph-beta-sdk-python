@@ -48,7 +48,7 @@ class UnifiedRoleManagementAlertIncidentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UnifiedRoleManagementAlertIncidentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertIncident]:
         """
-        Read the properties and relationships of an alert incident. The alert incident can be one of the following types that are derived from the unifiedRoleManagementAlertIncident object:
+        Read the properties and relationships of an alert incident. The alert incident can be one of the following types that are derived from the unifiedRoleManagementAlertIncident object: This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRoleManagementAlertIncident]
         Find more info here: https://learn.microsoft.com/graph/api/unifiedrolemanagementalertincident-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class UnifiedRoleManagementAlertIncidentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRoleManagementAlertIncidentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an alert incident. The alert incident can be one of the following types that are derived from the unifiedRoleManagementAlertIncident object:
+        Read the properties and relationships of an alert incident. The alert incident can be one of the following types that are derived from the unifiedRoleManagementAlertIncident object: This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class UnifiedRoleManagementAlertIncidentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UnifiedRoleManagementAlertIncidentItemRequestBuilder(raw_url, self.request_adapter)
+        return UnifiedRoleManagementAlertIncidentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def remediate(self) -> RemediateRequestBuilder:
@@ -176,7 +176,7 @@ class UnifiedRoleManagementAlertIncidentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UnifiedRoleManagementAlertIncidentItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an alert incident. The alert incident can be one of the following types that are derived from the unifiedRoleManagementAlertIncident object:
+        Read the properties and relationships of an alert incident. The alert incident can be one of the following types that are derived from the unifiedRoleManagementAlertIncident object: This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

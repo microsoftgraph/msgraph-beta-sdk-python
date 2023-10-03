@@ -151,7 +151,7 @@ class RequestorRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RequestorRequestBuilder(raw_url, self.request_adapter)
+        return RequestorRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def connected_organization(self) -> ConnectedOrganizationRequestBuilder:

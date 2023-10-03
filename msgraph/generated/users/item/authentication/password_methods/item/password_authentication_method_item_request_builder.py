@@ -28,7 +28,7 @@ class PasswordAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PasswordAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PasswordAuthenticationMethod]:
         """
-        Retrieve the properties and relationships of a password authentication method object. 
+        Retrieve the properties and relationships of a password authentication method object.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordAuthenticationMethod]
         Find more info here: https://learn.microsoft.com/graph/api/passwordauthenticationmethod-get?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class PasswordAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PasswordAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a password authentication method object. 
+        Retrieve the properties and relationships of a password authentication method object.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,12 +73,12 @@ class PasswordAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PasswordAuthenticationMethodItemRequestBuilder(raw_url, self.request_adapter)
+        return PasswordAuthenticationMethodItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class PasswordAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a password authentication method object. 
+        Retrieve the properties and relationships of a password authentication method object.  This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -28,7 +28,7 @@ class GetSharedUseLicenseUsageReportRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetSharedUseLicenseUsageReportPostRequestBody] = None, request_configuration: Optional[GetSharedUseLicenseUsageReportRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get a usage report on shared-use licenses, such as servicePlanId, licenseCount, and claimedLicenseCount, for real-time, 7 days, or 28 days trend.
+        Get a usage report on shared-use licenses, such as servicePlanId, licenseCount, and claimedLicenseCount, for real-time, 7 days, or 28 days trend. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
@@ -51,7 +51,7 @@ class GetSharedUseLicenseUsageReportRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetSharedUseLicenseUsageReportPostRequestBody] = None, request_configuration: Optional[GetSharedUseLicenseUsageReportRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a usage report on shared-use licenses, such as servicePlanId, licenseCount, and claimedLicenseCount, for real-time, 7 days, or 28 days trend.
+        Get a usage report on shared-use licenses, such as servicePlanId, licenseCount, and claimedLicenseCount, for real-time, 7 days, or 28 days trend. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class GetSharedUseLicenseUsageReportRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetSharedUseLicenseUsageReportRequestBuilder(raw_url, self.request_adapter)
+        return GetSharedUseLicenseUsageReportRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

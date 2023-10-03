@@ -45,7 +45,7 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WebinarsRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventWebinarCollectionResponse]:
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventWebinarCollectionResponse]
         """
@@ -90,7 +90,7 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WebinarsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +133,7 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WebinarsRequestBuilder(raw_url, self.request_adapter)
+        return WebinarsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -147,7 +147,7 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WebinarsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

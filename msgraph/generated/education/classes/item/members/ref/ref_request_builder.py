@@ -29,7 +29,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> Optional[StringCollectionResponse]:
         """
-        Retrieves the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class.
+        Retrieve the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StringCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0
@@ -51,7 +51,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Add an educationUser member to an educationClass.
+        Add an educationUser member to an educationClass. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -74,7 +74,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class.
+        Retrieve the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -91,7 +91,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add an educationUser member to an educationClass.
+        Add an educationUser member to an educationClass. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -116,12 +116,12 @@ class RefRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RefRequestBuilder(raw_url, self.request_adapter)
+        return RefRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class RefRequestBuilderGetQueryParameters():
         """
-        Retrieves the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class.
+        Retrieve the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

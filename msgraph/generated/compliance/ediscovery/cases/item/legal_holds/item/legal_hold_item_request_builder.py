@@ -31,7 +31,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[LegalHoldItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a legalHold object.
+        Delete a legalHold object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-delete?view=graph-rest-1.0
@@ -51,7 +51,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[LegalHoldItemRequestBuilderGetRequestConfiguration] = None) -> Optional[LegalHold]:
         """
-        Read the properties and relationships of a legalHold object.
+        Read the properties and relationships of a legalHold object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LegalHold]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-get?view=graph-rest-1.0
@@ -73,7 +73,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[LegalHold] = None, request_configuration: Optional[LegalHoldItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[LegalHold]:
         """
-        Update the properties of a legalHold object.
+        Update the properties of a legalHold object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LegalHold]
@@ -98,7 +98,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[LegalHoldItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a legalHold object.
+        Delete a legalHold object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +113,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[LegalHoldItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a legalHold object.
+        Read the properties and relationships of a legalHold object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -130,7 +130,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[LegalHold] = None, request_configuration: Optional[LegalHoldItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a legalHold object.
+        Update the properties of a legalHold object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -156,7 +156,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return LegalHoldItemRequestBuilder(raw_url, self.request_adapter)
+        return LegalHoldItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def site_sources(self) -> SiteSourcesRequestBuilder:
@@ -198,7 +198,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LegalHoldItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a legalHold object.
+        Read the properties and relationships of a legalHold object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -45,7 +45,7 @@ class ApplicationSignInDetailedSummaryRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ApplicationSignInDetailedSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[ApplicationSignInDetailedSummaryCollectionResponse]:
         """
-        Retrieve the applicationSignInDetailedSummary objects.
+        Retrieve the applicationSignInDetailedSummary objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApplicationSignInDetailedSummaryCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/reportroot-list-applicationsignindetailedsummary?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class ApplicationSignInDetailedSummaryRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ApplicationSignInDetailedSummaryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the applicationSignInDetailedSummary objects.
+        Retrieve the applicationSignInDetailedSummary objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class ApplicationSignInDetailedSummaryRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ApplicationSignInDetailedSummaryRequestBuilder(raw_url, self.request_adapter)
+        return ApplicationSignInDetailedSummaryRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class ApplicationSignInDetailedSummaryRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApplicationSignInDetailedSummaryRequestBuilderGetQueryParameters():
         """
-        Retrieve the applicationSignInDetailedSummary objects.
+        Retrieve the applicationSignInDetailedSummary objects. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

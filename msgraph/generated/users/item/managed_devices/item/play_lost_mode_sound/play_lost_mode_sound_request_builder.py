@@ -75,7 +75,7 @@ class PlayLostModeSoundRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PlayLostModeSoundRequestBuilder(raw_url, self.request_adapter)
+        return PlayLostModeSoundRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

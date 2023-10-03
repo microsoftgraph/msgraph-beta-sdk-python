@@ -28,7 +28,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a webAccount object from a user's profile.
+        Delete a webAccount object from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/webaccount-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WebAccount]:
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile.
+        Retrieve the properties and relationships of a webAccount object from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebAccount]
         Find more info here: https://learn.microsoft.com/graph/api/webaccount-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WebAccount]:
         """
-        Update the properties of a webAccount object in a user's profile.
+        Update the properties of a webAccount object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebAccount]
@@ -95,7 +95,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a webAccount object from a user's profile.
+        Delete a webAccount object from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile.
+        Retrieve the properties and relationships of a webAccount object from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a webAccount object in a user's profile.
+        Update the properties of a webAccount object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WebAccountItemRequestBuilder(raw_url, self.request_adapter)
+        return WebAccountItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WebAccountItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile.
+        Retrieve the properties and relationships of a webAccount object from a user's profile. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

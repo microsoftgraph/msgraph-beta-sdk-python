@@ -25,6 +25,8 @@ class GetFormsUserActivityUserDetailWithDateRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['date'] = str(date)
         super().__init__(request_adapter, "{+baseurl}/reports/getFormsUserActivityUserDetail(date={date})", path_parameters)
     
     async def get(self,request_configuration: Optional[GetFormsUserActivityUserDetailWithDateRequestBuilderGetRequestConfiguration] = None) -> bytes:
@@ -69,7 +71,7 @@ class GetFormsUserActivityUserDetailWithDateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetFormsUserActivityUserDetailWithDateRequestBuilder(raw_url, self.request_adapter)
+        return GetFormsUserActivityUserDetailWithDateRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

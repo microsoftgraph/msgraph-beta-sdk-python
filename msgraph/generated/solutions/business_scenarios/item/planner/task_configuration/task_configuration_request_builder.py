@@ -47,7 +47,7 @@ class TaskConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TaskConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerTaskConfiguration]:
         """
-        Read the properties and relationships of a plannerTaskConfiguration object.
+        Read the properties and relationships of a plannerTaskConfiguration object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerTaskConfiguration]
         Find more info here: https://learn.microsoft.com/graph/api/plannertaskconfiguration-get?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class TaskConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PlannerTaskConfiguration] = None, request_configuration: Optional[TaskConfigurationRequestBuilderPatchRequestConfiguration] = None) -> Optional[PlannerTaskConfiguration]:
         """
-        Update the properties of a plannerTaskConfiguration object.
+        Update the properties of a plannerTaskConfiguration object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerTaskConfiguration]
@@ -109,7 +109,7 @@ class TaskConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TaskConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a plannerTaskConfiguration object.
+        Read the properties and relationships of a plannerTaskConfiguration object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class TaskConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PlannerTaskConfiguration] = None, request_configuration: Optional[TaskConfigurationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a plannerTaskConfiguration object.
+        Update the properties of a plannerTaskConfiguration object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class TaskConfigurationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TaskConfigurationRequestBuilder(raw_url, self.request_adapter)
+        return TaskConfigurationRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class TaskConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TaskConfigurationRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a plannerTaskConfiguration object.
+        Read the properties and relationships of a plannerTaskConfiguration object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -48,9 +48,10 @@ class SslCertificateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SslCertificateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SslCertificate]:
         """
-        Get sslCertificates from security
+        Get the properties and relationships of an sslCertificate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SslCertificate]
+        Find more info here: https://learn.microsoft.com/graph/api/security-sslcertificate-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -108,7 +109,7 @@ class SslCertificateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SslCertificateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get sslCertificates from security
+        Get the properties and relationships of an sslCertificate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +152,7 @@ class SslCertificateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SslCertificateItemRequestBuilder(raw_url, self.request_adapter)
+        return SslCertificateItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def related_hosts(self) -> RelatedHostsRequestBuilder:
@@ -175,7 +176,7 @@ class SslCertificateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SslCertificateItemRequestBuilderGetQueryParameters():
         """
-        Get sslCertificates from security
+        Get the properties and relationships of an sslCertificate object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

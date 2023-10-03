@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.group import Group
     from .....models.o_data_errors.o_data_error import ODataError
+    from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
 
 class GroupRequestBuilder(BaseRequestBuilder):
     """
@@ -72,7 +73,16 @@ class GroupRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupRequestBuilder(raw_url, self.request_adapter)
+        return GroupRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def service_provisioning_errors(self) -> ServiceProvisioningErrorsRequestBuilder:
+        """
+        The serviceProvisioningErrors property
+        """
+        from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
+
+        return ServiceProvisioningErrorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupRequestBuilderGetQueryParameters():

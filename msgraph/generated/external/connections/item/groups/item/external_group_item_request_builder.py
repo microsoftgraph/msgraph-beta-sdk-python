@@ -29,7 +29,7 @@ class ExternalGroupItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ExternalGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an externalGroup object.
+        Delete an externalGroup object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
@@ -94,7 +94,7 @@ class ExternalGroupItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ExternalGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an externalGroup object.
+        Delete an externalGroup object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class ExternalGroupItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ExternalGroupItemRequestBuilder(raw_url, self.request_adapter)
+        return ExternalGroupItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def members(self) -> MembersRequestBuilder:

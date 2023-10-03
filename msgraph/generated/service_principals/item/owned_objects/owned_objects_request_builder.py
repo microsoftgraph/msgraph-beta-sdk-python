@@ -48,7 +48,7 @@ class OwnedObjectsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OwnedObjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class OwnedObjectsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OwnedObjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -93,7 +93,7 @@ class OwnedObjectsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OwnedObjectsRequestBuilder(raw_url, self.request_adapter)
+        return OwnedObjectsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -143,7 +143,7 @@ class OwnedObjectsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OwnedObjectsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -80,7 +80,7 @@ class IndustryDataRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IndustryDataRequestBuilder(raw_url, self.request_adapter)
+        return IndustryDataRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def data_connectors(self) -> DataConnectorsRequestBuilder:

@@ -27,7 +27,7 @@ class MicrosoftGraphSecurityReleaseRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[MicrosoftGraphSecurityReleaseRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Release the non-custodial data source from the case.
+        Release the non-custodial data source from the case. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-ediscoverynoncustodialdatasource-release?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class MicrosoftGraphSecurityReleaseRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[MicrosoftGraphSecurityReleaseRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Release the non-custodial data source from the case.
+        Release the non-custodial data source from the case. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class MicrosoftGraphSecurityReleaseRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphSecurityReleaseRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphSecurityReleaseRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

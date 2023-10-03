@@ -69,7 +69,7 @@ class ActivityHistoryItemItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ActivityHistoryItem] = None, request_configuration: Optional[ActivityHistoryItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ActivityHistoryItem]:
         """
-        Delete an existing history item for an existing user activity.
+        Delete an existing history item for an existing user activity. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ActivityHistoryItem]
@@ -126,7 +126,7 @@ class ActivityHistoryItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ActivityHistoryItem] = None, request_configuration: Optional[ActivityHistoryItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an existing history item for an existing user activity.
+        Delete an existing history item for an existing user activity. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class ActivityHistoryItemItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ActivityHistoryItemItemRequestBuilder(raw_url, self.request_adapter)
+        return ActivityHistoryItemItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activity(self) -> ActivityRequestBuilder:

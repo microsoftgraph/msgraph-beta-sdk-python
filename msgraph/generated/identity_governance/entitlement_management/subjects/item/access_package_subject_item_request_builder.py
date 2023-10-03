@@ -151,7 +151,7 @@ class AccessPackageSubjectItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessPackageSubjectItemRequestBuilder(raw_url, self.request_adapter)
+        return AccessPackageSubjectItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def connected_organization(self) -> ConnectedOrganizationRequestBuilder:

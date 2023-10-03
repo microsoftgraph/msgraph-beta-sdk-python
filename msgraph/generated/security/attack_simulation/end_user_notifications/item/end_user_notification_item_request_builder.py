@@ -48,7 +48,7 @@ class EndUserNotificationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EndUserNotificationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EndUserNotification]:
         """
-        Get endUserNotifications from security
+        Represents an end user's notification for an attack simulation training.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EndUserNotification]
         """
@@ -108,7 +108,7 @@ class EndUserNotificationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EndUserNotificationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get endUserNotifications from security
+        Represents an end user's notification for an attack simulation training.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class EndUserNotificationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EndUserNotificationItemRequestBuilder(raw_url, self.request_adapter)
+        return EndUserNotificationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def details(self) -> DetailsRequestBuilder:
@@ -175,7 +175,7 @@ class EndUserNotificationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EndUserNotificationItemRequestBuilderGetQueryParameters():
         """
-        Get endUserNotifications from security
+        Represents an end user's notification for an attack simulation training.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -45,7 +45,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ReviewersRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewReviewerCollectionResponse]:
         """
-        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object.
+        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewReviewerCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accessreview-listreviewers?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AccessReviewReviewer] = None, request_configuration: Optional[ReviewersRequestBuilderPostRequestConfiguration] = None) -> Optional[AccessReviewReviewer]:
         """
-        In the Azure AD access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
+        In the Azure AD access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that isn't yet completed, and only for an access review where the reviewers are explicitly specified. This operation isn't permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers.  This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewReviewer]
@@ -92,7 +92,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ReviewersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object.
+        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AccessReviewReviewer] = None, request_configuration: Optional[ReviewersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
+        In the Azure AD access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that isn't yet completed, and only for an access review where the reviewers are explicitly specified. This operation isn't permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers.  This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReviewersRequestBuilder(raw_url, self.request_adapter)
+        return ReviewersRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReviewersRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object.
+        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

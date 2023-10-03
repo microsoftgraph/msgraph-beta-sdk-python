@@ -28,7 +28,7 @@ class ClearPresenceRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ClearPresencePostRequestBody] = None, request_configuration: Optional[ClearPresenceRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Clear a presence session of an application for a user. If it is the user's only presence session, a successful clearPresence changes the user's presence to Offline/Offline. Read more about presence sessions and their time-out and expiration. 
+        Clear a presence session of an application for a user. If it is the user's only presence session, a successful clearPresence changes the user's presence to Offline/Offline. Read more about presence sessions and their time-out and expiration.  This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class ClearPresenceRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ClearPresencePostRequestBody] = None, request_configuration: Optional[ClearPresenceRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Clear a presence session of an application for a user. If it is the user's only presence session, a successful clearPresence changes the user's presence to Offline/Offline. Read more about presence sessions and their time-out and expiration. 
+        Clear a presence session of an application for a user. If it is the user's only presence session, a successful clearPresence changes the user's presence to Offline/Offline. Read more about presence sessions and their time-out and expiration.  This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class ClearPresenceRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ClearPresenceRequestBuilder(raw_url, self.request_adapter)
+        return ClearPresenceRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

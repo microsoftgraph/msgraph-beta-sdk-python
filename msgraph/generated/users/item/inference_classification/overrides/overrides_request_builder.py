@@ -45,7 +45,7 @@ class OverridesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OverridesRequestBuilderGetRequestConfiguration] = None) -> Optional[InferenceClassificationOverrideCollectionResponse]:
         """
-        Get the Focused Inbox overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
+        Get the Focused Inbox overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InferenceClassificationOverrideCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class OverridesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[InferenceClassificationOverride] = None, request_configuration: Optional[OverridesRequestBuilderPostRequestConfiguration] = None) -> Optional[InferenceClassificationOverride]:
         """
-        Create a focused Inbox override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override.
+        Create a focused Inbox override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InferenceClassificationOverride]
@@ -92,7 +92,7 @@ class OverridesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OverridesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the Focused Inbox overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
+        Get the Focused Inbox overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class OverridesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[InferenceClassificationOverride] = None, request_configuration: Optional[OverridesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a focused Inbox override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override.
+        Create a focused Inbox override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class OverridesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OverridesRequestBuilder(raw_url, self.request_adapter)
+        return OverridesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class OverridesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OverridesRequestBuilderGetQueryParameters():
         """
-        Get the Focused Inbox overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
+        Get the Focused Inbox overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

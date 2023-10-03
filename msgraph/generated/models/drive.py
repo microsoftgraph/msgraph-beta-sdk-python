@@ -23,7 +23,7 @@ class Drive(BaseItem):
     activities: Optional[List[ItemActivityOLD]] = None
     # Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
     bundles: Optional[List[DriveItem]] = None
-    # Describes the type of drive represented by this resource. OneDrive personal drives will return personal. OneDrive for Business will return business. SharePoint document libraries will return documentLibrary. Read-only.
+    # Describes the type of drive represented by this resource. OneDrive personal drives return personal. OneDrive for Business returns business. SharePoint document libraries return documentLibrary. Read-only.
     drive_type: Optional[str] = None
     # The list of items the user is following. Only in OneDrive for Business.
     following: Optional[List[DriveItem]] = None

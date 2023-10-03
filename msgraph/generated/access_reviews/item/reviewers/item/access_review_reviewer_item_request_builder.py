@@ -28,7 +28,7 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[AccessReviewReviewerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        In the Azure AD access reviews feature, update an existing accessReview object to remove a user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
+        In the Azure AD access reviews feature, update an existing accessReview object to remove a user as a reviewer.  This operation is only permitted for an access review that isn't yet completed, and only for an access review where the reviewers are explicitly specified. This operation isn't permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accessreview-removereviewer?view=graph-rest-1.0
@@ -93,7 +93,7 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewReviewerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, update an existing accessReview object to remove a user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
+        In the Azure AD access reviews feature, update an existing accessReview object to remove a user as a reviewer.  This operation is only permitted for an access review that isn't yet completed, and only for an access review where the reviewers are explicitly specified. This operation isn't permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessReviewReviewerItemRequestBuilder(raw_url, self.request_adapter)
+        return AccessReviewReviewerItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

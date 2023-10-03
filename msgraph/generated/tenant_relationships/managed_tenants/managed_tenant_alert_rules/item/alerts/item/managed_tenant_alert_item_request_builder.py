@@ -72,7 +72,7 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedTenantAlertItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagedTenantAlertItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class ManagedTenantAlertItemRequestBuilderGetQueryParameters():

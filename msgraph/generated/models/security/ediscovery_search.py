@@ -64,7 +64,7 @@ class EdiscoverySearch(Search):
             "addToReviewSetOperation": lambda n : setattr(self, 'add_to_review_set_operation', n.get_object_value(EdiscoveryAddToReviewSetOperation)),
             "additionalSources": lambda n : setattr(self, 'additional_sources', n.get_collection_of_object_values(DataSource)),
             "custodianSources": lambda n : setattr(self, 'custodian_sources', n.get_collection_of_object_values(DataSource)),
-            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_enum_value(DataSourceScopes)),
+            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_collection_of_enum_values(DataSourceScopes)),
             "lastEstimateStatisticsOperation": lambda n : setattr(self, 'last_estimate_statistics_operation', n.get_object_value(EdiscoveryEstimateOperation)),
             "noncustodialSources": lambda n : setattr(self, 'noncustodial_sources', n.get_collection_of_object_values(EdiscoveryNoncustodialDataSource)),
         }

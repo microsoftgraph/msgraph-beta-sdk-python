@@ -29,7 +29,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a categoryTemplate object.
+        Delete a categoryTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-labelsroot-delete-categories?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CategoryTemplate]:
         """
-        Read the properties and relationships of a categoryTemplate object.
+        Read the properties and relationships of a categoryTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CategoryTemplate]
         Find more info here: https://learn.microsoft.com/graph/api/security-categorytemplate-get?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a categoryTemplate object.
+        Delete a categoryTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a categoryTemplate object.
+        Read the properties and relationships of a categoryTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CategoryTemplateItemRequestBuilder(raw_url, self.request_adapter)
+        return CategoryTemplateItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def sub_categories(self) -> SubCategoriesRequestBuilder:
@@ -177,7 +177,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CategoryTemplateItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a categoryTemplate object.
+        Read the properties and relationships of a categoryTemplate object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

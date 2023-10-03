@@ -155,7 +155,7 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DescriptorsRequestBuilder(raw_url, self.request_adapter)
+        return DescriptorsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def authority_template(self) -> AuthorityTemplateRequestBuilder:

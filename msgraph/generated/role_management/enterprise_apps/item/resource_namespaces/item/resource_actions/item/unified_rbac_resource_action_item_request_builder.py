@@ -49,7 +49,7 @@ class UnifiedRbacResourceActionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRbacResourceAction]:
         """
-        Read the properties and relationships of an unifiedRbacResourceAction object.
+        Read the properties and relationships of an unifiedRbacResourceAction object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRbacResourceAction]
         Find more info here: https://learn.microsoft.com/graph/api/unifiedrbacresourceaction-get?view=graph-rest-1.0
@@ -110,7 +110,7 @@ class UnifiedRbacResourceActionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an unifiedRbacResourceAction object.
+        Read the properties and relationships of an unifiedRbacResourceAction object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class UnifiedRbacResourceActionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UnifiedRbacResourceActionItemRequestBuilder(raw_url, self.request_adapter)
+        return UnifiedRbacResourceActionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def authentication_context(self) -> AuthenticationContextRequestBuilder:
@@ -186,7 +186,7 @@ class UnifiedRbacResourceActionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UnifiedRbacResourceActionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an unifiedRbacResourceAction object.
+        Read the properties and relationships of an unifiedRbacResourceAction object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

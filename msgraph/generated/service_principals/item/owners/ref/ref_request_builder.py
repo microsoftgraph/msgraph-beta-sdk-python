@@ -51,7 +51,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Add an owner for the servicePrincipal. Service principal owners can be users, the service principal itself, or other service principals.
+        Add an owner for the servicePrincipal. Service principal owners can be users, the service principal itself, or other service principals. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -91,7 +91,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add an owner for the servicePrincipal. Service principal owners can be users, the service principal itself, or other service principals.
+        Add an owner for the servicePrincipal. Service principal owners can be users, the service principal itself, or other service principals. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -116,7 +116,7 @@ class RefRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RefRequestBuilder(raw_url, self.request_adapter)
+        return RefRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class RefRequestBuilderGetQueryParameters():

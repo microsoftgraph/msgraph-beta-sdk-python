@@ -28,7 +28,7 @@ class HostRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostRequestBuilderGetRequestConfiguration] = None) -> Optional[Host]:
         """
-        The host related to this component. This is a reverse navigation property. When navigating to components from a host, this should be assumed to be a return reference.
+        The host related to this component. This is a reverse navigation property. When you navigate to components from a host, this should be assumed to be a return reference.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Host]
         """
@@ -49,7 +49,7 @@ class HostRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HostRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The host related to this component. This is a reverse navigation property. When navigating to components from a host, this should be assumed to be a return reference.
+        The host related to this component. This is a reverse navigation property. When you navigate to components from a host, this should be assumed to be a return reference.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,12 +72,12 @@ class HostRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HostRequestBuilder(raw_url, self.request_adapter)
+        return HostRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class HostRequestBuilderGetQueryParameters():
         """
-        The host related to this component. This is a reverse navigation property. When navigating to components from a host, this should be assumed to be a return reference.
+        The host related to this component. This is a reverse navigation property. When you navigate to components from a host, this should be assumed to be a return reference.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

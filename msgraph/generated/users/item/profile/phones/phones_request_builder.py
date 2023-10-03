@@ -45,7 +45,7 @@ class PhonesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PhonesRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemPhoneCollectionResponse]:
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Retrieve a list of itemPhone objects from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPhoneCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/profile-list-phones?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class PhonesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ItemPhone] = None, request_configuration: Optional[PhonesRequestBuilderPostRequestConfiguration] = None) -> Optional[ItemPhone]:
         """
-        Use this API to create a new itemPhone object in a user's profile.
+        Use this API to create a new itemPhone object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPhone]
@@ -92,7 +92,7 @@ class PhonesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PhonesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Retrieve a list of itemPhone objects from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class PhonesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ItemPhone] = None, request_configuration: Optional[PhonesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new itemPhone object in a user's profile.
+        Use this API to create a new itemPhone object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class PhonesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PhonesRequestBuilder(raw_url, self.request_adapter)
+        return PhonesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class PhonesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PhonesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Retrieve a list of itemPhone objects from a user's profile. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

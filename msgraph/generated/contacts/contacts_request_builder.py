@@ -49,7 +49,7 @@ class ContactsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ContactsRequestBuilderGetRequestConfiguration] = None) -> Optional[OrgContactCollectionResponse]:
         """
-        Get the list of organizational contacts for this organization.
+        Get the list of organizational contacts for this organization. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OrgContactCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/orgcontact-list?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class ContactsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ContactsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of organizational contacts for this organization.
+        Get the list of organizational contacts for this organization. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class ContactsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ContactsRequestBuilder(raw_url, self.request_adapter)
+        return ContactsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -188,7 +188,7 @@ class ContactsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContactsRequestBuilderGetQueryParameters():
         """
-        Get the list of organizational contacts for this organization.
+        Get the list of organizational contacts for this organization. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

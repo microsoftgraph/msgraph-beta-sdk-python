@@ -44,9 +44,10 @@ class HistoryRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> Optional[WhoisHistoryRecordCollectionResponse]:
         """
-        Get history from security
+        Get the history for a whoisRecord, as represented by a collection of whoisHistoryRecord resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WhoisHistoryRecordCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-whoisrecord-list-history?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +66,7 @@ class HistoryRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get history from security
+        Get the history for a whoisRecord, as represented by a collection of whoisHistoryRecord resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -88,7 +89,7 @@ class HistoryRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HistoryRequestBuilder(raw_url, self.request_adapter)
+        return HistoryRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -102,7 +103,7 @@ class HistoryRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HistoryRequestBuilderGetQueryParameters():
         """
-        Get history from security
+        Get the history for a whoisRecord, as represented by a collection of whoisHistoryRecord resources.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

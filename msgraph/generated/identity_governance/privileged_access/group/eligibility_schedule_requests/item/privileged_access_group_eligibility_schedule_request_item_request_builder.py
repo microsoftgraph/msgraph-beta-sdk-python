@@ -51,7 +51,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(BaseRequ
     
     async def get(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedAccessGroupEligibilityScheduleRequest]:
         """
-        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleRequest object.
+        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleRequest object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrivilegedAccessGroupEligibilityScheduleRequest]
         Find more info here: https://learn.microsoft.com/graph/api/privilegedaccessgroupeligibilityschedulerequest-get?view=graph-rest-1.0
@@ -112,7 +112,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(BaseRequ
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleRequest object.
+        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleRequest object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -155,7 +155,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(BaseRequ
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(raw_url, self.request_adapter)
+        return PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cancel(self) -> CancelRequestBuilder:
@@ -206,7 +206,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(BaseRequ
     @dataclass
     class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleRequest object.
+        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleRequest object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .get_supported_properties_response import GetSupportedPropertiesResponse
+    from .get_supported_properties_get_response import GetSupportedPropertiesGetResponse
 
 class GetSupportedPropertiesRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetSupportedPropertiesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/assignmentFilters/{deviceAndAppManagementAssignmentFilter%2Did}/getSupportedProperties(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetSupportedPropertiesRequestBuilderGetRequestConfiguration] = None) -> Optional[GetSupportedPropertiesResponse]:
+    async def get(self,request_configuration: Optional[GetSupportedPropertiesRequestBuilderGetRequestConfiguration] = None) -> Optional[GetSupportedPropertiesGetResponse]:
         """
         Invoke function getSupportedProperties
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetSupportedPropertiesResponse]
+        Returns: Optional[GetSupportedPropertiesGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetSupportedPropertiesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_supported_properties_response import GetSupportedPropertiesResponse
+        from .get_supported_properties_get_response import GetSupportedPropertiesGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetSupportedPropertiesResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetSupportedPropertiesGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetSupportedPropertiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetSupportedPropertiesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetSupportedPropertiesRequestBuilder(raw_url, self.request_adapter)
+        return GetSupportedPropertiesRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetSupportedPropertiesRequestBuilderGetQueryParameters():

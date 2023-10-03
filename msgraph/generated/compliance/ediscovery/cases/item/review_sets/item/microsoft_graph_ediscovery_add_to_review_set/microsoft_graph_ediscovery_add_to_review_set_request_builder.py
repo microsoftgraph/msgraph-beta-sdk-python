@@ -28,7 +28,7 @@ class MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AddToReviewSetPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Start the process of adding a collection from Microsoft 365 services to a review set. After the operation is created, you can get the status of the operation by retrieving the Location parameter from the response headers. The location provides a URL that will return a caseExportOperation.
+        Start the process of adding a collection from Microsoft 365 services to a review set. After the operation is created, you can get the status of the operation by retrieving the Location parameter from the response headers. The location provides a URL that will return a caseExportOperation. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AddToReviewSetPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Start the process of adding a collection from Microsoft 365 services to a review set. After the operation is created, you can get the status of the operation by retrieving the Location parameter from the response headers. The location provides a URL that will return a caseExportOperation.
+        Start the process of adding a collection from Microsoft 365 services to a review set. After the operation is created, you can get the status of the operation by retrieving the Location parameter from the response headers. The location provides a URL that will return a caseExportOperation. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

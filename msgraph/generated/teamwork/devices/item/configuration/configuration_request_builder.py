@@ -47,7 +47,7 @@ class ConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamworkDeviceConfiguration]:
         """
-        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration.
+        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkDeviceConfiguration]
         Find more info here: https://learn.microsoft.com/graph/api/teamworkdeviceconfiguration-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class ConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration.
+        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class ConfigurationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConfigurationRequestBuilder(raw_url, self.request_adapter)
+        return ConfigurationRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class ConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConfigurationRequestBuilderGetQueryParameters():
         """
-        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration.
+        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

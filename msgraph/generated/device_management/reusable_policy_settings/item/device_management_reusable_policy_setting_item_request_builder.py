@@ -152,7 +152,7 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder(BaseRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementReusablePolicySettingItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementReusablePolicySettingItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def clone(self) -> CloneRequestBuilder:

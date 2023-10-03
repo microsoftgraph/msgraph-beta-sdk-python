@@ -45,7 +45,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ProgramsRequestBuilderGetRequestConfiguration] = None) -> Optional[ProgramCollectionResponse]:
         """
-        In the Azure AD access reviews feature, list all the program objects.
+        In the Azure AD access reviews feature, list all the program objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProgramCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/program-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Program] = None, request_configuration: Optional[ProgramsRequestBuilderPostRequestConfiguration] = None) -> Optional[Program]:
         """
-        In the Azure AD access reviews feature, create a new program object.
+        In the Azure AD access reviews feature, create a new program object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Program]
@@ -92,7 +92,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ProgramsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, list all the program objects.
+        In the Azure AD access reviews feature, list all the program objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[Program] = None, request_configuration: Optional[ProgramsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, create a new program object.
+        In the Azure AD access reviews feature, create a new program object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ProgramsRequestBuilder(raw_url, self.request_adapter)
+        return ProgramsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProgramsRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, list all the program objects.
+        In the Azure AD access reviews feature, list all the program objects. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

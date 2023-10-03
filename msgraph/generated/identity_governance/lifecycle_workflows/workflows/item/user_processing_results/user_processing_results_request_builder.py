@@ -46,7 +46,7 @@ class UserProcessingResultsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[UserProcessingResultCollectionResponse]:
         """
-        Get the userProcessingResult resources for a workflow.
+        Get the userProcessingResult resources for a workflow. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserProcessingResultCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0
@@ -83,7 +83,7 @@ class UserProcessingResultsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the userProcessingResult resources for a workflow.
+        Get the userProcessingResult resources for a workflow. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,7 +106,7 @@ class UserProcessingResultsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserProcessingResultsRequestBuilder(raw_url, self.request_adapter)
+        return UserProcessingResultsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -120,7 +120,7 @@ class UserProcessingResultsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserProcessingResultsRequestBuilderGetQueryParameters():
         """
-        Get the userProcessingResult resources for a workflow.
+        Get the userProcessingResult resources for a workflow. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

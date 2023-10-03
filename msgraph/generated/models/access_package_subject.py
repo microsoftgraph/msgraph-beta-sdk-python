@@ -15,7 +15,7 @@ from .entity import Entity
 class AccessPackageSubject(Entity):
     # Not Supported.
     alt_sec_id: Optional[str] = None
-    # The cleanupScheduledDateTime property
+    # The date and time the subject is marked to be blocked from sign in or deleted. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time.
     cleanup_scheduled_date_time: Optional[datetime.datetime] = None
     # The connected organization of the subject. Read-only. Nullable.
     connected_organization: Optional[ConnectedOrganization] = None
@@ -25,7 +25,7 @@ class AccessPackageSubject(Entity):
     display_name: Optional[str] = None
     # The email address of the subject.
     email: Optional[str] = None
-    # The object identifier of the subject. null if the subject is not yet a user in the tenant. Alternate key.
+    # The object identifier of the subject. null if the subject isn't yet a user in the tenant. Alternate key.
     object_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

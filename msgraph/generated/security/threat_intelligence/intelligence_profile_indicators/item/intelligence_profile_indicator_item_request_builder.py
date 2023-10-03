@@ -48,7 +48,7 @@ class IntelligenceProfileIndicatorItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[IntelligenceProfileIndicatorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[IntelligenceProfileIndicator]:
         """
-        Read the properties and relationships of a intelligenceProfileIndicator object.
+        Read the properties and relationships of a intelligenceProfileIndicator object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IntelligenceProfileIndicator]
         Find more info here: https://learn.microsoft.com/graph/api/security-intelligenceprofileindicator-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class IntelligenceProfileIndicatorItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[IntelligenceProfileIndicatorItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a intelligenceProfileIndicator object.
+        Read the properties and relationships of a intelligenceProfileIndicator object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class IntelligenceProfileIndicatorItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IntelligenceProfileIndicatorItemRequestBuilder(raw_url, self.request_adapter)
+        return IntelligenceProfileIndicatorItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def artifact(self) -> ArtifactRequestBuilder:
@@ -176,7 +176,7 @@ class IntelligenceProfileIndicatorItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IntelligenceProfileIndicatorItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a intelligenceProfileIndicator object.
+        Read the properties and relationships of a intelligenceProfileIndicator object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

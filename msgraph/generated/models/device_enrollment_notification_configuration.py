@@ -59,7 +59,7 @@ class DeviceEnrollmentNotificationConfiguration(DeviceEnrollmentConfiguration):
         from .enrollment_restriction_platform_type import EnrollmentRestrictionPlatformType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_enum_value(EnrollmentNotificationBrandingOptions)),
+            "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_collection_of_enum_values(EnrollmentNotificationBrandingOptions)),
             "defaultLocale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
             "notificationMessageTemplateId": lambda n : setattr(self, 'notification_message_template_id', n.get_uuid_value()),
             "notificationTemplates": lambda n : setattr(self, 'notification_templates', n.get_collection_of_primitive_values(str)),

@@ -152,7 +152,7 @@ class AndroidForWorkEnrollmentProfileItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AndroidForWorkEnrollmentProfileItemRequestBuilder(raw_url, self.request_adapter)
+        return AndroidForWorkEnrollmentProfileItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def create_token(self) -> CreateTokenRequestBuilder:

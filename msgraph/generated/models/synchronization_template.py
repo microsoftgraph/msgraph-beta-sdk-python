@@ -23,7 +23,7 @@ class SynchronizationTemplate(Entity):
     discoverable: Optional[bool] = None
     # One of the well-known factory tags supported by the synchronization engine. The factoryTag tells the synchronization engine which implementation to use when processing jobs based on this template.
     factory_tag: Optional[str] = None
-    # Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
+    # Additional extension properties. Unless mentioned explicitly, metadata values shouldn't be changed.
     metadata: Optional[List[SynchronizationMetadataEntry]] = None
     # The OdataType property
     odata_type: Optional[str] = None

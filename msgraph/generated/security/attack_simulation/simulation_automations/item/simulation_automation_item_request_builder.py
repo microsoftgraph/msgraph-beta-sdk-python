@@ -48,7 +48,7 @@ class SimulationAutomationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SimulationAutomationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SimulationAutomation]:
         """
-        Get an attack simulation automation for a tenant.
+        Get an attack simulation automation for a tenant. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SimulationAutomation]
         Find more info here: https://learn.microsoft.com/graph/api/simulationautomation-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class SimulationAutomationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SimulationAutomationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get an attack simulation automation for a tenant.
+        Get an attack simulation automation for a tenant. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class SimulationAutomationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SimulationAutomationItemRequestBuilder(raw_url, self.request_adapter)
+        return SimulationAutomationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def runs(self) -> RunsRequestBuilder:
@@ -176,7 +176,7 @@ class SimulationAutomationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SimulationAutomationItemRequestBuilderGetQueryParameters():
         """
-        Get an attack simulation automation for a tenant.
+        Get an attack simulation automation for a tenant. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

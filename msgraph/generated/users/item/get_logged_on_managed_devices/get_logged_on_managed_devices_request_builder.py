@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_logged_on_managed_devices_response import GetLoggedOnManagedDevicesResponse
+    from .get_logged_on_managed_devices_get_response import GetLoggedOnManagedDevicesGetResponse
 
 class GetLoggedOnManagedDevicesRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetLoggedOnManagedDevicesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/getLoggedOnManagedDevices(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetLoggedOnManagedDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[GetLoggedOnManagedDevicesResponse]:
+    async def get(self,request_configuration: Optional[GetLoggedOnManagedDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[GetLoggedOnManagedDevicesGetResponse]:
         """
         Invoke function getLoggedOnManagedDevices
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetLoggedOnManagedDevicesResponse]
+        Returns: Optional[GetLoggedOnManagedDevicesGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetLoggedOnManagedDevicesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_logged_on_managed_devices_response import GetLoggedOnManagedDevicesResponse
+        from .get_logged_on_managed_devices_get_response import GetLoggedOnManagedDevicesGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetLoggedOnManagedDevicesResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetLoggedOnManagedDevicesGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetLoggedOnManagedDevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetLoggedOnManagedDevicesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetLoggedOnManagedDevicesRequestBuilder(raw_url, self.request_adapter)
+        return GetLoggedOnManagedDevicesRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetLoggedOnManagedDevicesRequestBuilderGetQueryParameters():

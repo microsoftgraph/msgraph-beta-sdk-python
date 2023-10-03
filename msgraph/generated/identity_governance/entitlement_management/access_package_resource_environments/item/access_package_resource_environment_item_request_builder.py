@@ -48,7 +48,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AccessPackageResourceEnvironmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageResourceEnvironment]:
         """
-        Read the properties and relationships of an accessPackageResourceEnvironment object.
+        Read the properties and relationships of an accessPackageResourceEnvironment object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageResourceEnvironment]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackageresourceenvironment-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourceEnvironmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an accessPackageResourceEnvironment object.
+        Read the properties and relationships of an accessPackageResourceEnvironment object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessPackageResourceEnvironmentItemRequestBuilder(raw_url, self.request_adapter)
+        return AccessPackageResourceEnvironmentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def access_package_resources(self) -> AccessPackageResourcesRequestBuilder:
@@ -176,7 +176,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageResourceEnvironmentItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an accessPackageResourceEnvironment object.
+        Read the properties and relationships of an accessPackageResourceEnvironment object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

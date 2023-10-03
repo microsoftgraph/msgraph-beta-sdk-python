@@ -45,7 +45,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ModulesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationModuleCollectionResponse]:
         """
-        Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
+        Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationModuleCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationclass-list-modules?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[EducationModule] = None, request_configuration: Optional[ModulesRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationModule]:
         """
-        Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students will not see the modules until publication.
+        Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students won't see the modules until publication. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationModule]
@@ -92,7 +92,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ModulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
+        Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[EducationModule] = None, request_configuration: Optional[ModulesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students will not see the modules until publication.
+        Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students won't see the modules until publication. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ModulesRequestBuilder(raw_url, self.request_adapter)
+        return ModulesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class ModulesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ModulesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
+        Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

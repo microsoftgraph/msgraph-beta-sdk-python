@@ -29,7 +29,7 @@ class PublishRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PublishPostRequestBody] = None, request_configuration: Optional[PublishRequestBuilderPostRequestConfiguration] = None) -> Optional[BrowserSiteList]:
         """
-        Publish the specified browserSiteList for devices to download.
+        Publish the specified browserSiteList for devices to download. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BrowserSiteList]
@@ -54,7 +54,7 @@ class PublishRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PublishPostRequestBody] = None, request_configuration: Optional[PublishRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Publish the specified browserSiteList for devices to download.
+        Publish the specified browserSiteList for devices to download. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class PublishRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PublishRequestBuilder(raw_url, self.request_adapter)
+        return PublishRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

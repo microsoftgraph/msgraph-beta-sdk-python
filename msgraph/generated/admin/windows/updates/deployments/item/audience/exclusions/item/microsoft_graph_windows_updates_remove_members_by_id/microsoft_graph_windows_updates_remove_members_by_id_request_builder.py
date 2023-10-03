@@ -28,7 +28,7 @@ class MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder(BaseRequestBui
     
     async def post(self,body: Optional[RemoveMembersByIdPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Remove members of the same type from an updatableAssetGroup. You can also use the method removeMembers to remove members.
+        Remove members of the same type from an updatableAssetGroup. You can also use the method removeMembers to remove members. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder(BaseRequestBui
     
     def to_post_request_information(self,body: Optional[RemoveMembersByIdPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Remove members of the same type from an updatableAssetGroup. You can also use the method removeMembers to remove members.
+        Remove members of the same type from an updatableAssetGroup. You can also use the method removeMembers to remove members. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder(BaseRequestBui
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

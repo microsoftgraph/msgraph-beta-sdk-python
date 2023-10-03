@@ -28,7 +28,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[DepartmentTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a departmentTemplate object.
+        Delete a departmentTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-labelsroot-delete-departments?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DepartmentTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DepartmentTemplate]:
         """
-        Read the properties and relationships of a departmentTemplate object.
+        Read the properties and relationships of a departmentTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DepartmentTemplate]
         Find more info here: https://learn.microsoft.com/graph/api/security-departmenttemplate-get?view=graph-rest-1.0
@@ -94,7 +94,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[DepartmentTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a departmentTemplate object.
+        Delete a departmentTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DepartmentTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a departmentTemplate object.
+        Read the properties and relationships of a departmentTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DepartmentTemplateItemRequestBuilder(raw_url, self.request_adapter)
+        return DepartmentTemplateItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DepartmentTemplateItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a departmentTemplate object.
+        Read the properties and relationships of a departmentTemplate object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

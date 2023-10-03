@@ -133,7 +133,7 @@ class ManagedTenantAlertRuleDefinitionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedTenantAlertRuleDefinitionsRequestBuilder(raw_url, self.request_adapter)
+        return ManagedTenantAlertRuleDefinitionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

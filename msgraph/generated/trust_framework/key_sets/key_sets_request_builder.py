@@ -45,7 +45,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[TrustFrameworkKeySetCollectionResponse]:
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Retrieve a list of trustFrameworkKeySets. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKeySetCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/trustframework-list-keysets?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
-        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
+        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKeySet]
@@ -92,7 +92,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Retrieve a list of trustFrameworkKeySets. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
+        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return KeySetsRequestBuilder(raw_url, self.request_adapter)
+        return KeySetsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class KeySetsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Retrieve a list of trustFrameworkKeySets. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

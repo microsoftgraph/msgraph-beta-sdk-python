@@ -47,7 +47,7 @@ class PeopleInsightsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PeopleInsightsRequestBuilderGetRequestConfiguration] = None) -> Optional[InsightsSettings]:
         """
-        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy.
+        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy in Microsoft Graph. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InsightsSettings]
         Find more info here: https://learn.microsoft.com/graph/api/organizationsettings-list-peopleinsights?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class PeopleInsightsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[InsightsSettings] = None, request_configuration: Optional[PeopleInsightsRequestBuilderPatchRequestConfiguration] = None) -> Optional[InsightsSettings]:
         """
-        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
+        Update privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InsightsSettings]
@@ -109,7 +109,7 @@ class PeopleInsightsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PeopleInsightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy.
+        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy in Microsoft Graph. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class PeopleInsightsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[InsightsSettings] = None, request_configuration: Optional[PeopleInsightsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
+        Update privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class PeopleInsightsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PeopleInsightsRequestBuilder(raw_url, self.request_adapter)
+        return PeopleInsightsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class PeopleInsightsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PeopleInsightsRequestBuilderGetQueryParameters():
         """
-        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy.
+        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy in Microsoft Graph. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

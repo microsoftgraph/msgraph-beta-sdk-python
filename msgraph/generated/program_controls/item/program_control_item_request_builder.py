@@ -29,7 +29,7 @@ class ProgramControlItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ProgramControlItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        In the Azure AD access reviews feature, delete a programControl object.  This unlinks an access review from a program.
+        In the Azure AD access reviews feature, delete a programControl object.  This unlinks an access review from a program. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/programcontrol-delete?view=graph-rest-1.0
@@ -94,7 +94,7 @@ class ProgramControlItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ProgramControlItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, delete a programControl object.  This unlinks an access review from a program.
+        In the Azure AD access reviews feature, delete a programControl object.  This unlinks an access review from a program. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class ProgramControlItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ProgramControlItemRequestBuilder(raw_url, self.request_adapter)
+        return ProgramControlItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def program(self) -> ProgramRequestBuilder:

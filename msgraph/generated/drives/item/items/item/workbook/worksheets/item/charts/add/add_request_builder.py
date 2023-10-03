@@ -29,7 +29,7 @@ class AddRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AddPostRequestBody] = None, request_configuration: Optional[AddRequestBuilderPostRequestConfiguration] = None) -> Optional[WorkbookChart]:
         """
-        Creates a new chart.
+        Creates a new chart. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookChart]
@@ -54,7 +54,7 @@ class AddRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AddPostRequestBody] = None, request_configuration: Optional[AddRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Creates a new chart.
+        Creates a new chart. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class AddRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AddRequestBuilder(raw_url, self.request_adapter)
+        return AddRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

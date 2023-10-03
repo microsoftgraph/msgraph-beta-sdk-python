@@ -28,7 +28,7 @@ class CitationTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[CitationTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a citationTemplate object.
+        Delete a citationTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-labelsroot-delete-citations?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class CitationTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CitationTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CitationTemplate]:
         """
-        Read the properties and relationships of a citationTemplate object.
+        Read the properties and relationships of a citationTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CitationTemplate]
         Find more info here: https://learn.microsoft.com/graph/api/security-citationtemplate-get?view=graph-rest-1.0
@@ -94,7 +94,7 @@ class CitationTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[CitationTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a citationTemplate object.
+        Delete a citationTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class CitationTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CitationTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a citationTemplate object.
+        Read the properties and relationships of a citationTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class CitationTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CitationTemplateItemRequestBuilder(raw_url, self.request_adapter)
+        return CitationTemplateItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class CitationTemplateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CitationTemplateItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a citationTemplate object.
+        Read the properties and relationships of a citationTemplate object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

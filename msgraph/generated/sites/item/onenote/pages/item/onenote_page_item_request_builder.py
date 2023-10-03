@@ -34,7 +34,7 @@ class OnenotePageItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[OnenotePageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a OneNote page.
+        Delete a OneNote page. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/page-delete?view=graph-rest-1.0
@@ -99,7 +99,7 @@ class OnenotePageItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[OnenotePageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a OneNote page.
+        Delete a OneNote page. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class OnenotePageItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnenotePageItemRequestBuilder(raw_url, self.request_adapter)
+        return OnenotePageItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def content(self) -> ContentRequestBuilder:

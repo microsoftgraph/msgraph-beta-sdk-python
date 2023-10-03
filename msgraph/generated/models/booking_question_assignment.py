@@ -11,11 +11,11 @@ class BookingQuestionAssignment(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Indicates whether it is mandatory to answer the custom question.
+    # Indicates whether it's mandatory to answer the custom question.
     is_required: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # If it is mandatory to answer the custom question.
+    # If it's mandatory to answer the custom question.
     question_id: Optional[str] = None
     
     @staticmethod

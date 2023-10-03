@@ -14,7 +14,7 @@ class RegistrationEnforcement(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Run campaigns to remind users to setup targeted authentication methods.
+    # Run campaigns to remind users to set up targeted authentication methods.
     authentication_methods_registration_campaign: Optional[AuthenticationMethodsRegistrationCampaign] = None
     # The OdataType property
     odata_type: Optional[str] = None

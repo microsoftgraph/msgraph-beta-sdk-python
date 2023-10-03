@@ -45,7 +45,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UserSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[UserSourceCollectionResponse]:
         """
-        Get the list of userSource objects associated with a legal hold.
+        Get the list of userSource objects associated with a legal hold. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserSourceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-list-usersources?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[UserSource] = None, request_configuration: Optional[UserSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[UserSource]:
         """
-        Adds a userSource to a legalHold object.
+        Adds a userSource to a legalHold object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserSource]
@@ -92,7 +92,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UserSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of userSource objects associated with a legal hold.
+        Get the list of userSource objects associated with a legal hold. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[UserSource] = None, request_configuration: Optional[UserSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Adds a userSource to a legalHold object.
+        Adds a userSource to a legalHold object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserSourcesRequestBuilder(raw_url, self.request_adapter)
+        return UserSourcesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserSourcesRequestBuilderGetQueryParameters():
         """
-        Get the list of userSource objects associated with a legal hold.
+        Get the list of userSource objects associated with a legal hold. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

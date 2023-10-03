@@ -28,10 +28,11 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetConnectionQualityReportsPostRequestBody] = None, request_configuration: Optional[GetConnectionQualityReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Invoke action getConnectionQualityReports
+        Get the overall connection quality reports for all devices within a current tenant during a given time period, including metrics like the average round trip time (P50), average available bandwidth, and UDP connection percentage. Get also other real-time metrics such as last connection round trip time, last connection client IP, last connection gateway, and last connection protocol. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-getconnectionqualityreports?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -50,7 +51,7 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetConnectionQualityReportsPostRequestBody] = None, request_configuration: Optional[GetConnectionQualityReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action getConnectionQualityReports
+        Get the overall connection quality reports for all devices within a current tenant during a given time period, including metrics like the average round trip time (P50), average available bandwidth, and UDP connection percentage. Get also other real-time metrics such as last connection round trip time, last connection client IP, last connection gateway, and last connection protocol. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -75,7 +76,7 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetConnectionQualityReportsRequestBuilder(raw_url, self.request_adapter)
+        return GetConnectionQualityReportsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

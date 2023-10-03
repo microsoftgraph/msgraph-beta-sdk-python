@@ -45,7 +45,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeploymentAudiencesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeploymentAudienceCollectionResponse]:
         """
-        Get a list of deploymentAudience objects and their properties.
+        Get a list of deploymentAudience objects and their properties. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentAudienceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-deploymentaudiences?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[DeploymentAudiencesRequestBuilderPostRequestConfiguration] = None) -> Optional[DeploymentAudience]:
         """
-        Create a new deploymentAudience object.
+        Create a new deploymentAudience object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentAudience]
@@ -92,7 +92,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeploymentAudiencesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of deploymentAudience objects and their properties.
+        Get a list of deploymentAudience objects and their properties. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[DeploymentAudiencesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new deploymentAudience object.
+        Create a new deploymentAudience object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeploymentAudiencesRequestBuilder(raw_url, self.request_adapter)
+        return DeploymentAudiencesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeploymentAudiencesRequestBuilderGetQueryParameters():
         """
-        Get a list of deploymentAudience objects and their properties.
+        Get a list of deploymentAudience objects and their properties. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

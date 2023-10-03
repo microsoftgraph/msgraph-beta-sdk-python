@@ -48,7 +48,7 @@ class TitleRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TitleRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookChartAxisTitle]:
         """
-        Retrieve the properties and relationships of chartaxistitle object.
+        Retrieve the properties and relationships of chartaxistitle object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookChartAxisTitle]
         Find more info here: https://learn.microsoft.com/graph/api/chartaxistitle-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class TitleRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[WorkbookChartAxisTitle] = None, request_configuration: Optional[TitleRequestBuilderPatchRequestConfiguration] = None) -> Optional[WorkbookChartAxisTitle]:
         """
-        Update the properties of workbookChartAxisTitle object.
+        Update the properties of workbookChartAxisTitle object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookChartAxisTitle]
@@ -110,7 +110,7 @@ class TitleRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TitleRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of chartaxistitle object.
+        Retrieve the properties and relationships of chartaxistitle object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class TitleRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[WorkbookChartAxisTitle] = None, request_configuration: Optional[TitleRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of workbookChartAxisTitle object.
+        Update the properties of workbookChartAxisTitle object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class TitleRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TitleRequestBuilder(raw_url, self.request_adapter)
+        return TitleRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def format(self) -> FormatRequestBuilder:
@@ -177,7 +177,7 @@ class TitleRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TitleRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of chartaxistitle object.
+        Retrieve the properties and relationships of chartaxistitle object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

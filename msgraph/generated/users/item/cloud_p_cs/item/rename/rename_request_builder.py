@@ -28,7 +28,7 @@ class RenameRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RenamePostRequestBody] = None, request_configuration: Optional[RenameRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Rename a specific Cloud PC. Use this API to update the displayName for the Cloud PC entity.
+        Rename a specific Cloud PC. Use this API to update the displayName for the Cloud PC entity. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class RenameRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RenamePostRequestBody] = None, request_configuration: Optional[RenameRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Rename a specific Cloud PC. Use this API to update the displayName for the Cloud PC entity.
+        Rename a specific Cloud PC. Use this API to update the displayName for the Cloud PC entity. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class RenameRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RenameRequestBuilder(raw_url, self.request_adapter)
+        return RenameRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

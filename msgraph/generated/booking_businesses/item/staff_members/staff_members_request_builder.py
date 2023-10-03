@@ -45,7 +45,7 @@ class StaffMembersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[StaffMembersRequestBuilderGetRequestConfiguration] = None) -> Optional[BookingStaffMemberCollectionResponse]:
         """
-        Get a list of bookingStaffMember objects in the specified bookingBusiness.
+        Get a list of bookingStaffMember objects in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingStaffMemberCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class StaffMembersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[BookingStaffMember] = None, request_configuration: Optional[StaffMembersRequestBuilderPostRequestConfiguration] = None) -> Optional[BookingStaffMember]:
         """
-        Create a new staff member in the specified bookingBusiness.
+        Create a new staff member in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingStaffMember]
@@ -92,7 +92,7 @@ class StaffMembersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[StaffMembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of bookingStaffMember objects in the specified bookingBusiness.
+        Get a list of bookingStaffMember objects in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class StaffMembersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[BookingStaffMember] = None, request_configuration: Optional[StaffMembersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new staff member in the specified bookingBusiness.
+        Create a new staff member in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class StaffMembersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return StaffMembersRequestBuilder(raw_url, self.request_adapter)
+        return StaffMembersRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class StaffMembersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class StaffMembersRequestBuilderGetQueryParameters():
         """
-        Get a list of bookingStaffMember objects in the specified bookingBusiness.
+        Get a list of bookingStaffMember objects in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

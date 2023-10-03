@@ -28,7 +28,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes a personWebsite object from a user's profile.
+        Deletes a personWebsite object from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/personwebsite-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonWebsite]:
         """
-        Retrieve the properties and relationships of a personWebsite object from a user's profile.
+        Retrieve the properties and relationships of a personWebsite object from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonWebsite]
         Find more info here: https://learn.microsoft.com/graph/api/personwebsite-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[PersonWebsiteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PersonWebsite]:
         """
-        Update the properties of personWebsite object in a user's profile.
+        Update the properties of personWebsite object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonWebsite]
@@ -95,7 +95,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes a personWebsite object from a user's profile.
+        Deletes a personWebsite object from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a personWebsite object from a user's profile.
+        Retrieve the properties and relationships of a personWebsite object from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[PersonWebsiteItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of personWebsite object in a user's profile.
+        Update the properties of personWebsite object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PersonWebsiteItemRequestBuilder(raw_url, self.request_adapter)
+        return PersonWebsiteItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PersonWebsiteItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a personWebsite object from a user's profile.
+        Retrieve the properties and relationships of a personWebsite object from a user's profile. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

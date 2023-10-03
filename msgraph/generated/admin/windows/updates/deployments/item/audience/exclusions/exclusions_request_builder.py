@@ -49,7 +49,7 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None) -> Optional[UpdatableAssetCollectionResponse]:
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        List the updatableAsset resources that are excluded from a deploymentAudience. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatableAssetCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deploymentaudience-list-exclusions?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        List the updatableAsset resources that are excluded from a deploymentAudience. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ExclusionsRequestBuilder(raw_url, self.request_adapter)
+        return ExclusionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -188,7 +188,7 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExclusionsRequestBuilderGetQueryParameters():
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        List the updatableAsset resources that are excluded from a deploymentAudience. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

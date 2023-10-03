@@ -28,7 +28,7 @@ class ExportPersonalDataRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ExportPersonalDataPostRequestBody] = None, request_configuration: Optional[ExportPersonalDataRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Create a request to export the personal data for an inboundSharedUserProfile.
+        Create a request to export the personal data for an inboundSharedUserProfile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class ExportPersonalDataRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ExportPersonalDataPostRequestBody] = None, request_configuration: Optional[ExportPersonalDataRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a request to export the personal data for an inboundSharedUserProfile.
+        Create a request to export the personal data for an inboundSharedUserProfile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class ExportPersonalDataRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ExportPersonalDataRequestBuilder(raw_url, self.request_adapter)
+        return ExportPersonalDataRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

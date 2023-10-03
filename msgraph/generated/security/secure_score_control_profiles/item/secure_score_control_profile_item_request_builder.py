@@ -68,7 +68,7 @@ class SecureScoreControlProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[SecureScoreControlProfile] = None, request_configuration: Optional[SecureScoreControlProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SecureScoreControlProfile]:
         """
-        Update an editable secureScoreControlProfiles property within any integrated solution to change various properties, such as assignedTo or tenantNote.
+        Update an editable secureScoreControlProfiles property within any integrated solution to change various properties, such as assignedTo or tenantNote. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecureScoreControlProfile]
@@ -125,7 +125,7 @@ class SecureScoreControlProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[SecureScoreControlProfile] = None, request_configuration: Optional[SecureScoreControlProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an editable secureScoreControlProfiles property within any integrated solution to change various properties, such as assignedTo or tenantNote.
+        Update an editable secureScoreControlProfiles property within any integrated solution to change various properties, such as assignedTo or tenantNote. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -151,7 +151,7 @@ class SecureScoreControlProfileItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SecureScoreControlProfileItemRequestBuilder(raw_url, self.request_adapter)
+        return SecureScoreControlProfileItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

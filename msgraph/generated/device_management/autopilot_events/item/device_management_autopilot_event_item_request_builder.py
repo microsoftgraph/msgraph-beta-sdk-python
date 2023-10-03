@@ -151,7 +151,7 @@ class DeviceManagementAutopilotEventItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementAutopilotEventItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementAutopilotEventItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def policy_status_details(self) -> PolicyStatusDetailsRequestBuilder:

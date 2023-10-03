@@ -58,7 +58,7 @@ class AppConsentRequestsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AppConsentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[AppConsentRequestCollectionResponse]:
         """
-        Retrieve appConsentRequest objects and their properties.
+        Retrieve appConsentRequest objects and their properties. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AppConsentRequestCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
@@ -104,7 +104,7 @@ class AppConsentRequestsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AppConsentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve appConsentRequest objects and their properties.
+        Retrieve appConsentRequest objects and their properties. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class AppConsentRequestsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AppConsentRequestsRequestBuilder(raw_url, self.request_adapter)
+        return AppConsentRequestsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -161,7 +161,7 @@ class AppConsentRequestsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppConsentRequestsRequestBuilderGetQueryParameters():
         """
-        Retrieve appConsentRequest objects and their properties.
+        Retrieve appConsentRequest objects and their properties. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

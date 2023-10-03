@@ -28,7 +28,7 @@ class RemoveKeyRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RemoveKeyPostRequestBody] = None, request_configuration: Optional[RemoveKeyRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Remove a key credential from an application. This method along with addKey can be used by an application to automate rolling its expiring keys. As part of the request validation for this method, a proof of possession of an existing key is verified before the action can be performed.
+        Remove a key credential from an application. This method along with addKey can be used by an application to automate rolling its expiring keys. As part of the request validation for this method, a proof of possession of an existing key is verified before the action can be performed. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class RemoveKeyRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RemoveKeyPostRequestBody] = None, request_configuration: Optional[RemoveKeyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Remove a key credential from an application. This method along with addKey can be used by an application to automate rolling its expiring keys. As part of the request validation for this method, a proof of possession of an existing key is verified before the action can be performed.
+        Remove a key credential from an application. This method along with addKey can be used by an application to automate rolling its expiring keys. As part of the request validation for this method, a proof of possession of an existing key is verified before the action can be performed. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class RemoveKeyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RemoveKeyRequestBuilder(raw_url, self.request_adapter)
+        return RemoveKeyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -28,7 +28,7 @@ class DataBodyRangeRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DataBodyRangeRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookRange]:
         """
-        Gets the range object associated with the data body of the column.
+        Gets the range object associated with the data body of the column. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookRange]
         Find more info here: https://learn.microsoft.com/graph/api/tablecolumn-databodyrange?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class DataBodyRangeRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DataBodyRangeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Gets the range object associated with the data body of the column.
+        Gets the range object associated with the data body of the column. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +72,7 @@ class DataBodyRangeRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DataBodyRangeRequestBuilder(raw_url, self.request_adapter)
+        return DataBodyRangeRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

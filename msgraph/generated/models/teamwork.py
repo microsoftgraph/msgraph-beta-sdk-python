@@ -16,7 +16,7 @@ from .entity import Entity
 
 @dataclass
 class Teamwork(Entity):
-    # The deletedChats property
+    # A collection of deleted chats.
     deleted_chats: Optional[List[DeletedChat]] = None
     # A collection of deleted teams.
     deleted_teams: Optional[List[DeletedTeam]] = None

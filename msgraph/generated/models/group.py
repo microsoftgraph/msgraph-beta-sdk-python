@@ -67,7 +67,7 @@ class Group(DirectoryObject):
     created_on_behalf_of: Optional[DirectoryObject] = None
     # An optional description for the group. Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.
     description: Optional[str] = None
-    # The display name for the group. Required. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    # The display name for the group. Required. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
     # The group's default drive. Read-only.
     drive: Optional[Drive] = None

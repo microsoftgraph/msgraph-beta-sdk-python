@@ -28,7 +28,7 @@ class DeviceRegistrationPolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceRegistrationPolicy]:
         """
-        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
+        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceRegistrationPolicy]
         Find more info here: https://learn.microsoft.com/graph/api/deviceregistrationpolicy-get?view=graph-rest-1.0
@@ -75,7 +75,7 @@ class DeviceRegistrationPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
+        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,12 +118,12 @@ class DeviceRegistrationPolicyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceRegistrationPolicyRequestBuilder(raw_url, self.request_adapter)
+        return DeviceRegistrationPolicyRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DeviceRegistrationPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
+        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

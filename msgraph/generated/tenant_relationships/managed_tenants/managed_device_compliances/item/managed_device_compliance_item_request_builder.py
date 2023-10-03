@@ -47,7 +47,7 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ManagedDeviceComplianceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedDeviceCompliance]:
         """
-        Read the properties and relationships of a managedDeviceCompliance object.
+        Read the properties and relationships of a managedDeviceCompliance object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagedDeviceCompliance]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-manageddevicecompliance-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceComplianceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a managedDeviceCompliance object.
+        Read the properties and relationships of a managedDeviceCompliance object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedDeviceComplianceItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagedDeviceComplianceItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ManagedDeviceComplianceItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a managedDeviceCompliance object.
+        Read the properties and relationships of a managedDeviceCompliance object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

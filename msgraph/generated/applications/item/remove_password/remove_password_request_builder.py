@@ -28,7 +28,7 @@ class RemovePasswordRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RemovePasswordPostRequestBody] = None, request_configuration: Optional[RemovePasswordRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Removes a password from an application.
+        Removes a password from an application. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class RemovePasswordRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RemovePasswordPostRequestBody] = None, request_configuration: Optional[RemovePasswordRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Removes a password from an application.
+        Removes a password from an application. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class RemovePasswordRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RemovePasswordRequestBuilder(raw_url, self.request_adapter)
+        return RemovePasswordRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

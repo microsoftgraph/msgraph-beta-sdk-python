@@ -29,7 +29,7 @@ class MicrosoftGraphSecurityExtractContentLabelRequestBuilder(BaseRequestBuilder
     
     async def post(self,body: Optional[ExtractContentLabelPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphSecurityExtractContentLabelRequestBuilderPostRequestConfiguration] = None) -> Optional[ContentLabel]:
         """
-        Use the metadata that exists on an already-labeled piece of information to resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
+        Use the metadata that exists on an already-labeled piece of information to resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContentLabel]
@@ -54,7 +54,7 @@ class MicrosoftGraphSecurityExtractContentLabelRequestBuilder(BaseRequestBuilder
     
     def to_post_request_information(self,body: Optional[ExtractContentLabelPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphSecurityExtractContentLabelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use the metadata that exists on an already-labeled piece of information to resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
+        Use the metadata that exists on an already-labeled piece of information to resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class MicrosoftGraphSecurityExtractContentLabelRequestBuilder(BaseRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphSecurityExtractContentLabelRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphSecurityExtractContentLabelRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

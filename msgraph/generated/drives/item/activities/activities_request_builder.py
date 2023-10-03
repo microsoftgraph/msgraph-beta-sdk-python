@@ -45,7 +45,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemActivityOLDCollectionResponse]:
         """
-        List the recent activities that took place on an item or under a hierarchy.
+        List the recent activities that took place on an item or under a hierarchy. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemActivityOLDCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/activities-list?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the recent activities that took place on an item or under a hierarchy.
+        List the recent activities that took place on an item or under a hierarchy. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ActivitiesRequestBuilder(raw_url, self.request_adapter)
+        return ActivitiesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ActivitiesRequestBuilderGetQueryParameters():
         """
-        List the recent activities that took place on an item or under a hierarchy.
+        List the recent activities that took place on an item or under a hierarchy. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

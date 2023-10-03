@@ -151,7 +151,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemReq
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder(raw_url, self.request_adapter)
+        return WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def policy(self) -> PolicyRequestBuilder:

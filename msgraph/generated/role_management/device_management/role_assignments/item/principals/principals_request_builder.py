@@ -44,7 +44,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PrincipalsRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Read-only collection referencing the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
+        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
         """
@@ -65,7 +65,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PrincipalsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only collection referencing the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
+        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -88,7 +88,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrincipalsRequestBuilder(raw_url, self.request_adapter)
+        return PrincipalsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -102,7 +102,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PrincipalsRequestBuilderGetQueryParameters():
         """
-        Read-only collection referencing the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
+        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

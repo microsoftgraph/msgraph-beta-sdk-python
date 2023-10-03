@@ -25,6 +25,8 @@ class GetSharePointSiteUsageDetailWithDateRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['date'] = str(date)
         super().__init__(request_adapter, "{+baseurl}/reports/getSharePointSiteUsageDetail(date={date})", path_parameters)
     
     async def get(self,request_configuration: Optional[GetSharePointSiteUsageDetailWithDateRequestBuilderGetRequestConfiguration] = None) -> bytes:
@@ -69,7 +71,7 @@ class GetSharePointSiteUsageDetailWithDateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetSharePointSiteUsageDetailWithDateRequestBuilder(raw_url, self.request_adapter)
+        return GetSharePointSiteUsageDetailWithDateRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

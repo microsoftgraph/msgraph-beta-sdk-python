@@ -69,7 +69,7 @@ class SynchronizationTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[SynchronizationTemplate] = None, request_configuration: Optional[SynchronizationTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SynchronizationTemplate]:
         """
-        Update (override) the synchronization template associated with a given application.
+        Update (override) the synchronization template associated with a given application. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SynchronizationTemplate]
@@ -126,7 +126,7 @@ class SynchronizationTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[SynchronizationTemplate] = None, request_configuration: Optional[SynchronizationTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update (override) the synchronization template associated with a given application.
+        Update (override) the synchronization template associated with a given application. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class SynchronizationTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SynchronizationTemplateItemRequestBuilder(raw_url, self.request_adapter)
+        return SynchronizationTemplateItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def schema(self) -> SchemaRequestBuilder:

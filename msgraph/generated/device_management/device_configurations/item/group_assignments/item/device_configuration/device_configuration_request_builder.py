@@ -72,7 +72,7 @@ class DeviceConfigurationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceConfigurationRequestBuilder(raw_url, self.request_adapter)
+        return DeviceConfigurationRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DeviceConfigurationRequestBuilderGetQueryParameters():

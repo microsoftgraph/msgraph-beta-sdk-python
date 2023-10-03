@@ -50,7 +50,7 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(BaseRequ
     
     async def get(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedAccessGroupAssignmentScheduleInstance]:
         """
-        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object.
+        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrivilegedAccessGroupAssignmentScheduleInstance]
         Find more info here: https://learn.microsoft.com/graph/api/privilegedaccessgroupassignmentscheduleinstance-get?view=graph-rest-1.0
@@ -111,7 +111,7 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(BaseRequ
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object.
+        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -154,7 +154,7 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(BaseRequ
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(raw_url, self.request_adapter)
+        return PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activated_using(self) -> ActivatedUsingRequestBuilder:
@@ -196,7 +196,7 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(BaseRequ
     @dataclass
     class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object.
+        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

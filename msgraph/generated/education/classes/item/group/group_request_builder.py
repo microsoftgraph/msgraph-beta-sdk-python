@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.group import Group
     from .....models.o_data_errors.o_data_error import ODataError
+    from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
 
 class GroupRequestBuilder(BaseRequestBuilder):
     """
@@ -28,7 +29,7 @@ class GroupRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> Optional[Group]:
         """
-        Retrieve the Microsoft 365 group that corresponds to this educationClass.
+        Retrieve the Microsoft 365 group that corresponds to this educationClass. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Group]
         Find more info here: https://learn.microsoft.com/graph/api/educationclass-get-group?view=graph-rest-1.0
@@ -50,7 +51,7 @@ class GroupRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the Microsoft 365 group that corresponds to this educationClass.
+        Retrieve the Microsoft 365 group that corresponds to this educationClass. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,12 +74,21 @@ class GroupRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupRequestBuilder(raw_url, self.request_adapter)
+        return GroupRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def service_provisioning_errors(self) -> ServiceProvisioningErrorsRequestBuilder:
+        """
+        The serviceProvisioningErrors property
+        """
+        from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
+
+        return ServiceProvisioningErrorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupRequestBuilderGetQueryParameters():
         """
-        Retrieve the Microsoft 365 group that corresponds to this educationClass.
+        Retrieve the Microsoft 365 group that corresponds to this educationClass. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

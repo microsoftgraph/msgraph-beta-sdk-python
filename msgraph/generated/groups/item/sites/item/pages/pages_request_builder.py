@@ -45,7 +45,7 @@ class PagesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None) -> Optional[BaseSitePageCollectionResponse]:
         """
-        Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
+        Get the collection of baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes. This API is supported in the following [national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BaseSitePageCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/basesitepage-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class PagesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[BaseSitePage] = None, request_configuration: Optional[PagesRequestBuilderPostRequestConfiguration] = None) -> Optional[BaseSitePage]:
         """
-        Create a new [sitePage][] in the site pages [list][] in a [site][].
+        Create a new sitePage][] in the site pages [list][] in a [site][]. This API is supported in the following [national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BaseSitePage]
@@ -92,7 +92,7 @@ class PagesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
+        Get the collection of baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes. This API is supported in the following [national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class PagesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[BaseSitePage] = None, request_configuration: Optional[PagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new [sitePage][] in the site pages [list][] in a [site][].
+        Create a new sitePage][] in the site pages [list][] in a [site][]. This API is supported in the following [national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class PagesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PagesRequestBuilder(raw_url, self.request_adapter)
+        return PagesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class PagesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PagesRequestBuilderGetQueryParameters():
         """
-        Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
+        Get the collection of baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes. This API is supported in the following [national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

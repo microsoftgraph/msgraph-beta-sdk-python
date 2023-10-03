@@ -28,7 +28,7 @@ class SetUpResourcesFolderRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[SetUpResourcesFolderRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationModule]:
         """
-        Create a SharePoint folder to upload files for a given educationModule. Only teachers can perform this operation. The teacher determines what resources to upload to the SharePoint folder for the module.
+        Create a SharePoint folder to upload files for a given educationModule. Only teachers can perform this operation. The teacher determines what resources to upload to the SharePoint folder for the module. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationModule]
         Find more info here: https://learn.microsoft.com/graph/api/educationmodule-setupresourcesfolder?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class SetUpResourcesFolderRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[SetUpResourcesFolderRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a SharePoint folder to upload files for a given educationModule. Only teachers can perform this operation. The teacher determines what resources to upload to the SharePoint folder for the module.
+        Create a SharePoint folder to upload files for a given educationModule. Only teachers can perform this operation. The teacher determines what resources to upload to the SharePoint folder for the module. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +72,7 @@ class SetUpResourcesFolderRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SetUpResourcesFolderRequestBuilder(raw_url, self.request_adapter)
+        return SetUpResourcesFolderRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

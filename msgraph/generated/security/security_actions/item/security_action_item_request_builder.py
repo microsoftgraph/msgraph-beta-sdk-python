@@ -48,7 +48,7 @@ class SecurityActionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SecurityActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SecurityAction]:
         """
-        Retrieve the properties and relationships of a securityAction object.
+        Retrieve the properties and relationships of a securityAction object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecurityAction]
         Find more info here: https://learn.microsoft.com/graph/api/securityaction-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class SecurityActionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SecurityActionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a securityAction object.
+        Retrieve the properties and relationships of a securityAction object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class SecurityActionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SecurityActionItemRequestBuilder(raw_url, self.request_adapter)
+        return SecurityActionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cancel_security_action(self) -> CancelSecurityActionRequestBuilder:
@@ -176,7 +176,7 @@ class SecurityActionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SecurityActionItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a securityAction object.
+        Retrieve the properties and relationships of a securityAction object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

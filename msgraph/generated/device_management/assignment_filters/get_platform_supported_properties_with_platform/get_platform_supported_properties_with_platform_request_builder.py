@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_platform_supported_properties_with_platform_response import GetPlatformSupportedPropertiesWithPlatformResponse
+    from .get_platform_supported_properties_with_platform_get_response import GetPlatformSupportedPropertiesWithPlatformGetResponse
 
 class GetPlatformSupportedPropertiesWithPlatformRequestBuilder(BaseRequestBuilder):
     """
@@ -25,13 +25,15 @@ class GetPlatformSupportedPropertiesWithPlatformRequestBuilder(BaseRequestBuilde
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['platform'] = str(platform)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/assignmentFilters/getPlatformSupportedProperties(platform='{platform}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetPlatformSupportedPropertiesWithPlatformRequestBuilderGetRequestConfiguration] = None) -> Optional[GetPlatformSupportedPropertiesWithPlatformResponse]:
+    async def get(self,request_configuration: Optional[GetPlatformSupportedPropertiesWithPlatformRequestBuilderGetRequestConfiguration] = None) -> Optional[GetPlatformSupportedPropertiesWithPlatformGetResponse]:
         """
         Invoke function getPlatformSupportedProperties
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetPlatformSupportedPropertiesWithPlatformResponse]
+        Returns: Optional[GetPlatformSupportedPropertiesWithPlatformGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -44,9 +46,9 @@ class GetPlatformSupportedPropertiesWithPlatformRequestBuilder(BaseRequestBuilde
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_platform_supported_properties_with_platform_response import GetPlatformSupportedPropertiesWithPlatformResponse
+        from .get_platform_supported_properties_with_platform_get_response import GetPlatformSupportedPropertiesWithPlatformGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetPlatformSupportedPropertiesWithPlatformResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetPlatformSupportedPropertiesWithPlatformGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetPlatformSupportedPropertiesWithPlatformRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -73,7 +75,7 @@ class GetPlatformSupportedPropertiesWithPlatformRequestBuilder(BaseRequestBuilde
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetPlatformSupportedPropertiesWithPlatformRequestBuilder(raw_url, self.request_adapter)
+        return GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetPlatformSupportedPropertiesWithPlatformRequestBuilderGetQueryParameters():

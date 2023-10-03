@@ -27,7 +27,7 @@ class MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[MicrosoftGraphEdiscoveryResetToDefaultRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Reset a caseSettings object to the default values.
+        Reset a caseSettings object to the default values. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-casesettings-resettodefault?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[MicrosoftGraphEdiscoveryResetToDefaultRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Reset a caseSettings object to the default values.
+        Reset a caseSettings object to the default values. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

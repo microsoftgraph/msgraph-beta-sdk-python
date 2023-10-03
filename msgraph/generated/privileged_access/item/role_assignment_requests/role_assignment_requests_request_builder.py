@@ -66,7 +66,7 @@ class RoleAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[RoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[GovernanceRoleAssignmentRequest]:
         """
-        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
+        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GovernanceRoleAssignmentRequest]
@@ -108,7 +108,7 @@ class RoleAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[RoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
+        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class RoleAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RoleAssignmentRequestsRequestBuilder(raw_url, self.request_adapter)
+        return RoleAssignmentRequestsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

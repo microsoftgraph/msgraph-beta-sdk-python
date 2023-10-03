@@ -122,7 +122,7 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
             "blockSyncingRecentlyUsedEmailAddresses": lambda n : setattr(self, 'block_syncing_recently_used_email_addresses', n.get_bool_value()),
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
             "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(EmailSyncDuration)),
-            "easServices": lambda n : setattr(self, 'eas_services', n.get_enum_value(EasServices)),
+            "easServices": lambda n : setattr(self, 'eas_services', n.get_collection_of_enum_values(EasServices)),
             "easServicesUserOverrideEnabled": lambda n : setattr(self, 'eas_services_user_override_enabled', n.get_bool_value()),
             "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(UserEmailSource)),
             "encryptionCertificateType": lambda n : setattr(self, 'encryption_certificate_type', n.get_enum_value(EmailCertificateType)),

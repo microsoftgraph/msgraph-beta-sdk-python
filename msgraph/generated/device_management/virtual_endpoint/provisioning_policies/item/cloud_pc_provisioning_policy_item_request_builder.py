@@ -31,7 +31,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a cloudPcProvisioningPolicy object. You can’t delete a policy that’s in use.
+        Delete a cloudPcProvisioningPolicy object. You can’t delete a policy that’s in use. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcprovisioningpolicy-delete?view=graph-rest-1.0
@@ -51,7 +51,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcProvisioningPolicy]:
         """
-        Read the properties and relationships of a cloudPcProvisioningPolicy object.
+        Read the properties and relationships of a cloudPcProvisioningPolicy object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcProvisioningPolicy]
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcprovisioningpolicy-get?view=graph-rest-1.0
@@ -73,7 +73,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[CloudPcProvisioningPolicy] = None, request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CloudPcProvisioningPolicy]:
         """
-        Update the properties of a cloudPcProvisioningPolicy object.
+        Update the properties of a cloudPcProvisioningPolicy object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcProvisioningPolicy]
@@ -98,7 +98,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a cloudPcProvisioningPolicy object. You can’t delete a policy that’s in use.
+        Delete a cloudPcProvisioningPolicy object. You can’t delete a policy that’s in use. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +113,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a cloudPcProvisioningPolicy object.
+        Read the properties and relationships of a cloudPcProvisioningPolicy object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -130,7 +130,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[CloudPcProvisioningPolicy] = None, request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a cloudPcProvisioningPolicy object.
+        Update the properties of a cloudPcProvisioningPolicy object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -156,7 +156,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CloudPcProvisioningPolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return CloudPcProvisioningPolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def apply(self) -> ApplyRequestBuilder:
@@ -198,7 +198,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcProvisioningPolicyItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a cloudPcProvisioningPolicy object.
+        Read the properties and relationships of a cloudPcProvisioningPolicy object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

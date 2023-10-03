@@ -1003,7 +1003,7 @@ class DeviceManagement(Entity):
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(DeviceManagementSettings)),
             "softwareUpdateStatusSummary": lambda n : setattr(self, 'software_update_status_summary', n.get_object_value(SoftwareUpdateStatusSummary)),
             "subscriptionState": lambda n : setattr(self, 'subscription_state', n.get_enum_value(DeviceManagementSubscriptionState)),
-            "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_enum_value(DeviceManagementSubscriptions)),
+            "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_enum_values(DeviceManagementSubscriptions)),
             "telecomExpenseManagementPartners": lambda n : setattr(self, 'telecom_expense_management_partners', n.get_collection_of_object_values(TelecomExpenseManagementPartner)),
             "templateInsights": lambda n : setattr(self, 'template_insights', n.get_collection_of_object_values(DeviceManagementTemplateInsightsDefinition)),
             "templateSettings": lambda n : setattr(self, 'template_settings', n.get_collection_of_object_values(DeviceManagementConfigurationSettingTemplate)),

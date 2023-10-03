@@ -27,7 +27,7 @@ class SendReminderRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[SendReminderRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Send a reminder to the reviewers of a currently active accessReviewInstance.
+        Send a reminder to the reviewers of a currently active accessReviewInstance. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class SendReminderRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[SendReminderRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Send a reminder to the reviewers of a currently active accessReviewInstance.
+        Send a reminder to the reviewers of a currently active accessReviewInstance. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class SendReminderRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SendReminderRequestBuilder(raw_url, self.request_adapter)
+        return SendReminderRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

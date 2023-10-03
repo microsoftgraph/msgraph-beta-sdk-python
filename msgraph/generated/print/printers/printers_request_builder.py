@@ -46,7 +46,7 @@ class PrintersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PrintersRequestBuilderGetRequestConfiguration] = None) -> Optional[PrinterCollectionResponse]:
         """
-        Retrieve the list of printers that are registered in the tenant.
+        Retrieve the list of printers that are registered in the tenant. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrinterCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/print-list-printers?view=graph-rest-1.0
@@ -92,7 +92,7 @@ class PrintersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PrintersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of printers that are registered in the tenant.
+        Retrieve the list of printers that are registered in the tenant. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class PrintersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrintersRequestBuilder(raw_url, self.request_adapter)
+        return PrintersRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -158,7 +158,7 @@ class PrintersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PrintersRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of printers that are registered in the tenant.
+        Retrieve the list of printers that are registered in the tenant. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

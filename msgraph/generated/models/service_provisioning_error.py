@@ -22,7 +22,7 @@ class ServiceProvisioningError(AdditionalDataHolder, BackedModel, Parsable):
     is_resolved: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
+    # Qualified service instance (for example, 'SharePoint/Dublin') that published the service error information.
     service_instance: Optional[str] = None
     
     @staticmethod

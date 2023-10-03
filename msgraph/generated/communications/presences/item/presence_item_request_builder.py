@@ -52,7 +52,7 @@ class PresenceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PresenceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Presence]:
         """
-        Get a user's presence information.
+        Get a user's presence information. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Presence]
         Find more info here: https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0
@@ -113,7 +113,7 @@ class PresenceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PresenceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a user's presence information.
+        Get a user's presence information. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -156,7 +156,7 @@ class PresenceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PresenceItemRequestBuilder(raw_url, self.request_adapter)
+        return PresenceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def clear_presence(self) -> ClearPresenceRequestBuilder:
@@ -216,7 +216,7 @@ class PresenceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PresenceItemRequestBuilderGetQueryParameters():
         """
-        Get a user's presence information.
+        Get a user's presence information. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

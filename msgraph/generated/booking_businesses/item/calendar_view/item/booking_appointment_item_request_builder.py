@@ -151,7 +151,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BookingAppointmentItemRequestBuilder(raw_url, self.request_adapter)
+        return BookingAppointmentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cancel(self) -> CancelRequestBuilder:
@@ -185,12 +185,12 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
             """
             if not original_name:
                 raise TypeError("original_name cannot be null.")
-            if original_name == "end":
-                return "end"
             if original_name == "expand":
                 return "%24expand"
             if original_name == "select":
                 return "%24select"
+            if original_name == "end":
+                return "end"
             if original_name == "start":
                 return "start"
             return original_name

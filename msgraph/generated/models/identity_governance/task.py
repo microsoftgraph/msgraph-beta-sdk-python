@@ -62,7 +62,7 @@ class Task(Entity):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "arguments": lambda n : setattr(self, 'arguments', n.get_collection_of_object_values(KeyValuePair)),
-            "category": lambda n : setattr(self, 'category', n.get_enum_value(LifecycleTaskCategory)),
+            "category": lambda n : setattr(self, 'category', n.get_collection_of_enum_values(LifecycleTaskCategory)),
             "continueOnError": lambda n : setattr(self, 'continue_on_error', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

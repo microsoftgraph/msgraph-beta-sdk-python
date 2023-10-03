@@ -40,7 +40,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[EventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an event object.
+        Delete an event object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/group-delete-event?view=graph-rest-1.0
@@ -60,7 +60,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Event]:
         """
-        Get an event object.
+        Get an event object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Event]
         Find more info here: https://learn.microsoft.com/graph/api/group-get-event?view=graph-rest-1.0
@@ -82,7 +82,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Event] = None, request_configuration: Optional[EventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Event]:
         """
-        Update an event object.
+        Update an event object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Event]
@@ -107,7 +107,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[EventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an event object.
+        Delete an event object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,7 +122,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EventItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get an event object.
+        Get an event object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +139,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Event] = None, request_configuration: Optional[EventItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an event object.
+        Update an event object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -165,7 +165,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EventItemRequestBuilder(raw_url, self.request_adapter)
+        return EventItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def accept(self) -> AcceptRequestBuilder:
@@ -288,7 +288,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EventItemRequestBuilderGetQueryParameters():
         """
-        Get an event object.
+        Get an event object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

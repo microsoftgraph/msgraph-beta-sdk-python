@@ -48,7 +48,7 @@ class TeamTemplateDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TeamTemplateDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamTemplateDefinition]:
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        Read the properties and relationships of a teamTemplateDefinition object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamTemplateDefinition]
         Find more info here: https://learn.microsoft.com/graph/api/teamtemplatedefinition-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class TeamTemplateDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TeamTemplateDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        Read the properties and relationships of a teamTemplateDefinition object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class TeamTemplateDefinitionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TeamTemplateDefinitionItemRequestBuilder(raw_url, self.request_adapter)
+        return TeamTemplateDefinitionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def team_definition(self) -> TeamDefinitionRequestBuilder:
@@ -176,7 +176,7 @@ class TeamTemplateDefinitionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamTemplateDefinitionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        Read the properties and relationships of a teamTemplateDefinition object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

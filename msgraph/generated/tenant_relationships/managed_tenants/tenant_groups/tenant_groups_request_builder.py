@@ -46,7 +46,7 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantGroupCollectionResponse]:
         """
-        Get a list of the tenantGroup objects and their properties.
+        Get a list of the tenantGroup objects and their properties. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantGroupCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-tenantgroups?view=graph-rest-1.0
@@ -92,7 +92,7 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the tenantGroup objects and their properties.
+        Get a list of the tenantGroup objects and their properties. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantGroupsRequestBuilder(raw_url, self.request_adapter)
+        return TenantGroupsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -158,7 +158,7 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantGroupsRequestBuilderGetQueryParameters():
         """
-        Get a list of the tenantGroup objects and their properties.
+        Get a list of the tenantGroup objects and their properties. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

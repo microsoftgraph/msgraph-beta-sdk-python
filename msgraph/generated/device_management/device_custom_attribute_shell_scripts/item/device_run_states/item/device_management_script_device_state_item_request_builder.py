@@ -151,7 +151,7 @@ class DeviceManagementScriptDeviceStateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementScriptDeviceStateItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementScriptDeviceStateItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def managed_device(self) -> ManagedDeviceRequestBuilder:

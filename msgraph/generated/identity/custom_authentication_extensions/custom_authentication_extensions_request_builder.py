@@ -46,7 +46,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomAuthenticationExtensionCollectionResponse]:
         """
-        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned.
+        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAuthenticationExtensionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-customauthenticationextensions?view=graph-rest-1.0
@@ -68,7 +68,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderPostRequestConfiguration] = None) -> Optional[CustomAuthenticationExtension]:
         """
-        Create a new customAuthenticationExtension object. Only the onTokenIssuanceStartCustomExtension object type is supported.
+        Create a new customAuthenticationExtension object. Only the onTokenIssuanceStartCustomExtension object type is supported. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAuthenticationExtension]
@@ -93,7 +93,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned.
+        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new customAuthenticationExtension object. Only the onTokenIssuanceStartCustomExtension object type is supported.
+        Create a new customAuthenticationExtension object. Only the onTokenIssuanceStartCustomExtension object type is supported. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -136,7 +136,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CustomAuthenticationExtensionsRequestBuilder(raw_url, self.request_adapter)
+        return CustomAuthenticationExtensionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -159,7 +159,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomAuthenticationExtensionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned.
+        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

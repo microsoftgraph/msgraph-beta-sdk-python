@@ -27,7 +27,7 @@ class MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(BaseRequestBuilder)
     
     async def post(self,request_configuration: Optional[MicrosoftGraphSecurityEstimateStatisticsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).
+        Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium). This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(BaseRequestBuilder)
     
     def to_post_request_information(self,request_configuration: Optional[MicrosoftGraphSecurityEstimateStatisticsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).
+        Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium). This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(BaseRequestBuilder)
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

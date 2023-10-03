@@ -58,7 +58,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignmentRequestCollectionResponse]:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentRequestCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackageassignmentrequests?view=graph-rest-1.0
@@ -80,7 +80,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[AccessPackageAssignmentRequest]:
         """
-        In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
+        In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentRequest]
@@ -105,7 +105,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,7 +122,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
+        In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +148,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessPackageAssignmentRequestsRequestBuilder(raw_url, self.request_adapter)
+        return AccessPackageAssignmentRequestsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -162,7 +162,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentRequestsRequestBuilderGetQueryParameters():
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

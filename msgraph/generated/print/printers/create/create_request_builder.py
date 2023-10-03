@@ -28,7 +28,7 @@ class CreateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CreatePostRequestBody] = None, request_configuration: Optional[CreateRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer.
+        Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class CreateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CreatePostRequestBody] = None, request_configuration: Optional[CreateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer.
+        Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class CreateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CreateRequestBuilder(raw_url, self.request_adapter)
+        return CreateRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

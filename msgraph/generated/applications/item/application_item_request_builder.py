@@ -50,7 +50,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ApplicationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
+        Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/application-delete?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ApplicationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Application]:
         """
-        Get the properties and relationships of an application object.
+        Get the properties and relationships of an application object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Application]
         Find more info here: https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0
@@ -92,7 +92,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Application] = None, request_configuration: Optional[ApplicationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Application]:
         """
-        Update the properties of an application object.
+        Update the properties of an application object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Application]
@@ -117,7 +117,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ApplicationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
+        Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -132,7 +132,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ApplicationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of an application object.
+        Get the properties and relationships of an application object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -149,7 +149,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Application] = None, request_configuration: Optional[ApplicationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an application object.
+        Update the properties of an application object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -175,7 +175,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ApplicationItemRequestBuilder(raw_url, self.request_adapter)
+        return ApplicationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def add_key(self) -> AddKeyRequestBuilder:
@@ -388,7 +388,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApplicationItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of an application object.
+        Get the properties and relationships of an application object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

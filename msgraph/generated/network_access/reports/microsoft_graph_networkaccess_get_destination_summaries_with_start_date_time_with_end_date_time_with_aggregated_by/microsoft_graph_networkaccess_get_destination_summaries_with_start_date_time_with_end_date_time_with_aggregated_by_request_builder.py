@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by_response import GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByResponse
+    from .get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by_get_response import GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse
 
 class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder(BaseRequestBuilder):
     """
@@ -28,13 +28,17 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['aggregatedBy'] = str(aggregated_by)
+            path_parameters['endDateTime'] = str(end_date_time)
+            path_parameters['startDateTime'] = str(start_date_time)
         super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.getDestinationSummaries(startDateTime={startDateTime},endDateTime={endDateTime},aggregatedBy='{aggregatedBy}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetRequestConfiguration] = None) -> Optional[GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByResponse]:
+    async def get(self,request_configuration: Optional[MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetRequestConfiguration] = None) -> Optional[GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse]:
         """
         Invoke function getDestinationSummaries
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByResponse]
+        Returns: Optional[GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -47,9 +51,9 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by_response import GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByResponse
+        from .get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by_get_response import GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -76,7 +80,7 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetQueryParameters():

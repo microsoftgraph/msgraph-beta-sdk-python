@@ -44,7 +44,7 @@ class AppRoleAssignedResourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[ServicePrincipalCollectionResponse]:
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get the service principals to which the user has an app role assignment either directly or through group membership. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipalCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/user-list-approleassignedresources?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class AppRoleAssignedResourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get the service principals to which the user has an app role assignment either directly or through group membership. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class AppRoleAssignedResourcesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AppRoleAssignedResourcesRequestBuilder(raw_url, self.request_adapter)
+        return AppRoleAssignedResourcesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class AppRoleAssignedResourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppRoleAssignedResourcesRequestBuilderGetQueryParameters():
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get the service principals to which the user has an app role assignment either directly or through group membership. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

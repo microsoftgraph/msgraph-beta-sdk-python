@@ -72,7 +72,7 @@ class PresentationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PresentationRequestBuilder(raw_url, self.request_adapter)
+        return PresentationRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class PresentationRequestBuilderGetQueryParameters():

@@ -47,7 +47,7 @@ class AppsAndServicesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AppsAndServicesRequestBuilderGetRequestConfiguration] = None) -> Optional[AdminAppsAndServices]:
         """
-        Read the properties and relationships of a adminAppsAndServices object.
+        Read the properties and relationships of a adminAppsAndServices object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdminAppsAndServices]
         Find more info here: https://learn.microsoft.com/graph/api/adminappsandservices-get?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class AppsAndServicesRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AdminAppsAndServices] = None, request_configuration: Optional[AppsAndServicesRequestBuilderPatchRequestConfiguration] = None) -> Optional[AdminAppsAndServices]:
         """
-        Update the properties of a adminAppsAndServices object.
+        Update the properties of a adminAppsAndServices object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdminAppsAndServices]
@@ -109,7 +109,7 @@ class AppsAndServicesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AppsAndServicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a adminAppsAndServices object.
+        Read the properties and relationships of a adminAppsAndServices object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class AppsAndServicesRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[AdminAppsAndServices] = None, request_configuration: Optional[AppsAndServicesRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a adminAppsAndServices object.
+        Update the properties of a adminAppsAndServices object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class AppsAndServicesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AppsAndServicesRequestBuilder(raw_url, self.request_adapter)
+        return AppsAndServicesRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class AppsAndServicesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppsAndServicesRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a adminAppsAndServices object.
+        Read the properties and relationships of a adminAppsAndServices object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

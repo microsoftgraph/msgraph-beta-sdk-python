@@ -13,6 +13,8 @@ if TYPE_CHECKING:
     from .item_reference import ItemReference
     from .list_item import ListItem
     from .list_ import List_
+    from .recycle_bin import RecycleBin
+    from .recycle_bin_item import RecycleBinItem
     from .shared_drive_item import SharedDriveItem
     from .site import Site
     from .site_page import SitePage
@@ -80,6 +82,14 @@ class BaseItem(Entity):
             from .list_item import ListItem
 
             return ListItem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recycleBin".casefold():
+            from .recycle_bin import RecycleBin
+
+            return RecycleBin()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recycleBinItem".casefold():
+            from .recycle_bin_item import RecycleBinItem
+
+            return RecycleBinItem()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharedDriveItem".casefold():
             from .shared_drive_item import SharedDriveItem
 
@@ -107,6 +117,8 @@ class BaseItem(Entity):
         from .item_reference import ItemReference
         from .list_item import ListItem
         from .list_ import List_
+        from .recycle_bin import RecycleBin
+        from .recycle_bin_item import RecycleBinItem
         from .shared_drive_item import SharedDriveItem
         from .site import Site
         from .site_page import SitePage
@@ -120,6 +132,8 @@ class BaseItem(Entity):
         from .item_reference import ItemReference
         from .list_item import ListItem
         from .list_ import List_
+        from .recycle_bin import RecycleBin
+        from .recycle_bin_item import RecycleBinItem
         from .shared_drive_item import SharedDriveItem
         from .site import Site
         from .site_page import SitePage

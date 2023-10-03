@@ -26,7 +26,7 @@ from ..entity import Entity
 
 @dataclass
 class ThreatSubmission(Entity):
-    # Specifies the admin review property which constitutes of who reviewed the user submission, when and what was it identified as.
+    # Specifies the admin review property that constitutes of who reviewed the user submission, when and what was it identified as.
     admin_review: Optional[SubmissionAdminReview] = None
     # The category property
     category: Optional[SubmissionCategory] = None
@@ -46,7 +46,7 @@ class ThreatSubmission(Entity):
     source: Optional[SubmissionSource] = None
     # Indicates whether the threat submission has been analyzed by Microsoft. Supports $filter = status eq 'value'. The possible values are: notStarted, running, succeeded, failed, skipped and unkownFutureValue.
     status: Optional[LongRunningOperationStatus] = None
-    # Indicates the tenant id of the submitter. Not required when created using a POST operation. It is extracted from the token of the post API call.
+    # Indicates the tenant id of the submitter. Not required when created using a POST operation. It's extracted from the token of the post API call.
     tenant_id: Optional[str] = None
     
     @staticmethod

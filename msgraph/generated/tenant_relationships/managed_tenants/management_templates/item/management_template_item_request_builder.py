@@ -49,7 +49,7 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagementTemplate]:
         """
-        Read the properties and relationships of a managementTemplate object.
+        Read the properties and relationships of a managementTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagementTemplate]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managementtemplate-get?view=graph-rest-1.0
@@ -110,7 +110,7 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a managementTemplate object.
+        Read the properties and relationships of a managementTemplate object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagementTemplateItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagementTemplateItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def management_template_collections(self) -> ManagementTemplateCollectionsRequestBuilder:
@@ -186,7 +186,7 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ManagementTemplateItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a managementTemplate object.
+        Read the properties and relationships of a managementTemplate object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

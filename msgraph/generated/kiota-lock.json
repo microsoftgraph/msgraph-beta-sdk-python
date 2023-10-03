@@ -1,12 +1,13 @@
 {
-  "descriptionHash": "A01E4E2FD4CA1961C871ADA03DEE41B1853C4C4B0EF4BA6CC55D17DDA41EEA3B6733B3D4CE567EA7351A3A10CF2C3B0F61DAA986FE4F739D35B49649FD03B618",
+  "descriptionHash": "42E949A4F6F40EB210CFA21D3DD3E82E1020BF9252F7345E9B3ACFAD9A638FC1F702C029ED51BA9754847E4B576F63FA811244F7166C85A9E4C5F2CEDBCF1517",
   "descriptionLocation": "/mnt/vss/_work/1/s/msgraph-metadata/clean_beta_openapi/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.6.0",
+  "kiotaVersion": "1.7.0",
   "clientClassName": "BaseGraphServiceClient",
   "clientNamespaceName": "msgraph.generated",
   "language": "Python",
   "usesBackingStore": true,
+  "excludeBackwardCompatible": false,
   "includeAdditionalData": true,
   "serializers": [
     "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",

@@ -49,7 +49,7 @@ class TenantItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TenantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Tenant]:
         """
-        Read the properties and relationships of a tenant object.
+        Read the properties and relationships of a tenant object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Tenant]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenant-get?view=graph-rest-1.0
@@ -110,7 +110,7 @@ class TenantItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TenantItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a tenant object.
+        Read the properties and relationships of a tenant object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class TenantItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantItemRequestBuilder(raw_url, self.request_adapter)
+        return TenantItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_managed_tenants_offboard_tenant(self) -> MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder:
@@ -186,7 +186,7 @@ class TenantItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a tenant object.
+        Read the properties and relationships of a tenant object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

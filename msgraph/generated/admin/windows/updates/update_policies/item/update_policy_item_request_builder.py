@@ -30,7 +30,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an updatePolicy object.
+        Delete an updatePolicy object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatepolicy-delete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UpdatePolicy]:
         """
-        Read the properties and relationships of an updatePolicy object.
+        Read the properties and relationships of an updatePolicy object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatePolicy]
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatepolicy-get?view=graph-rest-1.0
@@ -72,7 +72,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[UpdatePolicy] = None, request_configuration: Optional[UpdatePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UpdatePolicy]:
         """
-        Update the properties of an updatePolicy object.
+        Update the properties of an updatePolicy object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatePolicy]
@@ -97,7 +97,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an updatePolicy object.
+        Delete an updatePolicy object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an updatePolicy object.
+        Read the properties and relationships of an updatePolicy object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -129,7 +129,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[UpdatePolicy] = None, request_configuration: Optional[UpdatePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an updatePolicy object.
+        Update the properties of an updatePolicy object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -155,7 +155,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpdatePolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return UpdatePolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def audience(self) -> AudienceRequestBuilder:
@@ -188,7 +188,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UpdatePolicyItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an updatePolicy object.
+        Read the properties and relationships of an updatePolicy object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

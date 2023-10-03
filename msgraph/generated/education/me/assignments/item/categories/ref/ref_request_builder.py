@@ -29,7 +29,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> Optional[StringCollectionResponse]:
         """
-        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StringCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0
@@ -73,7 +73,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,12 +115,12 @@ class RefRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RefRequestBuilder(raw_url, self.request_adapter)
+        return RefRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class RefRequestBuilderGetQueryParameters():
         """
-        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

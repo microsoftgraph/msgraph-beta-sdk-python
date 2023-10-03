@@ -20,7 +20,7 @@ class EntitiesSummary(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
-    # Count of unique Azure Active Directoy users that were seen.
+    # Count of unique Azure Active Directory users that were seen.
     user_count: Optional[int] = None
     # Count of unique target workloads or hosts that were seen.
     workload_count: Optional[int] = None

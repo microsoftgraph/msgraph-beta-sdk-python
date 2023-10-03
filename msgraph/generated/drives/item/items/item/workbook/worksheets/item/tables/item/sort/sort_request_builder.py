@@ -50,7 +50,7 @@ class SortRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SortRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookTableSort]:
         """
-        Retrieve the properties and relationships of tablesort object.
+        Retrieve the properties and relationships of tablesort object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookTableSort]
         Find more info here: https://learn.microsoft.com/graph/api/tablesort-get?view=graph-rest-1.0
@@ -111,7 +111,7 @@ class SortRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SortRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of tablesort object.
+        Retrieve the properties and relationships of tablesort object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -154,7 +154,7 @@ class SortRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SortRequestBuilder(raw_url, self.request_adapter)
+        return SortRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def apply(self) -> ApplyRequestBuilder:
@@ -196,7 +196,7 @@ class SortRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SortRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of tablesort object.
+        Retrieve the properties and relationships of tablesort object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

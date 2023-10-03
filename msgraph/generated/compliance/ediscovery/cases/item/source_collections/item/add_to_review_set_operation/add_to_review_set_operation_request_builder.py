@@ -28,7 +28,7 @@ class AddToReviewSetOperationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AddToReviewSetOperationRequestBuilderGetRequestConfiguration] = None) -> Optional[AddToReviewSetOperation]:
         """
-        Get the last addToReviewSetOperation object associated with a source collection. 
+        Get the last addToReviewSetOperation object associated with a source collection.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AddToReviewSetOperation]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-list-addtoreviewsetoperation?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class AddToReviewSetOperationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AddToReviewSetOperationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the last addToReviewSetOperation object associated with a source collection. 
+        Get the last addToReviewSetOperation object associated with a source collection.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,12 +73,12 @@ class AddToReviewSetOperationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AddToReviewSetOperationRequestBuilder(raw_url, self.request_adapter)
+        return AddToReviewSetOperationRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class AddToReviewSetOperationRequestBuilderGetQueryParameters():
         """
-        Get the last addToReviewSetOperation object associated with a source collection. 
+        Get the last addToReviewSetOperation object associated with a source collection.  This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -24,6 +24,8 @@ class GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(BaseRequ
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getTeamsDeviceUsageDistributionUserCounts(period='{period}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> bytes:
@@ -68,7 +70,7 @@ class GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(BaseRequ
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -46,10 +46,10 @@ class WorksheetsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WorksheetsRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookWorksheetCollectionResponse]:
         """
-        Retrieve a list of worksheet objects.
+        Retrieve a list of worksheet objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookWorksheetCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/worksheet-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/workbook-list-worksheets?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +92,7 @@ class WorksheetsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WorksheetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of worksheet objects.
+        Retrieve a list of worksheet objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class WorksheetsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WorksheetsRequestBuilder(raw_url, self.request_adapter)
+        return WorksheetsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def add(self) -> AddRequestBuilder:
@@ -158,7 +158,7 @@ class WorksheetsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WorksheetsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of worksheet objects.
+        Retrieve a list of worksheet objects. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

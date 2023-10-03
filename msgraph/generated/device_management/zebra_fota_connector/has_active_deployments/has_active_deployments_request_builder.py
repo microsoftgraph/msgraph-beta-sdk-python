@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .has_active_deployments_response import HasActiveDeploymentsResponse
+    from .has_active_deployments_post_response import HasActiveDeploymentsPostResponse
 
 class HasActiveDeploymentsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class HasActiveDeploymentsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/zebraFotaConnector/hasActiveDeployments", path_parameters)
     
-    async def post(self,request_configuration: Optional[HasActiveDeploymentsRequestBuilderPostRequestConfiguration] = None) -> Optional[HasActiveDeploymentsResponse]:
+    async def post(self,request_configuration: Optional[HasActiveDeploymentsRequestBuilderPostRequestConfiguration] = None) -> Optional[HasActiveDeploymentsPostResponse]:
         """
         Invoke action hasActiveDeployments
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[HasActiveDeploymentsResponse]
+        Returns: Optional[HasActiveDeploymentsPostResponse]
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class HasActiveDeploymentsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .has_active_deployments_response import HasActiveDeploymentsResponse
+        from .has_active_deployments_post_response import HasActiveDeploymentsPostResponse
 
-        return await self.request_adapter.send_async(request_info, HasActiveDeploymentsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, HasActiveDeploymentsPostResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[HasActiveDeploymentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -71,7 +71,7 @@ class HasActiveDeploymentsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HasActiveDeploymentsRequestBuilder(raw_url, self.request_adapter)
+        return HasActiveDeploymentsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

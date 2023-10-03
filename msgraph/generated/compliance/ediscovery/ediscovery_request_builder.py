@@ -151,7 +151,7 @@ class EdiscoveryRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EdiscoveryRequestBuilder(raw_url, self.request_adapter)
+        return EdiscoveryRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cases(self) -> CasesRequestBuilder:

@@ -29,7 +29,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[DeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a deployment object.
+        Delete a deployment object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deployment-delete?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeploymentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Deployment]:
         """
-        Read the properties and relationships of a deployment object.
+        Read the properties and relationships of a deployment object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Deployment]
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deployment-get?view=graph-rest-1.0
@@ -71,7 +71,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Deployment] = None, request_configuration: Optional[DeploymentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Deployment]:
         """
-        Update the properties of a deployment object.
+        Update the properties of a deployment object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Deployment]
@@ -96,7 +96,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[DeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a deployment object.
+        Delete a deployment object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +111,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeploymentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a deployment object.
+        Read the properties and relationships of a deployment object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -128,7 +128,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Deployment] = None, request_configuration: Optional[DeploymentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a deployment object.
+        Update the properties of a deployment object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +154,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeploymentItemRequestBuilder(raw_url, self.request_adapter)
+        return DeploymentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def audience(self) -> AudienceRequestBuilder:
@@ -178,7 +178,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeploymentItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a deployment object.
+        Read the properties and relationships of a deployment object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

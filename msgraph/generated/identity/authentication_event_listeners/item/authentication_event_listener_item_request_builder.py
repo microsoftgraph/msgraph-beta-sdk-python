@@ -28,7 +28,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes an authenticationEventListener object.
+        Deletes an authenticationEventListener object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/authenticationeventlistener-delete?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AuthenticationEventListener]:
         """
-        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update.
+        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventListener]
@@ -94,7 +94,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes an authenticationEventListener object.
+        Deletes an authenticationEventListener object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update.
+        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthenticationEventListenerItemRequestBuilder(raw_url, self.request_adapter)
+        return AuthenticationEventListenerItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

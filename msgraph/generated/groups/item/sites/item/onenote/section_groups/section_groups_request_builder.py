@@ -45,7 +45,7 @@ class SectionGroupsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SectionGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[SectionGroupCollectionResponse]:
         """
-        Retrieve a list of sectionGroup objects.
+        Retrieve a list of sectionGroup objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SectionGroupCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class SectionGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SectionGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of sectionGroup objects.
+        Retrieve a list of sectionGroup objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class SectionGroupsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SectionGroupsRequestBuilder(raw_url, self.request_adapter)
+        return SectionGroupsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class SectionGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SectionGroupsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of sectionGroup objects.
+        Retrieve a list of sectionGroup objects. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

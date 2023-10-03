@@ -49,7 +49,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[InformationProtectionLabelCollectionResponse]:
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get a collection of information protection labels available to the user or to the organization. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InformationProtectionLabelCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/informationprotectionpolicy-list-labels?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get a collection of information protection labels available to the user or to the organization. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return LabelsRequestBuilder(raw_url, self.request_adapter)
+        return LabelsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -188,7 +188,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LabelsRequestBuilderGetQueryParameters():
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get a collection of information protection labels available to the user or to the organization. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

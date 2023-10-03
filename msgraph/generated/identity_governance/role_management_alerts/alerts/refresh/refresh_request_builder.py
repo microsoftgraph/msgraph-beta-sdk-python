@@ -28,7 +28,7 @@ class RefreshRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RefreshPostRequestBody] = None, request_configuration: Optional[RefreshRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Refresh incidents on all security alerts or on a single security alert in Privileged Identity Management (PIM) for Azure AD roles.
+        Refresh incidents on all security alerts or on a single security alert in Privileged Identity Management (PIM) for Azure AD roles. This task is a long-running operation and the unifiedRoleManagementAlert object will be updated only when the operation completes. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class RefreshRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RefreshPostRequestBody] = None, request_configuration: Optional[RefreshRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Refresh incidents on all security alerts or on a single security alert in Privileged Identity Management (PIM) for Azure AD roles.
+        Refresh incidents on all security alerts or on a single security alert in Privileged Identity Management (PIM) for Azure AD roles. This task is a long-running operation and the unifiedRoleManagementAlert object will be updated only when the operation completes. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class RefreshRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RefreshRequestBuilder(raw_url, self.request_adapter)
+        return RefreshRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

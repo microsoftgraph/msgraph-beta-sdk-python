@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
-    from .export_mobile_config_response import ExportMobileConfigResponse
+    from .export_mobile_config_get_response import ExportMobileConfigGetResponse
 
 class ExportMobileConfigRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class ExportMobileConfigRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/depOnboardingSettings/{depOnboardingSetting%2Did}/enrollmentProfiles/{enrollmentProfile%2Did}/exportMobileConfig()", path_parameters)
     
-    async def get(self,request_configuration: Optional[ExportMobileConfigRequestBuilderGetRequestConfiguration] = None) -> Optional[ExportMobileConfigResponse]:
+    async def get(self,request_configuration: Optional[ExportMobileConfigRequestBuilderGetRequestConfiguration] = None) -> Optional[ExportMobileConfigGetResponse]:
         """
         Exports the mobile configuration
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ExportMobileConfigResponse]
+        Returns: Optional[ExportMobileConfigGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class ExportMobileConfigRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .export_mobile_config_response import ExportMobileConfigResponse
+        from .export_mobile_config_get_response import ExportMobileConfigGetResponse
 
-        return await self.request_adapter.send_async(request_info, ExportMobileConfigResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ExportMobileConfigGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExportMobileConfigRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -71,7 +71,7 @@ class ExportMobileConfigRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ExportMobileConfigRequestBuilder(raw_url, self.request_adapter)
+        return ExportMobileConfigRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

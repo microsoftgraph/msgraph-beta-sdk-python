@@ -72,7 +72,7 @@ class AgedAccountsPayableItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AgedAccountsPayableItemRequestBuilder(raw_url, self.request_adapter)
+        return AgedAccountsPayableItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class AgedAccountsPayableItemRequestBuilderGetQueryParameters():

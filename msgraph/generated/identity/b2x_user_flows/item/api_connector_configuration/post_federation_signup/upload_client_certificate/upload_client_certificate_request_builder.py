@@ -29,7 +29,7 @@ class UploadClientCertificateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[UploadClientCertificatePostRequestBody] = None, request_configuration: Optional[UploadClientCertificateRequestBuilderPostRequestConfiguration] = None) -> Optional[IdentityApiConnector]:
         """
-        Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
+        Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityApiConnector]
@@ -54,7 +54,7 @@ class UploadClientCertificateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[UploadClientCertificatePostRequestBody] = None, request_configuration: Optional[UploadClientCertificateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
+        Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class UploadClientCertificateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UploadClientCertificateRequestBuilder(raw_url, self.request_adapter)
+        return UploadClientCertificateRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -25,6 +25,8 @@ class ItemWithNameRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['name'] = str(name)
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/item(name='{name}')", path_parameters)
     
     async def get(self,request_configuration: Optional[ItemWithNameRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookChart]:
@@ -72,7 +74,7 @@ class ItemWithNameRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ItemWithNameRequestBuilder(raw_url, self.request_adapter)
+        return ItemWithNameRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

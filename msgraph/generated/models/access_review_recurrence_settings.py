@@ -17,9 +17,9 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, BackedModel, Parsable
     odata_type: Optional[str] = None
     # The count of recurrences, if the value of recurrenceEndType is occurrences, or 0 otherwise.
     recurrence_count: Optional[int] = None
-    # How the recurrence ends. Possible values: never, endBy, occurrences, or recurrenceCount. If it is never, then there is no explicit end of the recurrence series. If it is endBy, then the recurrence ends at a certain date. If it is occurrences, then the series ends after recurrenceCount instances of the review have completed.
+    # How the recurrence ends. Possible values: never, endBy, occurrences, or recurrenceCount. If it's never, then there's no explicit end of the recurrence series. If it's endBy, then the recurrence ends at a certain date. If it's occurrences, then the series ends after recurrenceCount instances of the review have completed.
     recurrence_end_type: Optional[str] = None
-    # The recurrence interval. Possible vaules: onetime, weekly, monthly, quarterly, halfyearly or annual.
+    # The recurrence interval. Possible values: onetime, weekly, monthly, quarterly, halfyearly or annual.
     recurrence_type: Optional[str] = None
     
     @staticmethod

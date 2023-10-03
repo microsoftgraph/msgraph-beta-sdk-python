@@ -45,7 +45,7 @@ class DataPolicyOperationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DataPolicyOperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[DataPolicyOperationCollectionResponse]:
         """
-        Retrieve the properties of the dataPolicyOperation object.
+        Retrieve the properties of the dataPolicyOperation object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DataPolicyOperationCollectionResponse]
         """
@@ -90,7 +90,7 @@ class DataPolicyOperationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DataPolicyOperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of the dataPolicyOperation object.
+        Retrieve the properties of the dataPolicyOperation object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +133,7 @@ class DataPolicyOperationsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DataPolicyOperationsRequestBuilder(raw_url, self.request_adapter)
+        return DataPolicyOperationsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -147,7 +147,7 @@ class DataPolicyOperationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DataPolicyOperationsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of the dataPolicyOperation object.
+        Retrieve the properties of the dataPolicyOperation object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

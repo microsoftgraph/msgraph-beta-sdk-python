@@ -11,7 +11,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The name displayed in the address book for teh user at the time when the sharing record was created. Read-only.
+    # The name displayed in the address book for the user at the time when the sharing record was created. Read-only.
     display_name: Optional[str] = None
     # The home tenant id of the external user. Read-only.
     home_tenant_id: Optional[str] = None

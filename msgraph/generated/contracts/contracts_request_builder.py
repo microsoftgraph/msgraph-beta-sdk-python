@@ -49,7 +49,7 @@ class ContractsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ContractsRequestBuilderGetRequestConfiguration] = None) -> Optional[ContractCollectionResponse]:
         """
-        Retrieve a list of contract objects associated to a partner tenant.
+        Retrieve a list of contract objects associated to a partner tenant. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContractCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/contract-list?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class ContractsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ContractsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of contract objects associated to a partner tenant.
+        Retrieve a list of contract objects associated to a partner tenant. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class ContractsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ContractsRequestBuilder(raw_url, self.request_adapter)
+        return ContractsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -188,7 +188,7 @@ class ContractsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContractsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of contract objects associated to a partner tenant.
+        Retrieve a list of contract objects associated to a partner tenant. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

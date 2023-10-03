@@ -44,7 +44,7 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeviceLocalCredentialsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceLocalCredentialInfoCollectionResponse]:
         """
-        Get a list of the deviceLocalCredentialInfo objects and their properties excluding the credentials. 
+        Get a list of the deviceLocalCredentialInfo objects and their properties excluding the credentials.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLocalCredentialInfoCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/devicelocalcredentialinfo-list?view=graph-rest-1.0
@@ -90,7 +90,7 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeviceLocalCredentialsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the deviceLocalCredentialInfo objects and their properties excluding the credentials. 
+        Get a list of the deviceLocalCredentialInfo objects and their properties excluding the credentials.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,12 +133,12 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceLocalCredentialsRequestBuilder(raw_url, self.request_adapter)
+        return DeviceLocalCredentialsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DeviceLocalCredentialsRequestBuilderGetQueryParameters():
         """
-        Get a list of the deviceLocalCredentialInfo objects and their properties excluding the credentials. 
+        Get a list of the deviceLocalCredentialInfo objects and their properties excluding the credentials.  This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

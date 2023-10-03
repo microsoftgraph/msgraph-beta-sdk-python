@@ -47,7 +47,7 @@ class PrintUsageByUserItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PrintUsageByUserItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PrintUsageByUser]:
         """
-        Retrieve a user's usage summary for a particular time period. See the printUsageByUser documentation for descriptions of each of the endpoints.
+        Retrieve a user's usage summary for a particular time period. See the printUsageByUser documentation for descriptions of each of the endpoints. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrintUsageByUser]
         Find more info here: https://learn.microsoft.com/graph/api/printusagebyuser-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class PrintUsageByUserItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PrintUsageByUserItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a user's usage summary for a particular time period. See the printUsageByUser documentation for descriptions of each of the endpoints.
+        Retrieve a user's usage summary for a particular time period. See the printUsageByUser documentation for descriptions of each of the endpoints. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class PrintUsageByUserItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrintUsageByUserItemRequestBuilder(raw_url, self.request_adapter)
+        return PrintUsageByUserItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class PrintUsageByUserItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PrintUsageByUserItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a user's usage summary for a particular time period. See the printUsageByUser documentation for descriptions of each of the endpoints.
+        Retrieve a user's usage summary for a particular time period. See the printUsageByUser documentation for descriptions of each of the endpoints. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

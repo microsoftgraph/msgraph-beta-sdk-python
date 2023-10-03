@@ -66,7 +66,7 @@ class GroupsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ExternalGroup] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[ExternalGroup]:
         """
-        Create a new externalGroup object.
+        Create a new externalGroup object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalGroup]
@@ -108,7 +108,7 @@ class GroupsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ExternalGroup] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new externalGroup object.
+        Create a new externalGroup object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class GroupsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupsRequestBuilder(raw_url, self.request_adapter)
+        return GroupsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

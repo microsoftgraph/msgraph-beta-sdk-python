@@ -154,7 +154,7 @@ class WindowsManagedAppProtectionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WindowsManagedAppProtectionItemRequestBuilder(raw_url, self.request_adapter)
+        return WindowsManagedAppProtectionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def apps(self) -> AppsRequestBuilder:

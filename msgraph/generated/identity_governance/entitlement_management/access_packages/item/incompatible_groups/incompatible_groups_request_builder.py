@@ -45,7 +45,7 @@ class IncompatibleGroupsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[IncompatibleGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupCollectionResponse]:
         """
-        Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  
+        Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.   This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GroupCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class IncompatibleGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[IncompatibleGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  
+        Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.   This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -90,7 +90,7 @@ class IncompatibleGroupsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IncompatibleGroupsRequestBuilder(raw_url, self.request_adapter)
+        return IncompatibleGroupsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -113,7 +113,7 @@ class IncompatibleGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IncompatibleGroupsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  
+        Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.   This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

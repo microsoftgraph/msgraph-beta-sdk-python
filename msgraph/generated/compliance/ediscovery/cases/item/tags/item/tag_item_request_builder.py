@@ -30,7 +30,7 @@ class TagItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[TagItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a tag object.
+        Delete a tag object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-tag-delete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class TagItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TagItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Tag]:
         """
-        Read the properties and relationships of a tag object.
+        Read the properties and relationships of a tag object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Tag]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-tag-get?view=graph-rest-1.0
@@ -72,7 +72,7 @@ class TagItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Tag] = None, request_configuration: Optional[TagItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Tag]:
         """
-        Update the properties of a tag object.
+        Update the properties of a tag object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Tag]
@@ -97,7 +97,7 @@ class TagItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[TagItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a tag object.
+        Delete a tag object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class TagItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TagItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a tag object.
+        Read the properties and relationships of a tag object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -129,7 +129,7 @@ class TagItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Tag] = None, request_configuration: Optional[TagItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a tag object.
+        Update the properties of a tag object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -155,7 +155,7 @@ class TagItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TagItemRequestBuilder(raw_url, self.request_adapter)
+        return TagItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def child_tags(self) -> ChildTagsRequestBuilder:
@@ -188,7 +188,7 @@ class TagItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TagItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a tag object.
+        Read the properties and relationships of a tag object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

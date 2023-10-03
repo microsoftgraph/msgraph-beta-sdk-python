@@ -154,7 +154,7 @@ class ExactMatchSessionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ExactMatchSessionItemRequestBuilder(raw_url, self.request_adapter)
+        return ExactMatchSessionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cancel(self) -> CancelRequestBuilder:

@@ -38,7 +38,7 @@ class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an existing assignment. Only teachers within a class can delete assignments.
+        Delete an existing assignment. Only teachers within a class can delete assignments. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/educationassignment-delete?view=graph-rest-1.0
@@ -58,7 +58,7 @@ class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationAssignment]:
         """
-        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response.
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignment]
         Find more info here: https://learn.microsoft.com/graph/api/educationassignment-get?view=graph-rest-1.0
@@ -80,7 +80,7 @@ class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EducationAssignment]:
         """
-        Update an educationAssignment object.  Only teachers in the class can do this. Note that you can't use a PATCH request to change the status of an assignment. Use the publish action to change the assignment status.
+        Update an educationAssignment object.  Only teachers in the class can do this. You can't use a PATCH request to change the status of an assignment. Use the publish action to change the assignment status. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignment]
@@ -105,7 +105,7 @@ class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an existing assignment. Only teachers within a class can delete assignments.
+        Delete an existing assignment. Only teachers within a class can delete assignments. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +120,7 @@ class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response.
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an educationAssignment object.  Only teachers in the class can do this. Note that you can't use a PATCH request to change the status of an assignment. Use the publish action to change the assignment status.
+        Update an educationAssignment object.  Only teachers in the class can do this. You can't use a PATCH request to change the status of an assignment. Use the publish action to change the assignment status. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -163,7 +163,7 @@ class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EducationAssignmentItemRequestBuilder(raw_url, self.request_adapter)
+        return EducationAssignmentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activate(self) -> ActivateRequestBuilder:
@@ -268,7 +268,7 @@ class EducationAssignmentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationAssignmentItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response.
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, you will get an unknownFutureValue value in the response. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

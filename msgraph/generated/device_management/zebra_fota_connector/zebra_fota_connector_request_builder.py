@@ -154,7 +154,7 @@ class ZebraFotaConnectorRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ZebraFotaConnectorRequestBuilder(raw_url, self.request_adapter)
+        return ZebraFotaConnectorRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def approve_fota_apps(self) -> ApproveFotaAppsRequestBuilder:

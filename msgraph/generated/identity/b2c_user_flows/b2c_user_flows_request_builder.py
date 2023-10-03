@@ -45,7 +45,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[B2cUserFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[B2cIdentityUserFlowCollectionResponse]:
         """
-        Retrieve a list of b2cIdentityUserFlow objects.
+        Retrieve a list of b2cIdentityUserFlow objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlowCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-b2cuserflows?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cUserFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
-        Create a new b2cIdentityUserFlow object.
+        Create a new b2cIdentityUserFlow object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlow]
@@ -92,7 +92,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[B2cUserFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of b2cIdentityUserFlow objects.
+        Retrieve a list of b2cIdentityUserFlow objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cUserFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new b2cIdentityUserFlow object.
+        Create a new b2cIdentityUserFlow object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return B2cUserFlowsRequestBuilder(raw_url, self.request_adapter)
+        return B2cUserFlowsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class B2cUserFlowsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of b2cIdentityUserFlow objects.
+        Retrieve a list of b2cIdentityUserFlow objects. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

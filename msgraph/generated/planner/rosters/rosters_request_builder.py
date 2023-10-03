@@ -45,7 +45,7 @@ class RostersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RostersRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerRosterCollectionResponse]:
         """
-        Read the properties and relationships of a plannerRoster object.
+        Read the properties and relationships of a plannerRoster object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerRosterCollectionResponse]
         """
@@ -66,7 +66,7 @@ class RostersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PlannerRoster] = None, request_configuration: Optional[RostersRequestBuilderPostRequestConfiguration] = None) -> Optional[PlannerRoster]:
         """
-        Create a new plannerRoster object.
+        Create a new plannerRoster object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerRoster]
@@ -91,7 +91,7 @@ class RostersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RostersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a plannerRoster object.
+        Read the properties and relationships of a plannerRoster object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +108,7 @@ class RostersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PlannerRoster] = None, request_configuration: Optional[RostersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new plannerRoster object.
+        Create a new plannerRoster object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class RostersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RostersRequestBuilder(raw_url, self.request_adapter)
+        return RostersRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class RostersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RostersRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a plannerRoster object.
+        Read the properties and relationships of a plannerRoster object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

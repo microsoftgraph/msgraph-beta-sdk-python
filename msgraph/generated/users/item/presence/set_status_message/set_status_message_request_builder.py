@@ -28,7 +28,7 @@ class SetStatusMessageRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SetStatusMessagePostRequestBody] = None, request_configuration: Optional[SetStatusMessageRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Set a presence status message for a user. An optional expiration date and time can be supplied.
+        Set a presence status message for a user. An optional expiration date and time can be supplied. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class SetStatusMessageRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SetStatusMessagePostRequestBody] = None, request_configuration: Optional[SetStatusMessageRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Set a presence status message for a user. An optional expiration date and time can be supplied.
+        Set a presence status message for a user. An optional expiration date and time can be supplied. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class SetStatusMessageRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SetStatusMessageRequestBuilder(raw_url, self.request_adapter)
+        return SetStatusMessageRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

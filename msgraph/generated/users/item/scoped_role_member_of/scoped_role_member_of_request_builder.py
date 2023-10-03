@@ -45,7 +45,7 @@ class ScopedRoleMemberOfRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ScopedRoleMemberOfRequestBuilderGetRequestConfiguration] = None) -> Optional[ScopedRoleMembershipCollectionResponse]:
         """
-        Retrieve a list of scopedRoleMembership for the user.
+        Retrieve a list of scopedRoleMembership for the user. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ScopedRoleMembershipCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/user-list-scopedrolememberof?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class ScopedRoleMemberOfRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ScopedRoleMemberOfRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of scopedRoleMembership for the user.
+        Retrieve a list of scopedRoleMembership for the user. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class ScopedRoleMemberOfRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ScopedRoleMemberOfRequestBuilder(raw_url, self.request_adapter)
+        return ScopedRoleMemberOfRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class ScopedRoleMemberOfRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ScopedRoleMemberOfRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of scopedRoleMembership for the user.
+        Retrieve a list of scopedRoleMembership for the user. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

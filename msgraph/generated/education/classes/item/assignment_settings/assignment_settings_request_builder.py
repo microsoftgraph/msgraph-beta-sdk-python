@@ -48,7 +48,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AssignmentSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationAssignmentSettings]:
         """
-        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignmentSettings]
         Find more info here: https://learn.microsoft.com/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[EducationAssignmentSettings] = None, request_configuration: Optional[AssignmentSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[EducationAssignmentSettings]:
         """
-        Update the properties of an educationAssignmentSettings object. Only teachers can update these settings.
+        Update the properties of an educationAssignmentSettings object. Only teachers can update these settings. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignmentSettings]
@@ -110,7 +110,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[EducationAssignmentSettings] = None, request_configuration: Optional[AssignmentSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an educationAssignmentSettings object. Only teachers can update these settings.
+        Update the properties of an educationAssignmentSettings object. Only teachers can update these settings. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AssignmentSettingsRequestBuilder(raw_url, self.request_adapter)
+        return AssignmentSettingsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def grading_categories(self) -> GradingCategoriesRequestBuilder:
@@ -177,7 +177,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AssignmentSettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

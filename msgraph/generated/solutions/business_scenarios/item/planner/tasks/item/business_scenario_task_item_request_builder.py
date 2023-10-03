@@ -32,7 +32,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a businessScenarioTask object.
+        Delete a businessScenarioTask object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/businessscenarioplanner-delete-tasks?view=graph-rest-1.0
@@ -52,7 +52,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderGetRequestConfiguration] = None) -> Optional[BusinessScenarioTask]:
         """
-        Read the properties and relationships of a businessScenarioTask object.
+        Read the properties and relationships of a businessScenarioTask object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioTask]
         Find more info here: https://learn.microsoft.com/graph/api/businessscenariotask-get?view=graph-rest-1.0
@@ -74,7 +74,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[BusinessScenarioTask] = None, request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[BusinessScenarioTask]:
         """
-        Update the properties of a businessScenarioTask object.
+        Update the properties of a businessScenarioTask object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioTask]
@@ -99,7 +99,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a businessScenarioTask object.
+        Delete a businessScenarioTask object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +114,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a businessScenarioTask object.
+        Read the properties and relationships of a businessScenarioTask object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +131,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[BusinessScenarioTask] = None, request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a businessScenarioTask object.
+        Update the properties of a businessScenarioTask object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -157,7 +157,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BusinessScenarioTaskItemRequestBuilder(raw_url, self.request_adapter)
+        return BusinessScenarioTaskItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assigned_to_task_board_format(self) -> AssignedToTaskBoardFormatRequestBuilder:
@@ -208,7 +208,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BusinessScenarioTaskItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a businessScenarioTask object.
+        Read the properties and relationships of a businessScenarioTask object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -28,7 +28,7 @@ class RedirectRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RedirectPostRequestBody] = None, request_configuration: Optional[RedirectRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Redirect an incoming call that hasn't been answered or rejected yet. The terms 'redirecting' and 'forwarding' a call are used interchangeably. The bot is expected to redirect the call before the call times out. The current timeout value is 15 seconds.
+        Redirect an incoming call that hasn't been answered or rejected yet. The terms 'redirecting' and 'forwarding' a call are used interchangeably. The bot is expected to redirect the call before the call times out. The current timeout value is 15 seconds. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class RedirectRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RedirectPostRequestBody] = None, request_configuration: Optional[RedirectRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Redirect an incoming call that hasn't been answered or rejected yet. The terms 'redirecting' and 'forwarding' a call are used interchangeably. The bot is expected to redirect the call before the call times out. The current timeout value is 15 seconds.
+        Redirect an incoming call that hasn't been answered or rejected yet. The terms 'redirecting' and 'forwarding' a call are used interchangeably. The bot is expected to redirect the call before the call times out. The current timeout value is 15 seconds. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class RedirectRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RedirectRequestBuilder(raw_url, self.request_adapter)
+        return RedirectRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

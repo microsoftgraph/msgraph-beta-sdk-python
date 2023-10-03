@@ -29,11 +29,11 @@ class AddRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AddPostRequestBody] = None, request_configuration: Optional[AddRequestBuilderPostRequestConfiguration] = None) -> Optional[WorkbookTable]:
         """
-        Use this API to create a new Table.
+        Create a new table. The range source address determines the worksheet under which the table will be added. If the table can't be added (for example, because the address is invalid, or the table would overlap with another table), an error is thrown. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookTable]
-        Find more info here: https://learn.microsoft.com/graph/api/workbook-post-tables?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/tablecollection-add?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -54,7 +54,7 @@ class AddRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AddPostRequestBody] = None, request_configuration: Optional[AddRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new Table.
+        Create a new table. The range source address determines the worksheet under which the table will be added. If the table can't be added (for example, because the address is invalid, or the table would overlap with another table), an error is thrown. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class AddRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AddRequestBuilder(raw_url, self.request_adapter)
+        return AddRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

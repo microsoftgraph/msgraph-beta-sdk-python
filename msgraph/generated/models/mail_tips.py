@@ -84,7 +84,7 @@ class MailTips(AdditionalDataHolder, BackedModel, Parsable):
             "mailboxFull": lambda n : setattr(self, 'mailbox_full', n.get_bool_value()),
             "maxMessageSize": lambda n : setattr(self, 'max_message_size', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recipientScope": lambda n : setattr(self, 'recipient_scope', n.get_enum_value(RecipientScopeType)),
+            "recipientScope": lambda n : setattr(self, 'recipient_scope', n.get_collection_of_enum_values(RecipientScopeType)),
             "recipientSuggestions": lambda n : setattr(self, 'recipient_suggestions', n.get_collection_of_object_values(Recipient)),
             "totalMemberCount": lambda n : setattr(self, 'total_member_count', n.get_int_value()),
         }

@@ -29,7 +29,7 @@ class PostponeRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PostponePostRequestBody] = None, request_configuration: Optional[PostponeRequestBuilderPostRequestConfiguration] = None) -> Optional[Recommendation]:
         """
-        Postpone action on a recommendation object to a specified future date and time by marking its status as postponed. On the date and time provided, Azure AD will automatically update the status of the recommendation object to active again.
+        Postpone action on a recommendation object to a specified future date and time by marking its status as postponed. On the date and time provided, Azure AD will automatically update the status of the recommendation object to active again. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Recommendation]
@@ -54,7 +54,7 @@ class PostponeRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PostponePostRequestBody] = None, request_configuration: Optional[PostponeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Postpone action on a recommendation object to a specified future date and time by marking its status as postponed. On the date and time provided, Azure AD will automatically update the status of the recommendation object to active again.
+        Postpone action on a recommendation object to a specified future date and time by marking its status as postponed. On the date and time provided, Azure AD will automatically update the status of the recommendation object to active again. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class PostponeRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PostponeRequestBuilder(raw_url, self.request_adapter)
+        return PostponeRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

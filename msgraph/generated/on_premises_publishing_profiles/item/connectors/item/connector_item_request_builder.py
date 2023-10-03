@@ -152,7 +152,7 @@ class ConnectorItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConnectorItemRequestBuilder(raw_url, self.request_adapter)
+        return ConnectorItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def member_of(self) -> MemberOfRequestBuilder:

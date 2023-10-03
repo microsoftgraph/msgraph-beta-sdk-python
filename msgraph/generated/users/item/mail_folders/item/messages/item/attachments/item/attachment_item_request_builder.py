@@ -47,7 +47,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AttachmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Attachment]:
         """
-        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post.  An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. 
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Attachment]
         Find more info here: https://learn.microsoft.com/graph/api/attachment-get?view=graph-rest-1.0
@@ -84,7 +84,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AttachmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post.  An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. 
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +107,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AttachmentItemRequestBuilder(raw_url, self.request_adapter)
+        return AttachmentItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -122,7 +122,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AttachmentItemRequestBuilderGetQueryParameters():
         """
-        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post.  An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. 
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -44,7 +44,7 @@ class IncomingChannelsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[IncomingChannelsRequestBuilderGetRequestConfiguration] = None) -> Optional[ChannelCollectionResponse]:
         """
-        Get the list of incoming channels (channels shared with a team).
+        Get the list of incoming channels (channels shared with a team). This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChannelCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/team-list-incomingchannels?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class IncomingChannelsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[IncomingChannelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of incoming channels (channels shared with a team).
+        Get the list of incoming channels (channels shared with a team). This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class IncomingChannelsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IncomingChannelsRequestBuilder(raw_url, self.request_adapter)
+        return IncomingChannelsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class IncomingChannelsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IncomingChannelsRequestBuilderGetQueryParameters():
         """
-        Get the list of incoming channels (channels shared with a team).
+        Get the list of incoming channels (channels shared with a team). This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

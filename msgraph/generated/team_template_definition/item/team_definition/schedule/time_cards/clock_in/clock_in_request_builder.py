@@ -29,7 +29,7 @@ class ClockInRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ClockInPostRequestBody] = None, request_configuration: Optional[ClockInRequestBuilderPostRequestConfiguration] = None) -> Optional[TimeCard]:
         """
-        Clock in to start a timeCard.
+        Clock in to start a timeCard. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCard]
@@ -54,7 +54,7 @@ class ClockInRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ClockInPostRequestBody] = None, request_configuration: Optional[ClockInRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Clock in to start a timeCard.
+        Clock in to start a timeCard. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class ClockInRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ClockInRequestBuilder(raw_url, self.request_adapter)
+        return ClockInRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

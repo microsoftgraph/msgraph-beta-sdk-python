@@ -29,7 +29,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a bookingAppointment in the specified bookingBusiness.
+        Delete a bookingAppointment in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/bookingappointment-delete?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[BookingAppointment]:
         """
-        Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The start and end properties are always returned in UTC.
+        Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The start and end properties are always returned in UTC. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingAppointment]
         Find more info here: https://learn.microsoft.com/graph/api/bookingappointment-get?view=graph-rest-1.0
@@ -71,7 +71,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[BookingAppointment] = None, request_configuration: Optional[BookingAppointmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[BookingAppointment]:
         """
-        Update the properties of a bookingAppointment object in the specified bookingBusiness.
+        Update the properties of a bookingAppointment object in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingAppointment]
@@ -96,7 +96,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a bookingAppointment in the specified bookingBusiness.
+        Delete a bookingAppointment in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +111,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The start and end properties are always returned in UTC.
+        Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The start and end properties are always returned in UTC. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -128,7 +128,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[BookingAppointment] = None, request_configuration: Optional[BookingAppointmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a bookingAppointment object in the specified bookingBusiness.
+        Update the properties of a bookingAppointment object in the specified bookingBusiness. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +154,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BookingAppointmentItemRequestBuilder(raw_url, self.request_adapter)
+        return BookingAppointmentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cancel(self) -> CancelRequestBuilder:
@@ -178,7 +178,7 @@ class BookingAppointmentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BookingAppointmentItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The start and end properties are always returned in UTC.
+        Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The start and end properties are always returned in UTC. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

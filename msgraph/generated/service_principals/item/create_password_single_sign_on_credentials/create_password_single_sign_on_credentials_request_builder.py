@@ -29,7 +29,7 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CreatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[CreatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> Optional[PasswordSingleSignOnCredentialSet]:
         """
-        Create single sign-on credentials using a password for a user or group.
+        Create single sign-on credentials using a password for a user or group. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordSingleSignOnCredentialSet]
@@ -54,7 +54,7 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CreatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[CreatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create single sign-on credentials using a password for a user or group.
+        Create single sign-on credentials using a password for a user or group. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CreatePasswordSingleSignOnCredentialsRequestBuilder(raw_url, self.request_adapter)
+        return CreatePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

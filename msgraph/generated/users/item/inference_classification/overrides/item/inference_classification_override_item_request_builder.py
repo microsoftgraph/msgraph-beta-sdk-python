@@ -28,7 +28,7 @@ class InferenceClassificationOverrideItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a focused Inbox override specified by its ID.
+        Delete a focused Inbox override specified by its ID. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/inferenceclassificationoverride-delete?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class InferenceClassificationOverrideItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[InferenceClassificationOverride] = None, request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[InferenceClassificationOverride]:
         """
-        Change the classifyAs field of a focused Inbox override as specified. You cannot use PATCH to change any other fields in an inferenceClassificationOverride instance. If an override exists for a sender and the sender changes his/her display name, you can use POST to force an update to the name field in the existing override. If an override exists for a sender and the sender changes his/her SMTP address, deleting the existing override and creating a new one withthe new SMTP address is the only way to 'update' the override for this sender.
+        Change the classifyAs field of a focused Inbox override as specified. You cannot use PATCH to change any other fields in an inferenceClassificationOverride instance. If an override exists for a sender and the sender changes his/her display name, you can use POST to force an update to the name field in the existing override. If an override exists for a sender and the sender changes his/her SMTP address, deleting the existing override and creating a new one withthe new SMTP address is the only way to 'update' the override for this sender. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InferenceClassificationOverride]
@@ -94,7 +94,7 @@ class InferenceClassificationOverrideItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a focused Inbox override specified by its ID.
+        Delete a focused Inbox override specified by its ID. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class InferenceClassificationOverrideItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[InferenceClassificationOverride] = None, request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Change the classifyAs field of a focused Inbox override as specified. You cannot use PATCH to change any other fields in an inferenceClassificationOverride instance. If an override exists for a sender and the sender changes his/her display name, you can use POST to force an update to the name field in the existing override. If an override exists for a sender and the sender changes his/her SMTP address, deleting the existing override and creating a new one withthe new SMTP address is the only way to 'update' the override for this sender.
+        Change the classifyAs field of a focused Inbox override as specified. You cannot use PATCH to change any other fields in an inferenceClassificationOverride instance. If an override exists for a sender and the sender changes his/her display name, you can use POST to force an update to the name field in the existing override. If an override exists for a sender and the sender changes his/her SMTP address, deleting the existing override and creating a new one withthe new SMTP address is the only way to 'update' the override for this sender. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class InferenceClassificationOverrideItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return InferenceClassificationOverrideItemRequestBuilder(raw_url, self.request_adapter)
+        return InferenceClassificationOverrideItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

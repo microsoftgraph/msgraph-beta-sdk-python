@@ -29,7 +29,7 @@ class SourceCollection(Entity):
     created_date_time: Optional[datetime.datetime] = None
     # Custodian sources that are included in the sourceCollection.
     custodian_sources: Optional[List[DataSource]] = None
-    # When specified, the collection will span across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
+    # When specified, the collection spans across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
     data_source_scopes: Optional[DataSourceScopes] = None
     # The description of the sourceCollection.
     description: Optional[str] = None
@@ -85,7 +85,7 @@ class SourceCollection(Entity):
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "custodianSources": lambda n : setattr(self, 'custodian_sources', n.get_collection_of_object_values(DataSource)),
-            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_enum_value(DataSourceScopes)),
+            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_collection_of_enum_values(DataSourceScopes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastEstimateStatisticsOperation": lambda n : setattr(self, 'last_estimate_statistics_operation', n.get_object_value(EstimateStatisticsOperation)),

@@ -45,7 +45,7 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TaskFoldersRequestBuilderGetRequestConfiguration] = None) -> Optional[OutlookTaskFolderCollectionResponse]:
         """
-        Get Outlook task folders in a specific outlookTaskGroup.
+        Get Outlook task folders in a specific outlookTaskGroup. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolderCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/outlooktaskgroup-list-taskfolders?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[TaskFoldersRequestBuilderPostRequestConfiguration] = None) -> Optional[OutlookTaskFolder]:
         """
-        Create an Outlook task folder under a specified outlookTaskGroup.
+        Create an Outlook task folder under a specified outlookTaskGroup. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolder]
@@ -92,7 +92,7 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TaskFoldersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get Outlook task folders in a specific outlookTaskGroup.
+        Get Outlook task folders in a specific outlookTaskGroup. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[TaskFoldersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an Outlook task folder under a specified outlookTaskGroup.
+        Create an Outlook task folder under a specified outlookTaskGroup. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TaskFoldersRequestBuilder(raw_url, self.request_adapter)
+        return TaskFoldersRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TaskFoldersRequestBuilderGetQueryParameters():
         """
-        Get Outlook task folders in a specific outlookTaskGroup.
+        Get Outlook task folders in a specific outlookTaskGroup. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

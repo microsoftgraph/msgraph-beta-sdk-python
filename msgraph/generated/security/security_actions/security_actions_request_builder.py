@@ -45,7 +45,7 @@ class SecurityActionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SecurityActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[SecurityActionCollectionResponse]:
         """
-        Retrieve a list of securityAction objects.
+        Retrieve a list of securityAction objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecurityActionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/securityactions-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class SecurityActionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SecurityAction] = None, request_configuration: Optional[SecurityActionsRequestBuilderPostRequestConfiguration] = None) -> Optional[SecurityAction]:
         """
-        Create a new securityAction object.
+        Create a new securityAction object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecurityAction]
@@ -92,7 +92,7 @@ class SecurityActionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SecurityActionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of securityAction objects.
+        Retrieve a list of securityAction objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class SecurityActionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SecurityAction] = None, request_configuration: Optional[SecurityActionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new securityAction object.
+        Create a new securityAction object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class SecurityActionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SecurityActionsRequestBuilder(raw_url, self.request_adapter)
+        return SecurityActionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class SecurityActionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SecurityActionsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of securityAction objects.
+        Retrieve a list of securityAction objects. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

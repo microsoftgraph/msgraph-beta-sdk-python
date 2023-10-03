@@ -45,7 +45,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[BusinessFlowTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[BusinessFlowTemplateCollectionResponse]:
         """
-        In the Azure AD access reviews feature, list all the businessFlowTemplate objects.
+        In the Azure AD access reviews feature, list all the businessFlowTemplate objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessFlowTemplateCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/businessflowtemplate-list?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[BusinessFlowTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, list all the businessFlowTemplate objects.
+        In the Azure AD access reviews feature, list all the businessFlowTemplate objects. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BusinessFlowTemplatesRequestBuilder(raw_url, self.request_adapter)
+        return BusinessFlowTemplatesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BusinessFlowTemplatesRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, list all the businessFlowTemplate objects.
+        In the Azure AD access reviews feature, list all the businessFlowTemplate objects. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

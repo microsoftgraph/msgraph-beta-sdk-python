@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
-    from .get_credential_user_registration_count_response import GetCredentialUserRegistrationCountResponse
+    from .get_credential_user_registration_count_get_response import GetCredentialUserRegistrationCountGetResponse
 
 class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/reports/getCredentialUserRegistrationCount(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetCredentialUserRegistrationCountRequestBuilderGetRequestConfiguration] = None) -> Optional[GetCredentialUserRegistrationCountResponse]:
+    async def get(self,request_configuration: Optional[GetCredentialUserRegistrationCountRequestBuilderGetRequestConfiguration] = None) -> Optional[GetCredentialUserRegistrationCountGetResponse]:
         """
-        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities.
+        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetCredentialUserRegistrationCountResponse]
+        Returns: Optional[GetCredentialUserRegistrationCountGetResponse]
         Find more info here: https://learn.microsoft.com/graph/api/reportroot-getcredentialuserregistrationcount?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
@@ -44,13 +44,13 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_credential_user_registration_count_response import GetCredentialUserRegistrationCountResponse
+        from .get_credential_user_registration_count_get_response import GetCredentialUserRegistrationCountGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetCredentialUserRegistrationCountResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetCredentialUserRegistrationCountGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetCredentialUserRegistrationCountRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities.
+        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,12 +73,12 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetCredentialUserRegistrationCountRequestBuilder(raw_url, self.request_adapter)
+        return GetCredentialUserRegistrationCountRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetCredentialUserRegistrationCountRequestBuilderGetQueryParameters():
         """
-        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities.
+        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

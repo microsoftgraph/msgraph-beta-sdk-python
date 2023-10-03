@@ -45,7 +45,7 @@ class NotesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonAnnotationCollectionResponse]:
         """
-        Retrieve a list of personAnnotation objects from a user's profile.
+        Retrieve a list of personAnnotation objects from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnotationCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/profile-list-notes?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class NotesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PersonAnnotation] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonAnnotation]:
         """
-        Create a new personAnnotation object in a user's profile.
+        Create a new personAnnotation object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnotation]
@@ -92,7 +92,7 @@ class NotesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personAnnotation objects from a user's profile.
+        Retrieve a list of personAnnotation objects from a user's profile. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class NotesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PersonAnnotation] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personAnnotation object in a user's profile.
+        Create a new personAnnotation object in a user's profile. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class NotesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return NotesRequestBuilder(raw_url, self.request_adapter)
+        return NotesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class NotesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class NotesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personAnnotation objects from a user's profile.
+        Retrieve a list of personAnnotation objects from a user's profile. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

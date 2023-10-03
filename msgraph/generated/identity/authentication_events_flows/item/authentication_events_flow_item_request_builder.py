@@ -28,7 +28,7 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[AuthenticationEventsFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a specific authenticationEventsFlow resource by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available.
+        Delete a specific authenticationEventsFlow resource by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/authenticationeventsflow-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AuthenticationEventsFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthenticationEventsFlow]:
         """
-        Retrieve the properties and relationships of a specific authenticationEventsFlow object by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available.
+        Retrieve the properties and relationships of a specific authenticationEventsFlow object by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventsFlow]
         Find more info here: https://learn.microsoft.com/graph/api/authenticationeventsflow-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AuthenticationEventsFlow] = None, request_configuration: Optional[AuthenticationEventsFlowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AuthenticationEventsFlow]:
         """
-        Update the properties of an authenticationEventsFlow object. Only the externalUsersSelfServiceSignupEventsFlow object type is supported.
+        Update the properties of an authenticationEventsFlow object. Only the externalUsersSelfServiceSignupEventsFlow object type is supported. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventsFlow]
@@ -95,7 +95,7 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationEventsFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a specific authenticationEventsFlow resource by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available.
+        Delete a specific authenticationEventsFlow resource by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationEventsFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a specific authenticationEventsFlow object by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available.
+        Retrieve the properties and relationships of a specific authenticationEventsFlow object by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[AuthenticationEventsFlow] = None, request_configuration: Optional[AuthenticationEventsFlowItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an authenticationEventsFlow object. Only the externalUsersSelfServiceSignupEventsFlow object type is supported.
+        Update the properties of an authenticationEventsFlow object. Only the externalUsersSelfServiceSignupEventsFlow object type is supported. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthenticationEventsFlowItemRequestBuilder(raw_url, self.request_adapter)
+        return AuthenticationEventsFlowItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthenticationEventsFlowItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a specific authenticationEventsFlow object by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available.
+        Retrieve the properties and relationships of a specific authenticationEventsFlow object by ID. Only externalUsersSelfServiceSignupEventsFlow object types are available. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

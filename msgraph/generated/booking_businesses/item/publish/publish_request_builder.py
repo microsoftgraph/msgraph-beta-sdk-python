@@ -27,7 +27,7 @@ class PublishRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[PublishRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Make the scheduling page of this business available to external customers. Set the isPublished property to true, and publicUrl property to the URL of the scheduling page.
+        Make the scheduling page of this business available to external customers. Set the isPublished property to true, and publicUrl property to the URL of the scheduling page. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/bookingbusiness-publish?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class PublishRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[PublishRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Make the scheduling page of this business available to external customers. Set the isPublished property to true, and publicUrl property to the URL of the scheduling page.
+        Make the scheduling page of this business available to external customers. Set the isPublished property to true, and publicUrl property to the URL of the scheduling page. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class PublishRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PublishRequestBuilder(raw_url, self.request_adapter)
+        return PublishRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

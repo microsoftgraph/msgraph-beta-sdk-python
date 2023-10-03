@@ -151,7 +151,7 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder(BaseReq
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def scheduled_action_configurations(self) -> ScheduledActionConfigurationsRequestBuilder:

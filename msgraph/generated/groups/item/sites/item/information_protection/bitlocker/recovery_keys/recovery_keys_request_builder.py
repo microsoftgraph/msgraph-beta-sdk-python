@@ -44,7 +44,7 @@ class RecoveryKeysRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RecoveryKeysRequestBuilderGetRequestConfiguration] = None) -> Optional[BitlockerRecoveryKeyCollectionResponse]:
         """
-        Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the key property. For information about how to read the key property, see Get bitlockerRecoveryKey.
+        Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the key property. For information about how to read the key property, see Get bitlockerRecoveryKey. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BitlockerRecoveryKeyCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class RecoveryKeysRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RecoveryKeysRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the key property. For information about how to read the key property, see Get bitlockerRecoveryKey.
+        Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the key property. For information about how to read the key property, see Get bitlockerRecoveryKey. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class RecoveryKeysRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RecoveryKeysRequestBuilder(raw_url, self.request_adapter)
+        return RecoveryKeysRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class RecoveryKeysRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RecoveryKeysRequestBuilderGetQueryParameters():
         """
-        Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the key property. For information about how to read the key property, see Get bitlockerRecoveryKey.
+        Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the key property. For information about how to read the key property, see Get bitlockerRecoveryKey. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

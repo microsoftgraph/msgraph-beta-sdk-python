@@ -152,7 +152,7 @@ class ManagementTemplateStepDeploymentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagementTemplateStepDeploymentItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagementTemplateStepDeploymentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_managed_tenants_change_deployment_status(self) -> MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder:

@@ -43,7 +43,7 @@ class MediaStream(AdditionalDataHolder, BackedModel, Parsable):
     average_video_frame_rate: Optional[float] = None
     # Average fraction of packets lost, as specified in [RFC 3550][], computed over the duration of the session.
     average_video_packet_loss_rate: Optional[float] = None
-    # UTC time when the stream ended. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # UTC time when the stream ended. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This field is only available for streams that use the SIP protocol.
     end_date_time: Optional[datetime.datetime] = None
     # Indicates whether the forward error correction (FEC) was used at some point during the session. The default value is null.
     is_audio_forward_error_correction_used: Optional[bool] = None
@@ -69,7 +69,7 @@ class MediaStream(AdditionalDataHolder, BackedModel, Parsable):
     post_forward_error_correction_packet_loss_rate: Optional[float] = None
     # Root mean square of the received freeze duration related to the video stream.
     rms_freeze_duration: Optional[datetime.timedelta] = None
-    # UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This field is only available for streams that use the SIP protocol.
     start_date_time: Optional[datetime.datetime] = None
     # The streamDirection property
     stream_direction: Optional[MediaStreamDirection] = None

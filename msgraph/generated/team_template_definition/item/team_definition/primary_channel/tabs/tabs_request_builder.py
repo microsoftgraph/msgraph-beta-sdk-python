@@ -45,7 +45,7 @@ class TabsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TabsRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamsTabCollectionResponse]:
         """
-        Retrieve the list of tabs in the specified channel within a team. 
+        Retrieve the list of tabs in the specified channel within a team.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsTabCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class TabsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TabsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of tabs in the specified channel within a team. 
+        Retrieve the list of tabs in the specified channel within a team.  This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class TabsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TabsRequestBuilder(raw_url, self.request_adapter)
+        return TabsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class TabsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TabsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of tabs in the specified channel within a team. 
+        Retrieve the list of tabs in the specified channel within a team.  This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

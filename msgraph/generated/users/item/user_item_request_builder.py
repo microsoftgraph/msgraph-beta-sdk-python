@@ -101,6 +101,7 @@ if TYPE_CHECKING:
     from .scoped_role_member_of.scoped_role_member_of_request_builder import ScopedRoleMemberOfRequestBuilder
     from .security.security_request_builder import SecurityRequestBuilder
     from .send_mail.send_mail_request_builder import SendMailRequestBuilder
+    from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .sponsors.sponsors_request_builder import SponsorsRequestBuilder
     from .teamwork.teamwork_request_builder import TeamworkRequestBuilder
@@ -110,6 +111,7 @@ if TYPE_CHECKING:
     from .translate_exchange_ids.translate_exchange_ids_request_builder import TranslateExchangeIdsRequestBuilder
     from .unblock_managed_apps.unblock_managed_apps_request_builder import UnblockManagedAppsRequestBuilder
     from .usage_rights.usage_rights_request_builder import UsageRightsRequestBuilder
+    from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
     from .windows_information_protection_device_registrations.windows_information_protection_device_registrations_request_builder import WindowsInformationProtectionDeviceRegistrationsRequestBuilder
     from .wipe_and_block_managed_apps.wipe_and_block_managed_apps_request_builder import WipeAndBlockManagedAppsRequestBuilder
     from .wipe_managed_app_registration_by_device_tag.wipe_managed_app_registration_by_device_tag_request_builder import WipeManagedAppRegistrationByDeviceTagRequestBuilder
@@ -131,7 +133,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[UserItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
+        Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/user-delete?view=graph-rest-1.0
@@ -178,7 +180,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None) -> Optional[User]:
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance.
+        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
         Find more info here: https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0
@@ -200,7 +202,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[User] = None, request_configuration: Optional[UserItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[User]:
         """
-        Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
+        Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
@@ -240,7 +242,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[UserItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
+        Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -255,7 +257,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance.
+        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -272,7 +274,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[User] = None, request_configuration: Optional[UserItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
+        Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -298,7 +300,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserItemRequestBuilder(raw_url, self.request_adapter)
+        return UserItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activities(self) -> ActivitiesRequestBuilder:
@@ -1075,6 +1077,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         return SendMailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def service_provisioning_errors(self) -> ServiceProvisioningErrorsRequestBuilder:
+        """
+        The serviceProvisioningErrors property
+        """
+        from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
+
+        return ServiceProvisioningErrorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def settings(self) -> SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.user entity.
@@ -1156,6 +1167,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         return UsageRightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def virtual_events(self) -> VirtualEventsRequestBuilder:
+        """
+        Provides operations to manage the virtualEvents property of the microsoft.graph.user entity.
+        """
+        from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
+
+        return VirtualEventsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def windows_information_protection_device_registrations(self) -> WindowsInformationProtectionDeviceRegistrationsRequestBuilder:
         """
         Provides operations to manage the windowsInformationProtectionDeviceRegistrations property of the microsoft.graph.user entity.
@@ -1213,7 +1233,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance.
+        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

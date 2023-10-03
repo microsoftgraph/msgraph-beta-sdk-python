@@ -11,11 +11,11 @@ from .entity import Entity
 
 @dataclass
 class Office365GroupsActivityGroupCounts(Entity):
-    # The number of active groups. A group is considered active if any of the following occurred: group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
+    # The number of active groups. A group is considered active if any of the following occurred: group mailbox received email, or  a user viewed, edited, shared, or synced files in SharePoint document library, or a user viewed SharePoint pages, or a user posted, read, or liked messages in Yammer groups.
     active: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The date on which a number of groups were active.
+    # The date on which groups were active.
     report_date: Optional[datetime.date] = None
     # The number of days the report covers.
     report_period: Optional[str] = None

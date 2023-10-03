@@ -28,7 +28,7 @@ class ValidateAuthenticationConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[ValidateAuthenticationConfigurationRequestBuilderPostRequestConfiguration] = None) -> Optional[AuthenticationConfigurationValidation]:
         """
-        An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension.
+        An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationConfigurationValidation]
         Find more info here: https://learn.microsoft.com/graph/api/customauthenticationextension-validateauthenticationconfiguration?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class ValidateAuthenticationConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[ValidateAuthenticationConfigurationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension.
+        An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +72,7 @@ class ValidateAuthenticationConfigurationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ValidateAuthenticationConfigurationRequestBuilder(raw_url, self.request_adapter)
+        return ValidateAuthenticationConfigurationRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

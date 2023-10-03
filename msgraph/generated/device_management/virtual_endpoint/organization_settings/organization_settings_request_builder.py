@@ -47,7 +47,7 @@ class OrganizationSettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OrganizationSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcOrganizationSettings]:
         """
-        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one cloudPcOrganizationSettings object.
+        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one cloudPcOrganizationSettings object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOrganizationSettings]
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcorganizationsettings-get?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class OrganizationSettingsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[CloudPcOrganizationSettings] = None, request_configuration: Optional[OrganizationSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[CloudPcOrganizationSettings]:
         """
-        Update the properties of the cloudPcOrganizationSettings object in a tenant.
+        Update the properties of the cloudPcOrganizationSettings object in a tenant. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOrganizationSettings]
@@ -109,7 +109,7 @@ class OrganizationSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OrganizationSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one cloudPcOrganizationSettings object.
+        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one cloudPcOrganizationSettings object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class OrganizationSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[CloudPcOrganizationSettings] = None, request_configuration: Optional[OrganizationSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of the cloudPcOrganizationSettings object in a tenant.
+        Update the properties of the cloudPcOrganizationSettings object in a tenant. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class OrganizationSettingsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OrganizationSettingsRequestBuilder(raw_url, self.request_adapter)
+        return OrganizationSettingsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class OrganizationSettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OrganizationSettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one cloudPcOrganizationSettings object.
+        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one cloudPcOrganizationSettings object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

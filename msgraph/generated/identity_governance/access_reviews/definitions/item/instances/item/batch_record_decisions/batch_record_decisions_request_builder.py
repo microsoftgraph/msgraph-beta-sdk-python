@@ -28,7 +28,7 @@ class BatchRecordDecisionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[BatchRecordDecisionsPostRequestBody] = None, request_configuration: Optional[BatchRecordDecisionsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither.
+        Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class BatchRecordDecisionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[BatchRecordDecisionsPostRequestBody] = None, request_configuration: Optional[BatchRecordDecisionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither.
+        Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class BatchRecordDecisionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BatchRecordDecisionsRequestBuilder(raw_url, self.request_adapter)
+        return BatchRecordDecisionsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -151,7 +151,7 @@ class DataSharingConsentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DataSharingConsentItemRequestBuilder(raw_url, self.request_adapter)
+        return DataSharingConsentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def consent_to_data_sharing(self) -> ConsentToDataSharingRequestBuilder:

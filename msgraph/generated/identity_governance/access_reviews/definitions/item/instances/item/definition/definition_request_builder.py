@@ -28,7 +28,7 @@ class DefinitionRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewScheduleDefinition]:
         """
-        There is exactly one accessReviewScheduleDefinition associated with each instance. It is the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
+        There's exactly one accessReviewScheduleDefinition associated with each instance. It's the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewScheduleDefinition]
         """
@@ -49,7 +49,7 @@ class DefinitionRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DefinitionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        There is exactly one accessReviewScheduleDefinition associated with each instance. It is the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
+        There's exactly one accessReviewScheduleDefinition associated with each instance. It's the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,12 +72,12 @@ class DefinitionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DefinitionRequestBuilder(raw_url, self.request_adapter)
+        return DefinitionRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DefinitionRequestBuilderGetQueryParameters():
         """
-        There is exactly one accessReviewScheduleDefinition associated with each instance. It is the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
+        There's exactly one accessReviewScheduleDefinition associated with each instance. It's the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -28,7 +28,7 @@ class ChangeScreenSharingRoleRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ChangeScreenSharingRolePostRequestBody] = None, request_configuration: Optional[ChangeScreenSharingRoleRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Allow applications to share screen content with the participants of a group call.
+        Allow applications to share screen content with the participants of a group call. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class ChangeScreenSharingRoleRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ChangeScreenSharingRolePostRequestBody] = None, request_configuration: Optional[ChangeScreenSharingRoleRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Allow applications to share screen content with the participants of a group call.
+        Allow applications to share screen content with the participants of a group call. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class ChangeScreenSharingRoleRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ChangeScreenSharingRoleRequestBuilder(raw_url, self.request_adapter)
+        return ChangeScreenSharingRoleRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

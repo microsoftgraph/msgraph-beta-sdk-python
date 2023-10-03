@@ -46,7 +46,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[MessagesRequestBuilderGetRequestConfiguration] = None) -> Optional[MessageCollectionResponse]:
         """
-        List all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.
+        List all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MessageCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0
@@ -68,7 +68,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Message] = None, request_configuration: Optional[MessagesRequestBuilderPostRequestConfiguration] = None) -> Optional[Message]:
         """
-        Use this API to create a new Message in a mailfolder.
+        Use this API to create a new Message in a mailfolder. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Message]
@@ -93,7 +93,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[MessagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.
+        List all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[Message] = None, request_configuration: Optional[MessagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new Message in a mailfolder.
+        Use this API to create a new Message in a mailfolder. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -136,7 +136,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MessagesRequestBuilder(raw_url, self.request_adapter)
+        return MessagesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -159,7 +159,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MessagesRequestBuilderGetQueryParameters():
         """
-        List all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.
+        List all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -28,7 +28,7 @@ class QnaItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[QnaItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a qna object.
+        Delete a qna object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/search-qna-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class QnaItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[QnaItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Qna]:
         """
-        Read the properties and relationships of a qna object.
+        Read the properties and relationships of a qna object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Qna]
         Find more info here: https://learn.microsoft.com/graph/api/search-qna-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class QnaItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Qna] = None, request_configuration: Optional[QnaItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Qna]:
         """
-        Update the properties of a qna object.
+        Update the properties of a qna object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Qna]
@@ -95,7 +95,7 @@ class QnaItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[QnaItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a qna object.
+        Delete a qna object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class QnaItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[QnaItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a qna object.
+        Read the properties and relationships of a qna object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class QnaItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Qna] = None, request_configuration: Optional[QnaItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a qna object.
+        Update the properties of a qna object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class QnaItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return QnaItemRequestBuilder(raw_url, self.request_adapter)
+        return QnaItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class QnaItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class QnaItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a qna object.
+        Read the properties and relationships of a qna object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

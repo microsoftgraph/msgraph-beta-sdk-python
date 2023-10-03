@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_sms_log_with_from_date_time_with_to_date_time_response import GetSmsLogWithFromDateTimeWithToDateTimeResponse
+    from .get_sms_log_with_from_date_time_with_to_date_time_get_response import GetSmsLogWithFromDateTimeWithToDateTimeGetResponse
 
 class MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder(BaseRequestBuilder):
     """
@@ -27,13 +27,16 @@ class MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBui
         param to_date_time: Usage: toDateTime={toDateTime}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['fromDateTime'] = str(from_date_time)
+            path_parameters['toDateTime'] = str(to_date_time)
         super().__init__(request_adapter, "{+baseurl}/communications/callRecords/microsoft.graph.callRecords.getSmsLog(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetSmsLogWithFromDateTimeWithToDateTimeResponse]:
+    async def get(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetSmsLogWithFromDateTimeWithToDateTimeGetResponse]:
         """
         Invoke function getSmsLog
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetSmsLogWithFromDateTimeWithToDateTimeResponse]
+        Returns: Optional[GetSmsLogWithFromDateTimeWithToDateTimeGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -46,9 +49,9 @@ class MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBui
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_sms_log_with_from_date_time_with_to_date_time_response import GetSmsLogWithFromDateTimeWithToDateTimeResponse
+        from .get_sms_log_with_from_date_time_with_to_date_time_get_response import GetSmsLogWithFromDateTimeWithToDateTimeGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetSmsLogWithFromDateTimeWithToDateTimeResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetSmsLogWithFromDateTimeWithToDateTimeGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -75,7 +78,7 @@ class MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBui
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters():

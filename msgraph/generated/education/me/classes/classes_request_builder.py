@@ -44,7 +44,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ClassesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationClassCollectionResponse]:
         """
-        Retrieve a collection of educationClass resources.
+        Get the educationClass resources an educationUser is a member of. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationClassCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationuser-list-classes?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ClassesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a collection of educationClass resources.
+        Get the educationClass resources an educationUser is a member of. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ClassesRequestBuilder(raw_url, self.request_adapter)
+        return ClassesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ClassesRequestBuilderGetQueryParameters():
         """
-        Retrieve a collection of educationClass resources.
+        Get the educationClass resources an educationUser is a member of. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

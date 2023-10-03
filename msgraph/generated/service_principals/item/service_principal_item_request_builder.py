@@ -56,7 +56,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a servicePrincipal object.
+        Delete a servicePrincipal object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0
@@ -76,7 +76,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ServicePrincipal]:
         """
-        Retrieve the properties and relationships of a servicePrincipal object.
+        Retrieve the properties and relationships of a servicePrincipal object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipal]
         Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0
@@ -98,7 +98,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ServicePrincipal]:
         """
-        Update the properties of servicePrincipal object.
+        Update the properties of servicePrincipal object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipal]
@@ -123,7 +123,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a servicePrincipal object.
+        Delete a servicePrincipal object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a servicePrincipal object.
+        Retrieve the properties and relationships of a servicePrincipal object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -155,7 +155,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ServicePrincipal] = None, request_configuration: Optional[ServicePrincipalItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of servicePrincipal object.
+        Update the properties of servicePrincipal object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ServicePrincipalItemRequestBuilder(raw_url, self.request_adapter)
+        return ServicePrincipalItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def add_token_signing_certificate(self) -> AddTokenSigningCertificateRequestBuilder:
@@ -448,7 +448,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ServicePrincipalItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a servicePrincipal object.
+        Retrieve the properties and relationships of a servicePrincipal object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -29,7 +29,7 @@ class MarkAsJunkRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[MarkAsJunkPostRequestBody] = None, request_configuration: Optional[MarkAsJunkRequestBuilderPostRequestConfiguration] = None) -> Optional[Message]:
         """
-        Mark a message as junk. This API adds the sender to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true.
+        Mark a message as junk. This API adds the sender to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Message]
@@ -54,7 +54,7 @@ class MarkAsJunkRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[MarkAsJunkPostRequestBody] = None, request_configuration: Optional[MarkAsJunkRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Mark a message as junk. This API adds the sender to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true.
+        Mark a message as junk. This API adds the sender to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class MarkAsJunkRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MarkAsJunkRequestBuilder(raw_url, self.request_adapter)
+        return MarkAsJunkRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

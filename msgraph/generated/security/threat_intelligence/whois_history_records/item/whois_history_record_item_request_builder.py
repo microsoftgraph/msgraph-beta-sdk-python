@@ -48,7 +48,7 @@ class WhoisHistoryRecordItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WhoisHistoryRecordItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WhoisHistoryRecord]:
         """
-        Get whoisHistoryRecords from security
+        Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WhoisHistoryRecord]
         """
@@ -108,7 +108,7 @@ class WhoisHistoryRecordItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WhoisHistoryRecordItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get whoisHistoryRecords from security
+        Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class WhoisHistoryRecordItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WhoisHistoryRecordItemRequestBuilder(raw_url, self.request_adapter)
+        return WhoisHistoryRecordItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def host(self) -> HostRequestBuilder:
@@ -175,7 +175,7 @@ class WhoisHistoryRecordItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WhoisHistoryRecordItemRequestBuilderGetQueryParameters():
         """
-        Get whoisHistoryRecords from security
+        Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

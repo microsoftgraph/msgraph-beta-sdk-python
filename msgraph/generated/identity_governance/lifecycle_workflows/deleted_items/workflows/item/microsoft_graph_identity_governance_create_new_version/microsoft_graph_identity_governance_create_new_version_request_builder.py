@@ -29,7 +29,7 @@ class MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(BaseRequest
     
     async def post(self,body: Optional[CreateNewVersionPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[Workflow]:
         """
-        Create a new version of the workflow object.
+        Create a new version of the workflow object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Workflow]
@@ -54,7 +54,7 @@ class MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(BaseRequest
     
     def to_post_request_information(self,body: Optional[CreateNewVersionPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new version of the workflow object.
+        Create a new version of the workflow object. This API is supported in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(BaseRequest
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

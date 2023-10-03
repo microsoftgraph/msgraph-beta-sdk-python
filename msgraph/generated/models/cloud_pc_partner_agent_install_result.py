@@ -17,13 +17,13 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
     install_status: Optional[CloudPcPartnerAgentInstallStatus] = None
-    # Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent.  When 'FALSE', the agent is a Microsoft agent or is not known.  The default value is 'FALSE'.
+    # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known.  The default value is 'FALSE'
     is_third_party_partner: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the name of a partner agent and includes first-party and third-party. Currently, Citrix is the only third-party value. Read-Only.
+    # The name of the partner agent, whether first party or third party. Possible values for third-party partners are Citrix and VMware. Read-Only.
     partner_agent_name: Optional[CloudPcPartnerAgentName] = None
-    # Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent. When 'FALSE', the agent is a Microsoft agent or is not known. The default value is 'FALSE'.
+    # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known. The default value is 'FALSE'
     retriable: Optional[bool] = None
     
     @staticmethod

@@ -29,7 +29,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[SiteSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a siteSource object.
+        Delete a siteSource object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sitesource-delete?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SiteSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SiteSource]:
         """
-        Read the properties and relationships of a siteSource object.
+        Read the properties and relationships of a siteSource object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteSource]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sitesource-get?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[SiteSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a siteSource object.
+        Delete a siteSource object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SiteSourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a siteSource object.
+        Read the properties and relationships of a siteSource object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SiteSourceItemRequestBuilder(raw_url, self.request_adapter)
+        return SiteSourceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def site(self) -> SiteRequestBuilder:
@@ -177,7 +177,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SiteSourceItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a siteSource object.
+        Read the properties and relationships of a siteSource object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -47,7 +47,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ApplicationSignInDetailedSummary]:
         """
-        Retrieve the properties and relationships of an applicationSignInDetailedSummary object.
+        Retrieve the properties and relationships of an applicationSignInDetailedSummary object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApplicationSignInDetailedSummary]
         Find more info here: https://learn.microsoft.com/graph/api/applicationsignindetailedsummary-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an applicationSignInDetailedSummary object.
+        Retrieve the properties and relationships of an applicationSignInDetailedSummary object. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ApplicationSignInDetailedSummaryItemRequestBuilder(raw_url, self.request_adapter)
+        return ApplicationSignInDetailedSummaryItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApplicationSignInDetailedSummaryItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an applicationSignInDetailedSummary object.
+        Retrieve the properties and relationships of an applicationSignInDetailedSummary object. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

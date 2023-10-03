@@ -20,7 +20,7 @@ class PrivilegedAccessGroupAssignmentScheduleInstance(PrivilegedAccessScheduleIn
     odata_type: Optional[str] = "#microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance"
     # The identifier of the membership or ownership assignment relationship to the group. Required. The possible values are: owner, member,  unknownFutureValue.
     access_id: Optional[PrivilegedAccessGroupRelationships] = None
-    # When the request activates a membership or ownership in PIM for groups, this object represents the eligibility request for the group. Otherwise, it is null.
+    # When the request activates a membership or ownership in PIM for groups, this object represents the eligibility request for the group. Otherwise, it's null.
     activated_using: Optional[PrivilegedAccessGroupEligibilityScheduleInstance] = None
     # The identifier of the privilegedAccessGroupAssignmentSchedule from which this instance was created. Required.
     assignment_schedule_id: Optional[str] = None

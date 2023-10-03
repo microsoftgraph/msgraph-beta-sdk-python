@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ........models.education_assignment_resource import EducationAssignmentResource
     from ........models.o_data_errors.o_data_error import ODataError
+    from .dependent_resources.dependent_resources_request_builder import DependentResourcesRequestBuilder
 
 class EducationAssignmentResourceItemRequestBuilder(BaseRequestBuilder):
     """
@@ -28,7 +29,7 @@ class EducationAssignmentResourceItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a specific educationAssignmentResource attached to an assignment. Only teachers in the class can remove a resource. After an assignment has been published to students, teachers cannot remove resources that are marked as 'distributeToStudents'.
+        Delete a specific educationAssignmentResource attached to an assignment. Only teachers in the class can remove a resource. After an assignment has been published to students, teachers cannot remove resources that are marked as 'distributeToStudents'. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/educationassignmentresource-delete?view=graph-rest-1.0
@@ -48,7 +49,7 @@ class EducationAssignmentResourceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationAssignmentResource]:
         """
-        Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignmentResource]
         Find more info here: https://learn.microsoft.com/graph/api/educationassignmentresource-get?view=graph-rest-1.0
@@ -94,7 +95,7 @@ class EducationAssignmentResourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a specific educationAssignmentResource attached to an assignment. Only teachers in the class can remove a resource. After an assignment has been published to students, teachers cannot remove resources that are marked as 'distributeToStudents'.
+        Delete a specific educationAssignmentResource attached to an assignment. Only teachers in the class can remove a resource. After an assignment has been published to students, teachers cannot remove resources that are marked as 'distributeToStudents'. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +110,7 @@ class EducationAssignmentResourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is supported in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,16 @@ class EducationAssignmentResourceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EducationAssignmentResourceItemRequestBuilder(raw_url, self.request_adapter)
+        return EducationAssignmentResourceItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def dependent_resources(self) -> DependentResourcesRequestBuilder:
+        """
+        Provides operations to manage the dependentResources property of the microsoft.graph.educationAssignmentResource entity.
+        """
+        from .dependent_resources.dependent_resources_request_builder import DependentResourcesRequestBuilder
+
+        return DependentResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +177,7 @@ class EducationAssignmentResourceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationAssignmentResourceItemRequestBuilderGetQueryParameters():
         """
-        Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is supported in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
