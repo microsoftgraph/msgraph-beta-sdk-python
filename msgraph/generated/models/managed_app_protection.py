@@ -212,7 +212,7 @@ class ManagedAppProtection(ManagedAppPolicy):
             "disableAppPinIfDevicePinIsSet": lambda n : setattr(self, 'disable_app_pin_if_device_pin_is_set', n.get_bool_value()),
             "fingerprintBlocked": lambda n : setattr(self, 'fingerprint_blocked', n.get_bool_value()),
             "gracePeriodToBlockAppsDuringOffClockHours": lambda n : setattr(self, 'grace_period_to_block_apps_during_off_clock_hours', n.get_timedelta_value()),
-            "managedBrowser": lambda n : setattr(self, 'managed_browser', n.get_enum_value(ManagedBrowserType)),
+            "managedBrowser": lambda n : setattr(self, 'managed_browser', n.get_collection_of_enum_values(ManagedBrowserType)),
             "managedBrowserToOpenLinksRequired": lambda n : setattr(self, 'managed_browser_to_open_links_required', n.get_bool_value()),
             "maximumAllowedDeviceThreatLevel": lambda n : setattr(self, 'maximum_allowed_device_threat_level', n.get_enum_value(ManagedAppDeviceThreatLevel)),
             "maximumPinRetries": lambda n : setattr(self, 'maximum_pin_retries', n.get_int_value()),

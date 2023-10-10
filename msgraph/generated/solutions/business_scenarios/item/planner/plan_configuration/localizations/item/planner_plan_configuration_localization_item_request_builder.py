@@ -28,7 +28,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     async def delete(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a plannerPlanConfigurationLocalization object.
+        Delete a plannerPlanConfigurationLocalization object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/plannerplanconfiguration-delete-localizations?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     async def get(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerPlanConfigurationLocalization]:
         """
-        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
+        Read the properties and relationships of a plannerPlanConfigurationLocalization object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanConfigurationLocalization]
         Find more info here: https://learn.microsoft.com/graph/api/plannerplanconfigurationlocalization-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     async def patch(self,body: Optional[PlannerPlanConfigurationLocalization] = None, request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PlannerPlanConfigurationLocalization]:
         """
-        Update the properties of a plannerPlanConfigurationLocalization object.
+        Update the properties of a plannerPlanConfigurationLocalization object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanConfigurationLocalization]
@@ -95,7 +95,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a plannerPlanConfigurationLocalization object.
+        Delete a plannerPlanConfigurationLocalization object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     def to_get_request_information(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
+        Read the properties and relationships of a plannerPlanConfigurationLocalization object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     def to_patch_request_information(self,body: Optional[PlannerPlanConfigurationLocalization] = None, request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a plannerPlanConfigurationLocalization object.
+        Update the properties of a plannerPlanConfigurationLocalization object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PlannerPlanConfigurationLocalizationItemRequestBuilder(raw_url, self.request_adapter)
+        return PlannerPlanConfigurationLocalizationItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     @dataclass
     class PlannerPlanConfigurationLocalizationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
+        Read the properties and relationships of a plannerPlanConfigurationLocalization object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -35,7 +35,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a school data synchronization profile in the tenant based on the identifier.
+        Delete a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-delete?view=graph-rest-1.0
@@ -55,7 +55,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationSynchronizationProfile]:
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Retrieve a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfile]
         Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-get?view=graph-rest-1.0
@@ -101,7 +101,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a school data synchronization profile in the tenant based on the identifier.
+        Delete a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +116,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Retrieve a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +159,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EducationSynchronizationProfileItemRequestBuilder(raw_url, self.request_adapter)
+        return EducationSynchronizationProfileItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def errors(self) -> ErrorsRequestBuilder:
@@ -237,7 +237,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationSynchronizationProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Retrieve a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

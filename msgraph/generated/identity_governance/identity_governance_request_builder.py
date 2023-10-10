@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .app_consent.app_consent_request_builder import AppConsentRequestBuilder
     from .entitlement_management.entitlement_management_request_builder import EntitlementManagementRequestBuilder
     from .lifecycle_workflows.lifecycle_workflows_request_builder import LifecycleWorkflowsRequestBuilder
+    from .permissions_management.permissions_management_request_builder import PermissionsManagementRequestBuilder
     from .privileged_access.privileged_access_request_builder import PrivilegedAccessRequestBuilder
     from .role_management_alerts.role_management_alerts_request_builder import RoleManagementAlertsRequestBuilder
     from .terms_of_use.terms_of_use_request_builder import TermsOfUseRequestBuilder
@@ -123,7 +124,7 @@ class IdentityGovernanceRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IdentityGovernanceRequestBuilder(raw_url, self.request_adapter)
+        return IdentityGovernanceRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def access_reviews(self) -> AccessReviewsRequestBuilder:
@@ -160,6 +161,15 @@ class IdentityGovernanceRequestBuilder(BaseRequestBuilder):
         from .lifecycle_workflows.lifecycle_workflows_request_builder import LifecycleWorkflowsRequestBuilder
 
         return LifecycleWorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def permissions_management(self) -> PermissionsManagementRequestBuilder:
+        """
+        Provides operations to manage the permissionsManagement property of the microsoft.graph.identityGovernance entity.
+        """
+        from .permissions_management.permissions_management_request_builder import PermissionsManagementRequestBuilder
+
+        return PermissionsManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def privileged_access(self) -> PrivilegedAccessRequestBuilder:

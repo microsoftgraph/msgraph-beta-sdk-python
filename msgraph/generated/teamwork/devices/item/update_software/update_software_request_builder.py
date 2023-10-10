@@ -28,7 +28,7 @@ class UpdateSoftwareRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[UpdateSoftwarePostRequestBody] = None, request_configuration: Optional[UpdateSoftwareRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation.
+        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class UpdateSoftwareRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[UpdateSoftwarePostRequestBody] = None, request_configuration: Optional[UpdateSoftwareRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation.
+        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class UpdateSoftwareRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpdateSoftwareRequestBuilder(raw_url, self.request_adapter)
+        return UpdateSoftwareRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

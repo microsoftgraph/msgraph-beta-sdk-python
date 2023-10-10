@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..models.external_connectors.external import External
     from ..models.o_data_errors.o_data_error import ODataError
+    from .authorization_systems.authorization_systems_request_builder import AuthorizationSystemsRequestBuilder
     from .connections.connections_request_builder import ConnectionsRequestBuilder
     from .industry_data.industry_data_request_builder import IndustryDataRequestBuilder
 
@@ -118,7 +119,16 @@ class ExternalRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ExternalRequestBuilder(raw_url, self.request_adapter)
+        return ExternalRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def authorization_systems(self) -> AuthorizationSystemsRequestBuilder:
+        """
+        Provides operations to manage the authorizationSystems property of the microsoft.graph.externalConnectors.external entity.
+        """
+        from .authorization_systems.authorization_systems_request_builder import AuthorizationSystemsRequestBuilder
+
+        return AuthorizationSystemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def connections(self) -> ConnectionsRequestBuilder:

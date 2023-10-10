@@ -55,7 +55,7 @@ class PlannerTask(PlannerDelta):
     details: Optional[PlannerTaskDetails] = None
     # Date and time at which the task is due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     due_date_time: Optional[datetime.datetime] = None
-    # Read-only. Value is true if the details object of the task has a non-empty description and false otherwise.
+    # Read-only. Value is true if the details object of the task has a nonempty description and false otherwise.
     has_description: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -160,7 +160,7 @@ class PlannerTask(PlannerDelta):
             "progressTaskBoardFormat": lambda n : setattr(self, 'progress_task_board_format', n.get_object_value(PlannerProgressTaskBoardTaskFormat)),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(PlannerTaskRecurrence)),
             "referenceCount": lambda n : setattr(self, 'reference_count', n.get_int_value()),
-            "specifiedCompletionRequirements": lambda n : setattr(self, 'specified_completion_requirements', n.get_enum_value(PlannerTaskCompletionRequirements)),
+            "specifiedCompletionRequirements": lambda n : setattr(self, 'specified_completion_requirements', n.get_collection_of_enum_values(PlannerTaskCompletionRequirements)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }

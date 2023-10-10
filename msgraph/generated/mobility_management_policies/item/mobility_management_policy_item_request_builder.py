@@ -151,7 +151,7 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MobilityManagementPolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return MobilityManagementPolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def included_groups(self) -> IncludedGroupsRequestBuilder:

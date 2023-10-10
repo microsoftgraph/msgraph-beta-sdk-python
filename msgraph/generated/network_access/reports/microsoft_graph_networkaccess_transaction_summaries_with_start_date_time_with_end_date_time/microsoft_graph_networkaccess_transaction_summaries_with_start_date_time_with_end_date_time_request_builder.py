@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .transaction_summaries_with_start_date_time_with_end_date_time_response import TransactionSummariesWithStartDateTimeWithEndDateTimeResponse
+    from .transaction_summaries_with_start_date_time_with_end_date_time_get_response import TransactionSummariesWithStartDateTimeWithEndDateTimeGetResponse
 
 class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(BaseRequestBuilder):
     """
@@ -27,13 +27,16 @@ class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDat
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['endDateTime'] = str(end_date_time)
+            path_parameters['startDateTime'] = str(start_date_time)
         super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.transactionSummaries(startDateTime={startDateTime},endDateTime={endDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[TransactionSummariesWithStartDateTimeWithEndDateTimeResponse]:
+    async def get(self,request_configuration: Optional[MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[TransactionSummariesWithStartDateTimeWithEndDateTimeGetResponse]:
         """
         Invoke function transactionSummaries
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[TransactionSummariesWithStartDateTimeWithEndDateTimeResponse]
+        Returns: Optional[TransactionSummariesWithStartDateTimeWithEndDateTimeGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -46,9 +49,9 @@ class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDat
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .transaction_summaries_with_start_date_time_with_end_date_time_response import TransactionSummariesWithStartDateTimeWithEndDateTimeResponse
+        from .transaction_summaries_with_start_date_time_with_end_date_time_get_response import TransactionSummariesWithStartDateTimeWithEndDateTimeGetResponse
 
-        return await self.request_adapter.send_async(request_info, TransactionSummariesWithStartDateTimeWithEndDateTimeResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, TransactionSummariesWithStartDateTimeWithEndDateTimeGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -75,7 +78,7 @@ class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDat
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters():

@@ -25,11 +25,13 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         param unique_name: Alternate key of application
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['uniqueName'] = str(unique_name)
         super().__init__(request_adapter, "{+baseurl}/applications(uniqueName='{uniqueName}'){?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ApplicationsWithUniqueNameRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
+        Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/application-delete?view=graph-rest-1.0
@@ -49,7 +51,7 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ApplicationsWithUniqueNameRequestBuilderGetRequestConfiguration] = None) -> Optional[Application]:
         """
-        Get the properties and relationships of an application object.
+        Get the properties and relationships of an application object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Application]
         Find more info here: https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0
@@ -71,7 +73,7 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Application] = None, request_configuration: Optional[ApplicationsWithUniqueNameRequestBuilderPatchRequestConfiguration] = None) -> Optional[Application]:
         """
-        Update the properties of an application object.
+        Update the properties of an application object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Application]
@@ -96,7 +98,7 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ApplicationsWithUniqueNameRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
+        Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +113,7 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ApplicationsWithUniqueNameRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of an application object.
+        Get the properties and relationships of an application object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -128,7 +130,7 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Application] = None, request_configuration: Optional[ApplicationsWithUniqueNameRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an application object.
+        Update the properties of an application object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +156,7 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ApplicationsWithUniqueNameRequestBuilder(raw_url, self.request_adapter)
+        return ApplicationsWithUniqueNameRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -169,7 +171,7 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApplicationsWithUniqueNameRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of an application object.
+        Get the properties and relationships of an application object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

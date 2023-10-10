@@ -25,6 +25,8 @@ class FindTenantInformationByTenantIdWithTenantIdRequestBuilder(BaseRequestBuild
         param tenant_id: Usage: tenantId='{tenantId}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['tenantId'] = str(tenant_id)
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/findTenantInformationByTenantId(tenantId='{tenantId}')", path_parameters)
     
     async def get(self,request_configuration: Optional[FindTenantInformationByTenantIdWithTenantIdRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantInformation]:
@@ -72,7 +74,7 @@ class FindTenantInformationByTenantIdWithTenantIdRequestBuilder(BaseRequestBuild
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return FindTenantInformationByTenantIdWithTenantIdRequestBuilder(raw_url, self.request_adapter)
+        return FindTenantInformationByTenantIdWithTenantIdRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

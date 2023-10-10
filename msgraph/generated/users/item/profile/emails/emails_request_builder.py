@@ -45,7 +45,7 @@ class EmailsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemEmailCollectionResponse]:
         """
-        Retrieve the properties and relationships of an itemEmail object in a user's profile.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemEmailCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/profile-list-emails?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class EmailsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ItemEmail] = None, request_configuration: Optional[EmailsRequestBuilderPostRequestConfiguration] = None) -> Optional[ItemEmail]:
         """
-        Create a new itemEmail object in a user's profile.
+        Create a new itemEmail object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemEmail]
@@ -92,7 +92,7 @@ class EmailsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an itemEmail object in a user's profile.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class EmailsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ItemEmail] = None, request_configuration: Optional[EmailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemEmail object in a user's profile.
+        Create a new itemEmail object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class EmailsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EmailsRequestBuilder(raw_url, self.request_adapter)
+        return EmailsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class EmailsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EmailsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an itemEmail object in a user's profile.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

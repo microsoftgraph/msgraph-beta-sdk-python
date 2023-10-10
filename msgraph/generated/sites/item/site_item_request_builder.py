@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .pages.pages_request_builder import PagesRequestBuilder
     from .permissions.permissions_request_builder import PermissionsRequestBuilder
+    from .recycle_bin.recycle_bin_request_builder import RecycleBinRequestBuilder
     from .sites.sites_request_builder import SitesRequestBuilder
     from .term_store.term_store_request_builder import TermStoreRequestBuilder
 
@@ -179,7 +180,7 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SiteItemRequestBuilder(raw_url, self.request_adapter)
+        return SiteItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def analytics(self) -> AnalyticsRequestBuilder:
@@ -315,6 +316,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         from .permissions.permissions_request_builder import PermissionsRequestBuilder
 
         return PermissionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def recycle_bin(self) -> RecycleBinRequestBuilder:
+        """
+        Provides operations to manage the recycleBin property of the microsoft.graph.site entity.
+        """
+        from .recycle_bin.recycle_bin_request_builder import RecycleBinRequestBuilder
+
+        return RecycleBinRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sites(self) -> SitesRequestBuilder:

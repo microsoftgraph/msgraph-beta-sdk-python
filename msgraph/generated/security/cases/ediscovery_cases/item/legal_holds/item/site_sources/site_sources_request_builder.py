@@ -66,7 +66,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SiteSource] = None, request_configuration: Optional[SiteSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[SiteSource]:
         """
-        Create a new siteSource object.
+        Create a new siteSource object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteSource]
@@ -108,7 +108,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SiteSource] = None, request_configuration: Optional[SiteSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new siteSource object.
+        Create a new siteSource object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SiteSourcesRequestBuilder(raw_url, self.request_adapter)
+        return SiteSourcesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

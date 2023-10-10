@@ -35,7 +35,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
+        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-delete?view=graph-rest-1.0
@@ -55,7 +55,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SynchronizationJob]:
         """
-        Retrieve the existing synchronization job and its properties.
+        Retrieve the existing synchronization job and its properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SynchronizationJob]
         Find more info here: https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0
@@ -101,7 +101,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
+        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +116,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the existing synchronization job and its properties.
+        Retrieve the existing synchronization job and its properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +159,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SynchronizationJobItemRequestBuilder(raw_url, self.request_adapter)
+        return SynchronizationJobItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def bulk_upload(self) -> BulkUploadRequestBuilder:
@@ -237,7 +237,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SynchronizationJobItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the existing synchronization job and its properties.
+        Retrieve the existing synchronization job and its properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

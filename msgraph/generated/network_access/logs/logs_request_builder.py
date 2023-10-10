@@ -48,7 +48,7 @@ class LogsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[LogsRequestBuilderGetRequestConfiguration] = None) -> Optional[Logs]:
         """
-        Represnts network connections that are routed through Global Secure Access.
+        Represents network connections that are routed through Global Secure Access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Logs]
         """
@@ -108,7 +108,7 @@ class LogsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[LogsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represnts network connections that are routed through Global Secure Access.
+        Represents network connections that are routed through Global Secure Access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class LogsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return LogsRequestBuilder(raw_url, self.request_adapter)
+        return LogsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def traffic(self) -> TrafficRequestBuilder:
@@ -175,7 +175,7 @@ class LogsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LogsRequestBuilderGetQueryParameters():
         """
-        Represnts network connections that are routed through Global Secure Access.
+        Represents network connections that are routed through Global Secure Access.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

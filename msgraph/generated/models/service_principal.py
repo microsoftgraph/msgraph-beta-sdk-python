@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .password_credential import PasswordCredential
     from .password_single_sign_on_settings import PasswordSingleSignOnSettings
     from .permission_scope import PermissionScope
+    from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
     from .saml_single_sign_on_settings import SamlSingleSignOnSettings
     from .synchronization import Synchronization
     from .token_issuance_policy import TokenIssuancePolicy
@@ -74,7 +75,7 @@ class ServicePrincipal(DirectoryObject):
     description: Optional[str] = None
     # Specifies whether Microsoft has disabled the registered application. Possible values are: null (default value), NotDisabled, and DisabledDueToViolationOfServicesAgreement (reasons may include suspicious, abusive, or malicious activity, or a violation of the Microsoft Services Agreement).  Supports $filter (eq, ne, not).
     disabled_by_microsoft_status: Optional[str] = None
-    # The display name for the service principal. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    # The display name for the service principal. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
     # Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.
     endpoints: Optional[List[Endpoint]] = None
@@ -122,6 +123,8 @@ class ServicePrincipal(DirectoryObject):
     published_permission_scopes: Optional[List[PermissionScope]] = None
     # The name of the Azure AD tenant that published the application.
     publisher_name: Optional[str] = None
+    # The remoteDesktopSecurityConfiguration property
+    remote_desktop_security_configuration: Optional[RemoteDesktopSecurityConfiguration] = None
     # The URLs that user tokens are sent to for sign in with the associated application, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to for the associated application. Not nullable.
     reply_urls: Optional[List[str]] = None
     # The url where the service exposes SAML metadata for federation.
@@ -183,6 +186,7 @@ class ServicePrincipal(DirectoryObject):
         from .password_credential import PasswordCredential
         from .password_single_sign_on_settings import PasswordSingleSignOnSettings
         from .permission_scope import PermissionScope
+        from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .saml_single_sign_on_settings import SamlSingleSignOnSettings
         from .synchronization import Synchronization
         from .token_issuance_policy import TokenIssuancePolicy
@@ -207,6 +211,7 @@ class ServicePrincipal(DirectoryObject):
         from .password_credential import PasswordCredential
         from .password_single_sign_on_settings import PasswordSingleSignOnSettings
         from .permission_scope import PermissionScope
+        from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .saml_single_sign_on_settings import SamlSingleSignOnSettings
         from .synchronization import Synchronization
         from .token_issuance_policy import TokenIssuancePolicy
@@ -257,6 +262,7 @@ class ServicePrincipal(DirectoryObject):
             "preferredTokenSigningKeyThumbprint": lambda n : setattr(self, 'preferred_token_signing_key_thumbprint', n.get_str_value()),
             "publishedPermissionScopes": lambda n : setattr(self, 'published_permission_scopes', n.get_collection_of_object_values(PermissionScope)),
             "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
+            "remoteDesktopSecurityConfiguration": lambda n : setattr(self, 'remote_desktop_security_configuration', n.get_object_value(RemoteDesktopSecurityConfiguration)),
             "replyUrls": lambda n : setattr(self, 'reply_urls', n.get_collection_of_primitive_values(str)),
             "samlMetadataUrl": lambda n : setattr(self, 'saml_metadata_url', n.get_str_value()),
             "samlSingleSignOnSettings": lambda n : setattr(self, 'saml_single_sign_on_settings', n.get_object_value(SamlSingleSignOnSettings)),
@@ -327,6 +333,7 @@ class ServicePrincipal(DirectoryObject):
         writer.write_str_value("preferredTokenSigningKeyThumbprint", self.preferred_token_signing_key_thumbprint)
         writer.write_collection_of_object_values("publishedPermissionScopes", self.published_permission_scopes)
         writer.write_str_value("publisherName", self.publisher_name)
+        writer.write_object_value("remoteDesktopSecurityConfiguration", self.remote_desktop_security_configuration)
         writer.write_collection_of_primitive_values("replyUrls", self.reply_urls)
         writer.write_str_value("samlMetadataUrl", self.saml_metadata_url)
         writer.write_object_value("samlSingleSignOnSettings", self.saml_single_sign_on_settings)

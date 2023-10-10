@@ -151,7 +151,7 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MacOSSoftwareUpdateCategorySummaryItemRequestBuilder(raw_url, self.request_adapter)
+        return MacOSSoftwareUpdateCategorySummaryItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def update_state_summaries(self) -> UpdateStateSummariesRequestBuilder:

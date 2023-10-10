@@ -47,7 +47,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TeamsRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamCollectionResponse]:
         """
-        List all teams in an organization.
+        List all teams in an organization. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/teams-list?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Team] = None, request_configuration: Optional[TeamsRequestBuilderPostRequestConfiguration] = None) -> Optional[Team]:
         """
-        Create a new team.
+        Create a new team. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Team]
@@ -94,7 +94,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TeamsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all teams in an organization.
+        List all teams in an organization. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +111,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[Team] = None, request_configuration: Optional[TeamsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new team.
+        Create a new team. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TeamsRequestBuilder(raw_url, self.request_adapter)
+        return TeamsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def all_messages(self) -> AllMessagesRequestBuilder:
@@ -169,7 +169,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamsRequestBuilderGetQueryParameters():
         """
-        List all teams in an organization.
+        List all teams in an organization. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

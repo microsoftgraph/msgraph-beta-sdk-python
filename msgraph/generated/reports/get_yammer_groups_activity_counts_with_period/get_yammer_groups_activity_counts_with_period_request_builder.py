@@ -24,6 +24,8 @@ class GetYammerGroupsActivityCountsWithPeriodRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getYammerGroupsActivityCounts(period='{period}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetYammerGroupsActivityCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> bytes:
@@ -68,7 +70,7 @@ class GetYammerGroupsActivityCountsWithPeriodRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetYammerGroupsActivityCountsWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetYammerGroupsActivityCountsWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

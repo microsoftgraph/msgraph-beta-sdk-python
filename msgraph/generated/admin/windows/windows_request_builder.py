@@ -151,7 +151,7 @@ class WindowsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WindowsRequestBuilder(raw_url, self.request_adapter)
+        return WindowsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def updates(self) -> UpdatesRequestBuilder:

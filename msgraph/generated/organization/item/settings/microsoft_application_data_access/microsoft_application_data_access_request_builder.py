@@ -47,7 +47,7 @@ class MicrosoftApplicationDataAccessRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderGetRequestConfiguration] = None) -> Optional[MicrosoftApplicationDataAccessSettings]:
         """
-        Get the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
+        Get the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MicrosoftApplicationDataAccessSettings]
         Find more info here: https://learn.microsoft.com/graph/api/organizationsettings-list-microsoftapplicationdataaccess?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class MicrosoftApplicationDataAccessRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[MicrosoftApplicationDataAccessSettings] = None, request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderPatchRequestConfiguration] = None) -> Optional[MicrosoftApplicationDataAccessSettings]:
         """
-        Update the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
+        Update the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MicrosoftApplicationDataAccessSettings]
@@ -109,7 +109,7 @@ class MicrosoftApplicationDataAccessRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
+        Get the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class MicrosoftApplicationDataAccessRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[MicrosoftApplicationDataAccessSettings] = None, request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
+        Update the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class MicrosoftApplicationDataAccessRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftApplicationDataAccessRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftApplicationDataAccessRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class MicrosoftApplicationDataAccessRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MicrosoftApplicationDataAccessRequestBuilderGetQueryParameters():
         """
-        Get the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
+        Get the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

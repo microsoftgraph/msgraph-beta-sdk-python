@@ -26,28 +26,9 @@ class SchemaRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/connections/{externalConnection%2Did}/schema{?%24select,%24expand}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None) -> None:
-        """
-        Delete navigation property schema for connections
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: None
-        """
-        request_info = self.to_delete_request_information(
-            request_configuration
-        )
-        from ....models.o_data_errors.o_data_error import ODataError
-
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
     async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[Schema]:
         """
-        Retrieve the properties of a schema for an externalConnection.
+        Retrieve the properties of a schema for an externalConnection. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Schema]
         Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
@@ -69,11 +50,11 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Schema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> Optional[Schema]:
         """
-        Update the properties of a schema for an externalConnection.
+        Create the schema for a Microsoft Search connection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Schema]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-schema-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-patch-schema?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,24 +73,9 @@ class SchemaRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Schema, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
-        """
-        Delete navigation property schema for connections
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
     def to_get_request_information(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a schema for an externalConnection.
+        Retrieve the properties of a schema for an externalConnection. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +92,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Schema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a schema for an externalConnection.
+        Create the schema for a Microsoft Search connection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,22 +118,12 @@ class SchemaRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SchemaRequestBuilder(raw_url, self.request_adapter)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SchemaRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
+        return SchemaRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class SchemaRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a schema for an externalConnection.
+        Retrieve the properties of a schema for an externalConnection. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -48,7 +48,7 @@ class ServiceHealthItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ServiceHealthItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ServiceHealth]:
         """
-        Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant.
+        Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServiceHealth]
         Find more info here: https://learn.microsoft.com/graph/api/servicehealth-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class ServiceHealthItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ServiceHealthItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant.
+        Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class ServiceHealthItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ServiceHealthItemRequestBuilder(raw_url, self.request_adapter)
+        return ServiceHealthItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def issues(self) -> IssuesRequestBuilder:
@@ -176,7 +176,7 @@ class ServiceHealthItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ServiceHealthItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant.
+        Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

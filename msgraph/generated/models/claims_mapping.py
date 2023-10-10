@@ -11,7 +11,7 @@ class ClaimsMapping(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The claim that provides the display name or full name for the user. It is a required propoerty.
+    # The claim that provides the display name or full name for the user. It's a required property.
     display_name: Optional[str] = None
     # The claim that provides the email address of the user.
     email: Optional[str] = None
@@ -21,7 +21,7 @@ class ClaimsMapping(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The claim that provides the last name of the user.
     surname: Optional[str] = None
-    # The claim that provides the unique identifier for the signed-in user. It is a required propoerty.
+    # The claim that provides the unique identifier for the signed-in user. It is a required property.
     user_id: Optional[str] = None
     
     @staticmethod

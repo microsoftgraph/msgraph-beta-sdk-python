@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .find_room_lists_response import FindRoomListsResponse
+    from .find_room_lists_get_response import FindRoomListsGetResponse
 
 class FindRoomListsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class FindRoomListsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/findRoomLists(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[FindRoomListsRequestBuilderGetRequestConfiguration] = None) -> Optional[FindRoomListsResponse]:
+    async def get(self,request_configuration: Optional[FindRoomListsRequestBuilderGetRequestConfiguration] = None) -> Optional[FindRoomListsGetResponse]:
         """
-        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list.
+        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[FindRoomListsResponse]
+        Returns: Optional[FindRoomListsGetResponse]
         Find more info here: https://learn.microsoft.com/graph/api/user-findroomlists?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
@@ -44,13 +44,13 @@ class FindRoomListsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .find_room_lists_response import FindRoomListsResponse
+        from .find_room_lists_get_response import FindRoomListsGetResponse
 
-        return await self.request_adapter.send_async(request_info, FindRoomListsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, FindRoomListsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[FindRoomListsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list.
+        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,12 +73,12 @@ class FindRoomListsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return FindRoomListsRequestBuilder(raw_url, self.request_adapter)
+        return FindRoomListsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class FindRoomListsRequestBuilderGetQueryParameters():
         """
-        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list.
+        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

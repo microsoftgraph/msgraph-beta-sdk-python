@@ -16,13 +16,13 @@ from .virtual_event import VirtualEvent
 class VirtualEventWebinar(VirtualEvent):
     # To whom the webinar is visible.
     audience: Optional[MeetingAudience] = None
-    # Identity information of co-organizers of the webinar.
+    # Identity information of coorganizers of the webinar.
     co_organizers: Optional[List[CommunicationsUserIdentity]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The registrationConfiguration property
+    # Registration configuration of the webinar.
     registration_configuration: Optional[VirtualEventRegistrationConfiguration] = None
-    # The registrations property
+    # Registration records of the webinar.
     registrations: Optional[List[VirtualEventRegistration]] = None
     
     @staticmethod

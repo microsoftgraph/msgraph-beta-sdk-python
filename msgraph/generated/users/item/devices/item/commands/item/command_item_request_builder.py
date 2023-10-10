@@ -151,7 +151,7 @@ class CommandItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CommandItemRequestBuilder(raw_url, self.request_adapter)
+        return CommandItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def responsepayload(self) -> ResponsepayloadRequestBuilder:

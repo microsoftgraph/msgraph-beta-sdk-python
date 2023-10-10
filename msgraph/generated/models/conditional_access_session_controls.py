@@ -25,7 +25,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
     cloud_app_security: Optional[CloudAppSecuritySessionControl] = None
     # Session control for continuous access evaluation settings.
     continuous_access_evaluation: Optional[ContinuousAccessEvaluationSessionControl] = None
-    # Session control that determines whether it is acceptable for Azure AD to extend existing sessions based on information collected prior to an outage or not.
+    # Session control that determines whether it's acceptable for Azure AD to extend existing sessions based on information collected prior to an outage or not.
     disable_resilience_defaults: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

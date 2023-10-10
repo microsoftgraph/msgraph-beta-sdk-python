@@ -49,7 +49,7 @@ class GovernanceRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[GovernanceRoleDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[GovernanceRoleDefinition]:
         """
-        A collection of role defintions for the provider.
+        A collection of role definitions for the provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GovernanceRoleDefinition]
         """
@@ -109,7 +109,7 @@ class GovernanceRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[GovernanceRoleDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of role defintions for the provider.
+        A collection of role definitions for the provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class GovernanceRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GovernanceRoleDefinitionItemRequestBuilder(raw_url, self.request_adapter)
+        return GovernanceRoleDefinitionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def resource(self) -> ResourceRequestBuilder:
@@ -185,7 +185,7 @@ class GovernanceRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GovernanceRoleDefinitionItemRequestBuilderGetQueryParameters():
         """
-        A collection of role defintions for the provider.
+        A collection of role definitions for the provider.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

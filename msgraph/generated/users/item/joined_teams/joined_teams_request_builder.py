@@ -44,7 +44,7 @@ class JoinedTeamsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[JoinedTeamsRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamCollectionResponse]:
         """
-        Get the teams in Microsoft Teams that the user is a direct member of.
+        Get the teams in Microsoft Teams that the user is a direct member of. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/user-list-joinedteams?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class JoinedTeamsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[JoinedTeamsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the teams in Microsoft Teams that the user is a direct member of.
+        Get the teams in Microsoft Teams that the user is a direct member of. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class JoinedTeamsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return JoinedTeamsRequestBuilder(raw_url, self.request_adapter)
+        return JoinedTeamsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class JoinedTeamsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class JoinedTeamsRequestBuilderGetQueryParameters():
         """
-        Get the teams in Microsoft Teams that the user is a direct member of.
+        Get the teams in Microsoft Teams that the user is a direct member of. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

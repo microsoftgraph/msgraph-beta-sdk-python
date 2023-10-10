@@ -48,7 +48,7 @@ class AccessReviewHistoryDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewHistoryDefinition]:
         """
-        Retrieve an accessReviewHistoryDefinition object by its identifier. All of the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned.
+        Retrieve an accessReviewHistoryDefinition object by its identifier. All of the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewHistoryDefinition]
         Find more info here: https://learn.microsoft.com/graph/api/accessreviewhistorydefinition-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class AccessReviewHistoryDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve an accessReviewHistoryDefinition object by its identifier. All of the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned.
+        Retrieve an accessReviewHistoryDefinition object by its identifier. All of the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class AccessReviewHistoryDefinitionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessReviewHistoryDefinitionItemRequestBuilder(raw_url, self.request_adapter)
+        return AccessReviewHistoryDefinitionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def instances(self) -> InstancesRequestBuilder:
@@ -176,7 +176,7 @@ class AccessReviewHistoryDefinitionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessReviewHistoryDefinitionItemRequestBuilderGetQueryParameters():
         """
-        Retrieve an accessReviewHistoryDefinition object by its identifier. All of the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned.
+        Retrieve an accessReviewHistoryDefinition object by its identifier. All of the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

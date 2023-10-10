@@ -79,7 +79,7 @@ class CreateServerLogCollectionRequestRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CreateServerLogCollectionRequestRequestBuilder(raw_url, self.request_adapter)
+        return CreateServerLogCollectionRequestRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

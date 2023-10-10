@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_ios_available_update_versions_response import GetIosAvailableUpdateVersionsResponse
+    from .get_ios_available_update_versions_get_response import GetIosAvailableUpdateVersionsGetResponse
 
 class GetIosAvailableUpdateVersionsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetIosAvailableUpdateVersionsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceConfigurations/getIosAvailableUpdateVersions(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetIosAvailableUpdateVersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetIosAvailableUpdateVersionsResponse]:
+    async def get(self,request_configuration: Optional[GetIosAvailableUpdateVersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetIosAvailableUpdateVersionsGetResponse]:
         """
         Invoke function getIosAvailableUpdateVersions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetIosAvailableUpdateVersionsResponse]
+        Returns: Optional[GetIosAvailableUpdateVersionsGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetIosAvailableUpdateVersionsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_ios_available_update_versions_response import GetIosAvailableUpdateVersionsResponse
+        from .get_ios_available_update_versions_get_response import GetIosAvailableUpdateVersionsGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetIosAvailableUpdateVersionsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetIosAvailableUpdateVersionsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetIosAvailableUpdateVersionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetIosAvailableUpdateVersionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetIosAvailableUpdateVersionsRequestBuilder(raw_url, self.request_adapter)
+        return GetIosAvailableUpdateVersionsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetIosAvailableUpdateVersionsRequestBuilderGetQueryParameters():

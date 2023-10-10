@@ -28,7 +28,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[UserSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a userSource object.
+        Delete a userSource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-usersource-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UserSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserSource]:
         """
-        Read the properties and relationships of a userSource object.
+        Read the properties and relationships of a userSource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserSource]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-usersource-get?view=graph-rest-1.0
@@ -94,7 +94,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[UserSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a userSource object.
+        Delete a userSource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UserSourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a userSource object.
+        Read the properties and relationships of a userSource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserSourceItemRequestBuilder(raw_url, self.request_adapter)
+        return UserSourceItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserSourceItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a userSource object.
+        Read the properties and relationships of a userSource object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

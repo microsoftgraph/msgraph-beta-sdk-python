@@ -27,7 +27,7 @@ class RemovePersonalDataRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RemovePersonalDataRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Create a request to remove the personal data for an inboundSharedUserProfile. 
+        Create a request to remove the personal data for an inboundSharedUserProfile.  This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/inboundshareduserprofile-removepersonaldata?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class RemovePersonalDataRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RemovePersonalDataRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a request to remove the personal data for an inboundSharedUserProfile. 
+        Create a request to remove the personal data for an inboundSharedUserProfile.  This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class RemovePersonalDataRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RemovePersonalDataRequestBuilder(raw_url, self.request_adapter)
+        return RemovePersonalDataRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

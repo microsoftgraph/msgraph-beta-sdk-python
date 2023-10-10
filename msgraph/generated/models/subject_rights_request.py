@@ -51,7 +51,7 @@ class SubjectRightsRequest(Entity):
     external_id: Optional[str] = None
     # Collection of history change events.
     history: Optional[List[SubjectRightsRequestHistory]] = None
-    # Include all versions of the documents. By default, the current copies of the documents will be returned. If SharePoint sites have versioning enabled, including all versions will include the historical copies of the documents. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
+    # Include all versions of the documents. By default, the current copies of the documents will be returned. If SharePoint sites have versioning enabled, including all versions include the historical copies of the documents. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
     include_all_versions: Optional[bool] = None
     # Include content authored by the data subject. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
     include_authored_content: Optional[bool] = None
@@ -63,18 +63,18 @@ class SubjectRightsRequest(Entity):
     last_modified_by: Optional[IdentitySet] = None
     # The date and time when the request was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
-    # The mailboxlocations property
-    mailboxlocations: Optional[SubjectRightsRequestMailboxLocation] = None
+    # The mailbox locations that should be searched. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
+    mailbox_locations: Optional[SubjectRightsRequestMailboxLocation] = None
     # List of notes associated with the request.
     notes: Optional[List[AuthoredNote]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Pause the request after estimate has finished. By default, the data estimate will run and then pause, allowing you to preview results and then select the option to retrieve data in the UI. You can set this property to false if you want it to perform the estimate and then automatically begin with the retrieval of the content. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
+    # Pause the request after estimate has finished. By default, the data estimate runs and then pauses, allowing you to preview results and then select the option to retrieve data in the UI. You can set this property to false if you want it to perform the estimate and then automatically begin with the retrieval of the content. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
     pause_after_estimate: Optional[bool] = None
-    # List of regulations that this request will fulfill.
+    # List of regulations that this request fulfills.
     regulations: Optional[List[str]] = None
-    # The sitelocations property
-    sitelocations: Optional[SubjectRightsRequestSiteLocation] = None
+    # The SharePoint and OneDrive site locations that should be searched. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
+    site_locations: Optional[SubjectRightsRequestSiteLocation] = None
     # Information about the different stages for the request.
     stages: Optional[List[SubjectRightsRequestStageDetail]] = None
     # The status of the request. Possible values are: active, closed, unknownFutureValue.
@@ -152,11 +152,11 @@ class SubjectRightsRequest(Entity):
             "internalDueDateTime": lambda n : setattr(self, 'internal_due_date_time', n.get_datetime_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "mailboxlocations": lambda n : setattr(self, 'mailboxlocations', n.get_object_value(SubjectRightsRequestMailboxLocation)),
+            "mailboxLocations": lambda n : setattr(self, 'mailbox_locations', n.get_object_value(SubjectRightsRequestMailboxLocation)),
             "notes": lambda n : setattr(self, 'notes', n.get_collection_of_object_values(AuthoredNote)),
             "pauseAfterEstimate": lambda n : setattr(self, 'pause_after_estimate', n.get_bool_value()),
             "regulations": lambda n : setattr(self, 'regulations', n.get_collection_of_primitive_values(str)),
-            "sitelocations": lambda n : setattr(self, 'sitelocations', n.get_object_value(SubjectRightsRequestSiteLocation)),
+            "siteLocations": lambda n : setattr(self, 'site_locations', n.get_object_value(SubjectRightsRequestSiteLocation)),
             "stages": lambda n : setattr(self, 'stages', n.get_collection_of_object_values(SubjectRightsRequestStageDetail)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(SubjectRightsRequestStatus)),
             "team": lambda n : setattr(self, 'team', n.get_object_value(Team)),
@@ -194,11 +194,11 @@ class SubjectRightsRequest(Entity):
         writer.write_datetime_value("internalDueDateTime", self.internal_due_date_time)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
-        writer.write_object_value("mailboxlocations", self.mailboxlocations)
+        writer.write_object_value("mailboxLocations", self.mailbox_locations)
         writer.write_collection_of_object_values("notes", self.notes)
         writer.write_bool_value("pauseAfterEstimate", self.pause_after_estimate)
         writer.write_collection_of_primitive_values("regulations", self.regulations)
-        writer.write_object_value("sitelocations", self.sitelocations)
+        writer.write_object_value("siteLocations", self.site_locations)
         writer.write_collection_of_object_values("stages", self.stages)
         writer.write_enum_value("status", self.status)
         writer.write_object_value("team", self.team)

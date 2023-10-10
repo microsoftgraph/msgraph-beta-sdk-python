@@ -25,7 +25,7 @@ class AuthenticationAttributeCollectionInputConfiguration(AdditionalDataHolder, 
     hidden: Optional[bool] = None
     # The inputType property
     input_type: Optional[AuthenticationAttributeCollectionInputType] = None
-    # The label of the attribute field that will be displayed to end user, unless overridden.
+    # The label of the attribute field that is displayed to end user, unless overridden.
     label: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -35,7 +35,7 @@ class AuthenticationAttributeCollectionInputConfiguration(AdditionalDataHolder, 
     required: Optional[bool] = None
     # The regex for the value of the field.
     validation_reg_ex: Optional[str] = None
-    # Whether the value collected will be stored.
+    # Whether the value collected is stored.
     write_to_directory: Optional[bool] = None
     
     @staticmethod

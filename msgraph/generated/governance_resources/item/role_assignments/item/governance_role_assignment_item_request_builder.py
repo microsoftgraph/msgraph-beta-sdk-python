@@ -154,7 +154,7 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GovernanceRoleAssignmentItemRequestBuilder(raw_url, self.request_adapter)
+        return GovernanceRoleAssignmentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def linked_eligible_role_assignment(self) -> LinkedEligibleRoleAssignmentRequestBuilder:

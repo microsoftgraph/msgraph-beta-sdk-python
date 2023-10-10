@@ -17,7 +17,7 @@ class BaseEndUserNotification(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The defaultLanguage property
+    # The default language for the end user notification.
     default_language: Optional[str] = None
     # The endUserNotification property
     end_user_notification: Optional[EndUserNotification] = None

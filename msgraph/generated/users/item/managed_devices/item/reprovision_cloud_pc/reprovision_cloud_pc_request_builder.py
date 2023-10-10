@@ -27,7 +27,7 @@ class ReprovisionCloudPcRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[ReprovisionCloudPcRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Reprovision a Cloud PC with an Intune managed device ID.
+        Reprovision a Cloud PC with an Intune managed device ID. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/manageddevice-reprovisioncloudpc?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class ReprovisionCloudPcRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[ReprovisionCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Reprovision a Cloud PC with an Intune managed device ID.
+        Reprovision a Cloud PC with an Intune managed device ID. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class ReprovisionCloudPcRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReprovisionCloudPcRequestBuilder(raw_url, self.request_adapter)
+        return ReprovisionCloudPcRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

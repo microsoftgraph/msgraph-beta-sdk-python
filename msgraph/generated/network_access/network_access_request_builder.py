@@ -124,7 +124,7 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return NetworkAccessRequestBuilder(raw_url, self.request_adapter)
+        return NetworkAccessRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def connectivity(self) -> ConnectivityRequestBuilder:

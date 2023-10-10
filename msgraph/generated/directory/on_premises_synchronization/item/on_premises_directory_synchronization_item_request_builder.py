@@ -47,7 +47,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OnPremisesDirectorySynchronizationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[OnPremisesDirectorySynchronization]:
         """
-        Read the properties and relationships of an onPremisesDirectorySynchronization object.
+        Read the properties and relationships of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesDirectorySynchronization]
         Find more info here: https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[OnPremisesDirectorySynchronization] = None, request_configuration: Optional[OnPremisesDirectorySynchronizationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[OnPremisesDirectorySynchronization]:
         """
-        Update the properties of an onPremisesDirectorySynchronization object.
+        Update the properties of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesDirectorySynchronization]
@@ -109,7 +109,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesDirectorySynchronizationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an onPremisesDirectorySynchronization object.
+        Read the properties and relationships of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[OnPremisesDirectorySynchronization] = None, request_configuration: Optional[OnPremisesDirectorySynchronizationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an onPremisesDirectorySynchronization object.
+        Update the properties of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnPremisesDirectorySynchronizationItemRequestBuilder(raw_url, self.request_adapter)
+        return OnPremisesDirectorySynchronizationItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OnPremisesDirectorySynchronizationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an onPremisesDirectorySynchronization object.
+        Read the properties and relationships of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

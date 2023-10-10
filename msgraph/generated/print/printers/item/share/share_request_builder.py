@@ -72,7 +72,7 @@ class ShareRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ShareRequestBuilder(raw_url, self.request_adapter)
+        return ShareRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class ShareRequestBuilderGetQueryParameters():

@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .get_all_recordings_response import GetAllRecordingsResponse
+    from .get_all_recordings_get_response import GetAllRecordingsGetResponse
 
 class GetAllRecordingsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetAllRecordingsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/onlineMeetings/getAllRecordings(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetAllRecordingsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetAllRecordingsResponse]:
+    async def get(self,request_configuration: Optional[GetAllRecordingsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetAllRecordingsGetResponse]:
         """
         Invoke function getAllRecordings
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetAllRecordingsResponse]
+        Returns: Optional[GetAllRecordingsGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetAllRecordingsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_all_recordings_response import GetAllRecordingsResponse
+        from .get_all_recordings_get_response import GetAllRecordingsGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetAllRecordingsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetAllRecordingsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetAllRecordingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetAllRecordingsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetAllRecordingsRequestBuilder(raw_url, self.request_adapter)
+        return GetAllRecordingsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetAllRecordingsRequestBuilderGetQueryParameters():

@@ -14,9 +14,9 @@ class PlannerExternalBucketSource(PlannerBucketCreation):
     odata_type: Optional[str] = "#microsoft.graph.plannerExternalBucketSource"
     # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
     context_scenario_id: Optional[str] = None
-    # Nullable. The id of the external entity's containing entity or context.
+    # Nullable. The ID of the external entity's containing entity or context.
     external_context_id: Optional[str] = None
-    # Nullable. The id of the entity that an external service associates with a bucket.
+    # Nullable. The ID of the entity that an external service associates with a bucket.
     external_object_id: Optional[str] = None
     
     @staticmethod

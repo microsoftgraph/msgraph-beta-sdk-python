@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
-    from .get_cloud_pc_remote_action_results_response import GetCloudPcRemoteActionResultsResponse
+    from .get_cloud_pc_remote_action_results_get_response import GetCloudPcRemoteActionResultsGetResponse
 
 class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/getCloudPcRemoteActionResults(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetCloudPcRemoteActionResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetCloudPcRemoteActionResultsResponse]:
+    async def get(self,request_configuration: Optional[GetCloudPcRemoteActionResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetCloudPcRemoteActionResultsGetResponse]:
         """
         Invoke function getCloudPcRemoteActionResults
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetCloudPcRemoteActionResultsResponse]
+        Returns: Optional[GetCloudPcRemoteActionResultsGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_cloud_pc_remote_action_results_response import GetCloudPcRemoteActionResultsResponse
+        from .get_cloud_pc_remote_action_results_get_response import GetCloudPcRemoteActionResultsGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetCloudPcRemoteActionResultsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetCloudPcRemoteActionResultsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetCloudPcRemoteActionResultsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetCloudPcRemoteActionResultsRequestBuilder(raw_url, self.request_adapter)
+        return GetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetCloudPcRemoteActionResultsRequestBuilderGetQueryParameters():

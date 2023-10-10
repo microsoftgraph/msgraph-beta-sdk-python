@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .update_global_script_post_request_body import UpdateGlobalScriptPostRequestBody
-    from .update_global_script_response import UpdateGlobalScriptResponse
+    from .update_global_script_post_response import UpdateGlobalScriptPostResponse
 
 class UpdateGlobalScriptRequestBuilder(BaseRequestBuilder):
     """
@@ -27,12 +27,12 @@ class UpdateGlobalScriptRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceHealthScripts/{deviceHealthScript%2Did}/updateGlobalScript", path_parameters)
     
-    async def post(self,body: Optional[UpdateGlobalScriptPostRequestBody] = None, request_configuration: Optional[UpdateGlobalScriptRequestBuilderPostRequestConfiguration] = None) -> Optional[UpdateGlobalScriptResponse]:
+    async def post(self,body: Optional[UpdateGlobalScriptPostRequestBody] = None, request_configuration: Optional[UpdateGlobalScriptRequestBuilderPostRequestConfiguration] = None) -> Optional[UpdateGlobalScriptPostResponse]:
         """
         Update the Proprietary Device Health Script
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[UpdateGlobalScriptResponse]
+        Returns: Optional[UpdateGlobalScriptPostResponse]
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -47,9 +47,9 @@ class UpdateGlobalScriptRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .update_global_script_response import UpdateGlobalScriptResponse
+        from .update_global_script_post_response import UpdateGlobalScriptPostResponse
 
-        return await self.request_adapter.send_async(request_info, UpdateGlobalScriptResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UpdateGlobalScriptPostResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[UpdateGlobalScriptPostRequestBody] = None, request_configuration: Optional[UpdateGlobalScriptRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -79,7 +79,7 @@ class UpdateGlobalScriptRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpdateGlobalScriptRequestBuilder(raw_url, self.request_adapter)
+        return UpdateGlobalScriptRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

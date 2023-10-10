@@ -146,7 +146,7 @@ class AppConsentRequestsForApprovalRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AppConsentRequestsForApprovalRequestBuilder(raw_url, self.request_adapter)
+        return AppConsentRequestsForApprovalRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

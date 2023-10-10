@@ -30,7 +30,7 @@ class AccessReviewScheduleDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an accessReviewScheduleDefinition object.
+        Delete an accessReviewScheduleDefinition object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class AccessReviewScheduleDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewScheduleDefinition]:
         """
-        Retrieve an accessReviewScheduleDefinition object by ID. This returns all properties of the scheduled access review series except for the associated accessReviewInstances. Each accessReviewScheduleDefinition has at least one instance. An instance represents a review for a specific resource (such as a particular group's members), during one occurrence (e.g., March 2021) of a recurring review. To retrieve the instances of the access review series, use the list accessReviewInstance API.
+        Retrieve an accessReviewScheduleDefinition object by ID. This returns all properties of the scheduled access review series except for the associated accessReviewInstances. Each accessReviewScheduleDefinition has at least one instance. An instance represents a review for a specific resource (such as a particular group's members), during one occurrence (for example, March 2021) of a recurring review. To retrieve the instances of the access review series, use the list accessReviewInstance API. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewScheduleDefinition]
         Find more info here: https://learn.microsoft.com/graph/api/accessreviewscheduledefinition-get?view=graph-rest-1.0
@@ -97,7 +97,7 @@ class AccessReviewScheduleDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an accessReviewScheduleDefinition object.
+        Delete an accessReviewScheduleDefinition object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class AccessReviewScheduleDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve an accessReviewScheduleDefinition object by ID. This returns all properties of the scheduled access review series except for the associated accessReviewInstances. Each accessReviewScheduleDefinition has at least one instance. An instance represents a review for a specific resource (such as a particular group's members), during one occurrence (e.g., March 2021) of a recurring review. To retrieve the instances of the access review series, use the list accessReviewInstance API.
+        Retrieve an accessReviewScheduleDefinition object by ID. This returns all properties of the scheduled access review series except for the associated accessReviewInstances. Each accessReviewScheduleDefinition has at least one instance. An instance represents a review for a specific resource (such as a particular group's members), during one occurrence (for example, March 2021) of a recurring review. To retrieve the instances of the access review series, use the list accessReviewInstance API. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -155,7 +155,7 @@ class AccessReviewScheduleDefinitionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessReviewScheduleDefinitionItemRequestBuilder(raw_url, self.request_adapter)
+        return AccessReviewScheduleDefinitionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def instances(self) -> InstancesRequestBuilder:
@@ -188,7 +188,7 @@ class AccessReviewScheduleDefinitionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessReviewScheduleDefinitionItemRequestBuilderGetQueryParameters():
         """
-        Retrieve an accessReviewScheduleDefinition object by ID. This returns all properties of the scheduled access review series except for the associated accessReviewInstances. Each accessReviewScheduleDefinition has at least one instance. An instance represents a review for a specific resource (such as a particular group's members), during one occurrence (e.g., March 2021) of a recurring review. To retrieve the instances of the access review series, use the list accessReviewInstance API.
+        Retrieve an accessReviewScheduleDefinition object by ID. This returns all properties of the scheduled access review series except for the associated accessReviewInstances. Each accessReviewScheduleDefinition has at least one instance. An instance represents a review for a specific resource (such as a particular group's members), during one occurrence (for example, March 2021) of a recurring review. To retrieve the instances of the access review series, use the list accessReviewInstance API. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

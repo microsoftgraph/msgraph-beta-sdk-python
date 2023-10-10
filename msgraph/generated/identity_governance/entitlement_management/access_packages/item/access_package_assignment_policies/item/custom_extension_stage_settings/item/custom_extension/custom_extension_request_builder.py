@@ -28,7 +28,7 @@ class CustomExtensionRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CustomExtensionRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomCalloutExtension]:
         """
-        Indicates the custom workflow extension that will be executed at this stage. Nullable. Supports $expand.
+        Indicates the custom workflow extension that is executed at this stage. Nullable. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomCalloutExtension]
         """
@@ -49,7 +49,7 @@ class CustomExtensionRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CustomExtensionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Indicates the custom workflow extension that will be executed at this stage. Nullable. Supports $expand.
+        Indicates the custom workflow extension that is executed at this stage. Nullable. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,12 +72,12 @@ class CustomExtensionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CustomExtensionRequestBuilder(raw_url, self.request_adapter)
+        return CustomExtensionRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class CustomExtensionRequestBuilderGetQueryParameters():
         """
-        Indicates the custom workflow extension that will be executed at this stage. Nullable. Supports $expand.
+        Indicates the custom workflow extension that is executed at this stage. Nullable. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

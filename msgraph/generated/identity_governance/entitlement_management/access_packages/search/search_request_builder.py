@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .search_response import SearchResponse
+    from .search_get_response import SearchGetResponse
 
 class SearchRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class SearchRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackages/Search(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> Optional[SearchResponse]:
+    async def get(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> Optional[SearchGetResponse]:
         """
         Invoke function Search
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[SearchResponse]
+        Returns: Optional[SearchGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class SearchRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .search_response import SearchResponse
+        from .search_get_response import SearchGetResponse
 
-        return await self.request_adapter.send_async(request_info, SearchResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SearchGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class SearchRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SearchRequestBuilder(raw_url, self.request_adapter)
+        return SearchRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class SearchRequestBuilderGetQueryParameters():

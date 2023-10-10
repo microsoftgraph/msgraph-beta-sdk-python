@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ........models.ediscovery.case_export_operation import CaseExportOperation
     from ........models.o_data_errors.o_data_error import ODataError
+    from .review_set.review_set_request_builder import ReviewSetRequestBuilder
 
 class MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder(BaseRequestBuilder):
     """
@@ -72,7 +73,16 @@ class MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder(BaseRequestBuild
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def review_set(self) -> ReviewSetRequestBuilder:
+        """
+        Provides operations to manage the reviewSet property of the microsoft.graph.ediscovery.caseExportOperation entity.
+        """
+        from .review_set.review_set_request_builder import ReviewSetRequestBuilder
+
+        return ReviewSetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilderGetQueryParameters():

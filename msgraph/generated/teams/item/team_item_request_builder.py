@@ -67,7 +67,7 @@ class TeamItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TeamItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Team]:
         """
-        Retrieve the properties and relationships of the specified team.
+        Retrieve the properties and relationships of the specified team. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Team]
         Find more info here: https://learn.microsoft.com/graph/api/team-get?view=graph-rest-1.0
@@ -89,7 +89,7 @@ class TeamItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Team] = None, request_configuration: Optional[TeamItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Team]:
         """
-        Update the properties of the specified team.
+        Update the properties of the specified team. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Team]
@@ -129,7 +129,7 @@ class TeamItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TeamItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of the specified team.
+        Retrieve the properties and relationships of the specified team. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +146,7 @@ class TeamItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Team] = None, request_configuration: Optional[TeamItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of the specified team.
+        Update the properties of the specified team. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -172,7 +172,7 @@ class TeamItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TeamItemRequestBuilder(raw_url, self.request_adapter)
+        return TeamItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def all_channels(self) -> AllChannelsRequestBuilder:
@@ -367,7 +367,7 @@ class TeamItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of the specified team.
+        Retrieve the properties and relationships of the specified team. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

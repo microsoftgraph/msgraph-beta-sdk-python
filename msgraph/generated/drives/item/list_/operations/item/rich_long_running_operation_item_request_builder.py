@@ -47,7 +47,7 @@ class RichLongRunningOperationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RichLongRunningOperationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[RichLongRunningOperation]:
         """
-        The collection of long running operations for the list.
+        The collection of long-running operations on the list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RichLongRunningOperation]
         """
@@ -107,7 +107,7 @@ class RichLongRunningOperationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RichLongRunningOperationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of long running operations for the list.
+        The collection of long-running operations on the list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -150,7 +150,7 @@ class RichLongRunningOperationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RichLongRunningOperationItemRequestBuilder(raw_url, self.request_adapter)
+        return RichLongRunningOperationItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -165,7 +165,7 @@ class RichLongRunningOperationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RichLongRunningOperationItemRequestBuilderGetQueryParameters():
         """
-        The collection of long running operations for the list.
+        The collection of long-running operations on the list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

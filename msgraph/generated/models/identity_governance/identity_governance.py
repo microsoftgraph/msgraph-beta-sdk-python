@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from ..access_review_set import AccessReviewSet
     from ..app_consent_approval_route import AppConsentApprovalRoute
     from ..entitlement_management import EntitlementManagement
+    from ..permissions_management import PermissionsManagement
     from ..privileged_access_root import PrivilegedAccessRoot
     from ..role_management_alert import RoleManagementAlert
     from ..terms_of_use_container import TermsOfUseContainer
@@ -30,6 +31,8 @@ class IdentityGovernance(AdditionalDataHolder, BackedModel, Parsable):
     lifecycle_workflows: Optional[LifecycleWorkflowsContainer] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The permissionsManagement property
+    permissions_management: Optional[PermissionsManagement] = None
     # The privilegedAccess property
     privileged_access: Optional[PrivilegedAccessRoot] = None
     # The roleManagementAlerts property
@@ -56,6 +59,7 @@ class IdentityGovernance(AdditionalDataHolder, BackedModel, Parsable):
         from ..access_review_set import AccessReviewSet
         from ..app_consent_approval_route import AppConsentApprovalRoute
         from ..entitlement_management import EntitlementManagement
+        from ..permissions_management import PermissionsManagement
         from ..privileged_access_root import PrivilegedAccessRoot
         from ..role_management_alert import RoleManagementAlert
         from ..terms_of_use_container import TermsOfUseContainer
@@ -64,6 +68,7 @@ class IdentityGovernance(AdditionalDataHolder, BackedModel, Parsable):
         from ..access_review_set import AccessReviewSet
         from ..app_consent_approval_route import AppConsentApprovalRoute
         from ..entitlement_management import EntitlementManagement
+        from ..permissions_management import PermissionsManagement
         from ..privileged_access_root import PrivilegedAccessRoot
         from ..role_management_alert import RoleManagementAlert
         from ..terms_of_use_container import TermsOfUseContainer
@@ -75,6 +80,7 @@ class IdentityGovernance(AdditionalDataHolder, BackedModel, Parsable):
             "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(EntitlementManagement)),
             "lifecycleWorkflows": lambda n : setattr(self, 'lifecycle_workflows', n.get_object_value(LifecycleWorkflowsContainer)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "permissionsManagement": lambda n : setattr(self, 'permissions_management', n.get_object_value(PermissionsManagement)),
             "privilegedAccess": lambda n : setattr(self, 'privileged_access', n.get_object_value(PrivilegedAccessRoot)),
             "roleManagementAlerts": lambda n : setattr(self, 'role_management_alerts', n.get_object_value(RoleManagementAlert)),
             "termsOfUse": lambda n : setattr(self, 'terms_of_use', n.get_object_value(TermsOfUseContainer)),
@@ -94,6 +100,7 @@ class IdentityGovernance(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("entitlementManagement", self.entitlement_management)
         writer.write_object_value("lifecycleWorkflows", self.lifecycle_workflows)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("permissionsManagement", self.permissions_management)
         writer.write_object_value("privilegedAccess", self.privileged_access)
         writer.write_object_value("roleManagementAlerts", self.role_management_alerts)
         writer.write_object_value("termsOfUse", self.terms_of_use)

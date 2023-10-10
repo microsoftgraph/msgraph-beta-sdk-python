@@ -31,7 +31,7 @@ class RetentionLabelItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a retentionLabel object.
+        Delete a retentionLabel object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-retentionlabel-delete?view=graph-rest-1.0
@@ -72,7 +72,7 @@ class RetentionLabelItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[RetentionLabel]:
         """
-        Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
+        Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RetentionLabel]
@@ -97,7 +97,7 @@ class RetentionLabelItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a retentionLabel object.
+        Delete a retentionLabel object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -129,7 +129,7 @@ class RetentionLabelItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
+        Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -155,7 +155,7 @@ class RetentionLabelItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RetentionLabelItemRequestBuilder(raw_url, self.request_adapter)
+        return RetentionLabelItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def descriptors(self) -> DescriptorsRequestBuilder:

@@ -17,7 +17,7 @@ from .entity import Entity
 
 @dataclass
 class TeamsAppDefinition(Entity):
-    # A collection of scopes where the Teams app can be installed. Possible values are:team — Indicates that the Teams app can be installed within a team and is authorized to access that team's data. groupChat  — Indicates that the Teams app can be installed within a group chat and is authorized to access that group chat's data.  personal — Indicates that the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
+    # A collection of scopes where the Teams app can be installed. Possible values are:team—Indicates that the Teams app can be installed within a team and is authorized to access that team's data. groupChat—Indicates that the Teams app can be installed within a group chat and is authorized to access that group chat's data.  personal—Indicates that the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
     allowed_installation_scopes: Optional[TeamsAppInstallationScopes] = None
     # Authorization requirements specified in the Teams app manifest.
     authorization: Optional[TeamsAppAuthorization] = None
@@ -39,7 +39,7 @@ class TeamsAppDefinition(Entity):
     odata_type: Optional[str] = None
     # The outline version of the Teams app's icon.
     outline_icon: Optional[TeamsAppIcon] = None
-    # The published status of a specific version of a Teams app. Possible values are:submitted — The specific version of the Teams app has been submitted and is under review. published  — The request to publish the specific version of the Teams app has been approved by the admin and the app is published.  rejected — The request to publish the specific version of the Teams app was rejected by the admin.
+    # The published status of a specific version of a Teams app. Possible values are:submitted—The specific version of the Teams app has been submitted and is under review. published—The request to publish the specific version of the Teams app has been approved by the admin and the app is published.  rejected — The request to publish the specific version of the Teams app was rejected by the admin.
     publishing_state: Optional[TeamsAppPublishingState] = None
     # The shortdescription property
     shortdescription: Optional[str] = None
@@ -81,7 +81,7 @@ class TeamsAppDefinition(Entity):
         from .teamwork_bot import TeamworkBot
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_enum_value(TeamsAppInstallationScopes)),
+            "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_collection_of_enum_values(TeamsAppInstallationScopes)),
             "authorization": lambda n : setattr(self, 'authorization', n.get_object_value(TeamsAppAuthorization)),
             "azureADAppId": lambda n : setattr(self, 'azure_a_d_app_id', n.get_str_value()),
             "bot": lambda n : setattr(self, 'bot', n.get_object_value(TeamworkBot)),

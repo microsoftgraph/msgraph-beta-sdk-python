@@ -45,7 +45,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[SourceCollectionCollectionResponse]:
         """
-        Get the list of sourceCollections from a case object.
+        Get the list of sourceCollections from a case object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceCollectionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-list-sourcecollections?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[SourceCollection]:
         """
-        Create a new sourceCollection object.
+        Create a new sourceCollection object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceCollection]
@@ -92,7 +92,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of sourceCollections from a case object.
+        Get the list of sourceCollections from a case object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new sourceCollection object.
+        Create a new sourceCollection object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SourceCollectionsRequestBuilder(raw_url, self.request_adapter)
+        return SourceCollectionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SourceCollectionsRequestBuilderGetQueryParameters():
         """
-        Get the list of sourceCollections from a case object.
+        Get the list of sourceCollections from a case object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

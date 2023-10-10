@@ -21,7 +21,7 @@ class ReportSuspiciousActivitySettings(AdditionalDataHolder, BackedModel, Parsab
     odata_type: Optional[str] = None
     # The state property
     state: Optional[AdvancedConfigState] = None
-    # Specifies the number the user will enter on their phone to report the MFA prompt as suspicious.
+    # Specifies the number the user enters on their phone to report the MFA prompt as suspicious.
     voice_reporting_code: Optional[int] = None
     
     @staticmethod

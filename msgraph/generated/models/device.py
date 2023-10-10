@@ -22,7 +22,7 @@ class Device(DirectoryObject):
     account_enabled: Optional[bool] = None
     # For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
     alternative_security_ids: Optional[List[AlternativeSecurityId]] = None
-    # The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderBy.
+    # The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderby.
     approximate_last_sign_in_date_time: Optional[datetime.datetime] = None
     # Set of commands sent to this device.
     commands: Optional[List[Command]] = None
@@ -38,7 +38,7 @@ class Device(DirectoryObject):
     device_ownership: Optional[str] = None
     # For internal use only.
     device_version: Optional[int] = None
-    # The display name for the device. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    # The display name for the device. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
     # The on-premises domain name of Hybrid Azure AD joined devices. This property is set by Intune.
     domain_name: Optional[str] = None
@@ -64,18 +64,20 @@ class Device(DirectoryObject):
     kind: Optional[str] = None
     # Management channel of the device.  This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
     management_type: Optional[str] = None
-    # Manufacturer of the device. Read-only.
+    # Manufacturer of device. Only returned if user signs in with a Microsoft account as part of Project Rome.
     manufacturer: Optional[str] = None
     # Application identifier used to register device into MDM. Read-only. Supports $filter (eq, ne, not, startsWith).
     mdm_app_id: Optional[str] = None
     # Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.
     member_of: Optional[List[DirectoryObject]] = None
-    # Model of the device. Read-only.
+    # Model of device. Only returned if user signs in with a Microsoft account as part of Project Rome.
     model: Optional[str] = None
     # Friendly name of a device. Only returned if user signs in with a Microsoft account as part of Project Rome.
     name: Optional[str] = None
     # The last time at which the object was synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Read-only. Supports $filter (eq, ne, not, ge, le, in).
     on_premises_last_sync_date_time: Optional[datetime.datetime] = None
+    # The onPremisesSecurityIdentifier property
+    on_premises_security_identifier: Optional[str] = None
     # true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
     on_premises_sync_enabled: Optional[bool] = None
     # The type of operating system on the device. Required. Supports $filter (eq, ne, not, ge, le, startsWith, and eq on null values).
@@ -165,6 +167,7 @@ class Device(DirectoryObject):
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "onPremisesLastSyncDateTime": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
+            "onPremisesSecurityIdentifier": lambda n : setattr(self, 'on_premises_security_identifier', n.get_str_value()),
             "onPremisesSyncEnabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
             "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
             "operatingSystemVersion": lambda n : setattr(self, 'operating_system_version', n.get_str_value()),
@@ -222,6 +225,7 @@ class Device(DirectoryObject):
         writer.write_str_value("model", self.model)
         writer.write_str_value("name", self.name)
         writer.write_datetime_value("onPremisesLastSyncDateTime", self.on_premises_last_sync_date_time)
+        writer.write_str_value("onPremisesSecurityIdentifier", self.on_premises_security_identifier)
         writer.write_bool_value("onPremisesSyncEnabled", self.on_premises_sync_enabled)
         writer.write_str_value("operatingSystem", self.operating_system)
         writer.write_str_value("operatingSystemVersion", self.operating_system_version)

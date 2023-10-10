@@ -49,7 +49,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PermissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Permission]:
         """
-        Retrieve the properties and relationships of a permission object on a site.
+        Retrieve the properties and relationships of a permission object on a site. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
         Find more info here: https://learn.microsoft.com/graph/api/site-get-permission?view=graph-rest-1.0
@@ -71,7 +71,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Permission] = None, request_configuration: Optional[PermissionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Permission]:
         """
-        Update the permission object on a site.
+        Update the permission object on a site. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
@@ -111,7 +111,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PermissionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a permission object on a site.
+        Retrieve the properties and relationships of a permission object on a site. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -128,7 +128,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Permission] = None, request_configuration: Optional[PermissionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the permission object on a site.
+        Update the permission object on a site. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +154,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PermissionItemRequestBuilder(raw_url, self.request_adapter)
+        return PermissionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def grant(self) -> GrantRequestBuilder:
@@ -187,7 +187,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PermissionItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a permission object on a site.
+        Retrieve the properties and relationships of a permission object on a site. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

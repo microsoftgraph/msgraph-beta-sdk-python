@@ -24,6 +24,8 @@ class GetM365AppPlatformUserCountsWithPeriodRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getM365AppPlatformUserCounts(period='{period}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetM365AppPlatformUserCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> bytes:
@@ -68,7 +70,7 @@ class GetM365AppPlatformUserCountsWithPeriodRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetM365AppPlatformUserCountsWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetM365AppPlatformUserCountsWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

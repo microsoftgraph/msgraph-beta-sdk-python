@@ -66,7 +66,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[UserSource] = None, request_configuration: Optional[UserSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[UserSource]:
         """
-        Create a new userSource object.
+        Create a new userSource object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserSource]
@@ -108,7 +108,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[UserSource] = None, request_configuration: Optional[UserSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new userSource object.
+        Create a new userSource object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserSourcesRequestBuilder(raw_url, self.request_adapter)
+        return UserSourcesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

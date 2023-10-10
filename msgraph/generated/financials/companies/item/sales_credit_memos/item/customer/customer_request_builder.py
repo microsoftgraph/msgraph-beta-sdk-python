@@ -155,7 +155,7 @@ class CustomerRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CustomerRequestBuilder(raw_url, self.request_adapter)
+        return CustomerRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def currency(self) -> CurrencyRequestBuilder:

@@ -28,7 +28,7 @@ class ShiftItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ShiftItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a shift from the schedule.
+        Delete a shift from the schedule. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/shift-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class ShiftItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ShiftItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Shift]:
         """
-        Retrieve the properties and relationships of a shift object by ID.
+        Retrieve the properties and relationships of a shift object by ID. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Shift]
         Find more info here: https://learn.microsoft.com/graph/api/shift-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class ShiftItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Shift] = None, request_configuration: Optional[ShiftItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Shift]:
         """
-        Replace an existing shift. If the specified shift doesn't exist, this method returns 404 Not found. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
+        Replace an existing shift. If the specified shift doesn't exist, this method returns 404 Not found. The duration of a shift can't be less than 1 minute or longer than 24 hours.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Shift]
@@ -95,7 +95,7 @@ class ShiftItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ShiftItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a shift from the schedule.
+        Delete a shift from the schedule. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class ShiftItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ShiftItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a shift object by ID.
+        Retrieve the properties and relationships of a shift object by ID. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class ShiftItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Shift] = None, request_configuration: Optional[ShiftItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Replace an existing shift. If the specified shift doesn't exist, this method returns 404 Not found. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
+        Replace an existing shift. If the specified shift doesn't exist, this method returns 404 Not found. The duration of a shift can't be less than 1 minute or longer than 24 hours.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class ShiftItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ShiftItemRequestBuilder(raw_url, self.request_adapter)
+        return ShiftItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class ShiftItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ShiftItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a shift object by ID.
+        Retrieve the properties and relationships of a shift object by ID. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

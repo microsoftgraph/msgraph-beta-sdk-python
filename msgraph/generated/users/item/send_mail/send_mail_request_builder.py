@@ -28,7 +28,7 @@ class SendMailRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SendMailPostRequestBody] = None, request_configuration: Optional[SendMailRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Send the message specified in the request body using either JSON or MIME format. When using JSON format you can include an attachment and use a mention to call out another user in the new message. When using MIME format:- Provide the applicable Internet message headers and the MIME content, all encoded in base64 format in the request body.- Add any attachments and S/MIME properties to the MIME content. This method saves the message in the Sent Items folder. Alternatively, create a draft message to send later. To learn more about the steps involved in the backend before a mail is delivered to recipients, see here.
+        Send the message specified in the request body using either JSON or MIME format. When using JSON format, you can include an attachment and use a mention to call out another user in the new message. When using MIME format: This method saves the message in the Sent Items folder. Alternatively, create a draft message to send later. To learn more about the steps involved in the backend before a mail is delivered to recipients, see here. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class SendMailRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SendMailPostRequestBody] = None, request_configuration: Optional[SendMailRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Send the message specified in the request body using either JSON or MIME format. When using JSON format you can include an attachment and use a mention to call out another user in the new message. When using MIME format:- Provide the applicable Internet message headers and the MIME content, all encoded in base64 format in the request body.- Add any attachments and S/MIME properties to the MIME content. This method saves the message in the Sent Items folder. Alternatively, create a draft message to send later. To learn more about the steps involved in the backend before a mail is delivered to recipients, see here.
+        Send the message specified in the request body using either JSON or MIME format. When using JSON format, you can include an attachment and use a mention to call out another user in the new message. When using MIME format: This method saves the message in the Sent Items folder. Alternatively, create a draft message to send later. To learn more about the steps involved in the backend before a mail is delivered to recipients, see here. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class SendMailRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SendMailRequestBuilder(raw_url, self.request_adapter)
+        return SendMailRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

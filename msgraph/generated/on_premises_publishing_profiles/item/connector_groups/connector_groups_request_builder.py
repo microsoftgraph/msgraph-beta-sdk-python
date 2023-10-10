@@ -67,11 +67,11 @@ class ConnectorGroupsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[ConnectorGroup]:
         """
-        Create a connectorGroup object.
+        Create a new connectorGroup.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConnectorGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/connectorgroup-post?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/connectorgroup-post-connectorgroups?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -109,7 +109,7 @@ class ConnectorGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a connectorGroup object.
+        Create a new connectorGroup.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class ConnectorGroupsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConnectorGroupsRequestBuilder(raw_url, self.request_adapter)
+        return ConnectorGroupsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

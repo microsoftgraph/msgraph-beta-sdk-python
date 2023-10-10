@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class AuthenticationEventsFlow(Entity):
-    # The conditions representing the context of the authentication request which will be used to decide whether the events policy will be invoked.
+    # The conditions representing the context of the authentication request that will be used to decide whether the events policy will be invoked.
     conditions: Optional[AuthenticationConditions] = None
     # The description of the events policy.
     description: Optional[str] = None

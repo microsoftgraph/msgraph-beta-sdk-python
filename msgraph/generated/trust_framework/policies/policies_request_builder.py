@@ -45,7 +45,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[TrustFrameworkPolicyCollectionResponse]:
         """
-        Retrieve a list of trustFrameworkPolicies in the tenant/directory.
+        Retrieve a list of trustFrameworkPolicies in the tenant/directory. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkPolicyCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/trustframework-list-trustframeworkpolicies?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of trustFrameworkPolicies in the tenant/directory.
+        Retrieve a list of trustFrameworkPolicies in the tenant/directory. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PoliciesRequestBuilder(raw_url, self.request_adapter)
+        return PoliciesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PoliciesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of trustFrameworkPolicies in the tenant/directory.
+        Retrieve a list of trustFrameworkPolicies in the tenant/directory. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -45,7 +45,7 @@ class SecureScoresRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SecureScoresRequestBuilderGetRequestConfiguration] = None) -> Optional[SecureScoreCollectionResponse]:
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Retrieve the properties and relationships of a secureScores object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecureScoreCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/securescores-list?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class SecureScoresRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SecureScoresRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Retrieve the properties and relationships of a secureScores object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class SecureScoresRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SecureScoresRequestBuilder(raw_url, self.request_adapter)
+        return SecureScoresRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class SecureScoresRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SecureScoresRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Retrieve the properties and relationships of a secureScores object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

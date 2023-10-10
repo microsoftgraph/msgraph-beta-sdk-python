@@ -133,7 +133,7 @@ class ManagedAppPoliciesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedAppPoliciesRequestBuilder(raw_url, self.request_adapter)
+        return ManagedAppPoliciesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

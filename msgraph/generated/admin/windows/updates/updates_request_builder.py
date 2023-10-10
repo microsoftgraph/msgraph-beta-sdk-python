@@ -156,7 +156,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpdatesRequestBuilder(raw_url, self.request_adapter)
+        return UpdatesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def catalog(self) -> CatalogRequestBuilder:

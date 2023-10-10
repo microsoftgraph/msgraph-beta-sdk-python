@@ -28,7 +28,7 @@ class ConfirmRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None) -> Optional[TimeCard]:
         """
-        Confirm a specific timeCard.
+        Confirm a specific timeCard. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCard]
         Find more info here: https://learn.microsoft.com/graph/api/timecard-confirm?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class ConfirmRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Confirm a specific timeCard.
+        Confirm a specific timeCard. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +72,7 @@ class ConfirmRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConfirmRequestBuilder(raw_url, self.request_adapter)
+        return ConfirmRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

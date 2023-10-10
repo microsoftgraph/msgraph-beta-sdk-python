@@ -29,7 +29,7 @@ class EndBreakRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[EndBreakPostRequestBody] = None, request_configuration: Optional[EndBreakRequestBuilderPostRequestConfiguration] = None) -> Optional[TimeCard]:
         """
-        End the open break in a specific timeCard.
+        End the open break in a specific timeCard. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCard]
@@ -54,7 +54,7 @@ class EndBreakRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[EndBreakPostRequestBody] = None, request_configuration: Optional[EndBreakRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        End the open break in a specific timeCard.
+        End the open break in a specific timeCard. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class EndBreakRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EndBreakRequestBuilder(raw_url, self.request_adapter)
+        return EndBreakRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

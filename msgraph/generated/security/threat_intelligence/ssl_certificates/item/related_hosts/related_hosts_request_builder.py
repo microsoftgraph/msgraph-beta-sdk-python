@@ -44,7 +44,7 @@ class RelatedHostsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RelatedHostsRequestBuilderGetRequestConfiguration] = None) -> Optional[HostCollectionResponse]:
         """
-        Get relatedHosts from security
+        The hosts related with this sslCertificate.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostCollectionResponse]
         """
@@ -65,7 +65,7 @@ class RelatedHostsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RelatedHostsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get relatedHosts from security
+        The hosts related with this sslCertificate.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -88,7 +88,7 @@ class RelatedHostsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RelatedHostsRequestBuilder(raw_url, self.request_adapter)
+        return RelatedHostsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -102,7 +102,7 @@ class RelatedHostsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RelatedHostsRequestBuilderGetQueryParameters():
         """
-        Get relatedHosts from security
+        The hosts related with this sslCertificate.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

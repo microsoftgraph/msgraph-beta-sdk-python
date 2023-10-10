@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
-    from .get_office365_groups_activity_group_counts_with_period_response import GetOffice365GroupsActivityGroupCountsWithPeriodResponse
+    from .get_office365_groups_activity_group_counts_with_period_get_response import GetOffice365GroupsActivityGroupCountsWithPeriodGetResponse
 
 class GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(BaseRequestBuilder):
     """
@@ -25,13 +25,15 @@ class GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(BaseRequestB
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getOffice365GroupsActivityGroupCounts(period='{period}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> Optional[GetOffice365GroupsActivityGroupCountsWithPeriodResponse]:
+    async def get(self,request_configuration: Optional[GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> Optional[GetOffice365GroupsActivityGroupCountsWithPeriodGetResponse]:
         """
         Invoke function getOffice365GroupsActivityGroupCounts
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetOffice365GroupsActivityGroupCountsWithPeriodResponse]
+        Returns: Optional[GetOffice365GroupsActivityGroupCountsWithPeriodGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -44,9 +46,9 @@ class GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(BaseRequestB
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_office365_groups_activity_group_counts_with_period_response import GetOffice365GroupsActivityGroupCountsWithPeriodResponse
+        from .get_office365_groups_activity_group_counts_with_period_get_response import GetOffice365GroupsActivityGroupCountsWithPeriodGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetOffice365GroupsActivityGroupCountsWithPeriodResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetOffice365GroupsActivityGroupCountsWithPeriodGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -73,7 +75,7 @@ class GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(BaseRequestB
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilderGetQueryParameters():

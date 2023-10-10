@@ -23,7 +23,7 @@ class PrintJobConfiguration(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Whether the printer should collate pages wehen printing multiple copies of a multi-page document.
+    # Whether the printer should collate pages when printing multiple copies of a multi-page document.
     collate: Optional[bool] = None
     # The color mode the printer should use to print the job. Valid values are described in the table below. Read-only.
     color_mode: Optional[PrintColorMode] = None

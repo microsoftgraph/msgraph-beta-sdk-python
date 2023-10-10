@@ -56,7 +56,7 @@ class CustodianItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CustodianItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Custodian]:
         """
-        Read the properties and relationships of a custodian object.
+        Read the properties and relationships of a custodian object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Custodian]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-custodian-get?view=graph-rest-1.0
@@ -78,7 +78,7 @@ class CustodianItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Custodian]:
         """
-        Update the properties of a custodian object.
+        Update the properties of a custodian object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Custodian]
@@ -118,7 +118,7 @@ class CustodianItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CustodianItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a custodian object.
+        Read the properties and relationships of a custodian object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class CustodianItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a custodian object.
+        Update the properties of a custodian object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -161,7 +161,7 @@ class CustodianItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CustodianItemRequestBuilder(raw_url, self.request_adapter)
+        return CustodianItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def last_index_operation(self) -> LastIndexOperationRequestBuilder:
@@ -257,7 +257,7 @@ class CustodianItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustodianItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a custodian object.
+        Read the properties and relationships of a custodian object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

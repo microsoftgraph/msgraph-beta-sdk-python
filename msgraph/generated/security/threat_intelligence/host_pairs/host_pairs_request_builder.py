@@ -45,7 +45,7 @@ class HostPairsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostPairsRequestBuilderGetRequestConfiguration] = None) -> Optional[HostPairCollectionResponse]:
         """
-        Read the properties and relationships of a hostPair object.
+        Read the properties and relationships of a hostPair object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostPairCollectionResponse]
         """
@@ -90,7 +90,7 @@ class HostPairsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HostPairsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a hostPair object.
+        Read the properties and relationships of a hostPair object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +133,7 @@ class HostPairsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HostPairsRequestBuilder(raw_url, self.request_adapter)
+        return HostPairsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -147,7 +147,7 @@ class HostPairsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HostPairsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a hostPair object.
+        Read the properties and relationships of a hostPair object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

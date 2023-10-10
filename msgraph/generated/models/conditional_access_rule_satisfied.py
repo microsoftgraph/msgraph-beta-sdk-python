@@ -45,7 +45,7 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
         from .conditional_access_rule import ConditionalAccessRule
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "conditionalAccessCondition": lambda n : setattr(self, 'conditional_access_condition', n.get_enum_value(ConditionalAccessConditions)),
+            "conditionalAccessCondition": lambda n : setattr(self, 'conditional_access_condition', n.get_collection_of_enum_values(ConditionalAccessConditions)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ruleSatisfied": lambda n : setattr(self, 'rule_satisfied', n.get_enum_value(ConditionalAccessRule)),
         }

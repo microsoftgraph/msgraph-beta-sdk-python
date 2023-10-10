@@ -12,11 +12,11 @@ from .entity import Entity
 class GovernanceSubject(Entity):
     # The display name of the subject.
     display_name: Optional[str] = None
-    # The email address of the user subject. If the subject is in other types, it is empty.
+    # The email address of the user subject. If the subject is in other types, it's empty.
     email: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The principal name of the user subject. If the subject is in other types, it is empty.
+    # The principal name of the user subject. If the subject is in other types, it's empty.
     principal_name: Optional[str] = None
     # The type of the subject. The value can be User, Group, and ServicePrincipal.
     type: Optional[str] = None

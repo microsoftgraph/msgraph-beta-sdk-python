@@ -29,10 +29,10 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a contentApproval object.
+        Delete a complianceChange object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-contentapproval-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-compliancechange-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -49,10 +49,10 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ComplianceChange]:
         """
-        Read the properties and relationships of a contentApproval object.
+        Read the properties and relationships of a complianceChange object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ComplianceChange]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-contentapproval-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-compliancechange-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,7 +71,7 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ComplianceChange] = None, request_configuration: Optional[ComplianceChangeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ComplianceChange]:
         """
-        Update the properties of a contentApproval object.
+        Update the properties of a contentApproval object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ComplianceChange]
@@ -96,7 +96,7 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a contentApproval object.
+        Delete a complianceChange object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +111,7 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a contentApproval object.
+        Read the properties and relationships of a complianceChange object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -128,7 +128,7 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ComplianceChange] = None, request_configuration: Optional[ComplianceChangeItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a contentApproval object.
+        Update the properties of a contentApproval object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +154,7 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ComplianceChangeItemRequestBuilder(raw_url, self.request_adapter)
+        return ComplianceChangeItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def update_policy(self) -> UpdatePolicyRequestBuilder:
@@ -178,7 +178,7 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ComplianceChangeItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a contentApproval object.
+        Read the properties and relationships of a complianceChange object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

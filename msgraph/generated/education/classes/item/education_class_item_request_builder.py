@@ -37,7 +37,7 @@ class EducationClassItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[EducationClassItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.
+        Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/educationclass-delete?view=graph-rest-1.0
@@ -57,7 +57,7 @@ class EducationClassItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EducationClassItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationClass]:
         """
-        Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you're using the delegated token, the user will only see classes in which they are members.
+        Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you're using the delegated token, the user will only see classes in which they are members. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationClass]
         Find more info here: https://learn.microsoft.com/graph/api/educationclass-get?view=graph-rest-1.0
@@ -79,7 +79,7 @@ class EducationClassItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[EducationClass] = None, request_configuration: Optional[EducationClassItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EducationClass]:
         """
-        Update the properties of a class.
+        Update the properties of a class. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationClass]
@@ -104,7 +104,7 @@ class EducationClassItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[EducationClassItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.
+        Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +119,7 @@ class EducationClassItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EducationClassItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you're using the delegated token, the user will only see classes in which they are members.
+        Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you're using the delegated token, the user will only see classes in which they are members. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +136,7 @@ class EducationClassItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[EducationClass] = None, request_configuration: Optional[EducationClassItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a class.
+        Update the properties of a class. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -162,7 +162,7 @@ class EducationClassItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EducationClassItemRequestBuilder(raw_url, self.request_adapter)
+        return EducationClassItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assignment_categories(self) -> AssignmentCategoriesRequestBuilder:
@@ -258,7 +258,7 @@ class EducationClassItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationClassItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you're using the delegated token, the user will only see classes in which they are members.
+        Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you're using the delegated token, the user will only see classes in which they are members. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

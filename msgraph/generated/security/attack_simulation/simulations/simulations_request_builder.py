@@ -45,7 +45,7 @@ class SimulationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None) -> Optional[SimulationCollectionResponse]:
         """
-        Get a list of attack simulation campaigns for a tenant.
+        Get a list of attack simulation campaigns for a tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SimulationCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class SimulationsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None) -> Optional[Simulation]:
         """
-        Create an attack simulation campaign for a tenant.
+        Create an attack simulation campaign for a tenant. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Simulation]
@@ -92,7 +92,7 @@ class SimulationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of attack simulation campaigns for a tenant.
+        Get a list of attack simulation campaigns for a tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class SimulationsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an attack simulation campaign for a tenant.
+        Create an attack simulation campaign for a tenant. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class SimulationsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SimulationsRequestBuilder(raw_url, self.request_adapter)
+        return SimulationsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class SimulationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SimulationsRequestBuilderGetQueryParameters():
         """
-        Get a list of attack simulation campaigns for a tenant.
+        Get a list of attack simulation campaigns for a tenant. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

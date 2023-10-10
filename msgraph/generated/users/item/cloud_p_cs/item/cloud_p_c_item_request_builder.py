@@ -13,9 +13,11 @@ if TYPE_CHECKING:
     from .....models.cloud_p_c import CloudPC
     from .....models.o_data_errors.o_data_error import ODataError
     from .change_user_account_type.change_user_account_type_request_builder import ChangeUserAccountTypeRequestBuilder
+    from .create_snapshot.create_snapshot_request_builder import CreateSnapshotRequestBuilder
     from .end_grace_period.end_grace_period_request_builder import EndGracePeriodRequestBuilder
     from .get_cloud_pc_connectivity_history.get_cloud_pc_connectivity_history_request_builder import GetCloudPcConnectivityHistoryRequestBuilder
     from .get_cloud_pc_launch_info.get_cloud_pc_launch_info_request_builder import GetCloudPcLaunchInfoRequestBuilder
+    from .get_frontline_cloud_pc_access_state.get_frontline_cloud_pc_access_state_request_builder import GetFrontlineCloudPcAccessStateRequestBuilder
     from .get_shift_work_cloud_pc_access_state.get_shift_work_cloud_pc_access_state_request_builder import GetShiftWorkCloudPcAccessStateRequestBuilder
     from .get_supported_cloud_pc_remote_actions.get_supported_cloud_pc_remote_actions_request_builder import GetSupportedCloudPcRemoteActionsRequestBuilder
     from .power_off.power_off_request_builder import PowerOffRequestBuilder
@@ -23,6 +25,7 @@ if TYPE_CHECKING:
     from .reboot.reboot_request_builder import RebootRequestBuilder
     from .rename.rename_request_builder import RenameRequestBuilder
     from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
+    from .resize.resize_request_builder import ResizeRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
     from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
     from .start.start_request_builder import StartRequestBuilder
@@ -63,7 +66,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPC]:
         """
-        Read the properties and relationships of a specific cloudPC object.
+        Read the properties and relationships of a specific cloudPC object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPC]
         Find more info here: https://learn.microsoft.com/graph/api/cloudpc-get?view=graph-rest-1.0
@@ -124,7 +127,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a specific cloudPC object.
+        Read the properties and relationships of a specific cloudPC object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -167,7 +170,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CloudPCItemRequestBuilder(raw_url, self.request_adapter)
+        return CloudPCItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def change_user_account_type(self) -> ChangeUserAccountTypeRequestBuilder:
@@ -177,6 +180,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .change_user_account_type.change_user_account_type_request_builder import ChangeUserAccountTypeRequestBuilder
 
         return ChangeUserAccountTypeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def create_snapshot(self) -> CreateSnapshotRequestBuilder:
+        """
+        Provides operations to call the createSnapshot method.
+        """
+        from .create_snapshot.create_snapshot_request_builder import CreateSnapshotRequestBuilder
+
+        return CreateSnapshotRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def end_grace_period(self) -> EndGracePeriodRequestBuilder:
@@ -204,6 +216,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .get_cloud_pc_launch_info.get_cloud_pc_launch_info_request_builder import GetCloudPcLaunchInfoRequestBuilder
 
         return GetCloudPcLaunchInfoRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_frontline_cloud_pc_access_state(self) -> GetFrontlineCloudPcAccessStateRequestBuilder:
+        """
+        Provides operations to call the getFrontlineCloudPcAccessState method.
+        """
+        from .get_frontline_cloud_pc_access_state.get_frontline_cloud_pc_access_state_request_builder import GetFrontlineCloudPcAccessStateRequestBuilder
+
+        return GetFrontlineCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_shift_work_cloud_pc_access_state(self) -> GetShiftWorkCloudPcAccessStateRequestBuilder:
@@ -269,6 +290,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         return ReprovisionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def resize(self) -> ResizeRequestBuilder:
+        """
+        Provides operations to call the resize method.
+        """
+        from .resize.resize_request_builder import ResizeRequestBuilder
+
+        return ResizeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def restore(self) -> RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
@@ -326,7 +356,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPCItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a specific cloudPC object.
+        Read the properties and relationships of a specific cloudPC object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

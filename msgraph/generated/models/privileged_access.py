@@ -25,7 +25,7 @@ class PrivilegedAccess(Entity):
     role_assignment_requests: Optional[List[GovernanceRoleAssignmentRequest]] = None
     # A collection of role assignments for the provider.
     role_assignments: Optional[List[GovernanceRoleAssignment]] = None
-    # A collection of role defintions for the provider.
+    # A collection of role definitions for the provider.
     role_definitions: Optional[List[GovernanceRoleDefinition]] = None
     # A collection of role settings for the provider.
     role_settings: Optional[List[GovernanceRoleSetting]] = None

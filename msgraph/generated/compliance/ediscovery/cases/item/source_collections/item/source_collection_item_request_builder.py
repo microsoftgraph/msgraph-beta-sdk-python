@@ -35,7 +35,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a sourceCollection object.
+        Delete a sourceCollection object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-delete?view=graph-rest-1.0
@@ -76,7 +76,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SourceCollection]:
         """
-        Update the properties of a sourceCollection object.
+        Update the properties of a sourceCollection object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceCollection]
@@ -101,7 +101,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a sourceCollection object.
+        Delete a sourceCollection object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +133,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a sourceCollection object.
+        Update the properties of a sourceCollection object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -159,7 +159,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SourceCollectionItemRequestBuilder(raw_url, self.request_adapter)
+        return SourceCollectionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def additional_sources(self) -> AdditionalSourcesRequestBuilder:

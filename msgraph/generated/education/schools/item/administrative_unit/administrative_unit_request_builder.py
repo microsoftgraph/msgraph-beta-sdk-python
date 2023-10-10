@@ -28,7 +28,7 @@ class AdministrativeUnitRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AdministrativeUnitRequestBuilderGetRequestConfiguration] = None) -> Optional[AdministrativeUnit]:
         """
-        Retrieve the simple directory administrativeUnit that corresponds to this educationSchool.
+        Retrieve the directory administrativeUnit that corresponds to this educationSchool. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdministrativeUnit]
         Find more info here: https://learn.microsoft.com/graph/api/educationschool-get-administrativeUnit?view=graph-rest-1.0
@@ -74,7 +74,7 @@ class AdministrativeUnitRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AdministrativeUnitRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the simple directory administrativeUnit that corresponds to this educationSchool.
+        Retrieve the directory administrativeUnit that corresponds to this educationSchool. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,12 +117,12 @@ class AdministrativeUnitRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AdministrativeUnitRequestBuilder(raw_url, self.request_adapter)
+        return AdministrativeUnitRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class AdministrativeUnitRequestBuilderGetQueryParameters():
         """
-        Retrieve the simple directory administrativeUnit that corresponds to this educationSchool.
+        Retrieve the directory administrativeUnit that corresponds to this educationSchool. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

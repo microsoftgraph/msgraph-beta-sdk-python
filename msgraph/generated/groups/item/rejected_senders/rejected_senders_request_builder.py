@@ -45,7 +45,7 @@ class RejectedSendersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RejectedSendersRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
+        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list can't post to conversations of the group (identified in the GET request URL). Make sure you don't specify the same user or group in the rejected senders and accepted senders lists, otherwise you get an error. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/group-list-rejectedsenders?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class RejectedSendersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RejectedSendersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
+        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list can't post to conversations of the group (identified in the GET request URL). Make sure you don't specify the same user or group in the rejected senders and accepted senders lists, otherwise you get an error. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -90,7 +90,7 @@ class RejectedSendersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RejectedSendersRequestBuilder(raw_url, self.request_adapter)
+        return RejectedSendersRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -113,7 +113,7 @@ class RejectedSendersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RejectedSendersRequestBuilderGetQueryParameters():
         """
-        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
+        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list can't post to conversations of the group (identified in the GET request URL). Make sure you don't specify the same user or group in the rejected senders and accepted senders lists, otherwise you get an error. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

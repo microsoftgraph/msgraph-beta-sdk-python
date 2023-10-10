@@ -152,7 +152,7 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder(BaseRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementIntentSettingCategoryItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementIntentSettingCategoryItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def setting_definitions(self) -> SettingDefinitionsRequestBuilder:

@@ -47,7 +47,7 @@ class RiskyServicePrincipalsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RiskyServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> Optional[RiskyServicePrincipalCollectionResponse]:
         """
-        Retrieve the properties and relationships of riskyServicePrincipal objects.
+        Retrieve the properties and relationships of riskyServicePrincipal objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RiskyServicePrincipalCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0
@@ -93,7 +93,7 @@ class RiskyServicePrincipalsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RiskyServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of riskyServicePrincipal objects.
+        Retrieve the properties and relationships of riskyServicePrincipal objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +136,7 @@ class RiskyServicePrincipalsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RiskyServicePrincipalsRequestBuilder(raw_url, self.request_adapter)
+        return RiskyServicePrincipalsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def confirm_compromised(self) -> ConfirmCompromisedRequestBuilder:
@@ -168,7 +168,7 @@ class RiskyServicePrincipalsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RiskyServicePrincipalsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of riskyServicePrincipal objects.
+        Retrieve the properties and relationships of riskyServicePrincipal objects. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

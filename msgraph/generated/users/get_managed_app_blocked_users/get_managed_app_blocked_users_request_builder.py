@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
-    from .get_managed_app_blocked_users_response import GetManagedAppBlockedUsersResponse
+    from .get_managed_app_blocked_users_get_response import GetManagedAppBlockedUsersGetResponse
 
 class GetManagedAppBlockedUsersRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetManagedAppBlockedUsersRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/getManagedAppBlockedUsers(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetManagedAppBlockedUsersRequestBuilderGetRequestConfiguration] = None) -> Optional[GetManagedAppBlockedUsersResponse]:
+    async def get(self,request_configuration: Optional[GetManagedAppBlockedUsersRequestBuilderGetRequestConfiguration] = None) -> Optional[GetManagedAppBlockedUsersGetResponse]:
         """
         Invoke function getManagedAppBlockedUsers
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetManagedAppBlockedUsersResponse]
+        Returns: Optional[GetManagedAppBlockedUsersGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetManagedAppBlockedUsersRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_managed_app_blocked_users_response import GetManagedAppBlockedUsersResponse
+        from .get_managed_app_blocked_users_get_response import GetManagedAppBlockedUsersGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetManagedAppBlockedUsersResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetManagedAppBlockedUsersGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetManagedAppBlockedUsersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetManagedAppBlockedUsersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetManagedAppBlockedUsersRequestBuilder(raw_url, self.request_adapter)
+        return GetManagedAppBlockedUsersRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetManagedAppBlockedUsersRequestBuilderGetQueryParameters():

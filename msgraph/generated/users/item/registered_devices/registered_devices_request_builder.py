@@ -46,7 +46,7 @@ class RegisteredDevicesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RegisteredDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Devices that are registered for the user. Read-only. Nullable. Supports $expand.
+        Devices that are registered for the user. Read-only. Nullable. Supports $expand and returns up to 100 objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/user-list-registereddevices?view=graph-rest-1.0
@@ -68,7 +68,7 @@ class RegisteredDevicesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RegisteredDevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Devices that are registered for the user. Read-only. Nullable. Supports $expand.
+        Devices that are registered for the user. Read-only. Nullable. Supports $expand and returns up to 100 objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -91,7 +91,7 @@ class RegisteredDevicesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RegisteredDevicesRequestBuilder(raw_url, self.request_adapter)
+        return RegisteredDevicesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -123,7 +123,7 @@ class RegisteredDevicesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RegisteredDevicesRequestBuilderGetQueryParameters():
         """
-        Devices that are registered for the user. Read-only. Nullable. Supports $expand.
+        Devices that are registered for the user. Read-only. Nullable. Supports $expand and returns up to 100 objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

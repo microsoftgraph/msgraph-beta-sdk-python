@@ -151,7 +151,7 @@ class TermsAndConditionsGroupAssignmentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TermsAndConditionsGroupAssignmentItemRequestBuilder(raw_url, self.request_adapter)
+        return TermsAndConditionsGroupAssignmentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def terms_and_conditions(self) -> TermsAndConditionsRequestBuilder:

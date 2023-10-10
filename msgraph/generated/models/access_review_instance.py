@@ -22,13 +22,13 @@ class AccessReviewInstance(Entity):
     contacted_reviewers: Optional[List[AccessReviewReviewer]] = None
     # Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
     decisions: Optional[List[AccessReviewInstanceDecisionItem]] = None
-    # There is exactly one accessReviewScheduleDefinition associated with each instance. It is the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
+    # There's exactly one accessReviewScheduleDefinition associated with each instance. It's the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
     definition: Optional[AccessReviewScheduleDefinition] = None
-    # DateTime when review instance is scheduled to end.The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $select. Read-only.
+    # DateTime when review instance is scheduled to end. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $select. Read-only.
     end_date_time: Optional[datetime.datetime] = None
     # Collection of errors in an access review instance lifecycle. Read-only.
     errors: Optional[List[AccessReviewError]] = None
-    # This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers will be notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner does not exist, or manager is specified as reviewer but a user's manager does not exist. Supports $select.
+    # This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers are notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner doesn't exist, or manager is specified as reviewer but a user's manager doesn't exist. Supports $select.
     fallback_reviewers: Optional[List[AccessReviewReviewerScope]] = None
     # The OdataType property
     odata_type: Optional[str] = None

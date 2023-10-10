@@ -28,7 +28,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an existing userFlow object.
+        Delete an existing userFlow object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[IdentityUserFlow]:
         """
-        Retrieve the properties and associations for an userFlow object.
+        Retrieve the properties and associations for an userFlow object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlow]
         Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-get?view=graph-rest-1.0
@@ -94,7 +94,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an existing userFlow object.
+        Delete an existing userFlow object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and associations for an userFlow object.
+        Retrieve the properties and associations for an userFlow object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IdentityUserFlowItemRequestBuilder(raw_url, self.request_adapter)
+        return IdentityUserFlowItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IdentityUserFlowItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and associations for an userFlow object.
+        Retrieve the properties and associations for an userFlow object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

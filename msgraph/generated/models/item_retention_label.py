@@ -13,17 +13,17 @@ from .entity import Entity
 
 @dataclass
 class ItemRetentionLabel(Entity):
-    # The isLabelAppliedExplicitly property
+    # Specifies whether the label is applied explicitly on the item. True indicates that the label is applied explicitly; otherwise, the label is inherited from its parent. Read-only.
     is_label_applied_explicitly: Optional[bool] = None
-    # The labelAppliedBy property
+    # Identity of the user who applied the label. Read-only.
     label_applied_by: Optional[IdentitySet] = None
-    # The labelAppliedDateTime property
+    # The date and time when the label was applied on the item. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     label_applied_date_time: Optional[datetime.datetime] = None
-    # The name property
+    # The retention label on the document. Read-write.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The retentionSettings property
+    # The retention settings enforced on the item. Read-write.
     retention_settings: Optional[RetentionLabelSettings] = None
     
     @staticmethod

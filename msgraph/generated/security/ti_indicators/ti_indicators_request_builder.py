@@ -49,7 +49,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[TiIndicatorCollectionResponse]:
         """
-        Retrieve a list of tiIndicator objects.
+        Retrieve a list of tiIndicator objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TiIndicatorCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/tiindicators-list?view=graph-rest-1.0
@@ -71,7 +71,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[TiIndicator]:
         """
-        Create a new tiIndicator object.
+        Create a new tiIndicator object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TiIndicator]
@@ -96,7 +96,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of tiIndicator objects.
+        Retrieve a list of tiIndicator objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +113,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new tiIndicator object.
+        Create a new tiIndicator object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TiIndicatorsRequestBuilder(raw_url, self.request_adapter)
+        return TiIndicatorsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -189,7 +189,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TiIndicatorsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of tiIndicator objects.
+        Retrieve a list of tiIndicator objects. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

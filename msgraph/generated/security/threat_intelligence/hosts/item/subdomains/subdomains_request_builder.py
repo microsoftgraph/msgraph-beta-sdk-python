@@ -44,7 +44,7 @@ class SubdomainsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SubdomainsRequestBuilderGetRequestConfiguration] = None) -> Optional[SubdomainCollectionResponse]:
         """
-        Get the list of subdomain resources associated with a host.
+        Get the list of subdomain resources associated with a host. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SubdomainCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/security-host-list-subdomains?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class SubdomainsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SubdomainsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of subdomain resources associated with a host.
+        Get the list of subdomain resources associated with a host. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class SubdomainsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SubdomainsRequestBuilder(raw_url, self.request_adapter)
+        return SubdomainsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class SubdomainsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SubdomainsRequestBuilderGetQueryParameters():
         """
-        Get the list of subdomain resources associated with a host.
+        Get the list of subdomain resources associated with a host. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

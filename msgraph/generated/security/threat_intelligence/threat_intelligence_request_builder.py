@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .host_components.host_components_request_builder import HostComponentsRequestBuilder
     from .host_cookies.host_cookies_request_builder import HostCookiesRequestBuilder
     from .host_pairs.host_pairs_request_builder import HostPairsRequestBuilder
+    from .host_ports.host_ports_request_builder import HostPortsRequestBuilder
     from .hosts.hosts_request_builder import HostsRequestBuilder
     from .host_ssl_certificates.host_ssl_certificates_request_builder import HostSslCertificatesRequestBuilder
     from .host_trackers.host_trackers_request_builder import HostTrackersRequestBuilder
@@ -166,7 +167,7 @@ class ThreatIntelligenceRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ThreatIntelligenceRequestBuilder(raw_url, self.request_adapter)
+        return ThreatIntelligenceRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def article_indicators(self) -> ArticleIndicatorsRequestBuilder:
@@ -212,6 +213,15 @@ class ThreatIntelligenceRequestBuilder(BaseRequestBuilder):
         from .host_pairs.host_pairs_request_builder import HostPairsRequestBuilder
 
         return HostPairsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def host_ports(self) -> HostPortsRequestBuilder:
+        """
+        Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.
+        """
+        from .host_ports.host_ports_request_builder import HostPortsRequestBuilder
+
+        return HostPortsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def hosts(self) -> HostsRequestBuilder:

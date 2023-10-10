@@ -63,7 +63,7 @@ class CloudPcServicePlan(Entity):
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
             "ramInGB": lambda n : setattr(self, 'ram_in_g_b', n.get_int_value()),
             "storageInGB": lambda n : setattr(self, 'storage_in_g_b', n.get_int_value()),
-            "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_enum_value(CloudPcManagementService)),
+            "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_collection_of_enum_values(CloudPcManagementService)),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(CloudPcServicePlanType)),
             "userProfileInGB": lambda n : setattr(self, 'user_profile_in_g_b', n.get_int_value()),
             "vCpuCount": lambda n : setattr(self, 'v_cpu_count', n.get_int_value()),

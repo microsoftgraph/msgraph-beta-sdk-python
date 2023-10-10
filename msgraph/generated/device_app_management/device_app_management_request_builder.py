@@ -142,7 +142,7 @@ class DeviceAppManagementRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceAppManagementRequestBuilder(raw_url, self.request_adapter)
+        return DeviceAppManagementRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def android_managed_app_protections(self) -> AndroidManagedAppProtectionsRequestBuilder:

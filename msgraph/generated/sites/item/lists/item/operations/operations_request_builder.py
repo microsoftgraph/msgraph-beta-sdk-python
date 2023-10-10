@@ -45,7 +45,7 @@ class OperationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[RichLongRunningOperationCollectionResponse]:
         """
-        The collection of long running operations for the list.
+        The collection of long-running operations on the list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RichLongRunningOperationCollectionResponse]
         """
@@ -90,7 +90,7 @@ class OperationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of long running operations for the list.
+        The collection of long-running operations on the list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +133,7 @@ class OperationsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OperationsRequestBuilder(raw_url, self.request_adapter)
+        return OperationsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -147,7 +147,7 @@ class OperationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OperationsRequestBuilderGetQueryParameters():
         """
-        The collection of long running operations for the list.
+        The collection of long-running operations on the list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

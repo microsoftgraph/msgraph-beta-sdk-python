@@ -28,7 +28,7 @@ class ProfileCardPropertyItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete the profileCardProperty object specified by its directoryPropertyName from the organization's profile card, and remove any localized customizations for that property.
+        Delete the profileCardProperty object specified by its directoryPropertyName from the organization's profile card, and remove any localized customizations for that property. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/profilecardproperty-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class ProfileCardPropertyItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ProfileCardProperty]:
         """
-        Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property.
+        Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProfileCardProperty]
         Find more info here: https://learn.microsoft.com/graph/api/profilecardproperty-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class ProfileCardPropertyItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ProfileCardProperty]:
         """
-        Update the properties of a profileCardProperty object, identified by its directoryPropertyName property.
+        Update the properties of a profileCardProperty object, identified by its directoryPropertyName property. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProfileCardProperty]
@@ -95,7 +95,7 @@ class ProfileCardPropertyItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the profileCardProperty object specified by its directoryPropertyName from the organization's profile card, and remove any localized customizations for that property.
+        Delete the profileCardProperty object specified by its directoryPropertyName from the organization's profile card, and remove any localized customizations for that property. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class ProfileCardPropertyItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property.
+        Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class ProfileCardPropertyItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a profileCardProperty object, identified by its directoryPropertyName property.
+        Update the properties of a profileCardProperty object, identified by its directoryPropertyName property. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class ProfileCardPropertyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ProfileCardPropertyItemRequestBuilder(raw_url, self.request_adapter)
+        return ProfileCardPropertyItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class ProfileCardPropertyItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProfileCardPropertyItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property.
+        Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

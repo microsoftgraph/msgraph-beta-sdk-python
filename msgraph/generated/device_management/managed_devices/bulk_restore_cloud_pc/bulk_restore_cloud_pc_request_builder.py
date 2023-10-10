@@ -29,7 +29,7 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[BulkRestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcBulkRemoteActionResult]:
         """
-        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
+        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcBulkRemoteActionResult]
@@ -54,7 +54,7 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[BulkRestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
+        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BulkRestoreCloudPcRequestBuilder(raw_url, self.request_adapter)
+        return BulkRestoreCloudPcRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

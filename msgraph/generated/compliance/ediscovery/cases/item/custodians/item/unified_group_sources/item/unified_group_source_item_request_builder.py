@@ -29,7 +29,7 @@ class UnifiedGroupSourceItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a unifiedGroupSource object.
+        Delete a unifiedGroupSource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-unifiedgroupsource-delete?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class UnifiedGroupSourceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedGroupSource]:
         """
-        Read the properties and relationships of a unifiedGroupSource object.
+        Read the properties and relationships of a unifiedGroupSource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedGroupSource]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-unifiedgroupsource-get?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class UnifiedGroupSourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a unifiedGroupSource object.
+        Delete a unifiedGroupSource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class UnifiedGroupSourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a unifiedGroupSource object.
+        Read the properties and relationships of a unifiedGroupSource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class UnifiedGroupSourceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UnifiedGroupSourceItemRequestBuilder(raw_url, self.request_adapter)
+        return UnifiedGroupSourceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def group(self) -> GroupRequestBuilder:
@@ -177,7 +177,7 @@ class UnifiedGroupSourceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UnifiedGroupSourceItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a unifiedGroupSource object.
+        Read the properties and relationships of a unifiedGroupSource object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -70,7 +70,7 @@ class WindowsPhone81AppX(MobileLobApp):
         from .windows_phone81_app_x_bundle import WindowsPhone81AppXBundle
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(WindowsArchitecture)),
+            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
             "identityPublisherHash": lambda n : setattr(self, 'identity_publisher_hash', n.get_str_value()),
             "identityResourceIdentifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),

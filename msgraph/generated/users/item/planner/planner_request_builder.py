@@ -53,7 +53,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerUser]:
         """
-        Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans. 
+        Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans.  This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerUser]
         Find more info here: https://learn.microsoft.com/graph/api/planneruser-get?view=graph-rest-1.0
@@ -115,7 +115,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans. 
+        Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans.  This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PlannerRequestBuilder(raw_url, self.request_adapter)
+        return PlannerRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def all(self) -> AllRequestBuilder:
@@ -227,7 +227,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlannerRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans. 
+        Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans.  This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

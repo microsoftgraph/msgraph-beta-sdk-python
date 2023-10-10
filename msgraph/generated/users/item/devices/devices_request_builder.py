@@ -15,10 +15,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .delta.delta_request_builder import DeltaRequestBuilder
-    from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
-    from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
     from .item.device_item_request_builder import DeviceItemRequestBuilder
-    from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
 
 class DevicesRequestBuilder(BaseRequestBuilder):
     """
@@ -137,7 +134,7 @@ class DevicesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DevicesRequestBuilder(raw_url, self.request_adapter)
+        return DevicesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -156,33 +153,6 @@ class DevicesRequestBuilder(BaseRequestBuilder):
         from .delta.delta_request_builder import DeltaRequestBuilder
 
         return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_by_ids(self) -> GetByIdsRequestBuilder:
-        """
-        Provides operations to call the getByIds method.
-        """
-        from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
-
-        return GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_user_owned_objects(self) -> GetUserOwnedObjectsRequestBuilder:
-        """
-        Provides operations to call the getUserOwnedObjects method.
-        """
-        from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
-
-        return GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def validate_properties(self) -> ValidatePropertiesRequestBuilder:
-        """
-        Provides operations to call the validateProperties method.
-        """
-        from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
-
-        return ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DevicesRequestBuilderGetQueryParameters():

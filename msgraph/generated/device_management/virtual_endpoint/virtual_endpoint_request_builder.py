@@ -168,7 +168,7 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return VirtualEndpointRequestBuilder(raw_url, self.request_adapter)
+        return VirtualEndpointRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def audit_events(self) -> AuditEventsRequestBuilder:

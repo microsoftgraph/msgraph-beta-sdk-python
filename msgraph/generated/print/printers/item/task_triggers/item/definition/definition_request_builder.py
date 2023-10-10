@@ -28,7 +28,7 @@ class DefinitionRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[PrintTaskDefinition]:
         """
-        An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrintTaskDefinition]
         """
@@ -49,7 +49,7 @@ class DefinitionRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DefinitionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,12 +72,12 @@ class DefinitionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DefinitionRequestBuilder(raw_url, self.request_adapter)
+        return DefinitionRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DefinitionRequestBuilderGetQueryParameters():
         """
-        An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

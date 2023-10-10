@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
-    from .get_relying_party_detailed_summary_with_period_response import GetRelyingPartyDetailedSummaryWithPeriodResponse
+    from .get_relying_party_detailed_summary_with_period_get_response import GetRelyingPartyDetailedSummaryWithPeriodGetResponse
 
 class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(BaseRequestBuilder):
     """
@@ -25,13 +25,15 @@ class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(BaseRequestBuilder)
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getRelyingPartyDetailedSummary(period='{period}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetRelyingPartyDetailedSummaryWithPeriodRequestBuilderGetRequestConfiguration] = None) -> Optional[GetRelyingPartyDetailedSummaryWithPeriodResponse]:
+    async def get(self,request_configuration: Optional[GetRelyingPartyDetailedSummaryWithPeriodRequestBuilderGetRequestConfiguration] = None) -> Optional[GetRelyingPartyDetailedSummaryWithPeriodGetResponse]:
         """
         Invoke function getRelyingPartyDetailedSummary
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetRelyingPartyDetailedSummaryWithPeriodResponse]
+        Returns: Optional[GetRelyingPartyDetailedSummaryWithPeriodGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -44,9 +46,9 @@ class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(BaseRequestBuilder)
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_relying_party_detailed_summary_with_period_response import GetRelyingPartyDetailedSummaryWithPeriodResponse
+        from .get_relying_party_detailed_summary_with_period_get_response import GetRelyingPartyDetailedSummaryWithPeriodGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetRelyingPartyDetailedSummaryWithPeriodResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetRelyingPartyDetailedSummaryWithPeriodGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetRelyingPartyDetailedSummaryWithPeriodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -73,7 +75,7 @@ class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(BaseRequestBuilder)
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilderGetQueryParameters():

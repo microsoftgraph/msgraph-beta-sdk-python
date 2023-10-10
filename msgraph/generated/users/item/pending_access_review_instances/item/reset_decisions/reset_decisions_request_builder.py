@@ -27,7 +27,7 @@ class ResetDecisionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[ResetDecisionsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Resets decisions of all accessReviewInstanceDecisionItem objects on an accessReviewInstance to notReviewed.
+        Resets decisions of all accessReviewInstanceDecisionItem objects on an accessReviewInstance to notReviewed. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accessreviewinstance-resetdecisions?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class ResetDecisionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[ResetDecisionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Resets decisions of all accessReviewInstanceDecisionItem objects on an accessReviewInstance to notReviewed.
+        Resets decisions of all accessReviewInstanceDecisionItem objects on an accessReviewInstance to notReviewed. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class ResetDecisionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ResetDecisionsRequestBuilder(raw_url, self.request_adapter)
+        return ResetDecisionsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

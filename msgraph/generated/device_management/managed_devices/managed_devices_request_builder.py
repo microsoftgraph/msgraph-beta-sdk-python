@@ -152,7 +152,7 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedDevicesRequestBuilder(raw_url, self.request_adapter)
+        return ManagedDevicesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def bulk_reprovision_cloud_pc(self) -> BulkReprovisionCloudPcRequestBuilder:

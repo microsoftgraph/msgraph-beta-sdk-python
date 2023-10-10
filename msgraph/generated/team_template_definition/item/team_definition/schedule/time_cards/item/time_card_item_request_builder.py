@@ -32,7 +32,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[TimeCardItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a timeCard instance in a schedule.
+        Delete a timeCard instance in a schedule. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/timecard-delete?view=graph-rest-1.0
@@ -52,7 +52,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TimeCardItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TimeCard]:
         """
-        Get the properties and relationships of a timeCard object by ID.
+        Get the properties and relationships of a timeCard object by ID. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCard]
         Find more info here: https://learn.microsoft.com/graph/api/timecard-get?view=graph-rest-1.0
@@ -99,7 +99,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[TimeCardItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a timeCard instance in a schedule.
+        Delete a timeCard instance in a schedule. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +114,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TimeCardItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a timeCard object by ID.
+        Get the properties and relationships of a timeCard object by ID. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TimeCardItemRequestBuilder(raw_url, self.request_adapter)
+        return TimeCardItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def clock_out(self) -> ClockOutRequestBuilder:
@@ -208,7 +208,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TimeCardItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a timeCard object by ID.
+        Get the properties and relationships of a timeCard object by ID. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

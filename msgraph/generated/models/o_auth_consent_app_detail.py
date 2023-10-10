@@ -14,11 +14,11 @@ class OAuthConsentAppDetail(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The appScope property
+    # App scope. Possible values are: unknown, readCalendar, readContact, readMail, readAllChat, readAllFile, readAndWriteMail, sendMail, unknownFutureValue.
     app_scope: Optional[OAuthAppScope] = None
-    # The displayLogo property
+    # App display logo.
     display_logo: Optional[str] = None
-    # The displayName property
+    # App name.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -45,7 +45,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UserFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[IdentityUserFlowCollectionResponse]:
         """
-        Retrieve a list of userflows.
+        Retrieve a list of userflows. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlowCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[IdentityUserFlow] = None, request_configuration: Optional[UserFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[IdentityUserFlow]:
         """
-        Create a new userFlow object.
+        Create a new userFlow object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlow]
@@ -92,7 +92,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UserFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of userflows.
+        Retrieve a list of userflows. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[IdentityUserFlow] = None, request_configuration: Optional[UserFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new userFlow object.
+        Create a new userFlow object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserFlowsRequestBuilder(raw_url, self.request_adapter)
+        return UserFlowsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserFlowsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of userflows.
+        Retrieve a list of userflows. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

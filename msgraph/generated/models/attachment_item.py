@@ -22,7 +22,7 @@ class AttachmentItem(AdditionalDataHolder, BackedModel, Parsable):
     content_type: Optional[str] = None
     # true if the attachment is an inline attachment; otherwise, false. Optional.
     is_inline: Optional[bool] = None
-    # The display name of the attachment. This can be a descriptive string and does not have to be the actual file name. Required.
+    # The display name of the attachment. This can be a descriptive string and doesn't have to be the actual file name. Required.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

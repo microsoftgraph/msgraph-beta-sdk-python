@@ -15,6 +15,8 @@ class DeviceManagementConfigurationTechnologies(str, Enum):
     MicrosoftSense = "microsoftSense",
     # Setting can be deployed through the Exchange Online agent channel.
     ExchangeOnline = "exchangeOnline",
+    # Setting can be deployed through the Mobile Application Management (MAM) channel
+    MobileApplicationManagement = "mobileApplicationManagement",
     # Setting can be deployed through the Linux Mdm channel.
     LinuxMdm = "linuxMdm",
     # Setting can be deployed through device enrollment.

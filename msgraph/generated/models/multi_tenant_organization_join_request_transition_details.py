@@ -15,7 +15,7 @@ class MultiTenantOrganizationJoinRequestTransitionDetails(AdditionalDataHolder, 
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # State of the tenant in the multi-tenant organization currently being processed. The possible values are: pending, active, removed, unknownFutureValue. Read-only.
+    # State of the tenant in the multitenant organization currently being processed. The possible values are: pending, active, removed, unknownFutureValue. Read-only.
     desired_member_state: Optional[MultiTenantOrganizationMemberState] = None
     # Details that explain the processing status if any. Read-only.
     details: Optional[str] = None

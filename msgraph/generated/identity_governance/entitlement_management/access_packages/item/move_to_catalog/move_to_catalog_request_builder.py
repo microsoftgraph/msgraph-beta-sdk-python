@@ -28,7 +28,7 @@ class MoveToCatalogRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[MoveToCatalogPostRequestBody] = None, request_configuration: Optional[MoveToCatalogRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        In Azure AD entitlement management, this action moves the accessPackage to a specified target accessPackageCatalog. The resources in the access package must be present in the target catalog.
+        In Azure AD entitlement management, this action moves the accessPackage to a specified target accessPackageCatalog. The resources in the access package must be present in the target catalog. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class MoveToCatalogRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[MoveToCatalogPostRequestBody] = None, request_configuration: Optional[MoveToCatalogRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD entitlement management, this action moves the accessPackage to a specified target accessPackageCatalog. The resources in the access package must be present in the target catalog.
+        In Azure AD entitlement management, this action moves the accessPackage to a specified target accessPackageCatalog. The resources in the access package must be present in the target catalog. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class MoveToCatalogRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MoveToCatalogRequestBuilder(raw_url, self.request_adapter)
+        return MoveToCatalogRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

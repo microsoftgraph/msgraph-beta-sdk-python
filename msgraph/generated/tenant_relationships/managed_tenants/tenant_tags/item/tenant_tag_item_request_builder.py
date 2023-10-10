@@ -30,7 +30,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[TenantTagItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a tenantTag object.
+        Delete a tenantTag object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenanttag-delete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TenantTagItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantTag]:
         """
-        Read the properties and relationships of a tenantTag object.
+        Read the properties and relationships of a tenantTag object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantTag]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenanttag-get?view=graph-rest-1.0
@@ -72,7 +72,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[TenantTag] = None, request_configuration: Optional[TenantTagItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[TenantTag]:
         """
-        Update the properties of a tenantTag object.
+        Update the properties of a tenantTag object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantTag]
@@ -97,7 +97,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[TenantTagItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a tenantTag object.
+        Delete a tenantTag object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TenantTagItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a tenantTag object.
+        Read the properties and relationships of a tenantTag object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -129,7 +129,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[TenantTag] = None, request_configuration: Optional[TenantTagItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a tenantTag object.
+        Update the properties of a tenantTag object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -155,7 +155,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantTagItemRequestBuilder(raw_url, self.request_adapter)
+        return TenantTagItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_managed_tenants_assign_tag(self) -> MicrosoftGraphManagedTenantsAssignTagRequestBuilder:
@@ -188,7 +188,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantTagItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a tenantTag object.
+        Read the properties and relationships of a tenantTag object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

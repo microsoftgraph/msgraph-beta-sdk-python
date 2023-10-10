@@ -136,7 +136,7 @@ class DeviceHealthScriptsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceHealthScriptsRequestBuilder(raw_url, self.request_adapter)
+        return DeviceHealthScriptsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def are_global_scripts_available(self) -> AreGlobalScriptsAvailableRequestBuilder:

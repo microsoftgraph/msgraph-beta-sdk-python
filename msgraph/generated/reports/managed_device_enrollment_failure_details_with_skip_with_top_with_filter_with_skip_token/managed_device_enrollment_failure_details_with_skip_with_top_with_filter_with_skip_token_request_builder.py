@@ -28,6 +28,11 @@ class ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipToke
         param top: Usage: top={top}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['filter'] = str(filter)
+            path_parameters['skip'] = str(skip)
+            path_parameters['skipToken'] = str(skip_token)
+            path_parameters['top'] = str(top)
         super().__init__(request_adapter, "{+baseurl}/reports/managedDeviceEnrollmentFailureDetails(skip={skip},top={top},filter='{filter}',skipToken='{skipToken}')", path_parameters)
     
     async def get(self,request_configuration: Optional[ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilderGetRequestConfiguration] = None) -> Optional[Report]:
@@ -75,7 +80,7 @@ class ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipToke
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder(raw_url, self.request_adapter)
+        return ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

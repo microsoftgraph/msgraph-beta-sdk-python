@@ -45,7 +45,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[AlertRuleCollectionResponse]:
         """
-        Get a list of the alertRule objects and their properties.
+        Get a list of the alertRule objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRuleCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrule-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AlertRule] = None, request_configuration: Optional[AlertRulesRequestBuilderPostRequestConfiguration] = None) -> Optional[AlertRule]:
         """
-        Create an alertRule object.
+        Create an alertRule object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRule]
@@ -92,7 +92,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alertRule objects and their properties.
+        Get a list of the alertRule objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AlertRule] = None, request_configuration: Optional[AlertRulesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an alertRule object.
+        Create an alertRule object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AlertRulesRequestBuilder(raw_url, self.request_adapter)
+        return AlertRulesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertRulesRequestBuilderGetQueryParameters():
         """
-        Get a list of the alertRule objects and their properties.
+        Get a list of the alertRule objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

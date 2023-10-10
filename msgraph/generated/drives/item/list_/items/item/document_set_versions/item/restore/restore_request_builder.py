@@ -27,7 +27,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Restore a document set version.
+        Restore a document set version. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/documentsetversion-restore?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restore a document set version.
+        Restore a document set version. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RestoreRequestBuilder(raw_url, self.request_adapter)
+        return RestoreRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

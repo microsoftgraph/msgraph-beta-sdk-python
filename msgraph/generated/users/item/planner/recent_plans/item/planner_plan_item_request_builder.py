@@ -72,7 +72,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PlannerPlanItemRequestBuilder(raw_url, self.request_adapter)
+        return PlannerPlanItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class PlannerPlanItemRequestBuilderGetQueryParameters():

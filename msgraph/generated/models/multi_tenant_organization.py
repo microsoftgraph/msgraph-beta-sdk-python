@@ -14,19 +14,19 @@ from .entity import Entity
 
 @dataclass
 class MultiTenantOrganization(Entity):
-    # Date when multi-tenant organization was created. Read-only.
+    # Date when multitenant organization was created. Read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # Description of the multi-tenant organization.
+    # Description of the multitenant organization.
     description: Optional[str] = None
-    # Display name of the multi-tenant organization.
+    # Display name of the multitenant organization.
     display_name: Optional[str] = None
-    # Defines the status of a tenant joining a multi-tenant organization.
+    # Defines the status of a tenant joining a multitenant organization.
     join_request: Optional[MultiTenantOrganizationJoinRequestRecord] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # State of the multi-tenant organization. The possible values are: active, inactive, unknownFutureValue. active indicates the multi-tenant organization is created. inactive indicates the multi-tenant organization is not created. Read-only.
+    # State of the multitenant organization. The possible values are: active, inactive, unknownFutureValue. active indicates the multitenant organization is created. inactive indicates the multitenant organization isn't created. Read-only.
     state: Optional[MultiTenantOrganizationState] = None
-    # Defines tenants added to a multi-tenant organization.
+    # Defines tenants added to a multitenant organization.
     tenants: Optional[List[MultiTenantOrganizationMember]] = None
     
     @staticmethod

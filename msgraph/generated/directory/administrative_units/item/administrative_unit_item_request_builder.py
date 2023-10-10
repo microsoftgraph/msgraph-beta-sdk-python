@@ -12,13 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.administrative_unit import AdministrativeUnit
     from ....models.o_data_errors.o_data_error import ODataError
-    from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
-    from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
     from .extensions.extensions_request_builder import ExtensionsRequestBuilder
-    from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
-    from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
-    from .restore.restore_request_builder import RestoreRequestBuilder
     from .scoped_role_members.scoped_role_members_request_builder import ScopedRoleMembersRequestBuilder
 
 class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
@@ -158,25 +153,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AdministrativeUnitItemRequestBuilder(raw_url, self.request_adapter)
-    
-    @property
-    def check_member_groups(self) -> CheckMemberGroupsRequestBuilder:
-        """
-        Provides operations to call the checkMemberGroups method.
-        """
-        from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
-
-        return CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def check_member_objects(self) -> CheckMemberObjectsRequestBuilder:
-        """
-        Provides operations to call the checkMemberObjects method.
-        """
-        from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
-
-        return CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AdministrativeUnitItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def extensions(self) -> ExtensionsRequestBuilder:
@@ -188,24 +165,6 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_member_groups(self) -> GetMemberGroupsRequestBuilder:
-        """
-        Provides operations to call the getMemberGroups method.
-        """
-        from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
-
-        return GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_member_objects(self) -> GetMemberObjectsRequestBuilder:
-        """
-        Provides operations to call the getMemberObjects method.
-        """
-        from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
-
-        return GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def members(self) -> MembersRequestBuilder:
         """
         Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.
@@ -213,15 +172,6 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         from .members.members_request_builder import MembersRequestBuilder
 
         return MembersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def restore(self) -> RestoreRequestBuilder:
-        """
-        Provides operations to call the restore method.
-        """
-        from .restore.restore_request_builder import RestoreRequestBuilder
-
-        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def scoped_role_members(self) -> ScopedRoleMembersRequestBuilder:

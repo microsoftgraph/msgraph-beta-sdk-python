@@ -151,7 +151,7 @@ class MessageTraceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MessageTraceItemRequestBuilder(raw_url, self.request_adapter)
+        return MessageTraceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def recipients(self) -> RecipientsRequestBuilder:

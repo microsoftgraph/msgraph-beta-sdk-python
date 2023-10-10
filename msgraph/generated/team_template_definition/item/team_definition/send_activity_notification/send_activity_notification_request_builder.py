@@ -28,7 +28,7 @@ class SendActivityNotificationRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SendActivityNotificationPostRequestBody] = None, request_configuration: Optional[SendActivityNotificationRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.
+        Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class SendActivityNotificationRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SendActivityNotificationPostRequestBody] = None, request_configuration: Optional[SendActivityNotificationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.
+        Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class SendActivityNotificationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SendActivityNotificationRequestBuilder(raw_url, self.request_adapter)
+        return SendActivityNotificationRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

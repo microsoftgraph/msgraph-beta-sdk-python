@@ -24,25 +24,25 @@ class List_(BaseItem):
     odata_type: Optional[str] = "#microsoft.graph.list"
     # The recent activities that took place within this list.
     activities: Optional[List[ItemActivityOLD]] = None
-    # The columns property
+    # The collection of field definitions for this list.
     columns: Optional[List[ColumnDefinition]] = None
-    # The contentTypes property
+    # The collection of content types present in this list.
     content_types: Optional[List[ContentType]] = None
     # The displayable title of the list.
     display_name: Optional[str] = None
-    # Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].
+    # Allows access to the list as a drive resource with driveItems. Only present on document libraries.
     drive: Optional[Drive] = None
     # All items contained in the list.
     items: Optional[List[ListItem]] = None
-    # Provides additional details about the list.
+    # Contains more details about the list.
     list_: Optional[ListInfo] = None
-    # The collection of long running operations for the list.
+    # The collection of long-running operations on the list.
     operations: Optional[List[RichLongRunningOperation]] = None
-    # The sharepointIds property
+    # Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepoint_ids: Optional[SharepointIds] = None
     # The set of subscriptions on the list.
     subscriptions: Optional[List[Subscription]] = None
-    # If present, indicates that this is a system-managed list. Read-only.
+    # If present, indicates that the list is system-managed. Read-only.
     system: Optional[SystemFacet] = None
     
     @staticmethod

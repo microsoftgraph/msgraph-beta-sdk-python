@@ -151,7 +151,7 @@ class WorkbookCommentReplyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WorkbookCommentReplyItemRequestBuilder(raw_url, self.request_adapter)
+        return WorkbookCommentReplyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def task(self) -> TaskRequestBuilder:

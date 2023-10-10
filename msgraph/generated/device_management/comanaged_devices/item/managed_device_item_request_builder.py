@@ -206,7 +206,7 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedDeviceItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagedDeviceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activate_device_esim(self) -> ActivateDeviceEsimRequestBuilder:

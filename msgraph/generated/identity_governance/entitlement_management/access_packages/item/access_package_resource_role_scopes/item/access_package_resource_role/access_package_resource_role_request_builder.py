@@ -151,7 +151,7 @@ class AccessPackageResourceRoleRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessPackageResourceRoleRequestBuilder(raw_url, self.request_adapter)
+        return AccessPackageResourceRoleRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def access_package_resource(self) -> AccessPackageResourceRequestBuilder:

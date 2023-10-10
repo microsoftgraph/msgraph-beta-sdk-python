@@ -17,11 +17,11 @@ class Shift(ChangeTrackedEntity):
     draft_shift: Optional[ShiftItem] = None
     # The isStagedForDeletion property
     is_staged_for_deletion: Optional[bool] = None
-    # The schedulingGroupId property
+    # ID of the scheduling group the shift is part of. Required.
     scheduling_group_id: Optional[str] = None
-    # The sharedShift property
+    # The shared version of this shift that is viewable by both employees and managers. Required.
     shared_shift: Optional[ShiftItem] = None
-    # The userId property
+    # ID of the user assigned to the shift. Required.
     user_id: Optional[str] = None
     
     @staticmethod

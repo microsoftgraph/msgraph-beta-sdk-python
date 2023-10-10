@@ -47,7 +47,7 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ContactMergeSuggestionsRequestBuilderGetRequestConfiguration] = None) -> Optional[ContactMergeSuggestions]:
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        Read the properties and relationships of a contactMergeSuggestions object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContactMergeSuggestions]
         Find more info here: https://learn.microsoft.com/graph/api/contactmergesuggestions-get?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ContactMergeSuggestions] = None, request_configuration: Optional[ContactMergeSuggestionsRequestBuilderPatchRequestConfiguration] = None) -> Optional[ContactMergeSuggestions]:
         """
-        Update the properties of a contactMergeSuggestions object.
+        Update the properties of a contactMergeSuggestions object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContactMergeSuggestions]
@@ -109,7 +109,7 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ContactMergeSuggestionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        Read the properties and relationships of a contactMergeSuggestions object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ContactMergeSuggestions] = None, request_configuration: Optional[ContactMergeSuggestionsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a contactMergeSuggestions object.
+        Update the properties of a contactMergeSuggestions object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ContactMergeSuggestionsRequestBuilder(raw_url, self.request_adapter)
+        return ContactMergeSuggestionsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContactMergeSuggestionsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        Read the properties and relationships of a contactMergeSuggestions object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

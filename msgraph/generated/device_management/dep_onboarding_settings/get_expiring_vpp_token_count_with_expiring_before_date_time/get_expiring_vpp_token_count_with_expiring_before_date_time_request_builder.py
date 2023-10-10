@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_expiring_vpp_token_count_with_expiring_before_date_time_response import GetExpiringVppTokenCountWithExpiringBeforeDateTimeResponse
+    from .get_expiring_vpp_token_count_with_expiring_before_date_time_get_response import GetExpiringVppTokenCountWithExpiringBeforeDateTimeGetResponse
 
 class GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(BaseRequestBuilder):
     """
@@ -25,13 +25,15 @@ class GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(BaseReque
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['expiringBeforeDateTime'] = str(expiring_before_date_time)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/depOnboardingSettings/getExpiringVppTokenCount(expiringBeforeDateTime='{expiringBeforeDateTime}')", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeResponse]:
+    async def get(self,request_configuration: Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeGetResponse]:
         """
         Invoke function getExpiringVppTokenCount
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeResponse]
+        Returns: Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -44,9 +46,9 @@ class GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(BaseReque
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_expiring_vpp_token_count_with_expiring_before_date_time_response import GetExpiringVppTokenCountWithExpiringBeforeDateTimeResponse
+        from .get_expiring_vpp_token_count_with_expiring_before_date_time_get_response import GetExpiringVppTokenCountWithExpiringBeforeDateTimeGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetExpiringVppTokenCountWithExpiringBeforeDateTimeResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetExpiringVppTokenCountWithExpiringBeforeDateTimeGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +74,7 @@ class GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(BaseReque
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(raw_url, self.request_adapter)
+        return GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

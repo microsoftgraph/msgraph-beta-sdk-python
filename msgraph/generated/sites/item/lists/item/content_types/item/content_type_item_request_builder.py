@@ -57,7 +57,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ContentTypeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ContentType]:
         """
-        Get contentTypes from sites
+        The collection of content types present in this list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContentType]
         """
@@ -117,7 +117,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ContentTypeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get contentTypes from sites
+        The collection of content types present in this list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +160,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ContentTypeItemRequestBuilder(raw_url, self.request_adapter)
+        return ContentTypeItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def associate_with_hub_sites(self) -> AssociateWithHubSitesRequestBuilder:
@@ -265,7 +265,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContentTypeItemRequestBuilderGetQueryParameters():
         """
-        Get contentTypes from sites
+        The collection of content types present in this list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

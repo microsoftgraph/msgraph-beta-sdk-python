@@ -133,7 +133,7 @@ class UserPfxCertificatesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserPfxCertificatesRequestBuilder(raw_url, self.request_adapter)
+        return UserPfxCertificatesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

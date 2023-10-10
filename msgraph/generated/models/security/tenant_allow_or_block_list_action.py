@@ -16,11 +16,11 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Specifies whether the tenant allow block list is an allow or block. The possible values are: allow, block, and unkownFutureValue.
+    # Specifies whether the tenant allow-or-block list is an allow or block. The possible values are: allow, block, and unkownFutureValue.
     action: Optional[TenantAllowBlockListAction] = None
     # Specifies when the tenant allow-block-list expires in date time.
     expiration_date_time: Optional[datetime.datetime] = None
-    # Specifies the note added to the tenant allow block list entry in the format of string.
+    # Specifies the note added to the tenant allow-or-block list entry in the format of string.
     note: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -28,7 +28,7 @@ class MicrosoftGraphIdentityGovernanceResumeRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ResumePostRequestBody] = None, request_configuration: Optional[MicrosoftGraphIdentityGovernanceResumeRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Resume a task processing result that's inProgress. In the default case an Azure Logic Apps system-assigned managed identity calls this API. For more information, see: Lifecycle Workflows extensibility approach.
+        Resume a task processing result that's inProgress. In the default case an Azure Logic Apps system-assigned managed identity calls this API. For more information, see: Lifecycle Workflows extensibility approach. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class MicrosoftGraphIdentityGovernanceResumeRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ResumePostRequestBody] = None, request_configuration: Optional[MicrosoftGraphIdentityGovernanceResumeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Resume a task processing result that's inProgress. In the default case an Azure Logic Apps system-assigned managed identity calls this API. For more information, see: Lifecycle Workflows extensibility approach.
+        Resume a task processing result that's inProgress. In the default case an Azure Logic Apps system-assigned managed identity calls this API. For more information, see: Lifecycle Workflows extensibility approach. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class MicrosoftGraphIdentityGovernanceResumeRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphIdentityGovernanceResumeRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphIdentityGovernanceResumeRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

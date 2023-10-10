@@ -133,7 +133,7 @@ class NdesConnectorsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return NdesConnectorsRequestBuilder(raw_url, self.request_adapter)
+        return NdesConnectorsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

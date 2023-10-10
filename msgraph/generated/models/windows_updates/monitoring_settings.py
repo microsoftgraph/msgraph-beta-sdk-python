@@ -14,7 +14,7 @@ class MonitoringSettings(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Specifies the rules through which monitoring signals can trigger actions on the deployment. Rules are combined using 'or'.
+    # Specifies the rules through which monitoring signals can trigger actions on the deployment. Rules are combined using 'or.'
     monitoring_rules: Optional[List[MonitoringRule]] = None
     # The OdataType property
     odata_type: Optional[str] = None

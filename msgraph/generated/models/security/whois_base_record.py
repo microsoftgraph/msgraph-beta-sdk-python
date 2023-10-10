@@ -16,43 +16,43 @@ from ..entity import Entity
 
 @dataclass
 class WhoisBaseRecord(Entity):
-    # The abuse property
+    # The contact information for the abuse contact.
     abuse: Optional[WhoisContact] = None
-    # The admin property
+    # The contact information for the admin contact.
     admin: Optional[WhoisContact] = None
-    # The billing property
+    # The contact information for the billing contact.
     billing: Optional[WhoisContact] = None
-    # The domainStatus property
+    # The domain status for this WHOIS object.
     domain_status: Optional[str] = None
-    # The expirationDateTime property
+    # The date and time when this WHOIS record expires with the registrar. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     expiration_date_time: Optional[datetime.datetime] = None
-    # The firstSeenDateTime property
+    # The first seen date and time of this WHOIS record. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     first_seen_date_time: Optional[datetime.datetime] = None
     # The host property
     host: Optional[Host] = None
-    # The lastSeenDateTime property
+    # The last seen date and time of this WHOIS record. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_seen_date_time: Optional[datetime.datetime] = None
-    # The lastUpdateDateTime property
+    # The date and time when this WHOIS record was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_update_date_time: Optional[datetime.datetime] = None
-    # The nameservers property
+    # The nameservers for this WHOIS object.
     nameservers: Optional[List[WhoisNameserver]] = None
-    # The noc property
+    # The contact information for the noc contact.
     noc: Optional[WhoisContact] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The rawWhoisText property
+    # The raw WHOIS details for this WHOIS object.
     raw_whois_text: Optional[str] = None
-    # The registrant property
+    # The contact information for the registrant contact.
     registrant: Optional[WhoisContact] = None
-    # The registrar property
+    # The contact information for the registrar contact.
     registrar: Optional[WhoisContact] = None
-    # The registrationDateTime property
+    # The date and time when this WHOIS record was registered with a registrar. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     registration_date_time: Optional[datetime.datetime] = None
-    # The technical property
+    # The contact information for the technical contact.
     technical: Optional[WhoisContact] = None
-    # The whoisServer property
+    # The WHOIS server that provides the details.
     whois_server: Optional[str] = None
-    # The zone property
+    # The contact information for the zone contact.
     zone: Optional[WhoisContact] = None
     
     @staticmethod

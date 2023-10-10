@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_devices_scheduled_to_retire_response import GetDevicesScheduledToRetireResponse
+    from .get_devices_scheduled_to_retire_get_response import GetDevicesScheduledToRetireGetResponse
 
 class GetDevicesScheduledToRetireRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetDevicesScheduledToRetireRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceCompliancePolicies/getDevicesScheduledToRetire(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetDevicesScheduledToRetireRequestBuilderGetRequestConfiguration] = None) -> Optional[GetDevicesScheduledToRetireResponse]:
+    async def get(self,request_configuration: Optional[GetDevicesScheduledToRetireRequestBuilderGetRequestConfiguration] = None) -> Optional[GetDevicesScheduledToRetireGetResponse]:
         """
         Invoke function getDevicesScheduledToRetire
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetDevicesScheduledToRetireResponse]
+        Returns: Optional[GetDevicesScheduledToRetireGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetDevicesScheduledToRetireRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_devices_scheduled_to_retire_response import GetDevicesScheduledToRetireResponse
+        from .get_devices_scheduled_to_retire_get_response import GetDevicesScheduledToRetireGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetDevicesScheduledToRetireResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetDevicesScheduledToRetireGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetDevicesScheduledToRetireRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetDevicesScheduledToRetireRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetDevicesScheduledToRetireRequestBuilder(raw_url, self.request_adapter)
+        return GetDevicesScheduledToRetireRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetDevicesScheduledToRetireRequestBuilderGetQueryParameters():

@@ -43,6 +43,12 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
     device_threat_protection_required_security_level: Optional[DeviceThreatProtectionLevel] = None
     # Require devices to be reported as healthy by Windows Device Health Attestation - early launch antimalware driver is enabled.
     early_launch_anti_malware_driver_enabled: Optional[bool] = None
+    # When TRUE, indicates that Firmware protection is required to be reported as healthy by Microsoft Azure Attestion. When FALSE, indicates that Firmware protection is not required to be reported as healthy. Devices that support either Dynamic Root of Trust for Measurement (DRTM) or Firmware Attack Surface Reduction (FASR) will report compliant for this setting. Default value is FALSE.
+    firmware_protection_enabled: Optional[bool] = None
+    # When TRUE, indicates that Kernel Direct Memory Access (DMA) protection is required to be reported as healthy by Microsoft Azure Attestion. When FALSE, indicates that Kernel DMA Protection is not required to be reported as healthy. Default value is FALSE.
+    kernel_dma_protection_enabled: Optional[bool] = None
+    # When TRUE, indicates that Memory Integrity as known as Hypervisor-protected Code Integrity (HVCI) or Hypervisor Enforced Code Integrity protection is required to be reported as healthy by Microsoft Azure Attestion. When FALSE, indicates that Memory Integrity Protection is not required to be reported as healthy. Default value is FALSE.
+    memory_integrity_enabled: Optional[bool] = None
     # Maximum Windows Phone version.
     mobile_os_maximum_version: Optional[str] = None
     # Minimum Windows Phone version.
@@ -83,6 +89,8 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
     tpm_required: Optional[bool] = None
     # The valid operating system build ranges on Windows devices. This collection can contain a maximum of 10000 elements.
     valid_operating_system_build_ranges: Optional[List[OperatingSystemVersionRange]] = None
+    # When TRUE, indicates that Virtualization-based Security is required to be reported as healthy by Microsoft Azure Attestion. When FALSE, indicates that Virtualization-based Security is not required to be reported as healthy. Default value is FALSE.
+    virtualization_based_security_enabled: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10CompliancePolicy:
@@ -125,6 +133,9 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
             "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
             "earlyLaunchAntiMalwareDriverEnabled": lambda n : setattr(self, 'early_launch_anti_malware_driver_enabled', n.get_bool_value()),
+            "firmwareProtectionEnabled": lambda n : setattr(self, 'firmware_protection_enabled', n.get_bool_value()),
+            "kernelDmaProtectionEnabled": lambda n : setattr(self, 'kernel_dma_protection_enabled', n.get_bool_value()),
+            "memoryIntegrityEnabled": lambda n : setattr(self, 'memory_integrity_enabled', n.get_bool_value()),
             "mobileOsMaximumVersion": lambda n : setattr(self, 'mobile_os_maximum_version', n.get_str_value()),
             "mobileOsMinimumVersion": lambda n : setattr(self, 'mobile_os_minimum_version', n.get_str_value()),
             "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
@@ -145,6 +156,7 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
             "storageRequireEncryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
             "tpmRequired": lambda n : setattr(self, 'tpm_required', n.get_bool_value()),
             "validOperatingSystemBuildRanges": lambda n : setattr(self, 'valid_operating_system_build_ranges', n.get_collection_of_object_values(OperatingSystemVersionRange)),
+            "virtualizationBasedSecurityEnabled": lambda n : setattr(self, 'virtualization_based_security_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -171,6 +183,9 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
         writer.write_bool_value("deviceThreatProtectionEnabled", self.device_threat_protection_enabled)
         writer.write_enum_value("deviceThreatProtectionRequiredSecurityLevel", self.device_threat_protection_required_security_level)
         writer.write_bool_value("earlyLaunchAntiMalwareDriverEnabled", self.early_launch_anti_malware_driver_enabled)
+        writer.write_bool_value("firmwareProtectionEnabled", self.firmware_protection_enabled)
+        writer.write_bool_value("kernelDmaProtectionEnabled", self.kernel_dma_protection_enabled)
+        writer.write_bool_value("memoryIntegrityEnabled", self.memory_integrity_enabled)
         writer.write_str_value("mobileOsMaximumVersion", self.mobile_os_maximum_version)
         writer.write_str_value("mobileOsMinimumVersion", self.mobile_os_minimum_version)
         writer.write_str_value("osMaximumVersion", self.os_maximum_version)
@@ -191,5 +206,6 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
         writer.write_bool_value("storageRequireEncryption", self.storage_require_encryption)
         writer.write_bool_value("tpmRequired", self.tpm_required)
         writer.write_collection_of_object_values("validOperatingSystemBuildRanges", self.valid_operating_system_build_ranges)
+        writer.write_bool_value("virtualizationBasedSecurityEnabled", self.virtualization_based_security_enabled)
     
 

@@ -34,7 +34,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an accessPackageCatalog.
+        Delete an accessPackageCatalog. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0
@@ -54,7 +54,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageCatalog]:
         """
-        Retrieve the properties and relationships of an accessPackageCatalog object.
+        Retrieve the properties and relationships of an accessPackageCatalog object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageCatalog]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
@@ -76,7 +76,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AccessPackageCatalog]:
         """
-        Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
+        Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageCatalog]
@@ -101,7 +101,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an accessPackageCatalog.
+        Delete an accessPackageCatalog. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +116,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an accessPackageCatalog object.
+        Retrieve the properties and relationships of an accessPackageCatalog object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +133,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
+        Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -159,7 +159,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessPackageCatalogItemRequestBuilder(raw_url, self.request_adapter)
+        return AccessPackageCatalogItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def access_package_custom_workflow_extensions(self) -> AccessPackageCustomWorkflowExtensionsRequestBuilder:
@@ -228,7 +228,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageCatalogItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an accessPackageCatalog object.
+        Retrieve the properties and relationships of an accessPackageCatalog object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

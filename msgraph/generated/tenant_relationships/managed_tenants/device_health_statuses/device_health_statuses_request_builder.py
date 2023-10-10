@@ -133,7 +133,7 @@ class DeviceHealthStatusesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceHealthStatusesRequestBuilder(raw_url, self.request_adapter)
+        return DeviceHealthStatusesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

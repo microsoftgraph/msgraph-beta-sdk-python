@@ -12,13 +12,13 @@ from .entity import Entity
 
 @dataclass
 class VirtualEventRegistrationConfiguration(Entity):
-    # The capacity property
+    # Total capacity of the virtual event.
     capacity: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The questions property
+    # Registration questions.
     questions: Optional[List[VirtualEventRegistrationQuestion]] = None
-    # The registrationWebUrl property
+    # Registration URL of the virtual event.
     registration_web_url: Optional[str] = None
     
     @staticmethod

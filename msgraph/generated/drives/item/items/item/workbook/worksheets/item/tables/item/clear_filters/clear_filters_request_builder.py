@@ -27,7 +27,7 @@ class ClearFiltersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[ClearFiltersRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Clears all the filters currently applied on the table.
+        Clears all the filters currently applied on the table. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/table-clearfilters?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class ClearFiltersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[ClearFiltersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Clears all the filters currently applied on the table.
+        Clears all the filters currently applied on the table. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class ClearFiltersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ClearFiltersRequestBuilder(raw_url, self.request_adapter)
+        return ClearFiltersRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

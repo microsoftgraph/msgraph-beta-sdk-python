@@ -21,8 +21,6 @@ class NotificationChannel(AdditionalDataHolder, BackedModel, Parsable):
     notification_receivers: Optional[List[NotificationReceiver]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The contact information about the notification receivers, such as email addresses. For portal notifications, receivers can be left blank. For email notifications, receivers consists of email addresses such as serena.davis@contoso.com.
-    receivers: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NotificationChannel:
@@ -50,7 +48,6 @@ class NotificationChannel(AdditionalDataHolder, BackedModel, Parsable):
             "notificationChannelType": lambda n : setattr(self, 'notification_channel_type', n.get_enum_value(NotificationChannelType)),
             "notificationReceivers": lambda n : setattr(self, 'notification_receivers', n.get_collection_of_object_values(NotificationReceiver)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "receivers": lambda n : setattr(self, 'receivers', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -65,7 +62,6 @@ class NotificationChannel(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("notificationChannelType", self.notification_channel_type)
         writer.write_collection_of_object_values("notificationReceivers", self.notification_receivers)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_collection_of_primitive_values("receivers", self.receivers)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -48,7 +48,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ColumnDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ColumnDefinition]:
         """
-        Get columns from groups
+        The collection of field definitions for this list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ColumnDefinition]
         """
@@ -108,7 +108,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ColumnDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get columns from groups
+        The collection of field definitions for this list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ColumnDefinitionItemRequestBuilder(raw_url, self.request_adapter)
+        return ColumnDefinitionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def source_column(self) -> SourceColumnRequestBuilder:
@@ -175,7 +175,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ColumnDefinitionItemRequestBuilderGetQueryParameters():
         """
-        Get columns from groups
+        The collection of field definitions for this list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

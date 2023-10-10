@@ -151,7 +151,7 @@ class AnalyticsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AnalyticsRequestBuilder(raw_url, self.request_adapter)
+        return AnalyticsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activity_statistics(self) -> ActivityStatisticsRequestBuilder:

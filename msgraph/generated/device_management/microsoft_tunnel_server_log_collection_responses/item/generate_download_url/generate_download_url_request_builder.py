@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .generate_download_url_response import GenerateDownloadUrlResponse
+    from .generate_download_url_post_response import GenerateDownloadUrlPostResponse
 
 class GenerateDownloadUrlRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GenerateDownloadUrlRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/microsoftTunnelServerLogCollectionResponses/{microsoftTunnelServerLogCollectionResponse%2Did}/generateDownloadUrl", path_parameters)
     
-    async def post(self,request_configuration: Optional[GenerateDownloadUrlRequestBuilderPostRequestConfiguration] = None) -> Optional[GenerateDownloadUrlResponse]:
+    async def post(self,request_configuration: Optional[GenerateDownloadUrlRequestBuilderPostRequestConfiguration] = None) -> Optional[GenerateDownloadUrlPostResponse]:
         """
         Invoke action generateDownloadUrl
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GenerateDownloadUrlResponse]
+        Returns: Optional[GenerateDownloadUrlPostResponse]
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GenerateDownloadUrlRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .generate_download_url_response import GenerateDownloadUrlResponse
+        from .generate_download_url_post_response import GenerateDownloadUrlPostResponse
 
-        return await self.request_adapter.send_async(request_info, GenerateDownloadUrlResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GenerateDownloadUrlPostResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[GenerateDownloadUrlRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -71,7 +71,7 @@ class GenerateDownloadUrlRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GenerateDownloadUrlRequestBuilder(raw_url, self.request_adapter)
+        return GenerateDownloadUrlRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

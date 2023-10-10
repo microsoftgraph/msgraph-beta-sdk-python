@@ -30,7 +30,7 @@ class PlannerRosterItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[PlannerRosterItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a plannerRoster object.
+        Delete a plannerRoster object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/plannerroster-delete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class PlannerRosterItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PlannerRosterItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerRoster]:
         """
-        Read the properties and relationships of a plannerRoster object.
+        Read the properties and relationships of a plannerRoster object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerRoster]
         Find more info here: https://learn.microsoft.com/graph/api/plannerroster-get?view=graph-rest-1.0
@@ -96,7 +96,7 @@ class PlannerRosterItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerRosterItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a plannerRoster object.
+        Delete a plannerRoster object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +111,7 @@ class PlannerRosterItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PlannerRosterItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a plannerRoster object.
+        Read the properties and relationships of a plannerRoster object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -154,7 +154,7 @@ class PlannerRosterItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PlannerRosterItemRequestBuilder(raw_url, self.request_adapter)
+        return PlannerRosterItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def members(self) -> MembersRequestBuilder:
@@ -187,7 +187,7 @@ class PlannerRosterItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlannerRosterItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a plannerRoster object.
+        Read the properties and relationships of a plannerRoster object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

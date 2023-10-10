@@ -45,7 +45,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantReferenceCollectionResponse]:
         """
-        List the tenant references of an outboundSharedUserProfile.
+        List the tenant references of an outboundSharedUserProfile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantReferenceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/outboundshareduserprofile-list-tenants?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the tenant references of an outboundSharedUserProfile.
+        List the tenant references of an outboundSharedUserProfile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantsRequestBuilder(raw_url, self.request_adapter)
+        return TenantsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantsRequestBuilderGetQueryParameters():
         """
-        List the tenant references of an outboundSharedUserProfile.
+        List the tenant references of an outboundSharedUserProfile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -45,7 +45,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SiteSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[SiteSourceCollectionResponse]:
         """
-        Get a list of siteSource objects and their properties.
+        Get a list of siteSource objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteSourceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-custodian-list-sitesources?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SiteSource] = None, request_configuration: Optional[SiteSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[SiteSource]:
         """
-        Create a new custodian siteSource object.
+        Create a new custodian siteSource object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteSource]
@@ -92,7 +92,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SiteSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of siteSource objects and their properties.
+        Get a list of siteSource objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SiteSource] = None, request_configuration: Optional[SiteSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new custodian siteSource object.
+        Create a new custodian siteSource object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SiteSourcesRequestBuilder(raw_url, self.request_adapter)
+        return SiteSourcesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SiteSourcesRequestBuilderGetQueryParameters():
         """
-        Get a list of siteSource objects and their properties.
+        Get a list of siteSource objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

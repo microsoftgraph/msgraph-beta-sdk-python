@@ -15,7 +15,7 @@ class WebPartData(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Audience information of the web part. By using this property, specific content will be prioritized to specific audiences.
+    # Audience information of the web part. By using this property, specific content is prioritized to specific audiences.
     audiences: Optional[List[str]] = None
     # Data version of the web part. The value is defined by the web part developer. Different dataVersions usually refers to a different property structure.
     data_version: Optional[str] = None

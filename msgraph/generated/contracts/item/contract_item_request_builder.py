@@ -52,7 +52,7 @@ class ContractItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ContractItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Contract]:
         """
-        Retrieve the properties and relationships of contract object.
+        Retrieve the properties and relationships of contract object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Contract]
         Find more info here: https://learn.microsoft.com/graph/api/contract-get?view=graph-rest-1.0
@@ -113,7 +113,7 @@ class ContractItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ContractItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of contract object.
+        Retrieve the properties and relationships of contract object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -156,7 +156,7 @@ class ContractItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ContractItemRequestBuilder(raw_url, self.request_adapter)
+        return ContractItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def check_member_groups(self) -> CheckMemberGroupsRequestBuilder:
@@ -216,7 +216,7 @@ class ContractItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContractItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of contract object.
+        Retrieve the properties and relationships of contract object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

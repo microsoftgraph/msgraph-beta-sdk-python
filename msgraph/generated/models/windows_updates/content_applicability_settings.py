@@ -18,7 +18,7 @@ class ContentApplicabilitySettings(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Offer if the update is recommended by a vendor in the list, otherwise withhold the offer.
     offer_while_recommended_by: Optional[List[str]] = None
-    # Settings for governing safeguard holds on offering content.
+    # Settings for governing safeguard-holds on offering content.
     safeguard: Optional[SafeguardSettings] = None
     
     @staticmethod

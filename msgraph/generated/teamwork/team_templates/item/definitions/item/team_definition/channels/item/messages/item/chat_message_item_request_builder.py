@@ -53,7 +53,7 @@ class ChatMessageItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ChatMessageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ChatMessage]:
         """
-        Retrieve a single message or a message reply in a channel or a chat.
+        Retrieve a single message or a message reply in a channel or a chat. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChatMessage]
         Find more info here: https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0
@@ -75,7 +75,7 @@ class ChatMessageItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ChatMessage] = None, request_configuration: Optional[ChatMessageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ChatMessage]:
         """
-        Update a chatMessage object. You can update all the properties of chatMessage in delegated permissions scenarios, except for the policyViolation property and read-only properties. The policyViolation property is the only property that can be updated in application permissions scenarios. Updating works only for chats where conversation members are Microsoft Teams users. If one of the members is using Skype, the operation fails. This method does not support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message.
+        Update a chatMessage object. You can update all the properties of chatMessage in delegated permissions scenarios, except for the policyViolation property and read-only properties. The policyViolation property is the only property that can be updated in application permissions scenarios. Updating works only for chats where conversation members are Microsoft Teams users. If one of the members is using Skype, the operation fails. This method does not support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChatMessage]
@@ -115,7 +115,7 @@ class ChatMessageItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ChatMessageItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a single message or a message reply in a channel or a chat.
+        Retrieve a single message or a message reply in a channel or a chat. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -132,7 +132,7 @@ class ChatMessageItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ChatMessage] = None, request_configuration: Optional[ChatMessageItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update a chatMessage object. You can update all the properties of chatMessage in delegated permissions scenarios, except for the policyViolation property and read-only properties. The policyViolation property is the only property that can be updated in application permissions scenarios. Updating works only for chats where conversation members are Microsoft Teams users. If one of the members is using Skype, the operation fails. This method does not support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message.
+        Update a chatMessage object. You can update all the properties of chatMessage in delegated permissions scenarios, except for the policyViolation property and read-only properties. The policyViolation property is the only property that can be updated in application permissions scenarios. Updating works only for chats where conversation members are Microsoft Teams users. If one of the members is using Skype, the operation fails. This method does not support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,7 +158,7 @@ class ChatMessageItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ChatMessageItemRequestBuilder(raw_url, self.request_adapter)
+        return ChatMessageItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def hosted_contents(self) -> HostedContentsRequestBuilder:
@@ -227,7 +227,7 @@ class ChatMessageItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChatMessageItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a single message or a message reply in a channel or a chat.
+        Retrieve a single message or a message reply in a channel or a chat. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

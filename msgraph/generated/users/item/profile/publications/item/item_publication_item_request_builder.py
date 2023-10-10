@@ -28,7 +28,7 @@ class ItemPublicationItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ItemPublicationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes an itemPublication object.
+        Deletes an itemPublication object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/itempublication-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class ItemPublicationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ItemPublicationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemPublication]:
         """
-        Read the properties and relationships of an itemPublication object in a user's profile.
+        Read the properties and relationships of an itemPublication object in a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPublication]
         Find more info here: https://learn.microsoft.com/graph/api/itempublication-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class ItemPublicationItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ItemPublication] = None, request_configuration: Optional[ItemPublicationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ItemPublication]:
         """
-        Update the properties of an itemPublication object in a user's profile.
+        Update the properties of an itemPublication object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPublication]
@@ -95,7 +95,7 @@ class ItemPublicationItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ItemPublicationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes an itemPublication object.
+        Deletes an itemPublication object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class ItemPublicationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ItemPublicationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an itemPublication object in a user's profile.
+        Read the properties and relationships of an itemPublication object in a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class ItemPublicationItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ItemPublication] = None, request_configuration: Optional[ItemPublicationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an itemPublication object in a user's profile.
+        Update the properties of an itemPublication object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class ItemPublicationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ItemPublicationItemRequestBuilder(raw_url, self.request_adapter)
+        return ItemPublicationItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class ItemPublicationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ItemPublicationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an itemPublication object in a user's profile.
+        Read the properties and relationships of an itemPublication object in a user's profile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

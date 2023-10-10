@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .identity_set import IdentitySet
 
 from .entity import Entity
 
@@ -17,6 +18,8 @@ class CallTranscript(Entity):
     created_date_time: Optional[datetime.datetime] = None
     # The unique identifier of the online meeting related to this transcript. Read-only.
     meeting_id: Optional[str] = None
+    # The identity information of the organizer of the onlineMeeting related to this transcript. Read-only.
+    meeting_organizer: Optional[IdentitySet] = None
     # The unique identifier of the organizer of the onlineMeeting related to this transcript. Read-only.
     meeting_organizer_id: Optional[str] = None
     # The time-aligned metadata of the utterances in the transcript. Read-only.
@@ -43,13 +46,16 @@ class CallTranscript(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .identity_set import IdentitySet
 
         from .entity import Entity
+        from .identity_set import IdentitySet
 
         fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "meetingId": lambda n : setattr(self, 'meeting_id', n.get_str_value()),
+            "meetingOrganizer": lambda n : setattr(self, 'meeting_organizer', n.get_object_value(IdentitySet)),
             "meetingOrganizerId": lambda n : setattr(self, 'meeting_organizer_id', n.get_str_value()),
             "metadataContent": lambda n : setattr(self, 'metadata_content', n.get_bytes_value()),
             "transcriptContentUrl": lambda n : setattr(self, 'transcript_content_url', n.get_str_value()),
@@ -70,6 +76,7 @@ class CallTranscript(Entity):
         writer.write_bytes_value("content", self.content)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("meetingId", self.meeting_id)
+        writer.write_object_value("meetingOrganizer", self.meeting_organizer)
         writer.write_str_value("meetingOrganizerId", self.meeting_organizer_id)
         writer.write_bytes_value("metadataContent", self.metadata_content)
         writer.write_str_value("transcriptContentUrl", self.transcript_content_url)
