@@ -12,19 +12,19 @@ if TYPE_CHECKING:
     from .profile_photo import ProfilePhoto
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
     from .schedule import Schedule
+    from .teams_app_installation import TeamsAppInstallation
+    from .teams_async_operation import TeamsAsyncOperation
+    from .teams_template import TeamsTemplate
+    from .teamwork_tag import TeamworkTag
     from .team_discovery_settings import TeamDiscoverySettings
     from .team_fun_settings import TeamFunSettings
     from .team_guest_settings import TeamGuestSettings
     from .team_member_settings import TeamMemberSettings
     from .team_messaging_settings import TeamMessagingSettings
-    from .teams_app_installation import TeamsAppInstallation
-    from .teams_async_operation import TeamsAsyncOperation
     from .team_specialization import TeamSpecialization
-    from .teams_template import TeamsTemplate
     from .team_summary import TeamSummary
     from .team_template_definition import TeamTemplateDefinition
     from .team_visibility_type import TeamVisibilityType
-    from .teamwork_tag import TeamworkTag
     from .user import User
 
 from .entity import Entity
@@ -68,7 +68,7 @@ class Team(Entity):
     # Settings to configure messaging and mentions in the team.
     messaging_settings: Optional[TeamMessagingSettings] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The async operations that ran or are running on this team.
     operations: Optional[List[TeamsAsyncOperation]] = None
     # The list of this team's owners. Currently, when creating a team using application permissions, exactly one owner must be specified. When using user delegated permissions, no owner can be specified (the current user is the owner). Owner must be specified as an object ID (GUID), not a UPN.
@@ -121,19 +121,19 @@ class Team(Entity):
         from .profile_photo import ProfilePhoto
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .schedule import Schedule
+        from .teams_app_installation import TeamsAppInstallation
+        from .teams_async_operation import TeamsAsyncOperation
+        from .teams_template import TeamsTemplate
+        from .teamwork_tag import TeamworkTag
         from .team_discovery_settings import TeamDiscoverySettings
         from .team_fun_settings import TeamFunSettings
         from .team_guest_settings import TeamGuestSettings
         from .team_member_settings import TeamMemberSettings
         from .team_messaging_settings import TeamMessagingSettings
-        from .teams_app_installation import TeamsAppInstallation
-        from .teams_async_operation import TeamsAsyncOperation
         from .team_specialization import TeamSpecialization
-        from .teams_template import TeamsTemplate
         from .team_summary import TeamSummary
         from .team_template_definition import TeamTemplateDefinition
         from .team_visibility_type import TeamVisibilityType
-        from .teamwork_tag import TeamworkTag
         from .user import User
 
         from .channel import Channel
@@ -143,19 +143,19 @@ class Team(Entity):
         from .profile_photo import ProfilePhoto
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .schedule import Schedule
+        from .teams_app_installation import TeamsAppInstallation
+        from .teams_async_operation import TeamsAsyncOperation
+        from .teams_template import TeamsTemplate
+        from .teamwork_tag import TeamworkTag
         from .team_discovery_settings import TeamDiscoverySettings
         from .team_fun_settings import TeamFunSettings
         from .team_guest_settings import TeamGuestSettings
         from .team_member_settings import TeamMemberSettings
         from .team_messaging_settings import TeamMessagingSettings
-        from .teams_app_installation import TeamsAppInstallation
-        from .teams_async_operation import TeamsAsyncOperation
         from .team_specialization import TeamSpecialization
-        from .teams_template import TeamsTemplate
         from .team_summary import TeamSummary
         from .team_template_definition import TeamTemplateDefinition
         from .team_visibility_type import TeamVisibilityType
-        from .teamwork_tag import TeamworkTag
         from .user import User
 
         fields: Dict[str, Callable[[Any], None]] = {

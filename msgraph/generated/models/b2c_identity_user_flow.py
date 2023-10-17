@@ -26,7 +26,7 @@ class B2cIdentityUserFlow(IdentityUserFlow):
     # The languages supported for customization within the user flow. Language customization is not enabled by default in B2C user flows.
     languages: Optional[List[UserFlowLanguageConfiguration]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The user attribute assignments included in the user flow.
     user_attribute_assignments: Optional[List[IdentityUserFlowAttributeAssignment]] = None
     # The userFlowIdentityProviders property

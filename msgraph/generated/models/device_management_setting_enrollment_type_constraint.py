@@ -14,7 +14,7 @@ class DeviceManagementSettingEnrollmentTypeConstraint(DeviceManagementConstraint
     Constraint that enforces the enrollment types applied to a setting
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingEnrollmentTypeConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingEnrollmentTypeConstraint"
     # List of enrollment types
     enrollment_types: Optional[List[str]] = None
     

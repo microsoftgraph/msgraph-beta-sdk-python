@@ -8,6 +8,9 @@ class CloudPcReportName(str, Enum):
     SharedUseLicenseUsageRealTimeReport = "sharedUseLicenseUsageRealTimeReport",
     UnknownFutureValue = "unknownFutureValue",
     NoLicenseAvailableConnectivityFailureReport = "noLicenseAvailableConnectivityFailureReport",
+    FrontlineLicenseUsageReport = "frontlineLicenseUsageReport",
+    FrontlineLicenseUsageRealTimeReport = "frontlineLicenseUsageRealTimeReport",
     RemoteConnectionQualityReports = "remoteConnectionQualityReports",
     InaccessibleCloudPcReports = "inaccessibleCloudPcReports",
+    RawRemoteConnectionReports = "rawRemoteConnectionReports",
 

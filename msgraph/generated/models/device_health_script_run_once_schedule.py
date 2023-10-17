@@ -15,7 +15,7 @@ class DeviceHealthScriptRunOnceSchedule(DeviceHealthScriptTimeSchedule):
     Device health script run once schedule.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceHealthScriptRunOnceSchedule"
+    OdataType: Optional[str] = "#microsoft.graph.deviceHealthScriptRunOnceSchedule"
     # The date the script is scheduled to run. This collection can contain a maximum of 20 elements.
     date: Optional[datetime.date] = None
     

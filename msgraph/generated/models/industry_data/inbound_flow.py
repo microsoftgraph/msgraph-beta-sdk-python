@@ -16,7 +16,7 @@ from .industry_data_activity import IndustryDataActivity
 @dataclass
 class InboundFlow(IndustryDataActivity):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.inboundFlow"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.inboundFlow"
     # The dataConnector property
     data_connector: Optional[IndustryDataConnector] = None
     # The dataDomain property

@@ -27,7 +27,7 @@ class ZebraFotaDeployment(Entity):
     # A human readable name of the deployment.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for this Entity instance
     role_scope_tag_ids: Optional[List[str]] = None
     

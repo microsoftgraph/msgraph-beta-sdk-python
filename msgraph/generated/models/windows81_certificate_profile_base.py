@@ -17,7 +17,7 @@ class Windows81CertificateProfileBase(WindowsCertificateProfileBase):
     Device Configuration.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows81CertificateProfileBase"
+    OdataType: Optional[str] = "#microsoft.graph.windows81CertificateProfileBase"
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
     # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.

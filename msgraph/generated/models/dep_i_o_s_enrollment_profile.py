@@ -16,7 +16,7 @@ class DepIOSEnrollmentProfile(DepEnrollmentBaseProfile):
     The DepIOSEnrollmentProfile resource represents an Apple Device Enrollment Program (DEP) enrollment profile specific to iOS configuration. This type of profile must be assigned to Apple DEP serial numbers before the corresponding devices can enroll via DEP.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.depIOSEnrollmentProfile"
+    OdataType: Optional[str] = "#microsoft.graph.depIOSEnrollmentProfile"
     # Indicates if Apperance screen is disabled
     appearance_screen_disabled: Optional[bool] = None
     # Indicates if the device will need to wait for configured confirmation

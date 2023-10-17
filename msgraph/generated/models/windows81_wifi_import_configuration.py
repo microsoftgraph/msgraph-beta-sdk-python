@@ -14,7 +14,7 @@ class Windows81WifiImportConfiguration(DeviceConfiguration):
     Windows 8.1+ Wi-Fi import configuration. By configuring this profile you can instruct Windows 8.1 (and later) devices to connect to desired Wi-Fi endpoint. Connect a Windows 8.1 device to the desired Wi-Fi network and extract the XML from that device to later embed into this Wi-Fi profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows81WifiImportConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windows81WifiImportConfiguration"
     # Payload. (UTF8 encoded byte array). This is the XML file saved on the device you used to connect to the Wi-Fi endpoint.
     payload: Optional[bytes] = None
     # Payload file name (.xml).

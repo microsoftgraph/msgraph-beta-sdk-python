@@ -17,7 +17,7 @@ class MessageTrace(Entity):
     # The messageId property
     message_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The receivedDateTime property
     received_date_time: Optional[datetime.datetime] = None
     # The recipients property

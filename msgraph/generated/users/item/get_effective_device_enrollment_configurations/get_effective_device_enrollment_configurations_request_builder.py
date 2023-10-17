@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_effective_device_enrollment_configurations_response import GetEffectiveDeviceEnrollmentConfigurationsResponse
+    from .get_effective_device_enrollment_configurations_get_response import GetEffectiveDeviceEnrollmentConfigurationsGetResponse
 
 class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder(BaseRequestBuilde
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/getEffectiveDeviceEnrollmentConfigurations(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetEffectiveDeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetEffectiveDeviceEnrollmentConfigurationsResponse]:
+    async def get(self,request_configuration: Optional[GetEffectiveDeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetEffectiveDeviceEnrollmentConfigurationsGetResponse]:
         """
         Invoke function getEffectiveDeviceEnrollmentConfigurations
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetEffectiveDeviceEnrollmentConfigurationsResponse]
+        Returns: Optional[GetEffectiveDeviceEnrollmentConfigurationsGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder(BaseRequestBuilde
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_effective_device_enrollment_configurations_response import GetEffectiveDeviceEnrollmentConfigurationsResponse
+        from .get_effective_device_enrollment_configurations_get_response import GetEffectiveDeviceEnrollmentConfigurationsGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetEffectiveDeviceEnrollmentConfigurationsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetEffectiveDeviceEnrollmentConfigurationsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetEffectiveDeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder(BaseRequestBuilde
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder(raw_url, self.request_adapter)
+        return GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilderGetQueryParameters():

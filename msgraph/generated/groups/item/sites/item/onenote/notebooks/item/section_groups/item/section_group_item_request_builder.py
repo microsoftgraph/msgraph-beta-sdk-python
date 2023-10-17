@@ -14,8 +14,8 @@ if TYPE_CHECKING:
     from ..........models.section_group import SectionGroup
     from .parent_notebook.parent_notebook_request_builder import ParentNotebookRequestBuilder
     from .parent_section_group.parent_section_group_request_builder import ParentSectionGroupRequestBuilder
-    from .section_groups.section_groups_request_builder import SectionGroupsRequestBuilder
     from .sections.sections_request_builder import SectionsRequestBuilder
+    from .section_groups.section_groups_request_builder import SectionGroupsRequestBuilder
 
 class SectionGroupItemRequestBuilder(BaseRequestBuilder):
     """
@@ -154,7 +154,7 @@ class SectionGroupItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SectionGroupItemRequestBuilder(raw_url, self.request_adapter)
+        return SectionGroupItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def parent_notebook(self) -> ParentNotebookRequestBuilder:

@@ -14,7 +14,7 @@ class AndroidDeviceOwnerKioskModeManagedFolderReference(AndroidDeviceOwnerKioskM
     A reference to folder containing apps and weblinks on the Managed Home Screen
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerKioskModeManagedFolderReference"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerKioskModeManagedFolderReference"
     # Unique identifier for the folder
     folder_identifier: Optional[str] = None
     # Name of the folder

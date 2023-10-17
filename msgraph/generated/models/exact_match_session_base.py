@@ -13,7 +13,7 @@ from .exact_match_job_base import ExactMatchJobBase
 @dataclass
 class ExactMatchSessionBase(ExactMatchJobBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.exactMatchSessionBase"
+    OdataType: Optional[str] = "#microsoft.graph.exactMatchSessionBase"
     # The dataStoreId property
     data_store_id: Optional[str] = None
     # The processingCompletionDateTime property

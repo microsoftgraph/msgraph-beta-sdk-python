@@ -14,7 +14,7 @@ class TeamsAppIcon(Entity):
     # The contents of the app icon if the icon is hosted within the Teams infrastructure.
     hosted_content: Optional[TeamworkHostedContent] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The web URL that can be used for downloading the image.
     web_url: Optional[str] = None
     

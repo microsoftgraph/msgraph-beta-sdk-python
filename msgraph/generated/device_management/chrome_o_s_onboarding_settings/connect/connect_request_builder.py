@@ -27,12 +27,12 @@ class ConnectRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/chromeOSOnboardingSettings/connect", path_parameters)
     
-    async def post(self,body: Optional[ConnectPostRequestBody] = None, request_configuration: Optional[ConnectRequestBuilderPostRequestConfiguration] = None) -> Optional[ChromeOSOnboardingStatus]:
+    async def post(self,body: Optional[ConnectPostRequestBody] = None, request_configuration: Optional[ConnectRequestBuilderPostRequestConfiguration] = None) -> Optional[chromeOSOnboardingStatus]:
         """
         Invoke action connect
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ChromeOSOnboardingStatus]
+        Returns: Optional[chromeOSOnboardingStatus]
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -49,7 +49,7 @@ class ConnectRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         from ....models.chrome_o_s_onboarding_status import ChromeOSOnboardingStatus
 
-        return await self.request_adapter.send_async(request_info, ChromeOSOnboardingStatus, error_mapping)
+        return await self.request_adapter.send_async(request_info, chromeOSOnboardingStatus, error_mapping)
     
     def to_post_request_information(self,body: Optional[ConnectPostRequestBody] = None, request_configuration: Optional[ConnectRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -79,7 +79,7 @@ class ConnectRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConnectRequestBuilder(raw_url, self.request_adapter)
+        return ConnectRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

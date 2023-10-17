@@ -12,7 +12,7 @@ from .exact_match_job_base import ExactMatchJobBase
 @dataclass
 class ExactMatchLookupJob(ExactMatchJobBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.exactMatchLookupJob"
+    OdataType: Optional[str] = "#microsoft.graph.exactMatchLookupJob"
     # The matchingRows property
     matching_rows: Optional[List[LookupResultRow]] = None
     # The state property

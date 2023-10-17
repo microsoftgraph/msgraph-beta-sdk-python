@@ -48,7 +48,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ForwardingProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ForwardingProfile]:
         """
-        Retrieve information about a specific forwarding profile.
+        Retrieve information about a specific forwarding profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingProfile]
         Find more info here: https://learn.microsoft.com/graph/api/networkaccess-forwardingprofile-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ForwardingProfile] = None, request_configuration: Optional[ForwardingProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ForwardingProfile]:
         """
-        Update an existing forwarding profile.
+        Update an existing forwarding profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingProfile]
@@ -110,7 +110,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ForwardingProfileItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve information about a specific forwarding profile.
+        Retrieve information about a specific forwarding profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ForwardingProfile] = None, request_configuration: Optional[ForwardingProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an existing forwarding profile.
+        Update an existing forwarding profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ForwardingProfileItemRequestBuilder(raw_url, self.request_adapter)
+        return ForwardingProfileItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def policies(self) -> PoliciesRequestBuilder:
@@ -177,7 +177,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ForwardingProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve information about a specific forwarding profile.
+        Retrieve information about a specific forwarding profile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

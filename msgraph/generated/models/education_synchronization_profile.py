@@ -32,7 +32,7 @@ class EducationSynchronizationProfile(Entity):
     # License setup configuration.
     licenses_to_assign: Optional[List[EducationSynchronizationLicenseAssignment]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The synchronization status.
     profile_status: Optional[EducationSynchronizationProfileStatus] = None
     # The state of the profile. Possible values are: provisioning, provisioned, provisioningFailed, deleting, deletionFailed.

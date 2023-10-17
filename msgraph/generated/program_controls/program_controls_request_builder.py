@@ -45,7 +45,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ProgramControlsRequestBuilderGetRequestConfiguration] = None) -> Optional[ProgramControlCollectionResponse]:
         """
-        In the Azure AD access reviews feature, list all the programControl objects, across all programs in the tenant.
+        In the Azure AD access reviews feature, list all the programControl objects, across all programs in the tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProgramControlCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/programcontrol-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ProgramControl] = None, request_configuration: Optional[ProgramControlsRequestBuilderPostRequestConfiguration] = None) -> Optional[ProgramControl]:
         """
-        In the Azure AD access reviews feature, create a new programControl object.  This links an access review to a program. Prior to making this request, the caller must have previously
+        In the Azure AD access reviews feature, create a new programControl object.  This links an access review to a program. Prior to making this request, the caller must have previously This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProgramControl]
@@ -92,7 +92,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ProgramControlsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, list all the programControl objects, across all programs in the tenant.
+        In the Azure AD access reviews feature, list all the programControl objects, across all programs in the tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ProgramControl] = None, request_configuration: Optional[ProgramControlsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, create a new programControl object.  This links an access review to a program. Prior to making this request, the caller must have previously
+        In the Azure AD access reviews feature, create a new programControl object.  This links an access review to a program. Prior to making this request, the caller must have previously This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ProgramControlsRequestBuilder(raw_url, self.request_adapter)
+        return ProgramControlsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProgramControlsRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, list all the programControl objects, across all programs in the tenant.
+        In the Azure AD access reviews feature, list all the programControl objects, across all programs in the tenant. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

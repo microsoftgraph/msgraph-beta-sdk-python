@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.o_data_errors.o_data_error import ODataError
     from ....models.online_meeting import OnlineMeeting
+    from ....models.o_data_errors.o_data_error import ODataError
     from .alternative_recording.alternative_recording_request_builder import AlternativeRecordingRequestBuilder
     from .attendance_reports.attendance_reports_request_builder import AttendanceReportsRequestBuilder
     from .attendee_report.attendee_report_request_builder import AttendeeReportRequestBuilder
@@ -160,7 +160,7 @@ class OnlineMeetingItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnlineMeetingItemRequestBuilder(raw_url, self.request_adapter)
+        return OnlineMeetingItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def alternative_recording(self) -> AlternativeRecordingRequestBuilder:

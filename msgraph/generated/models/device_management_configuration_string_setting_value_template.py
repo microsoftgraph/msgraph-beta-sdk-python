@@ -15,7 +15,7 @@ class DeviceManagementConfigurationStringSettingValueTemplate(DeviceManagementCo
     String Setting Value Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationStringSettingValueTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationStringSettingValueTemplate"
     # String Setting Value Default Template.
     default_value: Optional[DeviceManagementConfigurationStringSettingValueDefaultTemplate] = None
     

@@ -25,7 +25,7 @@ class DeviceComplianceScriptRunSummary(Entity):
     # Number of devices for which the detection script did not find an issue and the device is healthy. Valid values -2147483648 to 2147483647
     no_issue_detected_device_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComplianceScriptRunSummary:

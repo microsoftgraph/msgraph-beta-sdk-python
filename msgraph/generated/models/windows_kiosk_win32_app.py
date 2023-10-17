@@ -15,7 +15,7 @@ class WindowsKioskWin32App(WindowsKioskAppBase):
     KioskModeApp v4 for Win32 app support
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskWin32App"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskWin32App"
     # This is the classicapppath to be used by v4 Win32 app while in Kiosk Mode
     classic_app_path: Optional[str] = None
     # Edge kiosk (url) for Edge kiosk mode

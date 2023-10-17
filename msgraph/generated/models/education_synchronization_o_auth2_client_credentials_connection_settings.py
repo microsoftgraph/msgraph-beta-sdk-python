@@ -11,7 +11,7 @@ from .education_synchronization_connection_settings import EducationSynchronizat
 @dataclass
 class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(EducationSynchronizationConnectionSettings):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationSynchronizationOAuth2ClientCredentialsConnectionSettings"
+    OdataType: Optional[str] = "#microsoft.graph.educationSynchronizationOAuth2ClientCredentialsConnectionSettings"
     # The scope of the access request (see RFC6749).
     scope: Optional[str] = None
     # The URL to get access tokens for the data provider.

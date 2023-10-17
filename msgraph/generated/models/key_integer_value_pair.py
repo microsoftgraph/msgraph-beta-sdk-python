@@ -14,7 +14,7 @@ class KeyIntegerValuePair(KeyTypedValuePair):
     A key-value pair with a string key and an integer value.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.keyIntegerValuePair"
+    OdataType: Optional[str] = "#microsoft.graph.keyIntegerValuePair"
     # The integer value of the key-value pair.
     value: Optional[int] = None
     

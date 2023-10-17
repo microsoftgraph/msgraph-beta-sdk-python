@@ -21,7 +21,7 @@ class DeviceConfigurationUserStateSummary(Entity):
     # Number of not applicable users
     not_applicable_user_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Number of remediated users
     remediated_user_count: Optional[int] = None
     # Number of unknown users

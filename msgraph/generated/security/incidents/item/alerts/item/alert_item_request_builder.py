@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.security.alert import Alert
+    from .comments.comments_request_builder import CommentsRequestBuilder
 
 class AlertItemRequestBuilder(BaseRequestBuilder):
     """
@@ -72,7 +73,16 @@ class AlertItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AlertItemRequestBuilder(raw_url, self.request_adapter)
+        return AlertItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def comments(self) -> CommentsRequestBuilder:
+        """
+        The comments property
+        """
+        from .comments.comments_request_builder import CommentsRequestBuilder
+
+        return CommentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertItemRequestBuilderGetQueryParameters():

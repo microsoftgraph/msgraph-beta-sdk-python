@@ -11,7 +11,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class JustifyAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.justifyAction"
+    OdataType: Optional[str] = "#microsoft.graph.justifyAction"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> JustifyAction:

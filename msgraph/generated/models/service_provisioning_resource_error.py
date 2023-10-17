@@ -12,7 +12,7 @@ from .service_provisioning_error import ServiceProvisioningError
 @dataclass
 class ServiceProvisioningResourceError(ServiceProvisioningError):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.serviceProvisioningResourceError"
+    OdataType: Optional[str] = "#microsoft.graph.serviceProvisioningResourceError"
     # The errors property
     errors: Optional[List[ServiceProvisioningResourceErrorDetail]] = None
     

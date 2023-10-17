@@ -14,7 +14,7 @@ class WindowsStoreApp(MobileApp):
     Contains properties and inherited properties for Windows Store apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsStoreApp"
+    OdataType: Optional[str] = "#microsoft.graph.windowsStoreApp"
     # The Windows app store URL.
     app_store_url: Optional[str] = None
     

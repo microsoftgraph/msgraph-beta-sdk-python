@@ -12,7 +12,7 @@ from .job_response_base import JobResponseBase
 @dataclass
 class ClassificationJobResponse(JobResponseBase):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The result property
     result: Optional[DetectedSensitiveContentWrapper] = None
     

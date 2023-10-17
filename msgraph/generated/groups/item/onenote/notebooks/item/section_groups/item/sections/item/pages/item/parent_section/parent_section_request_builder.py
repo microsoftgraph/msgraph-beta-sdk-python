@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .............models.o_data_errors.o_data_error import ODataError
     from .............models.onenote_section import OnenoteSection
+    from .............models.o_data_errors.o_data_error import ODataError
 
 class ParentSectionRequestBuilder(BaseRequestBuilder):
     """
@@ -72,7 +72,7 @@ class ParentSectionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ParentSectionRequestBuilder(raw_url, self.request_adapter)
+        return ParentSectionRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class ParentSectionRequestBuilderGetQueryParameters():

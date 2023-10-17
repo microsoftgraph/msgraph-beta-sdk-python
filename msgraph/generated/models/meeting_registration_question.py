@@ -20,7 +20,7 @@ class MeetingRegistrationQuestion(Entity):
     # Indicates whether the question is required. Default value is false.
     is_required: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingRegistrationQuestion:

@@ -14,7 +14,7 @@ class TenantAttachRBAC(Entity):
     Singleton entity that acts as a container for tenant attach enablement functionality.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantAttachRBAC:

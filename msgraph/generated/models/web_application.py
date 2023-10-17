@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 @dataclass
 class WebApplication(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -19,7 +19,7 @@ class WebApplication(AdditionalDataHolder, BackedModel, Parsable):
     home_page_url: Optional[str] = None
     # Specifies whether this web application can request tokens using the OAuth 2.0 implicit flow.
     implicit_grant_settings: Optional[ImplicitGrantSettings] = None
-    # Specifies the URL that will be used by Microsoft's authorization service to logout an user using front-channel, back-channel or SAML logout protocols.
+    # Specifies the URL that will be used by Microsoft's authorization service to logout a user using front-channel, back-channel or SAML logout protocols.
     logout_url: Optional[str] = None
     # The oauth2AllowImplicitFlow property
     oauth2_allow_implicit_flow: Optional[bool] = None

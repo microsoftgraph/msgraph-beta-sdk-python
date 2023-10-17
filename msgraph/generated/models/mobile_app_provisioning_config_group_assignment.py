@@ -14,7 +14,7 @@ class MobileAppProvisioningConfigGroupAssignment(Entity):
     Contains the properties used to assign an App provisioning configuration to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The ID of the AAD group in which the app provisioning configuration is being targeted.
     target_group_id: Optional[str] = None
     

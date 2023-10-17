@@ -14,7 +14,7 @@ class IosVppAppAssignedUserLicense(IosVppAppAssignedLicense):
     iOS Volume Purchase Program user license assignment. This class does not support Create, Delete, or Update.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosVppAppAssignedUserLicense:

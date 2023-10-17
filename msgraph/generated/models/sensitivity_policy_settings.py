@@ -20,7 +20,7 @@ class SensitivityPolicySettings(Entity):
     # The isMandatory property
     is_mandatory: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitivityPolicySettings:
@@ -45,7 +45,7 @@ class SensitivityPolicySettings(Entity):
         from .sensitivity_label_target import SensitivityLabelTarget
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(SensitivityLabelTarget)),
+            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_collection_of_enum_values(SensitivityLabelTarget)),
             "downgradeSensitivityRequiresJustification": lambda n : setattr(self, 'downgrade_sensitivity_requires_justification', n.get_bool_value()),
             "helpWebUrl": lambda n : setattr(self, 'help_web_url', n.get_str_value()),
             "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),

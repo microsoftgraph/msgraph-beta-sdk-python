@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.privileged_access import PrivilegedAccess
     from .resources.resources_request_builder import ResourcesRequestBuilder
-    from .role_assignment_requests.role_assignment_requests_request_builder import RoleAssignmentRequestsRequestBuilder
     from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
+    from .role_assignment_requests.role_assignment_requests_request_builder import RoleAssignmentRequestsRequestBuilder
     from .role_definitions.role_definitions_request_builder import RoleDefinitionsRequestBuilder
     from .role_settings.role_settings_request_builder import RoleSettingsRequestBuilder
 
@@ -155,7 +155,7 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrivilegedAccessItemRequestBuilder(raw_url, self.request_adapter)
+        return PrivilegedAccessItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def resources(self) -> ResourcesRequestBuilder:

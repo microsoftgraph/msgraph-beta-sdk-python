@@ -25,6 +25,8 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
         param role_template_id: Alternate key of directoryRole
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['role_template_id'] = str(role_template_id)
         super().__init__(request_adapter, "{+baseurl}/directoryRoles(roleTemplateId='{roleTemplateId}'){?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[DirectoryRolesWithRoleTemplateIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
@@ -48,7 +50,7 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DirectoryRolesWithRoleTemplateIdRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryRole]:
         """
-        Retrieve the properties of a directoryRole object. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Azure portal. For details, see Role template IDs.
+        Retrieve the properties of a directoryRole object. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryRole]
         Find more info here: https://learn.microsoft.com/graph/api/directoryrole-get?view=graph-rest-1.0
@@ -109,7 +111,7 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryRolesWithRoleTemplateIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a directoryRole object. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Azure portal. For details, see Role template IDs.
+        Retrieve the properties of a directoryRole object. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +154,7 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DirectoryRolesWithRoleTemplateIdRequestBuilder(raw_url, self.request_adapter)
+        return DirectoryRolesWithRoleTemplateIdRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +169,7 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DirectoryRolesWithRoleTemplateIdRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a directoryRole object. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Azure portal. For details, see Role template IDs.
+        Retrieve the properties of a directoryRole object. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

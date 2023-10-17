@@ -15,7 +15,7 @@ from .entity import Entity
 
 @dataclass
 class AppCredentialSignInActivity(Entity):
-    # The globally unique appId (also called client ID on the Azure portal) of the credential application.
+    # The globally unique appId (also called client ID on the Microsoft Entra admin center) of the credential application.
     app_id: Optional[str] = None
     # The ID of the credential application instance.
     app_object_id: Optional[str] = None
@@ -32,7 +32,7 @@ class AppCredentialSignInActivity(Entity):
     # Specifies what the key was used for. The possible values are: sign, verify, unknownFutureValue.
     key_usage: Optional[ApplicationKeyUsage] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The ID of the accessed resource.
     resource_id: Optional[str] = None
     # The ID of the service principal.

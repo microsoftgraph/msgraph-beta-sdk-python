@@ -20,7 +20,7 @@ class MacOSEnterpriseWiFiConfiguration(MacOSWiFiConfiguration):
     MacOS Wi-Fi WPA-Enterprise/WPA2-Enterprise configuration profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSEnterpriseWiFiConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.macOSEnterpriseWiFiConfiguration"
     # Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
     authentication_method: Optional[WiFiAuthenticationMethod] = None
     # EAP-FAST Configuration Option when EAP-FAST is the selected EAP Type. Possible values are: noProtectedAccessCredential, useProtectedAccessCredential, useProtectedAccessCredentialAndProvision, useProtectedAccessCredentialAndProvisionAnonymously.

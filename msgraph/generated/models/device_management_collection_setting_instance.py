@@ -14,7 +14,7 @@ class DeviceManagementCollectionSettingInstance(DeviceManagementSettingInstance)
     A setting instance representing a collection of values
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementCollectionSettingInstance"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementCollectionSettingInstance"
     # The collection of values
     value: Optional[List[DeviceManagementSettingInstance]] = None
     

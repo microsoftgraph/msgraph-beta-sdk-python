@@ -7,8 +7,8 @@ if TYPE_CHECKING:
     from .apple_vpn_configuration import AppleVpnConfiguration
     from .app_list_item import AppListItem
     from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-    from .ios_certificate_profile_base import IosCertificateProfileBase
     from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+    from .ios_certificate_profile_base import IosCertificateProfileBase
 
 from .apple_vpn_configuration import AppleVpnConfiguration
 
@@ -18,7 +18,7 @@ class IosVpnConfiguration(AppleVpnConfiguration):
     By providing the configurations in this profile you can instruct the iOS device to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosVpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.iosVpnConfiguration"
     # Zscaler only. Zscaler cloud which the user is assigned to.
     cloud_name: Optional[str] = None
     # Tenant level settings for the Derived Credentials to be used for authentication.
@@ -63,14 +63,14 @@ class IosVpnConfiguration(AppleVpnConfiguration):
         from .apple_vpn_configuration import AppleVpnConfiguration
         from .app_list_item import AppListItem
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .ios_certificate_profile_base import IosCertificateProfileBase
         from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+        from .ios_certificate_profile_base import IosCertificateProfileBase
 
         from .apple_vpn_configuration import AppleVpnConfiguration
         from .app_list_item import AppListItem
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .ios_certificate_profile_base import IosCertificateProfileBase
         from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+        from .ios_certificate_profile_base import IosCertificateProfileBase
 
         fields: Dict[str, Callable[[Any], None]] = {
             "cloudName": lambda n : setattr(self, 'cloud_name', n.get_str_value()),

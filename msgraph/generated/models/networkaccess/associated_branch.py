@@ -11,7 +11,7 @@ from .association import Association
 @dataclass
 class AssociatedBranch(Association):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.associatedBranch"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.associatedBranch"
     # Identifier for the branch.
     branch_id: Optional[str] = None
     

@@ -15,7 +15,7 @@ class DeviceManagementIntentSettingCategory(DeviceManagementSettingCategory):
     Entity representing an intent setting category
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The settings this category contains
     settings: Optional[List[DeviceManagementSettingInstance]] = None
     

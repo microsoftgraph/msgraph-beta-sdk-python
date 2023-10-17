@@ -14,12 +14,8 @@ if TYPE_CHECKING:
     from .....models.directory_object_collection_response import DirectoryObjectCollectionResponse
     from .....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
-    from .delta.delta_request_builder import DeltaRequestBuilder
-    from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
-    from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
     from .item.directory_object_item_request_builder import DirectoryObjectItemRequestBuilder
     from .ref.ref_request_builder import RefRequestBuilder
-    from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
 
 class AppliesToRequestBuilder(BaseRequestBuilder):
     """
@@ -71,7 +67,7 @@ class AppliesToRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[DirectoryObject] = None, request_configuration: Optional[AppliesToRequestBuilderPostRequestConfiguration] = None) -> Optional[DirectoryObject]:
         """
-        Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
+        Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObject]
@@ -113,7 +109,7 @@ class AppliesToRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[DirectoryObject] = None, request_configuration: Optional[AppliesToRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
+        Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +135,7 @@ class AppliesToRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AppliesToRequestBuilder(raw_url, self.request_adapter)
+        return AppliesToRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -151,33 +147,6 @@ class AppliesToRequestBuilder(BaseRequestBuilder):
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delta(self) -> DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        """
-        from .delta.delta_request_builder import DeltaRequestBuilder
-
-        return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_by_ids(self) -> GetByIdsRequestBuilder:
-        """
-        Provides operations to call the getByIds method.
-        """
-        from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
-
-        return GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_user_owned_objects(self) -> GetUserOwnedObjectsRequestBuilder:
-        """
-        Provides operations to call the getUserOwnedObjects method.
-        """
-        from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
-
-        return GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def ref(self) -> RefRequestBuilder:
         """
         Provides operations to manage the collection of policyRoot entities.
@@ -185,15 +154,6 @@ class AppliesToRequestBuilder(BaseRequestBuilder):
         from .ref.ref_request_builder import RefRequestBuilder
 
         return RefRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def validate_properties(self) -> ValidatePropertiesRequestBuilder:
-        """
-        Provides operations to call the validateProperties method.
-        """
-        from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
-
-        return ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AppliesToRequestBuilderGetQueryParameters():

@@ -20,7 +20,7 @@ class AndroidVpnConfiguration(DeviceConfiguration):
     By providing the configurations in this profile you can instruct the Android device to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidVpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidVpnConfiguration"
     # VPN Authentication Method.
     authentication_method: Optional[VpnAuthenticationMethod] = None
     # Connection name displayed to the user.

@@ -11,7 +11,7 @@ from .governance_criteria import GovernanceCriteria
 @dataclass
 class UserGovernanceCriteria(GovernanceCriteria):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.userGovernanceCriteria"
+    OdataType: Optional[str] = "#microsoft.graph.userGovernanceCriteria"
     # The userId property
     user_id: Optional[str] = None
     

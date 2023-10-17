@@ -21,7 +21,7 @@ class DeviceManagementSettingCategory(Entity):
     # The category contains top level required setting
     has_required_setting: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The setting definitions this category contains
     setting_definitions: Optional[List[DeviceManagementSettingDefinition]] = None
     

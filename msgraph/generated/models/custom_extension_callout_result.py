@@ -12,7 +12,7 @@ from .authentication_event_handler_result import AuthenticationEventHandlerResul
 @dataclass
 class CustomExtensionCalloutResult(AuthenticationEventHandlerResult):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.customExtensionCalloutResult"
+    OdataType: Optional[str] = "#microsoft.graph.customExtensionCalloutResult"
     # When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
     callout_date_time: Optional[datetime.datetime] = None
     # Identifier of the custom extension that was called.

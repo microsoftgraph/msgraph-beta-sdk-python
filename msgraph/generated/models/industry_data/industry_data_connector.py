@@ -16,7 +16,7 @@ class IndustryDataConnector(Entity):
     # The name of the data connector. Maximum supported length is 100 characters.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The sourceSystem property
     source_system: Optional[SourceSystemDefinition] = None
     

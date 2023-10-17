@@ -48,7 +48,7 @@ class DelegatedAdminCustomerItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DelegatedAdminCustomerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DelegatedAdminCustomer]:
         """
-        Read the properties of a delegatedAdminCustomer object.
+        Read the properties of a delegatedAdminCustomer object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DelegatedAdminCustomer]
         Find more info here: https://learn.microsoft.com/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class DelegatedAdminCustomerItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DelegatedAdminCustomerItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties of a delegatedAdminCustomer object.
+        Read the properties of a delegatedAdminCustomer object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class DelegatedAdminCustomerItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DelegatedAdminCustomerItemRequestBuilder(raw_url, self.request_adapter)
+        return DelegatedAdminCustomerItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def service_management_details(self) -> ServiceManagementDetailsRequestBuilder:
@@ -176,7 +176,7 @@ class DelegatedAdminCustomerItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DelegatedAdminCustomerItemRequestBuilderGetQueryParameters():
         """
-        Read the properties of a delegatedAdminCustomer object.
+        Read the properties of a delegatedAdminCustomer object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

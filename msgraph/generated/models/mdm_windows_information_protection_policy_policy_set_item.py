@@ -14,7 +14,7 @@ class MdmWindowsInformationProtectionPolicyPolicySetItem(PolicySetItem):
     A class containing the properties used for mdm windows information protection policy PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.mdmWindowsInformationProtectionPolicyPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.mdmWindowsInformationProtectionPolicyPolicySetItem"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MdmWindowsInformationProtectionPolicyPolicySetItem:

@@ -14,7 +14,7 @@ class DeviceManagementComplexSettingDefinition(DeviceManagementSettingDefinition
     Entity representing the defintion for a complex setting
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The definitions of each property of the complex setting
     property_definition_ids: Optional[List[str]] = None
     

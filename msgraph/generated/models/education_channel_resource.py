@@ -11,7 +11,7 @@ from .education_resource import EducationResource
 @dataclass
 class EducationChannelResource(EducationResource):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationChannelResource"
+    OdataType: Optional[str] = "#microsoft.graph.educationChannelResource"
     # URL of the channel resource.
     url: Optional[str] = None
     

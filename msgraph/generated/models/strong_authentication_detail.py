@@ -13,7 +13,7 @@ class StrongAuthenticationDetail(Entity):
     # The encryptedPinHashHistory property
     encrypted_pin_hash_history: Optional[bytes] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The proofupTime property
     proofup_time: Optional[int] = None
     

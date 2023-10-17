@@ -17,7 +17,7 @@ class MicrosoftStoreForBusinessApp(MobileApp):
     Microsoft Store for Business Apps. This class does not support Create, Delete, or Update.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.microsoftStoreForBusinessApp"
+    OdataType: Optional[str] = "#microsoft.graph.microsoftStoreForBusinessApp"
     # The collection of contained apps in a mobileApp acting as a package.
     contained_apps: Optional[List[MobileContainedApp]] = None
     # The licenseType property

@@ -14,7 +14,7 @@ class DeviceHealthScriptHourlySchedule(DeviceHealthScriptRunSchedule):
     Type of Device health script hourly schedule.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceHealthScriptHourlySchedule"
+    OdataType: Optional[str] = "#microsoft.graph.deviceHealthScriptHourlySchedule"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptHourlySchedule:

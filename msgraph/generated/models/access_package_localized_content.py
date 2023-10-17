@@ -10,11 +10,11 @@ if TYPE_CHECKING:
 @dataclass
 class AccessPackageLocalizedContent(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The fallback string, which is used when a requested localization is not available. Required.
+    # The fallback string, which is used when a requested localization isn't available. Required.
     default_text: Optional[str] = None
     # Content represented in a format for a specific locale.
     localized_texts: Optional[List[AccessPackageLocalizedText]] = None

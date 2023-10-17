@@ -161,7 +161,7 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthenticationRequestBuilder(raw_url, self.request_adapter)
+        return AuthenticationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def email_methods(self) -> EmailMethodsRequestBuilder:
@@ -209,15 +209,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def passwordless_microsoft_authenticator_methods(self) -> PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder:
-        """
-        Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
-        """
-        from .passwordless_microsoft_authenticator_methods.passwordless_microsoft_authenticator_methods_request_builder import PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
-
-        return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def password_methods(self) -> PasswordMethodsRequestBuilder:
         """
         Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
@@ -225,6 +216,15 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         from .password_methods.password_methods_request_builder import PasswordMethodsRequestBuilder
 
         return PasswordMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def passwordless_microsoft_authenticator_methods(self) -> PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder:
+        """
+        Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
+        """
+        from .passwordless_microsoft_authenticator_methods.passwordless_microsoft_authenticator_methods_request_builder import PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
+
+        return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def phone_methods(self) -> PhoneMethodsRequestBuilder:

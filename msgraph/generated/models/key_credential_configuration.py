@@ -11,11 +11,11 @@ if TYPE_CHECKING:
 @dataclass
 class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The certificateBasedApplicationConfigurationIds property
+    # Collection of GUIDs that point to the certificateBasedApplicationConfiguration that contains the collection of allowed root and intermediate certificate authorities.
     certificate_based_application_configuration_ids: Optional[List[str]] = None
     # The maxLifetime property
     max_lifetime: Optional[datetime.timedelta] = None

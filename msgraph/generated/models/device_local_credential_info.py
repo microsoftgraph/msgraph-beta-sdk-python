@@ -19,7 +19,7 @@ class DeviceLocalCredentialInfo(Entity):
     # When the local administrator account credential was backed up to Azure Active Directory.
     last_backup_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # When the local administrator account credential will be refreshed and backed up to Azure Active Directory.
     refresh_date_time: Optional[datetime.datetime] = None
     

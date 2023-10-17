@@ -153,7 +153,7 @@ class MicrosoftTunnelSiteItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftTunnelSiteItemRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftTunnelSiteItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_tunnel_configuration(self) -> MicrosoftTunnelConfigurationRequestBuilder:

@@ -18,7 +18,7 @@ class DeviceLocalCredential(Entity):
     # When the local adminstrator account credential for the device object was backed up to Azure Active Directory.
     backup_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The password for the local administrator account that is backed up to Azure Active Directory and returned as a base 64 encoded value.
     password_base64: Optional[str] = None
     

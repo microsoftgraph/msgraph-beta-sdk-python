@@ -45,7 +45,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder(BaseRequestBuild
     
     async def get(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceCompliancePolicySettingStateSummaryCollectionResponse]:
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceCompliancePolicySettingStateSummaryCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-devicecompliancepolicysettingstatesummary?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder(BaseRequestBuild
     
     def to_get_request_information(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder(BaseRequestBuild
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceCompliancePolicySettingStateSummariesRequestBuilder(raw_url, self.request_adapter)
+        return DeviceCompliancePolicySettingStateSummariesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder(BaseRequestBuild
     @dataclass
     class DeviceCompliancePolicySettingStateSummariesRequestBuilderGetQueryParameters():
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

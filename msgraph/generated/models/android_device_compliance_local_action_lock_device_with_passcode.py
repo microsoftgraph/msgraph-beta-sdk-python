@@ -14,7 +14,7 @@ class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(AndroidDeviceComp
     Local Action Lock Device with Passcode Configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode"
     # Passcode to reset to Android device. This property is read-only.
     passcode: Optional[str] = None
     # Number of sign in failures before wiping device, the value can be 4-11. Valid values 4 to 11

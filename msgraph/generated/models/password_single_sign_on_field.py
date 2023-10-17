@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class PasswordSingleSignOnField(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -15,7 +15,7 @@ class PasswordSingleSignOnField(AdditionalDataHolder, BackedModel, Parsable):
     customized_label: Optional[str] = None
     # Label that would be used if no customizedLabel is provided. Read only.
     default_label: Optional[str] = None
-    # Id used to identity the field type. This is an internal id and possible values are param1, param2, paramuserName, parampassword.
+    # Id used to identity the field type. This is an internal ID and possible values are param1, param2, paramuserName, parampassword.
     field_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

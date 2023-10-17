@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.o_data_errors.o_data_error import ODataError
     from ........models.onenote_section import OnenoteSection
+    from ........models.o_data_errors.o_data_error import ODataError
     from .copy_to_notebook.copy_to_notebook_request_builder import CopyToNotebookRequestBuilder
     from .copy_to_section_group.copy_to_section_group_request_builder import CopyToSectionGroupRequestBuilder
     from .pages.pages_request_builder import PagesRequestBuilder
@@ -52,7 +52,7 @@ class OnenoteSectionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[OnenoteSection]:
         """
-        Retrieve the properties and relationships of a section object.
+        Retrieve the properties and relationships of a section object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnenoteSection]
         Find more info here: https://learn.microsoft.com/graph/api/section-get?view=graph-rest-1.0
@@ -113,7 +113,7 @@ class OnenoteSectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a section object.
+        Retrieve the properties and relationships of a section object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -156,7 +156,7 @@ class OnenoteSectionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnenoteSectionItemRequestBuilder(raw_url, self.request_adapter)
+        return OnenoteSectionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def copy_to_notebook(self) -> CopyToNotebookRequestBuilder:
@@ -216,7 +216,7 @@ class OnenoteSectionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OnenoteSectionItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a section object.
+        Retrieve the properties and relationships of a section object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

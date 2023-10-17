@@ -21,12 +21,12 @@ if TYPE_CHECKING:
     from .managed_app_policies.managed_app_policies_request_builder import ManagedAppPoliciesRequestBuilder
     from .managed_app_registrations.managed_app_registrations_request_builder import ManagedAppRegistrationsRequestBuilder
     from .managed_app_statuses.managed_app_statuses_request_builder import ManagedAppStatusesRequestBuilder
-    from .managed_e_book_categories.managed_e_book_categories_request_builder import ManagedEBookCategoriesRequestBuilder
     from .managed_e_books.managed_e_books_request_builder import ManagedEBooksRequestBuilder
+    from .managed_e_book_categories.managed_e_book_categories_request_builder import ManagedEBookCategoriesRequestBuilder
     from .mdm_windows_information_protection_policies.mdm_windows_information_protection_policies_request_builder import MdmWindowsInformationProtectionPoliciesRequestBuilder
+    from .mobile_apps.mobile_apps_request_builder import MobileAppsRequestBuilder
     from .mobile_app_categories.mobile_app_categories_request_builder import MobileAppCategoriesRequestBuilder
     from .mobile_app_configurations.mobile_app_configurations_request_builder import MobileAppConfigurationsRequestBuilder
-    from .mobile_apps.mobile_apps_request_builder import MobileAppsRequestBuilder
     from .policy_sets.policy_sets_request_builder import PolicySetsRequestBuilder
     from .symantec_code_signing_certificate.symantec_code_signing_certificate_request_builder import SymantecCodeSigningCertificateRequestBuilder
     from .sync_microsoft_store_for_business_apps.sync_microsoft_store_for_business_apps_request_builder import SyncMicrosoftStoreForBusinessAppsRequestBuilder
@@ -142,7 +142,7 @@ class DeviceAppManagementRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceAppManagementRequestBuilder(raw_url, self.request_adapter)
+        return DeviceAppManagementRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def android_managed_app_protections(self) -> AndroidManagedAppProtectionsRequestBuilder:

@@ -14,7 +14,7 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(DeliveryOptimizationMaxCacheSize)
     Delivery Optimization max cache size absolute type.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute"
+    OdataType: Optional[str] = "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute"
     # Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
     maximum_cache_size_in_gigabytes: Optional[int] = None
     

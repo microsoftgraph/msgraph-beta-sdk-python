@@ -28,7 +28,7 @@ class RestartRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RestartPostRequestBody] = None, request_configuration: Optional[RestartRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.
+        Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class RestartRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RestartPostRequestBody] = None, request_configuration: Optional[RestartRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.
+        Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class RestartRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RestartRequestBuilder(raw_url, self.request_adapter)
+        return RestartRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

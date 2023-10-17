@@ -11,7 +11,7 @@ from .cloud_pc_bulk_action import CloudPcBulkAction
 @dataclass
 class CloudPcBulkPowerOff(CloudPcBulkAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkPowerOff"
+    OdataType: Optional[str] = "#microsoft.graph.cloudPcBulkPowerOff"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcBulkPowerOff:

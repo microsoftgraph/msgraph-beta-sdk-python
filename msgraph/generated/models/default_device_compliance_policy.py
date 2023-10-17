@@ -14,7 +14,7 @@ class DefaultDeviceCompliancePolicy(DeviceCompliancePolicy):
     Default device compliance policy rules that are enforced account wide.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.defaultDeviceCompliancePolicy"
+    OdataType: Optional[str] = "#microsoft.graph.defaultDeviceCompliancePolicy"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DefaultDeviceCompliancePolicy:

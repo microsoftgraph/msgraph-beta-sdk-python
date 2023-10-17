@@ -35,8 +35,8 @@ if TYPE_CHECKING:
     from .initiate_mobile_device_management_key_recovery.initiate_mobile_device_management_key_recovery_request_builder import InitiateMobileDeviceManagementKeyRecoveryRequestBuilder
     from .initiate_on_demand_proactive_remediation.initiate_on_demand_proactive_remediation_request_builder import InitiateOnDemandProactiveRemediationRequestBuilder
     from .locate_device.locate_device_request_builder import LocateDeviceRequestBuilder
-    from .log_collection_requests.log_collection_requests_request_builder import LogCollectionRequestsRequestBuilder
     from .logout_shared_apple_device_active_user.logout_shared_apple_device_active_user_request_builder import LogoutSharedAppleDeviceActiveUserRequestBuilder
+    from .log_collection_requests.log_collection_requests_request_builder import LogCollectionRequestsRequestBuilder
     from .managed_device_mobile_app_configuration_states.managed_device_mobile_app_configuration_states_request_builder import ManagedDeviceMobileAppConfigurationStatesRequestBuilder
     from .override_compliance_state.override_compliance_state_request_builder import OverrideComplianceStateRequestBuilder
     from .play_lost_mode_sound.play_lost_mode_sound_request_builder import PlayLostModeSoundRequestBuilder
@@ -206,7 +206,7 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagedDeviceItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagedDeviceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activate_device_esim(self) -> ActivateDeviceEsimRequestBuilder:

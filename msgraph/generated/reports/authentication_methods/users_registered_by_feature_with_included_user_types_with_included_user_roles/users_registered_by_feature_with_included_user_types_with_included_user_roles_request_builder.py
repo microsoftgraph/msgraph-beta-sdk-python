@@ -26,6 +26,9 @@ class UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestB
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['included_user_roles'] = str(included_user_roles)
+            path_parameters['included_user_types'] = str(included_user_types)
         super().__init__(request_adapter, "{+baseurl}/reports/authenticationMethods/usersRegisteredByFeature(includedUserTypes='{includedUserTypes}',includedUserRoles='{includedUserRoles}')", path_parameters)
     
     async def get(self,request_configuration: Optional[UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[UserRegistrationFeatureSummary]:
@@ -73,7 +76,7 @@ class UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestB
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(raw_url, self.request_adapter)
+        return UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

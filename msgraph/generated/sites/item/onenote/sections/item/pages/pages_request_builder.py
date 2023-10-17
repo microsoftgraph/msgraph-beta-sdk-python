@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models.o_data_errors.o_data_error import ODataError
     from .......models.onenote_page import OnenotePage
     from .......models.onenote_page_collection_response import OnenotePageCollectionResponse
+    from .......models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.onenote_page_item_request_builder import OnenotePageItemRequestBuilder
 
@@ -133,7 +133,7 @@ class PagesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PagesRequestBuilder(raw_url, self.request_adapter)
+        return PagesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

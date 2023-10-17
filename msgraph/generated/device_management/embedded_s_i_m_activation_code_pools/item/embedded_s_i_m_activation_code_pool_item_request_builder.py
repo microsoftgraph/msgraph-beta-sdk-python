@@ -153,7 +153,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EmbeddedSIMActivationCodePoolItemRequestBuilder(raw_url, self.request_adapter)
+        return EmbeddedSIMActivationCodePoolItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:

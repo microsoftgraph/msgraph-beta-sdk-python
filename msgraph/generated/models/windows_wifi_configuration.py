@@ -6,9 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
     from .metered_connection_limit_type import MeteredConnectionLimitType
+    from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
     from .wi_fi_proxy_setting import WiFiProxySetting
     from .wi_fi_security_type import WiFiSecurityType
-    from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
 
 from .device_configuration import DeviceConfiguration
 
@@ -18,7 +18,7 @@ class WindowsWifiConfiguration(DeviceConfiguration):
     Device Configuration.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsWifiConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsWifiConfiguration"
     # Specify whether the wifi connection should connect automatically when in range.
     connect_automatically: Optional[bool] = None
     # Specify whether the wifi connection should connect to more preferred networks when already connected to this one.  Requires ConnectAutomatically to be true.
@@ -72,15 +72,15 @@ class WindowsWifiConfiguration(DeviceConfiguration):
         """
         from .device_configuration import DeviceConfiguration
         from .metered_connection_limit_type import MeteredConnectionLimitType
+        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .wi_fi_proxy_setting import WiFiProxySetting
         from .wi_fi_security_type import WiFiSecurityType
-        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
 
         from .device_configuration import DeviceConfiguration
         from .metered_connection_limit_type import MeteredConnectionLimitType
+        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .wi_fi_proxy_setting import WiFiProxySetting
         from .wi_fi_security_type import WiFiSecurityType
-        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),

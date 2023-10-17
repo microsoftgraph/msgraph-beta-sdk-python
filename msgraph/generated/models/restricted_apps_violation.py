@@ -25,7 +25,7 @@ class RestrictedAppsViolation(Entity):
     # Managed device unique identifier, must be Guid
     managed_device_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Supported platform types for policies.
     platform_type: Optional[PolicyPlatformType] = None
     # List of violated restricted apps

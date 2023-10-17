@@ -15,7 +15,7 @@ class DeviceManagementTemplateInsightsDefinition(Entity):
     template insights definition
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Setting insights in a template
     setting_insights: Optional[List[DeviceManagementSettingInsightsDefinition]] = None
     

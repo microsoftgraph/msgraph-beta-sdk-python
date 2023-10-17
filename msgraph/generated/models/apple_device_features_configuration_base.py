@@ -17,7 +17,7 @@ class AppleDeviceFeaturesConfigurationBase(DeviceConfiguration):
     Apple device features configuration profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
+    OdataType: Optional[str] = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
     # An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
     air_print_destinations: Optional[List[AirPrintDestination]] = None
     

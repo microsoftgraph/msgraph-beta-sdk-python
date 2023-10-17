@@ -19,7 +19,7 @@ class RemoteAssistanceSettings(Entity):
     # Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
     block_chat: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # State of remote assistance for the account
     remote_assistance_state: Optional[RemoteAssistanceState] = None
     

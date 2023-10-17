@@ -14,11 +14,11 @@ if TYPE_CHECKING:
 @dataclass
 class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
+    # Determines the partner-specific configuration for automatic user consent settings. Unless configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
     automatic_user_consent_settings: Optional[InboundOutboundPolicyConfiguration] = None
     # Defines your partner-specific configuration for users from other organizations accessing your resources via Azure AD B2B collaboration.
     b2b_collaboration_inbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
@@ -28,11 +28,11 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
     b2b_direct_connect_inbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
     # Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Azure AD B2B direct connect.
     b2b_direct_connect_outbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
-    # Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.
+    # Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multitenant organization by automating the creation, update, and deletion of users from one tenant to another.
     identity_synchronization: Optional[CrossTenantIdentitySyncPolicyPartner] = None
     # Determines the partner-specific configuration for trusting other Conditional Access claims from external Azure AD organizations.
     inbound_trust: Optional[CrossTenantAccessPolicyInboundTrust] = None
-    # Identifies whether a tenant is a member of a multi-tenant organization.
+    # Identifies whether a tenant is a member of a multitenant organization.
     is_in_multi_tenant_organization: Optional[bool] = None
     # Identifies whether the partner-specific configuration is a Cloud Service Provider for your organization.
     is_service_provider: Optional[bool] = None
@@ -40,7 +40,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
     odata_type: Optional[str] = None
     # The tenant identifier for the partner Azure AD organization. Read-only. Key.
     tenant_id: Optional[str] = None
-    # Defines the partner-specific tenant restrictions configuration for your organization users accessing a partner organization using partner supplied idenities on your network or devices.
+    # Defines the partner-specific tenant restrictions configuration for your organization users accessing a partner organization using partner supplied identities on your network or devices.
     tenant_restrictions: Optional[CrossTenantAccessPolicyTenantRestrictions] = None
     
     @staticmethod

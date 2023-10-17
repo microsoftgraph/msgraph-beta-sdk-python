@@ -11,7 +11,7 @@ from .entity import Entity
 @dataclass
 class CloudPcCrossCloudGovernmentOrganizationMapping(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The tenant ID in the Azure Government cloud corresponding to the GCC tenant in the public cloud. Currently, 1:1 mappings are supported, so this collection can only contain one tenant ID.
     organization_ids_in_u_s_gov_cloud: Optional[List[str]] = None
     

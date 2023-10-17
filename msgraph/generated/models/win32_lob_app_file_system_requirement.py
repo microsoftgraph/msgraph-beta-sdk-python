@@ -15,7 +15,7 @@ class Win32LobAppFileSystemRequirement(Win32LobAppRequirement):
     Contains file or folder path to detect a Win32 App
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.win32LobAppFileSystemRequirement"
+    OdataType: Optional[str] = "#microsoft.graph.win32LobAppFileSystemRequirement"
     # A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
     check32_bit_on64_system: Optional[bool] = None
     # Contains all supported file system detection type.

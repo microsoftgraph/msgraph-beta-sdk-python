@@ -12,7 +12,7 @@ from .planner_task_configuration_role_base import PlannerTaskConfigurationRoleBa
 @dataclass
 class PlannerRelationshipBasedUserType(PlannerTaskConfigurationRoleBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.plannerRelationshipBasedUserType"
+    OdataType: Optional[str] = "#microsoft.graph.plannerRelationshipBasedUserType"
     # The role property
     role: Optional[PlannerRelationshipUserRoles] = None
     

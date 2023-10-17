@@ -11,7 +11,7 @@ class WindowsUpdateRolloutSettings(AdditionalDataHolder, BackedModel, Parsable):
     A complex type to store the windows update rollout settings including offer start date time, offer end date time, and days between each set of offers.
     """
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)

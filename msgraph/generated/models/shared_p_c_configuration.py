@@ -18,7 +18,7 @@ class SharedPCConfiguration(DeviceConfiguration):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the sharedPCConfiguration resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.sharedPCConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.sharedPCConfiguration"
     # Specifies how accounts are managed on a shared PC. Only applies when disableAccountManager is false.
     account_manager_policy: Optional[SharedPCAccountManagerPolicy] = None
     # Specifies whether local storage is allowed on a shared PC.
@@ -85,7 +85,7 @@ class SharedPCConfiguration(DeviceConfiguration):
         fields: Dict[str, Callable[[Any], None]] = {
             "accountManagerPolicy": lambda n : setattr(self, 'account_manager_policy', n.get_object_value(SharedPCAccountManagerPolicy)),
             "allowLocalStorage": lambda n : setattr(self, 'allow_local_storage', n.get_bool_value()),
-            "allowedAccounts": lambda n : setattr(self, 'allowed_accounts', n.get_enum_value(SharedPCAllowedAccountType)),
+            "allowedAccounts": lambda n : setattr(self, 'allowed_accounts', n.get_collection_of_enum_values(SharedPCAllowedAccountType)),
             "disableAccountManager": lambda n : setattr(self, 'disable_account_manager', n.get_bool_value()),
             "disableEduPolicies": lambda n : setattr(self, 'disable_edu_policies', n.get_bool_value()),
             "disablePowerPolicies": lambda n : setattr(self, 'disable_power_policies', n.get_bool_value()),

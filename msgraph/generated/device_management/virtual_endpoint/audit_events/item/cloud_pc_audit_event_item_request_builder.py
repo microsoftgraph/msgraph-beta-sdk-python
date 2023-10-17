@@ -47,7 +47,7 @@ class CloudPcAuditEventItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CloudPcAuditEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcAuditEvent]:
         """
-        Read the properties and relationships of a cloudPcAuditEvent object.
+        Read the properties and relationships of a cloudPcAuditEvent object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcAuditEvent]
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcauditevent-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class CloudPcAuditEventItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcAuditEventItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a cloudPcAuditEvent object.
+        Read the properties and relationships of a cloudPcAuditEvent object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class CloudPcAuditEventItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CloudPcAuditEventItemRequestBuilder(raw_url, self.request_adapter)
+        return CloudPcAuditEventItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class CloudPcAuditEventItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcAuditEventItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a cloudPcAuditEvent object.
+        Read the properties and relationships of a cloudPcAuditEvent object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

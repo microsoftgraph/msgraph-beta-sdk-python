@@ -11,7 +11,7 @@ from .identity import Identity
 @dataclass
 class AzureCommunicationServicesUserIdentity(Identity):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.azureCommunicationServicesUserIdentity"
+    OdataType: Optional[str] = "#microsoft.graph.azureCommunicationServicesUserIdentity"
     # The Azure Communication Services resource ID associated with the user.
     azure_communication_services_resource_id: Optional[str] = None
     

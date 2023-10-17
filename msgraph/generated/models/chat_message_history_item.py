@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 @dataclass
 class ChatMessageHistoryItem(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -48,7 +48,7 @@ class ChatMessageHistoryItem(AdditionalDataHolder, BackedModel, Parsable):
         from .chat_message_reaction import ChatMessageReaction
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "actions": lambda n : setattr(self, 'actions', n.get_enum_value(ChatMessageActions)),
+            "actions": lambda n : setattr(self, 'actions', n.get_collection_of_enum_values(ChatMessageActions)),
             "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reaction": lambda n : setattr(self, 'reaction', n.get_object_value(ChatMessageReaction)),

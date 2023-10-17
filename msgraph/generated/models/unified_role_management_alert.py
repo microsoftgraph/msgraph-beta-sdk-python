@@ -31,7 +31,7 @@ class UnifiedRoleManagementAlert(Entity):
     # The date time when the tenant was last scanned for incidents that trigger this alert.
     last_scanned_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The identifier of the scope where the alert is related. / is the only supported one for the tenant. Supports $filter (eq, ne).
     scope_id: Optional[str] = None
     # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Azure AD roles.

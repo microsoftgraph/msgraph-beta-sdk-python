@@ -47,7 +47,7 @@ class WindowsProtectionStateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WindowsProtectionStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsProtectionState]:
         """
-        Read the properties and relationships of a windowsProtectionState object.
+        Read the properties and relationships of a windowsProtectionState object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WindowsProtectionState]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-windowsprotectionstate-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class WindowsProtectionStateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WindowsProtectionStateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a windowsProtectionState object.
+        Read the properties and relationships of a windowsProtectionState object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class WindowsProtectionStateItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WindowsProtectionStateItemRequestBuilder(raw_url, self.request_adapter)
+        return WindowsProtectionStateItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class WindowsProtectionStateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WindowsProtectionStateItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a windowsProtectionState object.
+        Read the properties and relationships of a windowsProtectionState object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

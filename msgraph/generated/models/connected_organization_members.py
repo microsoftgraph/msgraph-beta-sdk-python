@@ -11,7 +11,7 @@ from .user_set import UserSet
 @dataclass
 class ConnectedOrganizationMembers(UserSet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.connectedOrganizationMembers"
+    OdataType: Optional[str] = "#microsoft.graph.connectedOrganizationMembers"
     # The name of the connected organization. Read only.
     description: Optional[str] = None
     # The ID of the connected organization in entitlement management.

@@ -14,7 +14,7 @@ class DeviceManagementConfigurationIntegerSettingValue(DeviceManagementConfigura
     Simple setting value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue"
     # Value of the integer setting.
     value: Optional[int] = None
     

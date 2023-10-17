@@ -14,7 +14,7 @@ class DeviceHealthScriptIntegerParameter(DeviceHealthScriptParameter):
     Properties of the  Integer script parameter.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceHealthScriptIntegerParameter"
+    OdataType: Optional[str] = "#microsoft.graph.deviceHealthScriptIntegerParameter"
     # The default value of Integer param. Valid values -2147483648 to 2147483647
     default_value: Optional[int] = None
     

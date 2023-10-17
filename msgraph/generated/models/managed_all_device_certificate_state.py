@@ -35,7 +35,7 @@ class ManagedAllDeviceCertificateState(Entity):
     # Device display name
     managed_device_display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # User principal name
     user_principal_name: Optional[str] = None
     

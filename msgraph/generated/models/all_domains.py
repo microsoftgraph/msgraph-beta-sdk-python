@@ -11,7 +11,7 @@ from .validating_domains import ValidatingDomains
 @dataclass
 class AllDomains(ValidatingDomains):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.allDomains"
+    OdataType: Optional[str] = "#microsoft.graph.allDomains"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AllDomains:

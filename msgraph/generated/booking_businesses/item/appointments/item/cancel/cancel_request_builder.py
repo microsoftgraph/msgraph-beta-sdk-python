@@ -28,7 +28,7 @@ class CancelRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CancelPostRequestBody] = None, request_configuration: Optional[CancelRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Cancel the specified bookingAppointment in the specified bookingBusiness, and send a message to the involved customer and staff members.
+        Cancel the specified bookingAppointment in the specified bookingBusiness, and send a message to the involved customer and staff members. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class CancelRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CancelPostRequestBody] = None, request_configuration: Optional[CancelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Cancel the specified bookingAppointment in the specified bookingBusiness, and send a message to the involved customer and staff members.
+        Cancel the specified bookingAppointment in the specified bookingBusiness, and send a message to the involved customer and staff members. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class CancelRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CancelRequestBuilder(raw_url, self.request_adapter)
+        return CancelRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

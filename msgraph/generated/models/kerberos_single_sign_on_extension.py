@@ -14,7 +14,7 @@ class KerberosSingleSignOnExtension(SingleSignOnExtension):
     Represents a Kerberos-type Single Sign-On extension profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.kerberosSingleSignOnExtension"
+    OdataType: Optional[str] = "#microsoft.graph.kerberosSingleSignOnExtension"
     # Gets or sets the Active Directory site.
     active_directory_site_code: Optional[str] = None
     # Enables or disables whether the Kerberos extension can automatically determine its site name.

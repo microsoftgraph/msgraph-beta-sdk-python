@@ -123,7 +123,7 @@ class PrintRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrintRequestBuilder(raw_url, self.request_adapter)
+        return PrintRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def connectors(self) -> ConnectorsRequestBuilder:
@@ -144,15 +144,6 @@ class PrintRequestBuilder(BaseRequestBuilder):
         return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def printers(self) -> PrintersRequestBuilder:
-        """
-        Provides operations to manage the printers property of the microsoft.graph.print entity.
-        """
-        from .printers.printers_request_builder import PrintersRequestBuilder
-
-        return PrintersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def printer_shares(self) -> PrinterSharesRequestBuilder:
         """
         Provides operations to manage the printerShares property of the microsoft.graph.print entity.
@@ -160,6 +151,15 @@ class PrintRequestBuilder(BaseRequestBuilder):
         from .printer_shares.printer_shares_request_builder import PrinterSharesRequestBuilder
 
         return PrinterSharesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def printers(self) -> PrintersRequestBuilder:
+        """
+        Provides operations to manage the printers property of the microsoft.graph.print entity.
+        """
+        from .printers.printers_request_builder import PrintersRequestBuilder
+
+        return PrintersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def services(self) -> ServicesRequestBuilder:

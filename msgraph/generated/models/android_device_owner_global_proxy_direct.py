@@ -14,7 +14,7 @@ class AndroidDeviceOwnerGlobalProxyDirect(AndroidDeviceOwnerGlobalProxy):
     Android Device Owner Global Proxy Direct.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerGlobalProxyDirect"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerGlobalProxyDirect"
     # The excluded hosts
     excluded_hosts: Optional[List[str]] = None
     # The host name

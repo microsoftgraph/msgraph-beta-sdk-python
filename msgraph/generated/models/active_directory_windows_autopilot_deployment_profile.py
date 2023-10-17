@@ -15,7 +15,7 @@ class ActiveDirectoryWindowsAutopilotDeploymentProfile(WindowsAutopilotDeploymen
     Windows Autopilot Deployment Profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.activeDirectoryWindowsAutopilotDeploymentProfile"
+    OdataType: Optional[str] = "#microsoft.graph.activeDirectoryWindowsAutopilotDeploymentProfile"
     # Configuration to join Active Directory domain
     domain_join_configuration: Optional[WindowsDomainJoinConfiguration] = None
     # The Autopilot Hybrid Azure AD join flow will continue even if it does not establish domain controller connectivity during OOBE.

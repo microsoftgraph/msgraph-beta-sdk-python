@@ -12,7 +12,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class CustomAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.customAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.customAction"
     # Name of the custom action.
     name: Optional[str] = None
     # Properties, in key-value pair format, of the action.

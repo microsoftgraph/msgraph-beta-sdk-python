@@ -15,7 +15,7 @@ class InformationProtection(Entity):
     # Read the Microsoft Purview Information Protection policy settings for the user or organization.
     label_policy_settings: Optional[InformationProtectionPolicySetting] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Read the Microsoft Purview Information Protection labels for the user or organization.
     sensitivity_labels: Optional[List[SensitivityLabel]] = None
     

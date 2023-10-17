@@ -11,7 +11,7 @@ from .unified_role_management_alert_configuration import UnifiedRoleManagementAl
 @dataclass
 class TooManyGlobalAdminsAssignedToTenantAlertConfiguration(UnifiedRoleManagementAlertConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.tooManyGlobalAdminsAssignedToTenantAlertConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.tooManyGlobalAdminsAssignedToTenantAlertConfiguration"
     # The threshold for the number of accounts assigned the Global Administrator role in the tenant. Triggers an alert if the number of global administrators in the tenant reaches or crosses this threshold value.
     global_admin_count_threshold: Optional[int] = None
     # Threshold of the percentage of global administrators out of all the role assignments in the tenant. Triggers an alert if the percentage in the tenant reaches or crosses this threshold value.

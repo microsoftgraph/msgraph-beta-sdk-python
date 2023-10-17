@@ -24,6 +24,8 @@ class GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder(BaseRequestB
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['cloud_pc_id'] = str(cloud_pc_id)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getRealTimeRemoteConnectionLatency(cloudPcId='{cloudPcId}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilderGetRequestConfiguration] = None) -> bytes:
@@ -68,7 +70,7 @@ class GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder(BaseRequestB
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder(raw_url, self.request_adapter)
+        return GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

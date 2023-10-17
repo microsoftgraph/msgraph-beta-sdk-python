@@ -17,7 +17,7 @@ class WindowsPhoneEASEmailProfileConfiguration(EasEmailProfileConfigurationBase)
     By providing configurations in this profile you can instruct the native email client on Windows Phone to communicate with an Exchange server and get email, contacts, calendar, and tasks. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsPhoneEASEmailProfileConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsPhoneEASEmailProfileConfiguration"
     # Account name.
     account_name: Optional[str] = None
     # Value indicating whether this policy only applies to Windows 8.1. This property is read-only.

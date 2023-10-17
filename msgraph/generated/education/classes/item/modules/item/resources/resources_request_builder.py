@@ -45,7 +45,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationModuleResourceCollectionResponse]:
         """
-        Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
+        Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationModuleResourceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationmodule-list-resources?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[EducationModuleResource] = None, request_configuration: Optional[ResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationModuleResource]:
         """
-        Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created. 
+        Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created.  This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationModuleResource]
@@ -92,7 +92,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
+        Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[EducationModuleResource] = None, request_configuration: Optional[ResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created. 
+        Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created.  This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ResourcesRequestBuilder(raw_url, self.request_adapter)
+        return ResourcesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ResourcesRequestBuilderGetQueryParameters():
         """
-        Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
+        Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -27,7 +27,7 @@ class ManagedTenantApiNotification(Entity):
     # The message property
     message: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The title property
     title: Optional[str] = None
     # The userId property

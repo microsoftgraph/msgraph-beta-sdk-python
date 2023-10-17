@@ -72,7 +72,7 @@ class AuthorityTemplateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthorityTemplateRequestBuilder(raw_url, self.request_adapter)
+        return AuthorityTemplateRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class AuthorityTemplateRequestBuilderGetQueryParameters():

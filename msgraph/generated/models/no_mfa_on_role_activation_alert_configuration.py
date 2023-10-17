@@ -11,7 +11,7 @@ from .unified_role_management_alert_configuration import UnifiedRoleManagementAl
 @dataclass
 class NoMfaOnRoleActivationAlertConfiguration(UnifiedRoleManagementAlertConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.noMfaOnRoleActivationAlertConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.noMfaOnRoleActivationAlertConfiguration"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NoMfaOnRoleActivationAlertConfiguration:

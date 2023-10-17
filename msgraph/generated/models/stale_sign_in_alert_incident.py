@@ -12,7 +12,7 @@ from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIn
 @dataclass
 class StaleSignInAlertIncident(UnifiedRoleManagementAlertIncident):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.staleSignInAlertIncident"
+    OdataType: Optional[str] = "#microsoft.graph.staleSignInAlertIncident"
     # Display name of the subject that the incident applies to.
     assignee_display_name: Optional[str] = None
     # The identifier of the subject that the incident applies to.

@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.o_data_errors.o_data_error import ODataError
     from .....models.on_premises_agent import OnPremisesAgent
+    from .....models.o_data_errors.o_data_error import ODataError
     from .agent_groups.agent_groups_request_builder import AgentGroupsRequestBuilder
 
 class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
@@ -48,7 +48,7 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OnPremisesAgentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[OnPremisesAgent]:
         """
-        Retrieve the properties and relationships of an onPremisesAgent object.
+        Retrieve the properties and relationships of an onPremisesAgent object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgent]
         Find more info here: https://learn.microsoft.com/graph/api/onpremisesagent-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesAgentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an onPremisesAgent object.
+        Retrieve the properties and relationships of an onPremisesAgent object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnPremisesAgentItemRequestBuilder(raw_url, self.request_adapter)
+        return OnPremisesAgentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def agent_groups(self) -> AgentGroupsRequestBuilder:
@@ -176,7 +176,7 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OnPremisesAgentItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an onPremisesAgent object.
+        Retrieve the properties and relationships of an onPremisesAgent object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

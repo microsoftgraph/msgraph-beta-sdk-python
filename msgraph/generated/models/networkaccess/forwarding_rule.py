@@ -16,7 +16,7 @@ from .policy_rule import PolicyRule
 @dataclass
 class ForwardingRule(PolicyRule):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingRule"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.forwardingRule"
     # The action property
     action: Optional[ForwardingRuleAction] = None
     # Destinations maintain a list of potential destinations and destination types that the user may access within the context of a network filtering policy. This includes IP addresses and fully qualified domain names (FQDNs)/URLs.

@@ -6,9 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .integer_range import IntegerRange
+    from .printer_feed_orientation import PrinterFeedOrientation
     from .print_color_mode import PrintColorMode
     from .print_duplex_mode import PrintDuplexMode
-    from .printer_feed_orientation import PrinterFeedOrientation
     from .print_finishing import PrintFinishing
     from .print_margin import PrintMargin
     from .print_multipage_layout import PrintMultipageLayout
@@ -19,11 +19,11 @@ if TYPE_CHECKING:
 @dataclass
 class PrintJobConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Whether the printer should collate pages wehen printing multiple copies of a multi-page document.
+    # Whether the printer should collate pages when printing multiple copies of a multi-page document.
     collate: Optional[bool] = None
     # The color mode the printer should use to print the job. Valid values are described in the table below. Read-only.
     color_mode: Optional[PrintColorMode] = None
@@ -81,9 +81,9 @@ class PrintJobConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .integer_range import IntegerRange
+        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_color_mode import PrintColorMode
         from .print_duplex_mode import PrintDuplexMode
-        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_finishing import PrintFinishing
         from .print_margin import PrintMargin
         from .print_multipage_layout import PrintMultipageLayout
@@ -92,9 +92,9 @@ class PrintJobConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .print_scaling import PrintScaling
 
         from .integer_range import IntegerRange
+        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_color_mode import PrintColorMode
         from .print_duplex_mode import PrintDuplexMode
-        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_finishing import PrintFinishing
         from .print_margin import PrintMargin
         from .print_multipage_layout import PrintMultipageLayout

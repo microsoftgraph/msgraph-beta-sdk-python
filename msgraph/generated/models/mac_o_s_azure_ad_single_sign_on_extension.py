@@ -15,7 +15,7 @@ class MacOSAzureAdSingleSignOnExtension(MacOSSingleSignOnExtension):
     Represents an Azure AD-type Single Sign-On extension profile for macOS devices.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSAzureAdSingleSignOnExtension"
+    OdataType: Optional[str] = "#microsoft.graph.macOSAzureAdSingleSignOnExtension"
     # An optional list of additional bundle IDs allowed to use the AAD extension for single sign-on.
     bundle_id_access_control_list: Optional[List[str]] = None
     # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.

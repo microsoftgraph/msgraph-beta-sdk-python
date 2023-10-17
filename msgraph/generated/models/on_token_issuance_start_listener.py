@@ -12,7 +12,7 @@ from .authentication_event_listener import AuthenticationEventListener
 @dataclass
 class OnTokenIssuanceStartListener(AuthenticationEventListener):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.onTokenIssuanceStartListener"
+    OdataType: Optional[str] = "#microsoft.graph.onTokenIssuanceStartListener"
     # The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
     handler: Optional[OnTokenIssuanceStartHandler] = None
     

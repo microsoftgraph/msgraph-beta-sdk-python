@@ -39,7 +39,7 @@ class ManagementTemplate(Entity):
     # The managementTemplateSteps property
     management_template_steps: Optional[List[ManagementTemplateStep]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The collection of parameters used by the management template. Optional. Read-only.
     parameters: Optional[List[TemplateParameter]] = None
     # The priority property

@@ -11,7 +11,7 @@ from .meeting_registration_base import MeetingRegistrationBase
 @dataclass
 class ExternalMeetingRegistration(MeetingRegistrationBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.externalMeetingRegistration"
+    OdataType: Optional[str] = "#microsoft.graph.externalMeetingRegistration"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExternalMeetingRegistration:

@@ -16,7 +16,7 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(DeviceManagementC
     Integer Setting Value Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueTemplate"
     # Integer Setting Value Default Template.
     default_value: Optional[DeviceManagementConfigurationIntegerSettingValueDefaultTemplate] = None
     # Recommended value definition.

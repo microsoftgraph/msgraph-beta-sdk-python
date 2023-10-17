@@ -158,7 +158,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder(BaseRequestBuil
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder(raw_url, self.request_adapter)
+        return AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def add_apps(self) -> AddAppsRequestBuilder:

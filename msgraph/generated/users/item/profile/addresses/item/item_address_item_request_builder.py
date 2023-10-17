@@ -28,7 +28,7 @@ class ItemAddressItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ItemAddressItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes an itemAddress object.
+        Deletes an itemAddress object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/itemaddress-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class ItemAddressItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ItemAddressItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemAddress]:
         """
-        Read the properties and relationships of an itemAddress object.
+        Read the properties and relationships of an itemAddress object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemAddress]
         Find more info here: https://learn.microsoft.com/graph/api/itemaddress-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class ItemAddressItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ItemAddress] = None, request_configuration: Optional[ItemAddressItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ItemAddress]:
         """
-        Update the properties of an itemAddress object.
+        Update the properties of an itemAddress object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemAddress]
@@ -95,7 +95,7 @@ class ItemAddressItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ItemAddressItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes an itemAddress object.
+        Deletes an itemAddress object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class ItemAddressItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ItemAddressItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an itemAddress object.
+        Read the properties and relationships of an itemAddress object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class ItemAddressItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ItemAddress] = None, request_configuration: Optional[ItemAddressItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an itemAddress object.
+        Update the properties of an itemAddress object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class ItemAddressItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ItemAddressItemRequestBuilder(raw_url, self.request_adapter)
+        return ItemAddressItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class ItemAddressItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ItemAddressItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an itemAddress object.
+        Read the properties and relationships of an itemAddress object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -58,7 +58,7 @@ class AssignmentScheduleInstancesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse]:
         """
-        Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties.
+        Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/privilegedaccessgroup-list-assignmentscheduleinstances?view=graph-rest-1.0
@@ -104,7 +104,7 @@ class AssignmentScheduleInstancesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties.
+        Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class AssignmentScheduleInstancesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AssignmentScheduleInstancesRequestBuilder(raw_url, self.request_adapter)
+        return AssignmentScheduleInstancesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -161,7 +161,7 @@ class AssignmentScheduleInstancesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AssignmentScheduleInstancesRequestBuilderGetQueryParameters():
         """
-        Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties.
+        Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

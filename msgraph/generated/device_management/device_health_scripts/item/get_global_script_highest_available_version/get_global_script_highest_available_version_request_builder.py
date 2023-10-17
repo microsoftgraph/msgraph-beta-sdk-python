@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .get_global_script_highest_available_version_response import GetGlobalScriptHighestAvailableVersionResponse
+    from .get_global_script_highest_available_version_post_response import GetGlobalScriptHighestAvailableVersionPostResponse
 
 class GetGlobalScriptHighestAvailableVersionRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetGlobalScriptHighestAvailableVersionRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceHealthScripts/{deviceHealthScript%2Did}/getGlobalScriptHighestAvailableVersion", path_parameters)
     
-    async def post(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[GetGlobalScriptHighestAvailableVersionResponse]:
+    async def post(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[GetGlobalScriptHighestAvailableVersionPostResponse]:
         """
         Update the Proprietary Device Health Script
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetGlobalScriptHighestAvailableVersionResponse]
+        Returns: Optional[GetGlobalScriptHighestAvailableVersionPostResponse]
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetGlobalScriptHighestAvailableVersionRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_global_script_highest_available_version_response import GetGlobalScriptHighestAvailableVersionResponse
+        from .get_global_script_highest_available_version_post_response import GetGlobalScriptHighestAvailableVersionPostResponse
 
-        return await self.request_adapter.send_async(request_info, GetGlobalScriptHighestAvailableVersionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetGlobalScriptHighestAvailableVersionPostResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -71,7 +71,7 @@ class GetGlobalScriptHighestAvailableVersionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetGlobalScriptHighestAvailableVersionRequestBuilder(raw_url, self.request_adapter)
+        return GetGlobalScriptHighestAvailableVersionRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

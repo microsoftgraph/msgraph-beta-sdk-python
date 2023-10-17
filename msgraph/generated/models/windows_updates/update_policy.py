@@ -26,7 +26,7 @@ class UpdatePolicy(Entity):
     # Settings for governing how to deploy content.
     deployment_settings: Optional[DeploymentSettings] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdatePolicy:

@@ -14,7 +14,7 @@ class WindowsKioskVisitor(WindowsKioskUser):
     The class used to identify a visitor kiosk account
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskVisitor"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskVisitor"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskVisitor:

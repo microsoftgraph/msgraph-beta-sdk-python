@@ -151,7 +151,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(raw_url, self.request_adapter)
+        return AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def advanced_threat_protection_onboarding_device_setting_states(self) -> AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder:

@@ -27,7 +27,7 @@ class Mention(Entity):
     # The mentioned property
     mentioned: Optional[EmailAddress] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
     server_created_date_time: Optional[datetime.datetime] = None
     

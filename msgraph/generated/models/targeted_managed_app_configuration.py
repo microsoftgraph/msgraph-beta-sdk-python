@@ -19,7 +19,7 @@ class TargetedManagedAppConfiguration(ManagedAppConfiguration):
     Configuration used to deliver a set of custom settings as-is to all users in the targeted security group
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.targetedManagedAppConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.targetedManagedAppConfiguration"
     # Indicates a collection of apps to target which can be one of several pre-defined lists of apps or a manually selected list of apps
     app_group_type: Optional[TargetedManagedAppGroupType] = None
     # List of apps to which the policy is deployed.
@@ -72,7 +72,7 @@ class TargetedManagedAppConfiguration(ManagedAppConfiguration):
             "deployedAppCount": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
             "deploymentSummary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(ManagedAppPolicyDeploymentSummary)),
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
-            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_enum_value(AppManagementLevel)),
+            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_collection_of_enum_values(AppManagementLevel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

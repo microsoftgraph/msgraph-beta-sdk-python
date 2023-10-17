@@ -14,7 +14,7 @@ class ImportedDeviceIdentityResult(ImportedDeviceIdentity):
     The importedDeviceIdentityResult resource represents the result of attempting to import a device identity.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Status of imported device identity
     status: Optional[bool] = None
     

@@ -28,7 +28,7 @@ class ActivateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[ActivateRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationAssignment]:
         """
-        Activate an inactive educationAssignment to signal that the assignment has further action items for teachers and students. This action can only be performed by a teacher on currently inactive assignments.
+        Activate an inactive educationAssignment to signal that the assignment has further action items for teachers and students. This action can only be performed by a teacher on currently inactive assignments. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignment]
         Find more info here: https://learn.microsoft.com/graph/api/educationassignment-activate?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class ActivateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[ActivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Activate an inactive educationAssignment to signal that the assignment has further action items for teachers and students. This action can only be performed by a teacher on currently inactive assignments.
+        Activate an inactive educationAssignment to signal that the assignment has further action items for teachers and students. This action can only be performed by a teacher on currently inactive assignments. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +72,7 @@ class ActivateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ActivateRequestBuilder(raw_url, self.request_adapter)
+        return ActivateRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

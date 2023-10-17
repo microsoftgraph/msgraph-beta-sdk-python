@@ -28,7 +28,7 @@ class CompleteRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[CompleteRequestBuilderPostRequestConfiguration] = None) -> Optional[ImpactedResource]:
         """
-        Complete an impactedResource object and update its status to completedByUser.
+        Complete an impactedResource object and update its status to completedByUser. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ImpactedResource]
         Find more info here: https://learn.microsoft.com/graph/api/impactedresource-complete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class CompleteRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[CompleteRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Complete an impactedResource object and update its status to completedByUser.
+        Complete an impactedResource object and update its status to completedByUser. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +72,7 @@ class CompleteRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CompleteRequestBuilder(raw_url, self.request_adapter)
+        return CompleteRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

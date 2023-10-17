@@ -24,7 +24,7 @@ class CloudPcDevice(Entity):
     # The managed device display name of the cloud PC device. Optional. Read-only.
     managed_device_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The provisioning policy identifier for the cloud PC device. Required. Read-only.
     provisioning_policy_id: Optional[str] = None
     # The service plan name of the cloud PC device. Required. Read-only.

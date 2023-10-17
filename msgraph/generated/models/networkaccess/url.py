@@ -11,7 +11,7 @@ from .rule_destination import RuleDestination
 @dataclass
 class Url(RuleDestination):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.url"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.url"
     # URL Address
     value: Optional[str] = None
     

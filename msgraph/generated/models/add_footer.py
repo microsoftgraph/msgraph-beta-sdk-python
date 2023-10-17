@@ -12,7 +12,7 @@ from .mark_content import MarkContent
 @dataclass
 class AddFooter(MarkContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.addFooter"
+    OdataType: Optional[str] = "#microsoft.graph.addFooter"
     # The alignment property
     alignment: Optional[Alignment] = None
     # The margin property

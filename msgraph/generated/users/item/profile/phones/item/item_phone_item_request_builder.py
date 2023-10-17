@@ -28,7 +28,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ItemPhoneItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an itemPhone object from the user's profile.
+        Delete an itemPhone object from the user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/itemphone-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ItemPhoneItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemPhone]:
         """
-        Retrieve the properties and relationships of an itemPhone object in a user's profile.
+        Retrieve the properties and relationships of an itemPhone object in a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPhone]
         Find more info here: https://learn.microsoft.com/graph/api/itemphone-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ItemPhone] = None, request_configuration: Optional[ItemPhoneItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ItemPhone]:
         """
-        Update the properties of an itemPhone object in a user's profile.
+        Update the properties of an itemPhone object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPhone]
@@ -95,7 +95,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ItemPhoneItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an itemPhone object from the user's profile.
+        Delete an itemPhone object from the user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ItemPhoneItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an itemPhone object in a user's profile.
+        Retrieve the properties and relationships of an itemPhone object in a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ItemPhone] = None, request_configuration: Optional[ItemPhoneItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an itemPhone object in a user's profile.
+        Update the properties of an itemPhone object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ItemPhoneItemRequestBuilder(raw_url, self.request_adapter)
+        return ItemPhoneItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ItemPhoneItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an itemPhone object in a user's profile.
+        Retrieve the properties and relationships of an itemPhone object in a user's profile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

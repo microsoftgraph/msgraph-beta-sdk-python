@@ -12,7 +12,7 @@ from .gradual_rollout_settings import GradualRolloutSettings
 @dataclass
 class DurationDrivenRolloutSettings(GradualRolloutSettings):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.durationDrivenRolloutSettings"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.durationDrivenRolloutSettings"
     # The target duration of the rollout. Given durationBetweenOffers and durationUntilDeploymentEnd, the system will automatically calculate how many devices are in each offering.
     duration_until_deployment_end: Optional[datetime.timedelta] = None
     

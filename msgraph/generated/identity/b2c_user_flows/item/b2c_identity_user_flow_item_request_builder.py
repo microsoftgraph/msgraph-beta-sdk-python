@@ -32,7 +32,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a b2cIdentityUserFlow object.
+        Delete a b2cIdentityUserFlow object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/b2cidentityuserflow-delete?view=graph-rest-1.0
@@ -52,7 +52,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Retrieve the properties and relationships of a b2cUserFlow object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlow]
         Find more info here: https://learn.microsoft.com/graph/api/b2cidentityuserflow-get?view=graph-rest-1.0
@@ -74,7 +74,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
-        Update the properties of a b2cIdentityUserFlow object.
+        Update the properties of a b2cIdentityUserFlow object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlow]
@@ -99,7 +99,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a b2cIdentityUserFlow object.
+        Delete a b2cIdentityUserFlow object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +114,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Retrieve the properties and relationships of a b2cUserFlow object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +131,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a b2cIdentityUserFlow object.
+        Update the properties of a b2cIdentityUserFlow object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -157,7 +157,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return B2cIdentityUserFlowItemRequestBuilder(raw_url, self.request_adapter)
+        return B2cIdentityUserFlowItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def identity_providers(self) -> IdentityProvidersRequestBuilder:
@@ -208,7 +208,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class B2cIdentityUserFlowItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Retrieve the properties and relationships of a b2cUserFlow object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

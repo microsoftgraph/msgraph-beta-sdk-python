@@ -11,7 +11,7 @@ from .item_facet import ItemFacet
 @dataclass
 class PersonInterest(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personInterest"
+    OdataType: Optional[str] = "#microsoft.graph.personInterest"
     # Contains categories a user has associated with the interest (for example, personal, recipies).
     categories: Optional[List[str]] = None
     # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.

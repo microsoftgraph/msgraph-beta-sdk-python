@@ -25,6 +25,8 @@ class GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(BaseRequestBui
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['enrollment_type'] = str(enrollment_type)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/getSuggestedEnrollmentLimit(enrollmentType='{enrollmentType}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilderGetRequestConfiguration] = None) -> Optional[SuggestedEnrollmentLimit]:
@@ -72,7 +74,7 @@ class GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(BaseRequestBui
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(raw_url, self.request_adapter)
+        return GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

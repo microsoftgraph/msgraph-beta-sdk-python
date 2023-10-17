@@ -14,7 +14,7 @@ from .meeting_registrant_base import MeetingRegistrantBase
 @dataclass
 class MeetingRegistrant(MeetingRegistrantBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.meetingRegistrant"
+    OdataType: Optional[str] = "#microsoft.graph.meetingRegistrant"
     # The registrant's answer to custom questions.
     custom_question_answers: Optional[List[CustomQuestionAnswer]] = None
     # The email address of the registrant.

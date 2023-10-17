@@ -16,7 +16,7 @@ class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent):
     # The modelVersion property
     model_version: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MachineLearningDetectedSensitiveContent:
@@ -41,7 +41,7 @@ class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent):
         from .ml_classification_match_tolerance import MlClassificationMatchTolerance
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "matchTolerance": lambda n : setattr(self, 'match_tolerance', n.get_enum_value(MlClassificationMatchTolerance)),
+            "matchTolerance": lambda n : setattr(self, 'match_tolerance', n.get_collection_of_enum_values(MlClassificationMatchTolerance)),
             "modelVersion": lambda n : setattr(self, 'model_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

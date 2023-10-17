@@ -12,8 +12,8 @@ from .whois_base_record import WhoisBaseRecord
 @dataclass
 class WhoisRecord(WhoisBaseRecord):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.whoisRecord"
-    # The history property
+    OdataType: Optional[str] = "#microsoft.graph.security.whoisRecord"
+    # The collection of historical records associated to this WHOIS object.
     history: Optional[List[WhoisHistoryRecord]] = None
     
     @staticmethod

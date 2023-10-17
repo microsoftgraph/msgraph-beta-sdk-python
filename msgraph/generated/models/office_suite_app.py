@@ -20,7 +20,7 @@ class OfficeSuiteApp(MobileApp):
     Contains properties and inherited properties for the Office365 Suite App.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.officeSuiteApp"
+    OdataType: Optional[str] = "#microsoft.graph.officeSuiteApp"
     # The value to accept the EULA automatically on the enduser's device.
     auto_accept_eula: Optional[bool] = None
     # The property to represent the apps which are excluded from the selected Office365 Product Id.
@@ -86,7 +86,7 @@ class OfficeSuiteApp(MobileApp):
             "installProgressDisplayLevel": lambda n : setattr(self, 'install_progress_display_level', n.get_enum_value(OfficeSuiteInstallProgressDisplayLevel)),
             "localesToInstall": lambda n : setattr(self, 'locales_to_install', n.get_collection_of_primitive_values(str)),
             "officeConfigurationXml": lambda n : setattr(self, 'office_configuration_xml', n.get_bytes_value()),
-            "officePlatformArchitecture": lambda n : setattr(self, 'office_platform_architecture', n.get_enum_value(WindowsArchitecture)),
+            "officePlatformArchitecture": lambda n : setattr(self, 'office_platform_architecture', n.get_collection_of_enum_values(WindowsArchitecture)),
             "officeSuiteAppDefaultFileFormat": lambda n : setattr(self, 'office_suite_app_default_file_format', n.get_enum_value(OfficeSuiteDefaultFileFormatType)),
             "productIds": lambda n : setattr(self, 'product_ids', n.get_collection_of_enum_values(OfficeProductId)),
             "shouldUninstallOlderVersionsOfOffice": lambda n : setattr(self, 'should_uninstall_older_versions_of_office', n.get_bool_value()),

@@ -11,7 +11,7 @@ from .reference_value import ReferenceValue
 @dataclass
 class UserMatchTargetReferenceValue(ReferenceValue):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.userMatchTargetReferenceValue"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.userMatchTargetReferenceValue"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserMatchTargetReferenceValue:

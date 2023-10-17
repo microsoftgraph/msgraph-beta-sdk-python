@@ -152,7 +152,7 @@ class GovernanceRoleSettingItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GovernanceRoleSettingItemRequestBuilder(raw_url, self.request_adapter)
+        return GovernanceRoleSettingItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def resource(self) -> ResourceRequestBuilder:

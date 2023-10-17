@@ -12,9 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.role_management_alert import RoleManagementAlert
+    from .alerts.alerts_request_builder import AlertsRequestBuilder
     from .alert_configurations.alert_configurations_request_builder import AlertConfigurationsRequestBuilder
     from .alert_definitions.alert_definitions_request_builder import AlertDefinitionsRequestBuilder
-    from .alerts.alerts_request_builder import AlertsRequestBuilder
     from .operations.operations_request_builder import OperationsRequestBuilder
 
 class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
@@ -154,7 +154,7 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RoleManagementAlertsRequestBuilder(raw_url, self.request_adapter)
+        return RoleManagementAlertsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def alert_configurations(self) -> AlertConfigurationsRequestBuilder:

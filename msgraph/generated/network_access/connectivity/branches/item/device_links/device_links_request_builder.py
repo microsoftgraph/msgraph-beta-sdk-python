@@ -45,7 +45,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeviceLinksRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceLinkCollectionResponse]:
         """
-        Retrieve a list of device links associated with a specific branch.
+        Retrieve a list of device links associated with a specific branch. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLinkCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-list-devicelinks?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[DeviceLink] = None, request_configuration: Optional[DeviceLinksRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceLink]:
         """
-        Create a branch site with associated device links.
+        Create a branch site with associated device links. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLink]
@@ -92,7 +92,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeviceLinksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of device links associated with a specific branch.
+        Retrieve a list of device links associated with a specific branch. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[DeviceLink] = None, request_configuration: Optional[DeviceLinksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a branch site with associated device links.
+        Create a branch site with associated device links. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceLinksRequestBuilder(raw_url, self.request_adapter)
+        return DeviceLinksRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceLinksRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of device links associated with a specific branch.
+        Retrieve a list of device links associated with a specific branch. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -12,7 +12,7 @@ from .label_action_base import LabelActionBase
 @dataclass
 class ProtectSite(LabelActionBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.protectSite"
+    OdataType: Optional[str] = "#microsoft.graph.protectSite"
     # The accessType property
     access_type: Optional[SiteAccessType] = None
     # The conditionalAccessProtectionLevelId property

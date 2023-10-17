@@ -19,7 +19,7 @@ class ManagementAction(Entity):
     # The display name for the management action. Optional. Read-only.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The reference for the management template used to generate the management action. Required. Read-only.
     reference_template_id: Optional[str] = None
     # The referenceTemplateVersion property

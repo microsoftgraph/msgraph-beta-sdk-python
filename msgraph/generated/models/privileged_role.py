@@ -18,7 +18,7 @@ class PrivilegedRole(Entity):
     # The name property
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The settings property
     settings: Optional[PrivilegedRoleSettings] = None
     # The summary property

@@ -14,7 +14,7 @@ class DeliveryOptimizationBandwidthAbsolute(DeliveryOptimizationBandwidth):
     Bandwidth limits in kilobytes per second.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deliveryOptimizationBandwidthAbsolute"
+    OdataType: Optional[str] = "#microsoft.graph.deliveryOptimizationBandwidthAbsolute"
     # Specifies the maximum download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization. Valid values 0 to 4294967295
     maximum_download_bandwidth_in_kilobytes_per_second: Optional[int] = None
     # Specifies the maximum upload bandwidth in KiloBytes/second that a device will use across all concurrent upload activity using Delivery Optimization (0-4000000). Valid values 0 to 4000000

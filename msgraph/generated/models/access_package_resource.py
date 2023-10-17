@@ -34,7 +34,7 @@ class AccessPackageResource(Entity):
     # True if the resource is not yet available for assignment. Read-only.
     is_pending_onboarding: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The unique identifier of the resource in the origin system. In the case of an Azure AD group, this is the identifier of the group.
     origin_id: Optional[str] = None
     # The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.

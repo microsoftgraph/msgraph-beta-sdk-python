@@ -15,7 +15,7 @@ from .authentication_events_flow import AuthenticationEventsFlow
 @dataclass
 class ExternalUsersSelfServiceSignUpEventsFlow(AuthenticationEventsFlow):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.externalUsersSelfServiceSignUpEventsFlow"
+    OdataType: Optional[str] = "#microsoft.graph.externalUsersSelfServiceSignUpEventsFlow"
     # The configuration for what to invoke when attributes are ready to be collected from the user.
     on_attribute_collection: Optional[OnAttributeCollectionHandler] = None
     # Required. The configuration for what to invoke when authentication methods are ready to be presented to the user. Must have at least one identity provider linked.

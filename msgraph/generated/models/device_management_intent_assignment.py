@@ -15,7 +15,7 @@ class DeviceManagementIntentAssignment(Entity):
     Intent assignment entity
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The assignment target
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

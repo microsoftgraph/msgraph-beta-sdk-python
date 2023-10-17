@@ -14,7 +14,7 @@ class TeamTemplate(Entity):
     # A generic representation of a team template definition for a team with a specific structure and configuration.
     definitions: Optional[List[TeamTemplateDefinition]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamTemplate:

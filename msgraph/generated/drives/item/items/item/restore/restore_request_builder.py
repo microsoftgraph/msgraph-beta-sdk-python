@@ -29,7 +29,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RestorePostRequestBody] = None, request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None) -> Optional[DriveItem]:
         """
-        Restore a driveItem that has been deleted and is currently in the recycle bin.
+        Restore a driveItem that has been deleted and is currently in the recycle bin. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveItem]
@@ -54,7 +54,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RestorePostRequestBody] = None, request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restore a driveItem that has been deleted and is currently in the recycle bin.
+        Restore a driveItem that has been deleted and is currently in the recycle bin. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RestoreRequestBuilder(raw_url, self.request_adapter)
+        return RestoreRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

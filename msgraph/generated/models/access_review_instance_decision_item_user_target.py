@@ -11,7 +11,7 @@ from .access_review_instance_decision_item_target import AccessReviewInstanceDec
 @dataclass
 class AccessReviewInstanceDecisionItemUserTarget(AccessReviewInstanceDecisionItemTarget):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemUserTarget"
+    OdataType: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemUserTarget"
     # The name of user.
     user_display_name: Optional[str] = None
     # The identifier of user.

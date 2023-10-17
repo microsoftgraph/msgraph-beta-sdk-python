@@ -14,7 +14,7 @@ class GroupPolicyPresentationValueText(GroupPolicyPresentationValue):
     The entity represents a string value for a drop-down list, combo box, or text box presentation on a policy definition.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A string value for the associated presentation.
     value: Optional[str] = None
     

@@ -23,7 +23,7 @@ class IndustryDataRoot(Entity):
     # Set of data import flow activities to bring data into the canonical store via a connector.
     inbound_flows: Optional[List[InboundFlow]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Set of ephemeral operations that the system runs currently. Read-only.
     operations: Optional[List[LongRunningOperation]] = None
     # Set of user modifiable system picker types.

@@ -14,7 +14,7 @@ class Office365GroupsActivityCounts(Entity):
     # The number of emails received by Group mailboxes.
     exchange_emails_received: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The date on which a number of emails were sent to a group mailbox or a number of messages were posted, read, or liked in a Yammer group
     report_date: Optional[datetime.date] = None
     # The number of days the report covers.

@@ -48,7 +48,7 @@ class HostCookieItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostCookieItemRequestBuilderGetRequestConfiguration] = None) -> Optional[HostCookie]:
         """
-        Read the properties and relationships of a hostCookie object.
+        Read the properties and relationships of a hostCookie object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostCookie]
         Find more info here: https://learn.microsoft.com/graph/api/security-hostcookie-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class HostCookieItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HostCookieItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a hostCookie object.
+        Read the properties and relationships of a hostCookie object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class HostCookieItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HostCookieItemRequestBuilder(raw_url, self.request_adapter)
+        return HostCookieItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def host(self) -> HostRequestBuilder:
@@ -176,7 +176,7 @@ class HostCookieItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HostCookieItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a hostCookie object.
+        Read the properties and relationships of a hostCookie object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

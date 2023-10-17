@@ -11,7 +11,7 @@ from .cloud_pc_bulk_action import CloudPcBulkAction
 @dataclass
 class CloudPcBulkTroubleshoot(CloudPcBulkAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkTroubleshoot"
+    OdataType: Optional[str] = "#microsoft.graph.cloudPcBulkTroubleshoot"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcBulkTroubleshoot:

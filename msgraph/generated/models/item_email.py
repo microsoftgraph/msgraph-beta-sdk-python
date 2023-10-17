@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class ItemEmail(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.itemEmail"
+    OdataType: Optional[str] = "#microsoft.graph.itemEmail"
     # The email address itself.
     address: Optional[str] = None
     # The name or label a user has associated with a particular email address.

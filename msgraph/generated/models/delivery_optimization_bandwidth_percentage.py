@@ -14,7 +14,7 @@ class DeliveryOptimizationBandwidthPercentage(DeliveryOptimizationBandwidth):
     Bandwidth limits specified as a percentage.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deliveryOptimizationBandwidthPercentage"
+    OdataType: Optional[str] = "#microsoft.graph.deliveryOptimizationBandwidthPercentage"
     # Specifies the maximum background download bandwidth that Delivery Optimization uses across all concurrent download activities as a percentage of available download bandwidth (0-100). Valid values 0 to 100
     maximum_background_bandwidth_percentage: Optional[int] = None
     # Specifies the maximum foreground download bandwidth that Delivery Optimization uses across all concurrent download activities as a percentage of available download bandwidth (0-100). Valid values 0 to 100

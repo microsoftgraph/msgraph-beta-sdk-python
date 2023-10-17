@@ -17,7 +17,7 @@ class VirtualEventPresenter(Entity):
     # Identity information of the presenter.
     identity: Optional[CommunicationsUserIdentity] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Other detail information of the presenter.
     presenter_details: Optional[VirtualEventPresenterDetails] = None
     

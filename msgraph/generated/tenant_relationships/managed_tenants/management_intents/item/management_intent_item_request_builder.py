@@ -47,7 +47,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagementIntent]:
         """
-        Read the properties and relationships of a managementIntent object.
+        Read the properties and relationships of a managementIntent object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagementIntent]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managementintent-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a managementIntent object.
+        Read the properties and relationships of a managementIntent object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ManagementIntentItemRequestBuilder(raw_url, self.request_adapter)
+        return ManagementIntentItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ManagementIntentItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a managementIntent object.
+        Read the properties and relationships of a managementIntent object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -45,7 +45,7 @@ class TenantTagsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TenantTagsRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantTagCollectionResponse]:
         """
-        Get a list of the tenantTag objects and their properties.
+        Get a list of the tenantTag objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantTagCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-tenanttags?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class TenantTagsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[TenantTag] = None, request_configuration: Optional[TenantTagsRequestBuilderPostRequestConfiguration] = None) -> Optional[TenantTag]:
         """
-        Create a new tenantTag object.
+        Create a new tenantTag object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantTag]
@@ -92,7 +92,7 @@ class TenantTagsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TenantTagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the tenantTag objects and their properties.
+        Get a list of the tenantTag objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class TenantTagsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[TenantTag] = None, request_configuration: Optional[TenantTagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new tenantTag object.
+        Create a new tenantTag object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class TenantTagsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantTagsRequestBuilder(raw_url, self.request_adapter)
+        return TenantTagsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class TenantTagsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantTagsRequestBuilderGetQueryParameters():
         """
-        Get a list of the tenantTag objects and their properties.
+        Get a list of the tenantTag objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

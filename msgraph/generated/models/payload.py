@@ -51,7 +51,7 @@ class Payload(Entity):
     # Date and time when the attack simulation and training campaign payload was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Free text tags for a payload.
     payload_tags: Optional[List[str]] = None
     # The payload delivery platform for a simulation. Possible values are: unknown, sms, email, teams, unknownFutureValue.

@@ -14,7 +14,7 @@ class Windows10VpnProxyServer(VpnProxyServer):
     VPN Proxy Server.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10VpnProxyServer"
+    OdataType: Optional[str] = "#microsoft.graph.windows10VpnProxyServer"
     # Bypass proxy server for local address.
     bypass_proxy_server_for_local_address: Optional[bool] = None
     

@@ -19,7 +19,7 @@ class SecurityConfigurationTask(DeviceAppManagementTask):
     A security configuration task.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.securityConfigurationTask"
+    OdataType: Optional[str] = "#microsoft.graph.securityConfigurationTask"
     # The endpoint security configuration applicable platform.
     applicable_platform: Optional[EndpointSecurityConfigurationApplicablePlatform] = None
     # The endpoint security policy type.

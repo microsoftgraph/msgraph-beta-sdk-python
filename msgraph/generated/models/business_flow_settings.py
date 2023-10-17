@@ -11,7 +11,7 @@ from .access_review_settings import AccessReviewSettings
 @dataclass
 class BusinessFlowSettings(AccessReviewSettings):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.businessFlowSettings"
+    OdataType: Optional[str] = "#microsoft.graph.businessFlowSettings"
     # The durationInDays property
     duration_in_days: Optional[int] = None
     

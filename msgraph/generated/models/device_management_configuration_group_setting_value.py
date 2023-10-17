@@ -15,7 +15,7 @@ class DeviceManagementConfigurationGroupSettingValue(DeviceManagementConfigurati
     Value of the GroupSetting
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationGroupSettingValue"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationGroupSettingValue"
     # Collection of child setting instances contained within this GroupSetting
     children: Optional[List[DeviceManagementConfigurationSettingInstance]] = None
     

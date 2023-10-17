@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class PersonAnnotation(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personAnnotation"
+    OdataType: Optional[str] = "#microsoft.graph.personAnnotation"
     # Contains the detail of the note itself.
     detail: Optional[ItemBody] = None
     # Contains a friendly name for the note.

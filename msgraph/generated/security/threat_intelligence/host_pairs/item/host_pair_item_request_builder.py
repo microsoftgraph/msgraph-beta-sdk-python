@@ -49,7 +49,7 @@ class HostPairItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostPairItemRequestBuilderGetRequestConfiguration] = None) -> Optional[HostPair]:
         """
-        Read the properties and relationships of a hostPair object.
+        Read the properties and relationships of a hostPair object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostPair]
         Find more info here: https://learn.microsoft.com/graph/api/security-hostpair-get?view=graph-rest-1.0
@@ -110,7 +110,7 @@ class HostPairItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[HostPairItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a hostPair object.
+        Read the properties and relationships of a hostPair object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class HostPairItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HostPairItemRequestBuilder(raw_url, self.request_adapter)
+        return HostPairItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def child_host(self) -> ChildHostRequestBuilder:
@@ -186,7 +186,7 @@ class HostPairItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HostPairItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a hostPair object.
+        Read the properties and relationships of a hostPair object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

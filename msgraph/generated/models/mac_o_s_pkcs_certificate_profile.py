@@ -17,7 +17,7 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
     MacOS PKCS certificate profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSPkcsCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.macOSPkcsCertificateProfile"
     # AllowAllAppsAccess setting
     allow_all_apps_access: Optional[bool] = None
     # Target store certificate. Possible values are: user, machine.

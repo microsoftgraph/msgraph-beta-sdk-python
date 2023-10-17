@@ -15,7 +15,7 @@ class GroupPolicyPresentationValueList(GroupPolicyPresentationValue):
     The entity represents a collection of name/value pairs of a list box presentation on a policy definition.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A list of pairs for the associated presentation.
     values: Optional[List[KeyValuePair]] = None
     

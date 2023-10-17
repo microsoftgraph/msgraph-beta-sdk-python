@@ -11,7 +11,7 @@ from .custom_extension_endpoint_configuration import CustomExtensionEndpointConf
 @dataclass
 class HttpRequestEndpoint(CustomExtensionEndpointConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.httpRequestEndpoint"
+    OdataType: Optional[str] = "#microsoft.graph.httpRequestEndpoint"
     # The HTTP endpoint that a custom extension calls.
     target_url: Optional[str] = None
     

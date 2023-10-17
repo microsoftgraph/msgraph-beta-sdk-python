@@ -14,7 +14,7 @@ class AndroidFotaDeploymentAssignmentTarget(DeviceAndAppManagementAssignmentTarg
     The AAD Group we are deploying firmware updates to
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidFotaDeploymentAssignmentTarget"
+    OdataType: Optional[str] = "#microsoft.graph.androidFotaDeploymentAssignmentTarget"
     # AAD Group Id.
     group_id: Optional[str] = None
     

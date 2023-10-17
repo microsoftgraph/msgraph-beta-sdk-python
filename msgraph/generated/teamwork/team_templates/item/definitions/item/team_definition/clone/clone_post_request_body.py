@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 @dataclass
 class ClonePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -55,7 +55,7 @@ class ClonePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "mailNickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
-            "partsToClone": lambda n : setattr(self, 'parts_to_clone', n.get_enum_value(ClonableTeamParts)),
+            "partsToClone": lambda n : setattr(self, 'parts_to_clone', n.get_collection_of_enum_values(ClonableTeamParts)),
             "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(TeamVisibilityType)),
         }
         return fields

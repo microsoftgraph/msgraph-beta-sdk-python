@@ -12,7 +12,7 @@ from .entity import Entity
 @dataclass
 class UnifiedRoleManagementPolicyAssignment(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The policy that's associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.
     policy: Optional[UnifiedRoleManagementPolicy] = None
     # The id of the policy. Inherited from entity.

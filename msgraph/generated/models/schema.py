@@ -14,7 +14,7 @@ class Schema(Entity):
     # The baseType property
     base_type: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The properties property
     properties: Optional[List[Property_]] = None
     

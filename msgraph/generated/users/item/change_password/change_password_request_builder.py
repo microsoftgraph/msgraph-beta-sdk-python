@@ -28,7 +28,7 @@ class ChangePasswordRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ChangePasswordPostRequestBody] = None, request_configuration: Optional[ChangePasswordRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Enable the user to update their password. Any user can update their password without belonging to any administrator role.
+        Enable the user to update their password. Any user can update their password without belonging to any administrator role. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class ChangePasswordRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ChangePasswordPostRequestBody] = None, request_configuration: Optional[ChangePasswordRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Enable the user to update their password. Any user can update their password without belonging to any administrator role.
+        Enable the user to update their password. Any user can update their password without belonging to any administrator role. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class ChangePasswordRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ChangePasswordRequestBuilder(raw_url, self.request_adapter)
+        return ChangePasswordRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

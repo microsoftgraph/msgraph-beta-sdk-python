@@ -48,7 +48,7 @@ class LandingPageItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[LandingPageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[LandingPage]:
         """
-        Get landingPages from security
+        Represents an attack simulation training landing page.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LandingPage]
         """
@@ -108,7 +108,7 @@ class LandingPageItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[LandingPageItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get landingPages from security
+        Represents an attack simulation training landing page.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class LandingPageItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return LandingPageItemRequestBuilder(raw_url, self.request_adapter)
+        return LandingPageItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def details(self) -> DetailsRequestBuilder:
@@ -175,7 +175,7 @@ class LandingPageItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LandingPageItemRequestBuilderGetQueryParameters():
         """
-        Get landingPages from security
+        Represents an attack simulation training landing page.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

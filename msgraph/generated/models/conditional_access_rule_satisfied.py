@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 @dataclass
 class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -45,7 +45,7 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
         from .conditional_access_rule import ConditionalAccessRule
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "conditionalAccessCondition": lambda n : setattr(self, 'conditional_access_condition', n.get_enum_value(ConditionalAccessConditions)),
+            "conditionalAccessCondition": lambda n : setattr(self, 'conditional_access_condition', n.get_collection_of_enum_values(ConditionalAccessConditions)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ruleSatisfied": lambda n : setattr(self, 'rule_satisfied', n.get_enum_value(ConditionalAccessRule)),
         }

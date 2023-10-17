@@ -40,7 +40,7 @@ class Channel(Entity):
     # Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
     moderation_settings: Optional[ChannelModerationSettings] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A collection of teams with which a channel is shared.
     shared_with_teams: Optional[List[SharedWithChannelTeamInfo]] = None
     # Contains summary information about the channel, including number of guests, members, owners, and an indicator for members from other tenants. The summary property will only be returned if it is specified in the $select clause of the Get channel method.

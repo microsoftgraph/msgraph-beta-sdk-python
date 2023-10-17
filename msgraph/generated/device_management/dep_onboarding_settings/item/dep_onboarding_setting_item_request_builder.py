@@ -160,7 +160,7 @@ class DepOnboardingSettingItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DepOnboardingSettingItemRequestBuilder(raw_url, self.request_adapter)
+        return DepOnboardingSettingItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def default_ios_enrollment_profile(self) -> DefaultIosEnrollmentProfileRequestBuilder:

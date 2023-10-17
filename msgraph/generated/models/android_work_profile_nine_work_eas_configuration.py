@@ -14,7 +14,7 @@ class AndroidWorkProfileNineWorkEasConfiguration(AndroidWorkProfileEasEmailProfi
     By providing configurations in this profile you can instruct the Nine Work email client on Android Work Profile devices to communicate with an Exchange server and get email, contacts, calendar, tasks, and notes. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidWorkProfileNineWorkEasConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidWorkProfileNineWorkEasConfiguration"
     # Toggles syncing the calendar. If set to false the calendar is turned off on the device.
     sync_calendar: Optional[bool] = None
     # Toggles syncing contacts. If set to false contacts are turned off on the device.

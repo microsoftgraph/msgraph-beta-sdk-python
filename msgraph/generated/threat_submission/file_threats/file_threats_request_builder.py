@@ -45,7 +45,7 @@ class FileThreatsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[FileThreatsRequestBuilderGetRequestConfiguration] = None) -> Optional[FileThreatSubmissionCollectionResponse]:
         """
-        Get a list of the fileThreatSubmission objects and their properties.
+        Get a list of the fileThreatSubmission objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileThreatSubmissionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/security-filethreatsubmission-list?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class FileThreatsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[FileThreatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the fileThreatSubmission objects and their properties.
+        Get a list of the fileThreatSubmission objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class FileThreatsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return FileThreatsRequestBuilder(raw_url, self.request_adapter)
+        return FileThreatsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class FileThreatsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FileThreatsRequestBuilderGetQueryParameters():
         """
-        Get a list of the fileThreatSubmission objects and their properties.
+        Get a list of the fileThreatSubmission objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

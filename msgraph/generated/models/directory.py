@@ -43,7 +43,7 @@ class Directory(Entity):
     # A collection of external Azure AD users whose profile data has been shared with the Azure AD tenant. Nullable.
     inbound_shared_user_profiles: Optional[List[InboundSharedUserProfile]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A container for on-premises directory synchronization functionalities that are available for the organization.
     on_premises_synchronization: Optional[List[OnPremisesDirectorySynchronization]] = None
     # The outboundSharedUserProfiles property

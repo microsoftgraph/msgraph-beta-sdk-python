@@ -25,6 +25,8 @@ class GetM365AppUserDetailWithDateRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['date'] = str(date)
         super().__init__(request_adapter, "{+baseurl}/reports/getM365AppUserDetail(date={date})", path_parameters)
     
     async def get(self,request_configuration: Optional[GetM365AppUserDetailWithDateRequestBuilderGetRequestConfiguration] = None) -> bytes:
@@ -69,7 +71,7 @@ class GetM365AppUserDetailWithDateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetM365AppUserDetailWithDateRequestBuilder(raw_url, self.request_adapter)
+        return GetM365AppUserDetailWithDateRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

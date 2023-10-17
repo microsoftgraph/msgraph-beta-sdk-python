@@ -14,7 +14,7 @@ class WindowsAppIdentifier(MobileAppIdentifier):
     The identifier for a Windows app.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsAppIdentifier"
+    OdataType: Optional[str] = "#microsoft.graph.windowsAppIdentifier"
     # The identifier for an app, as specified in the app store.
     windows_app_id: Optional[str] = None
     

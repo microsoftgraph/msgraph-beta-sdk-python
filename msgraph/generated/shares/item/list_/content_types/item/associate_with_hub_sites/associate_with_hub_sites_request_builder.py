@@ -28,7 +28,7 @@ class AssociateWithHubSitesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AssociateWithHubSitesPostRequestBody] = None, request_configuration: Optional[AssociateWithHubSitesRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Associate a [content type][contentType] with a list of hub sites.
+        Associate a content type][contentType] with a list of hub sites. This API is available in the following [national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class AssociateWithHubSitesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AssociateWithHubSitesPostRequestBody] = None, request_configuration: Optional[AssociateWithHubSitesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Associate a [content type][contentType] with a list of hub sites.
+        Associate a content type][contentType] with a list of hub sites. This API is available in the following [national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class AssociateWithHubSitesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AssociateWithHubSitesRequestBuilder(raw_url, self.request_adapter)
+        return AssociateWithHubSitesRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -13,7 +13,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
     Represents a mapping between team identifiers for macOS system extensions and system extension types.
     """
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -45,7 +45,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
         from .mac_o_s_system_extension_type import MacOSSystemExtensionType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedTypes": lambda n : setattr(self, 'allowed_types', n.get_enum_value(MacOSSystemExtensionType)),
+            "allowedTypes": lambda n : setattr(self, 'allowed_types', n.get_collection_of_enum_values(MacOSSystemExtensionType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
         }

@@ -12,9 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..models.identity_protection_root import IdentityProtectionRoot
     from ..models.o_data_errors.o_data_error import ODataError
-    from .risk_detections.risk_detections_request_builder import RiskDetectionsRequestBuilder
     from .risky_service_principals.risky_service_principals_request_builder import RiskyServicePrincipalsRequestBuilder
     from .risky_users.risky_users_request_builder import RiskyUsersRequestBuilder
+    from .risk_detections.risk_detections_request_builder import RiskDetectionsRequestBuilder
     from .service_principal_risk_detections.service_principal_risk_detections_request_builder import ServicePrincipalRiskDetectionsRequestBuilder
 
 class IdentityProtectionRequestBuilder(BaseRequestBuilder):
@@ -120,7 +120,7 @@ class IdentityProtectionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IdentityProtectionRequestBuilder(raw_url, self.request_adapter)
+        return IdentityProtectionRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def risk_detections(self) -> RiskDetectionsRequestBuilder:

@@ -47,7 +47,7 @@ class UrlThreatSubmissionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UrlThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UrlThreatSubmission]:
         """
-        Read the properties and relationships of an urlThreatSubmission object.
+        Read the properties and relationships of an urlThreatSubmission object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UrlThreatSubmission]
         Find more info here: https://learn.microsoft.com/graph/api/security-urlthreatsubmission-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class UrlThreatSubmissionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UrlThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an urlThreatSubmission object.
+        Read the properties and relationships of an urlThreatSubmission object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class UrlThreatSubmissionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UrlThreatSubmissionItemRequestBuilder(raw_url, self.request_adapter)
+        return UrlThreatSubmissionItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class UrlThreatSubmissionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UrlThreatSubmissionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an urlThreatSubmission object.
+        Read the properties and relationships of an urlThreatSubmission object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -25,7 +25,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(Entity):
     # The Device Name that is being reported
     device_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Device type.
     platform_type: Optional[DeviceType] = None
     # The setting class name and property name.

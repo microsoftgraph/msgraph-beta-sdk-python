@@ -11,7 +11,7 @@ from .device_compliance_script_error import DeviceComplianceScriptError
 @dataclass
 class DeviceComplianceScriptRuleError(DeviceComplianceScriptError):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Setting name for the rule with error.
     setting_name: Optional[str] = None
     

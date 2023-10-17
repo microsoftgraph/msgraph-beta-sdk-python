@@ -15,7 +15,7 @@ class ConnectionOperation(Entity):
     # The error property
     error: Optional[PublicError] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The status property
     status: Optional[ConnectionOperationStatus] = None
     

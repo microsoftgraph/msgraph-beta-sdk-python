@@ -14,7 +14,7 @@ class IosEducationDeviceConfiguration(DeviceConfiguration):
     iOS Education configuration profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosEducationDeviceConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.iosEducationDeviceConfiguration"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosEducationDeviceConfiguration:

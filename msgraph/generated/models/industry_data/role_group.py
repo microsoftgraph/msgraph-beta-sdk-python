@@ -14,7 +14,7 @@ class RoleGroup(Entity):
     # The name of the role group.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The set of roles included in the role group.
     roles: Optional[List[RoleReferenceValue]] = None
     

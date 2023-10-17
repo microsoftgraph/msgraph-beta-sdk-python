@@ -18,7 +18,7 @@ class AospDeviceOwnerPkcsCertificateProfile(AospDeviceOwnerCertificateProfileBas
     AOSP Device Owner PKCS certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.aospDeviceOwnerPkcsCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.aospDeviceOwnerPkcsCertificateProfile"
     # CertificateStore types
     certificate_store: Optional[CertificateStore] = None
     # PKCS Certificate Template Name

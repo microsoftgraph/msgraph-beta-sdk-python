@@ -14,7 +14,7 @@ class DeviceManagementSettingProfileConstraint(DeviceManagementConstraint):
     Constraint enforcing a given profile metadata
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingProfileConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingProfileConstraint"
     # The source of the entity
     source: Optional[str] = None
     # A collection of types this entity carries

@@ -11,7 +11,7 @@ from .whois_base_record import WhoisBaseRecord
 @dataclass
 class WhoisHistoryRecord(WhoisBaseRecord):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.whoisHistoryRecord"
+    OdataType: Optional[str] = "#microsoft.graph.security.whoisHistoryRecord"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WhoisHistoryRecord:

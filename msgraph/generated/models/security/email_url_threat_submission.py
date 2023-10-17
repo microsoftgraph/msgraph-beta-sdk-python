@@ -11,7 +11,7 @@ from .email_threat_submission import EmailThreatSubmission
 @dataclass
 class EmailUrlThreatSubmission(EmailThreatSubmission):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.emailUrlThreatSubmission"
+    OdataType: Optional[str] = "#microsoft.graph.security.emailUrlThreatSubmission"
     # Specifies the url of the message to be submitted.
     message_url: Optional[str] = None
     

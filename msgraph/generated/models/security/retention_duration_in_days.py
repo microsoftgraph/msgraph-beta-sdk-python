@@ -11,7 +11,7 @@ from .retention_duration import RetentionDuration
 @dataclass
 class RetentionDurationInDays(RetentionDuration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.retentionDurationInDays"
+    OdataType: Optional[str] = "#microsoft.graph.security.retentionDurationInDays"
     # Specifies the time period in days for which an item with the applied retention label will be retained for.
     days: Optional[int] = None
     

@@ -12,7 +12,7 @@ from .search_answer import SearchAnswer
 @dataclass
 class Acronym(SearchAnswer):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # What the acronym stands for.
     stands_for: Optional[str] = None
     # The state property

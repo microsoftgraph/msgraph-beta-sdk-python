@@ -25,7 +25,7 @@ class ApplicationTemplate(Entity):
     # The URL to get the logo for this application.
     logo_url: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The name of the publisher for this application.
     publisher: Optional[str] = None
     # The supportedClaimConfiguration property

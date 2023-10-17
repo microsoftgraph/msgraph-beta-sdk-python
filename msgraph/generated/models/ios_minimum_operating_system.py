@@ -10,7 +10,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     Contains properties of the minimum operating system required for an iOS mobile app.
     """
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -30,6 +30,8 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     v15_0: Optional[bool] = None
     # When TRUE, only Version 16.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
     v16_0: Optional[bool] = None
+    # When TRUE, only Version 17.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    v17_0: Optional[bool] = None
     # When TRUE, only Version 8.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
     v8_0: Optional[bool] = None
     # When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
@@ -60,6 +62,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
             "v14_0": lambda n : setattr(self, 'v14_0', n.get_bool_value()),
             "v15_0": lambda n : setattr(self, 'v15_0', n.get_bool_value()),
             "v16_0": lambda n : setattr(self, 'v16_0', n.get_bool_value()),
+            "v17_0": lambda n : setattr(self, 'v17_0', n.get_bool_value()),
             "v8_0": lambda n : setattr(self, 'v8_0', n.get_bool_value()),
             "v9_0": lambda n : setattr(self, 'v9_0', n.get_bool_value()),
         }
@@ -81,6 +84,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("v14_0", self.v14_0)
         writer.write_bool_value("v15_0", self.v15_0)
         writer.write_bool_value("v16_0", self.v16_0)
+        writer.write_bool_value("v17_0", self.v17_0)
         writer.write_bool_value("v8_0", self.v8_0)
         writer.write_bool_value("v9_0", self.v9_0)
         writer.write_additional_data_value(self.additional_data)

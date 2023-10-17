@@ -15,7 +15,7 @@ class WindowsIdentityProtectionConfiguration(DeviceConfiguration):
     This entity provides descriptions of the declared methods, properties and relationships exposed by Windows Hello for Business.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsIdentityProtectionConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsIdentityProtectionConfiguration"
     # Boolean value used to enable enhanced anti-spoofing for facial feature recognition on Windows Hello face authentication.
     enhanced_anti_spoofing_for_facial_features_enabled: Optional[bool] = None
     # Integer value specifies the period (in days) that a PIN can be used before the system requires the user to change it. Valid values are 0 to 730 inclusive. Valid values 0 to 730

@@ -18,7 +18,7 @@ class PrivilegedRoleSummary(Entity):
     # The mfaEnabled property
     mfa_enabled: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The status property
     status: Optional[RoleSummaryStatus] = None
     # The usersCount property

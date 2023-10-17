@@ -19,7 +19,6 @@ if TYPE_CHECKING:
     from .get_all_certificates_report.get_all_certificates_report_request_builder import GetAllCertificatesReportRequestBuilder
     from .get_apps_install_summary_report.get_apps_install_summary_report_request_builder import GetAppsInstallSummaryReportRequestBuilder
     from .get_app_status_overview_report.get_app_status_overview_report_request_builder import GetAppStatusOverviewReportRequestBuilder
-    from .get_autopilot_deployment_device_information.get_autopilot_deployment_device_information_request_builder import GetAutopilotDeploymentDeviceInformationRequestBuilder
     from .get_cached_report.get_cached_report_request_builder import GetCachedReportRequestBuilder
     from .get_certificates_report.get_certificates_report_request_builder import GetCertificatesReportRequestBuilder
     from .get_compliance_policies_report_for_device.get_compliance_policies_report_for_device_request_builder import GetCompliancePoliciesReportForDeviceRequestBuilder
@@ -27,19 +26,22 @@ if TYPE_CHECKING:
     from .get_compliance_policy_device_summary_report.get_compliance_policy_device_summary_report_request_builder import GetCompliancePolicyDeviceSummaryReportRequestBuilder
     from .get_compliance_policy_non_compliance_report.get_compliance_policy_non_compliance_report_request_builder import GetCompliancePolicyNonComplianceReportRequestBuilder
     from .get_compliance_policy_non_compliance_summary_report.get_compliance_policy_non_compliance_summary_report_request_builder import GetCompliancePolicyNonComplianceSummaryReportRequestBuilder
+    from .get_compliance_settings_report.get_compliance_settings_report_request_builder import GetComplianceSettingsReportRequestBuilder
     from .get_compliance_setting_details_report.get_compliance_setting_details_report_request_builder import GetComplianceSettingDetailsReportRequestBuilder
     from .get_compliance_setting_non_compliance_report.get_compliance_setting_non_compliance_report_request_builder import GetComplianceSettingNonComplianceReportRequestBuilder
-    from .get_compliance_settings_report.get_compliance_settings_report_request_builder import GetComplianceSettingsReportRequestBuilder
-    from .get_config_manager_device_policy_status_report.get_config_manager_device_policy_status_report_request_builder import GetConfigManagerDevicePolicyStatusReportRequestBuilder
     from .get_configuration_policies_report_for_device.get_configuration_policies_report_for_device_request_builder import GetConfigurationPoliciesReportForDeviceRequestBuilder
     from .get_configuration_policy_devices_report.get_configuration_policy_devices_report_request_builder import GetConfigurationPolicyDevicesReportRequestBuilder
     from .get_configuration_policy_device_summary_report.get_configuration_policy_device_summary_report_request_builder import GetConfigurationPolicyDeviceSummaryReportRequestBuilder
     from .get_configuration_policy_non_compliance_report.get_configuration_policy_non_compliance_report_request_builder import GetConfigurationPolicyNonComplianceReportRequestBuilder
     from .get_configuration_policy_non_compliance_summary_report.get_configuration_policy_non_compliance_summary_report_request_builder import GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder
     from .get_configuration_policy_settings_device_summary_report.get_configuration_policy_settings_device_summary_report_request_builder import GetConfigurationPolicySettingsDeviceSummaryReportRequestBuilder
+    from .get_configuration_settings_report.get_configuration_settings_report_request_builder import GetConfigurationSettingsReportRequestBuilder
     from .get_configuration_setting_details_report.get_configuration_setting_details_report_request_builder import GetConfigurationSettingDetailsReportRequestBuilder
     from .get_configuration_setting_non_compliance_report.get_configuration_setting_non_compliance_report_request_builder import GetConfigurationSettingNonComplianceReportRequestBuilder
-    from .get_configuration_settings_report.get_configuration_settings_report_request_builder import GetConfigurationSettingsReportRequestBuilder
+    from .get_config_manager_device_policy_status_report.get_config_manager_device_policy_status_report_request_builder import GetConfigManagerDevicePolicyStatusReportRequestBuilder
+    from .get_devices_status_by_policy_platform_compliance_report.get_devices_status_by_policy_platform_compliance_report_request_builder import GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder
+    from .get_devices_status_by_setting_report.get_devices_status_by_setting_report_request_builder import GetDevicesStatusBySettingReportRequestBuilder
+    from .get_devices_without_compliance_policy_report.get_devices_without_compliance_policy_report_request_builder import GetDevicesWithoutCompliancePolicyReportRequestBuilder
     from .get_device_configuration_policy_settings_summary_report.get_device_configuration_policy_settings_summary_report_request_builder import GetDeviceConfigurationPolicySettingsSummaryReportRequestBuilder
     from .get_device_configuration_policy_status_summary.get_device_configuration_policy_status_summary_request_builder import GetDeviceConfigurationPolicyStatusSummaryRequestBuilder
     from .get_device_install_status_report.get_device_install_status_report_request_builder import GetDeviceInstallStatusReportRequestBuilder
@@ -48,13 +50,10 @@ if TYPE_CHECKING:
     from .get_device_non_compliance_report.get_device_non_compliance_report_request_builder import GetDeviceNonComplianceReportRequestBuilder
     from .get_device_policies_compliance_report.get_device_policies_compliance_report_request_builder import GetDevicePoliciesComplianceReportRequestBuilder
     from .get_device_policy_settings_compliance_report.get_device_policy_settings_compliance_report_request_builder import GetDevicePolicySettingsComplianceReportRequestBuilder
-    from .get_devices_status_by_policy_platform_compliance_report.get_devices_status_by_policy_platform_compliance_report_request_builder import GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder
-    from .get_devices_status_by_setting_report.get_devices_status_by_setting_report_request_builder import GetDevicesStatusBySettingReportRequestBuilder
     from .get_device_status_by_compliace_policy_report.get_device_status_by_compliace_policy_report_request_builder import GetDeviceStatusByCompliacePolicyReportRequestBuilder
     from .get_device_status_by_compliance_policy_setting_report.get_device_status_by_compliance_policy_setting_report_request_builder import GetDeviceStatusByCompliancePolicySettingReportRequestBuilder
     from .get_device_status_summary_by_compliace_policy_report.get_device_status_summary_by_compliace_policy_report_request_builder import GetDeviceStatusSummaryByCompliacePolicyReportRequestBuilder
     from .get_device_status_summary_by_compliance_policy_settings_report.get_device_status_summary_by_compliance_policy_settings_report_request_builder import GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder
-    from .get_devices_without_compliance_policy_report.get_devices_without_compliance_policy_report_request_builder import GetDevicesWithoutCompliancePolicyReportRequestBuilder
     from .get_encryption_report_for_devices.get_encryption_report_for_devices_request_builder import GetEncryptionReportForDevicesRequestBuilder
     from .get_enrollment_configuration_policies_by_device.get_enrollment_configuration_policies_by_device_request_builder import GetEnrollmentConfigurationPoliciesByDeviceRequestBuilder
     from .get_failed_mobile_apps_report.get_failed_mobile_apps_report_request_builder import GetFailedMobileAppsReportRequestBuilder
@@ -223,7 +222,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReportsRequestBuilder(raw_url, self.request_adapter)
+        return ReportsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def cached_report_configurations(self) -> CachedReportConfigurationsRequestBuilder:
@@ -271,15 +270,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetAllCertificatesReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_apps_install_summary_report(self) -> GetAppsInstallSummaryReportRequestBuilder:
-        """
-        Provides operations to call the getAppsInstallSummaryReport method.
-        """
-        from .get_apps_install_summary_report.get_apps_install_summary_report_request_builder import GetAppsInstallSummaryReportRequestBuilder
-
-        return GetAppsInstallSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_app_status_overview_report(self) -> GetAppStatusOverviewReportRequestBuilder:
         """
         Provides operations to call the getAppStatusOverviewReport method.
@@ -289,13 +279,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetAppStatusOverviewReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_autopilot_deployment_device_information(self) -> GetAutopilotDeploymentDeviceInformationRequestBuilder:
+    def get_apps_install_summary_report(self) -> GetAppsInstallSummaryReportRequestBuilder:
         """
-        Provides operations to call the getAutopilotDeploymentDeviceInformation method.
+        Provides operations to call the getAppsInstallSummaryReport method.
         """
-        from .get_autopilot_deployment_device_information.get_autopilot_deployment_device_information_request_builder import GetAutopilotDeploymentDeviceInformationRequestBuilder
+        from .get_apps_install_summary_report.get_apps_install_summary_report_request_builder import GetAppsInstallSummaryReportRequestBuilder
 
-        return GetAutopilotDeploymentDeviceInformationRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetAppsInstallSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_cached_report(self) -> GetCachedReportRequestBuilder:
@@ -325,15 +315,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetCompliancePoliciesReportForDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_compliance_policy_devices_report(self) -> GetCompliancePolicyDevicesReportRequestBuilder:
-        """
-        Provides operations to call the getCompliancePolicyDevicesReport method.
-        """
-        from .get_compliance_policy_devices_report.get_compliance_policy_devices_report_request_builder import GetCompliancePolicyDevicesReportRequestBuilder
-
-        return GetCompliancePolicyDevicesReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_compliance_policy_device_summary_report(self) -> GetCompliancePolicyDeviceSummaryReportRequestBuilder:
         """
         Provides operations to call the getCompliancePolicyDeviceSummaryReport method.
@@ -341,6 +322,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_compliance_policy_device_summary_report.get_compliance_policy_device_summary_report_request_builder import GetCompliancePolicyDeviceSummaryReportRequestBuilder
 
         return GetCompliancePolicyDeviceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_compliance_policy_devices_report(self) -> GetCompliancePolicyDevicesReportRequestBuilder:
+        """
+        Provides operations to call the getCompliancePolicyDevicesReport method.
+        """
+        from .get_compliance_policy_devices_report.get_compliance_policy_devices_report_request_builder import GetCompliancePolicyDevicesReportRequestBuilder
+
+        return GetCompliancePolicyDevicesReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_compliance_policy_non_compliance_report(self) -> GetCompliancePolicyNonComplianceReportRequestBuilder:
@@ -406,15 +396,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetConfigurationPoliciesReportForDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_configuration_policy_devices_report(self) -> GetConfigurationPolicyDevicesReportRequestBuilder:
-        """
-        Provides operations to call the getConfigurationPolicyDevicesReport method.
-        """
-        from .get_configuration_policy_devices_report.get_configuration_policy_devices_report_request_builder import GetConfigurationPolicyDevicesReportRequestBuilder
-
-        return GetConfigurationPolicyDevicesReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_configuration_policy_device_summary_report(self) -> GetConfigurationPolicyDeviceSummaryReportRequestBuilder:
         """
         Provides operations to call the getConfigurationPolicyDeviceSummaryReport method.
@@ -422,6 +403,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_configuration_policy_device_summary_report.get_configuration_policy_device_summary_report_request_builder import GetConfigurationPolicyDeviceSummaryReportRequestBuilder
 
         return GetConfigurationPolicyDeviceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_configuration_policy_devices_report(self) -> GetConfigurationPolicyDevicesReportRequestBuilder:
+        """
+        Provides operations to call the getConfigurationPolicyDevicesReport method.
+        """
+        from .get_configuration_policy_devices_report.get_configuration_policy_devices_report_request_builder import GetConfigurationPolicyDevicesReportRequestBuilder
+
+        return GetConfigurationPolicyDevicesReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_configuration_policy_non_compliance_report(self) -> GetConfigurationPolicyNonComplianceReportRequestBuilder:
@@ -550,24 +540,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetDevicePolicySettingsComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_devices_status_by_policy_platform_compliance_report(self) -> GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder:
-        """
-        Provides operations to call the getDevicesStatusByPolicyPlatformComplianceReport method.
-        """
-        from .get_devices_status_by_policy_platform_compliance_report.get_devices_status_by_policy_platform_compliance_report_request_builder import GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder
-
-        return GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_devices_status_by_setting_report(self) -> GetDevicesStatusBySettingReportRequestBuilder:
-        """
-        Provides operations to call the getDevicesStatusBySettingReport method.
-        """
-        from .get_devices_status_by_setting_report.get_devices_status_by_setting_report_request_builder import GetDevicesStatusBySettingReportRequestBuilder
-
-        return GetDevicesStatusBySettingReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_device_status_by_compliace_policy_report(self) -> GetDeviceStatusByCompliacePolicyReportRequestBuilder:
         """
         Provides operations to call the getDeviceStatusByCompliacePolicyReport method.
@@ -602,6 +574,24 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_device_status_summary_by_compliance_policy_settings_report.get_device_status_summary_by_compliance_policy_settings_report_request_builder import GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder
 
         return GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_devices_status_by_policy_platform_compliance_report(self) -> GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder:
+        """
+        Provides operations to call the getDevicesStatusByPolicyPlatformComplianceReport method.
+        """
+        from .get_devices_status_by_policy_platform_compliance_report.get_devices_status_by_policy_platform_compliance_report_request_builder import GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder
+
+        return GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_devices_status_by_setting_report(self) -> GetDevicesStatusBySettingReportRequestBuilder:
+        """
+        Provides operations to call the getDevicesStatusBySettingReport method.
+        """
+        from .get_devices_status_by_setting_report.get_devices_status_by_setting_report_request_builder import GetDevicesStatusBySettingReportRequestBuilder
+
+        return GetDevicesStatusBySettingReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_devices_without_compliance_policy_report(self) -> GetDevicesWithoutCompliancePolicyReportRequestBuilder:
@@ -730,15 +720,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetPolicyNonComplianceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_quiet_time_policy_users_report(self) -> GetQuietTimePolicyUsersReportRequestBuilder:
-        """
-        Provides operations to call the getQuietTimePolicyUsersReport method.
-        """
-        from .get_quiet_time_policy_users_report.get_quiet_time_policy_users_report_request_builder import GetQuietTimePolicyUsersReportRequestBuilder
-
-        return GetQuietTimePolicyUsersReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_quiet_time_policy_user_summary_report(self) -> GetQuietTimePolicyUserSummaryReportRequestBuilder:
         """
         Provides operations to call the getQuietTimePolicyUserSummaryReport method.
@@ -746,6 +727,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_quiet_time_policy_user_summary_report.get_quiet_time_policy_user_summary_report_request_builder import GetQuietTimePolicyUserSummaryReportRequestBuilder
 
         return GetQuietTimePolicyUserSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_quiet_time_policy_users_report(self) -> GetQuietTimePolicyUsersReportRequestBuilder:
+        """
+        Provides operations to call the getQuietTimePolicyUsersReport method.
+        """
+        from .get_quiet_time_policy_users_report.get_quiet_time_policy_users_report_request_builder import GetQuietTimePolicyUsersReportRequestBuilder
+
+        return GetQuietTimePolicyUsersReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_related_apps_status_report(self) -> GetRelatedAppsStatusReportRequestBuilder:
@@ -820,15 +810,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetUserInstallStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_windows_driver_update_alerts_per_policy_per_device_report(self) -> GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
-        """
-        Provides operations to call the getWindowsDriverUpdateAlertsPerPolicyPerDeviceReport method.
-        """
-        from .get_windows_driver_update_alerts_per_policy_per_device_report.get_windows_driver_update_alerts_per_policy_per_device_report_request_builder import GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
-
-        return GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_windows_driver_update_alert_summary_report(self) -> GetWindowsDriverUpdateAlertSummaryReportRequestBuilder:
         """
         Provides operations to call the getWindowsDriverUpdateAlertSummaryReport method.
@@ -838,13 +819,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetWindowsDriverUpdateAlertSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_windows_quality_update_alerts_per_policy_per_device_report(self) -> GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
+    def get_windows_driver_update_alerts_per_policy_per_device_report(self) -> GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
         """
-        Provides operations to call the getWindowsQualityUpdateAlertsPerPolicyPerDeviceReport method.
+        Provides operations to call the getWindowsDriverUpdateAlertsPerPolicyPerDeviceReport method.
         """
-        from .get_windows_quality_update_alerts_per_policy_per_device_report.get_windows_quality_update_alerts_per_policy_per_device_report_request_builder import GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
+        from .get_windows_driver_update_alerts_per_policy_per_device_report.get_windows_driver_update_alerts_per_policy_per_device_report_request_builder import GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
 
-        return GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_windows_quality_update_alert_summary_report(self) -> GetWindowsQualityUpdateAlertSummaryReportRequestBuilder:
@@ -856,13 +837,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetWindowsQualityUpdateAlertSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_windows_update_alerts_per_policy_per_device_report(self) -> GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
+    def get_windows_quality_update_alerts_per_policy_per_device_report(self) -> GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
         """
-        Provides operations to call the getWindowsUpdateAlertsPerPolicyPerDeviceReport method.
+        Provides operations to call the getWindowsQualityUpdateAlertsPerPolicyPerDeviceReport method.
         """
-        from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
+        from .get_windows_quality_update_alerts_per_policy_per_device_report.get_windows_quality_update_alerts_per_policy_per_device_report_request_builder import GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
 
-        return GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_windows_update_alert_summary_report(self) -> GetWindowsUpdateAlertSummaryReportRequestBuilder:
@@ -872,6 +853,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_windows_update_alert_summary_report.get_windows_update_alert_summary_report_request_builder import GetWindowsUpdateAlertSummaryReportRequestBuilder
 
         return GetWindowsUpdateAlertSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_windows_update_alerts_per_policy_per_device_report(self) -> GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
+        """
+        Provides operations to call the getWindowsUpdateAlertsPerPolicyPerDeviceReport method.
+        """
+        from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
+
+        return GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_zebra_fota_deployment_report(self) -> GetZebraFotaDeploymentReportRequestBuilder:

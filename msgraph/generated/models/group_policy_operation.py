@@ -19,7 +19,7 @@ class GroupPolicyOperation(Entity):
     # The date and time the entity was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Type of Group Policy operation status.
     operation_status: Optional[GroupPolicyOperationStatus] = None
     # Type of Group Policy operation.

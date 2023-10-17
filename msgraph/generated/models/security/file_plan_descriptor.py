@@ -41,7 +41,7 @@ class FilePlanDescriptor(Entity):
     # Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
     file_plan_reference_template: Optional[FilePlanReferenceTemplate] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FilePlanDescriptor:

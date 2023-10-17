@@ -21,17 +21,17 @@ if TYPE_CHECKING:
 @dataclass
 class EducationResource(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Who created the resource.
+    # Who created the resource?
     created_by: Optional[IdentitySet] = None
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     created_date_time: Optional[datetime.datetime] = None
     # Display name of resource.
     display_name: Optional[str] = None
-    # Who was the last user to modify the resource.
+    # Who was the last user to modify the resource?
     last_modified_by: Optional[IdentitySet] = None
     # Moment in time when the resource was last modified.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     last_modified_date_time: Optional[datetime.datetime] = None

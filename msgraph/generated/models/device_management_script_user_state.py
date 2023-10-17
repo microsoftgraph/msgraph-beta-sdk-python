@@ -19,7 +19,7 @@ class DeviceManagementScriptUserState(Entity):
     # Error device count for specific user.
     error_device_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Success device count for specific user.
     success_device_count: Optional[int] = None
     # User principle name of specific user.

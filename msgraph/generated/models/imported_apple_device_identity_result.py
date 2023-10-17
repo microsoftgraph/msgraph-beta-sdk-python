@@ -14,7 +14,7 @@ class ImportedAppleDeviceIdentityResult(ImportedAppleDeviceIdentity):
     The importedAppleDeviceIdentityResult resource represents the result of attempting to import Apple devices identities.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Status of imported device identity
     status: Optional[bool] = None
     

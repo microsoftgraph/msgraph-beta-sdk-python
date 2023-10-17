@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors.o_data_error import ODataError
     from ......models.outlook_task_group import OutlookTaskGroup
+    from ......models.o_data_errors.o_data_error import ODataError
     from .task_folders.task_folders_request_builder import TaskFoldersRequestBuilder
 
 class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
@@ -48,7 +48,7 @@ class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[OutlookTaskGroup]:
         """
-        Get the properties and relationships of the specified Outlook task group.
+        Get the properties and relationships of the specified Outlook task group. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskGroup]
         Find more info here: https://learn.microsoft.com/graph/api/outlooktaskgroup-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of the specified Outlook task group.
+        Get the properties and relationships of the specified Outlook task group. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OutlookTaskGroupItemRequestBuilder(raw_url, self.request_adapter)
+        return OutlookTaskGroupItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def task_folders(self) -> TaskFoldersRequestBuilder:
@@ -176,7 +176,7 @@ class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OutlookTaskGroupItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of the specified Outlook task group.
+        Get the properties and relationships of the specified Outlook task group. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

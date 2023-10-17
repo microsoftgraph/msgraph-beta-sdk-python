@@ -14,7 +14,7 @@ class PrivilegedAccessRoot(Entity):
     # A group that's governed through Privileged Identity Management (PIM).
     group: Optional[PrivilegedAccessGroup] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessRoot:

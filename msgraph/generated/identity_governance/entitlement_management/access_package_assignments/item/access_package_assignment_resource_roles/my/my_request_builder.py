@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
-    from .my_response import MyResponse
+    from .my_get_response import MyGetResponse
 
 class MyRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class MyRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignments/{accessPackageAssignment%2Did}/accessPackageAssignmentResourceRoles/My(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[MyRequestBuilderGetRequestConfiguration] = None) -> Optional[MyResponse]:
+    async def get(self,request_configuration: Optional[MyRequestBuilderGetRequestConfiguration] = None) -> Optional[MyGetResponse]:
         """
         Invoke function My
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[MyResponse]
+        Returns: Optional[MyGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class MyRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .my_response import MyResponse
+        from .my_get_response import MyGetResponse
 
-        return await self.request_adapter.send_async(request_info, MyResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, MyGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class MyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MyRequestBuilder(raw_url, self.request_adapter)
+        return MyRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class MyRequestBuilderGetQueryParameters():

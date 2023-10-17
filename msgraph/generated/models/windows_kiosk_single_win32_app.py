@@ -15,7 +15,7 @@ class WindowsKioskSingleWin32App(WindowsKioskAppConfiguration):
     The class used to identify the single app configuration for the kiosk win32 configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskSingleWin32App"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskSingleWin32App"
     # The win32App property
     win32_app: Optional[WindowsKioskWin32App] = None
     

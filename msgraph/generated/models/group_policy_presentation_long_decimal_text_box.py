@@ -14,7 +14,7 @@ class GroupPolicyPresentationLongDecimalTextBox(GroupPolicyUploadedPresentation)
     Represents an ADMX longDecimalTextBox element and an ADMX longDecimal element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyPresentationLongDecimalTextBox"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyPresentationLongDecimalTextBox"
     # An unsigned integer that specifies the initial value for the decimal text box. The default value is 1.
     default_value: Optional[int] = None
     # An unsigned long that specifies the maximum allowed value. The default value is 9999.

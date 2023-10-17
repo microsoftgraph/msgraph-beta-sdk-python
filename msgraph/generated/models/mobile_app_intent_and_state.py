@@ -19,7 +19,7 @@ class MobileAppIntentAndState(Entity):
     # The list of payload intents and states for the tenant.
     mobile_app_list: Optional[List[MobileAppIntentAndStateDetail]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Identifier for the user that tried to enroll the device.
     user_id: Optional[str] = None
     

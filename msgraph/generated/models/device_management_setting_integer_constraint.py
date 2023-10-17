@@ -14,7 +14,7 @@ class DeviceManagementSettingIntegerConstraint(DeviceManagementConstraint):
     Constraint enforcing the permitted value range for an integer setting
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingIntegerConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingIntegerConstraint"
     # The maximum permitted value
     maximum_value: Optional[int] = None
     # The minimum permitted value

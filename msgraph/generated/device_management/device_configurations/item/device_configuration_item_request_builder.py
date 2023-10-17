@@ -173,7 +173,7 @@ class DeviceConfigurationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceConfigurationItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:
@@ -212,15 +212,6 @@ class DeviceConfigurationItemRequestBuilder(BaseRequestBuilder):
         return DeviceSettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_statuses(self) -> DeviceStatusesRequestBuilder:
-        """
-        Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceConfiguration entity.
-        """
-        from .device_statuses.device_statuses_request_builder import DeviceStatusesRequestBuilder
-
-        return DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def device_status_overview(self) -> DeviceStatusOverviewRequestBuilder:
         """
         Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceConfiguration entity.
@@ -228,6 +219,15 @@ class DeviceConfigurationItemRequestBuilder(BaseRequestBuilder):
         from .device_status_overview.device_status_overview_request_builder import DeviceStatusOverviewRequestBuilder
 
         return DeviceStatusOverviewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_statuses(self) -> DeviceStatusesRequestBuilder:
+        """
+        Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceConfiguration entity.
+        """
+        from .device_statuses.device_statuses_request_builder import DeviceStatusesRequestBuilder
+
+        return DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def group_assignments(self) -> GroupAssignmentsRequestBuilder:
@@ -239,15 +239,6 @@ class DeviceConfigurationItemRequestBuilder(BaseRequestBuilder):
         return GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_statuses(self) -> UserStatusesRequestBuilder:
-        """
-        Provides operations to manage the userStatuses property of the microsoft.graph.deviceConfiguration entity.
-        """
-        from .user_statuses.user_statuses_request_builder import UserStatusesRequestBuilder
-
-        return UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def user_status_overview(self) -> UserStatusOverviewRequestBuilder:
         """
         Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceConfiguration entity.
@@ -255,6 +246,15 @@ class DeviceConfigurationItemRequestBuilder(BaseRequestBuilder):
         from .user_status_overview.user_status_overview_request_builder import UserStatusOverviewRequestBuilder
 
         return UserStatusOverviewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_statuses(self) -> UserStatusesRequestBuilder:
+        """
+        Provides operations to manage the userStatuses property of the microsoft.graph.deviceConfiguration entity.
+        """
+        from .user_statuses.user_statuses_request_builder import UserStatusesRequestBuilder
+
+        return UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def windows_privacy_access_controls(self) -> WindowsPrivacyAccessControlsRequestBuilder:

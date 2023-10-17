@@ -22,7 +22,7 @@ class CloudPcSnapshot(Entity):
     # The date and time at which the snapshot was last used to restore the Cloud PC device. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_restored_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The type of snapshot that indicates how to create the snapshot. Possible values are automatic, manual. Default value is automatic.
     snapshot_type: Optional[CloudPcSnapshotType] = None
     # The status of the Cloud PC snapshot. The possible values are: ready, unknownFutureValue.

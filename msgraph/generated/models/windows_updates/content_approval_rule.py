@@ -13,7 +13,7 @@ from .compliance_change_rule import ComplianceChangeRule
 @dataclass
 class ContentApprovalRule(ComplianceChangeRule):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.contentApprovalRule"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.contentApprovalRule"
     # A filter to determine which content matches the rule on an ongoing basis.
     content_filter: Optional[ContentFilter] = None
     # The time before the deployment starts represented in ISO 8601 format for durations.

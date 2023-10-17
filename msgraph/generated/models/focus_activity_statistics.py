@@ -11,7 +11,7 @@ from .activity_statistics import ActivityStatistics
 @dataclass
 class FocusActivityStatistics(ActivityStatistics):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.focusActivityStatistics"
+    OdataType: Optional[str] = "#microsoft.graph.focusActivityStatistics"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FocusActivityStatistics:

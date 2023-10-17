@@ -20,7 +20,7 @@ class MicrosoftTunnelServerLogCollectionResponse(Entity):
     # The time when the log collection is expired
     expiry_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The time when the log collection was requested
     request_date_time: Optional[datetime.datetime] = None
     # ID of the server the log collection is requested upon

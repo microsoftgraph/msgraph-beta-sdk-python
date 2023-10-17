@@ -12,7 +12,7 @@ from .education_synchronization_customizations_base import EducationSynchronizat
 @dataclass
 class EducationSynchronizationCustomizations(EducationSynchronizationCustomizationsBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationSynchronizationCustomizations"
+    OdataType: Optional[str] = "#microsoft.graph.educationSynchronizationCustomizations"
     # Customizations for School entities.
     school: Optional[EducationSynchronizationCustomization] = None
     # Customizations for Section entities.

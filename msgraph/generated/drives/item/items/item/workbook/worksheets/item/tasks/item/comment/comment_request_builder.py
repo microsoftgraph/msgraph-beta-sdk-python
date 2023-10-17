@@ -49,7 +49,7 @@ class CommentRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CommentRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookComment]:
         """
-        Get comment from drives
+        The comment that the task is associated with.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookComment]
         """
@@ -109,7 +109,7 @@ class CommentRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CommentRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get comment from drives
+        The comment that the task is associated with.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class CommentRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CommentRequestBuilder(raw_url, self.request_adapter)
+        return CommentRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def replies(self) -> RepliesRequestBuilder:
@@ -185,7 +185,7 @@ class CommentRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CommentRequestBuilderGetQueryParameters():
         """
-        Get comment from drives
+        The comment that the task is associated with.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

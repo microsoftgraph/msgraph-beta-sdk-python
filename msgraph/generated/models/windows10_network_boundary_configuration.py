@@ -15,7 +15,7 @@ class Windows10NetworkBoundaryConfiguration(DeviceConfiguration):
     Windows10 Network Boundary Configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10NetworkBoundaryConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windows10NetworkBoundaryConfiguration"
     # Windows Network Isolation Policy
     windows_network_isolation_policy: Optional[WindowsNetworkIsolationPolicy] = None
     

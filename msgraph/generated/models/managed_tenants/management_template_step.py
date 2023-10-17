@@ -34,7 +34,7 @@ class ManagementTemplateStep(Entity):
     # The managementTemplate property
     management_template: Optional[ManagementTemplate] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The portalLink property
     portal_link: Optional[ActionUrl] = None
     # The priority property

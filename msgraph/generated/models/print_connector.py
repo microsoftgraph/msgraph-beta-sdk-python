@@ -26,7 +26,7 @@ class PrintConnector(Entity):
     # The name property
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The connector machine's operating system version.
     operating_system: Optional[str] = None
     # The DateTimeOffset when the connector was registered.

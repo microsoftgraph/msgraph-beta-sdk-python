@@ -15,7 +15,7 @@ class AndroidManagedStoreAppAssignmentSettings(MobileAppAssignmentSettings):
     Contains properties used to assign an Android Managed Store mobile app to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidManagedStoreAppAssignmentSettings"
+    OdataType: Optional[str] = "#microsoft.graph.androidManagedStoreAppAssignmentSettings"
     # The track IDs to enable for this app assignment.
     android_managed_store_app_track_ids: Optional[List[str]] = None
     # Prioritization for automatic updates of Android Managed Store apps set on assignment.

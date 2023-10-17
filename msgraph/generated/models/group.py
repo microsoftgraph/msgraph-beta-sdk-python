@@ -36,7 +36,7 @@ from .directory_object import DirectoryObject
 @dataclass
 class Group(DirectoryObject):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.group"
+    OdataType: Optional[str] = "#microsoft.graph.group"
     # The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
     accepted_senders: Optional[List[DirectoryObject]] = None
     # The accessType property
@@ -67,7 +67,7 @@ class Group(DirectoryObject):
     created_on_behalf_of: Optional[DirectoryObject] = None
     # An optional description for the group. Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.
     description: Optional[str] = None
-    # The display name for the group. Required. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    # The display name for the group. Required. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
     # The group's default drive. Read-only.
     drive: Optional[Drive] = None

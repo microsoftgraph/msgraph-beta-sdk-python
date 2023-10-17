@@ -15,7 +15,7 @@ class Windows10CertificateProfileBase(WindowsCertificateProfileBase):
     Base class for Windows 10 certificate profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10CertificateProfileBase"
+    OdataType: Optional[str] = "#microsoft.graph.windows10CertificateProfileBase"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10CertificateProfileBase:

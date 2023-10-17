@@ -24,7 +24,7 @@ class GroupPolicyObjectFile(Entity):
     # The date and time at which the GroupPolicyObjectFile was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The distinguished name of the OU.
     ou_distinguished_name: Optional[str] = None
     # The list of scope tags for the configuration.

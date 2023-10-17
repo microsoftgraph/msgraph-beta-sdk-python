@@ -11,7 +11,7 @@ from .custom_extension_authentication_configuration import CustomExtensionAuthen
 @dataclass
 class AzureAdTokenAuthentication(CustomExtensionAuthenticationConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.azureAdTokenAuthentication"
+    OdataType: Optional[str] = "#microsoft.graph.azureAdTokenAuthentication"
     # The appID of the Azure AD application to use to authenticate a logic app with a custom access package workflow extension.
     resource_id: Optional[str] = None
     

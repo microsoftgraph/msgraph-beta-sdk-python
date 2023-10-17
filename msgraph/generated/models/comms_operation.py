@@ -8,8 +8,8 @@ if TYPE_CHECKING:
     from .cancel_media_processing_operation import CancelMediaProcessingOperation
     from .entity import Entity
     from .invite_participants_operation import InviteParticipantsOperation
-    from .mute_participant_operation import MuteParticipantOperation
     from .mute_participants_operation import MuteParticipantsOperation
+    from .mute_participant_operation import MuteParticipantOperation
     from .operation_status import OperationStatus
     from .play_prompt_operation import PlayPromptOperation
     from .record_operation import RecordOperation
@@ -27,7 +27,7 @@ class CommsOperation(Entity):
     # Unique Client Context string. Max limit is 256 chars.
     client_context: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The result information. Read-only.
     result_info: Optional[ResultInfo] = None
     # The status property
@@ -105,8 +105,8 @@ class CommsOperation(Entity):
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .entity import Entity
         from .invite_participants_operation import InviteParticipantsOperation
-        from .mute_participant_operation import MuteParticipantOperation
         from .mute_participants_operation import MuteParticipantsOperation
+        from .mute_participant_operation import MuteParticipantOperation
         from .operation_status import OperationStatus
         from .play_prompt_operation import PlayPromptOperation
         from .record_operation import RecordOperation
@@ -121,8 +121,8 @@ class CommsOperation(Entity):
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .entity import Entity
         from .invite_participants_operation import InviteParticipantsOperation
-        from .mute_participant_operation import MuteParticipantOperation
         from .mute_participants_operation import MuteParticipantsOperation
+        from .mute_participant_operation import MuteParticipantOperation
         from .operation_status import OperationStatus
         from .play_prompt_operation import PlayPromptOperation
         from .record_operation import RecordOperation

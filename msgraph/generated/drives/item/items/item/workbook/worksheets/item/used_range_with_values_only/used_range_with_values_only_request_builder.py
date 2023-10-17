@@ -25,6 +25,8 @@ class UsedRangeWithValuesOnlyRequestBuilder(BaseRequestBuilder):
         param values_only: Usage: valuesOnly={valuesOnly}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['values_only'] = str(values_only)
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/usedRange(valuesOnly={valuesOnly})", path_parameters)
     
     async def get(self,request_configuration: Optional[UsedRangeWithValuesOnlyRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookRange]:
@@ -72,7 +74,7 @@ class UsedRangeWithValuesOnlyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UsedRangeWithValuesOnlyRequestBuilder(raw_url, self.request_adapter)
+        return UsedRangeWithValuesOnlyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

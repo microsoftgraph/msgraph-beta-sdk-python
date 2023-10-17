@@ -26,6 +26,9 @@ class ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(BaseRequestB
         param top: Usage: top={top}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['skip'] = str(skip)
+            path_parameters['top'] = str(top)
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/exportDeviceAndAppManagementData(skip={skip},top={top})", path_parameters)
     
     async def get(self,request_configuration: Optional[ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceAndAppManagementData]:
@@ -73,7 +76,7 @@ class ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(BaseRequestB
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(raw_url, self.request_adapter)
+        return ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

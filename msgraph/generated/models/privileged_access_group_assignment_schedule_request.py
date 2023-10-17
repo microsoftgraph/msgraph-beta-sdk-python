@@ -15,7 +15,7 @@ from .privileged_access_schedule_request import PrivilegedAccessScheduleRequest
 @dataclass
 class PrivilegedAccessGroupAssignmentScheduleRequest(PrivilegedAccessScheduleRequest):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest"
+    OdataType: Optional[str] = "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest"
     # The identifier of a membership or ownership assignment relationship to the group. Required. The possible values are: owner, member, unknownFutureValue.
     access_id: Optional[PrivilegedAccessGroupRelationships] = None
     # When the request activates a membership or ownership assignment in PIM for groups, this object represents the eligibility policy for the group. Otherwise, it is null. Supports $expand.

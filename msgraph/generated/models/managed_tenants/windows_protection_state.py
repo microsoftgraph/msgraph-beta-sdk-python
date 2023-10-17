@@ -48,7 +48,7 @@ class WindowsProtectionState(Entity):
     # A flag indicating whether the network inspection system is enabled. Optional. Read-only.
     network_inspection_system_enabled: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A flag indicating weather a quick scan is overdue. Optional. Read-only.
     quick_scan_overdue: Optional[bool] = None
     # A flag indicating whether real time protection is enabled. Optional. Read-only.

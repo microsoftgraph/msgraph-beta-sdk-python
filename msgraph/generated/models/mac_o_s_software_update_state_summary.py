@@ -21,7 +21,7 @@ class MacOSSoftwareUpdateStateSummary(Entity):
     # Last date time the report for this device and product key was updated.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Product key of the software update.
     product_key: Optional[str] = None
     # MacOS Software Update State

@@ -13,7 +13,7 @@ from .on_token_issuance_start_handler import OnTokenIssuanceStartHandler
 @dataclass
 class OnTokenIssuanceStartCustomExtensionHandler(OnTokenIssuanceStartHandler):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.onTokenIssuanceStartCustomExtensionHandler"
+    OdataType: Optional[str] = "#microsoft.graph.onTokenIssuanceStartCustomExtensionHandler"
     # The configuration property
     configuration: Optional[CustomExtensionOverwriteConfiguration] = None
     # The customExtension property

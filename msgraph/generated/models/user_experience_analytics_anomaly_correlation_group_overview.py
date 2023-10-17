@@ -34,7 +34,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity):
     # The percentage of the devices in the correlation group that are anomalous. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
     correlation_group_prevalence_percentage: Optional[float] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Indicates the total number of devices in the tenant. Valid values -2147483648 to 2147483647
     total_device_count: Optional[int] = None
     

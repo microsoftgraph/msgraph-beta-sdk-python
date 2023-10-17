@@ -48,7 +48,7 @@ class AlertRecordItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AlertRecordItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AlertRecord]:
         """
-        Read the properties and relationships of an alertRecord object.
+        Read the properties and relationships of an alertRecord object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRecord]
         Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrecord-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class AlertRecordItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AlertRecordItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an alertRecord object.
+        Read the properties and relationships of an alertRecord object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class AlertRecordItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AlertRecordItemRequestBuilder(raw_url, self.request_adapter)
+        return AlertRecordItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_device_management_set_portal_notification_as_sent(self) -> MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder:
@@ -176,7 +176,7 @@ class AlertRecordItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertRecordItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an alertRecord object.
+        Read the properties and relationships of an alertRecord object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

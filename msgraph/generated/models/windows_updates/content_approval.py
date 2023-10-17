@@ -14,7 +14,7 @@ from .compliance_change import ComplianceChange
 @dataclass
 class ContentApproval(ComplianceChange):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.contentApproval"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.contentApproval"
     # The content property
     content: Optional[DeployableContent] = None
     # Settings for governing how to deploy content.

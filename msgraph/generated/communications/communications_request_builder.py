@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..models.cloud_communications import CloudCommunications
     from ..models.o_data_errors.o_data_error import ODataError
-    from .call_records.call_records_request_builder import CallRecordsRequestBuilder
     from .calls.calls_request_builder import CallsRequestBuilder
+    from .call_records.call_records_request_builder import CallRecordsRequestBuilder
     from .get_presences_by_user_id.get_presences_by_user_id_request_builder import GetPresencesByUserIdRequestBuilder
     from .online_meetings.online_meetings_request_builder import OnlineMeetingsRequestBuilder
     from .presences.presences_request_builder import PresencesRequestBuilder
@@ -121,7 +121,7 @@ class CommunicationsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CommunicationsRequestBuilder(raw_url, self.request_adapter)
+        return CommunicationsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def call_records(self) -> CallRecordsRequestBuilder:

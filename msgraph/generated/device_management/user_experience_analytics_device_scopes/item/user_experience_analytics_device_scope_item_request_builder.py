@@ -151,7 +151,7 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserExperienceAnalyticsDeviceScopeItemRequestBuilder(raw_url, self.request_adapter)
+        return UserExperienceAnalyticsDeviceScopeItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def trigger_device_scope_action(self) -> TriggerDeviceScopeActionRequestBuilder:

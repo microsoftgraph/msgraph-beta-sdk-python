@@ -20,7 +20,7 @@ class ZebraFotaArtifact(Entity):
     # Applicable device model (e.g.: TC8300)
     device_model: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Artifact OS version (e.g.: 8.1.0)
     os_version: Optional[str] = None
     # Artifact patch version (e.g.: U00)

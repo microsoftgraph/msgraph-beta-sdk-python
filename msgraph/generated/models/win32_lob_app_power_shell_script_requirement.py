@@ -16,7 +16,7 @@ class Win32LobAppPowerShellScriptRequirement(Win32LobAppRequirement):
     Contains PowerShell script properties to detect a Win32 App
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.win32LobAppPowerShellScriptRequirement"
+    OdataType: Optional[str] = "#microsoft.graph.win32LobAppPowerShellScriptRequirement"
     # Contains all supported Powershell Script output detection type.
     detection_type: Optional[Win32LobAppPowerShellScriptDetectionType] = None
     # The unique display name for this rule

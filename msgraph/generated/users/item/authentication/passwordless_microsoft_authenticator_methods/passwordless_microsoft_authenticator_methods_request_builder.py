@@ -44,7 +44,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
     
     async def get(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse]:
         """
-        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties.
+        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/passwordlessmicrosoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
     
     def to_get_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties.
+        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(raw_url, self.request_adapter)
+        return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
     @dataclass
     class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties.
+        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

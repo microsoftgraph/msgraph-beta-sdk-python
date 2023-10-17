@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.security.alert import Alert
+    from .comments.comments_request_builder import CommentsRequestBuilder
 
 class AlertItemRequestBuilder(BaseRequestBuilder):
     """
@@ -47,7 +48,7 @@ class AlertItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AlertItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Alert]:
         """
-        Get the properties and relationships of an alert in an organization based on the specified alert id property.
+        Get the properties and relationships of an alert in an organization based on the specified alert id property. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Alert]
         Find more info here: https://learn.microsoft.com/graph/api/security-alert-get?view=graph-rest-1.0
@@ -69,7 +70,7 @@ class AlertItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Alert] = None, request_configuration: Optional[AlertItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Alert]:
         """
-        Update the properties of an alert object in an organization based on the specified alert id property.
+        Update the properties of an alert object in an organization based on the specified alert id property. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Alert]
@@ -109,7 +110,7 @@ class AlertItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AlertItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of an alert in an organization based on the specified alert id property.
+        Get the properties and relationships of an alert in an organization based on the specified alert id property. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +127,7 @@ class AlertItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Alert] = None, request_configuration: Optional[AlertItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an alert object in an organization based on the specified alert id property.
+        Update the properties of an alert object in an organization based on the specified alert id property. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +153,16 @@ class AlertItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AlertItemRequestBuilder(raw_url, self.request_adapter)
+        return AlertItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def comments(self) -> CommentsRequestBuilder:
+        """
+        The comments property
+        """
+        from .comments.comments_request_builder import CommentsRequestBuilder
+
+        return CommentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +177,7 @@ class AlertItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of an alert in an organization based on the specified alert id property.
+        Get the properties and relationships of an alert in an organization based on the specified alert id property. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

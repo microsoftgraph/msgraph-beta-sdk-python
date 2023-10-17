@@ -11,7 +11,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class RemoveContentFooterAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.removeContentFooterAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.removeContentFooterAction"
     # The name of the UI element of the footer to be removed.
     ui_element_names: Optional[List[str]] = None
     

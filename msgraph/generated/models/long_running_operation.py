@@ -21,7 +21,7 @@ class LongRunningOperation(Entity):
     # The time of the last action in the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_action_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # URI of the resource that the operation is performed on.
     resource_location: Optional[str] = None
     # The status of the operation. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue.

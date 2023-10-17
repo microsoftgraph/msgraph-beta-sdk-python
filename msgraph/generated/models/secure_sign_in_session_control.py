@@ -11,7 +11,7 @@ from .conditional_access_session_control import ConditionalAccessSessionControl
 @dataclass
 class SecureSignInSessionControl(ConditionalAccessSessionControl):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.secureSignInSessionControl"
+    OdataType: Optional[str] = "#microsoft.graph.secureSignInSessionControl"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SecureSignInSessionControl:

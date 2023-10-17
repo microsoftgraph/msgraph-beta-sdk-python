@@ -13,7 +13,7 @@ class FileClassificationRequest(Entity):
     # The file property
     file: Optional[bytes] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The sensitiveTypeIds property
     sensitive_type_ids: Optional[List[str]] = None
     

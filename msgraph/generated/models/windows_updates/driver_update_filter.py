@@ -11,7 +11,7 @@ from .windows_update_filter import WindowsUpdateFilter
 @dataclass
 class DriverUpdateFilter(WindowsUpdateFilter):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.driverUpdateFilter"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.driverUpdateFilter"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DriverUpdateFilter:

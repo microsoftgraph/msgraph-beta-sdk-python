@@ -26,7 +26,7 @@ class EnrollmentProfile(Entity):
     # Indicates to authenticate with Apple Setup Assistant instead of Company Portal.
     enable_authentication_via_company_portal: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Indicates that Company Portal is required on setup assistant enrolled devices
     require_company_portal_on_setup_assistant_enrolled_devices: Optional[bool] = None
     # Indicates if the profile requires user authentication

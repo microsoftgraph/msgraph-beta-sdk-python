@@ -15,7 +15,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(Devic
     Choice Setting Collection Instance Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate"
     # Linked policy may append values which are not present in the template.
     allow_unmanaged_values: Optional[bool] = None
     # Choice Setting Collection Value Template

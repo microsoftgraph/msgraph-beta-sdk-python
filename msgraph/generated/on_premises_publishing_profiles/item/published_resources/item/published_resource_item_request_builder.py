@@ -48,7 +48,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PublishedResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PublishedResource]:
         """
-        Retrieve the properties and relationships of publishedResource object.
+        Retrieve the properties and relationships of publishedResource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PublishedResource]
         Find more info here: https://learn.microsoft.com/graph/api/publishedresource-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PublishedResource] = None, request_configuration: Optional[PublishedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PublishedResource]:
         """
-        Update the properties of publishedresource  publishedResource object.
+        Update the properties of published resource  publishedResource object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PublishedResource]
@@ -110,7 +110,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PublishedResourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of publishedResource object.
+        Retrieve the properties and relationships of publishedResource object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PublishedResource] = None, request_configuration: Optional[PublishedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of publishedresource  publishedResource object.
+        Update the properties of published resource  publishedResource object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PublishedResourceItemRequestBuilder(raw_url, self.request_adapter)
+        return PublishedResourceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def agent_groups(self) -> AgentGroupsRequestBuilder:
@@ -177,7 +177,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PublishedResourceItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of publishedResource object.
+        Retrieve the properties and relationships of publishedResource object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

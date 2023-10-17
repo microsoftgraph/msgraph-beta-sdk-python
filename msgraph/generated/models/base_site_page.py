@@ -14,7 +14,7 @@ from .base_item import BaseItem
 @dataclass
 class BaseSitePage(BaseItem):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.baseSitePage"
+    OdataType: Optional[str] = "#microsoft.graph.baseSitePage"
     # The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue.
     page_layout: Optional[PageLayoutType] = None
     # The publishing status and the MM.mm version of the page.

@@ -27,7 +27,7 @@ class CartToClassAssociation(Entity):
     # DateTime the object was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Version of the CartToClassAssociation.
     version: Optional[int] = None
     

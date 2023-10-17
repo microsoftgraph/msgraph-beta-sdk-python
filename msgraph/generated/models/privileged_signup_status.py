@@ -14,7 +14,7 @@ class PrivilegedSignupStatus(Entity):
     # The isRegistered property
     is_registered: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The status property
     status: Optional[SetupStatus] = None
     

@@ -45,7 +45,7 @@ class EmailThreatsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EmailThreatsRequestBuilderGetRequestConfiguration] = None) -> Optional[EmailThreatSubmissionCollectionResponse]:
         """
-        Get a list of the emailThreatSubmission objects and their properties.
+        Get a list of the emailThreatSubmission objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EmailThreatSubmissionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/security-emailthreatsubmission-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class EmailThreatsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[EmailThreatSubmission] = None, request_configuration: Optional[EmailThreatsRequestBuilderPostRequestConfiguration] = None) -> Optional[EmailThreatSubmission]:
         """
-        Create a new emailThreatSubmission object.
+        Create a new emailThreatSubmission object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EmailThreatSubmission]
@@ -92,7 +92,7 @@ class EmailThreatsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EmailThreatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the emailThreatSubmission objects and their properties.
+        Get a list of the emailThreatSubmission objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class EmailThreatsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[EmailThreatSubmission] = None, request_configuration: Optional[EmailThreatsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new emailThreatSubmission object.
+        Create a new emailThreatSubmission object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class EmailThreatsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EmailThreatsRequestBuilder(raw_url, self.request_adapter)
+        return EmailThreatsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class EmailThreatsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EmailThreatsRequestBuilderGetQueryParameters():
         """
-        Get a list of the emailThreatSubmission objects and their properties.
+        Get a list of the emailThreatSubmission objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

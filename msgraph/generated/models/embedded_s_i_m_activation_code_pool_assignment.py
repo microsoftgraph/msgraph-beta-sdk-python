@@ -15,7 +15,7 @@ class EmbeddedSIMActivationCodePoolAssignment(Entity):
     The embedded SIM activation code pool assignment entity assigns a specific embeddedSIMActivationCodePool to an AAD device group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Base type for assignment targets.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

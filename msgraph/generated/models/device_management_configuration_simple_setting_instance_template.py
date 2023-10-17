@@ -15,7 +15,7 @@ class DeviceManagementConfigurationSimpleSettingInstanceTemplate(DeviceManagemen
     Simple Setting Instance Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate"
     # Simple Setting Value Template
     simple_setting_value_template: Optional[DeviceManagementConfigurationSimpleSettingValueTemplate] = None
     

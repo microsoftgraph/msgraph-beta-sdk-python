@@ -72,7 +72,7 @@ class DepartmentTemplateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DepartmentTemplateRequestBuilder(raw_url, self.request_adapter)
+        return DepartmentTemplateRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DepartmentTemplateRequestBuilderGetQueryParameters():

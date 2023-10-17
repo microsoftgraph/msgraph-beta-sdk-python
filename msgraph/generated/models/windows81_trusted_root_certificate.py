@@ -15,7 +15,7 @@ class Windows81TrustedRootCertificate(DeviceConfiguration):
     Windows 8.1 Trusted Certificate configuration profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows81TrustedRootCertificate"
+    OdataType: Optional[str] = "#microsoft.graph.windows81TrustedRootCertificate"
     # File name to display in UI.
     cert_file_name: Optional[str] = None
     # Possible values for the Certificate Destination Store.

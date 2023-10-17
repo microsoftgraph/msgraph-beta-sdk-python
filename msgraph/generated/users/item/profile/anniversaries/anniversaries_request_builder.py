@@ -45,7 +45,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AnniversariesRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonAnnualEventCollectionResponse]:
         """
-        Retrieve a list of personAnniversary objects for the given user from their profile.
+        Retrieve a list of personAnniversary objects for the given user from their profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnualEventCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/profile-list-anniversaries?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[AnniversariesRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonAnnualEvent]:
         """
-        Use this API to create a new personAnniversary object in a user's profile.
+        Use this API to create a new personAnniversary object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnualEvent]
@@ -92,7 +92,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AnniversariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personAnniversary objects for the given user from their profile.
+        Retrieve a list of personAnniversary objects for the given user from their profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[AnniversariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new personAnniversary object in a user's profile.
+        Use this API to create a new personAnniversary object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AnniversariesRequestBuilder(raw_url, self.request_adapter)
+        return AnniversariesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AnniversariesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personAnniversary objects for the given user from their profile.
+        Retrieve a list of personAnniversary objects for the given user from their profile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -40,7 +40,7 @@ class UserExperienceAnalyticsAnomaly(Entity):
     # The unique identifier of the anomaly detection model.
     issue_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Indicates the severity of the anomaly. Eg: anomaly severity can be high, medium, low, informational or other.
     severity: Optional[UserExperienceAnalyticsAnomalySeverity] = None
     # Indicates the state of the anomaly. Eg: anomaly severity can be new, active, disabled, removed or other.

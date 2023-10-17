@@ -18,7 +18,7 @@ class Windows10PkcsCertificateProfile(Windows10CertificateProfileBase):
     Windows 10 Desktop and Mobile PKCS certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10PkcsCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.windows10PkcsCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # PKCS Certificate Template Name

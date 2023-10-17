@@ -13,12 +13,12 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.privileged_access_group import PrivilegedAccessGroup
     from .assignment_approvals.assignment_approvals_request_builder import AssignmentApprovalsRequestBuilder
+    from .assignment_schedules.assignment_schedules_request_builder import AssignmentSchedulesRequestBuilder
     from .assignment_schedule_instances.assignment_schedule_instances_request_builder import AssignmentScheduleInstancesRequestBuilder
     from .assignment_schedule_requests.assignment_schedule_requests_request_builder import AssignmentScheduleRequestsRequestBuilder
-    from .assignment_schedules.assignment_schedules_request_builder import AssignmentSchedulesRequestBuilder
+    from .eligibility_schedules.eligibility_schedules_request_builder import EligibilitySchedulesRequestBuilder
     from .eligibility_schedule_instances.eligibility_schedule_instances_request_builder import EligibilityScheduleInstancesRequestBuilder
     from .eligibility_schedule_requests.eligibility_schedule_requests_request_builder import EligibilityScheduleRequestsRequestBuilder
-    from .eligibility_schedules.eligibility_schedules_request_builder import EligibilitySchedulesRequestBuilder
 
 class GroupRequestBuilder(BaseRequestBuilder):
     """
@@ -157,7 +157,7 @@ class GroupRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupRequestBuilder(raw_url, self.request_adapter)
+        return GroupRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assignment_approvals(self) -> AssignmentApprovalsRequestBuilder:

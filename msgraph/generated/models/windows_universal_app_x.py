@@ -18,7 +18,7 @@ class WindowsUniversalAppX(MobileLobApp):
     Contains properties and inherited properties for Windows Universal AppX Line Of Business apps. Inherits from `mobileLobApp`.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUniversalAppX"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUniversalAppX"
     # Contains properties for Windows architecture.
     applicable_architectures: Optional[WindowsArchitecture] = None
     # Contains properties for Windows device type. Multiple values can be selected. Default value is `none`.
@@ -67,8 +67,8 @@ class WindowsUniversalAppX(MobileLobApp):
         from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(WindowsArchitecture)),
-            "applicableDeviceTypes": lambda n : setattr(self, 'applicable_device_types', n.get_enum_value(WindowsDeviceType)),
+            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
+            "applicableDeviceTypes": lambda n : setattr(self, 'applicable_device_types', n.get_collection_of_enum_values(WindowsDeviceType)),
             "committedContainedApps": lambda n : setattr(self, 'committed_contained_apps', n.get_collection_of_object_values(MobileContainedApp)),
             "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
             "identityPublisherHash": lambda n : setattr(self, 'identity_publisher_hash', n.get_str_value()),

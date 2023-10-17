@@ -44,7 +44,7 @@ class Case(Entity):
     # Returns a list of case noncustodialDataSource objects for this case.  Nullable.
     noncustodial_data_sources: Optional[List[NoncustodialDataSource]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Returns a list of case operation objects for this case. Nullable.
     operations: Optional[List[CaseOperation]] = None
     # Returns a list of reviewSet objects in the case. Read-only. Nullable.

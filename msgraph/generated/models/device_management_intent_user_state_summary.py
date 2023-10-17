@@ -22,7 +22,7 @@ class DeviceManagementIntentUserStateSummary(Entity):
     # Number of not applicable users
     not_applicable_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Number of succeeded users
     success_count: Optional[int] = None
     

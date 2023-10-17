@@ -17,7 +17,7 @@ class PrivilegedRoleAssignment(Entity):
     # The isElevated property
     is_elevated: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The resultMessage property
     result_message: Optional[str] = None
     # The roleId property

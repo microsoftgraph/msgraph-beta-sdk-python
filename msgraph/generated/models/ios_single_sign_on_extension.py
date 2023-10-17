@@ -18,7 +18,7 @@ class IosSingleSignOnExtension(SingleSignOnExtension):
     An abstract base class for all iOS-specific single sign-on extension types.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosSingleSignOnExtension"
+    OdataType: Optional[str] = "#microsoft.graph.iosSingleSignOnExtension"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosSingleSignOnExtension:

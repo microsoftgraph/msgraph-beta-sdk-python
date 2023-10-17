@@ -20,7 +20,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration):
     This entity provides descriptions of the declared methods, properties and relationships exposed by the Wired Network CSP.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsWiredNetworkConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsWiredNetworkConfiguration"
     # Specify the duration for which automatic authentication attempts will be blocked from occuring after a failed authentication attempt.
     authentication_block_period_in_minutes: Optional[int] = None
     # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.

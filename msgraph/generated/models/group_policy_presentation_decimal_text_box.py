@@ -14,7 +14,7 @@ class GroupPolicyPresentationDecimalTextBox(GroupPolicyUploadedPresentation):
     Represents an ADMX decimalTextBox element and an ADMX decimal element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyPresentationDecimalTextBox"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyPresentationDecimalTextBox"
     # An unsigned integer that specifies the initial value for the decimal text box. The default value is 1.
     default_value: Optional[int] = None
     # An unsigned integer that specifies the maximum allowed value. The default value is 9999.

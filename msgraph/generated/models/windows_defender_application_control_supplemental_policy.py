@@ -33,7 +33,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity):
     # Indicates the last modified date and time of the Windows Defender Application Control Supplemental Policy.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for the Windows Defender Application Control Supplemental Policy entity.
     role_scope_tag_ids: Optional[List[str]] = None
     # Indicates the Windows Defender Application Control Supplemental Policy's version.

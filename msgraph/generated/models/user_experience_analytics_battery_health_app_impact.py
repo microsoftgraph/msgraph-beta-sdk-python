@@ -26,7 +26,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(Entity):
     # true if the user had active interaction with the app.
     is_foreground_app: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsBatteryHealthAppImpact:

@@ -154,7 +154,7 @@ class MicrosoftTunnelServerItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftTunnelServerItemRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftTunnelServerItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def create_server_log_collection_request(self) -> CreateServerLogCollectionRequestRequestBuilder:
@@ -175,15 +175,6 @@ class MicrosoftTunnelServerItemRequestBuilder(BaseRequestBuilder):
         return GenerateServerLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_health_metrics(self) -> GetHealthMetricsRequestBuilder:
-        """
-        Provides operations to call the getHealthMetrics method.
-        """
-        from .get_health_metrics.get_health_metrics_request_builder import GetHealthMetricsRequestBuilder
-
-        return GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_health_metric_time_series(self) -> GetHealthMetricTimeSeriesRequestBuilder:
         """
         Provides operations to call the getHealthMetricTimeSeries method.
@@ -191,6 +182,15 @@ class MicrosoftTunnelServerItemRequestBuilder(BaseRequestBuilder):
         from .get_health_metric_time_series.get_health_metric_time_series_request_builder import GetHealthMetricTimeSeriesRequestBuilder
 
         return GetHealthMetricTimeSeriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_health_metrics(self) -> GetHealthMetricsRequestBuilder:
+        """
+        Provides operations to call the getHealthMetrics method.
+        """
+        from .get_health_metrics.get_health_metrics_request_builder import GetHealthMetricsRequestBuilder
+
+        return GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

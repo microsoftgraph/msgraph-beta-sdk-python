@@ -12,12 +12,13 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.security.threat_intelligence import ThreatIntelligence
-    from .article_indicators.article_indicators_request_builder import ArticleIndicatorsRequestBuilder
     from .articles.articles_request_builder import ArticlesRequestBuilder
+    from .article_indicators.article_indicators_request_builder import ArticleIndicatorsRequestBuilder
+    from .hosts.hosts_request_builder import HostsRequestBuilder
     from .host_components.host_components_request_builder import HostComponentsRequestBuilder
     from .host_cookies.host_cookies_request_builder import HostCookiesRequestBuilder
     from .host_pairs.host_pairs_request_builder import HostPairsRequestBuilder
-    from .hosts.hosts_request_builder import HostsRequestBuilder
+    from .host_ports.host_ports_request_builder import HostPortsRequestBuilder
     from .host_ssl_certificates.host_ssl_certificates_request_builder import HostSslCertificatesRequestBuilder
     from .host_trackers.host_trackers_request_builder import HostTrackersRequestBuilder
     from .intelligence_profile_indicators.intelligence_profile_indicators_request_builder import IntelligenceProfileIndicatorsRequestBuilder
@@ -166,7 +167,7 @@ class ThreatIntelligenceRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ThreatIntelligenceRequestBuilder(raw_url, self.request_adapter)
+        return ThreatIntelligenceRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def article_indicators(self) -> ArticleIndicatorsRequestBuilder:
@@ -214,13 +215,13 @@ class ThreatIntelligenceRequestBuilder(BaseRequestBuilder):
         return HostPairsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def hosts(self) -> HostsRequestBuilder:
+    def host_ports(self) -> HostPortsRequestBuilder:
         """
-        Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
+        Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .hosts.hosts_request_builder import HostsRequestBuilder
+        from .host_ports.host_ports_request_builder import HostPortsRequestBuilder
 
-        return HostsRequestBuilder(self.request_adapter, self.path_parameters)
+        return HostPortsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def host_ssl_certificates(self) -> HostSslCertificatesRequestBuilder:
@@ -241,13 +242,13 @@ class ThreatIntelligenceRequestBuilder(BaseRequestBuilder):
         return HostTrackersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def intelligence_profile_indicators(self) -> IntelligenceProfileIndicatorsRequestBuilder:
+    def hosts(self) -> HostsRequestBuilder:
         """
-        Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.
+        Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
         """
-        from .intelligence_profile_indicators.intelligence_profile_indicators_request_builder import IntelligenceProfileIndicatorsRequestBuilder
+        from .hosts.hosts_request_builder import HostsRequestBuilder
 
-        return IntelligenceProfileIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
+        return HostsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def intel_profiles(self) -> IntelProfilesRequestBuilder:
@@ -257,6 +258,15 @@ class ThreatIntelligenceRequestBuilder(BaseRequestBuilder):
         from .intel_profiles.intel_profiles_request_builder import IntelProfilesRequestBuilder
 
         return IntelProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def intelligence_profile_indicators(self) -> IntelligenceProfileIndicatorsRequestBuilder:
+        """
+        Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.
+        """
+        from .intelligence_profile_indicators.intelligence_profile_indicators_request_builder import IntelligenceProfileIndicatorsRequestBuilder
+
+        return IntelligenceProfileIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def passive_dns_records(self) -> PassiveDnsRecordsRequestBuilder:

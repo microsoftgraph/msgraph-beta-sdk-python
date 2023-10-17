@@ -12,7 +12,7 @@ from .request import Request
 @dataclass
 class UserConsentRequest(Request):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.userConsentRequest"
+    OdataType: Optional[str] = "#microsoft.graph.userConsentRequest"
     # Approval decisions associated with a request.
     approval: Optional[Approval] = None
     # The user's justification for requiring access to the app. Supports $filter (eq only) and $orderby.

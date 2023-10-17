@@ -18,7 +18,7 @@ from .entity import Entity
 @dataclass
 class OnenoteEntityBaseModel(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The self property
     self: Optional[str] = None
     

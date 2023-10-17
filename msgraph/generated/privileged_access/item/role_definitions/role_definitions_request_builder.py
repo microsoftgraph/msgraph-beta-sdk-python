@@ -45,7 +45,7 @@ class RoleDefinitionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[GovernanceRoleDefinitionCollectionResponse]:
         """
-        A collection of role defintions for the provider.
+        A collection of role definitions for the provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GovernanceRoleDefinitionCollectionResponse]
         """
@@ -90,7 +90,7 @@ class RoleDefinitionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of role defintions for the provider.
+        A collection of role definitions for the provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +133,7 @@ class RoleDefinitionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RoleDefinitionsRequestBuilder(raw_url, self.request_adapter)
+        return RoleDefinitionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -147,7 +147,7 @@ class RoleDefinitionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RoleDefinitionsRequestBuilderGetQueryParameters():
         """
-        A collection of role defintions for the provider.
+        A collection of role definitions for the provider.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

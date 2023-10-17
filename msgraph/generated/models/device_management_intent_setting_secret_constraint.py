@@ -14,7 +14,7 @@ class DeviceManagementIntentSettingSecretConstraint(DeviceManagementConstraint):
     Constraint indicating that this value is a secret and will be encrypted.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementIntentSettingSecretConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementIntentSettingSecretConstraint"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementIntentSettingSecretConstraint:

@@ -51,7 +51,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[SynchronizationSchema]:
         """
-        Retrieve the schema for a given synchronization job or template.
+        Retrieve the schema for a given synchronization job or template. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SynchronizationSchema]
         Find more info here: https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0
@@ -113,7 +113,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the schema for a given synchronization job or template.
+        Retrieve the schema for a given synchronization job or template. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -156,7 +156,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SchemaRequestBuilder(raw_url, self.request_adapter)
+        return SchemaRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def directories(self) -> DirectoriesRequestBuilder:
@@ -207,7 +207,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SchemaRequestBuilderGetQueryParameters():
         """
-        Retrieve the schema for a given synchronization job or template.
+        Retrieve the schema for a given synchronization job or template. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

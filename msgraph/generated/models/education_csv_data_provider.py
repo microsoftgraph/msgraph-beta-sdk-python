@@ -12,7 +12,7 @@ from .education_synchronization_data_provider import EducationSynchronizationDat
 @dataclass
 class EducationCsvDataProvider(EducationSynchronizationDataProvider):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationCsvDataProvider"
+    OdataType: Optional[str] = "#microsoft.graph.educationCsvDataProvider"
     # Optional customizations to be applied to the synchronization profile.
     customizations: Optional[EducationSynchronizationCustomizations] = None
     

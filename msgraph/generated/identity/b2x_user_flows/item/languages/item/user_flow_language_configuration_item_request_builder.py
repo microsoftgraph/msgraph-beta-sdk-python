@@ -49,7 +49,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UserFlowLanguageConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserFlowLanguageConfiguration]:
         """
-        The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.
+        The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserFlowLanguageConfiguration]
         """
@@ -109,7 +109,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UserFlowLanguageConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.
+        The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserFlowLanguageConfigurationItemRequestBuilder(raw_url, self.request_adapter)
+        return UserFlowLanguageConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def default_pages(self) -> DefaultPagesRequestBuilder:
@@ -185,7 +185,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters():
         """
-        The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.
+        The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

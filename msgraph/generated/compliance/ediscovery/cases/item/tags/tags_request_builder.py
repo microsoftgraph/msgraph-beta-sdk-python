@@ -46,7 +46,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[TagCollectionResponse]:
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Retrieve a list of tag objects from an eDiscovery case. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TagCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-list-tags?view=graph-rest-1.0
@@ -68,7 +68,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[Tag]:
         """
-        Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
+        Create a new tag for the specified case.  The tags are used in review sets while reviewing content. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Tag]
@@ -93,7 +93,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Retrieve a list of tag objects from an eDiscovery case. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
+        Create a new tag for the specified case.  The tags are used in review sets while reviewing content. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -136,7 +136,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TagsRequestBuilder(raw_url, self.request_adapter)
+        return TagsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -159,7 +159,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TagsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Retrieve a list of tag objects from an eDiscovery case. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

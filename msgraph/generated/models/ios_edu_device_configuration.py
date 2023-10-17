@@ -15,7 +15,7 @@ class IosEduDeviceConfiguration(DeviceConfiguration):
     iOS Education device configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosEduDeviceConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.iosEduDeviceConfiguration"
     # The Trusted Root and PFX certificates for Device
     device_certificate_settings: Optional[IosEduCertificateSettings] = None
     # The Trusted Root and PFX certificates for Student

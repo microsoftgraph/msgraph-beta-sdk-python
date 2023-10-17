@@ -14,7 +14,7 @@ class WindowsManagedDevice(ManagedDevice):
     Windows devices that are managed or pre-enrolled through Intune
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsManagedDevice"
+    OdataType: Optional[str] = "#microsoft.graph.windowsManagedDevice"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsManagedDevice:

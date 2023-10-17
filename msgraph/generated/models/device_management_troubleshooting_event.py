@@ -28,7 +28,7 @@ class DeviceManagementTroubleshootingEvent(Entity):
     # Event Name corresponding to the Troubleshooting Event. It is an Optional field
     event_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Object containing detailed information about the error and its remediation.
     troubleshooting_error_details: Optional[DeviceManagementTroubleshootingErrorDetails] = None
     

@@ -15,8 +15,8 @@ if TYPE_CHECKING:
     from .assign.assign_request_builder import AssignRequestBuilder
     from .assignments.assignments_request_builder import AssignmentsRequestBuilder
     from .scheduled_actions_for_rule.scheduled_actions_for_rule_request_builder import ScheduledActionsForRuleRequestBuilder
-    from .set_scheduled_actions.set_scheduled_actions_request_builder import SetScheduledActionsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
+    from .set_scheduled_actions.set_scheduled_actions_request_builder import SetScheduledActionsRequestBuilder
 
 class DeviceManagementCompliancePolicyItemRequestBuilder(BaseRequestBuilder):
     """
@@ -155,7 +155,7 @@ class DeviceManagementCompliancePolicyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementCompliancePolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementCompliancePolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:

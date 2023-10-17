@@ -12,7 +12,7 @@ from .planner_task_creation import PlannerTaskCreation
 @dataclass
 class PlannerExternalTaskSource(PlannerTaskCreation):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.plannerExternalTaskSource"
+    OdataType: Optional[str] = "#microsoft.graph.plannerExternalTaskSource"
     # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
     context_scenario_id: Optional[str] = None
     # Specifies how an application should display the link to the associated plannerExternalTaskSource. The possible values are: none, default.

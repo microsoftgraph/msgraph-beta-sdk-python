@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .get_customized_settings_response import GetCustomizedSettingsResponse
+    from .get_customized_settings_get_response import GetCustomizedSettingsGetResponse
 
 class GetCustomizedSettingsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetCustomizedSettingsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/intents/{deviceManagementIntent%2Did}/getCustomizedSettings(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetCustomizedSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetCustomizedSettingsResponse]:
+    async def get(self,request_configuration: Optional[GetCustomizedSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetCustomizedSettingsGetResponse]:
         """
         Invoke function getCustomizedSettings
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetCustomizedSettingsResponse]
+        Returns: Optional[GetCustomizedSettingsGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetCustomizedSettingsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_customized_settings_response import GetCustomizedSettingsResponse
+        from .get_customized_settings_get_response import GetCustomizedSettingsGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetCustomizedSettingsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetCustomizedSettingsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetCustomizedSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetCustomizedSettingsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetCustomizedSettingsRequestBuilder(raw_url, self.request_adapter)
+        return GetCustomizedSettingsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetCustomizedSettingsRequestBuilderGetQueryParameters():

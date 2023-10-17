@@ -14,7 +14,7 @@ from .entity import Entity
 
 @dataclass
 class MultiTenantOrganizationPartnerConfigurationTemplate(Entity):
-    # Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
+    # Determines the partner-specific configuration for automatic user consent settings. Unless configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
     automatic_user_consent_settings: Optional[InboundOutboundPolicyConfiguration] = None
     # Defines your partner-specific configuration for users from other organizations accessing your resources via Azure AD B2B collaboration.
     b2b_collaboration_inbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
@@ -27,7 +27,7 @@ class MultiTenantOrganizationPartnerConfigurationTemplate(Entity):
     # Determines the partner-specific configuration for trusting other Conditional Access claims from external Azure AD organizations.
     inbound_trust: Optional[CrossTenantAccessPolicyInboundTrust] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The templateApplicationLevel property
     template_application_level: Optional[TemplateApplicationLevel] = None
     
@@ -66,7 +66,7 @@ class MultiTenantOrganizationPartnerConfigurationTemplate(Entity):
             "b2bDirectConnectInbound": lambda n : setattr(self, 'b2b_direct_connect_inbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "b2bDirectConnectOutbound": lambda n : setattr(self, 'b2b_direct_connect_outbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "inboundTrust": lambda n : setattr(self, 'inbound_trust', n.get_object_value(CrossTenantAccessPolicyInboundTrust)),
-            "templateApplicationLevel": lambda n : setattr(self, 'template_application_level', n.get_enum_value(TemplateApplicationLevel)),
+            "templateApplicationLevel": lambda n : setattr(self, 'template_application_level', n.get_collection_of_enum_values(TemplateApplicationLevel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

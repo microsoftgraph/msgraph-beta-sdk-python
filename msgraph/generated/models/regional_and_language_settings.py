@@ -24,7 +24,7 @@ class RegionalAndLanguageSettings(Entity):
     # The language a user expects to have documents, emails, and messages translated into.Returned by default.
     default_translation_language: Optional[LocaleInfo] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Allows a user to override their defaultRegionalFormat with field specific formats.Returned by default.
     regional_format_overrides: Optional[RegionalFormatOverrides] = None
     # The user's preferred settings when consuming translated documents, emails, messages, and websites.Returned by default. Not nullable.

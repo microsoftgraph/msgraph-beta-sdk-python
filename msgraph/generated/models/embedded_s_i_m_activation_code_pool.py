@@ -32,7 +32,7 @@ class EmbeddedSIMActivationCodePool(Entity):
     # The time the embedded SIM activation code pool was last modified. Updated service side.
     modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EmbeddedSIMActivationCodePool:

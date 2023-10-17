@@ -47,7 +47,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ContinuousAccessEvaluationPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[ContinuousAccessEvaluationPolicy]:
         """
-        Read the properties and relationships of a continuousAccessEvaluationPolicy object.
+        Read the properties and relationships of a continuousAccessEvaluationPolicy object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContinuousAccessEvaluationPolicy]
         Find more info here: https://learn.microsoft.com/graph/api/continuousaccessevaluationpolicy-get?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ContinuousAccessEvaluationPolicy] = None, request_configuration: Optional[ContinuousAccessEvaluationPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[ContinuousAccessEvaluationPolicy]:
         """
-        Update the properties of a continuousAccessEvaluationPolicy object.
+        Update the properties of a continuousAccessEvaluationPolicy object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContinuousAccessEvaluationPolicy]
@@ -109,7 +109,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ContinuousAccessEvaluationPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a continuousAccessEvaluationPolicy object.
+        Read the properties and relationships of a continuousAccessEvaluationPolicy object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ContinuousAccessEvaluationPolicy] = None, request_configuration: Optional[ContinuousAccessEvaluationPolicyRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a continuousAccessEvaluationPolicy object.
+        Update the properties of a continuousAccessEvaluationPolicy object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ContinuousAccessEvaluationPolicyRequestBuilder(raw_url, self.request_adapter)
+        return ContinuousAccessEvaluationPolicyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContinuousAccessEvaluationPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a continuousAccessEvaluationPolicy object.
+        Read the properties and relationships of a continuousAccessEvaluationPolicy object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

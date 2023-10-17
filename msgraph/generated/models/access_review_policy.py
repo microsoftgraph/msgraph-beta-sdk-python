@@ -17,7 +17,7 @@ class AccessReviewPolicy(Entity):
     # If true, group owners can create and manage access reviews on groups they own.
     is_group_owner_management_enabled: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewPolicy:

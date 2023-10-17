@@ -29,7 +29,7 @@ class GetUserOwnedObjectsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetUserOwnedObjectsPostRequestBody] = None, request_configuration: Optional[GetUserOwnedObjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[DirectoryObject]:
         """
-        Retrieve a list of recently deleted application and group objects owned by the specified user. This API returns up to 1,000 deleted objects owned by the user, sorted by ID, and doesn't support pagination.
+        Retrieve a list of recently deleted application and group objects owned by the specified user. This API returns up to 1,000 deleted objects owned by the user, sorted by ID, and doesn't support pagination. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObject]
@@ -54,7 +54,7 @@ class GetUserOwnedObjectsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetUserOwnedObjectsPostRequestBody] = None, request_configuration: Optional[GetUserOwnedObjectsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of recently deleted application and group objects owned by the specified user. This API returns up to 1,000 deleted objects owned by the user, sorted by ID, and doesn't support pagination.
+        Retrieve a list of recently deleted application and group objects owned by the specified user. This API returns up to 1,000 deleted objects owned by the user, sorted by ID, and doesn't support pagination. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class GetUserOwnedObjectsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetUserOwnedObjectsRequestBuilder(raw_url, self.request_adapter)
+        return GetUserOwnedObjectsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

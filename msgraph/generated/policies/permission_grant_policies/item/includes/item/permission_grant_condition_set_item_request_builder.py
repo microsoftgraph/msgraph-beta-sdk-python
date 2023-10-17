@@ -28,7 +28,7 @@ class PermissionGrantConditionSetItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[PermissionGrantConditionSetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes a permissionGrantConditionSet from the includes collection of a permissionGrantPolicy.
+        Deletes a permissionGrantConditionSet from the includes collection of a permissionGrantPolicy. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/permissiongrantpolicy-delete-includes?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class PermissionGrantConditionSetItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PermissionGrantConditionSetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PermissionGrantConditionSet]:
         """
-        Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+        Condition sets that are included in this permission grant policy. Automatically expanded on GET.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PermissionGrantConditionSet]
         """
@@ -93,7 +93,7 @@ class PermissionGrantConditionSetItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[PermissionGrantConditionSetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes a permissionGrantConditionSet from the includes collection of a permissionGrantPolicy.
+        Deletes a permissionGrantConditionSet from the includes collection of a permissionGrantPolicy. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +108,7 @@ class PermissionGrantConditionSetItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PermissionGrantConditionSetItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+        Condition sets that are included in this permission grant policy. Automatically expanded on GET.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class PermissionGrantConditionSetItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PermissionGrantConditionSetItemRequestBuilder(raw_url, self.request_adapter)
+        return PermissionGrantConditionSetItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class PermissionGrantConditionSetItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PermissionGrantConditionSetItemRequestBuilderGetQueryParameters():
         """
-        Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+        Condition sets that are included in this permission grant policy. Automatically expanded on GET.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

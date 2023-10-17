@@ -20,7 +20,7 @@ from .outlook_item import OutlookItem
 @dataclass
 class OutlookTask(OutlookItem):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.outlookTask"
+    OdataType: Optional[str] = "#microsoft.graph.outlookTask"
     # The name of the person who has been assigned the task in Outlook. Read-only.
     assigned_to: Optional[str] = None
     # The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the task.  Read-only. Nullable.

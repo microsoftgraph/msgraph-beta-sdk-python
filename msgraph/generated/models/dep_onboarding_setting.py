@@ -40,7 +40,7 @@ class DepOnboardingSetting(Entity):
     # When Intune last requested a sync.
     last_sync_triggered_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for this Entity instance.
     role_scope_tag_ids: Optional[List[str]] = None
     # Whether or not the Dep token sharing is enabled with the School Data Sync service.

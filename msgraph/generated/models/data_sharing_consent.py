@@ -23,7 +23,7 @@ class DataSharingConsent(Entity):
     # The UserId of the user that granted consent for this account
     granted_by_user_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The display name of the service work flow
     service_display_name: Optional[str] = None
     # The TermsUrl for the data sharing consent

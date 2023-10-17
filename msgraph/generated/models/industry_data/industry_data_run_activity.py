@@ -22,7 +22,7 @@ class IndustryDataRunActivity(Entity):
     # The name of the running flow.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The status property
     status: Optional[IndustryDataActivityStatus] = None
     

@@ -154,16 +154,7 @@ class ThreatSubmissionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ThreatSubmissionRequestBuilder(raw_url, self.request_adapter)
-    
-    @property
-    def email_threats(self) -> EmailThreatsRequestBuilder:
-        """
-        Provides operations to manage the emailThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
-        """
-        from .email_threats.email_threats_request_builder import EmailThreatsRequestBuilder
-
-        return EmailThreatsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ThreatSubmissionRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def email_threat_submission_policies(self) -> EmailThreatSubmissionPoliciesRequestBuilder:
@@ -173,6 +164,15 @@ class ThreatSubmissionRequestBuilder(BaseRequestBuilder):
         from .email_threat_submission_policies.email_threat_submission_policies_request_builder import EmailThreatSubmissionPoliciesRequestBuilder
 
         return EmailThreatSubmissionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def email_threats(self) -> EmailThreatsRequestBuilder:
+        """
+        Provides operations to manage the emailThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
+        """
+        from .email_threats.email_threats_request_builder import EmailThreatsRequestBuilder
+
+        return EmailThreatsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def file_threats(self) -> FileThreatsRequestBuilder:

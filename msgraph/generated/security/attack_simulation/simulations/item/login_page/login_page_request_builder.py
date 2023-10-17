@@ -28,7 +28,7 @@ class LoginPageRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[LoginPageRequestBuilderGetRequestConfiguration] = None) -> Optional[LoginPage]:
         """
-        Get loginPage from security
+        The login page associated with a simulation during its creation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LoginPage]
         """
@@ -49,7 +49,7 @@ class LoginPageRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[LoginPageRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get loginPage from security
+        The login page associated with a simulation during its creation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,12 +72,12 @@ class LoginPageRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return LoginPageRequestBuilder(raw_url, self.request_adapter)
+        return LoginPageRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class LoginPageRequestBuilderGetQueryParameters():
         """
-        Get loginPage from security
+        The login page associated with a simulation during its creation.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

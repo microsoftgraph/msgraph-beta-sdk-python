@@ -13,8 +13,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.report_root import ReportRoot
-    from .app_credential_sign_in_activities.app_credential_sign_in_activities_request_builder import AppCredentialSignInActivitiesRequestBuilder
     from .application_sign_in_detailed_summary.application_sign_in_detailed_summary_request_builder import ApplicationSignInDetailedSummaryRequestBuilder
+    from .app_credential_sign_in_activities.app_credential_sign_in_activities_request_builder import AppCredentialSignInActivitiesRequestBuilder
     from .authentication_methods.authentication_methods_request_builder import AuthenticationMethodsRequestBuilder
     from .credential_user_registration_details.credential_user_registration_details_request_builder import CredentialUserRegistrationDetailsRequestBuilder
     from .daily_print_usage.daily_print_usage_request_builder import DailyPrintUsageRequestBuilder
@@ -55,9 +55,9 @@ if TYPE_CHECKING:
     from .get_mailbox_usage_mailbox_counts_with_period.get_mailbox_usage_mailbox_counts_with_period_request_builder import GetMailboxUsageMailboxCountsWithPeriodRequestBuilder
     from .get_mailbox_usage_quota_status_mailbox_counts_with_period.get_mailbox_usage_quota_status_mailbox_counts_with_period_request_builder import GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder
     from .get_mailbox_usage_storage_with_period.get_mailbox_usage_storage_with_period_request_builder import GetMailboxUsageStorageWithPeriodRequestBuilder
-    from .get_office365_activation_counts.get_office365_activation_counts_request_builder import GetOffice365ActivationCountsRequestBuilder
     from .get_office365_activations_user_counts.get_office365_activations_user_counts_request_builder import GetOffice365ActivationsUserCountsRequestBuilder
     from .get_office365_activations_user_detail.get_office365_activations_user_detail_request_builder import GetOffice365ActivationsUserDetailRequestBuilder
+    from .get_office365_activation_counts.get_office365_activation_counts_request_builder import GetOffice365ActivationCountsRequestBuilder
     from .get_office365_active_user_counts_with_period.get_office365_active_user_counts_with_period_request_builder import GetOffice365ActiveUserCountsWithPeriodRequestBuilder
     from .get_office365_active_user_detail_with_date.get_office365_active_user_detail_with_date_request_builder import GetOffice365ActiveUserDetailWithDateRequestBuilder
     from .get_office365_active_user_detail_with_period.get_office365_active_user_detail_with_period_request_builder import GetOffice365ActiveUserDetailWithPeriodRequestBuilder
@@ -1660,7 +1660,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReportsRequestBuilder(raw_url, self.request_adapter)
+        return ReportsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def app_credential_sign_in_activities(self) -> AppCredentialSignInActivitiesRequestBuilder:

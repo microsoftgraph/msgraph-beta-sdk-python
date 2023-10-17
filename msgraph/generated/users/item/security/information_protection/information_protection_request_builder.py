@@ -152,7 +152,7 @@ class InformationProtectionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return InformationProtectionRequestBuilder(raw_url, self.request_adapter)
+        return InformationProtectionRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def label_policy_settings(self) -> LabelPolicySettingsRequestBuilder:

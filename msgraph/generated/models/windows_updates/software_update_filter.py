@@ -13,7 +13,7 @@ from .content_filter import ContentFilter
 @dataclass
 class SoftwareUpdateFilter(ContentFilter):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.softwareUpdateFilter"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.softwareUpdateFilter"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SoftwareUpdateFilter:

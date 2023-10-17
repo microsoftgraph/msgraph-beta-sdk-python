@@ -13,14 +13,14 @@ from .device_management_configuration_setting_definition import DeviceManagement
 
 @dataclass
 class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfigurationSettingDefinition):
-    # Dependent child settings to this group of settings.
+    # Dependent child settings to this group of settings
     child_ids: Optional[List[str]] = None
     # List of child settings that depend on this setting
     depended_on_by: Optional[List[DeviceManagementConfigurationSettingDependedOnBy]] = None
     # List of Dependencies for the setting group
     dependent_on: Optional[List[DeviceManagementConfigurationDependentOn]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingGroupDefinition:

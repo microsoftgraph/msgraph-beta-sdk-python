@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_response import GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeResponse
+    from .get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_get_response import GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeGetResponse
 
 class MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder(BaseRequestBuilder):
     """
@@ -27,13 +27,16 @@ class MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTime
         param to_date_time: Usage: toDateTime={toDateTime}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['from_date_time'] = str(from_date_time)
+            path_parameters['to_date_time'] = str(to_date_time)
         super().__init__(request_adapter, "{+baseurl}/communications/callRecords/microsoft.graph.callRecords.getPstnOnlineMeetingDialoutReport(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeResponse]:
+    async def get(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeGetResponse]:
         """
         Invoke function getPstnOnlineMeetingDialoutReport
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeResponse]
+        Returns: Optional[GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -46,9 +49,9 @@ class MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTime
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_response import GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeResponse
+        from .get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_get_response import GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -75,7 +78,7 @@ class MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTime
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters():

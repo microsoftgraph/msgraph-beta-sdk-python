@@ -15,14 +15,14 @@ from .identity_user_flow import IdentityUserFlow
 
 @dataclass
 class B2xIdentityUserFlow(IdentityUserFlow):
-    # Configuration for enabling an API connector for use as part of the self-service sign up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
+    # Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
     api_connector_configuration: Optional[UserFlowApiConnectorConfiguration] = None
     # The identityProviders property
     identity_providers: Optional[List[IdentityProvider]] = None
-    # The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.
+    # The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
     languages: Optional[List[UserFlowLanguageConfiguration]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The user attribute assignments included in the user flow.
     user_attribute_assignments: Optional[List[IdentityUserFlowAttributeAssignment]] = None
     # The userFlowIdentityProviders property

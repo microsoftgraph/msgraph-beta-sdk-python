@@ -16,10 +16,10 @@ class CaseSettings(Entity):
     # The OCR (Optical Character Recognition) settings for the case.
     ocr: Optional[OcrSettings] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The redundancy (near duplicate and email threading) detection settings for the case.
     redundancy_detection: Optional[RedundancyDetectionSettings] = None
-    # The Topic Modeling (Themes) settings for the case.
+    # The article Modeling (Themes) settings for the case.
     topic_modeling: Optional[TopicModelingSettings] = None
     
     @staticmethod

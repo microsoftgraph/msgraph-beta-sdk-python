@@ -48,7 +48,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPCCollectionResponse]:
         """
-        List the cloudPC devices in a tenant.
+        List the cloudPC devices in a tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPCCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-cloudpcs?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the cloudPC devices in a tenant.
+        List the cloudPC devices in a tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CloudPCsRequestBuilder(raw_url, self.request_adapter)
+        return CloudPCsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def bulk_resize(self) -> BulkResizeRequestBuilder:
@@ -184,7 +184,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPCsRequestBuilderGetQueryParameters():
         """
-        List the cloudPC devices in a tenant.
+        List the cloudPC devices in a tenant. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

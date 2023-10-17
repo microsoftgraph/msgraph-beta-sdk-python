@@ -11,7 +11,7 @@ from .verifiable_credential_requirement_status import VerifiableCredentialRequir
 @dataclass
 class VerifiableCredentialVerified(VerifiableCredentialRequirementStatus):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.verifiableCredentialVerified"
+    OdataType: Optional[str] = "#microsoft.graph.verifiableCredentialVerified"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VerifiableCredentialVerified:

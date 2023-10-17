@@ -26,7 +26,7 @@ class MobileAppTroubleshootingEvent(DeviceManagementTroubleshootingEvent):
     # Device identifier created or collected by Intune.
     managed_device_identifier: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Identifier for the user that tried to enroll the device.
     user_id: Optional[str] = None
     

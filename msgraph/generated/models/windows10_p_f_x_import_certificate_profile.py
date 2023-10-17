@@ -15,7 +15,7 @@ class Windows10PFXImportCertificateProfile(DeviceConfiguration):
     Deprecated
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10PFXImportCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.windows10PFXImportCertificateProfile"
     # Key Storage Provider (KSP) Import Options.
     key_storage_provider: Optional[KeyStorageProviderOption] = None
     

@@ -12,7 +12,7 @@ from .entity import Entity
 @dataclass
 class DeltaParticipants(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The participants property
     participants: Optional[List[Participant]] = None
     # The sequence number for the roster update that is used to identify the notification order.

@@ -22,7 +22,7 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
     Mac OS SCEP certificate profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSScepCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.macOSScepCertificateProfile"
     # AllowAllAppsAccess setting
     allow_all_apps_access: Optional[bool] = None
     # Target store certificate. Possible values are: user, machine.
@@ -89,9 +89,9 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
-            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(HashAlgorithms)),
+            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
-            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(KeyUsages)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_collection_of_enum_values(KeyUsages)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
             "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(MacOSTrustedRootCertificate)),
             "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),

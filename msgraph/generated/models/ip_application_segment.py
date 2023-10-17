@@ -11,7 +11,7 @@ from .application_segment import ApplicationSegment
 @dataclass
 class IpApplicationSegment(ApplicationSegment):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.ipApplicationSegment"
+    OdataType: Optional[str] = "#microsoft.graph.ipApplicationSegment"
     # The destinationHost property
     destination_host: Optional[str] = None
     # The port property

@@ -12,7 +12,7 @@ from ..entity import Entity
 @dataclass
 class ForwardingOptions(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The skipDnsLookupState property
     skip_dns_lookup_state: Optional[Status] = None
     

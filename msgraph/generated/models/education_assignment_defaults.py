@@ -13,7 +13,7 @@ from .entity import Entity
 
 @dataclass
 class EducationAssignmentDefaults(Entity):
-    # Optional field to control adding assignments to students' and teachers' calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: studentsOnly. The default value is none.
+    # Optional field to control adding assignments to students' and teachers' calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: studentsOnly. The default value is none.
     add_to_calendar_action: Optional[EducationAddToCalendarOptions] = None
     # Class-level default behavior for handling students who are added after the assignment is published. Possible values are: none, assignIfOpen.
     added_student_action: Optional[EducationAddedStudentAction] = None
@@ -22,7 +22,7 @@ class EducationAssignmentDefaults(Entity):
     # Default Teams channel to which notifications will be sent. Default value is null.
     notification_channel_url: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationAssignmentDefaults:

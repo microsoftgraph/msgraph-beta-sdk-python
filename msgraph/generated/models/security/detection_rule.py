@@ -15,7 +15,7 @@ from .protection_rule import ProtectionRule
 @dataclass
 class DetectionRule(ProtectionRule):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.detectionRule"
+    OdataType: Optional[str] = "#microsoft.graph.security.detectionRule"
     # The detectionAction property
     detection_action: Optional[DetectionAction] = None
     # The lastRunDetails property

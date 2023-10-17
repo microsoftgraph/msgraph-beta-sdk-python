@@ -13,7 +13,7 @@ from .entity import Entity
 @dataclass
 class PeopleAdminSettings(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card.
     profile_card_properties: Optional[List[ProfileCardProperty]] = None
     # Represents administrator settings that manage the support of pronouns in an organization.

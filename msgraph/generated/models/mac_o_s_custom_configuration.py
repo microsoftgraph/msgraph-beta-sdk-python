@@ -15,7 +15,7 @@ class MacOSCustomConfiguration(DeviceConfiguration):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the macOSCustomConfiguration resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSCustomConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.macOSCustomConfiguration"
     # Indicates the channel used to deploy the configuration profile. Available choices are DeviceChannel, UserChannel
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # Payload. (UTF8 encoded byte array)

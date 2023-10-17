@@ -17,7 +17,7 @@ class Policy(Entity):
     # Policy name.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents the definition of the policy ruleset that makes up the core definition of a policy.
     policy_rules: Optional[List[PolicyRule]] = None
     # Version.

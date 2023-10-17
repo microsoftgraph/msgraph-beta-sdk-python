@@ -73,7 +73,7 @@ class DimensionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DimensionItemRequestBuilder(raw_url, self.request_adapter)
+        return DimensionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def dimension_values(self) -> DimensionValuesRequestBuilder:

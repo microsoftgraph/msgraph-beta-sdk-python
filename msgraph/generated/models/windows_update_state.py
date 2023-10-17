@@ -23,7 +23,7 @@ class WindowsUpdateState(Entity):
     # Last date time that the device sync with with Microsoft Intune.
     last_sync_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The Quality Update Version of the device.
     quality_update_version: Optional[str] = None
     # Windows update for business configuration device states

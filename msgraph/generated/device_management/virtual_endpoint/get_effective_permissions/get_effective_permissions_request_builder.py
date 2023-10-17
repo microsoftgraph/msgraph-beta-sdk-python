@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_effective_permissions_response import GetEffectivePermissionsResponse
+    from .get_effective_permissions_get_response import GetEffectivePermissionsGetResponse
 
 class GetEffectivePermissionsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetEffectivePermissionsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/getEffectivePermissions(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetEffectivePermissionsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetEffectivePermissionsResponse]:
+    async def get(self,request_configuration: Optional[GetEffectivePermissionsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetEffectivePermissionsGetResponse]:
         """
         Invoke function getEffectivePermissions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetEffectivePermissionsResponse]
+        Returns: Optional[GetEffectivePermissionsGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetEffectivePermissionsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_effective_permissions_response import GetEffectivePermissionsResponse
+        from .get_effective_permissions_get_response import GetEffectivePermissionsGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetEffectivePermissionsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetEffectivePermissionsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetEffectivePermissionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetEffectivePermissionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetEffectivePermissionsRequestBuilder(raw_url, self.request_adapter)
+        return GetEffectivePermissionsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetEffectivePermissionsRequestBuilderGetQueryParameters():

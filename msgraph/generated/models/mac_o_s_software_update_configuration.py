@@ -18,7 +18,7 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration):
     MacOS Software Update Configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSSoftwareUpdateConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.macOSSoftwareUpdateConfiguration"
     # Update behavior options for macOS software updates.
     all_other_update_behavior: Optional[MacOSSoftwareUpdateBehavior] = None
     # Update behavior options for macOS software updates.

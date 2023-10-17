@@ -39,10 +39,10 @@ from .directory_object import DirectoryObject
 @dataclass
 class Application(DirectoryObject):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.application"
+    OdataType: Optional[str] = "#microsoft.graph.application"
     # Specifies settings for an application that implements a web API.
     api: Optional[ApiApplication] = None
-    # The unique identifier for the application that is assigned by Azure AD. Not nullable. Read-only. Supports $filter (eq).
+    # The unique identifier for the application that is assigned by Azure AD. Not nullable. Read-only. Alternate key. Supports $filter (eq).
     app_id: Optional[str] = None
     # The appManagementPolicy applied to this application.
     app_management_policies: Optional[List[AppManagementPolicy]] = None
@@ -54,7 +54,7 @@ class Application(DirectoryObject):
     certification: Optional[Certification] = None
     # The connectorGroup the application is using with Azure AD Application Proxy. Nullable.
     connector_group: Optional[ConnectorGroup] = None
-    # The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderBy.
+    # The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderby.
     created_date_time: Optional[datetime.datetime] = None
     # Supports $filter (/$count eq 0, /$count ne 0). Read-only.
     created_on_behalf_of: Optional[DirectoryObject] = None
@@ -64,7 +64,7 @@ class Application(DirectoryObject):
     description: Optional[str] = None
     # Specifies whether Microsoft has disabled the registered application. Possible values are: null (default value), NotDisabled, and DisabledDueToViolationOfServicesAgreement (reasons may include suspicious, abusive, or malicious activity, or a violation of the Microsoft Services Agreement).  Supports $filter (eq, ne, not).
     disabled_by_microsoft_status: Optional[str] = None
-    # The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    # The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
     # Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0).
     extension_properties: Optional[List[ExtensionProperty]] = None

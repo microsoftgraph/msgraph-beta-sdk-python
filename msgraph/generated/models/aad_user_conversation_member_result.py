@@ -11,7 +11,7 @@ from .action_result_part import ActionResultPart
 @dataclass
 class AadUserConversationMemberResult(ActionResultPart):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.aadUserConversationMemberResult"
+    OdataType: Optional[str] = "#microsoft.graph.aadUserConversationMemberResult"
     # The user object ID of the Azure AD user that was being added as part of the bulk operation.
     user_id: Optional[str] = None
     

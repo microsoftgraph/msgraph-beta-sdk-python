@@ -14,7 +14,7 @@ class WindowsAutopilotDeploymentProfilePolicySetItem(PolicySetItem):
     A class containing the properties used for windows autopilot deployment profile PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsAutopilotDeploymentProfilePolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.windowsAutopilotDeploymentProfilePolicySetItem"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsAutopilotDeploymentProfilePolicySetItem:

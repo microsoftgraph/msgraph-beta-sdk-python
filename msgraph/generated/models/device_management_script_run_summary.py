@@ -18,7 +18,7 @@ class DeviceManagementScriptRunSummary(Entity):
     # Error user count.
     error_user_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Success device count.
     success_device_count: Optional[int] = None
     # Success user count.

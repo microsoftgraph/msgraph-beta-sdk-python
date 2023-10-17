@@ -35,7 +35,7 @@ class SecurityAction(Entity):
     # Action name.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Collection of parameters (key-value pairs) necessary to invoke the action, for example, URL or fileHash to block.). Required.
     parameters: Optional[List[KeyValuePair]] = None
     # Collection of securityActionState to keep the history of an action.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 @dataclass
 class DecisionItemPrincipalResourceMembership(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -40,7 +40,7 @@ class DecisionItemPrincipalResourceMembership(AdditionalDataHolder, BackedModel,
         from .decision_item_principal_resource_membership_type import DecisionItemPrincipalResourceMembershipType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(DecisionItemPrincipalResourceMembershipType)),
+            "membershipType": lambda n : setattr(self, 'membership_type', n.get_collection_of_enum_values(DecisionItemPrincipalResourceMembershipType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

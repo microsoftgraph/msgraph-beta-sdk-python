@@ -12,7 +12,7 @@ from ..entity import Entity
 @dataclass
 class ManagementActionTenantDeploymentStatus(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The collection of deployment status for each instance of a management action. Optional.
     statuses: Optional[List[ManagementActionDeploymentStatus]] = None
     # The identifier for the tenant group that is associated with the management action. Required. Read-only.

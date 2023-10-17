@@ -16,7 +16,7 @@ class DeviceEnrollmentWindowsHelloForBusinessConfiguration(DeviceEnrollmentConfi
     Windows Hello for Business settings lets users access their devices using a gesture, such as biometric authentication, or a PIN. Configure settings for enrolled Windows 10, Windows 10 Mobile and later.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceEnrollmentWindowsHelloForBusinessConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.deviceEnrollmentWindowsHelloForBusinessConfiguration"
     # Possible values of a property
     enhanced_biometrics_state: Optional[Enablement] = None
     # Setting to configure Enahcned sign-in security. Default is enabled on one secure modality (face or fingerprint)

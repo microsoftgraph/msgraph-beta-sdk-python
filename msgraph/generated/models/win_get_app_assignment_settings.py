@@ -17,7 +17,7 @@ class WinGetAppAssignmentSettings(MobileAppAssignmentSettings):
     Contains properties used to assign a WinGet app to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.winGetAppAssignmentSettings"
+    OdataType: Optional[str] = "#microsoft.graph.winGetAppAssignmentSettings"
     # The install time settings to apply for this app assignment.
     install_time_settings: Optional[WinGetAppInstallTimeSettings] = None
     # Contains value for notification status.

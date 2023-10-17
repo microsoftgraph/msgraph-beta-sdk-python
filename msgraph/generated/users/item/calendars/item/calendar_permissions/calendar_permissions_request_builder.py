@@ -45,7 +45,7 @@ class CalendarPermissionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CalendarPermissionsRequestBuilderGetRequestConfiguration] = None) -> Optional[CalendarPermissionCollectionResponse]:
         """
-        Get the specified permissions object of a user or group calendar that has been shared.
+        Get the specified permissions object of a user or group calendar that has been shared. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CalendarPermissionCollectionResponse]
         """
@@ -66,7 +66,7 @@ class CalendarPermissionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CalendarPermission] = None, request_configuration: Optional[CalendarPermissionsRequestBuilderPostRequestConfiguration] = None) -> Optional[CalendarPermission]:
         """
-        Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
+        Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CalendarPermission]
@@ -91,7 +91,7 @@ class CalendarPermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CalendarPermissionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the specified permissions object of a user or group calendar that has been shared.
+        Get the specified permissions object of a user or group calendar that has been shared. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +108,7 @@ class CalendarPermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CalendarPermission] = None, request_configuration: Optional[CalendarPermissionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
+        Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class CalendarPermissionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CalendarPermissionsRequestBuilder(raw_url, self.request_adapter)
+        return CalendarPermissionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class CalendarPermissionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CalendarPermissionsRequestBuilderGetQueryParameters():
         """
-        Get the specified permissions object of a user or group calendar that has been shared.
+        Get the specified permissions object of a user or group calendar that has been shared. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

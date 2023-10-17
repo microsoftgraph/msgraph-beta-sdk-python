@@ -16,7 +16,7 @@ class Win32LobAppFileSystemDetection(Win32LobAppDetection):
     Contains file or folder path to detect a Win32 App
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.win32LobAppFileSystemDetection"
+    OdataType: Optional[str] = "#microsoft.graph.win32LobAppFileSystemDetection"
     # A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
     check32_bit_on64_system: Optional[bool] = None
     # Contains all supported file system detection type.
@@ -59,7 +59,7 @@ class Win32LobAppFileSystemDetection(Win32LobAppDetection):
             "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(Win32LobAppFileSystemDetectionType)),
             "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),
             "fileOrFolderName": lambda n : setattr(self, 'file_or_folder_name', n.get_str_value()),
-            "operator": lambda n : setattr(self, 'operator', n.get_enum_value(Win32LobAppDetectionOperator)),
+            "operator": lambda n : setattr(self, 'operator', n.get_collection_of_enum_values(Win32LobAppDetectionOperator)),
             "path": lambda n : setattr(self, 'path', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

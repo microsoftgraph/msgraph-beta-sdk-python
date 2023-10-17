@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class PersonName(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personName"
+    OdataType: Optional[str] = "#microsoft.graph.personName"
     # Provides an ordered rendering of firstName and lastName depending on the locale of the user or their device.
     display_name: Optional[str] = None
     # First name of the user.

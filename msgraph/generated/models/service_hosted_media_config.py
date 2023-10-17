@@ -12,8 +12,8 @@ from .media_config import MediaConfig
 @dataclass
 class ServiceHostedMediaConfig(MediaConfig):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.serviceHostedMediaConfig"
-    # The list of media to pre-fetch.
+    OdataType: Optional[str] = "#microsoft.graph.serviceHostedMediaConfig"
+    # The list of media to prefetch.
     pre_fetch_media: Optional[List[MediaInfo]] = None
     
     @staticmethod

@@ -17,8 +17,8 @@ if TYPE_CHECKING:
     from .login_pages.login_pages_request_builder import LoginPagesRequestBuilder
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .payloads.payloads_request_builder import PayloadsRequestBuilder
-    from .simulation_automations.simulation_automations_request_builder import SimulationAutomationsRequestBuilder
     from .simulations.simulations_request_builder import SimulationsRequestBuilder
+    from .simulation_automations.simulation_automations_request_builder import SimulationAutomationsRequestBuilder
     from .trainings.trainings_request_builder import TrainingsRequestBuilder
 
 class AttackSimulationRequestBuilder(BaseRequestBuilder):
@@ -158,7 +158,7 @@ class AttackSimulationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AttackSimulationRequestBuilder(raw_url, self.request_adapter)
+        return AttackSimulationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def end_user_notifications(self) -> EndUserNotificationsRequestBuilder:

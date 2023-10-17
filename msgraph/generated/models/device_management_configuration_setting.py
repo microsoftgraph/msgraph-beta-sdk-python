@@ -16,7 +16,7 @@ class DeviceManagementConfigurationSetting(Entity):
     Setting instance within policy
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of related Setting Definitions. This property is read-only.
     setting_definitions: Optional[List[DeviceManagementConfigurationSettingDefinition]] = None
     # Setting instance within policy

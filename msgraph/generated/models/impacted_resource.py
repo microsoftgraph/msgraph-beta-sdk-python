@@ -26,7 +26,7 @@ class ImpactedResource(Entity):
     # The date and time when the status was last updated.
     last_modified_date_time: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The user responsible for maintaining the resource.
     owner: Optional[str] = None
     # The URL link to the corresponding Azure AD portal page of the resource.

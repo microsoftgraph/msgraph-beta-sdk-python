@@ -14,7 +14,7 @@ class DeviceHealthScriptBooleanParameter(DeviceHealthScriptParameter):
     Properties of the  Booolean script parameter.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceHealthScriptBooleanParameter"
+    OdataType: Optional[str] = "#microsoft.graph.deviceHealthScriptBooleanParameter"
     # The default value of boolean param
     default_value: Optional[bool] = None
     

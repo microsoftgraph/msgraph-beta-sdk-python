@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from .......models.mail_folder import MailFolder
     from .......models.o_data_errors.o_data_error import ODataError
     from .copy.copy_request_builder import CopyRequestBuilder
-    from .message_rules.message_rules_request_builder import MessageRulesRequestBuilder
     from .messages.messages_request_builder import MessagesRequestBuilder
+    from .message_rules.message_rules_request_builder import MessageRulesRequestBuilder
     from .move.move_request_builder import MoveRequestBuilder
     from .user_configurations.user_configurations_request_builder import UserConfigurationsRequestBuilder
 
@@ -155,7 +155,7 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MailFolderItemRequestBuilder(raw_url, self.request_adapter)
+        return MailFolderItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def copy(self) -> CopyRequestBuilder:

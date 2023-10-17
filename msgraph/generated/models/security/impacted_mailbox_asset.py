@@ -12,7 +12,7 @@ from .impacted_asset import ImpactedAsset
 @dataclass
 class ImpactedMailboxAsset(ImpactedAsset):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.impactedMailboxAsset"
+    OdataType: Optional[str] = "#microsoft.graph.security.impactedMailboxAsset"
     # The identifier property
     identifier: Optional[MailboxAssetIdentifier] = None
     

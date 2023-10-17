@@ -17,8 +17,8 @@ if TYPE_CHECKING:
     from .device_setting_state_summaries.device_setting_state_summaries_request_builder import DeviceSettingStateSummariesRequestBuilder
     from .device_statuses.device_statuses_request_builder import DeviceStatusesRequestBuilder
     from .device_status_overview.device_status_overview_request_builder import DeviceStatusOverviewRequestBuilder
-    from .schedule_actions_for_rules.schedule_actions_for_rules_request_builder import ScheduleActionsForRulesRequestBuilder
     from .scheduled_actions_for_rule.scheduled_actions_for_rule_request_builder import ScheduledActionsForRuleRequestBuilder
+    from .schedule_actions_for_rules.schedule_actions_for_rules_request_builder import ScheduleActionsForRulesRequestBuilder
     from .user_statuses.user_statuses_request_builder import UserStatusesRequestBuilder
     from .user_status_overview.user_status_overview_request_builder import UserStatusOverviewRequestBuilder
 
@@ -159,7 +159,7 @@ class DeviceCompliancePolicyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceCompliancePolicyItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceCompliancePolicyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:
@@ -189,15 +189,6 @@ class DeviceCompliancePolicyItemRequestBuilder(BaseRequestBuilder):
         return DeviceSettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_statuses(self) -> DeviceStatusesRequestBuilder:
-        """
-        Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
-        """
-        from .device_statuses.device_statuses_request_builder import DeviceStatusesRequestBuilder
-
-        return DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def device_status_overview(self) -> DeviceStatusOverviewRequestBuilder:
         """
         Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
@@ -205,6 +196,15 @@ class DeviceCompliancePolicyItemRequestBuilder(BaseRequestBuilder):
         from .device_status_overview.device_status_overview_request_builder import DeviceStatusOverviewRequestBuilder
 
         return DeviceStatusOverviewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_statuses(self) -> DeviceStatusesRequestBuilder:
+        """
+        Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
+        """
+        from .device_statuses.device_statuses_request_builder import DeviceStatusesRequestBuilder
+
+        return DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def schedule_actions_for_rules(self) -> ScheduleActionsForRulesRequestBuilder:
@@ -225,15 +225,6 @@ class DeviceCompliancePolicyItemRequestBuilder(BaseRequestBuilder):
         return ScheduledActionsForRuleRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_statuses(self) -> UserStatusesRequestBuilder:
-        """
-        Provides operations to manage the userStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
-        """
-        from .user_statuses.user_statuses_request_builder import UserStatusesRequestBuilder
-
-        return UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def user_status_overview(self) -> UserStatusOverviewRequestBuilder:
         """
         Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
@@ -241,6 +232,15 @@ class DeviceCompliancePolicyItemRequestBuilder(BaseRequestBuilder):
         from .user_status_overview.user_status_overview_request_builder import UserStatusOverviewRequestBuilder
 
         return UserStatusOverviewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_statuses(self) -> UserStatusesRequestBuilder:
+        """
+        Provides operations to manage the userStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
+        """
+        from .user_statuses.user_statuses_request_builder import UserStatusesRequestBuilder
+
+        return UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

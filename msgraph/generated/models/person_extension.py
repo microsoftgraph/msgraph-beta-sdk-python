@@ -11,7 +11,7 @@ from .extension import Extension
 @dataclass
 class PersonExtension(Extension):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personExtension"
+    OdataType: Optional[str] = "#microsoft.graph.personExtension"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonExtension:

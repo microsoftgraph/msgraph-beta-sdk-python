@@ -15,7 +15,7 @@ class UnmanagedDeviceDiscoveryTask(DeviceAppManagementTask):
     This task derived type represents a list of unmanaged devices discovered in the network.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.unmanagedDeviceDiscoveryTask"
+    OdataType: Optional[str] = "#microsoft.graph.unmanagedDeviceDiscoveryTask"
     # Unmanaged devices discovered in the network.
     unmanaged_devices: Optional[List[UnmanagedDevice]] = None
     

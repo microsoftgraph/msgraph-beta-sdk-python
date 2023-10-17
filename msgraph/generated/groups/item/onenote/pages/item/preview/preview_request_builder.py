@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .......models.o_data_errors.o_data_error import ODataError
     from .......models.onenote_page_preview import OnenotePagePreview
+    from .......models.o_data_errors.o_data_error import ODataError
 
 class PreviewRequestBuilder(BaseRequestBuilder):
     """
@@ -71,7 +71,7 @@ class PreviewRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PreviewRequestBuilder(raw_url, self.request_adapter)
+        return PreviewRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -14,7 +14,7 @@ class AndroidManagedAppRegistration(ManagedAppRegistration):
     Represents the synchronization details of an android app, with management capabilities, for a specific user.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidManagedAppRegistration"
+    OdataType: Optional[str] = "#microsoft.graph.androidManagedAppRegistration"
     # The patch version for the current android app registration
     patch_version: Optional[str] = None
     

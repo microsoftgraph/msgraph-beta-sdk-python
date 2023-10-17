@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.o_data_errors.o_data_error import ODataError
     from ........models.outlook_task_folder import OutlookTaskFolder
+    from ........models.o_data_errors.o_data_error import ODataError
     from .tasks.tasks_request_builder import TasksRequestBuilder
 
 class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
@@ -151,7 +151,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OutlookTaskFolderItemRequestBuilder(raw_url, self.request_adapter)
+        return OutlookTaskFolderItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def tasks(self) -> TasksRequestBuilder:

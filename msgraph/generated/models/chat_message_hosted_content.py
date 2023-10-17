@@ -11,7 +11,7 @@ from .teamwork_hosted_content import TeamworkHostedContent
 @dataclass
 class ChatMessageHostedContent(TeamworkHostedContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.chatMessageHostedContent"
+    OdataType: Optional[str] = "#microsoft.graph.chatMessageHostedContent"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChatMessageHostedContent:

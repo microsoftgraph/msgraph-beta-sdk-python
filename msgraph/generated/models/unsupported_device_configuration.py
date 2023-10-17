@@ -15,7 +15,7 @@ class UnsupportedDeviceConfiguration(DeviceConfiguration):
     UnsupportedDeviceConfiguration is used when an entity cannot be mapped to another model-compliant subtype of deviceConfiguration.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.unsupportedDeviceConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.unsupportedDeviceConfiguration"
     # Details describing why the entity is unsupported. This collection can contain a maximum of 1000 elements.
     details: Optional[List[UnsupportedDeviceConfigurationDetail]] = None
     # The type of entity that would be returned otherwise.

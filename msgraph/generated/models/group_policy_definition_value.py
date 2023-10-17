@@ -28,7 +28,7 @@ class GroupPolicyDefinitionValue(Entity):
     # The date and time the entity was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The associated group policy presentation values with the definition value.
     presentation_values: Optional[List[GroupPolicyPresentationValue]] = None
     

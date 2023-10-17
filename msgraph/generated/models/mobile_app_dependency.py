@@ -15,7 +15,7 @@ class MobileAppDependency(MobileAppRelationship):
     Describes a dependency type between two mobile apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.mobileAppDependency"
+    OdataType: Optional[str] = "#microsoft.graph.mobileAppDependency"
     # Indicates the dependency type associated with a relationship between two mobile apps.
     dependency_type: Optional[MobileAppDependencyType] = None
     # The total number of apps that directly or indirectly depend on the parent app.

@@ -133,7 +133,7 @@ class MicrosoftTunnelServerLogCollectionResponsesRequestBuilder(BaseRequestBuild
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftTunnelServerLogCollectionResponsesRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftTunnelServerLogCollectionResponsesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

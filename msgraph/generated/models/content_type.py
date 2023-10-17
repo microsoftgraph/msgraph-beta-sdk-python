@@ -16,7 +16,7 @@ from .entity import Entity
 
 @dataclass
 class ContentType(Entity):
-    # List of canonical URLs for hub sites with which this content type is associated to. This will contain all hubsites where this content type is queued to be enforced or is already enforced. Enforcing a content type means that the content type will be applied to the lists in the enforced sites.
+    # List of canonical URLs for hub sites with which this content type is associated to. This contains all hub sites where this content type is queued to be enforced or is already enforced. Enforcing a content type means that the content type will be applied to the lists in the enforced sites.
     associated_hubs_urls: Optional[List[str]] = None
     # Parent contentType from which this content type is derived.
     base: Optional[ContentType] = None
@@ -45,16 +45,16 @@ class ContentType(Entity):
     # The name of the content type.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Specifies the order in which the content type appears in the selection UI.
     order: Optional[ContentTypeOrder] = None
     # The unique identifier of the content type.
     parent_id: Optional[str] = None
     # If true, any changes made to the content type will be pushed to inherited content types and lists that implement the content type.
     propagate_changes: Optional[bool] = None
-    # If true, the content type cannot be modified unless this value is first set to false.
+    # If true, the content type can't be modified unless this value is first set to false.
     read_only: Optional[bool] = None
-    # If true, the content type cannot be modified by users or through push-down operations. Only site collection administrators can seal or unseal content types.
+    # If true, the content type can't be modified by users or through push-down operations. Only site collection administrators can seal or unseal content types.
     sealed: Optional[bool] = None
     
     @staticmethod

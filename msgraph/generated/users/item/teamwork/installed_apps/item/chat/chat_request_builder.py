@@ -28,7 +28,7 @@ class ChatRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ChatRequestBuilderGetRequestConfiguration] = None) -> Optional[Chat]:
         """
-        Retrieve the chat of the specified user and Teams app.
+        Retrieve the chat of the specified user and Teams app. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Chat]
         Find more info here: https://learn.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class ChatRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ChatRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the chat of the specified user and Teams app.
+        Retrieve the chat of the specified user and Teams app. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,12 +73,12 @@ class ChatRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ChatRequestBuilder(raw_url, self.request_adapter)
+        return ChatRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class ChatRequestBuilderGetQueryParameters():
         """
-        Retrieve the chat of the specified user and Teams app.
+        Retrieve the chat of the specified user and Teams app. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

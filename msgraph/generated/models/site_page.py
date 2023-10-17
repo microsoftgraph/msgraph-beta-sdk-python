@@ -18,7 +18,7 @@ class SitePage(BaseSitePage):
     # Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical sections.
     canvas_layout: Optional[CanvasLayout] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Indicates the promotion kind of the sitePage. The possible values are: microsoftReserved, page, newsPost, unknownFutureValue.
     promotion_kind: Optional[PagePromotionType] = None
     # Reactions information for the page.

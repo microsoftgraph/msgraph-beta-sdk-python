@@ -11,7 +11,7 @@ from .encrypt_content import EncryptContent
 @dataclass
 class EncryptWithTemplate(EncryptContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.encryptWithTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.encryptWithTemplate"
     # The availableForEncryption property
     available_for_encryption: Optional[bool] = None
     # The templateId property

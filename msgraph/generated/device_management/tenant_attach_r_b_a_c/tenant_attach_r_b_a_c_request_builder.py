@@ -152,7 +152,7 @@ class TenantAttachRBACRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TenantAttachRBACRequestBuilder(raw_url, self.request_adapter)
+        return TenantAttachRBACRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def enable(self) -> EnableRequestBuilder:

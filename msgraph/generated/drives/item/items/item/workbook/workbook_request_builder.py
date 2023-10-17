@@ -21,8 +21,8 @@ if TYPE_CHECKING:
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .refresh_session.refresh_session_request_builder import RefreshSessionRequestBuilder
     from .session_info_resource_with_key.session_info_resource_with_key_request_builder import SessionInfoResourceWithKeyRequestBuilder
-    from .table_row_operation_result_with_key.table_row_operation_result_with_key_request_builder import TableRowOperationResultWithKeyRequestBuilder
     from .tables.tables_request_builder import TablesRequestBuilder
+    from .table_row_operation_result_with_key.table_row_operation_result_with_key_request_builder import TableRowOperationResultWithKeyRequestBuilder
     from .worksheets.worksheets_request_builder import WorksheetsRequestBuilder
 
 class WorkbookRequestBuilder(BaseRequestBuilder):
@@ -59,7 +59,7 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WorkbookRequestBuilderGetRequestConfiguration] = None) -> Optional[Workbook]:
         """
-        For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+        For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Workbook]
         """
@@ -143,7 +143,7 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WorkbookRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+        For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -186,7 +186,7 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WorkbookRequestBuilder(raw_url, self.request_adapter)
+        return WorkbookRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def application(self) -> ApplicationRequestBuilder:
@@ -291,7 +291,7 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WorkbookRequestBuilderGetQueryParameters():
         """
-        For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+        For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -15,7 +15,7 @@ class EntitlementManagementSettings(Entity):
     # One of None, BlockSignIn, or BlockSignInAndDelete.
     external_user_lifecycle_action: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EntitlementManagementSettings:

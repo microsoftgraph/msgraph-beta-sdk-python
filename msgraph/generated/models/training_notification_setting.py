@@ -13,10 +13,10 @@ from .end_user_notification_setting import EndUserNotificationSetting
 @dataclass
 class TrainingNotificationSetting(EndUserNotificationSetting):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.trainingNotificationSetting"
-    # The trainingAssignment property
+    OdataType: Optional[str] = "#microsoft.graph.trainingNotificationSetting"
+    # Training assignment details.
     training_assignment: Optional[BaseEndUserNotification] = None
-    # The trainingReminder property
+    # Training reminder details.
     training_reminder: Optional[TrainingReminderNotification] = None
     
     @staticmethod

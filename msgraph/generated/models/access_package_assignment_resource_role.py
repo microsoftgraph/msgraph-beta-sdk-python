@@ -23,12 +23,12 @@ class AccessPackageAssignmentResourceRole(Entity):
     # Read-only. Nullable. Supports $filter (eq) on objectId and $expand query parameters.
     access_package_subject: Optional[AccessPackageSubject] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A unique identifier relative to the origin system, corresponding to the originId property of the accessPackageResourceRole.
     origin_id: Optional[str] = None
     # The system where the role assignment is to be created or has been created for an access package assignment, such as SharePointOnline, AadGroup or AadApplication, corresponding to the originSystem property of the accessPackageResourceRole.
     origin_system: Optional[str] = None
-    # The value is PendingFulfillment when the access package assignment has not yet been delivered to the origin system, and Fulfilled when the access package assignment has been delivered to the origin system.
+    # The value is PendingFulfillment when the access package assignment hasn't yet been delivered to the origin system, and Fulfilled when the access package assignment has been delivered to the origin system.
     status: Optional[str] = None
     
     @staticmethod

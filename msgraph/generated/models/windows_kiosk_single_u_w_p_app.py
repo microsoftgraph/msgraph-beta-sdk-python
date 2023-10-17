@@ -15,7 +15,7 @@ class WindowsKioskSingleUWPApp(WindowsKioskAppConfiguration):
     The class used to identify the UWP app info for the kiosk configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskSingleUWPApp"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskSingleUWPApp"
     # The uwpApp property
     uwp_app: Optional[WindowsKioskUWPApp] = None
     

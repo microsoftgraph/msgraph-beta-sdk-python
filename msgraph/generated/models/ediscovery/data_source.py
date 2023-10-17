@@ -20,12 +20,12 @@ class DataSource(Entity):
     created_by: Optional[IdentitySet] = None
     # The date and time the dataSource was created.
     created_date_time: Optional[datetime.datetime] = None
-    # The display name of the dataSource. This will be the name of the SharePoint site.
+    # The display name of the dataSource, and is the name of the SharePoint site.
     display_name: Optional[str] = None
     # The holdStatus property
     hold_status: Optional[DataSourceHoldStatus] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DataSource:

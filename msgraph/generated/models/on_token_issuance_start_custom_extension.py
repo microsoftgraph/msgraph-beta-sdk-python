@@ -12,7 +12,7 @@ from .custom_authentication_extension import CustomAuthenticationExtension
 @dataclass
 class OnTokenIssuanceStartCustomExtension(CustomAuthenticationExtension):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.onTokenIssuanceStartCustomExtension"
+    OdataType: Optional[str] = "#microsoft.graph.onTokenIssuanceStartCustomExtension"
     # Collection of claims to be returned by the API called by this custom authentication extension.
     claims_for_token_configuration: Optional[List[OnTokenIssuanceStartReturnClaim]] = None
     

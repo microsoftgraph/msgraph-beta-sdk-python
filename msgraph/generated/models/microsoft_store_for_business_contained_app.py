@@ -14,7 +14,7 @@ class MicrosoftStoreForBusinessContainedApp(MobileContainedApp):
     A class that represents a contained app of a MicrosoftStoreForBusinessApp.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.microsoftStoreForBusinessContainedApp"
+    OdataType: Optional[str] = "#microsoft.graph.microsoftStoreForBusinessContainedApp"
     # The app user model ID of the contained app of a MicrosoftStoreForBusinessApp.
     app_user_model_id: Optional[str] = None
     

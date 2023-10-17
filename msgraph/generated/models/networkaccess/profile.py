@@ -21,7 +21,7 @@ class Profile(Entity):
     # Profile name.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Traffic forwarding policies associated with this profile.
     policies: Optional[List[PolicyLink]] = None
     # The state property

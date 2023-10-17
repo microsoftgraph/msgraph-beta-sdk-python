@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 @dataclass
 class ExportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -54,7 +54,7 @@ class ExportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "exportOptions": lambda n : setattr(self, 'export_options', n.get_enum_value(ExportOptions)),
+            "exportOptions": lambda n : setattr(self, 'export_options', n.get_collection_of_enum_values(ExportOptions)),
             "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(ExportFileStructure)),
             "outputName": lambda n : setattr(self, 'output_name', n.get_str_value()),
         }

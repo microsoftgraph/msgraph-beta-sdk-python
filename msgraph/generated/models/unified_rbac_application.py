@@ -17,7 +17,7 @@ class UnifiedRbacApplication(Entity):
     # Workload-specific scope object that represents the resources for which the principal has been granted access.
     custom_app_scopes: Optional[List[CustomAppScope]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Resource that represents a collection of related actions.
     resource_namespaces: Optional[List[UnifiedRbacResourceNamespace]] = None
     # Resource to grant access to users or groups.

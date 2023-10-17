@@ -18,7 +18,7 @@ class DeviceManagementResourceAccessProfileAssignment(Entity):
     # The administrator intent for the assignment of the profile.
     intent: Optional[DeviceManagementResourceAccessProfileIntent] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The identifier of the source of the assignment.
     source_id: Optional[str] = None
     # Base type for assignment targets.

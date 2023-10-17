@@ -23,7 +23,7 @@ class GroupPolicyUploadedPresentation(GroupPolicyPresentation):
     Represents an ADMX checkBox element and an ADMX boolean element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyUploadedPresentation"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyUploadedPresentation"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyUploadedPresentation:

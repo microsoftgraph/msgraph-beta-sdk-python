@@ -10,29 +10,29 @@ if TYPE_CHECKING:
 @dataclass
 class SslCertificateEntity(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The address property
+    # A physical address of the entity.
     address: Optional[PhysicalAddress] = None
-    # The alternateNames property
+    # Alternate names for this entity that are part of the certificate.
     alternate_names: Optional[List[str]] = None
-    # The commonName property
+    # A common name for this entity.
     common_name: Optional[str] = None
-    # The email property
+    # An email for this entity.
     email: Optional[str] = None
-    # The givenName property
+    # If the entity is a person, this is the person's given name (first name).
     given_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The organizationName property
+    # If the entity is an organization, this is the name of the organization.
     organization_name: Optional[str] = None
-    # The organizationUnitName property
+    # If the entity is an organization, this communicates if a unit in the organization is named on the entity.
     organization_unit_name: Optional[str] = None
-    # The serialNumber property
+    # A serial number assigned to the entity; usually only available if the entity is the issuer.
     serial_number: Optional[str] = None
-    # The surname property
+    # If the entity is a person, this is the person's surname (last name).
     surname: Optional[str] = None
     
     @staticmethod

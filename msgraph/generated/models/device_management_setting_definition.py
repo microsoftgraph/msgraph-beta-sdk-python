@@ -38,7 +38,7 @@ class DeviceManagementSettingDefinition(Entity):
     # Keywords associated with the setting
     keywords: Optional[List[str]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Placeholder text as an example of valid input
     placeholder_text: Optional[str] = None
     # The valueType property

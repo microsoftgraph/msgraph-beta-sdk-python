@@ -15,7 +15,7 @@ class GroupPolicyPresentationDropdownList(GroupPolicyUploadedPresentation):
     Represents an ADMX dropdownList element and an ADMX enum element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyPresentationDropdownList"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyPresentationDropdownList"
     # Localized string value identifying the default choice of the list of items.
     default_item: Optional[GroupPolicyPresentationDropdownListItem] = None
     # Represents a set of localized display names and their associated values.

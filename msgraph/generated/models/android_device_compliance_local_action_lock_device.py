@@ -14,7 +14,7 @@ class AndroidDeviceComplianceLocalActionLockDevice(AndroidDeviceComplianceLocalA
     Local Action Lock Device Only Configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceComplianceLocalActionLockDevice"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceComplianceLocalActionLockDevice"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceComplianceLocalActionLockDevice:

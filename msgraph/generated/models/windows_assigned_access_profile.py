@@ -18,7 +18,7 @@ class WindowsAssignedAccessProfile(Entity):
     # These are the paths of the Desktop Apps that will be available on the Start menu and the only apps the user will be able to launch.
     desktop_app_paths: Optional[List[str]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # This is a friendly name used to identify a group of applications, the layout of these apps on the start menu and the users to whom this kiosk configuration is assigned.
     profile_name: Optional[str] = None
     # This setting allows the admin to specify whether the Task Bar is shown or not.

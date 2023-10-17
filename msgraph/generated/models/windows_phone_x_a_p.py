@@ -15,7 +15,7 @@ class WindowsPhoneXAP(MobileLobApp):
     Contains properties and inherited properties for Windows Phone XAP Line Of Business apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsPhoneXAP"
+    OdataType: Optional[str] = "#microsoft.graph.windowsPhoneXAP"
     # The identity version.
     identity_version: Optional[str] = None
     # The minimum operating system required for a Windows mobile app.

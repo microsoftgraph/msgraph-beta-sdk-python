@@ -14,7 +14,7 @@ class MacOSWebClip(MobileApp):
     Contains properties and inherited properties for macOS web apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSWebClip"
+    OdataType: Optional[str] = "#microsoft.graph.macOSWebClip"
     # The web app URL starting with http:// or https://, such as https://learn.microsoft.com/mem/.
     app_url: Optional[str] = None
     # Whether or not to open the web clip as a full-screen web app. Defaults to false. If TRUE, opens the web clip as a full-screen web app. If FALSE, the web clip opens inside of another app.

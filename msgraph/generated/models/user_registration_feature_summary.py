@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 @dataclass
 class UserRegistrationFeatureSummary(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -20,7 +20,7 @@ class UserRegistrationFeatureSummary(AdditionalDataHolder, BackedModel, Parsable
     odata_type: Optional[str] = None
     # Total number of users accounts, excluding those that are blocked.
     total_user_count: Optional[int] = None
-    # Number of users registered or capable for multi-factor authentication, self-service password reset, and passwordless authentication.
+    # Number of users registered or capable for multifactor authentication, self-service password reset, and passwordless authentication.
     user_registration_feature_counts: Optional[List[UserRegistrationFeatureCount]] = None
     # The role type of the user. Possible values are: all, privilegedAdmin, admin, user, unknownFutureValue.
     user_roles: Optional[IncludedUserRoles] = None

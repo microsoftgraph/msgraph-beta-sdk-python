@@ -28,7 +28,7 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RestoreCloudPcPostRequestBody] = None, request_configuration: Optional[RestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Restore a Cloud PC device to a previous state with an Intune managed device ID.
+        Restore a Cloud PC device to a previous state with an Intune managed device ID. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RestoreCloudPcPostRequestBody] = None, request_configuration: Optional[RestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restore a Cloud PC device to a previous state with an Intune managed device ID.
+        Restore a Cloud PC device to a previous state with an Intune managed device ID. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RestoreCloudPcRequestBuilder(raw_url, self.request_adapter)
+        return RestoreCloudPcRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

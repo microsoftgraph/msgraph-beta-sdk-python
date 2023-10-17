@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.o_data_errors.o_data_error import ODataError
     from ...models.on_premises_publishing_profile import OnPremisesPublishingProfile
-    from .agent_groups.agent_groups_request_builder import AgentGroupsRequestBuilder
+    from ...models.o_data_errors.o_data_error import ODataError
     from .agents.agents_request_builder import AgentsRequestBuilder
-    from .connector_groups.connector_groups_request_builder import ConnectorGroupsRequestBuilder
+    from .agent_groups.agent_groups_request_builder import AgentGroupsRequestBuilder
     from .connectors.connectors_request_builder import ConnectorsRequestBuilder
+    from .connector_groups.connector_groups_request_builder import ConnectorGroupsRequestBuilder
     from .published_resources.published_resources_request_builder import PublishedResourcesRequestBuilder
 
 class OnPremisesPublishingProfileItemRequestBuilder(BaseRequestBuilder):
@@ -155,7 +155,7 @@ class OnPremisesPublishingProfileItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnPremisesPublishingProfileItemRequestBuilder(raw_url, self.request_adapter)
+        return OnPremisesPublishingProfileItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def agent_groups(self) -> AgentGroupsRequestBuilder:

@@ -12,25 +12,25 @@ from kiota_serialization_text.text_serialization_writer_factory import TextSeria
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .access_review_decisions.access_review_decisions_request_builder import AccessReviewDecisionsRequestBuilder
     from .access_reviews.access_reviews_request_builder import AccessReviewsRequestBuilder
+    from .access_review_decisions.access_review_decisions_request_builder import AccessReviewDecisionsRequestBuilder
     from .activitystatistics.activitystatistics_request_builder import ActivitystatisticsRequestBuilder
     from .admin.admin_request_builder import AdminRequestBuilder
     from .administrative_units.administrative_units_request_builder import AdministrativeUnitsRequestBuilder
-    from .agreement_acceptances.agreement_acceptances_request_builder import AgreementAcceptancesRequestBuilder
     from .agreements.agreements_request_builder import AgreementsRequestBuilder
+    from .agreement_acceptances.agreement_acceptances_request_builder import AgreementAcceptancesRequestBuilder
     from .allowed_data_locations.allowed_data_locations_request_builder import AllowedDataLocationsRequestBuilder
     from .app.app_request_builder import AppRequestBuilder
-    from .app_catalogs.app_catalogs_request_builder import AppCatalogsRequestBuilder
     from .applications.applications_request_builder import ApplicationsRequestBuilder
     from .applications_with_app_id.applications_with_app_id_request_builder import ApplicationsWithAppIdRequestBuilder
     from .applications_with_unique_name.applications_with_unique_name_request_builder import ApplicationsWithUniqueNameRequestBuilder
     from .application_templates.application_templates_request_builder import ApplicationTemplatesRequestBuilder
-    from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
     from .approval_workflow_providers.approval_workflow_providers_request_builder import ApprovalWorkflowProvidersRequestBuilder
+    from .app_catalogs.app_catalogs_request_builder import AppCatalogsRequestBuilder
+    from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
     from .audit_logs.audit_logs_request_builder import AuditLogsRequestBuilder
-    from .authentication_method_configurations.authentication_method_configurations_request_builder import AuthenticationMethodConfigurationsRequestBuilder
     from .authentication_methods_policy.authentication_methods_policy_request_builder import AuthenticationMethodsPolicyRequestBuilder
+    from .authentication_method_configurations.authentication_method_configurations_request_builder import AuthenticationMethodConfigurationsRequestBuilder
     from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
     from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
     from .business_flow_templates.business_flow_templates_request_builder import BusinessFlowTemplatesRequestBuilder
@@ -44,19 +44,19 @@ if TYPE_CHECKING:
     from .contracts.contracts_request_builder import ContractsRequestBuilder
     from .data_classification.data_classification_request_builder import DataClassificationRequestBuilder
     from .data_policy_operations.data_policy_operations_request_builder import DataPolicyOperationsRequestBuilder
+    from .devices.devices_request_builder import DevicesRequestBuilder
+    from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
     from .device_app_management.device_app_management_request_builder import DeviceAppManagementRequestBuilder
     from .device_local_credentials.device_local_credentials_request_builder import DeviceLocalCredentialsRequestBuilder
     from .device_management.device_management_request_builder import DeviceManagementRequestBuilder
-    from .devices.devices_request_builder import DevicesRequestBuilder
-    from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
     from .directory.directory_request_builder import DirectoryRequestBuilder
     from .directory_objects.directory_objects_request_builder import DirectoryObjectsRequestBuilder
     from .directory_roles.directory_roles_request_builder import DirectoryRolesRequestBuilder
     from .directory_roles_with_role_template_id.directory_roles_with_role_template_id_request_builder import DirectoryRolesWithRoleTemplateIdRequestBuilder
     from .directory_role_templates.directory_role_templates_request_builder import DirectoryRoleTemplatesRequestBuilder
     from .directory_setting_templates.directory_setting_templates_request_builder import DirectorySettingTemplatesRequestBuilder
-    from .domain_dns_records.domain_dns_records_request_builder import DomainDnsRecordsRequestBuilder
     from .domains.domains_request_builder import DomainsRequestBuilder
+    from .domain_dns_records.domain_dns_records_request_builder import DomainDnsRecordsRequestBuilder
     from .drives.drives_request_builder import DrivesRequestBuilder
     from .education.education_request_builder import EducationRequestBuilder
     from .employee_experience.employee_experience_request_builder import EmployeeExperienceRequestBuilder
@@ -65,14 +65,14 @@ if TYPE_CHECKING:
     from .financials.financials_request_builder import FinancialsRequestBuilder
     from .functions.functions_request_builder import FunctionsRequestBuilder
     from .governance_resources.governance_resources_request_builder import GovernanceResourcesRequestBuilder
-    from .governance_role_assignment_requests.governance_role_assignment_requests_request_builder import GovernanceRoleAssignmentRequestsRequestBuilder
     from .governance_role_assignments.governance_role_assignments_request_builder import GovernanceRoleAssignmentsRequestBuilder
+    from .governance_role_assignment_requests.governance_role_assignment_requests_request_builder import GovernanceRoleAssignmentRequestsRequestBuilder
     from .governance_role_definitions.governance_role_definitions_request_builder import GovernanceRoleDefinitionsRequestBuilder
     from .governance_role_settings.governance_role_settings_request_builder import GovernanceRoleSettingsRequestBuilder
     from .governance_subjects.governance_subjects_request_builder import GovernanceSubjectsRequestBuilder
-    from .group_lifecycle_policies.group_lifecycle_policies_request_builder import GroupLifecyclePoliciesRequestBuilder
     from .groups.groups_request_builder import GroupsRequestBuilder
     from .groups_with_unique_name.groups_with_unique_name_request_builder import GroupsWithUniqueNameRequestBuilder
+    from .group_lifecycle_policies.group_lifecycle_policies_request_builder import GroupLifecyclePoliciesRequestBuilder
     from .identity.identity_request_builder import IdentityRequestBuilder
     from .identity_governance.identity_governance_request_builder import IdentityGovernanceRequestBuilder
     from .identity_protection.identity_protection_request_builder import IdentityProtectionRequestBuilder
@@ -98,16 +98,16 @@ if TYPE_CHECKING:
     from .privileged_access.privileged_access_request_builder import PrivilegedAccessRequestBuilder
     from .privileged_approval.privileged_approval_request_builder import PrivilegedApprovalRequestBuilder
     from .privileged_operation_events.privileged_operation_events_request_builder import PrivilegedOperationEventsRequestBuilder
-    from .privileged_role_assignment_requests.privileged_role_assignment_requests_request_builder import PrivilegedRoleAssignmentRequestsRequestBuilder
-    from .privileged_role_assignments.privileged_role_assignments_request_builder import PrivilegedRoleAssignmentsRequestBuilder
     from .privileged_roles.privileged_roles_request_builder import PrivilegedRolesRequestBuilder
+    from .privileged_role_assignments.privileged_role_assignments_request_builder import PrivilegedRoleAssignmentsRequestBuilder
+    from .privileged_role_assignment_requests.privileged_role_assignment_requests_request_builder import PrivilegedRoleAssignmentRequestsRequestBuilder
     from .privileged_signup_status.privileged_signup_status_request_builder import PrivilegedSignupStatusRequestBuilder
+    from .programs.programs_request_builder import ProgramsRequestBuilder
     from .program_controls.program_controls_request_builder import ProgramControlsRequestBuilder
     from .program_control_types.program_control_types_request_builder import ProgramControlTypesRequestBuilder
-    from .programs.programs_request_builder import ProgramsRequestBuilder
     from .reports.reports_request_builder import ReportsRequestBuilder
-    from .risk_detections.risk_detections_request_builder import RiskDetectionsRequestBuilder
     from .risky_users.risky_users_request_builder import RiskyUsersRequestBuilder
+    from .risk_detections.risk_detections_request_builder import RiskDetectionsRequestBuilder
     from .role_management.role_management_request_builder import RoleManagementRequestBuilder
     from .schema_extensions.schema_extensions_request_builder import SchemaExtensionsRequestBuilder
     from .scoped_role_memberships.scoped_role_memberships_request_builder import ScopedRoleMembershipsRequestBuilder
@@ -123,8 +123,8 @@ if TYPE_CHECKING:
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
     from .teams.teams_request_builder import TeamsRequestBuilder
     from .teams_templates.teams_templates_request_builder import TeamsTemplatesRequestBuilder
-    from .team_template_definition.team_template_definition_request_builder import TeamTemplateDefinitionRequestBuilder
     from .teamwork.teamwork_request_builder import TeamworkRequestBuilder
+    from .team_template_definition.team_template_definition_request_builder import TeamTemplateDefinitionRequestBuilder
     from .tenant_relationships.tenant_relationships_request_builder import TenantRelationshipsRequestBuilder
     from .term_store.term_store_request_builder import TermStoreRequestBuilder
     from .threat_submission.threat_submission_request_builder import ThreatSubmissionRequestBuilder
@@ -317,13 +317,13 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         return AppCatalogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def applications(self) -> ApplicationsRequestBuilder:
+    def app_role_assignments(self) -> AppRoleAssignmentsRequestBuilder:
         """
-        Provides operations to manage the collection of application entities.
+        Provides operations to manage the collection of appRoleAssignment entities.
         """
-        from .applications.applications_request_builder import ApplicationsRequestBuilder
+        from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
 
-        return ApplicationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return AppRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def application_templates(self) -> ApplicationTemplatesRequestBuilder:
@@ -335,13 +335,13 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         return ApplicationTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def app_role_assignments(self) -> AppRoleAssignmentsRequestBuilder:
+    def applications(self) -> ApplicationsRequestBuilder:
         """
-        Provides operations to manage the collection of appRoleAssignment entities.
+        Provides operations to manage the collection of application entities.
         """
-        from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
+        from .applications.applications_request_builder import ApplicationsRequestBuilder
 
-        return AppRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ApplicationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def approval_workflow_providers(self) -> ApprovalWorkflowProvidersRequestBuilder:
@@ -551,15 +551,6 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         return DirectoryObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def directory_roles(self) -> DirectoryRolesRequestBuilder:
-        """
-        Provides operations to manage the collection of directoryRole entities.
-        """
-        from .directory_roles.directory_roles_request_builder import DirectoryRolesRequestBuilder
-
-        return DirectoryRolesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def directory_role_templates(self) -> DirectoryRoleTemplatesRequestBuilder:
         """
         Provides operations to manage the collection of directoryRoleTemplate entities.
@@ -567,6 +558,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .directory_role_templates.directory_role_templates_request_builder import DirectoryRoleTemplatesRequestBuilder
 
         return DirectoryRoleTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def directory_roles(self) -> DirectoryRolesRequestBuilder:
+        """
+        Provides operations to manage the collection of directoryRole entities.
+        """
+        from .directory_roles.directory_roles_request_builder import DirectoryRolesRequestBuilder
+
+        return DirectoryRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def directory_setting_templates(self) -> DirectorySettingTemplatesRequestBuilder:
@@ -992,15 +992,6 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         return PrivilegedSignupStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def program_controls(self) -> ProgramControlsRequestBuilder:
-        """
-        Provides operations to manage the collection of programControl entities.
-        """
-        from .program_controls.program_controls_request_builder import ProgramControlsRequestBuilder
-
-        return ProgramControlsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def program_control_types(self) -> ProgramControlTypesRequestBuilder:
         """
         Provides operations to manage the collection of programControlType entities.
@@ -1008,6 +999,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .program_control_types.program_control_types_request_builder import ProgramControlTypesRequestBuilder
 
         return ProgramControlTypesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def program_controls(self) -> ProgramControlsRequestBuilder:
+        """
+        Provides operations to manage the collection of programControl entities.
+        """
+        from .program_controls.program_controls_request_builder import ProgramControlsRequestBuilder
+
+        return ProgramControlsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def programs(self) -> ProgramsRequestBuilder:
@@ -1154,6 +1154,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         return SubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def team_template_definition(self) -> TeamTemplateDefinitionRequestBuilder:
+        """
+        Provides operations to manage the collection of teamTemplateDefinition entities.
+        """
+        from .team_template_definition.team_template_definition_request_builder import TeamTemplateDefinitionRequestBuilder
+
+        return TeamTemplateDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def teams(self) -> TeamsRequestBuilder:
         """
         Provides operations to manage the collection of team entities.
@@ -1170,15 +1179,6 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .teams_templates.teams_templates_request_builder import TeamsTemplatesRequestBuilder
 
         return TeamsTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def team_template_definition(self) -> TeamTemplateDefinitionRequestBuilder:
-        """
-        Provides operations to manage the collection of teamTemplateDefinition entities.
-        """
-        from .team_template_definition.team_template_definition_request_builder import TeamTemplateDefinitionRequestBuilder
-
-        return TeamTemplateDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def teamwork(self) -> TeamworkRequestBuilder:

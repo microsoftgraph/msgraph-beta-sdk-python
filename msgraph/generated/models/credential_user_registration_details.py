@@ -22,7 +22,7 @@ class CredentialUserRegistrationDetails(Entity):
     # Indicates whether the user has registered any authentication methods for self-service password reset.
     is_registered: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Provides the user name of the corresponding user.
     user_display_name: Optional[str] = None
     # Provides the user principal name of the corresponding user.

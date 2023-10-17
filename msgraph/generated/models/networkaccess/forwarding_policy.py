@@ -12,7 +12,7 @@ from .policy import Policy
 @dataclass
 class ForwardingPolicy(Policy):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicy"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicy"
     # The trafficForwardingType property
     traffic_forwarding_type: Optional[TrafficForwardingType] = None
     

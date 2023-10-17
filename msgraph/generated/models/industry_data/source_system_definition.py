@@ -14,7 +14,7 @@ class SourceSystemDefinition(Entity):
     # The name of the source system. Maximum supported length is 100 characters.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A collection of user matching settings by roleGroup.
     user_matching_settings: Optional[List[UserMatchingSetting]] = None
     # The name of the vendor who supplies the source system. Maximum supported length is 100 characters.

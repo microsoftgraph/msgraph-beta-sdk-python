@@ -6,12 +6,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .integer_range import IntegerRange
+    from .printer_feed_direction import PrinterFeedDirection
+    from .printer_feed_orientation import PrinterFeedOrientation
     from .print_color_configuration import PrintColorConfiguration
     from .print_color_mode import PrintColorMode
     from .print_duplex_configuration import PrintDuplexConfiguration
     from .print_duplex_mode import PrintDuplexMode
-    from .printer_feed_direction import PrinterFeedDirection
-    from .printer_feed_orientation import PrinterFeedOrientation
     from .print_finishing import PrintFinishing
     from .print_media_type import PrintMediaType
     from .print_multipage_layout import PrintMultipageLayout
@@ -23,17 +23,17 @@ if TYPE_CHECKING:
 @dataclass
 class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # A list of supported bottom margins(in microns) for the printer.
     bottom_margins: Optional[List[int]] = None
-    # True if the printer supports collating when printing muliple copies of a multi-page document; false otherwise.
+    # True if the printer supports collating when printing multiple copies of a multi-page document; false otherwise.
     collation: Optional[bool] = None
     # The color modes supported by the printer. Valid values are described in the following table.
     color_modes: Optional[List[PrintColorMode]] = None
-    # A list of supported content (MIME) types that the printer supports. It is not guaranteed that the Universal Print service supports printing all of these MIME types.
+    # A list of supported content (MIME) types that the printer supports. It isn't guaranteed that the Universal Print service supports printing all of these MIME types.
     content_types: Optional[List[str]] = None
     # The range of copies per job supported by the printer.
     copies_per_job: Optional[IntegerRange] = None
@@ -55,7 +55,7 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     is_page_range_supported: Optional[bool] = None
     # A list of supported left margins(in microns) for the printer.
     left_margins: Optional[List[int]] = None
-    # The media (i.e., paper) colors supported by the printer.
+    # The media (that is, paper) colors supported by the printer.
     media_colors: Optional[List[str]] = None
     # The media sizes supported by the printer. Supports standard size names for ISO and ANSI media sizes. Valid values are in the following table.
     media_sizes: Optional[List[str]] = None
@@ -125,12 +125,12 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .integer_range import IntegerRange
+        from .printer_feed_direction import PrinterFeedDirection
+        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_color_configuration import PrintColorConfiguration
         from .print_color_mode import PrintColorMode
         from .print_duplex_configuration import PrintDuplexConfiguration
         from .print_duplex_mode import PrintDuplexMode
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_finishing import PrintFinishing
         from .print_media_type import PrintMediaType
         from .print_multipage_layout import PrintMultipageLayout
@@ -140,12 +140,12 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
         from .print_scaling import PrintScaling
 
         from .integer_range import IntegerRange
+        from .printer_feed_direction import PrinterFeedDirection
+        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_color_configuration import PrintColorConfiguration
         from .print_color_mode import PrintColorMode
         from .print_duplex_configuration import PrintDuplexConfiguration
         from .print_duplex_mode import PrintDuplexMode
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_finishing import PrintFinishing
         from .print_media_type import PrintMediaType
         from .print_multipage_layout import PrintMultipageLayout

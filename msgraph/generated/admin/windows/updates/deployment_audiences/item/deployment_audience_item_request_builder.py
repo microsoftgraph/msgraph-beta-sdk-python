@@ -32,7 +32,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[DeploymentAudienceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a deploymentAudience object.
+        Delete a deploymentAudience object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deploymentaudience-delete?view=graph-rest-1.0
@@ -52,7 +52,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeploymentAudienceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeploymentAudience]:
         """
-        Read the properties and relationships of a deploymentAudience object.
+        Read the properties and relationships of a deploymentAudience object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentAudience]
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deploymentaudience-get?view=graph-rest-1.0
@@ -98,7 +98,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[DeploymentAudienceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a deploymentAudience object.
+        Delete a deploymentAudience object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +113,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeploymentAudienceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a deploymentAudience object.
+        Read the properties and relationships of a deploymentAudience object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -156,7 +156,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeploymentAudienceItemRequestBuilder(raw_url, self.request_adapter)
+        return DeploymentAudienceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def exclusions(self) -> ExclusionsRequestBuilder:
@@ -207,7 +207,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeploymentAudienceItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a deploymentAudience object.
+        Read the properties and relationships of a deploymentAudience object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

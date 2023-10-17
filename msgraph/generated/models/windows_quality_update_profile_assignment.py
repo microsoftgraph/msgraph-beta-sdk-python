@@ -15,7 +15,7 @@ class WindowsQualityUpdateProfileAssignment(Entity):
     This entity contains the properties used to assign a windows quality update profile to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The assignment target that the quality update profile is assigned to.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

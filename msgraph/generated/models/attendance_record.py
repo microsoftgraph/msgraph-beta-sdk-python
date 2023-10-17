@@ -19,7 +19,7 @@ class AttendanceRecord(Entity):
     # Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
     identity: Optional[Identity] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Unique identifier of a meetingRegistrant. Presents when the participant has registered for the meeting.
     registrant_id: Optional[str] = None
     # Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.

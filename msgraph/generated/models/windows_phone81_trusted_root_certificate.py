@@ -14,7 +14,7 @@ class WindowsPhone81TrustedRootCertificate(DeviceConfiguration):
     Windows Phone 8.1+ Trusted Root Certificate configuration profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsPhone81TrustedRootCertificate"
+    OdataType: Optional[str] = "#microsoft.graph.windowsPhone81TrustedRootCertificate"
     # File name to display in UI.
     cert_file_name: Optional[str] = None
     # Trusted Root Certificate

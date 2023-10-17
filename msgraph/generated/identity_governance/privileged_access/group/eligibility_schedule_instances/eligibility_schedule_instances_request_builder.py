@@ -58,9 +58,10 @@ class EligibilityScheduleInstancesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EligibilityScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedAccessGroupEligibilityScheduleInstanceCollectionResponse]:
         """
-        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleInstance object.
+        Get a list of the privilegedAccessGroupEligibilityScheduleInstance objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrivilegedAccessGroupEligibilityScheduleInstanceCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/privilegedaccessgroup-list-eligibilityscheduleinstances?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -103,7 +104,7 @@ class EligibilityScheduleInstancesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[EligibilityScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleInstance object.
+        Get a list of the privilegedAccessGroupEligibilityScheduleInstance objects and their properties. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +147,7 @@ class EligibilityScheduleInstancesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EligibilityScheduleInstancesRequestBuilder(raw_url, self.request_adapter)
+        return EligibilityScheduleInstancesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -160,7 +161,7 @@ class EligibilityScheduleInstancesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EligibilityScheduleInstancesRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleInstance object.
+        Get a list of the privilegedAccessGroupEligibilityScheduleInstance objects and their properties. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

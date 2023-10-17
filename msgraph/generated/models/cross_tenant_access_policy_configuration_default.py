@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .cross_tenant_access_policy_b2_b_setting import CrossTenantAccessPolicyB2BSetting
     from .cross_tenant_access_policy_inbound_trust import CrossTenantAccessPolicyInboundTrust
     from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
+    from .default_invitation_redemption_identity_provider_configuration import DefaultInvitationRedemptionIdentityProviderConfiguration
     from .entity import Entity
     from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
 
@@ -26,10 +27,12 @@ class CrossTenantAccessPolicyConfigurationDefault(Entity):
     b2b_direct_connect_outbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
     # Determines the default configuration for trusting other Conditional Access claims from external Azure AD organizations.
     inbound_trust: Optional[CrossTenantAccessPolicyInboundTrust] = None
+    # The invitationRedemptionIdentityProviderConfiguration property
+    invitation_redemption_identity_provider_configuration: Optional[DefaultInvitationRedemptionIdentityProviderConfiguration] = None
     # If true, the default configuration is set to the system default configuration. If false, the default settings have been customized.
     is_service_default: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Defines the default tenant restrictions configuration for your organization users accessing an external organization on your network or devices.
     tenant_restrictions: Optional[CrossTenantAccessPolicyTenantRestrictions] = None
     
@@ -52,12 +55,14 @@ class CrossTenantAccessPolicyConfigurationDefault(Entity):
         from .cross_tenant_access_policy_b2_b_setting import CrossTenantAccessPolicyB2BSetting
         from .cross_tenant_access_policy_inbound_trust import CrossTenantAccessPolicyInboundTrust
         from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
+        from .default_invitation_redemption_identity_provider_configuration import DefaultInvitationRedemptionIdentityProviderConfiguration
         from .entity import Entity
         from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
 
         from .cross_tenant_access_policy_b2_b_setting import CrossTenantAccessPolicyB2BSetting
         from .cross_tenant_access_policy_inbound_trust import CrossTenantAccessPolicyInboundTrust
         from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
+        from .default_invitation_redemption_identity_provider_configuration import DefaultInvitationRedemptionIdentityProviderConfiguration
         from .entity import Entity
         from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
 
@@ -68,6 +73,7 @@ class CrossTenantAccessPolicyConfigurationDefault(Entity):
             "b2bDirectConnectInbound": lambda n : setattr(self, 'b2b_direct_connect_inbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "b2bDirectConnectOutbound": lambda n : setattr(self, 'b2b_direct_connect_outbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "inboundTrust": lambda n : setattr(self, 'inbound_trust', n.get_object_value(CrossTenantAccessPolicyInboundTrust)),
+            "invitationRedemptionIdentityProviderConfiguration": lambda n : setattr(self, 'invitation_redemption_identity_provider_configuration', n.get_object_value(DefaultInvitationRedemptionIdentityProviderConfiguration)),
             "isServiceDefault": lambda n : setattr(self, 'is_service_default', n.get_bool_value()),
             "tenantRestrictions": lambda n : setattr(self, 'tenant_restrictions', n.get_object_value(CrossTenantAccessPolicyTenantRestrictions)),
         }
@@ -90,6 +96,7 @@ class CrossTenantAccessPolicyConfigurationDefault(Entity):
         writer.write_object_value("b2bDirectConnectInbound", self.b2b_direct_connect_inbound)
         writer.write_object_value("b2bDirectConnectOutbound", self.b2b_direct_connect_outbound)
         writer.write_object_value("inboundTrust", self.inbound_trust)
+        writer.write_object_value("invitationRedemptionIdentityProviderConfiguration", self.invitation_redemption_identity_provider_configuration)
         writer.write_bool_value("isServiceDefault", self.is_service_default)
         writer.write_object_value("tenantRestrictions", self.tenant_restrictions)
     

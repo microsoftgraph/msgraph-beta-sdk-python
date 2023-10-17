@@ -19,7 +19,7 @@ class IosCertificateProfileBase(IosCertificateProfile):
     iOS certificate profile base.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosCertificateProfileBase"
+    OdataType: Optional[str] = "#microsoft.graph.iosCertificateProfileBase"
     # Certificate Validity Period Options.
     certificate_validity_period_scale: Optional[CertificateValidityPeriodScale] = None
     # Value for the Certificate Validity Period.
@@ -77,7 +77,7 @@ class IosCertificateProfileBase(IosCertificateProfile):
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(SubjectAlternativeNameType)),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_collection_of_enum_values(SubjectAlternativeNameType)),
             "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(AppleSubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()

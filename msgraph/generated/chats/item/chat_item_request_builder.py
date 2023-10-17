@@ -41,9 +41,10 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ChatItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete entity from chats
+        Soft-delete a chat. When invoked with delegated permissions, this operation only works for tenant admins and Teams service admins. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/chat-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,7 +61,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ChatItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Chat]:
         """
-        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
+        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Chat]
         Find more info here: https://learn.microsoft.com/graph/api/chat-get?view=graph-rest-1.0
@@ -82,7 +83,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Chat] = None, request_configuration: Optional[ChatItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Chat]:
         """
-        Update the properties of a chat object.
+        Update the properties of a chat object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Chat]
@@ -107,7 +108,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ChatItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from chats
+        Soft-delete a chat. When invoked with delegated permissions, this operation only works for tenant admins and Teams service admins. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,7 +123,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ChatItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
+        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Chat] = None, request_configuration: Optional[ChatItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a chat object.
+        Update the properties of a chat object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -165,7 +166,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ChatItemRequestBuilder(raw_url, self.request_adapter)
+        return ChatItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def hide_for_user(self) -> HideForUserRequestBuilder:
@@ -297,7 +298,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChatItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
+        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

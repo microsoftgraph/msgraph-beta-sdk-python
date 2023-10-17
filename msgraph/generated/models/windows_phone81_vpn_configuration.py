@@ -16,7 +16,7 @@ class WindowsPhone81VpnConfiguration(Windows81VpnConfiguration):
     By providing the configurations in this profile you can instruct the Windows Phone 8.1 to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsPhone81VpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsPhone81VpnConfiguration"
     # VPN Authentication Method.
     authentication_method: Optional[VpnAuthenticationMethod] = None
     # Bypass VPN on company Wi-Fi.

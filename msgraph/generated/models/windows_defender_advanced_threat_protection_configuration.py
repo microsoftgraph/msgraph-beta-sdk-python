@@ -14,7 +14,7 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(DeviceConfiguration):
     Windows Defender AdvancedThreatProtection Configuration.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsDefenderAdvancedThreatProtectionConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsDefenderAdvancedThreatProtectionConfiguration"
     # Auto populate onboarding blob programmatically from Advanced Threat protection service
     advanced_threat_protection_auto_populate_onboarding_blob: Optional[bool] = None
     # Windows Defender AdvancedThreatProtection Offboarding Blob.

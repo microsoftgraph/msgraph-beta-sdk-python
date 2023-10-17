@@ -12,10 +12,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ......models.access_package import AccessPackage
     from ......models.o_data_errors.o_data_error import ODataError
+    from .access_packages_incompatible_with.access_packages_incompatible_with_request_builder import AccessPackagesIncompatibleWithRequestBuilder
     from .access_package_assignment_policies.access_package_assignment_policies_request_builder import AccessPackageAssignmentPoliciesRequestBuilder
     from .access_package_catalog.access_package_catalog_request_builder import AccessPackageCatalogRequestBuilder
     from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
-    from .access_packages_incompatible_with.access_packages_incompatible_with_request_builder import AccessPackagesIncompatibleWithRequestBuilder
     from .get_applicable_policy_requirements.get_applicable_policy_requirements_request_builder import GetApplicablePolicyRequirementsRequestBuilder
     from .incompatible_access_packages.incompatible_access_packages_request_builder import IncompatibleAccessPackagesRequestBuilder
     from .incompatible_groups.incompatible_groups_request_builder import IncompatibleGroupsRequestBuilder
@@ -158,7 +158,7 @@ class AccessPackageRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessPackageRequestBuilder(raw_url, self.request_adapter)
+        return AccessPackageRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def access_package_assignment_policies(self) -> AccessPackageAssignmentPoliciesRequestBuilder:

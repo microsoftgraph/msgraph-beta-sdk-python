@@ -14,7 +14,7 @@ class DirectorySetting(Entity):
     # Display name of this group of settings, which comes from the associated template. Read-only.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Unique identifier for the template used to create this group of settings. Read-only.
     template_id: Optional[str] = None
     # Collection of name-value pairs corresponding to the name and defaultValue properties in the referenced directorySettingTemplates object.

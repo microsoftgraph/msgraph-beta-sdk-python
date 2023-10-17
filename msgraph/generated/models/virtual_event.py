@@ -25,7 +25,7 @@ class VirtualEvent(Entity):
     # End time of the virtual event.
     end_date_time: Optional[DateTimeTimeZone] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Presenters' information of the virtual event.
     presenters: Optional[List[VirtualEventPresenter]] = None
     # Sessions of the virtual event.

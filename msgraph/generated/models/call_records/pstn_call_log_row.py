@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 @dataclass
 class PstnCallLogRow(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -57,9 +57,9 @@ class PstnCallLogRow(AdditionalDataHolder, BackedModel, Parsable):
     license_capability: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The telecommunications operator which provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.
+    # The telecommunications operator that provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.
     operator: Optional[str] = None
-    # Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
+    # Country code of the caller for an incoming call, or callee for an outgoing call. For details, see ISO 3166-1 alpha-2.
     other_party_country_code: Optional[str] = None
     # Call start time.
     start_date_time: Optional[datetime.datetime] = None

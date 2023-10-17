@@ -35,7 +35,7 @@ class PolicySet(Entity):
     # Last modified time of the PolicySet.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # RoleScopeTags of the PolicySet
     role_scope_tags: Optional[List[str]] = None
     # The enum to specify the status of PolicySet.

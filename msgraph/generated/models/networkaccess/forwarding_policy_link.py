@@ -11,7 +11,7 @@ from .policy_link import PolicyLink
 @dataclass
 class ForwardingPolicyLink(PolicyLink):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicyLink"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicyLink"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ForwardingPolicyLink:

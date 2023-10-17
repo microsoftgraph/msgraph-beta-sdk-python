@@ -43,7 +43,7 @@ class Incident(Entity):
     # Time when the incident was last updated.
     last_update_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The recommendedActions property
     recommended_actions: Optional[str] = None
     # The recommendedHuntingQueries property

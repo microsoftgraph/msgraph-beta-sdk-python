@@ -14,7 +14,7 @@ class DeviceHealthScriptStringParameter(DeviceHealthScriptParameter):
     Properties of the  String script parameter.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceHealthScriptStringParameter"
+    OdataType: Optional[str] = "#microsoft.graph.deviceHealthScriptStringParameter"
     # The default value of string param
     default_value: Optional[str] = None
     

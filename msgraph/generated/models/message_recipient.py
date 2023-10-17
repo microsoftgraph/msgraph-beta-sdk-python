@@ -17,7 +17,7 @@ class MessageRecipient(Entity):
     # The events property
     events: Optional[List[MessageEvent]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The recipientEmail property
     recipient_email: Optional[str] = None
     

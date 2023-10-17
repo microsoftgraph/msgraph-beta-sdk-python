@@ -24,7 +24,7 @@ class ItemActivityOLD(Entity):
     # The listItem property
     list_item: Optional[ListItem] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The times property
     times: Optional[ItemActivityTimeSet] = None
     

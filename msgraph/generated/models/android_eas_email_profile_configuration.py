@@ -21,7 +21,7 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration):
     By providing configurations in this profile you can instruct the native email client on KNOX devices to communicate with an Exchange server and get email, contacts, calendar, tasks, and notes. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidEasEmailProfileConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidEasEmailProfileConfiguration"
     # Exchange ActiveSync account name, displayed to users as name of EAS (this) profile.
     account_name: Optional[str] = None
     # Exchange Active Sync authentication method.

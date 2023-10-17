@@ -24,7 +24,7 @@ class UserCredentialUsageDetails(Entity):
     # Indicates success or failure of the workflow.
     is_success: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # User name of the user performing the reset or registration workflow.
     user_display_name: Optional[str] = None
     # User principal name of the user performing the reset or registration workflow.

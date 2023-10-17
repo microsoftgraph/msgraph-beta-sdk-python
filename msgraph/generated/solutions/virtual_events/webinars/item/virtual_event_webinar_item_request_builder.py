@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.virtual_event_webinar import VirtualEventWebinar
     from .presenters.presenters_request_builder import PresentersRequestBuilder
-    from .registration_configuration.registration_configuration_request_builder import RegistrationConfigurationRequestBuilder
     from .registrations.registrations_request_builder import RegistrationsRequestBuilder
+    from .registration_configuration.registration_configuration_request_builder import RegistrationConfigurationRequestBuilder
     from .sessions.sessions_request_builder import SessionsRequestBuilder
 
 class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
@@ -51,7 +51,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[VirtualEventWebinarItemRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventWebinar]:
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventWebinar]
         Find more info here: https://learn.microsoft.com/graph/api/virtualeventwebinar-get?view=graph-rest-1.0
@@ -112,7 +112,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[VirtualEventWebinarItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -155,7 +155,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return VirtualEventWebinarItemRequestBuilder(raw_url, self.request_adapter)
+        return VirtualEventWebinarItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def presenters(self) -> PresentersRequestBuilder:
@@ -206,7 +206,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class VirtualEventWebinarItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

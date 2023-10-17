@@ -35,7 +35,7 @@ class SecureScoreControlProfile(Entity):
     # Current obtained max score on specified date.
     max_score: Optional[float] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Microsoft's stack ranking of control.
     rank: Optional[int] = None
     # Description of what the control will help remediate.

@@ -10,12 +10,12 @@ from .device_management_configuration_setting_group_definition import DeviceMana
 
 @dataclass
 class DeviceManagementConfigurationSettingGroupCollectionDefinition(DeviceManagementConfigurationSettingGroupDefinition):
-    # Maximum number of setting group count in the collection. Valid values 1 to 100
+    # Maximum number of setting group count in the collection
     maximum_count: Optional[int] = None
-    # Minimum number of setting group count in the collection. Valid values 1 to 100
+    # Minimum number of setting group count in the collection
     minimum_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingGroupCollectionDefinition:

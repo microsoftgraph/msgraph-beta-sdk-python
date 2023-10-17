@@ -18,7 +18,7 @@ class DeviceManagementConfigurationSimpleSettingValue(DeviceManagementConfigurat
     Simple setting value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSimpleSettingValue"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSimpleSettingValue"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingValue:

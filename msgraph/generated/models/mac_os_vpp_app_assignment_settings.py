@@ -14,7 +14,7 @@ class MacOsVppAppAssignmentSettings(MobileAppAssignmentSettings):
     Contains properties used to assign an Mac VPP mobile app to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOsVppAppAssignmentSettings"
+    OdataType: Optional[str] = "#microsoft.graph.macOsVppAppAssignmentSettings"
     # When TRUE, indicates that the app should not be automatically updated with the latest version from Apple app store. When FALSE, indicates that the app may be auto updated. By default, this property is set to null which internally is treated as FALSE.
     prevent_auto_app_update: Optional[bool] = None
     # When TRUE, indicates that the app should not be backed up to iCloud. When FALSE, indicates that the app may be backed up to iCloud. By default, this property is set to null which internally is treated as FALSE.

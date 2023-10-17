@@ -14,8 +14,8 @@ class UnifiedRbacResourceNamespace(Entity):
     # Name of the resource namespace. Typically, the same name as the id property, such as microsoft.aad.b2c. Required. Supports $filter (eq, startsWith).
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
-    # Operations that an authorized principal are allowed to perform.
+    OdataType: Optional[str] = None
+    # Operations that an authorized principal is allowed to perform.
     resource_actions: Optional[List[UnifiedRbacResourceAction]] = None
     
     @staticmethod

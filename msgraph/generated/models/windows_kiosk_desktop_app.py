@@ -14,7 +14,7 @@ class WindowsKioskDesktopApp(WindowsKioskAppBase):
     The base class for a type of apps
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskDesktopApp"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskDesktopApp"
     # Define the DesktopApplicationID of the app
     desktop_application_id: Optional[str] = None
     # Define the DesktopApplicationLinkPath of the app

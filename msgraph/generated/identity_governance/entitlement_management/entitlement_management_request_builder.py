@@ -12,17 +12,17 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...models.entitlement_management import EntitlementManagement
     from ...models.o_data_errors.o_data_error import ODataError
+    from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
+    from .access_package_assignments.access_package_assignments_request_builder import AccessPackageAssignmentsRequestBuilder
     from .access_package_assignment_approvals.access_package_assignment_approvals_request_builder import AccessPackageAssignmentApprovalsRequestBuilder
     from .access_package_assignment_policies.access_package_assignment_policies_request_builder import AccessPackageAssignmentPoliciesRequestBuilder
     from .access_package_assignment_requests.access_package_assignment_requests_request_builder import AccessPackageAssignmentRequestsRequestBuilder
     from .access_package_assignment_resource_roles.access_package_assignment_resource_roles_request_builder import AccessPackageAssignmentResourceRolesRequestBuilder
-    from .access_package_assignments.access_package_assignments_request_builder import AccessPackageAssignmentsRequestBuilder
     from .access_package_catalogs.access_package_catalogs_request_builder import AccessPackageCatalogsRequestBuilder
+    from .access_package_resources.access_package_resources_request_builder import AccessPackageResourcesRequestBuilder
     from .access_package_resource_environments.access_package_resource_environments_request_builder import AccessPackageResourceEnvironmentsRequestBuilder
     from .access_package_resource_requests.access_package_resource_requests_request_builder import AccessPackageResourceRequestsRequestBuilder
     from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
-    from .access_package_resources.access_package_resources_request_builder import AccessPackageResourcesRequestBuilder
-    from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
     from .connected_organizations.connected_organizations_request_builder import ConnectedOrganizationsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .subjects.subjects_request_builder import SubjectsRequestBuilder
@@ -164,7 +164,7 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EntitlementManagementRequestBuilder(raw_url, self.request_adapter)
+        return EntitlementManagementRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def access_package_assignment_approvals(self) -> AccessPackageAssignmentApprovalsRequestBuilder:

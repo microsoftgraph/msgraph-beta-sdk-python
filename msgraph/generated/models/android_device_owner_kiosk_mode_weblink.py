@@ -14,7 +14,7 @@ class AndroidDeviceOwnerKioskModeWeblink(AndroidDeviceOwnerKioskModeFolderItem):
     A weblink on the Android Device Owner Managed Home Screen
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerKioskModeWeblink"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerKioskModeWeblink"
     # Display name for weblink
     label: Optional[str] = None
     # Link for weblink

@@ -46,7 +46,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerTaskCollectionResponse]:
         """
-        Retrieve a list of plannerTask objects associated to a plannerBucket object.
+        Retrieve a list of plannerTask objects associated to a plannerBucket object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerTaskCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0
@@ -92,7 +92,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of plannerTask objects associated to a plannerBucket object.
+        Retrieve a list of plannerTask objects associated to a plannerBucket object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TasksRequestBuilder(raw_url, self.request_adapter)
+        return TasksRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -158,7 +158,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of plannerTask objects associated to a plannerBucket object.
+        Retrieve a list of plannerTask objects associated to a plannerBucket object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

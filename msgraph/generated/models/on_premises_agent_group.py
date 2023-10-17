@@ -20,7 +20,7 @@ class OnPremisesAgentGroup(Entity):
     # Indicates if the onPremisesAgentGroup is the default agent group. Only a single agent group can be the default onPremisesAgentGroup and is set by the system.
     is_default: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of publishedResource that are assigned to an onPremisesAgentGroup. Read-only. Nullable.
     published_resources: Optional[List[PublishedResource]] = None
     # The publishingType property

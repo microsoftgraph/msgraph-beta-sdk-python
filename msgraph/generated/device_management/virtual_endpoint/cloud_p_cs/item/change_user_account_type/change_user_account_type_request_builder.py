@@ -28,7 +28,7 @@ class ChangeUserAccountTypeRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ChangeUserAccountTypePostRequestBody] = None, request_configuration: Optional[ChangeUserAccountTypeRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Change the account type of the user on a specific Cloud PC.
+        Change the account type of the user on a specific Cloud PC. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class ChangeUserAccountTypeRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ChangeUserAccountTypePostRequestBody] = None, request_configuration: Optional[ChangeUserAccountTypeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Change the account type of the user on a specific Cloud PC.
+        Change the account type of the user on a specific Cloud PC. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class ChangeUserAccountTypeRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ChangeUserAccountTypeRequestBuilder(raw_url, self.request_adapter)
+        return ChangeUserAccountTypeRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

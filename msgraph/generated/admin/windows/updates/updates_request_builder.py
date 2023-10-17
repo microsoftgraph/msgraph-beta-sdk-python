@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from ....models.admin_windows_updates import AdminWindowsUpdates
     from ....models.o_data_errors.o_data_error import ODataError
     from .catalog.catalog_request_builder import CatalogRequestBuilder
-    from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
     from .deployments.deployments_request_builder import DeploymentsRequestBuilder
+    from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
     from .resource_connections.resource_connections_request_builder import ResourceConnectionsRequestBuilder
     from .updatable_assets.updatable_assets_request_builder import UpdatableAssetsRequestBuilder
     from .update_policies.update_policies_request_builder import UpdatePoliciesRequestBuilder
@@ -156,7 +156,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpdatesRequestBuilder(raw_url, self.request_adapter)
+        return UpdatesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def catalog(self) -> CatalogRequestBuilder:

@@ -36,21 +36,21 @@ if TYPE_CHECKING:
 @dataclass
 class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The policy that contains directory-level access review settings.
     access_review_policy: Optional[AccessReviewPolicy] = None
-    # The policy that controls the idle time out for web sessions for applications.
+    # The policy that controls the idle time-out for web sessions for applications.
     activity_based_timeout_policies: Optional[List[ActivityBasedTimeoutPolicy]] = None
     # The policy by which consent requests are created and managed for the entire tenant.
     admin_consent_request_policy: Optional[AdminConsentRequestPolicy] = None
     # The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
     app_management_policies: Optional[List[AppManagementPolicy]] = None
-    # The policy configuration of the self-service sign-up experience of external users.
+    # The policy configuration of the self-service sign-up experience of guests.
     authentication_flows_policy: Optional[AuthenticationFlowsPolicy] = None
-    # The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
+    # The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Azure Active Directory (Azure AD).
     authentication_methods_policy: Optional[AuthenticationMethodsPolicy] = None
     # The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
     authentication_strength_policies: Optional[List[AuthenticationStrengthPolicy]] = None
@@ -70,7 +70,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
     device_registration_policy: Optional[DeviceRegistrationPolicy] = None
     # The directoryRoleAccessReviewPolicy property
     directory_role_access_review_policy: Optional[DirectoryRoleAccessReviewPolicy] = None
-    # Represents the tenant-wide policy that controls whether external users can leave an Azure AD tenant via self-service controls.
+    # Represents the tenant-wide policy that controls whether guests can leave an Azure AD tenant via self-service controls.
     external_identities_policy: Optional[ExternalIdentitiesPolicy] = None
     # The feature rollout policy associated with a directory object.
     feature_rollout_policies: Optional[List[FeatureRolloutPolicy]] = None
@@ -80,7 +80,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
     home_realm_discovery_policies: Optional[List[HomeRealmDiscoveryPolicy]] = None
     # The policy that represents the security defaults that protect against common attacks.
     identity_security_defaults_enforcement_policy: Optional[IdentitySecurityDefaultsEnforcementPolicy] = None
-    # The policy that defines auto-enrollment configuration for a mobility management (MDM or MAM) application.
+    # The policy that defines autoenrollment configuration for a mobility management (MDM or MAM) application.
     mobile_app_management_policies: Optional[List[MobilityManagementPolicy]] = None
     # The mobileDeviceManagementPolicies property
     mobile_device_management_policies: Optional[List[MobilityManagementPolicy]] = None

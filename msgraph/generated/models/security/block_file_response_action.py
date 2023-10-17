@@ -12,7 +12,7 @@ from .response_action import ResponseAction
 @dataclass
 class BlockFileResponseAction(ResponseAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.blockFileResponseAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.blockFileResponseAction"
     # The deviceGroupNames property
     device_group_names: Optional[List[str]] = None
     # The identifier property
@@ -42,7 +42,7 @@ class BlockFileResponseAction(ResponseAction):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "deviceGroupNames": lambda n : setattr(self, 'device_group_names', n.get_collection_of_primitive_values(str)),
-            "identifier": lambda n : setattr(self, 'identifier', n.get_enum_value(FileEntityIdentifier)),
+            "identifier": lambda n : setattr(self, 'identifier', n.get_collection_of_enum_values(FileEntityIdentifier)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

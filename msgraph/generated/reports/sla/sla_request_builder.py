@@ -151,7 +151,7 @@ class SlaRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SlaRequestBuilder(raw_url, self.request_adapter)
+        return SlaRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def azure_a_d_authentication(self) -> AzureADAuthenticationRequestBuilder:

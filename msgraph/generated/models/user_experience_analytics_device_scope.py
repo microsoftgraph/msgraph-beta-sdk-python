@@ -28,7 +28,7 @@ class UserExperienceAnalyticsDeviceScope(Entity):
     # Indicates the last updated date and time for the custom device scope.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Device scope configuration query operator. Possible values are: equals, notEquals, contains, notContains, greaterThan, lessThan. Default value: equals.
     operator: Optional[DeviceScopeOperator] = None
     # The unique identifier of the person (admin) who created the device scope configuration.

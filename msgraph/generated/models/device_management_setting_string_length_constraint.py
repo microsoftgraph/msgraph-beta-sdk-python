@@ -14,7 +14,7 @@ class DeviceManagementSettingStringLengthConstraint(DeviceManagementConstraint):
     Constraint enforcing a given string length range
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingStringLengthConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingStringLengthConstraint"
     # The maximum permitted string length
     maximum_length: Optional[int] = None
     # The minimum permitted string length

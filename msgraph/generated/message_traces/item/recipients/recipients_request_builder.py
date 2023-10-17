@@ -133,7 +133,7 @@ class RecipientsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RecipientsRequestBuilder(raw_url, self.request_adapter)
+        return RecipientsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

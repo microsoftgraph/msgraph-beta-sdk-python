@@ -14,7 +14,7 @@ from .label_action_base import LabelActionBase
 @dataclass
 class EncryptContent(LabelActionBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.encryptContent"
+    OdataType: Optional[str] = "#microsoft.graph.encryptContent"
     # The encryptWith property
     encrypt_with: Optional[EncryptWith] = None
     

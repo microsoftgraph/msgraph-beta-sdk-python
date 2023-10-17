@@ -7,11 +7,11 @@ if TYPE_CHECKING:
     from .eap_type import EapType
     from .network_single_sign_on_type import NetworkSingleSignOnType
     from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-    from .wi_fi_authentication_method import WiFiAuthenticationMethod
     from .wifi_authentication_type import WifiAuthenticationType
     from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
     from .windows_certificate_profile_base import WindowsCertificateProfileBase
     from .windows_wifi_configuration import WindowsWifiConfiguration
+    from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
 from .windows_wifi_configuration import WindowsWifiConfiguration
 
@@ -21,7 +21,7 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration):
     This entity provides descriptions of the declared methods, properties and relationships exposed by the Wifi CSP.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsWifiEnterpriseEAPConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsWifiEnterpriseEAPConfiguration"
     # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential.
     authentication_method: Optional[WiFiAuthenticationMethod] = None
     # Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
@@ -96,20 +96,20 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration):
         from .eap_type import EapType
         from .network_single_sign_on_type import NetworkSingleSignOnType
         from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
         from .wifi_authentication_type import WifiAuthenticationType
         from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
         from .windows_wifi_configuration import WindowsWifiConfiguration
+        from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
         from .eap_type import EapType
         from .network_single_sign_on_type import NetworkSingleSignOnType
         from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
         from .wifi_authentication_type import WifiAuthenticationType
         from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
         from .windows_wifi_configuration import WindowsWifiConfiguration
+        from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),

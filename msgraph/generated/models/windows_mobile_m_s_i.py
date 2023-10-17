@@ -14,7 +14,7 @@ class WindowsMobileMSI(MobileLobApp):
     Contains properties and inherited properties for Windows Mobile MSI Line Of Business apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsMobileMSI"
+    OdataType: Optional[str] = "#microsoft.graph.windowsMobileMSI"
     # The command line.
     command_line: Optional[str] = None
     # The identity version.

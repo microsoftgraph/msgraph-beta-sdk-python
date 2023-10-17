@@ -29,7 +29,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a reviewSetQuery object.
+        Delete a reviewSetQuery object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-reviewsetquery-delete?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ReviewSetQueryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ReviewSetQuery]:
         """
-        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
+        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReviewSetQuery]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-reviewsetquery-get?view=graph-rest-1.0
@@ -71,7 +71,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ReviewSetQuery] = None, request_configuration: Optional[ReviewSetQueryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ReviewSetQuery]:
         """
-        Update the properties of an eDiscovery reviewSetQuery.
+        Update the properties of an eDiscovery reviewSetQuery. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReviewSetQuery]
@@ -96,7 +96,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a reviewSetQuery object.
+        Delete a reviewSetQuery object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +111,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ReviewSetQueryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
+        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -128,7 +128,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ReviewSetQuery] = None, request_configuration: Optional[ReviewSetQueryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an eDiscovery reviewSetQuery.
+        Update the properties of an eDiscovery reviewSetQuery. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +154,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReviewSetQueryItemRequestBuilder(raw_url, self.request_adapter)
+        return ReviewSetQueryItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def microsoft_graph_ediscovery_apply_tags(self) -> MicrosoftGraphEdiscoveryApplyTagsRequestBuilder:
@@ -178,7 +178,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReviewSetQueryItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
+        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

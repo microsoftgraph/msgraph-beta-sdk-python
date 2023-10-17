@@ -17,7 +17,7 @@ class MeetingRegistrationBase(Entity):
     # Specifies who can register for the meeting.
     allowed_registrant: Optional[MeetingAudience] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Registrants of the online meeting.
     registrants: Optional[List[MeetingRegistrantBase]] = None
     

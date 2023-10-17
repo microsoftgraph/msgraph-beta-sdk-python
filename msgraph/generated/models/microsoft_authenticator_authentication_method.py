@@ -14,7 +14,7 @@ from .authentication_method import AuthenticationMethod
 @dataclass
 class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"
+    OdataType: Optional[str] = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"
     # The app that the user has registered to use to approve push notifications. The possible values are: microsoftAuthenticator, outlookMobile, unknownFutureValue.
     client_app_name: Optional[MicrosoftAuthenticatorAuthenticationMethodClientAppName] = None
     # The date and time that this app was registered. This property is null if the device is not registered for passwordless Phone Sign-In.

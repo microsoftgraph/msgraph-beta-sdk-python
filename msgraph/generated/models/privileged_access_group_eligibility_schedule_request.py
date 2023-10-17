@@ -15,7 +15,7 @@ from .privileged_access_schedule_request import PrivilegedAccessScheduleRequest
 @dataclass
 class PrivilegedAccessGroupEligibilityScheduleRequest(PrivilegedAccessScheduleRequest):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.privilegedAccessGroupEligibilityScheduleRequest"
+    OdataType: Optional[str] = "#microsoft.graph.privilegedAccessGroupEligibilityScheduleRequest"
     # The identifier of membership or ownership eligibility relationship to the group. Required. The possible values are: owner, member, unknownFutureValue.
     access_id: Optional[PrivilegedAccessGroupRelationships] = None
     # References the group that is the scope of the membership or ownership eligibility request through PIM for groups. Supports $expand.

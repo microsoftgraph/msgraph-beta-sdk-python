@@ -133,7 +133,7 @@ class EnterpriseAppsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EnterpriseAppsRequestBuilder(raw_url, self.request_adapter)
+        return EnterpriseAppsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

@@ -31,7 +31,7 @@ class DeviceManagementResourceAccessProfileBase(Entity):
     # DateTime profile was last modified
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Scope Tags
     role_scope_tag_ids: Optional[List[str]] = None
     # Version of the profile

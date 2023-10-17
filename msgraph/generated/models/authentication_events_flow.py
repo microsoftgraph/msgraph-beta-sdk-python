@@ -12,14 +12,14 @@ from .entity import Entity
 
 @dataclass
 class AuthenticationEventsFlow(Entity):
-    # The conditions representing the context of the authentication request which will be used to decide whether the events policy will be invoked.
+    # The conditions representing the context of the authentication request that will be used to decide whether the events policy will be invoked.
     conditions: Optional[AuthenticationConditions] = None
     # The description of the events policy.
     description: Optional[str] = None
     # Required. The display name for the events policy.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The priority to use for each individual event of the events policy. If multiple competing listeners for an event have the same priority, one is chosen and an error is silently logged. Defaults to 500.
     priority: Optional[int] = None
     

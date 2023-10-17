@@ -123,7 +123,7 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TeamworkRequestBuilder(raw_url, self.request_adapter)
+        return TeamworkRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def deleted_chats(self) -> DeletedChatsRequestBuilder:
@@ -162,15 +162,6 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         return SendActivityNotificationToRecipientsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def teams_app_settings(self) -> TeamsAppSettingsRequestBuilder:
-        """
-        Provides operations to manage the teamsAppSettings property of the microsoft.graph.teamwork entity.
-        """
-        from .teams_app_settings.teams_app_settings_request_builder import TeamsAppSettingsRequestBuilder
-
-        return TeamsAppSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def team_templates(self) -> TeamTemplatesRequestBuilder:
         """
         Provides operations to manage the teamTemplates property of the microsoft.graph.teamwork entity.
@@ -178,6 +169,15 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         from .team_templates.team_templates_request_builder import TeamTemplatesRequestBuilder
 
         return TeamTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def teams_app_settings(self) -> TeamsAppSettingsRequestBuilder:
+        """
+        Provides operations to manage the teamsAppSettings property of the microsoft.graph.teamwork entity.
+        """
+        from .teams_app_settings.teams_app_settings_request_builder import TeamsAppSettingsRequestBuilder
+
+        return TeamsAppSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def workforce_integrations(self) -> WorkforceIntegrationsRequestBuilder:

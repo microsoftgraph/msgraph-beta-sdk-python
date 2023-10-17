@@ -44,7 +44,7 @@ class DrivesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DrivesRequestBuilderGetRequestConfiguration] = None) -> Optional[DriveCollectionResponse]:
         """
-        Retrieve the list of Drive resources available for a target User, Group, or Site.
+        Retrieve the list of Drive resources available for a target User, Group, or Site. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/drive-list?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class DrivesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DrivesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of Drive resources available for a target User, Group, or Site.
+        Retrieve the list of Drive resources available for a target User, Group, or Site. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class DrivesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DrivesRequestBuilder(raw_url, self.request_adapter)
+        return DrivesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class DrivesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DrivesRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of Drive resources available for a target User, Group, or Site.
+        Retrieve the list of Drive resources available for a target User, Group, or Site. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -19,7 +19,7 @@ class RelyingPartyDetailedSummary(Entity):
     # Specifies all the validations check done on applications configuration details to evaluate if the application is ready to be moved to Azure AD.
     migration_validation_details: Optional[List[KeyValuePair]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # This identifier is used to identify the relying party to this Federation Service. It is used when issuing claims to the relying party.
     relying_party_id: Optional[str] = None
     # Name of application or other entity on the internet that uses an identity provider to authenticate a user who wants to log in.

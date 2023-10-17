@@ -15,9 +15,9 @@ if TYPE_CHECKING:
     from .associate_with_hub_sites.associate_with_hub_sites_request_builder import AssociateWithHubSitesRequestBuilder
     from .base.base_request_builder_ import BaseRequestBuilder_
     from .base_types.base_types_request_builder import BaseTypesRequestBuilder
+    from .columns.columns_request_builder import ColumnsRequestBuilder
     from .column_links.column_links_request_builder import ColumnLinksRequestBuilder
     from .column_positions.column_positions_request_builder import ColumnPositionsRequestBuilder
-    from .columns.columns_request_builder import ColumnsRequestBuilder
     from .copy_to_default_content_location.copy_to_default_content_location_request_builder import CopyToDefaultContentLocationRequestBuilder
     from .is_published.is_published_request_builder import IsPublishedRequestBuilder
     from .publish.publish_request_builder import PublishRequestBuilder
@@ -57,7 +57,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ContentTypeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ContentType]:
         """
-        Get contentTypes from drives
+        The collection of content types present in this list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContentType]
         """
@@ -117,7 +117,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ContentTypeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get contentTypes from drives
+        The collection of content types present in this list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +160,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ContentTypeItemRequestBuilder(raw_url, self.request_adapter)
+        return ContentTypeItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def associate_with_hub_sites(self) -> AssociateWithHubSitesRequestBuilder:
@@ -265,7 +265,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContentTypeItemRequestBuilderGetQueryParameters():
         """
-        Get contentTypes from drives
+        The collection of content types present in this list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

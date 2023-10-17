@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 @dataclass
 class MediaStream(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -23,7 +23,7 @@ class MediaStream(AdditionalDataHolder, BackedModel, Parsable):
     media_type: Optional[Modality] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates whether the media is muted by the server.
+    # Indicates whether the server has muted the media.
     server_muted: Optional[bool] = None
     # The source ID.
     source_id: Optional[str] = None

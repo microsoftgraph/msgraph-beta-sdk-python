@@ -44,7 +44,7 @@ class PassiveDnsReverseRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PassiveDnsReverseRequestBuilderGetRequestConfiguration] = None) -> Optional[PassiveDnsRecordCollectionResponse]:
         """
-        Get a list of passiveDnsRecord resources.
+        Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PassiveDnsRecordCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/security-host-list-passivednsreverse?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class PassiveDnsReverseRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PassiveDnsReverseRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of passiveDnsRecord resources.
+        Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class PassiveDnsReverseRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PassiveDnsReverseRequestBuilder(raw_url, self.request_adapter)
+        return PassiveDnsReverseRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class PassiveDnsReverseRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PassiveDnsReverseRequestBuilderGetQueryParameters():
         """
-        Get a list of passiveDnsRecord resources.
+        Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

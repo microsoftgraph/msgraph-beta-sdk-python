@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors.o_data_error import ODataError
     from ......models.on_premises_agent import OnPremisesAgent
     from ......models.on_premises_agent_collection_response import OnPremisesAgentCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.on_premises_agent_item_request_builder import OnPremisesAgentItemRequestBuilder
 
@@ -133,7 +133,7 @@ class AgentsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AgentsRequestBuilder(raw_url, self.request_adapter)
+        return AgentsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

@@ -11,7 +11,7 @@ from .rule_destination import RuleDestination
 @dataclass
 class IpAddress(RuleDestination):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.ipAddress"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.ipAddress"
     # Defines the IP address used in a destination for a rule.
     value: Optional[str] = None
     

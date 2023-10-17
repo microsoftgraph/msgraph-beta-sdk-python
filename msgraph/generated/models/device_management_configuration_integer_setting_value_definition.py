@@ -11,7 +11,7 @@ from .device_management_configuration_setting_value_definition import DeviceMana
 @dataclass
 class DeviceManagementConfigurationIntegerSettingValueDefinition(DeviceManagementConfigurationSettingValueDefinition):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueDefinition"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueDefinition"
     # Maximum allowed value of the integer
     maximum_value: Optional[int] = None
     # Minimum allowed value of the integer

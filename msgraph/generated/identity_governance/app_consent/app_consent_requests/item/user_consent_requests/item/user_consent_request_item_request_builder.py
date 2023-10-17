@@ -48,7 +48,7 @@ class UserConsentRequestItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UserConsentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserConsentRequest]:
         """
-        Read the properties and relationships of a userConsentRequest object.
+        Read the properties and relationships of a userConsentRequest object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserConsentRequest]
         Find more info here: https://learn.microsoft.com/graph/api/userconsentrequest-get?view=graph-rest-1.0
@@ -109,7 +109,7 @@ class UserConsentRequestItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UserConsentRequestItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a userConsentRequest object.
+        Read the properties and relationships of a userConsentRequest object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class UserConsentRequestItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UserConsentRequestItemRequestBuilder(raw_url, self.request_adapter)
+        return UserConsentRequestItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def approval(self) -> ApprovalRequestBuilder:
@@ -176,7 +176,7 @@ class UserConsentRequestItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserConsentRequestItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a userConsentRequest object.
+        Read the properties and relationships of a userConsentRequest object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

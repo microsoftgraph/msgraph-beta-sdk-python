@@ -45,7 +45,7 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AlertIncidentsRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertIncidentCollectionResponse]:
         """
-        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object:
+        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object: This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRoleManagementAlertIncidentCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/unifiedrolemanagementalert-list-alertincidents?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AlertIncidentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object:
+        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object: This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AlertIncidentsRequestBuilder(raw_url, self.request_adapter)
+        return AlertIncidentsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertIncidentsRequestBuilderGetQueryParameters():
         """
-        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object:
+        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object: This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

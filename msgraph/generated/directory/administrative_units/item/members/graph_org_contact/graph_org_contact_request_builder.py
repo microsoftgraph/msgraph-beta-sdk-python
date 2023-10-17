@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors.o_data_error import ODataError
     from ......models.org_contact_collection_response import OrgContactCollectionResponse
+    from ......models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
 
 class GraphOrgContactRequestBuilder(BaseRequestBuilder):
@@ -73,7 +73,7 @@ class GraphOrgContactRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GraphOrgContactRequestBuilder(raw_url, self.request_adapter)
+        return GraphOrgContactRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:

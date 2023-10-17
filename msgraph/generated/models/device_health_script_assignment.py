@@ -16,7 +16,7 @@ class DeviceHealthScriptAssignment(Entity):
     Contains properties used to assign a device management script to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Determine whether we want to run detection script only or run both detection script and remediation script
     run_remediation_script: Optional[bool] = None
     # Script run schedule for the target group

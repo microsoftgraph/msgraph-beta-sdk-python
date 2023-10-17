@@ -151,7 +151,7 @@ class BusinessFlowItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return BusinessFlowItemRequestBuilder(raw_url, self.request_adapter)
+        return BusinessFlowItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def record_decisions(self) -> RecordDecisionsRequestBuilder:

@@ -15,7 +15,7 @@ class PayloadCompatibleAssignmentFilter(DeviceAndAppManagementAssignmentFilter):
     A class containing the properties used for Payload Compatible Assignment Filter.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.payloadCompatibleAssignmentFilter"
+    OdataType: Optional[str] = "#microsoft.graph.payloadCompatibleAssignmentFilter"
     # Represents the payload type AssignmentFilter is being assigned to.
     payload_type: Optional[AssignmentFilterPayloadType] = None
     

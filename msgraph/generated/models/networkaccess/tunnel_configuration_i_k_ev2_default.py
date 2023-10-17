@@ -11,7 +11,7 @@ from .tunnel_configuration import TunnelConfiguration
 @dataclass
 class TunnelConfigurationIKEv2Default(TunnelConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Default"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Default"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TunnelConfigurationIKEv2Default:

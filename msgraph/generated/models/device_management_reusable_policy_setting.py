@@ -25,7 +25,7 @@ class DeviceManagementReusablePolicySetting(Entity):
     # date and time when reusable setting was last modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # configuration policies referencing the current reusable setting. This property is read-only.
     referencing_configuration_policies: Optional[List[DeviceManagementConfigurationPolicy]] = None
     # count of configuration policies referencing the current reusable setting. Valid values 0 to 2147483647. This property is read-only.

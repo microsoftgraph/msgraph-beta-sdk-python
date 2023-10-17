@@ -15,7 +15,7 @@ class AndroidForWorkCustomConfiguration(DeviceConfiguration):
     Android For Work custom configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidForWorkCustomConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidForWorkCustomConfiguration"
     # OMA settings. This collection can contain a maximum of 500 elements.
     oma_settings: Optional[List[OmaSetting]] = None
     

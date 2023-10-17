@@ -47,7 +47,7 @@ class ApprovalStepItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ApprovalStepItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ApprovalStep]:
         """
-        Retrieve the properties of an approvalStep object.
+        Retrieve the properties of an approvalStep object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApprovalStep]
         Find more info here: https://learn.microsoft.com/graph/api/approvalstep-get?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class ApprovalStepItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ApprovalStep] = None, request_configuration: Optional[ApprovalStepItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ApprovalStep]:
         """
-        Apply approve or deny decision on an approvalStep object.
+        Apply approve or deny decision on an approvalStep object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApprovalStep]
@@ -109,7 +109,7 @@ class ApprovalStepItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ApprovalStepItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of an approvalStep object.
+        Retrieve the properties of an approvalStep object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class ApprovalStepItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ApprovalStep] = None, request_configuration: Optional[ApprovalStepItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Apply approve or deny decision on an approvalStep object.
+        Apply approve or deny decision on an approvalStep object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class ApprovalStepItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ApprovalStepItemRequestBuilder(raw_url, self.request_adapter)
+        return ApprovalStepItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -167,7 +167,7 @@ class ApprovalStepItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApprovalStepItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of an approvalStep object.
+        Retrieve the properties of an approvalStep object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

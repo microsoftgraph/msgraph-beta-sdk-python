@@ -46,7 +46,7 @@ class AttachmentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[AttachmentCollectionResponse]:
         """
-        Retrieve a list of attachment objects attached to a post.
+        Retrieve a list of attachment objects attached to a post. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AttachmentCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/post-list-attachments?view=graph-rest-1.0
@@ -92,7 +92,7 @@ class AttachmentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of attachment objects attached to a post.
+        Retrieve a list of attachment objects attached to a post. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class AttachmentsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AttachmentsRequestBuilder(raw_url, self.request_adapter)
+        return AttachmentsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -158,7 +158,7 @@ class AttachmentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AttachmentsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of attachment objects attached to a post.
+        Retrieve a list of attachment objects attached to a post. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

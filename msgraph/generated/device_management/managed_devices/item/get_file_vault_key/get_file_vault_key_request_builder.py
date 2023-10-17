@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .get_file_vault_key_response import GetFileVaultKeyResponse
+    from .get_file_vault_key_get_response import GetFileVaultKeyGetResponse
 
 class GetFileVaultKeyRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetFileVaultKeyRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/getFileVaultKey()", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetFileVaultKeyRequestBuilderGetRequestConfiguration] = None) -> Optional[GetFileVaultKeyResponse]:
+    async def get(self,request_configuration: Optional[GetFileVaultKeyRequestBuilderGetRequestConfiguration] = None) -> Optional[GetFileVaultKeyGetResponse]:
         """
         Invoke function getFileVaultKey
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetFileVaultKeyResponse]
+        Returns: Optional[GetFileVaultKeyGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetFileVaultKeyRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_file_vault_key_response import GetFileVaultKeyResponse
+        from .get_file_vault_key_get_response import GetFileVaultKeyGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetFileVaultKeyResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetFileVaultKeyGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetFileVaultKeyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -71,7 +71,7 @@ class GetFileVaultKeyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetFileVaultKeyRequestBuilder(raw_url, self.request_adapter)
+        return GetFileVaultKeyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

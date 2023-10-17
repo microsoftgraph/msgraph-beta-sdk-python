@@ -30,7 +30,7 @@ class CustomSecurityAttributeAudit(Entity):
     # The loggedByService property
     logged_by_service: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The operationType property
     operation_type: Optional[str] = None
     # The result property

@@ -18,7 +18,7 @@ class PrivilegedRoleAssignmentRequest(Entity):
     # The duration property
     duration: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The reason property
     reason: Optional[str] = None
     # The requestedDateTime property

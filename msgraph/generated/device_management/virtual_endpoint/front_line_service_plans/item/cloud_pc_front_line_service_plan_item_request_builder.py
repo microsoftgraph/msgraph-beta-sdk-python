@@ -47,9 +47,10 @@ class CloudPcFrontLineServicePlanItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CloudPcFrontLineServicePlanItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcFrontLineServicePlan]:
         """
-        Get frontLineServicePlans from deviceManagement
+        Get the properties and relationships of a cloudPcFrontLineServicePlan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcFrontLineServicePlan]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcfrontlineserviceplan-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -107,7 +108,7 @@ class CloudPcFrontLineServicePlanItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcFrontLineServicePlanItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get frontLineServicePlans from deviceManagement
+        Get the properties and relationships of a cloudPcFrontLineServicePlan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -150,7 +151,7 @@ class CloudPcFrontLineServicePlanItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CloudPcFrontLineServicePlanItemRequestBuilder(raw_url, self.request_adapter)
+        return CloudPcFrontLineServicePlanItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -165,7 +166,7 @@ class CloudPcFrontLineServicePlanItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcFrontLineServicePlanItemRequestBuilderGetQueryParameters():
         """
-        Get frontLineServicePlans from deviceManagement
+        Get the properties and relationships of a cloudPcFrontLineServicePlan object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

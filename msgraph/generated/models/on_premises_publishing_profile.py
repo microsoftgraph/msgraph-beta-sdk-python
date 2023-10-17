@@ -31,7 +31,7 @@ class OnPremisesPublishingProfile(Entity):
     # Represents if Azure AD Application Proxy is enabled for the tenant.
     is_enabled: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of existing publishedResource objects. Read-only. Nullable.
     published_resources: Optional[List[PublishedResource]] = None
     

@@ -23,7 +23,7 @@ class ProgramControl(Entity):
     # The name of the control.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The user who created the program control.
     owner: Optional[UserIdentity] = None
     # The program this control is part of.

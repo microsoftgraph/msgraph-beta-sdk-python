@@ -41,7 +41,7 @@ class VppToken(Entity):
     # Token location returned from Apple VPP.
     location_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The organization associated with the Apple Volume Purchase Program Token
     organization_name: Optional[str] = None
     # Role Scope Tags IDs assigned to this entity.

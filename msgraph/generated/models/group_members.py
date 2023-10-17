@@ -11,7 +11,7 @@ from .user_set import UserSet
 @dataclass
 class GroupMembers(UserSet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupMembers"
+    OdataType: Optional[str] = "#microsoft.graph.groupMembers"
     # The name of the group in Azure AD. Read only.
     description: Optional[str] = None
     # The ID of the group in Azure AD.

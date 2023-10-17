@@ -27,7 +27,7 @@ class MobilityManagementPolicy(Entity):
     # Whether policy is valid. Invalid policies may not be updated and should be deleted.
     is_valid: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Terms of Use URL of the mobility management application.
     terms_of_use_url: Optional[str] = None
     

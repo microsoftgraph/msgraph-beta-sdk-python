@@ -33,7 +33,7 @@ class SecureScore(Entity):
     # Tenant maximum possible score on specified date.
     max_score: Optional[float] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The vendorInformation property
     vendor_information: Optional[SecurityVendorInformation] = None
     

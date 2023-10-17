@@ -13,16 +13,16 @@ if TYPE_CHECKING:
     from ..models.identity_container import IdentityContainer
     from ..models.o_data_errors.o_data_error import ODataError
     from .api_connectors.api_connectors_request_builder import ApiConnectorsRequestBuilder
-    from .authentication_event_listeners.authentication_event_listeners_request_builder import AuthenticationEventListenersRequestBuilder
     from .authentication_events_flows.authentication_events_flows_request_builder import AuthenticationEventsFlowsRequestBuilder
+    from .authentication_event_listeners.authentication_event_listeners_request_builder import AuthenticationEventListenersRequestBuilder
     from .b2c_user_flows.b2c_user_flows_request_builder import B2cUserFlowsRequestBuilder
     from .b2x_user_flows.b2x_user_flows_request_builder import B2xUserFlowsRequestBuilder
     from .conditional_access.conditional_access_request_builder import ConditionalAccessRequestBuilder
     from .continuous_access_evaluation_policy.continuous_access_evaluation_policy_request_builder import ContinuousAccessEvaluationPolicyRequestBuilder
     from .custom_authentication_extensions.custom_authentication_extensions_request_builder import CustomAuthenticationExtensionsRequestBuilder
     from .identity_providers.identity_providers_request_builder import IdentityProvidersRequestBuilder
-    from .user_flow_attributes.user_flow_attributes_request_builder import UserFlowAttributesRequestBuilder
     from .user_flows.user_flows_request_builder import UserFlowsRequestBuilder
+    from .user_flow_attributes.user_flow_attributes_request_builder import UserFlowAttributesRequestBuilder
 
 class IdentityRequestBuilder(BaseRequestBuilder):
     """
@@ -127,7 +127,7 @@ class IdentityRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IdentityRequestBuilder(raw_url, self.request_adapter)
+        return IdentityRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def api_connectors(self) -> ApiConnectorsRequestBuilder:

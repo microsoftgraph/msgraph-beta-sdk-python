@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .get_source_images_response import GetSourceImagesResponse
+    from .get_source_images_get_response import GetSourceImagesGetResponse
 
 class GetSourceImagesRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetSourceImagesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/deviceImages/getSourceImages(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetSourceImagesRequestBuilderGetRequestConfiguration] = None) -> Optional[GetSourceImagesResponse]:
+    async def get(self,request_configuration: Optional[GetSourceImagesRequestBuilderGetRequestConfiguration] = None) -> Optional[GetSourceImagesGetResponse]:
         """
         Invoke function getSourceImages
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetSourceImagesResponse]
+        Returns: Optional[GetSourceImagesGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetSourceImagesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_source_images_response import GetSourceImagesResponse
+        from .get_source_images_get_response import GetSourceImagesGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetSourceImagesResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetSourceImagesGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetSourceImagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class GetSourceImagesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetSourceImagesRequestBuilder(raw_url, self.request_adapter)
+        return GetSourceImagesRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetSourceImagesRequestBuilderGetQueryParameters():

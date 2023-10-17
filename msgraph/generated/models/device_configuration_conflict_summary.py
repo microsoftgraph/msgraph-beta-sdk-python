@@ -21,7 +21,7 @@ class DeviceConfigurationConflictSummary(Entity):
     # The count of checkins impacted by the conflicting policies and settings
     device_checkins_impacted: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceConfigurationConflictSummary:

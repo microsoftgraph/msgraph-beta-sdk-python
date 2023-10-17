@@ -18,7 +18,7 @@ class PrivilegedOperationEvent(Entity):
     # The expirationDateTime property
     expiration_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The referenceKey property
     reference_key: Optional[str] = None
     # The referenceSystem property

@@ -45,7 +45,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerRosterMemberCollectionResponse]:
         """
-        Get the list of plannerRosterMembers from a plannerRoster.
+        Get the list of plannerRosterMembers from a plannerRoster. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerRosterMemberCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/plannerroster-list-members?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PlannerRosterMember] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None) -> Optional[PlannerRosterMember]:
         """
-        Add a member to the plannerRoster object.
+        Add a member to the plannerRoster object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerRosterMember]
@@ -92,7 +92,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of plannerRosterMembers from a plannerRoster.
+        Get the list of plannerRosterMembers from a plannerRoster. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PlannerRosterMember] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add a member to the plannerRoster object.
+        Add a member to the plannerRoster object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MembersRequestBuilder(raw_url, self.request_adapter)
+        return MembersRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MembersRequestBuilderGetQueryParameters():
         """
-        Get the list of plannerRosterMembers from a plannerRoster.
+        Get the list of plannerRosterMembers from a plannerRoster. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

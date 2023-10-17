@@ -10,14 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors.o_data_error import ODataError
     from ......models.onenote import Onenote
+    from ......models.o_data_errors.o_data_error import ODataError
     from .notebooks.notebooks_request_builder import NotebooksRequestBuilder
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .pages.pages_request_builder import PagesRequestBuilder
     from .resources.resources_request_builder import ResourcesRequestBuilder
-    from .section_groups.section_groups_request_builder import SectionGroupsRequestBuilder
     from .sections.sections_request_builder import SectionsRequestBuilder
+    from .section_groups.section_groups_request_builder import SectionGroupsRequestBuilder
 
 class OnenoteRequestBuilder(BaseRequestBuilder):
     """
@@ -156,7 +156,7 @@ class OnenoteRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnenoteRequestBuilder(raw_url, self.request_adapter)
+        return OnenoteRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def notebooks(self) -> NotebooksRequestBuilder:

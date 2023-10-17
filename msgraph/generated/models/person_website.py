@@ -11,7 +11,7 @@ from .item_facet import ItemFacet
 @dataclass
 class PersonWebsite(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personWebsite"
+    OdataType: Optional[str] = "#microsoft.graph.personWebsite"
     # Contains categories a user has associated with the website (for example, personal, recipes).
     categories: Optional[List[str]] = None
     # Contains a description of the website.

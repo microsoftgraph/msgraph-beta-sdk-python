@@ -34,7 +34,7 @@ class Domain(Entity):
     # true if the domain has completed domain ownership verification. Not nullable
     is_verified: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Specifies the number of days before a user receives notification that their password will expire. If the property is not set, a default value of 14 days will be used.
     password_notification_window_in_days: Optional[int] = None
     # Specifies the length of time that a password is valid before it must be changed. If the property is not set, a default value of 90 days will be used.

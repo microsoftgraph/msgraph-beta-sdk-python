@@ -20,7 +20,7 @@ class AospDeviceOwnerEnterpriseWiFiConfiguration(AospDeviceOwnerWiFiConfiguratio
     By providing the configurations in this profile you can instruct the AOSP Device Owner device to connect to desired Wi-Fi endpoint. By specifying the authentication method and security types expected by Wi-Fi endpoint you can make the Wi-Fi connection seamless for end user.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.aospDeviceOwnerEnterpriseWiFiConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.aospDeviceOwnerEnterpriseWiFiConfiguration"
     # Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
     authentication_method: Optional[WiFiAuthenticationMethod] = None
     # Extensible Authentication Protocol (EAP) Configuration Types.

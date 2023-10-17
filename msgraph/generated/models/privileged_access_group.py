@@ -32,7 +32,7 @@ class PrivilegedAccessGroup(Entity):
     # The eligibility schedules to activate a just-in-time access.
     eligibility_schedules: Optional[List[PrivilegedAccessGroupEligibilitySchedule]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessGroup:

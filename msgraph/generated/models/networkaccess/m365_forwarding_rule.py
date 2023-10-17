@@ -13,10 +13,10 @@ from .forwarding_rule import ForwardingRule
 @dataclass
 class M365ForwardingRule(ForwardingRule):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.m365ForwardingRule"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.m365ForwardingRule"
     # The category property
     category: Optional[ForwardingCategory] = None
-    # The port(s) used by a forwarding rule for M365 traffic are specified to determine the specific network port(s) through which the Microsoft 365 traffic is directed and forwarded.
+    # The port(s) used by a forwarding rule for Microsoft 365 traffic are specified to determine the specific network port(s) through which the Microsoft 365 traffic is directed and forwarded.
     ports: Optional[List[str]] = None
     # The protocol property
     protocol: Optional[NetworkingProtocol] = None

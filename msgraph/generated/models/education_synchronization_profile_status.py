@@ -19,7 +19,7 @@ class EducationSynchronizationProfileStatus(Entity):
     # Date and time of the most recent successful synchronization.
     last_synchronization_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The status of a sync. The possible values are: paused, inProgress, success, error, validationError, quarantined, unknownFutureValue, extracting, validating. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: extracting, validating.
     status: Optional[EducationSynchronizationStatus] = None
     # Status message for the synchronization stage of the current profile.

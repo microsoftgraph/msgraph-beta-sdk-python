@@ -13,7 +13,7 @@ from .item_facet import ItemFacet
 @dataclass
 class ItemAddress(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.itemAddress"
+    OdataType: Optional[str] = "#microsoft.graph.itemAddress"
     # The detail property
     detail: Optional[PhysicalAddress] = None
     # Friendly name the user has assigned to this address.

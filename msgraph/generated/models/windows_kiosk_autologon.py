@@ -14,7 +14,7 @@ class WindowsKioskAutologon(WindowsKioskUser):
     The class used to identify an autologon kiosk configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskAutologon"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskAutologon"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskAutologon:

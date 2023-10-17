@@ -28,7 +28,7 @@ class DeviceManagementExchangeOnPremisesPolicy(Entity):
     # Notification text that will be sent to users quarantined by this policy. This is UTF8 encoded byte array HTML.
     notification_content: Optional[bytes] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementExchangeOnPremisesPolicy:

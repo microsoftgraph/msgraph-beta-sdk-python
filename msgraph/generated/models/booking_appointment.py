@@ -63,7 +63,7 @@ class BookingAppointment(Entity):
     # The maximum number of customers allowed in an appointment. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.
     maximum_attendees_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The onlineMeetingUrl property
     online_meeting_url: Optional[str] = None
     # True indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.

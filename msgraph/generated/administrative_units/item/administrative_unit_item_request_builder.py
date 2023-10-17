@@ -36,7 +36,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an administrativeUnit.
+        Delete an administrativeUnit. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/administrativeunit-delete?view=graph-rest-1.0
@@ -56,7 +56,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AdministrativeUnitItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AdministrativeUnit]:
         """
-        Retrieve the properties and relationships of an administrativeUnit object. Since the administrativeUnit resource supports extensions, you can also use the GET operation to get custom properties and extension data in an administrativeUnit instance.
+        Retrieve the properties and relationships of an administrativeUnit object. Since the administrativeUnit resource supports extensions, you can also use the GET operation to get custom properties and extension data in an administrativeUnit instance. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdministrativeUnit]
         Find more info here: https://learn.microsoft.com/graph/api/administrativeunit-get?view=graph-rest-1.0
@@ -78,7 +78,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AdministrativeUnit] = None, request_configuration: Optional[AdministrativeUnitItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AdministrativeUnit]:
         """
-        Update the properties of an administrativeUnit object.
+        Update the properties of an administrativeUnit object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdministrativeUnit]
@@ -103,7 +103,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[AdministrativeUnitItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an administrativeUnit.
+        Delete an administrativeUnit. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +118,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AdministrativeUnitItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an administrativeUnit object. Since the administrativeUnit resource supports extensions, you can also use the GET operation to get custom properties and extension data in an administrativeUnit instance.
+        Retrieve the properties and relationships of an administrativeUnit object. Since the administrativeUnit resource supports extensions, you can also use the GET operation to get custom properties and extension data in an administrativeUnit instance. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[AdministrativeUnit] = None, request_configuration: Optional[AdministrativeUnitItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an administrativeUnit object.
+        Update the properties of an administrativeUnit object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -161,7 +161,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AdministrativeUnitItemRequestBuilder(raw_url, self.request_adapter)
+        return AdministrativeUnitItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def check_member_groups(self) -> CheckMemberGroupsRequestBuilder:
@@ -248,7 +248,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AdministrativeUnitItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an administrativeUnit object. Since the administrativeUnit resource supports extensions, you can also use the GET operation to get custom properties and extension data in an administrativeUnit instance.
+        Retrieve the properties and relationships of an administrativeUnit object. Since the administrativeUnit resource supports extensions, you can also use the GET operation to get custom properties and extension data in an administrativeUnit instance. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

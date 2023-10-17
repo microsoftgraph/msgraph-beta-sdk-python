@@ -15,7 +15,7 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandw
     Bandwidth limit as a percentage with business hours.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deliveryOptimizationBandwidthHoursWithPercentage"
+    OdataType: Optional[str] = "#microsoft.graph.deliveryOptimizationBandwidthHoursWithPercentage"
     # Background download percentage hours.
     bandwidth_background_percentage_hours: Optional[DeliveryOptimizationBandwidthBusinessHoursLimit] = None
     # Foreground download percentage hours.

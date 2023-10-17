@@ -27,7 +27,7 @@ class MicrosoftTunnelSite(Entity):
     # A list of MicrosoftTunnelServers that are registered to this MicrosoftTunnelSite
     microsoft_tunnel_servers: Optional[List[MicrosoftTunnelServer]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The site's public domain name or IP address
     public_address: Optional[str] = None
     # List of Scope Tags for this Entity instance

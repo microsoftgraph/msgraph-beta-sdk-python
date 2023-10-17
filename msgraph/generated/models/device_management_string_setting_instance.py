@@ -14,7 +14,7 @@ class DeviceManagementStringSettingInstance(DeviceManagementSettingInstance):
     A setting instance representing a string value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementStringSettingInstance"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementStringSettingInstance"
     # The string value
     value: Optional[str] = None
     

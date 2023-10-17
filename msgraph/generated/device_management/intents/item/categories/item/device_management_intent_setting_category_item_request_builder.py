@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ......models.device_management_intent_setting_category import DeviceManagementIntentSettingCategory
     from ......models.o_data_errors.o_data_error import ODataError
-    from .setting_definitions.setting_definitions_request_builder import SettingDefinitionsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
+    from .setting_definitions.setting_definitions_request_builder import SettingDefinitionsRequestBuilder
 
 class DeviceManagementIntentSettingCategoryItemRequestBuilder(BaseRequestBuilder):
     """
@@ -152,7 +152,7 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder(BaseRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementIntentSettingCategoryItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementIntentSettingCategoryItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def setting_definitions(self) -> SettingDefinitionsRequestBuilder:

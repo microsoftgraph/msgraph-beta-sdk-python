@@ -14,7 +14,7 @@ class AzureADWindowsAutopilotDeploymentProfile(WindowsAutopilotDeploymentProfile
     Windows Autopilot Deployment Profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile"
+    OdataType: Optional[str] = "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureADWindowsAutopilotDeploymentProfile:

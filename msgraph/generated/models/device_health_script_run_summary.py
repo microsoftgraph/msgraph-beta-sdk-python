@@ -33,7 +33,7 @@ class DeviceHealthScriptRunSummary(Entity):
     # Number of devices for which the detection script did not find an issue and the device is healthy
     no_issue_detected_device_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Number of devices for which the remediation script execution encountered an error and did not complete
     remediation_script_error_device_count: Optional[int] = None
     # Number of devices for which remediation was skipped

@@ -41,7 +41,7 @@ class DeviceShellScript(Entity):
     # The date and time the device management script was last modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Number of times for the script to be retried if it fails
     retry_count: Optional[int] = None
     # List of Scope Tag IDs for this PowerShellScript instance.

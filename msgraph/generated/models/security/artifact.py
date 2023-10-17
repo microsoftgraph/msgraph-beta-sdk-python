@@ -6,9 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .host import Host
+    from .hostname import Hostname
     from .host_component import HostComponent
     from .host_cookie import HostCookie
-    from .hostname import Hostname
     from .host_ssl_certificate import HostSslCertificate
     from .host_tracker import HostTracker
     from .ip_address import IpAddress
@@ -21,7 +21,7 @@ from ..entity import Entity
 @dataclass
 class Artifact(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Artifact:
@@ -85,9 +85,9 @@ class Artifact(Entity):
         """
         from ..entity import Entity
         from .host import Host
+        from .hostname import Hostname
         from .host_component import HostComponent
         from .host_cookie import HostCookie
-        from .hostname import Hostname
         from .host_ssl_certificate import HostSslCertificate
         from .host_tracker import HostTracker
         from .ip_address import IpAddress
@@ -97,9 +97,9 @@ class Artifact(Entity):
 
         from ..entity import Entity
         from .host import Host
+        from .hostname import Hostname
         from .host_component import HostComponent
         from .host_cookie import HostCookie
-        from .hostname import Hostname
         from .host_ssl_certificate import HostSslCertificate
         from .host_tracker import HostTracker
         from .ip_address import IpAddress

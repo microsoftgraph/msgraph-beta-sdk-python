@@ -11,13 +11,13 @@ if TYPE_CHECKING:
 @dataclass
 class FollowupFlag(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The date and time that the follow-up was finished.
     completed_date_time: Optional[DateTimeTimeZone] = None
-    # The date and time that the follow up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you will get a 400 Bad Request response.
+    # The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.
     due_date_time: Optional[DateTimeTimeZone] = None
     # The status for follow-up for an item. Possible values are notFlagged, complete, and flagged.
     flag_status: Optional[FollowupFlagStatus] = None

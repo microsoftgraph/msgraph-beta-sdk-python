@@ -14,7 +14,7 @@ from .label_action_base import LabelActionBase
 @dataclass
 class ProtectOnlineMeetingAction(LabelActionBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.protectOnlineMeetingAction"
+    OdataType: Optional[str] = "#microsoft.graph.protectOnlineMeetingAction"
     # The allowedForwarders property
     allowed_forwarders: Optional[OnlineMeetingForwarders] = None
     # The allowedPresenters property

@@ -11,8 +11,8 @@ from .service_provisioning_error import ServiceProvisioningError
 @dataclass
 class ServiceProvisioningXmlError(ServiceProvisioningError):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.serviceProvisioningXmlError"
-    # Error Information published by the Federated Service as an xml string .
+    OdataType: Optional[str] = "#microsoft.graph.serviceProvisioningXmlError"
+    # Error Information published by the Federated Service as an xml string.
     error_detail: Optional[str] = None
     
     @staticmethod

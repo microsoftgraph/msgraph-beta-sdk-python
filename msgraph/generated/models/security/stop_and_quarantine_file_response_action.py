@@ -12,7 +12,7 @@ from .response_action import ResponseAction
 @dataclass
 class StopAndQuarantineFileResponseAction(ResponseAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.stopAndQuarantineFileResponseAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.stopAndQuarantineFileResponseAction"
     # The identifier property
     identifier: Optional[StopAndQuarantineFileEntityIdentifier] = None
     
@@ -39,7 +39,7 @@ class StopAndQuarantineFileResponseAction(ResponseAction):
         from .stop_and_quarantine_file_entity_identifier import StopAndQuarantineFileEntityIdentifier
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "identifier": lambda n : setattr(self, 'identifier', n.get_enum_value(StopAndQuarantineFileEntityIdentifier)),
+            "identifier": lambda n : setattr(self, 'identifier', n.get_collection_of_enum_values(StopAndQuarantineFileEntityIdentifier)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

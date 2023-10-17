@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class SkillProficiency(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.skillProficiency"
+    OdataType: Optional[str] = "#microsoft.graph.skillProficiency"
     # Contains categories a user has associated with the skill (for example, personal, professional, hobby).
     categories: Optional[List[str]] = None
     # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.

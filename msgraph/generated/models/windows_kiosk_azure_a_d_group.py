@@ -14,7 +14,7 @@ class WindowsKioskAzureADGroup(WindowsKioskUser):
     The class used to identify an AzureAD group for the kiosk configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskAzureADGroup"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskAzureADGroup"
     # The display name of the AzureAD group that will be locked to this kiosk configuration
     display_name: Optional[str] = None
     # The ID of the AzureAD group that will be locked to this kiosk configuration

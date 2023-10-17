@@ -23,7 +23,7 @@ class OutlookTaskFolder(Entity):
     # The name of the task folder.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The unique GUID identifier for the task folder's parent group.
     parent_group_key: Optional[UUID] = None
     # The collection of single-value extended properties defined for the task folder. Read-only. Nullable.

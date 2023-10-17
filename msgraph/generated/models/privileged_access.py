@@ -18,14 +18,14 @@ class PrivilegedAccess(Entity):
     # The display name of the provider managed by PIM.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A collection of resources for the provider.
     resources: Optional[List[GovernanceResource]] = None
     # A collection of role assignment requests for the provider.
     role_assignment_requests: Optional[List[GovernanceRoleAssignmentRequest]] = None
     # A collection of role assignments for the provider.
     role_assignments: Optional[List[GovernanceRoleAssignment]] = None
-    # A collection of role defintions for the provider.
+    # A collection of role definitions for the provider.
     role_definitions: Optional[List[GovernanceRoleDefinition]] = None
     # A collection of role settings for the provider.
     role_settings: Optional[List[GovernanceRoleSetting]] = None

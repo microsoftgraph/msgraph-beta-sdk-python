@@ -12,7 +12,7 @@ from .updatable_asset_enrollment import UpdatableAssetEnrollment
 @dataclass
 class UpdateManagementEnrollment(UpdatableAssetEnrollment):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.updateManagementEnrollment"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.updateManagementEnrollment"
     # The updateCategory property
     update_category: Optional[UpdateCategory] = None
     

@@ -25,7 +25,7 @@ class MacOSSoftwareUpdateCategorySummary(Entity):
     # Last date time the report for this device was updated.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Number of successful updates on the device
     successful_update_count: Optional[int] = None
     # Number of total updates on the device

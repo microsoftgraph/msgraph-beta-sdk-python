@@ -15,7 +15,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyAssignment(Entity):
     A class containing the properties used for assignment of a WindowsDefenderApplicationControl supplemental policy to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The target group assignment defined by the admin.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

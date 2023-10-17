@@ -8,8 +8,8 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .fido2_authentication_method import Fido2AuthenticationMethod
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
-    from .password_authentication_method import PasswordAuthenticationMethod
     from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+    from .password_authentication_method import PasswordAuthenticationMethod
     from .phone_authentication_method import PhoneAuthenticationMethod
     from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
     from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
@@ -20,7 +20,7 @@ from .entity import Entity
 @dataclass
 class AuthenticationMethod(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationMethod:
@@ -82,8 +82,8 @@ class AuthenticationMethod(Entity):
         from .entity import Entity
         from .fido2_authentication_method import Fido2AuthenticationMethod
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
-        from .password_authentication_method import PasswordAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+        from .password_authentication_method import PasswordAuthenticationMethod
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
         from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
@@ -93,8 +93,8 @@ class AuthenticationMethod(Entity):
         from .entity import Entity
         from .fido2_authentication_method import Fido2AuthenticationMethod
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
-        from .password_authentication_method import PasswordAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+        from .password_authentication_method import PasswordAuthenticationMethod
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
         from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod

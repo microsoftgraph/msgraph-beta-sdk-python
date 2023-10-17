@@ -72,7 +72,7 @@ class DefinitionValueRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DefinitionValueRequestBuilder(raw_url, self.request_adapter)
+        return DefinitionValueRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DefinitionValueRequestBuilderGetQueryParameters():

@@ -14,7 +14,7 @@ class WindowsKioskLocalUser(WindowsKioskUser):
     The class used to identify a local account for the kiosk configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskLocalUser"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskLocalUser"
     # The local user that will be locked to this kiosk configuration
     user_name: Optional[str] = None
     

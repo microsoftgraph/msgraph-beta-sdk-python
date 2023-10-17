@@ -13,7 +13,7 @@ class DispositionReviewStage(Entity):
     # Name representing each stage within a collection.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A collection of reviewers at each stage.
     reviewers_email_addresses: Optional[List[str]] = None
     # The sequence number for each stage of the disposition review.

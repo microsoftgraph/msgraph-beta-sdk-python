@@ -44,7 +44,7 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[NoncustodialDataSourceCollectionResponse]:
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        Get a list of noncustodialDataSource associated with a sourceCollection. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NoncustodialDataSourceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-list-noncustodialsources?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        Get a list of noncustodialDataSource associated with a sourceCollection. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -89,7 +89,7 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return NoncustodialSourcesRequestBuilder(raw_url, self.request_adapter)
+        return NoncustodialSourcesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class NoncustodialSourcesRequestBuilderGetQueryParameters():
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        Get a list of noncustodialDataSource associated with a sourceCollection. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

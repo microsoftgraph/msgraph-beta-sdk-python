@@ -14,7 +14,7 @@ class DeviceConfigurationPolicySetItem(PolicySetItem):
     A class containing the properties used for device configuration PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceConfigurationPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.deviceConfigurationPolicySetItem"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceConfigurationPolicySetItem:

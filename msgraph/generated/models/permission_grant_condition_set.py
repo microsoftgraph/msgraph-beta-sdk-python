@@ -22,7 +22,7 @@ class PermissionGrantConditionSet(Entity):
     # Set to true to only match on client applications with a verified publisher. Set to false to match on any client app, even if it does not have a verified publisher. Default is false.
     client_applications_from_verified_publisher_only: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The permission classification for the permission being granted, or all to match with any permission classification (including permissions which are not classified). Default is all.
     permission_classification: Optional[str] = None
     # The permission type of the permission being granted. Possible values: application for application permissions (e.g. app roles), or delegated for delegated permissions. The value delegatedUserConsentable indicates delegated permissions which have not been configured by the API publisher to require admin consent—this value may be used in built-in permission grant policies, but cannot be used in custom permission grant policies. Required.

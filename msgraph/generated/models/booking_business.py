@@ -22,7 +22,7 @@ class BookingBusiness(BookingNamedEntity):
     Represents a Microsot Bookings Business.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.bookingBusiness"
+    OdataType: Optional[str] = "#microsoft.graph.bookingBusiness"
     # The street address of the business. The address property, together with phone and webSiteUrl, appear in the footer of a business scheduling page.
     address: Optional[PhysicalAddress] = None
     # All the appointments of this business. Read-only. Nullable.

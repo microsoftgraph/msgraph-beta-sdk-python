@@ -14,7 +14,7 @@ class UnifiedRoleEligibilitySchedule(UnifiedRoleScheduleBase):
     # Membership type of the eligible assignment. It can either be Inherited, Direct, or Group. Supports $filter (eq).
     member_type: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The schedule object of the eligible role assignment request.
     schedule_info: Optional[RequestSchedule] = None
     

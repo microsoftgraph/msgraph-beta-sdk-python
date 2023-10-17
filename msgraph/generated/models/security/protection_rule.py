@@ -25,7 +25,7 @@ class ProtectionRule(Entity):
     # The lastModifiedDateTime property
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectionRule:

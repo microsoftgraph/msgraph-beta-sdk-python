@@ -16,7 +16,7 @@ class Synchronization(Entity):
     # Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
     jobs: Optional[List[SynchronizationJob]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents a collection of credentials to access provisioned cloud applications.
     secrets: Optional[List[SynchronizationSecretKeyStringValuePair]] = None
     # Pre-configured synchronization settings for a particular application.

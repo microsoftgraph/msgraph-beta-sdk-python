@@ -14,7 +14,7 @@ class Windows81VpnProxyServer(VpnProxyServer):
     VPN Proxy Server.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows81VpnProxyServer"
+    OdataType: Optional[str] = "#microsoft.graph.windows81VpnProxyServer"
     # Automatically detect proxy settings.
     automatically_detect_proxy_settings: Optional[bool] = None
     # Bypass proxy server for local address.

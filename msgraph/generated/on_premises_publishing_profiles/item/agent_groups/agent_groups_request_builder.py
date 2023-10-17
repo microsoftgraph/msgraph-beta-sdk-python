@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.o_data_errors.o_data_error import ODataError
     from ....models.on_premises_agent_group import OnPremisesAgentGroup
     from ....models.on_premises_agent_group_collection_response import OnPremisesAgentGroupCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.on_premises_agent_group_item_request_builder import OnPremisesAgentGroupItemRequestBuilder
 
@@ -45,7 +45,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AgentGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[OnPremisesAgentGroupCollectionResponse]:
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        Retrieve a list of onPremisesAgentGroup objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentGroupCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/onpremisesagentgroup-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[AgentGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[OnPremisesAgentGroup]:
         """
-        Create a new onPremisesAgentGroup object.
+        Create a new onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentGroup]
@@ -92,7 +92,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AgentGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        Retrieve a list of onPremisesAgentGroup objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[AgentGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new onPremisesAgentGroup object.
+        Create a new onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AgentGroupsRequestBuilder(raw_url, self.request_adapter)
+        return AgentGroupsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AgentGroupsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        Retrieve a list of onPremisesAgentGroup objects. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

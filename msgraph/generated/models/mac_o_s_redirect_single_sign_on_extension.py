@@ -15,7 +15,7 @@ class MacOSRedirectSingleSignOnExtension(MacOSSingleSignOnExtension):
     Represents a Redirect-type Single Sign-On extension profile for macOS devices.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSRedirectSingleSignOnExtension"
+    OdataType: Optional[str] = "#microsoft.graph.macOSRedirectSingleSignOnExtension"
     # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
     configurations: Optional[List[KeyTypedValuePair]] = None
     # Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.

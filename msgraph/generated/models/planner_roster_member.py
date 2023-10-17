@@ -11,7 +11,7 @@ from .entity import Entity
 @dataclass
 class PlannerRosterMember(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Additional roles associated with the PlannerRosterMember, which determines permissions of the member in the plannerRoster. Currently there are no available roles to assign, and every member has full control over the contents of the plannerRoster.
     roles: Optional[List[str]] = None
     # Identifier of the tenant the user belongs to. Currently only the users from the same tenant can be added to a plannerRoster.

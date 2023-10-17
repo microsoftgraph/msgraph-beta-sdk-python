@@ -12,7 +12,7 @@ from .segment_configuration import SegmentConfiguration
 @dataclass
 class WebSegmentConfiguration(SegmentConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.webSegmentConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.webSegmentConfiguration"
     # The applicationSegments property
     application_segments: Optional[List[WebApplicationSegment]] = None
     

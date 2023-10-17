@@ -45,7 +45,7 @@ class NamesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[NamesRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonNameCollectionResponse]:
         """
-        Retrieve a list of personName objects from a user's profile.
+        Retrieve a list of personName objects from a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonNameCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/profile-list-names?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class NamesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PersonName] = None, request_configuration: Optional[NamesRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonName]:
         """
-        Use this API to create a new personName object in a user's profile.
+        Use this API to create a new personName object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonName]
@@ -92,7 +92,7 @@ class NamesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[NamesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personName objects from a user's profile.
+        Retrieve a list of personName objects from a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class NamesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PersonName] = None, request_configuration: Optional[NamesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new personName object in a user's profile.
+        Use this API to create a new personName object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class NamesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return NamesRequestBuilder(raw_url, self.request_adapter)
+        return NamesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class NamesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class NamesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personName objects from a user's profile.
+        Retrieve a list of personName objects from a user's profile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

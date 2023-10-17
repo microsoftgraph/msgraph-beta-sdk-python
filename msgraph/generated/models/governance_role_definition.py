@@ -17,7 +17,7 @@ class GovernanceRoleDefinition(Entity):
     # The external id of the role definition.
     external_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Read-only. The associated resource for the role definition.
     resource: Optional[GovernanceResource] = None
     # Required. The id of the resource associated with the role definition.

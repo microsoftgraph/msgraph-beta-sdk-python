@@ -34,7 +34,7 @@ class UserExperienceAnalyticsAnomalyDevice(Entity):
     # Indicates the status of the device in the correlation group. Eg: Device status can be anomalous, affected, at risk.
     device_status: Optional[UserExperienceAnalyticsDeviceStatus] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The name of the OS installed on the device.
     os_name: Optional[str] = None
     # The OS version installed on the device.

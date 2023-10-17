@@ -11,7 +11,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class RemoveWatermarkAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.removeWatermarkAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.removeWatermarkAction"
     # The name of the UI element of watermark to be removed.
     ui_element_names: Optional[List[str]] = None
     

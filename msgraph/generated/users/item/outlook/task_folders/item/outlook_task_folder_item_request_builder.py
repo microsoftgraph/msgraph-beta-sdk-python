@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.o_data_errors.o_data_error import ODataError
     from ......models.outlook_task_folder import OutlookTaskFolder
+    from ......models.o_data_errors.o_data_error import ODataError
     from .tasks.tasks_request_builder import TasksRequestBuilder
 
 class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
@@ -29,7 +29,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[OutlookTaskFolderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete the specified Outlook task folder.
+        Delete the specified Outlook task folder. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/outlooktaskfolder-delete?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OutlookTaskFolderItemRequestBuilderGetRequestConfiguration] = None) -> Optional[OutlookTaskFolder]:
         """
-        Get the properties and relationships of the specified Outlook task folder.
+        Get the properties and relationships of the specified Outlook task folder. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolder]
         Find more info here: https://learn.microsoft.com/graph/api/outlooktaskfolder-get?view=graph-rest-1.0
@@ -71,7 +71,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[OutlookTaskFolderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[OutlookTaskFolder]:
         """
-        Update the writable properties of an Outlook task folder. You cannot change the name property value of the default task folder, 'Tasks'.
+        Update the writable properties of an Outlook task folder. You cannot change the name property value of the default task folder, 'Tasks'. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolder]
@@ -96,7 +96,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[OutlookTaskFolderItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the specified Outlook task folder.
+        Delete the specified Outlook task folder. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +111,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OutlookTaskFolderItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of the specified Outlook task folder.
+        Get the properties and relationships of the specified Outlook task folder. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -128,7 +128,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[OutlookTaskFolderItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the writable properties of an Outlook task folder. You cannot change the name property value of the default task folder, 'Tasks'.
+        Update the writable properties of an Outlook task folder. You cannot change the name property value of the default task folder, 'Tasks'. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +154,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OutlookTaskFolderItemRequestBuilder(raw_url, self.request_adapter)
+        return OutlookTaskFolderItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def tasks(self) -> TasksRequestBuilder:
@@ -178,7 +178,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OutlookTaskFolderItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of the specified Outlook task folder.
+        Get the properties and relationships of the specified Outlook task folder. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

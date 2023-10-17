@@ -15,7 +15,7 @@ class IosRedirectSingleSignOnExtension(IosSingleSignOnExtension):
     Represents a Redirect-type Single Sign-On extension profile for iOS devices.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosRedirectSingleSignOnExtension"
+    OdataType: Optional[str] = "#microsoft.graph.iosRedirectSingleSignOnExtension"
     # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
     configurations: Optional[List[KeyTypedValuePair]] = None
     # Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.

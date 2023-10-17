@@ -16,7 +16,7 @@ class WindowsHealthMonitoringConfiguration(DeviceConfiguration):
     Windows device health monitoring configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsHealthMonitoringConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsHealthMonitoringConfiguration"
     # Possible values of a property
     allow_device_health_monitoring: Optional[Enablement] = None
     # Specifies custom set of events collected from the device where health monitoring is enabled
@@ -51,7 +51,7 @@ class WindowsHealthMonitoringConfiguration(DeviceConfiguration):
         fields: Dict[str, Callable[[Any], None]] = {
             "allowDeviceHealthMonitoring": lambda n : setattr(self, 'allow_device_health_monitoring', n.get_enum_value(Enablement)),
             "configDeviceHealthMonitoringCustomScope": lambda n : setattr(self, 'config_device_health_monitoring_custom_scope', n.get_str_value()),
-            "configDeviceHealthMonitoringScope": lambda n : setattr(self, 'config_device_health_monitoring_scope', n.get_enum_value(WindowsHealthMonitoringScope)),
+            "configDeviceHealthMonitoringScope": lambda n : setattr(self, 'config_device_health_monitoring_scope', n.get_collection_of_enum_values(WindowsHealthMonitoringScope)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

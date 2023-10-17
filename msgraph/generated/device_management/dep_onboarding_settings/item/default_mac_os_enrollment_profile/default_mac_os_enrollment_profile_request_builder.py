@@ -72,7 +72,7 @@ class DefaultMacOsEnrollmentProfileRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DefaultMacOsEnrollmentProfileRequestBuilder(raw_url, self.request_adapter)
+        return DefaultMacOsEnrollmentProfileRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class DefaultMacOsEnrollmentProfileRequestBuilderGetQueryParameters():

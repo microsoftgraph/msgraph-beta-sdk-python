@@ -12,7 +12,7 @@ from .directory_object import DirectoryObject
 @dataclass
 class FederatedTokenValidationPolicy(DirectoryObject):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.federatedTokenValidationPolicy"
+    OdataType: Optional[str] = "#microsoft.graph.federatedTokenValidationPolicy"
     # The validatingDomains property
     validating_domains: Optional[ValidatingDomains] = None
     

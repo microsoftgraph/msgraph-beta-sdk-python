@@ -15,7 +15,7 @@ class Windows10XWifiConfiguration(DeviceManagementResourceAccessProfileBase):
     Windows X WifiXml configuration profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10XWifiConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windows10XWifiConfiguration"
     # ID to the Authentication Certificate
     authentication_certificate_id: Optional[UUID] = None
     # Custom XML commands that configures the VPN connection. (UTF8 byte encoding)

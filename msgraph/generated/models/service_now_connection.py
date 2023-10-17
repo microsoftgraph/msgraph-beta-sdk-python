@@ -29,7 +29,7 @@ class ServiceNowConnection(Entity):
     # Date Time when incidents from ServiceNow were last queried
     last_queried_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Status of ServiceNow Connection
     service_now_connection_status: Optional[ServiceNowConnectionStatus] = None
     

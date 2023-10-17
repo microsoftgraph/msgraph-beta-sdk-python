@@ -38,7 +38,7 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ListItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Removes an item from a [list][].
+        Removes an item from a list][]. This API is available in the following [national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0
@@ -58,7 +58,7 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ListItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ListItem]:
         """
-        Returns the metadata for an [item][] in a [list][].
+        Returns the metadata for an item][] in a [list][]. This API is available in the following [national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ListItem]
         Find more info here: https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0
@@ -122,7 +122,7 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ListItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Removes an item from a [list][].
+        Removes an item from a list][]. This API is available in the following [national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ListItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns the metadata for an [item][] in a [list][].
+        Returns the metadata for an item][] in a [list][]. This API is available in the following [national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +180,7 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ListItemItemRequestBuilder(raw_url, self.request_adapter)
+        return ListItemItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def activities(self) -> ActivitiesRequestBuilder:
@@ -201,15 +201,6 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
         return AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def created_by_user(self) -> CreatedByUserRequestBuilder:
-        """
-        Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
-        """
-        from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
-
-        return CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def create_link(self) -> CreateLinkRequestBuilder:
         """
         Provides operations to call the createLink method.
@@ -217,6 +208,15 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
         from .create_link.create_link_request_builder import CreateLinkRequestBuilder
 
         return CreateLinkRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def created_by_user(self) -> CreatedByUserRequestBuilder:
+        """
+        Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
+
+        return CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def document_set_versions(self) -> DocumentSetVersionsRequestBuilder:
@@ -276,7 +276,7 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ListItemItemRequestBuilderGetQueryParameters():
         """
-        Returns the metadata for an [item][] in a [list][].
+        Returns the metadata for an item][] in a [list][]. This API is available in the following [national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -49,7 +49,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the windows10GeneralConfiguration resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10GeneralConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windows10GeneralConfiguration"
     # Indicates whether or not to Block the user from adding email accounts to the device that are not associated with a Microsoft account.
     accounts_block_adding_non_microsoft_account_email: Optional[bool] = None
     # Possible values of a property
@@ -932,7 +932,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
             "smartScreenBlockPromptOverrideForFiles": lambda n : setattr(self, 'smart_screen_block_prompt_override_for_files', n.get_bool_value()),
             "smartScreenEnableAppInstallControl": lambda n : setattr(self, 'smart_screen_enable_app_install_control', n.get_bool_value()),
             "startBlockUnpinningAppsFromTaskbar": lambda n : setattr(self, 'start_block_unpinning_apps_from_taskbar', n.get_bool_value()),
-            "startMenuAppListVisibility": lambda n : setattr(self, 'start_menu_app_list_visibility', n.get_enum_value(WindowsStartMenuAppListVisibilityType)),
+            "startMenuAppListVisibility": lambda n : setattr(self, 'start_menu_app_list_visibility', n.get_collection_of_enum_values(WindowsStartMenuAppListVisibilityType)),
             "startMenuHideChangeAccountSettings": lambda n : setattr(self, 'start_menu_hide_change_account_settings', n.get_bool_value()),
             "startMenuHideFrequentlyUsedApps": lambda n : setattr(self, 'start_menu_hide_frequently_used_apps', n.get_bool_value()),
             "startMenuHideHibernate": lambda n : setattr(self, 'start_menu_hide_hibernate', n.get_bool_value()),

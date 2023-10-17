@@ -21,7 +21,7 @@ class GovernanceRoleAssignmentRequest(Entity):
     # If this is a request for role activation, it represents the id of the eligible assignment being referred; Otherwise, the value is null.
     linked_eligible_role_assignment_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A message provided by users and administrators when create the request about why it is needed.
     reason: Optional[str] = None
     # Read-only. The request create time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z

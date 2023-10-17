@@ -29,7 +29,7 @@ class GenerateKeyRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GenerateKeyPostRequestBody] = None, request_configuration: Optional[GenerateKeyRequestBuilderPostRequestConfiguration] = None) -> Optional[TrustFrameworkKey]:
         """
-        Generate a trustFrameworkKey and a secret automatically in the trustFrameworkKeyset. The caller doesn't have to provide a secret.
+        Generate a trustFrameworkKey and a secret automatically in the trustFrameworkKeyset. The caller doesn't have to provide a secret. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKey]
@@ -54,7 +54,7 @@ class GenerateKeyRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GenerateKeyPostRequestBody] = None, request_configuration: Optional[GenerateKeyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Generate a trustFrameworkKey and a secret automatically in the trustFrameworkKeyset. The caller doesn't have to provide a secret.
+        Generate a trustFrameworkKey and a secret automatically in the trustFrameworkKeyset. The caller doesn't have to provide a secret. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -80,7 +80,7 @@ class GenerateKeyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GenerateKeyRequestBuilder(raw_url, self.request_adapter)
+        return GenerateKeyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

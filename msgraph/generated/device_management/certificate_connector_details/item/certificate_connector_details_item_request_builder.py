@@ -152,16 +152,7 @@ class CertificateConnectorDetailsItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CertificateConnectorDetailsItemRequestBuilder(raw_url, self.request_adapter)
-    
-    @property
-    def get_health_metrics(self) -> GetHealthMetricsRequestBuilder:
-        """
-        Provides operations to call the getHealthMetrics method.
-        """
-        from .get_health_metrics.get_health_metrics_request_builder import GetHealthMetricsRequestBuilder
-
-        return GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CertificateConnectorDetailsItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def get_health_metric_time_series(self) -> GetHealthMetricTimeSeriesRequestBuilder:
@@ -171,6 +162,15 @@ class CertificateConnectorDetailsItemRequestBuilder(BaseRequestBuilder):
         from .get_health_metric_time_series.get_health_metric_time_series_request_builder import GetHealthMetricTimeSeriesRequestBuilder
 
         return GetHealthMetricTimeSeriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_health_metrics(self) -> GetHealthMetricsRequestBuilder:
+        """
+        Provides operations to call the getHealthMetrics method.
+        """
+        from .get_health_metrics.get_health_metrics_request_builder import GetHealthMetricsRequestBuilder
+
+        return GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

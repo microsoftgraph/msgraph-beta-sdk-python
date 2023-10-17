@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .find_rooms_response import FindRoomsResponse
+    from .find_rooms_get_response import FindRoomsGetResponse
 
 class FindRoomsRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class FindRoomsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/findRooms(){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[FindRoomsRequestBuilderGetRequestConfiguration] = None) -> Optional[FindRoomsResponse]:
+    async def get(self,request_configuration: Optional[FindRoomsRequestBuilderGetRequestConfiguration] = None) -> Optional[FindRoomsGetResponse]:
         """
         Invoke function findRooms
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[FindRoomsResponse]
+        Returns: Optional[FindRoomsGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class FindRoomsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .find_rooms_response import FindRoomsResponse
+        from .find_rooms_get_response import FindRoomsGetResponse
 
-        return await self.request_adapter.send_async(request_info, FindRoomsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, FindRoomsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[FindRoomsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +72,7 @@ class FindRoomsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return FindRoomsRequestBuilder(raw_url, self.request_adapter)
+        return FindRoomsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class FindRoomsRequestBuilderGetQueryParameters():

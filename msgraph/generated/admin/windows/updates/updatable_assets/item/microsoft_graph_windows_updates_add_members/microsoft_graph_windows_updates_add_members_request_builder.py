@@ -28,7 +28,7 @@ class MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AddMembersPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphWindowsUpdatesAddMembersRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Add members to an updatableAssetGroup. You can add azureADDevice resources as members, but may not add updatableAssetGroup resources as members. Adding an Azure AD device as a member of an updatable asset group automatically creates an azureADDevice object, if it does not already exist. You can also use the method addMembersById to add members.
+        Add members to an updatableAssetGroup. You can add azureADDevice resources as members, but may not add updatableAssetGroup resources as members. Adding an Azure AD device as a member of an updatable asset group automatically creates an azureADDevice object, if it does not already exist. You can also use the method addMembersById to add members. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AddMembersPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphWindowsUpdatesAddMembersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add members to an updatableAssetGroup. You can add azureADDevice resources as members, but may not add updatableAssetGroup resources as members. Adding an Azure AD device as a member of an updatable asset group automatically creates an azureADDevice object, if it does not already exist. You can also use the method addMembersById to add members.
+        Add members to an updatableAssetGroup. You can add azureADDevice resources as members, but may not add updatableAssetGroup resources as members. Adding an Azure AD device as a member of an updatable asset group automatically creates an azureADDevice object, if it does not already exist. You can also use the method addMembersById to add members. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

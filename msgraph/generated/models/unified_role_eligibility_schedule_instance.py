@@ -16,7 +16,7 @@ class UnifiedRoleEligibilityScheduleInstance(UnifiedRoleScheduleInstanceBase):
     # Membership type of the assignment. It can either be Inherited, Direct, or Group.
     member_type: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Identifier of the parent roleEligibilitySchedule for this instance.
     role_eligibility_schedule_id: Optional[str] = None
     # Time that the roleEligibilityScheduleInstance will start.

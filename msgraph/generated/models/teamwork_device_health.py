@@ -32,7 +32,7 @@ class TeamworkDeviceHealth(Entity):
     # The login status of Microsoft Teams, Skype for Business, and Exchange.
     login_status: Optional[TeamworkLoginStatus] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Health details about all peripherals (for example, speaker and microphone) attached to a device.
     peripherals_health: Optional[TeamworkPeripheralsHealth] = None
     # Software updates available for the device.

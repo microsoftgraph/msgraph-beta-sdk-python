@@ -47,7 +47,7 @@ class ActivityRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ActivityRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamworkDeviceActivity]:
         """
-        Get the activity status of a Microsoft Teams-enabled device. 
+        Get the activity status of a Microsoft Teams-enabled device.  This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkDeviceActivity]
         Find more info here: https://learn.microsoft.com/graph/api/teamworkdeviceactivity-get?view=graph-rest-1.0
@@ -108,7 +108,7 @@ class ActivityRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ActivityRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the activity status of a Microsoft Teams-enabled device. 
+        Get the activity status of a Microsoft Teams-enabled device.  This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class ActivityRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ActivityRequestBuilder(raw_url, self.request_adapter)
+        return ActivityRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class ActivityRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ActivityRequestBuilderGetQueryParameters():
         """
-        Get the activity status of a Microsoft Teams-enabled device. 
+        Get the activity status of a Microsoft Teams-enabled device.  This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

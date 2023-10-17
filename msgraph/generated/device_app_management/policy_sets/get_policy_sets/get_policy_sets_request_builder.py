@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .get_policy_sets_post_request_body import GetPolicySetsPostRequestBody
-    from .get_policy_sets_response import GetPolicySetsResponse
+    from .get_policy_sets_post_response import GetPolicySetsPostResponse
 
 class GetPolicySetsRequestBuilder(BaseRequestBuilder):
     """
@@ -27,12 +27,12 @@ class GetPolicySetsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/policySets/getPolicySets", path_parameters)
     
-    async def post(self,body: Optional[GetPolicySetsPostRequestBody] = None, request_configuration: Optional[GetPolicySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[GetPolicySetsResponse]:
+    async def post(self,body: Optional[GetPolicySetsPostRequestBody] = None, request_configuration: Optional[GetPolicySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[GetPolicySetsPostResponse]:
         """
         Invoke action getPolicySets
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetPolicySetsResponse]
+        Returns: Optional[GetPolicySetsPostResponse]
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -47,9 +47,9 @@ class GetPolicySetsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_policy_sets_response import GetPolicySetsResponse
+        from .get_policy_sets_post_response import GetPolicySetsPostResponse
 
-        return await self.request_adapter.send_async(request_info, GetPolicySetsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetPolicySetsPostResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[GetPolicySetsPostRequestBody] = None, request_configuration: Optional[GetPolicySetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -79,7 +79,7 @@ class GetPolicySetsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetPolicySetsRequestBuilder(raw_url, self.request_adapter)
+        return GetPolicySetsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

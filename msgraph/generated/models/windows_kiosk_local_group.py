@@ -14,7 +14,7 @@ class WindowsKioskLocalGroup(WindowsKioskUser):
     The class used to identify a local group for the kiosk configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskLocalGroup"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskLocalGroup"
     # The name of the local group that will be locked to this kiosk configuration
     group_name: Optional[str] = None
     

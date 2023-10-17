@@ -20,7 +20,7 @@ class RemoteAssistancePartner(Entity):
     # Timestamp of the last request sent to Intune by the TEM partner.
     last_connection_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # When the OnboardingStatus is Onboarding, This is the date time when the onboarding request expires.
     onboarding_request_expiry_date_time: Optional[datetime.datetime] = None
     # The current TeamViewer connector status

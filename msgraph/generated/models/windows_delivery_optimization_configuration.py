@@ -20,7 +20,7 @@ class WindowsDeliveryOptimizationConfiguration(DeviceConfiguration):
     Windows Delivery Optimization configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsDeliveryOptimizationConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsDeliveryOptimizationConfiguration"
     # Specifies number of seconds to delay an HTTP source in a background download that is allowed to use peer-to-peer. Valid values 0 to 4294967295
     background_download_from_http_delay_in_seconds: Optional[int] = None
     # Specifies foreground and background bandwidth usage using percentages, absolutes, or hours.

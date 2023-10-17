@@ -20,7 +20,7 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration):
     By providing the configurations in this profile you can instruct the iOS device to connect to desired IKEv2 VPN endpoint.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosikEv2VpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.iosikEv2VpnConfiguration"
     # Allows the use of child security association parameters by setting all parameters to the device's default unless explicitly specified.
     allow_default_child_security_association_parameters: Optional[bool] = None
     # Allows the use of security association parameters by setting all parameters to the device's default unless explicitly specified.

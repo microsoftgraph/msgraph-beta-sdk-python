@@ -38,7 +38,7 @@ class FileSecurityProfile(Entity):
     # The names property
     names: Optional[List[str]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The riskScore property
     risk_score: Optional[str] = None
     # The size property

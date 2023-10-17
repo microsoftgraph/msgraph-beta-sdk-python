@@ -176,7 +176,7 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementIntentItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementIntentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:
@@ -224,15 +224,6 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         return DeviceSettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_states(self) -> DeviceStatesRequestBuilder:
-        """
-        Provides operations to manage the deviceStates property of the microsoft.graph.deviceManagementIntent entity.
-        """
-        from .device_states.device_states_request_builder import DeviceStatesRequestBuilder
-
-        return DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def device_state_summary(self) -> DeviceStateSummaryRequestBuilder:
         """
         Provides operations to manage the deviceStateSummary property of the microsoft.graph.deviceManagementIntent entity.
@@ -240,6 +231,15 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         from .device_state_summary.device_state_summary_request_builder import DeviceStateSummaryRequestBuilder
 
         return DeviceStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_states(self) -> DeviceStatesRequestBuilder:
+        """
+        Provides operations to manage the deviceStates property of the microsoft.graph.deviceManagementIntent entity.
+        """
+        from .device_states.device_states_request_builder import DeviceStatesRequestBuilder
+
+        return DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_customized_settings(self) -> GetCustomizedSettingsRequestBuilder:
@@ -278,15 +278,6 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         return UpdateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_states(self) -> UserStatesRequestBuilder:
-        """
-        Provides operations to manage the userStates property of the microsoft.graph.deviceManagementIntent entity.
-        """
-        from .user_states.user_states_request_builder import UserStatesRequestBuilder
-
-        return UserStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def user_state_summary(self) -> UserStateSummaryRequestBuilder:
         """
         Provides operations to manage the userStateSummary property of the microsoft.graph.deviceManagementIntent entity.
@@ -294,6 +285,15 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         from .user_state_summary.user_state_summary_request_builder import UserStateSummaryRequestBuilder
 
         return UserStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_states(self) -> UserStatesRequestBuilder:
+        """
+        Provides operations to manage the userStates property of the microsoft.graph.deviceManagementIntent entity.
+        """
+        from .user_states.user_states_request_builder import UserStatesRequestBuilder
+
+        return UserStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -154,7 +154,7 @@ class GroupPolicyConfigurationItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GroupPolicyConfigurationItemRequestBuilder(raw_url, self.request_adapter)
+        return GroupPolicyConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:

@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class LanguageProficiency(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.languageProficiency"
+    OdataType: Optional[str] = "#microsoft.graph.languageProficiency"
     # Contains the long-form name for the language.
     display_name: Optional[str] = None
     # The proficiency property

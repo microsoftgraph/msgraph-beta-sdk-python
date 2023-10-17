@@ -14,7 +14,7 @@ class EnrichedAuditLogs(Entity):
     # Exchange Online enriched audit logs settings.
     exchange: Optional[EnrichedAuditLogsSettings] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # SharePoint Online enriched audit logs settings.
     sharepoint: Optional[EnrichedAuditLogsSettings] = None
     # Teams enriched audit logs settings.

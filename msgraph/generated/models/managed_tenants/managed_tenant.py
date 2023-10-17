@@ -108,7 +108,7 @@ class ManagedTenant(Entity):
     # The collection of role assignments to a signed-in user for a managed tenant.
     my_roles: Optional[List[MyRole]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
     tenant_groups: Optional[List[TenantGroup]] = None
     # The collection of tenant tags across managed tenants.

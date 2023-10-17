@@ -14,7 +14,7 @@ class DeviceManagementSettingXmlConstraint(DeviceManagementConstraint):
     Constraint enforcing the setting is well formed XML
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingXmlConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingXmlConstraint"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingXmlConstraint:

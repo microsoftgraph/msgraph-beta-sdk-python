@@ -14,7 +14,7 @@ class AndroidOmaCpConfiguration(DeviceConfiguration):
     By providing a configuration in this profile you can configure Android devices that support OMA-CP.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidOmaCpConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidOmaCpConfiguration"
     # Configuration XML that will be applied to the device. When it is read, it only provides a placeholder string since the original data is encrypted and stored.
     configuration_xml: Optional[bytes] = None
     

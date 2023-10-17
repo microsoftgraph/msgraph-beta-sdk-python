@@ -19,7 +19,7 @@ class Connector(Entity):
     # The connectorGroup that the connector is a member of. Read-only.
     member_of: Optional[List[ConnectorGroup]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The status property
     status: Optional[ConnectorStatus] = None
     # The version property

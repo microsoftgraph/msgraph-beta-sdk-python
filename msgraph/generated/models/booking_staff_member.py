@@ -25,7 +25,7 @@ class BookingStaffMember(BookingPerson):
     # The membershipStatus property
     membership_status: Optional[BookingStaffMembershipStatus] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The role property
     role: Optional[BookingStaffRole] = None
     # The time zone of the staff member. For a list of possible values, see dateTimeTimeZone.

@@ -14,7 +14,7 @@ from .label_action_base import LabelActionBase
 @dataclass
 class MarkContent(LabelActionBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.markContent"
+    OdataType: Optional[str] = "#microsoft.graph.markContent"
     # The fontColor property
     font_color: Optional[str] = None
     # The fontSize property

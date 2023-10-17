@@ -49,7 +49,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectorySettingTemplateCollectionResponse]:
         """
-        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects.
+        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectorySettingTemplateCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/directorysettingtemplate-list?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects.
+        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DirectorySettingTemplatesRequestBuilder(raw_url, self.request_adapter)
+        return DirectorySettingTemplatesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -188,7 +188,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DirectorySettingTemplatesRequestBuilderGetQueryParameters():
         """
-        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects.
+        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

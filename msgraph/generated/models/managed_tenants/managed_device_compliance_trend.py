@@ -23,7 +23,7 @@ class ManagedDeviceComplianceTrend(Entity):
     # The number of devices that are in a non-compliant status. Required. Read-only.
     noncompliant_device_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The display name for the managed tenant. Optional. Read-only.
     tenant_display_name: Optional[str] = None
     # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.

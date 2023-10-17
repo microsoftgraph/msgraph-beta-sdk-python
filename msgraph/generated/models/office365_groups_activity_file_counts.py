@@ -14,7 +14,7 @@ class Office365GroupsActivityFileCounts(Entity):
     # The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
     active: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The date on which a number of files were active in the group's SharePoint site.
     report_date: Optional[datetime.date] = None
     # The number of days the report covers.

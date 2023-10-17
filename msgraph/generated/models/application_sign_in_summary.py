@@ -15,7 +15,7 @@ class ApplicationSignInSummary(Entity):
     # Count of failed sign-ins made by the application.
     failed_sign_in_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Percentage of successful sign-ins made by the application.
     success_percentage: Optional[float] = None
     # Count of successful sign-ins made by the application.

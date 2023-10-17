@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 @dataclass
 class Reminder(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -27,7 +27,7 @@ class Reminder(AdditionalDataHolder, BackedModel, Parsable):
     event_start_time: Optional[DateTimeTimeZone] = None
     # The text of the event's subject line.
     event_subject: Optional[str] = None
-    # The URL to open the event in Outlook on the web.The event will open in the browser if you are logged in to your mailbox via Outlook on the web. You will be prompted to login if you are not already logged in with the browser.This URL cannot be accessed from within an iFrame.
+    # The URL to open the event in Outlook on the web.The event opens in the browser if you're logged in to your mailbox via Outlook on the web. You're prompted to log in if you aren't already logged in with the browser.This URL can't be accessed from within an iFrame.
     event_web_link: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

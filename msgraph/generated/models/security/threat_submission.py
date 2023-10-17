@@ -26,7 +26,7 @@ from ..entity import Entity
 
 @dataclass
 class ThreatSubmission(Entity):
-    # Specifies the admin review property which constitutes of who reviewed the user submission, when and what was it identified as.
+    # Specifies the admin review property that constitutes of who reviewed the user submission, when and what was it identified as.
     admin_review: Optional[SubmissionAdminReview] = None
     # The category property
     category: Optional[SubmissionCategory] = None
@@ -39,14 +39,14 @@ class ThreatSubmission(Entity):
     # Specifies when the threat submission was created. Supports $filter = createdDateTime ge 2022-01-01T00:00:00Z and createdDateTime lt 2022-01-02T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Specifies the result of the analysis performed by Microsoft.
     result: Optional[SubmissionResult] = None
     # Specifies the role of the submitter. Supports $filter = source eq 'value'. The possible values are: administrator,  user and unkownFutureValue.
     source: Optional[SubmissionSource] = None
     # Indicates whether the threat submission has been analyzed by Microsoft. Supports $filter = status eq 'value'. The possible values are: notStarted, running, succeeded, failed, skipped and unkownFutureValue.
     status: Optional[LongRunningOperationStatus] = None
-    # Indicates the tenant id of the submitter. Not required when created using a POST operation. It is extracted from the token of the post API call.
+    # Indicates the tenant id of the submitter. Not required when created using a POST operation. It's extracted from the token of the post API call.
     tenant_id: Optional[str] = None
     
     @staticmethod

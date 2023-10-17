@@ -29,7 +29,7 @@ class EducationModule(Entity):
     # Date time the module was last modified.  The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Learning objects that are associated with this module.  Only teachers can modify this list. Nullable.
     resources: Optional[List[EducationModuleResource]] = None
     # Folder URL where all the file resources for this module are stored.

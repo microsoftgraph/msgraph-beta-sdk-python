@@ -11,8 +11,10 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .identity_set import IdentitySet
     from .item_reference import ItemReference
-    from .list_item import ListItem
     from .list_ import List_
+    from .list_item import ListItem
+    from .recycle_bin import RecycleBin
+    from .recycle_bin_item import RecycleBinItem
     from .shared_drive_item import SharedDriveItem
     from .site import Site
     from .site_page import SitePage
@@ -41,7 +43,7 @@ class BaseItem(Entity):
     # The name of the item. Read-write.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Parent information, if the item has a parent. Read-write.
     parent_reference: Optional[ItemReference] = None
     # URL that either displays the resource in the browser (for Office file formats), or is a direct link to the file (for other formats). Read-only.
@@ -80,6 +82,14 @@ class BaseItem(Entity):
             from .list_item import ListItem
 
             return ListItem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recycleBin".casefold():
+            from .recycle_bin import RecycleBin
+
+            return RecycleBin()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recycleBinItem".casefold():
+            from .recycle_bin_item import RecycleBinItem
+
+            return RecycleBinItem()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharedDriveItem".casefold():
             from .shared_drive_item import SharedDriveItem
 
@@ -105,8 +115,10 @@ class BaseItem(Entity):
         from .entity import Entity
         from .identity_set import IdentitySet
         from .item_reference import ItemReference
-        from .list_item import ListItem
         from .list_ import List_
+        from .list_item import ListItem
+        from .recycle_bin import RecycleBin
+        from .recycle_bin_item import RecycleBinItem
         from .shared_drive_item import SharedDriveItem
         from .site import Site
         from .site_page import SitePage
@@ -118,8 +130,10 @@ class BaseItem(Entity):
         from .entity import Entity
         from .identity_set import IdentitySet
         from .item_reference import ItemReference
-        from .list_item import ListItem
         from .list_ import List_
+        from .list_item import ListItem
+        from .recycle_bin import RecycleBin
+        from .recycle_bin_item import RecycleBinItem
         from .shared_drive_item import SharedDriveItem
         from .site import Site
         from .site_page import SitePage

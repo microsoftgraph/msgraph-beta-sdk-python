@@ -12,7 +12,7 @@ from .custom_callout_extension import CustomCalloutExtension
 @dataclass
 class CustomAuthenticationExtension(CustomCalloutExtension):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.customAuthenticationExtension"
+    OdataType: Optional[str] = "#microsoft.graph.customAuthenticationExtension"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomAuthenticationExtension:

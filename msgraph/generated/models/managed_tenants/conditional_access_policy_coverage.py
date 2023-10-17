@@ -16,7 +16,7 @@ class ConditionalAccessPolicyCoverage(Entity):
     # The date and time the conditional access policy was last modified. Required. Read-only.
     latest_policy_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A flag indicating whether the conditional access policy requires device compliance. Required. Read-only.
     requires_device_compliance: Optional[bool] = None
     # The display name for the managed tenant. Required. Read-only.

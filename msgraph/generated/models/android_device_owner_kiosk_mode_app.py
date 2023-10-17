@@ -14,7 +14,7 @@ class AndroidDeviceOwnerKioskModeApp(AndroidDeviceOwnerKioskModeFolderItem):
     An application on the Android Device Owner Managed Home Screen
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerKioskModeApp"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerKioskModeApp"
     # Class name of application
     class_name: Optional[str] = None
     # Package name of application

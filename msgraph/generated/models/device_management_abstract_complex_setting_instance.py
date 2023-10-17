@@ -14,7 +14,7 @@ class DeviceManagementAbstractComplexSettingInstance(DeviceManagementSettingInst
     A setting instance representing a complex value for an abstract setting
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementAbstractComplexSettingInstance"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementAbstractComplexSettingInstance"
     # The definition ID for the chosen implementation of this complex setting
     implementation_id: Optional[str] = None
     # The values that make up the complex setting

@@ -15,7 +15,7 @@ class ProgramControlType(Entity):
     # The name of the program control type
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProgramControlType:

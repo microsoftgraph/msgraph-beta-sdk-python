@@ -45,7 +45,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonInterestCollectionResponse]:
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Retrieve a list of personInterest objects from a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonInterestCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/profile-list-interests?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonInterest]:
         """
-        Create a new personInterest.
+        Create a new personInterest. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonInterest]
@@ -92,7 +92,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Retrieve a list of personInterest objects from a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personInterest.
+        Create a new personInterest. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return InterestsRequestBuilder(raw_url, self.request_adapter)
+        return InterestsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InterestsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Retrieve a list of personInterest objects from a user's profile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

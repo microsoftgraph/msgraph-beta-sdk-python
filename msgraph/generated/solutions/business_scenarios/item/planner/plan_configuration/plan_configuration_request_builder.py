@@ -48,7 +48,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PlanConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerPlanConfiguration]:
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        Read the properties and relationships of a plannerPlanConfiguration object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanConfiguration]
         Find more info here: https://learn.microsoft.com/graph/api/plannerplanconfiguration-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PlannerPlanConfiguration] = None, request_configuration: Optional[PlanConfigurationRequestBuilderPatchRequestConfiguration] = None) -> Optional[PlannerPlanConfiguration]:
         """
-        Update the properties of a plannerPlanConfiguration object for a businessScenario.
+        Update the properties of a plannerPlanConfiguration object for a businessScenario. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanConfiguration]
@@ -110,7 +110,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PlanConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        Read the properties and relationships of a plannerPlanConfiguration object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PlannerPlanConfiguration] = None, request_configuration: Optional[PlanConfigurationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a plannerPlanConfiguration object for a businessScenario.
+        Update the properties of a plannerPlanConfiguration object for a businessScenario. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PlanConfigurationRequestBuilder(raw_url, self.request_adapter)
+        return PlanConfigurationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def localizations(self) -> LocalizationsRequestBuilder:
@@ -177,7 +177,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlanConfigurationRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        Read the properties and relationships of a plannerPlanConfiguration object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -49,7 +49,7 @@ class CallTranscriptItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CallTranscriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CallTranscript]:
         """
-        Retrieve a callTranscript object associated with an onlineMeeting. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
+        Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CallTranscript]
         Find more info here: https://learn.microsoft.com/graph/api/calltranscript-get?view=graph-rest-1.0
@@ -110,7 +110,7 @@ class CallTranscriptItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CallTranscriptItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a callTranscript object associated with an onlineMeeting. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
+        Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class CallTranscriptItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CallTranscriptItemRequestBuilder(raw_url, self.request_adapter)
+        return CallTranscriptItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def content(self) -> ContentRequestBuilder:
@@ -186,7 +186,7 @@ class CallTranscriptItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CallTranscriptItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a callTranscript object associated with an onlineMeeting. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
+        Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

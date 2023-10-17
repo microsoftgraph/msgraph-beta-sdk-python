@@ -25,7 +25,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(Entity
     # Last sync date time.
     last_sync_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Windows OS Version Description.
     os_description: Optional[str] = None
     # Windows OS Version.

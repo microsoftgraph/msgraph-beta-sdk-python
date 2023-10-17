@@ -13,7 +13,7 @@ from .cloud_pc_bulk_action import CloudPcBulkAction
 @dataclass
 class CloudPcBulkRestore(CloudPcBulkAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkRestore"
+    OdataType: Optional[str] = "#microsoft.graph.cloudPcBulkRestore"
     # The restorePointDateTime property
     restore_point_date_time: Optional[datetime.datetime] = None
     # The timeRange property

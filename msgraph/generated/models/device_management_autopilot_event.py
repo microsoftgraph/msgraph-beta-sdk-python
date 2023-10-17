@@ -57,7 +57,7 @@ class DeviceManagementAutopilotEvent(Entity):
     # Managed device name.
     managed_device_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Device operating system version.
     os_version: Optional[str] = None
     # Policy and application status details for this device.

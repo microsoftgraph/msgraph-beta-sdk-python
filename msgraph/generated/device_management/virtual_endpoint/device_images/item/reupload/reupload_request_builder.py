@@ -27,7 +27,7 @@ class ReuploadRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[ReuploadRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Reupload a cloudPcDeviceImage object that failed to upload.
+        Reupload a cloudPcDeviceImage object that failed to upload. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcdeviceimage-reupload?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class ReuploadRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[ReuploadRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Reupload a cloudPcDeviceImage object that failed to upload.
+        Reupload a cloudPcDeviceImage object that failed to upload. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -68,7 +68,7 @@ class ReuploadRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReuploadRequestBuilder(raw_url, self.request_adapter)
+        return ReuploadRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

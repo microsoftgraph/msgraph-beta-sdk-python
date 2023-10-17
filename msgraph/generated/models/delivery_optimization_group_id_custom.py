@@ -14,7 +14,7 @@ class DeliveryOptimizationGroupIdCustom(DeliveryOptimizationGroupIdSource):
     Custom group id type
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deliveryOptimizationGroupIdCustom"
+    OdataType: Optional[str] = "#microsoft.graph.deliveryOptimizationGroupIdCustom"
     # Specifies an arbitrary group ID that the device belongs to
     group_id_custom: Optional[str] = None
     

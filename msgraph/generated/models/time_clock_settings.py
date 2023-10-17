@@ -10,11 +10,11 @@ if TYPE_CHECKING:
 @dataclass
 class TimeClockSettings(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The aprroved location of the timeClock.
+    # The approved location of the timeClock.
     approved_location: Optional[GeoCoordinates] = None
     # The OdataType property
     odata_type: Optional[str] = None

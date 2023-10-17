@@ -11,10 +11,10 @@ from .entity import Entity
 
 @dataclass
 class PlannerTaskConfiguration(Entity):
-    # Policy configuration for tasks created for the businessScenario when they are being changed outside of the scenario.
+    # Policy configuration for tasks created for the businessScenario when they're being changed outside of the scenario.
     edit_policy: Optional[PlannerTaskPolicy] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskConfiguration:

@@ -11,7 +11,7 @@ from .user_set import UserSet
 @dataclass
 class TargetUserSponsors(UserSet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.targetUserSponsors"
+    OdataType: Optional[str] = "#microsoft.graph.targetUserSponsors"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TargetUserSponsors:

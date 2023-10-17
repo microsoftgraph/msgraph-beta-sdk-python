@@ -12,7 +12,7 @@ from .policy_base import PolicyBase
 @dataclass
 class ServicePrincipalCreationPolicy(PolicyBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.servicePrincipalCreationPolicy"
+    OdataType: Optional[str] = "#microsoft.graph.servicePrincipalCreationPolicy"
     # The excludes property
     excludes: Optional[List[ServicePrincipalCreationConditionSet]] = None
     # The includes property

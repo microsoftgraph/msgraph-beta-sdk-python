@@ -26,11 +26,11 @@ class GetShiftWorkCloudPcAccessStateRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudPCs/{cloudPC%2Did}/getShiftWorkCloudPcAccessState()", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetShiftWorkCloudPcAccessStateRequestBuilderGetRequestConfiguration] = None) -> Optional[ShiftWorkCloudPcAccessState]:
+    async def get(self,request_configuration: Optional[GetShiftWorkCloudPcAccessStateRequestBuilderGetRequestConfiguration] = None) -> Optional[shiftWorkCloudPcAccessState]:
         """
         Invoke function getShiftWorkCloudPcAccessState
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ShiftWorkCloudPcAccessState]
+        Returns: Optional[shiftWorkCloudPcAccessState]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -45,7 +45,7 @@ class GetShiftWorkCloudPcAccessStateRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         from ......models.shift_work_cloud_pc_access_state import ShiftWorkCloudPcAccessState
 
-        return await self.request_adapter.send_async(request_info, ShiftWorkCloudPcAccessState, error_mapping)
+        return await self.request_adapter.send_async(request_info, shiftWorkCloudPcAccessState, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetShiftWorkCloudPcAccessStateRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -71,7 +71,7 @@ class GetShiftWorkCloudPcAccessStateRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetShiftWorkCloudPcAccessStateRequestBuilder(raw_url, self.request_adapter)
+        return GetShiftWorkCloudPcAccessStateRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

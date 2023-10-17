@@ -45,7 +45,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationSynchronizationProfileCollectionResponse]:
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Retrieve the collection of school data synchronization profiles in the tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfileCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-list?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Retrieve the collection of school data synchronization profiles in the tenant. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SynchronizationProfilesRequestBuilder(raw_url, self.request_adapter)
+        return SynchronizationProfilesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -148,7 +148,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SynchronizationProfilesRequestBuilderGetQueryParameters():
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Retrieve the collection of school data synchronization profiles in the tenant. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -16,7 +16,7 @@ class Win32LobAppRegistryDetection(Win32LobAppDetection):
     Contains registry properties to detect a Win32 App
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.win32LobAppRegistryDetection"
+    OdataType: Optional[str] = "#microsoft.graph.win32LobAppRegistryDetection"
     # A value indicating whether this registry path is for checking 32-bit app on 64-bit system
     check32_bit_on64_system: Optional[bool] = None
     # Contains all supported registry data detection type.
@@ -59,7 +59,7 @@ class Win32LobAppRegistryDetection(Win32LobAppDetection):
             "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(Win32LobAppRegistryDetectionType)),
             "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),
             "keyPath": lambda n : setattr(self, 'key_path', n.get_str_value()),
-            "operator": lambda n : setattr(self, 'operator', n.get_enum_value(Win32LobAppDetectionOperator)),
+            "operator": lambda n : setattr(self, 'operator', n.get_collection_of_enum_values(Win32LobAppDetectionOperator)),
             "valueName": lambda n : setattr(self, 'value_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

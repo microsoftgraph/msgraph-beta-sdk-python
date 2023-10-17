@@ -20,7 +20,7 @@ class ReviewSet(Entity):
     # The review set name. The name is unique with a maximum limit of 64 characters.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The queries property
     queries: Optional[List[ReviewSetQuery]] = None
     

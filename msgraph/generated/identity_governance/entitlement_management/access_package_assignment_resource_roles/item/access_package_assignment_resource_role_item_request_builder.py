@@ -51,7 +51,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRole]:
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentResourceRole]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentresourcerole-get?view=graph-rest-1.0
@@ -112,7 +112,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -155,7 +155,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AccessPackageAssignmentResourceRoleItemRequestBuilder(raw_url, self.request_adapter)
+        return AccessPackageAssignmentResourceRoleItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def access_package_assignments(self) -> AccessPackageAssignmentsRequestBuilder:
@@ -206,7 +206,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentResourceRoleItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

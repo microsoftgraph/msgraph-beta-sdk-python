@@ -13,7 +13,7 @@ class EducationGradingCategory(Entity):
     # The name of the grading category.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The weight of the category; an integer between 0 and 100.
     percentage_weight: Optional[int] = None
     

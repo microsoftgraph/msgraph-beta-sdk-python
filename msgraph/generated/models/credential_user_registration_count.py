@@ -12,7 +12,7 @@ from .entity import Entity
 @dataclass
 class CredentialUserRegistrationCount(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Provides the count of users with accountEnabled set to true in the tenant.
     total_user_count: Optional[int] = None
     # A collection of registration count and status information for users in your tenant.

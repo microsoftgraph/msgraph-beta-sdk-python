@@ -11,7 +11,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class ProtectDoNotForwardAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.protectDoNotForwardAction"
+    OdataType: Optional[str] = "#microsoft.graph.protectDoNotForwardAction"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectDoNotForwardAction:

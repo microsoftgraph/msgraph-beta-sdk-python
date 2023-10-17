@@ -12,8 +12,8 @@ from .base_end_user_notification import BaseEndUserNotification
 @dataclass
 class SimulationNotification(BaseEndUserNotification):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.simulationNotification"
-    # The targettedUserType property
+    OdataType: Optional[str] = "#microsoft.graph.simulationNotification"
+    # Target user type. Possible values are: unknown, clicked, compromised, allUsers, unknownFutureValue.
     targetted_user_type: Optional[TargettedUserType] = None
     
     @staticmethod

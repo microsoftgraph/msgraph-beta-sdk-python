@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 @dataclass
 class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -22,9 +22,9 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     activity_duration_in_days: Optional[int] = None
     # Indicates whether the auto-apply capability, to automatically change the target object access resource, is enabled.  If not enabled, a user must, after the review completes, apply the access review.
     auto_apply_review_results_enabled: Optional[bool] = None
-    # Indicates whether a decision should be set if the reviewer did not supply one. For use when auto-apply is enabled. If you don't want to have a review decision recorded unless the reviewer makes an explicit choice, set it to false.
+    # Indicates whether a decision should be set if the reviewer didn't supply one. For use when, auto-apply is enabled. If you don't want to have a review decision recorded unless the reviewer makes an explicit choice, set it to false.
     auto_review_enabled: Optional[bool] = None
-    # Detailed settings for how the feature should set the review decision. For use when auto-apply is enabled.
+    # Detailed settings for how the feature should set the review decision. For use when, auto-apply is enabled.
     auto_review_settings: Optional[AutoReviewSettings] = None
     # Indicates whether reviewers are required to provide a justification when reviewing access.
     justification_required_on_approval: Optional[bool] = None

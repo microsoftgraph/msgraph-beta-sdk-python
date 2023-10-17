@@ -15,7 +15,7 @@ class IntuneBrandingProfileAssignment(Entity):
     This entity contains the properties used to assign a branding profile to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Assignment target that the branding profile is assigned to.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

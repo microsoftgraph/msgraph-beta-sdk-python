@@ -10,23 +10,23 @@ if TYPE_CHECKING:
 @dataclass
 class WhoisContact(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The address property
+    # The physical address of the entity.
     address: Optional[PhysicalAddress] = None
-    # The email property
+    # The email of this WHOIS contact.
     email: Optional[str] = None
-    # The fax property
+    # The fax of this WHOIS contact. No format is guaranteed.
     fax: Optional[str] = None
-    # The name property
+    # The name of this WHOIS contact.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The organization property
+    # The organization of this WHOIS contact.
     organization: Optional[str] = None
-    # The telephone property
+    # The telephone of this WHOIS contact. No format is guaranteed.
     telephone: Optional[str] = None
     
     @staticmethod

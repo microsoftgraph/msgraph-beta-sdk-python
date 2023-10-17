@@ -28,7 +28,7 @@ class AcronymItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[AcronymItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes an acronym object.
+        Deletes an acronym object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/search-acronym-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class AcronymItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AcronymItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Acronym]:
         """
-        Read the properties and relationships of an acronym object.
+        Read the properties and relationships of an acronym object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Acronym]
         Find more info here: https://learn.microsoft.com/graph/api/search-acronym-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class AcronymItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Acronym] = None, request_configuration: Optional[AcronymItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Acronym]:
         """
-        Update the properties of an acronym object.
+        Update the properties of an acronym object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Acronym]
@@ -95,7 +95,7 @@ class AcronymItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[AcronymItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes an acronym object.
+        Deletes an acronym object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class AcronymItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AcronymItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an acronym object.
+        Read the properties and relationships of an acronym object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +127,7 @@ class AcronymItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Acronym] = None, request_configuration: Optional[AcronymItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an acronym object.
+        Update the properties of an acronym object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -153,7 +153,7 @@ class AcronymItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AcronymItemRequestBuilder(raw_url, self.request_adapter)
+        return AcronymItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +168,7 @@ class AcronymItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AcronymItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an acronym object.
+        Read the properties and relationships of an acronym object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

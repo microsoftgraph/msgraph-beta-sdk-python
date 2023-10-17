@@ -38,7 +38,7 @@ class ComanagementEligibleDevice(Entity):
     # Model
     model: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # OSDescription
     os_description: Optional[str] = None
     # OSVersion

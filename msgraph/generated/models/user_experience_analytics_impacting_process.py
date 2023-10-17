@@ -22,7 +22,7 @@ class UserExperienceAnalyticsImpactingProcess(Entity):
     # The impact value of the process. Valid values 0 to 1.79769313486232E+308
     impact_value: Optional[float] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The process name.
     process_name: Optional[str] = None
     # The publisher of the process.

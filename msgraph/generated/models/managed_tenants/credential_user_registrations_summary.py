@@ -22,7 +22,7 @@ class CredentialUserRegistrationsSummary(Entity):
     # The number of users registered for multi-factor authentication. Optional. Read-only.
     mfa_registered_user_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A flag indicating whether Identity Security Defaults is enabled. Optional. Read-only.
     security_defaults_enabled: Optional[bool] = None
     # The number of users enabled for self service password reset. Optional. Read-only.

@@ -15,7 +15,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(Devic
     Simple Setting Collection Instance Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstanceTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstanceTemplate"
     # Linked policy may append values which are not present in the template.
     allow_unmanaged_values: Optional[bool] = None
     # Simple Setting Collection Value Template

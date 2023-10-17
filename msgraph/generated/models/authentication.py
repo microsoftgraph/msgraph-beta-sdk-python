@@ -10,8 +10,8 @@ if TYPE_CHECKING:
     from .fido2_authentication_method import Fido2AuthenticationMethod
     from .long_running_operation import LongRunningOperation
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
-    from .password_authentication_method import PasswordAuthenticationMethod
     from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+    from .password_authentication_method import PasswordAuthenticationMethod
     from .phone_authentication_method import PhoneAuthenticationMethod
     from .sign_in_preferences import SignInPreferences
     from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
@@ -31,7 +31,7 @@ class Authentication(Entity):
     # The details of the Microsoft Authenticator app registered to a user for authentication.
     microsoft_authenticator_methods: Optional[List[MicrosoftAuthenticatorAuthenticationMethod]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The operations property
     operations: Optional[List[LongRunningOperation]] = None
     # Represents the details of the password authentication method registered to a user for authentication.
@@ -71,8 +71,8 @@ class Authentication(Entity):
         from .fido2_authentication_method import Fido2AuthenticationMethod
         from .long_running_operation import LongRunningOperation
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
-        from .password_authentication_method import PasswordAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+        from .password_authentication_method import PasswordAuthenticationMethod
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .sign_in_preferences import SignInPreferences
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
@@ -85,8 +85,8 @@ class Authentication(Entity):
         from .fido2_authentication_method import Fido2AuthenticationMethod
         from .long_running_operation import LongRunningOperation
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
-        from .password_authentication_method import PasswordAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+        from .password_authentication_method import PasswordAuthenticationMethod
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .sign_in_preferences import SignInPreferences
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod

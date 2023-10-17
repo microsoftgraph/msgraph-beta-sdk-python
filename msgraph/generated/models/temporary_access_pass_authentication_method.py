@@ -12,7 +12,7 @@ from .authentication_method import AuthenticationMethod
 @dataclass
 class TemporaryAccessPassAuthenticationMethod(AuthenticationMethod):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.temporaryAccessPassAuthenticationMethod"
+    OdataType: Optional[str] = "#microsoft.graph.temporaryAccessPassAuthenticationMethod"
     # The date and time when the Temporary Access Pass was created.
     created_date_time: Optional[datetime.datetime] = None
     # Determines whether the pass is limited to a one-time use. If true, the pass can be used once; if false, the pass can be used multiple times within the Temporary Access Pass lifetime.

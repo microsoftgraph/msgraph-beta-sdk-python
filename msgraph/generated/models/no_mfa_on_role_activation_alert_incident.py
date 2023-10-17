@@ -11,7 +11,7 @@ from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIn
 @dataclass
 class NoMfaOnRoleActivationAlertIncident(UnifiedRoleManagementAlertIncident):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.noMfaOnRoleActivationAlertIncident"
+    OdataType: Optional[str] = "#microsoft.graph.noMfaOnRoleActivationAlertIncident"
     # The name of the Azure AD directory role.
     role_display_name: Optional[str] = None
     # The globally unique identifier for a directory role.

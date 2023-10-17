@@ -28,7 +28,7 @@ class SetOrderRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SetOrderPostRequestBody] = None, request_configuration: Optional[SetOrderRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Set the order of identityUserFlowAttributeAssignments being collected within a user flow.
+        Set the order of identityUserFlowAttributeAssignments being collected within a user flow. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class SetOrderRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SetOrderPostRequestBody] = None, request_configuration: Optional[SetOrderRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Set the order of identityUserFlowAttributeAssignments being collected within a user flow.
+        Set the order of identityUserFlowAttributeAssignments being collected within a user flow. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -76,7 +76,7 @@ class SetOrderRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SetOrderRequestBuilder(raw_url, self.request_adapter)
+        return SetOrderRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

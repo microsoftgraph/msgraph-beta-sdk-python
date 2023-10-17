@@ -50,7 +50,7 @@ class AnalyticsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AnalyticsRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemAnalytics]:
         """
-        Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the [getActivitiesByInterval][] API.
+        Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the getActivitiesByInterval][] API. This API is available in the following [national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemAnalytics]
         Find more info here: https://learn.microsoft.com/graph/api/itemanalytics-get?view=graph-rest-1.0
@@ -111,7 +111,7 @@ class AnalyticsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AnalyticsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the [getActivitiesByInterval][] API.
+        Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the getActivitiesByInterval][] API. This API is available in the following [national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -154,7 +154,7 @@ class AnalyticsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AnalyticsRequestBuilder(raw_url, self.request_adapter)
+        return AnalyticsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def all_time(self) -> AllTimeRequestBuilder:
@@ -196,7 +196,7 @@ class AnalyticsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AnalyticsRequestBuilderGetQueryParameters():
         """
-        Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the [getActivitiesByInterval][] API.
+        Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the getActivitiesByInterval][] API. This API is available in the following [national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

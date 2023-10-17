@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.o_data_errors.o_data_error import ODataError
     from ........models.onenote_page import OnenotePage
+    from ........models.o_data_errors.o_data_error import ODataError
     from .content.content_request_builder import ContentRequestBuilder
     from .copy_to_section.copy_to_section_request_builder import CopyToSectionRequestBuilder
     from .onenote_patch_content.onenote_patch_content_request_builder import OnenotePatchContentRequestBuilder
@@ -34,7 +34,7 @@ class OnenotePageItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[OnenotePageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a OneNote page.
+        Delete a OneNote page. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/page-delete?view=graph-rest-1.0
@@ -99,7 +99,7 @@ class OnenotePageItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[OnenotePageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a OneNote page.
+        Delete a OneNote page. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class OnenotePageItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnenotePageItemRequestBuilder(raw_url, self.request_adapter)
+        return OnenotePageItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def content(self) -> ContentRequestBuilder:

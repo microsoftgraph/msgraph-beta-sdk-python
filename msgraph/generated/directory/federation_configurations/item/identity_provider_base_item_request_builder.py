@@ -28,7 +28,7 @@ class IdentityProviderBaseItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[IdentityProviderBaseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a samlOrWsFedExternalDomainFederation object.
+        Delete a samlOrWsFedExternalDomainFederation object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0
@@ -93,7 +93,7 @@ class IdentityProviderBaseItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[IdentityProviderBaseItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a samlOrWsFedExternalDomainFederation object.
+        Delete a samlOrWsFedExternalDomainFederation object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +151,7 @@ class IdentityProviderBaseItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IdentityProviderBaseItemRequestBuilder(raw_url, self.request_adapter)
+        return IdentityProviderBaseItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

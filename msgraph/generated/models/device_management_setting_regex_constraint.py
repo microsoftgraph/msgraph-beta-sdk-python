@@ -14,7 +14,7 @@ class DeviceManagementSettingRegexConstraint(DeviceManagementConstraint):
     Constraint enforcing the setting matches against a given RegEx pattern
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingRegexConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingRegexConstraint"
     # The RegEx pattern to match against
     regex: Optional[str] = None
     

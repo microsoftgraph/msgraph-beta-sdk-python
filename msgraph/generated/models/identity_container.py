@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .authentication_event_listener import AuthenticationEventListener
     from .authentication_events_flow import AuthenticationEventsFlow
+    from .authentication_event_listener import AuthenticationEventListener
     from .b2c_identity_user_flow import B2cIdentityUserFlow
     from .b2x_identity_user_flow import B2xIdentityUserFlow
     from .conditional_access_root import ConditionalAccessRoot
@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 @dataclass
 class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -65,8 +65,8 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .authentication_event_listener import AuthenticationEventListener
         from .authentication_events_flow import AuthenticationEventsFlow
+        from .authentication_event_listener import AuthenticationEventListener
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
         from .conditional_access_root import ConditionalAccessRoot
@@ -77,8 +77,8 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_user_flow import IdentityUserFlow
         from .identity_user_flow_attribute import IdentityUserFlowAttribute
 
-        from .authentication_event_listener import AuthenticationEventListener
         from .authentication_events_flow import AuthenticationEventsFlow
+        from .authentication_event_listener import AuthenticationEventListener
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
         from .conditional_access_root import ConditionalAccessRoot

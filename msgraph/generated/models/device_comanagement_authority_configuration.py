@@ -14,7 +14,7 @@ class DeviceComanagementAuthorityConfiguration(DeviceEnrollmentConfiguration):
     Windows 10 Co-Management Authority Page Configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceComanagementAuthorityConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.deviceComanagementAuthorityConfiguration"
     # CoManagement Authority configuration ConfigurationManagerAgentCommandLineArgument
     configuration_manager_agent_command_line_argument: Optional[str] = None
     # CoManagement Authority configuration InstallConfigurationManagerAgent

@@ -11,7 +11,7 @@ from .rule_destination import RuleDestination
 @dataclass
 class IpRange(RuleDestination):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.ipRange"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.ipRange"
     # Specifies the starting IP address of the IP range.
     begin_address: Optional[str] = None
     # Specifies the ending IP address of the IP range.

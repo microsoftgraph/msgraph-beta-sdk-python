@@ -49,7 +49,7 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[SensitivityLabelCollectionResponse]:
         """
-        Get a list of sensitivityLabel objects associated with a user or organization.
+        Get a list of sensitivityLabel objects associated with a user or organization. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SensitivityLabelCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/security-informationprotection-list-sensitivitylabels?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of sensitivityLabel objects associated with a user or organization.
+        Get a list of sensitivityLabel objects associated with a user or organization. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SensitivityLabelsRequestBuilder(raw_url, self.request_adapter)
+        return SensitivityLabelsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -188,7 +188,7 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SensitivityLabelsRequestBuilderGetQueryParameters():
         """
-        Get a list of sensitivityLabel objects associated with a user or organization.
+        Get a list of sensitivityLabel objects associated with a user or organization. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

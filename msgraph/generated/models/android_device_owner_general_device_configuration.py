@@ -42,7 +42,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the androidDeviceOwnerGeneralDeviceConfiguration resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerGeneralDeviceConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerGeneralDeviceConfiguration"
     # Indicates whether or not adding or removing accounts is disabled.
     accounts_block_modification: Optional[bool] = None
     # Specifies the list of managed apps with app details and its associated delegated scope(s). This collection can contain a maximum of 500 elements.

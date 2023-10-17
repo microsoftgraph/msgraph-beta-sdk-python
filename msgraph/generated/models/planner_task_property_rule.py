@@ -12,7 +12,7 @@ from .planner_property_rule import PlannerPropertyRule
 @dataclass
 class PlannerTaskPropertyRule(PlannerPropertyRule):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.plannerTaskPropertyRule"
+    OdataType: Optional[str] = "#microsoft.graph.plannerTaskPropertyRule"
     # Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
     applied_categories: Optional[PlannerFieldRules] = None
     # Rules and restrictions for assignments. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, addSelf, addOther, remove, removeSelf, removeOther, block.

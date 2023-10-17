@@ -15,7 +15,7 @@ class WindowsPhone81AppXBundle(WindowsPhone81AppX):
     Contains properties and inherited properties for Windows Phone 8.1 AppX Bundle Line Of Business apps. Inherits from graph.windowsPhone81AppX (which is also to be deprecated at the same time). Will be deprecated in February 2023.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsPhone81AppXBundle"
+    OdataType: Optional[str] = "#microsoft.graph.windowsPhone81AppXBundle"
     # The list of AppX Package Information.
     app_x_package_information_list: Optional[List[WindowsPackageInformation]] = None
     

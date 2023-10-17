@@ -19,7 +19,7 @@ class DeviceConfigurationAssignment(Entity):
     # The admin intent to apply or remove the profile. Possible values are: apply, remove.
     intent: Optional[DeviceConfigAssignmentIntent] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents source of assignment.
     source: Optional[DeviceAndAppManagementAssignmentSource] = None
     # The identifier of the source of the assignment. This property is read-only.

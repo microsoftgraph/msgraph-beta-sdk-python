@@ -12,7 +12,7 @@ from .activity_statistics import ActivityStatistics
 @dataclass
 class MeetingActivityStatistics(ActivityStatistics):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.meetingActivityStatistics"
+    OdataType: Optional[str] = "#microsoft.graph.meetingActivityStatistics"
     # Time spent on meetings outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
     after_hours: Optional[datetime.timedelta] = None
     # Time spent in conflicting meetings (meetings that overlap with other meetings that the person accepted and where the person’s status is set to Busy). The value is represented in ISO 8601 format for durations.

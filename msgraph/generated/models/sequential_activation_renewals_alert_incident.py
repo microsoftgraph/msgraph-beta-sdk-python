@@ -12,7 +12,7 @@ from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIn
 @dataclass
 class SequentialActivationRenewalsAlertIncident(UnifiedRoleManagementAlertIncident):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.sequentialActivationRenewalsAlertIncident"
+    OdataType: Optional[str] = "#microsoft.graph.sequentialActivationRenewalsAlertIncident"
     # The length of sequential activation of the same role.
     activation_count: Optional[int] = None
     # Display name of the subject that the incident applies to.

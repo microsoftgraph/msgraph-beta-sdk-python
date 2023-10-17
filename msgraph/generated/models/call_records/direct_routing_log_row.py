@@ -8,7 +8,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class DirectRoutingLogRow(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -16,9 +16,9 @@ class DirectRoutingLogRow(AdditionalDataHolder, BackedModel, Parsable):
     call_end_sub_reason: Optional[int] = None
     # Call type and direction.
     call_type: Optional[str] = None
-    # Number of the user or bot who received the call (E.164 format, but may include additional data).
+    # Number of the user or bot who received the call (E.164 format, but may include more data).
     callee_number: Optional[str] = None
-    # Number of the user or bot who made the call (E.164 format, but may include additional data).
+    # Number of the user or bot who made the call (E.164 format, but may include more data).
     caller_number: Optional[str] = None
     # Identifier (GUID) for the call that you can use when calling Microsoft Support.
     correlation_id: Optional[str] = None
@@ -34,7 +34,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, BackedModel, Parsable):
     final_sip_code_phrase: Optional[str] = None
     # Unique call identifier (GUID).
     id: Optional[str] = None
-    # When the initial invite was sent.
+    # The date and time when the initial invite was sent.
     invite_date_time: Optional[datetime.datetime] = None
     # Indicates if the trunk was enabled for media bypass or not.
     media_bypass_enabled: Optional[bool] = None
@@ -42,7 +42,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, BackedModel, Parsable):
     media_path_location: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
+    # Country code of the caller for an incoming call, or callee for an outgoing call. For details, see ISO 3166-1 alpha-2.
     other_party_country_code: Optional[str] = None
     # The data center used for signaling for both bypass and non-bypass calls.
     signaling_location: Optional[str] = None
@@ -56,9 +56,9 @@ class DirectRoutingLogRow(AdditionalDataHolder, BackedModel, Parsable):
     user_country_code: Optional[str] = None
     # Display name of the user.
     user_display_name: Optional[str] = None
-    # The unique identifier (GUID) of the user in Azure Active Directory. This and other user info will be null/empty for bot call types.
+    # The unique identifier (GUID) of the user in Azure Active Directory. This and other user info is null/empty for bot call types.
     user_id: Optional[str] = None
-    # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
+    # The user principal name (sign-in name) in Azure Active Directory, is usually the same as the user's SIP address, and can be same as the user's e-mail address.
     user_principal_name: Optional[str] = None
     
     @staticmethod

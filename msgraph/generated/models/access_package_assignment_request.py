@@ -40,7 +40,7 @@ class AccessPackageAssignmentRequest(Entity):
     # The requestor's supplied justification.
     justification: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted or Scheduled. Read-only.
     request_state: Optional[str] = None
     # More information on the request processing status. Read-only.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 @dataclass
 class ContentApplicabilitySettings(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -18,7 +18,7 @@ class ContentApplicabilitySettings(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Offer if the update is recommended by a vendor in the list, otherwise withhold the offer.
     offer_while_recommended_by: Optional[List[str]] = None
-    # Settings for governing safeguard holds on offering content.
+    # Settings for governing safeguard-holds on offering content.
     safeguard: Optional[SafeguardSettings] = None
     
     @staticmethod
