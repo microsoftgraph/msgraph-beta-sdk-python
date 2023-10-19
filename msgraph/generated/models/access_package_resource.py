@@ -35,11 +35,11 @@ class AccessPackageResource(Entity):
     is_pending_onboarding: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The unique identifier of the resource in the origin system. In the case of an Azure AD group, this is the identifier of the group.
+    # The unique identifier of the resource in the origin system. In the case of a Microsoft Entra group, this is the identifier of the group.
     origin_id: Optional[str] = None
     # The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
     origin_system: Optional[str] = None
-    # The type of the resource, such as Application if it is an Azure AD connected application, or SharePoint Online Site for a SharePoint Online site.
+    # The type of the resource, such as Application if it is a Microsoft Entra connected application, or SharePoint Online Site for a SharePoint Online site.
     resource_type: Optional[str] = None
     # A unique resource locator for the resource, such as the URL for signing a user into an application.
     url: Optional[str] = None

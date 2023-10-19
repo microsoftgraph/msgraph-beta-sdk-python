@@ -51,7 +51,7 @@ class PlannerTaskConfigurationRoleBase(AdditionalDataHolder, BackedModel, Parsab
         from .planner_user_role_kind import PlannerUserRoleKind
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roleKind": lambda n : setattr(self, 'role_kind', n.get_enum_value(PlannerUserRoleKind)),
         }
         return fields
@@ -64,7 +64,7 @@ class PlannerTaskConfigurationRoleBase(AdditionalDataHolder, BackedModel, Parsab
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("roleKind", self.role_kind)
         writer.write_additional_data_value(self.additional_data)
     

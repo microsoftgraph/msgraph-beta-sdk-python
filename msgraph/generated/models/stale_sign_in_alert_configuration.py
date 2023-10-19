@@ -13,7 +13,7 @@ from .unified_role_management_alert_configuration import UnifiedRoleManagementAl
 class StaleSignInAlertConfiguration(UnifiedRoleManagementAlertConfiguration):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.staleSignInAlertConfiguration"
-    # The number of days to look back from current timestamp within which the account has not signed in.
+    # The number of days to look back from current timestamp within which the account hasn't signed in.
     duration: Optional[datetime.timedelta] = None
     
     @staticmethod

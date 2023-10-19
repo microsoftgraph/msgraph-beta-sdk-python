@@ -16,9 +16,9 @@ class MultiTenantOrganizationMemberTransitionDetails(AdditionalDataHolder, Backe
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Role of the tenant in the multi-tenant organization. The possible values are: owner, member, unknownFutureValue.
+    # Role of the tenant in the multitenant organization. The possible values are: owner, member, unknownFutureValue.
     desired_role: Optional[MultiTenantOrganizationMemberRole] = None
-    # State of the tenant in the multi-tenant organization currently being processed. The possible values are: pending, active, removed, unknownFutureValue. Read-only.
+    # State of the tenant in the multitenant organization currently being processed. The possible values are: pending, active, removed, unknownFutureValue. Read-only.
     desired_state: Optional[MultiTenantOrganizationMemberState] = None
     # Details that explain the processing status if any. Read-only.
     details: Optional[str] = None
@@ -55,7 +55,7 @@ class MultiTenantOrganizationMemberTransitionDetails(AdditionalDataHolder, Backe
             "desiredRole": lambda n : setattr(self, 'desired_role', n.get_enum_value(MultiTenantOrganizationMemberRole)),
             "desiredState": lambda n : setattr(self, 'desired_state', n.get_enum_value(MultiTenantOrganizationMemberState)),
             "details": lambda n : setattr(self, 'details', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(MultiTenantOrganizationMemberProcessingStatus)),
         }
         return fields
@@ -71,7 +71,7 @@ class MultiTenantOrganizationMemberTransitionDetails(AdditionalDataHolder, Backe
         writer.write_enum_value("desiredRole", self.desired_role)
         writer.write_enum_value("desiredState", self.desired_state)
         writer.write_str_value("details", self.details)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     

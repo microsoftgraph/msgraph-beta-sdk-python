@@ -114,7 +114,7 @@ class MacOSEndpointProtectionConfiguration(DeviceConfiguration):
             "fileVaultNumberOfTimesUserCanIgnore": lambda n : setattr(self, 'file_vault_number_of_times_user_can_ignore', n.get_int_value()),
             "fileVaultPersonalRecoveryKeyHelpMessage": lambda n : setattr(self, 'file_vault_personal_recovery_key_help_message', n.get_str_value()),
             "fileVaultPersonalRecoveryKeyRotationInMonths": lambda n : setattr(self, 'file_vault_personal_recovery_key_rotation_in_months', n.get_int_value()),
-            "fileVaultSelectedRecoveryKeyTypes": lambda n : setattr(self, 'file_vault_selected_recovery_key_types', n.get_enum_value(MacOSFileVaultRecoveryKeyTypes)),
+            "fileVaultSelectedRecoveryKeyTypes": lambda n : setattr(self, 'file_vault_selected_recovery_key_types', n.get_collection_of_enum_values(MacOSFileVaultRecoveryKeyTypes)),
             "firewallApplications": lambda n : setattr(self, 'firewall_applications', n.get_collection_of_object_values(MacOSFirewallApplication)),
             "firewallBlockAllIncoming": lambda n : setattr(self, 'firewall_block_all_incoming', n.get_bool_value()),
             "firewallEnableStealthMode": lambda n : setattr(self, 'firewall_enable_stealth_mode', n.get_bool_value()),

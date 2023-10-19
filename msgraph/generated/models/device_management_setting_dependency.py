@@ -47,7 +47,7 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, BackedModel, Parsa
         fields: Dict[str, Callable[[Any], None]] = {
             "constraints": lambda n : setattr(self, 'constraints', n.get_collection_of_object_values(DeviceManagementConstraint)),
             "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -61,7 +61,7 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, BackedModel, Parsa
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("constraints", self.constraints)
         writer.write_str_value("definitionId", self.definition_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -75,7 +75,7 @@ class CompanyInformation(AdditionalDataHolder, BackedModel, Parsable):
             "id": lambda n : setattr(self, 'id', n.get_uuid_value()),
             "industry": lambda n : setattr(self, 'industry', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_bytes_value()),
             "taxRegistrationNumber": lambda n : setattr(self, 'tax_registration_number', n.get_str_value()),
@@ -100,7 +100,7 @@ class CompanyInformation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_uuid_value("id", self.id)
         writer.write_str_value("industry", self.industry)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_bytes_value("picture", self.picture)
         writer.write_str_value("taxRegistrationNumber", self.tax_registration_number)

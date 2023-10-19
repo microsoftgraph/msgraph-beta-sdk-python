@@ -27,9 +27,9 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, BackedModel, Parsable
     usage_location: Optional[str] = None
     # Display name of the user.
     user_display_name: Optional[str] = None
-    # The unique identifier (GUID) of the user in Azure Active Directory.
+    # The unique identifier (GUID) of the user in Microsoft Entra ID.
     user_id: Optional[str] = None
-    # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
+    # The user principal name (sign-in name) in Microsoft Entra ID. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
     user_principal_name: Optional[str] = None
     
     @staticmethod
@@ -51,7 +51,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, BackedModel, Parsable
         fields: Dict[str, Callable[[Any], None]] = {
             "currency": lambda n : setattr(self, 'currency', n.get_str_value()),
             "destinationContext": lambda n : setattr(self, 'destination_context', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "totalCallCharge": lambda n : setattr(self, 'total_call_charge', n.get_float_value()),
             "totalCallSeconds": lambda n : setattr(self, 'total_call_seconds', n.get_int_value()),
             "totalCalls": lambda n : setattr(self, 'total_calls', n.get_int_value()),
@@ -72,7 +72,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, BackedModel, Parsable
             raise TypeError("writer cannot be null.")
         writer.write_str_value("currency", self.currency)
         writer.write_str_value("destinationContext", self.destination_context)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_float_value("totalCallCharge", self.total_call_charge)
         writer.write_int_value("totalCallSeconds", self.total_call_seconds)
         writer.write_int_value("totalCalls", self.total_calls)

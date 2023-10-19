@@ -51,7 +51,7 @@ class TeamworkActivePeripherals(AdditionalDataHolder, BackedModel, Parsable):
             "communicationSpeaker": lambda n : setattr(self, 'communication_speaker', n.get_object_value(TeamworkPeripheral)),
             "contentCamera": lambda n : setattr(self, 'content_camera', n.get_object_value(TeamworkPeripheral)),
             "microphone": lambda n : setattr(self, 'microphone', n.get_object_value(TeamworkPeripheral)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roomCamera": lambda n : setattr(self, 'room_camera', n.get_object_value(TeamworkPeripheral)),
             "speaker": lambda n : setattr(self, 'speaker', n.get_object_value(TeamworkPeripheral)),
         }
@@ -68,7 +68,7 @@ class TeamworkActivePeripherals(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("communicationSpeaker", self.communication_speaker)
         writer.write_object_value("contentCamera", self.content_camera)
         writer.write_object_value("microphone", self.microphone)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("roomCamera", self.room_camera)
         writer.write_object_value("speaker", self.speaker)
         writer.write_additional_data_value(self.additional_data)

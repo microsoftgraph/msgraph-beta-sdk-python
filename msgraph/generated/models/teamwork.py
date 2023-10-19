@@ -8,15 +8,15 @@ if TYPE_CHECKING:
     from .deleted_team import DeletedTeam
     from .entity import Entity
     from .teams_app_settings import TeamsAppSettings
-    from .team_template import TeamTemplate
     from .teamwork_device import TeamworkDevice
+    from .team_template import TeamTemplate
     from .workforce_integration import WorkforceIntegration
 
 from .entity import Entity
 
 @dataclass
 class Teamwork(Entity):
-    # The deletedChats property
+    # A collection of deleted chats.
     deleted_chats: Optional[List[DeletedChat]] = None
     # A collection of deleted teams.
     deleted_teams: Optional[List[DeletedTeam]] = None
@@ -51,16 +51,16 @@ class Teamwork(Entity):
         from .deleted_team import DeletedTeam
         from .entity import Entity
         from .teams_app_settings import TeamsAppSettings
-        from .team_template import TeamTemplate
         from .teamwork_device import TeamworkDevice
+        from .team_template import TeamTemplate
         from .workforce_integration import WorkforceIntegration
 
         from .deleted_chat import DeletedChat
         from .deleted_team import DeletedTeam
         from .entity import Entity
         from .teams_app_settings import TeamsAppSettings
-        from .team_template import TeamTemplate
         from .teamwork_device import TeamworkDevice
+        from .team_template import TeamTemplate
         from .workforce_integration import WorkforceIntegration
 
         fields: Dict[str, Callable[[Any], None]] = {

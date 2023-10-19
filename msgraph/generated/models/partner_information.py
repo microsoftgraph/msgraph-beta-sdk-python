@@ -58,7 +58,7 @@ class PartnerInformation(AdditionalDataHolder, BackedModel, Parsable):
             "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
             "companyType": lambda n : setattr(self, 'company_type', n.get_enum_value(PartnerTenantType)),
             "helpUrl": lambda n : setattr(self, 'help_url', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "partnerTenantId": lambda n : setattr(self, 'partner_tenant_id', n.get_str_value()),
             "supportEmails": lambda n : setattr(self, 'support_emails', n.get_collection_of_primitive_values(str)),
             "supportTelephones": lambda n : setattr(self, 'support_telephones', n.get_collection_of_primitive_values(str)),
@@ -78,7 +78,7 @@ class PartnerInformation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("companyName", self.company_name)
         writer.write_enum_value("companyType", self.company_type)
         writer.write_str_value("helpUrl", self.help_url)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("partnerTenantId", self.partner_tenant_id)
         writer.write_collection_of_primitive_values("supportEmails", self.support_emails)
         writer.write_collection_of_primitive_values("supportTelephones", self.support_telephones)

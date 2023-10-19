@@ -55,7 +55,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "isDhcpEnabled": lambda n : setattr(self, 'is_dhcp_enabled', n.get_bool_value()),
             "isPCPortEnabled": lambda n : setattr(self, 'is_p_c_port_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "primaryDns": lambda n : setattr(self, 'primary_dns', n.get_str_value()),
             "secondaryDns": lambda n : setattr(self, 'secondary_dns', n.get_str_value()),
             "subnetMask": lambda n : setattr(self, 'subnet_mask', n.get_str_value()),
@@ -76,7 +76,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("ipAddress", self.ip_address)
         writer.write_bool_value("isDhcpEnabled", self.is_dhcp_enabled)
         writer.write_bool_value("isPCPortEnabled", self.is_p_c_port_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("primaryDns", self.primary_dns)
         writer.write_str_value("secondaryDns", self.secondary_dns)
         writer.write_str_value("subnetMask", self.subnet_mask)

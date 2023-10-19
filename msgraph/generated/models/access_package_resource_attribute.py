@@ -59,7 +59,7 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, BackedModel, Parsable
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isEditable": lambda n : setattr(self, 'is_editable', n.get_bool_value()),
             "isPersistedOnAssignmentRemoval": lambda n : setattr(self, 'is_persisted_on_assignment_removal', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, BackedModel, Parsable
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isEditable", self.is_editable)
         writer.write_bool_value("isPersistedOnAssignmentRemoval", self.is_persisted_on_assignment_removal)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

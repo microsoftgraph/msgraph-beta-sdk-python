@@ -50,7 +50,7 @@ class ManagedIdentity(AdditionalDataHolder, BackedModel, Parsable):
             "federatedTokenId": lambda n : setattr(self, 'federated_token_id', n.get_str_value()),
             "federatedTokenIssuer": lambda n : setattr(self, 'federated_token_issuer', n.get_str_value()),
             "msiType": lambda n : setattr(self, 'msi_type', n.get_enum_value(MsiType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class ManagedIdentity(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("federatedTokenId", self.federated_token_id)
         writer.write_str_value("federatedTokenIssuer", self.federated_token_issuer)
         writer.write_enum_value("msiType", self.msi_type)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

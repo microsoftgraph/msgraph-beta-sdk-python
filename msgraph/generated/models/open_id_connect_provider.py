@@ -13,11 +13,11 @@ from .identity_provider import IdentityProvider
 
 @dataclass
 class OpenIdConnectProvider(IdentityProvider):
-    # After the OIDC provider sends an ID token back to Azure AD, Azure AD needs to be able to map the claims from the received token to the claims that Azure AD recognizes and uses. This complex type captures that mapping. It is a required property.
+    # After the OIDC provider sends an ID token back to Microsoft Entra ID, Microsoft Entra ID needs to be able to map the claims from the received token to the claims that Microsoft Entra ID recognizes and uses. This complex type captures that mapping. It's a required property.
     claims_mapping: Optional[ClaimsMapping] = None
     # The domain hint can be used to skip directly to the sign-in page of the specified identity provider, instead of having the user make a selection among the list of available identity providers.
     domain_hint: Optional[str] = None
-    # The URL for the metadata document of the OpenID Connect identity provider. Every OpenID Connect identity provider describes a metadata document that contains most of the information required to perform sign-in. This includes information such as the URLs to use and the location of the service's public signing keys. The OpenID Connect metadata document is always located at an endpoint that ends in .well-known/openid-configuration . For the OpenID Connect identity provider you are looking to add, you will need to provide the metadata URL. It is a required property and is read only after creation.
+    # The URL for the metadata document of the OpenID Connect identity provider. Every OpenID Connect identity provider describes a metadata document that contains most of the information required to perform sign-in. This includes information such as the URLs to use and the location of the service's public signing keys. The OpenID Connect metadata document is always located at an endpoint that ends in a well-known/openid-configuration. For the OpenID Connect identity provider you're looking to add, you need to provide the metadata URL. It's a required property and is read only after creation.
     metadata_url: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -25,7 +25,7 @@ class OpenIdConnectProvider(IdentityProvider):
     response_mode: Optional[OpenIdConnectResponseMode] = None
     # The responseType property
     response_type: Optional[OpenIdConnectResponseTypes] = None
-    # Scope defines the information and permissions you are looking to gather from your custom identity provider. OpenID Connect requests must contain the openid scope value in order to receive the ID token from the identity provider. Without the ID token, users are not able to sign in to Azure AD B2C using the custom identity provider. Other scopes can be appended separated by space. For more details about the scope limitations see RFC6749 Section 3.3. It is a required property.
+    # Scope defines the information and permissions you're looking to gather from your custom identity provider. OpenID Connect requests must contain the openid scope value in order to receive the ID token from the identity provider. Without the ID token, users aren't able to sign in to Azure AD B2C using the custom identity provider. Other scopes can be appended separated by space. For more information about the scope limitations, see RFC6749 Section 3.3. It's a required property.
     scope: Optional[str] = None
     
     @staticmethod
@@ -59,7 +59,7 @@ class OpenIdConnectProvider(IdentityProvider):
             "domainHint": lambda n : setattr(self, 'domain_hint', n.get_str_value()),
             "metadataUrl": lambda n : setattr(self, 'metadata_url', n.get_str_value()),
             "responseMode": lambda n : setattr(self, 'response_mode', n.get_enum_value(OpenIdConnectResponseMode)),
-            "responseType": lambda n : setattr(self, 'response_type', n.get_enum_value(OpenIdConnectResponseTypes)),
+            "responseType": lambda n : setattr(self, 'response_type', n.get_collection_of_enum_values(OpenIdConnectResponseTypes)),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

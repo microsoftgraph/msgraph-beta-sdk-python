@@ -44,7 +44,7 @@ class CloudPcBulkActionSummary(AdditionalDataHolder, BackedModel, Parsable):
             "failedCount": lambda n : setattr(self, 'failed_count', n.get_int_value()),
             "inProgressCount": lambda n : setattr(self, 'in_progress_count', n.get_int_value()),
             "notSupportedCount": lambda n : setattr(self, 'not_supported_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "pendingCount": lambda n : setattr(self, 'pending_count', n.get_int_value()),
             "successfulCount": lambda n : setattr(self, 'successful_count', n.get_int_value()),
         }
@@ -61,7 +61,7 @@ class CloudPcBulkActionSummary(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("failedCount", self.failed_count)
         writer.write_int_value("inProgressCount", self.in_progress_count)
         writer.write_int_value("notSupportedCount", self.not_supported_count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("pendingCount", self.pending_count)
         writer.write_int_value("successfulCount", self.successful_count)
         writer.write_additional_data_value(self.additional_data)

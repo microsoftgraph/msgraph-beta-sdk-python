@@ -15,7 +15,7 @@ class ProvisionedIdentity(Identity):
     odata_type: Optional[str] = "#microsoft.graph.provisionedIdentity"
     # Details of the identity.
     details: Optional[DetailsInfo] = None
-    # Type of identity that has been provisioned, such as 'user' or 'group'. Supports $filter (eq, contains).
+    # Type of identity that has been provisioned, such as 'user' or 'group.' Supports $filter (eq, contains).
     identity_type: Optional[str] = None
     
     @staticmethod

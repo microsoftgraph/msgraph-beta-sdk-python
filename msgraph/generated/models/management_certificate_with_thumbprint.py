@@ -36,7 +36,7 @@ class ManagementCertificateWithThumbprint(AdditionalDataHolder, BackedModel, Par
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "certificate": lambda n : setattr(self, 'certificate', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "thumbprint": lambda n : setattr(self, 'thumbprint', n.get_str_value()),
         }
         return fields
@@ -50,7 +50,7 @@ class ManagementCertificateWithThumbprint(AdditionalDataHolder, BackedModel, Par
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("certificate", self.certificate)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("thumbprint", self.thumbprint)
         writer.write_additional_data_value(self.additional_data)
     

@@ -70,7 +70,7 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
             "dhGroup": lambda n : setattr(self, 'dh_group', n.get_enum_value(DiffieHellmanGroup)),
             "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(VpnEncryptionAlgorithmType)),
             "integrityCheckMethod": lambda n : setattr(self, 'integrity_check_method', n.get_enum_value(VpnIntegrityAlgorithmType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "pfsGroup": lambda n : setattr(self, 'pfs_group', n.get_enum_value(PerfectForwardSecrecyGroup)),
         }
         return fields
@@ -88,7 +88,7 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("dhGroup", self.dh_group)
         writer.write_enum_value("encryptionMethod", self.encryption_method)
         writer.write_enum_value("integrityCheckMethod", self.integrity_check_method)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("pfsGroup", self.pfs_group)
         writer.write_additional_data_value(self.additional_data)
     

@@ -10,13 +10,13 @@ from .entity import Entity
 
 @dataclass
 class CertificateAuthorityAsEntity(Entity):
-    # The certificate property
+    # The trusted certificate.
     certificate: Optional[bytes] = None
-    # The isRootAuthority property
+    # Indicates if the certificate is a root authority. In a certificateBasedApplicationConfiguration object, at least one object in the trustedCertificateAuthorities collection must be a root authority.
     is_root_authority: Optional[bool] = None
-    # The issuer property
+    # The issuer of the trusted certificate.
     issuer: Optional[str] = None
-    # The issuerSubjectKeyIdentifier property
+    # The subject key identifier of the trusted certificate.
     issuer_subject_key_identifier: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

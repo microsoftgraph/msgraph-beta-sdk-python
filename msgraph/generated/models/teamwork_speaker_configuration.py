@@ -52,7 +52,7 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "defaultSpeaker": lambda n : setattr(self, 'default_speaker', n.get_object_value(TeamworkPeripheral)),
             "isCommunicationSpeakerOptional": lambda n : setattr(self, 'is_communication_speaker_optional', n.get_bool_value()),
             "isSpeakerOptional": lambda n : setattr(self, 'is_speaker_optional', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "speakers": lambda n : setattr(self, 'speakers', n.get_collection_of_object_values(TeamworkPeripheral)),
         }
         return fields
@@ -69,7 +69,7 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("defaultSpeaker", self.default_speaker)
         writer.write_bool_value("isCommunicationSpeakerOptional", self.is_communication_speaker_optional)
         writer.write_bool_value("isSpeakerOptional", self.is_speaker_optional)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("speakers", self.speakers)
         writer.write_additional_data_value(self.additional_data)
     

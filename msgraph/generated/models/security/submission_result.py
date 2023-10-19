@@ -19,11 +19,11 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The submission result category. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable and unkownFutureValue.
     category: Optional[SubmissionResultCategory] = None
-    # Specifies the additional details provided by Microsoft to substantiate their analysis result.
+    # Specifies the extra details provided by Microsoft to substantiate their analysis result.
     detail: Optional[SubmissionResultDetail] = None
     # Specifies the files detected by Microsoft in the submitted emails.
     detected_files: Optional[List[SubmissionDetectedFile]] = None
-    # Specifes the URLs detected by Microsoft in the submitted email.
+    # Specifies the URLs detected by Microsoft in the submitted email.
     detected_urls: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -61,8 +61,8 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
             "detail": lambda n : setattr(self, 'detail', n.get_enum_value(SubmissionResultDetail)),
             "detectedFiles": lambda n : setattr(self, 'detected_files', n.get_collection_of_object_values(SubmissionDetectedFile)),
             "detectedUrls": lambda n : setattr(self, 'detected_urls', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "userMailboxSetting": lambda n : setattr(self, 'user_mailbox_setting', n.get_enum_value(UserMailboxSetting)),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "userMailboxSetting": lambda n : setattr(self, 'user_mailbox_setting', n.get_collection_of_enum_values(UserMailboxSetting)),
         }
         return fields
     
@@ -78,7 +78,7 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("detail", self.detail)
         writer.write_collection_of_object_values("detectedFiles", self.detected_files)
         writer.write_collection_of_primitive_values("detectedUrls", self.detected_urls)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("userMailboxSetting", self.user_mailbox_setting)
         writer.write_additional_data_value(self.additional_data)
     

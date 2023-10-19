@@ -52,7 +52,7 @@ class DeviceScopeActionResult(AdditionalDataHolder, BackedModel, Parsable):
             "deviceScopeAction": lambda n : setattr(self, 'device_scope_action', n.get_str_value()),
             "deviceScopeId": lambda n : setattr(self, 'device_scope_id', n.get_str_value()),
             "failedMessage": lambda n : setattr(self, 'failed_message', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(DeviceScopeActionStatus)),
         }
         return fields
@@ -68,7 +68,7 @@ class DeviceScopeActionResult(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("deviceScopeAction", self.device_scope_action)
         writer.write_str_value("deviceScopeId", self.device_scope_id)
         writer.write_str_value("failedMessage", self.failed_message)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     

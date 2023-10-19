@@ -43,7 +43,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, BackedModel, Parsable
         fields: Dict[str, Callable[[Any], None]] = {
             "adminAgentSoftwareVersion": lambda n : setattr(self, 'admin_agent_software_version', n.get_str_value()),
             "firmwareSoftwareVersion": lambda n : setattr(self, 'firmware_software_version', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operatingSystemSoftwareVersion": lambda n : setattr(self, 'operating_system_software_version', n.get_str_value()),
             "partnerAgentSoftwareVersion": lambda n : setattr(self, 'partner_agent_software_version', n.get_str_value()),
             "teamsClientSoftwareVersion": lambda n : setattr(self, 'teams_client_software_version', n.get_str_value()),
@@ -60,7 +60,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, BackedModel, Parsable
             raise TypeError("writer cannot be null.")
         writer.write_str_value("adminAgentSoftwareVersion", self.admin_agent_software_version)
         writer.write_str_value("firmwareSoftwareVersion", self.firmware_software_version)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("operatingSystemSoftwareVersion", self.operating_system_software_version)
         writer.write_str_value("partnerAgentSoftwareVersion", self.partner_agent_software_version)
         writer.write_str_value("teamsClientSoftwareVersion", self.teams_client_software_version)

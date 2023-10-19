@@ -82,7 +82,7 @@ class ArchivedPrintJob(AdditionalDataHolder, BackedModel, Parsable):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "duplexPageCount": lambda n : setattr(self, 'duplex_page_count', n.get_int_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "pageCount": lambda n : setattr(self, 'page_count', n.get_int_value()),
             "printerId": lambda n : setattr(self, 'printer_id', n.get_str_value()),
             "printerName": lambda n : setattr(self, 'printer_name', n.get_str_value()),
@@ -109,7 +109,7 @@ class ArchivedPrintJob(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_int_value("duplexPageCount", self.duplex_page_count)
         writer.write_str_value("id", self.id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("pageCount", self.page_count)
         writer.write_str_value("printerId", self.printer_id)
         writer.write_str_value("printerName", self.printer_name)

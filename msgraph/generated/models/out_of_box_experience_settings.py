@@ -60,7 +60,7 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
             "hideEULA": lambda n : setattr(self, 'hide_e_u_l_a', n.get_bool_value()),
             "hideEscapeLink": lambda n : setattr(self, 'hide_escape_link', n.get_bool_value()),
             "hidePrivacySettings": lambda n : setattr(self, 'hide_privacy_settings', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "skipKeyboardSelectionPage": lambda n : setattr(self, 'skip_keyboard_selection_page', n.get_bool_value()),
             "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(WindowsUserType)),
         }
@@ -78,7 +78,7 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("hideEULA", self.hide_e_u_l_a)
         writer.write_bool_value("hideEscapeLink", self.hide_escape_link)
         writer.write_bool_value("hidePrivacySettings", self.hide_privacy_settings)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("skipKeyboardSelectionPage", self.skip_keyboard_selection_page)
         writer.write_enum_value("userType", self.user_type)
         writer.write_additional_data_value(self.additional_data)

@@ -11,9 +11,9 @@ class DowngradeJustification(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Indicates whether the downgrade is or is not justified.
+    # Indicates whether the downgrade is or isn't justified.
     is_downgrade_justified: Optional[bool] = None
-    # Message that indicates why a downgrade is justified. The message will appear in administrative logs.
+    # Message that indicates why a downgrade is justified. The message appears in administrative logs.
     justification_message: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -37,7 +37,7 @@ class DowngradeJustification(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "isDowngradeJustified": lambda n : setattr(self, 'is_downgrade_justified', n.get_bool_value()),
             "justificationMessage": lambda n : setattr(self, 'justification_message', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -51,7 +51,7 @@ class DowngradeJustification(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("isDowngradeJustified", self.is_downgrade_justified)
         writer.write_str_value("justificationMessage", self.justification_message)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

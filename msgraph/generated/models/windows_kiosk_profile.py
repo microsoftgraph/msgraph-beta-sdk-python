@@ -50,7 +50,7 @@ class WindowsKioskProfile(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appConfiguration": lambda n : setattr(self, 'app_configuration', n.get_object_value(WindowsKioskAppConfiguration)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "profileId": lambda n : setattr(self, 'profile_id', n.get_str_value()),
             "profileName": lambda n : setattr(self, 'profile_name', n.get_str_value()),
             "userAccountsConfiguration": lambda n : setattr(self, 'user_accounts_configuration', n.get_collection_of_object_values(WindowsKioskUser)),
@@ -66,7 +66,7 @@ class WindowsKioskProfile(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("appConfiguration", self.app_configuration)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("profileId", self.profile_id)
         writer.write_str_value("profileName", self.profile_name)
         writer.write_collection_of_object_values("userAccountsConfiguration", self.user_accounts_configuration)

@@ -12,29 +12,29 @@ from .entity import Entity
 
 @dataclass
 class WorkbookDocumentTaskChange(Entity):
-    # The assignee property
+    # The user identity the task is assigned to. Only present when the type property is assign. Nullable.
     assignee: Optional[WorkbookEmailIdentity] = None
     # The changedBy property
     changed_by: Optional[WorkbookEmailIdentity] = None
-    # The commentId property
+    # The identifier of the associated comment.
     comment_id: Optional[str] = None
-    # The createdDateTime property
+    # Date and time when the task was changed. Nullable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The dueDateTime property
+    # The due date and time for the task. Only present when the type property is setSchedule. Nullable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     due_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The percentComplete property
+    # An integer value from 0 to 100 that represents the percentage of the completion of the task and associated comment. 100 means that the task and associated comment are completed. If you change the completion from 100 to a lower value, the associated task and comment are reactivated. Only present when the type property is setPercentComplete. Nullable.
     percent_complete: Optional[int] = None
-    # The priority property
+    # An integer value from 0 to 10 that represents the priority of the task. A lower value indicates a higher priority. 5 indicates the default priority if not set. Only present when the type property is setPriority. Nullable.
     priority: Optional[int] = None
-    # The startDateTime property
+    # The start date and time for the task. Only present when the type property is setSchedule. Nullable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     start_date_time: Optional[datetime.datetime] = None
-    # The title property
+    # The title of the task. Only present when the type property is setTitle. Nullable.
     title: Optional[str] = None
-    # The type property
+    # The type of the change history. Possible values are: create, assign, unassign, unassignAll, setPriority, setTitle, setPercentComplete, setSchedule, remove, restore, undo.
     type: Optional[str] = None
-    # The undoChangeId property
+    # The ID of the workbookDocumentTaskChange that was undone for the undo change action. Only exists on an undo change history. Nullable.
     undo_change_id: Optional[str] = None
     
     @staticmethod

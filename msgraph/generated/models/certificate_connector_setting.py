@@ -52,7 +52,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, BackedModel, Parsable):
             "enrollmentError": lambda n : setattr(self, 'enrollment_error', n.get_str_value()),
             "lastConnectorConnectionTime": lambda n : setattr(self, 'last_connector_connection_time', n.get_datetime_value()),
             "lastUploadVersion": lambda n : setattr(self, 'last_upload_version', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_int_value()),
         }
         return fields
@@ -70,7 +70,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("enrollmentError", self.enrollment_error)
         writer.write_datetime_value("lastConnectorConnectionTime", self.last_connector_connection_time)
         writer.write_int_value("lastUploadVersion", self.last_upload_version)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     

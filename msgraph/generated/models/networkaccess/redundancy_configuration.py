@@ -42,7 +42,7 @@ class RedundancyConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .redundancy_tier import RedundancyTier
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "redundancyTier": lambda n : setattr(self, 'redundancy_tier', n.get_enum_value(RedundancyTier)),
             "zoneLocalIpAddress": lambda n : setattr(self, 'zone_local_ip_address', n.get_str_value()),
         }
@@ -56,7 +56,7 @@ class RedundancyConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("redundancyTier", self.redundancy_tier)
         writer.write_str_value("zoneLocalIpAddress", self.zone_local_ip_address)
         writer.write_additional_data_value(self.additional_data)

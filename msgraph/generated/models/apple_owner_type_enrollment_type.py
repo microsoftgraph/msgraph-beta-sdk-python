@@ -46,7 +46,7 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "enrollmentType": lambda n : setattr(self, 'enrollment_type', n.get_enum_value(AppleUserInitiatedEnrollmentType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(ManagedDeviceOwnerType)),
         }
         return fields
@@ -60,7 +60,7 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("enrollmentType", self.enrollment_type)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("ownerType", self.owner_type)
         writer.write_additional_data_value(self.additional_data)
     

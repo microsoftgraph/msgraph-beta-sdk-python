@@ -54,7 +54,7 @@ class SharingLink(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "application": lambda n : setattr(self, 'application', n.get_object_value(Identity)),
             "configuratorUrl": lambda n : setattr(self, 'configurator_url', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "preventsDownload": lambda n : setattr(self, 'prevents_download', n.get_bool_value()),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
@@ -73,7 +73,7 @@ class SharingLink(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("application", self.application)
         writer.write_str_value("configuratorUrl", self.configurator_url)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("preventsDownload", self.prevents_download)
         writer.write_str_value("scope", self.scope)
         writer.write_str_value("type", self.type)

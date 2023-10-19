@@ -40,7 +40,7 @@ class DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate(Additio
         fields: Dict[str, Callable[[Any], None]] = {
             "maxValue": lambda n : setattr(self, 'max_value', n.get_int_value()),
             "minValue": lambda n : setattr(self, 'min_value', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -54,7 +54,7 @@ class DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate(Additio
             raise TypeError("writer cannot be null.")
         writer.write_int_value("maxValue", self.max_value)
         writer.write_int_value("minValue", self.min_value)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

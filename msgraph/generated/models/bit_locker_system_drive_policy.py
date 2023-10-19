@@ -73,7 +73,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(BitLockerEncryptionMethod)),
             "minimumPinLength": lambda n : setattr(self, 'minimum_pin_length', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "prebootRecoveryEnableMessageAndUrl": lambda n : setattr(self, 'preboot_recovery_enable_message_and_url', n.get_bool_value()),
             "prebootRecoveryMessage": lambda n : setattr(self, 'preboot_recovery_message', n.get_str_value()),
             "prebootRecoveryUrl": lambda n : setattr(self, 'preboot_recovery_url', n.get_str_value()),
@@ -97,7 +97,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("encryptionMethod", self.encryption_method)
         writer.write_int_value("minimumPinLength", self.minimum_pin_length)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("prebootRecoveryEnableMessageAndUrl", self.preboot_recovery_enable_message_and_url)
         writer.write_str_value("prebootRecoveryMessage", self.preboot_recovery_message)
         writer.write_str_value("prebootRecoveryUrl", self.preboot_recovery_url)

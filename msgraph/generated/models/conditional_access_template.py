@@ -51,7 +51,7 @@ class ConditionalAccessTemplate(Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "details": lambda n : setattr(self, 'details', n.get_object_value(ConditionalAccessPolicyDetail)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "scenarios": lambda n : setattr(self, 'scenarios', n.get_enum_value(TemplateScenarios)),
+            "scenarios": lambda n : setattr(self, 'scenarios', n.get_collection_of_enum_values(TemplateScenarios)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

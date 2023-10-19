@@ -57,6 +57,8 @@ class RecommendationBase(Entity):
     priority: Optional[RecommendationPriority] = None
     # Friendly shortname to identify the recommendation. The possible values are: adfsAppsMigration, enableDesktopSSO, enablePHS, enableProvisioning, switchFromPerUserMFA, tenantMFA, thirdPartyApps, turnOffPerUserMFA, useAuthenticatorApp, useMyApps, staleApps, staleAppCreds, applicationCredentialExpiry, servicePrincipalKeyExpiry, adminMFAV2, blockLegacyAuthentication, integratedApps, mfaRegistrationV2, pwagePolicyNew, passwordHashSync, oneAdmin, roleOverlap, selfServicePasswordReset, signinRiskPolicy, userRiskPolicy, verifyAppPublisher, privateLinkForAAD, appRoleAssignmentsGroups, appRoleAssignmentsUsers, managedIdentity, overprivilegedApps, unknownFutureValue.
     recommendation_type: Optional[RecommendationType] = None
+    # The current release type of the recommendation. The possible values are: preview, generallyAvailable, unknownFutureValue.
+    release_type: Optional[str] = None
     # Description of the impact on users of the remediation. Only applies to recommendations with category set to identitySecureScore.
     remediation_impact: Optional[str] = None
     # The status property
@@ -125,6 +127,7 @@ class RecommendationBase(Entity):
             "postponeUntilDateTime": lambda n : setattr(self, 'postpone_until_date_time', n.get_datetime_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_enum_value(RecommendationPriority)),
             "recommendationType": lambda n : setattr(self, 'recommendation_type', n.get_enum_value(RecommendationType)),
+            "releaseType": lambda n : setattr(self, 'release_type', n.get_str_value()),
             "remediationImpact": lambda n : setattr(self, 'remediation_impact', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(RecommendationStatus)),
         }
@@ -159,6 +162,7 @@ class RecommendationBase(Entity):
         writer.write_datetime_value("postponeUntilDateTime", self.postpone_until_date_time)
         writer.write_enum_value("priority", self.priority)
         writer.write_enum_value("recommendationType", self.recommendation_type)
+        writer.write_str_value("releaseType", self.release_type)
         writer.write_str_value("remediationImpact", self.remediation_impact)
         writer.write_enum_value("status", self.status)
     

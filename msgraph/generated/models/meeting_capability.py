@@ -47,7 +47,7 @@ class MeetingCapability(AdditionalDataHolder, BackedModel, Parsable):
             "allowAnonymousUsersToDialOut": lambda n : setattr(self, 'allow_anonymous_users_to_dial_out', n.get_bool_value()),
             "allowAnonymousUsersToStartMeeting": lambda n : setattr(self, 'allow_anonymous_users_to_start_meeting', n.get_bool_value()),
             "autoAdmittedUsers": lambda n : setattr(self, 'auto_admitted_users', n.get_enum_value(AutoAdmittedUsersType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class MeetingCapability(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("allowAnonymousUsersToDialOut", self.allow_anonymous_users_to_dial_out)
         writer.write_bool_value("allowAnonymousUsersToStartMeeting", self.allow_anonymous_users_to_start_meeting)
         writer.write_enum_value("autoAdmittedUsers", self.auto_admitted_users)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

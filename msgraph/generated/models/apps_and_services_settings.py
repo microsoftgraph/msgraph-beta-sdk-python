@@ -37,7 +37,7 @@ class AppsAndServicesSettings(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "isAppAndServicesTrialEnabled": lambda n : setattr(self, 'is_app_and_services_trial_enabled', n.get_bool_value()),
             "isOfficeStoreEnabled": lambda n : setattr(self, 'is_office_store_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -51,7 +51,7 @@ class AppsAndServicesSettings(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("isAppAndServicesTrialEnabled", self.is_app_and_services_trial_enabled)
         writer.write_bool_value("isOfficeStoreEnabled", self.is_office_store_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

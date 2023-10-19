@@ -19,7 +19,7 @@ class WebApplication(AdditionalDataHolder, BackedModel, Parsable):
     home_page_url: Optional[str] = None
     # Specifies whether this web application can request tokens using the OAuth 2.0 implicit flow.
     implicit_grant_settings: Optional[ImplicitGrantSettings] = None
-    # Specifies the URL that will be used by Microsoft's authorization service to logout an user using front-channel, back-channel or SAML logout protocols.
+    # Specifies the URL that will be used by Microsoft's authorization service to logout a user using front-channel, back-channel or SAML logout protocols.
     logout_url: Optional[str] = None
     # The oauth2AllowImplicitFlow property
     oauth2_allow_implicit_flow: Optional[bool] = None
@@ -57,7 +57,7 @@ class WebApplication(AdditionalDataHolder, BackedModel, Parsable):
             "implicitGrantSettings": lambda n : setattr(self, 'implicit_grant_settings', n.get_object_value(ImplicitGrantSettings)),
             "logoutUrl": lambda n : setattr(self, 'logout_url', n.get_str_value()),
             "oauth2AllowImplicitFlow": lambda n : setattr(self, 'oauth2_allow_implicit_flow', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "redirectUriSettings": lambda n : setattr(self, 'redirect_uri_settings', n.get_collection_of_object_values(RedirectUriSettings)),
             "redirectUris": lambda n : setattr(self, 'redirect_uris', n.get_collection_of_primitive_values(str)),
         }
@@ -75,7 +75,7 @@ class WebApplication(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("implicitGrantSettings", self.implicit_grant_settings)
         writer.write_str_value("logoutUrl", self.logout_url)
         writer.write_bool_value("oauth2AllowImplicitFlow", self.oauth2_allow_implicit_flow)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("redirectUriSettings", self.redirect_uri_settings)
         writer.write_collection_of_primitive_values("redirectUris", self.redirect_uris)
         writer.write_additional_data_value(self.additional_data)

@@ -20,7 +20,7 @@ class WorkbookTableColumn(Entity):
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
+    # Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.
     values: Optional[Json] = None
     
     @staticmethod

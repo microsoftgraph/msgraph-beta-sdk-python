@@ -34,7 +34,7 @@ class AuthenticationConditionApplication(AdditionalDataHolder, BackedModel, Pars
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -47,7 +47,7 @@ class AuthenticationConditionApplication(AdditionalDataHolder, BackedModel, Pars
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("appId", self.app_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

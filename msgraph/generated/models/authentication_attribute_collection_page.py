@@ -43,7 +43,7 @@ class AuthenticationAttributeCollectionPage(AdditionalDataHolder, BackedModel, P
 
         fields: Dict[str, Callable[[Any], None]] = {
             "customStringsFileId": lambda n : setattr(self, 'custom_strings_file_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "views": lambda n : setattr(self, 'views', n.get_collection_of_object_values(AuthenticationAttributeCollectionPageViewConfiguration)),
         }
         return fields
@@ -57,7 +57,7 @@ class AuthenticationAttributeCollectionPage(AdditionalDataHolder, BackedModel, P
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("customStringsFileId", self.custom_strings_file_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("views", self.views)
         writer.write_additional_data_value(self.additional_data)
     

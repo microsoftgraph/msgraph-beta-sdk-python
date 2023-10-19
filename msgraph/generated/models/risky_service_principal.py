@@ -6,10 +6,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
     from .risk_detail import RiskDetail
     from .risk_level import RiskLevel
     from .risk_state import RiskState
-    from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
 
 from .entity import Entity
 
@@ -65,16 +65,16 @@ class RiskyServicePrincipal(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
         from .risk_detail import RiskDetail
         from .risk_level import RiskLevel
         from .risk_state import RiskState
-        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
 
         from .entity import Entity
+        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
         from .risk_detail import RiskDetail
         from .risk_level import RiskLevel
         from .risk_state import RiskState
-        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),

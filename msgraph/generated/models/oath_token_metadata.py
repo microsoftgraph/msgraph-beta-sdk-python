@@ -51,7 +51,7 @@ class OathTokenMetadata(AdditionalDataHolder, BackedModel, Parsable):
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "manufacturerProperties": lambda n : setattr(self, 'manufacturer_properties', n.get_collection_of_object_values(KeyValue)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
             "tokenType": lambda n : setattr(self, 'token_type', n.get_str_value()),
         }
@@ -68,7 +68,7 @@ class OathTokenMetadata(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("enabled", self.enabled)
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_collection_of_object_values("manufacturerProperties", self.manufacturer_properties)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("serialNumber", self.serial_number)
         writer.write_str_value("tokenType", self.token_type)
         writer.write_additional_data_value(self.additional_data)

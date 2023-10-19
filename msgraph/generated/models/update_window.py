@@ -36,7 +36,7 @@ class UpdateWindow(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "updateWindowEndTime": lambda n : setattr(self, 'update_window_end_time', n.get_time_value()),
             "updateWindowStartTime": lambda n : setattr(self, 'update_window_start_time', n.get_time_value()),
         }
@@ -50,7 +50,7 @@ class UpdateWindow(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_time_value("updateWindowEndTime", self.update_window_end_time)
         writer.write_time_value("updateWindowStartTime", self.update_window_start_time)
         writer.write_additional_data_value(self.additional_data)

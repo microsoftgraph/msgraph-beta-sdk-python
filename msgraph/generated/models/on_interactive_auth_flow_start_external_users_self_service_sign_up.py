@@ -12,7 +12,7 @@ from .on_interactive_auth_flow_start_handler import OnInteractiveAuthFlowStartHa
 class OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp(OnInteractiveAuthFlowStartHandler):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onInteractiveAuthFlowStartExternalUsersSelfServiceSignUp"
-    # Optional. Specifes whether the authentication flow includes an option to sign up (create account) as well as sign in. Default value is false meaning only sign in is enabled.
+    # Optional. Specifies whether the authentication flow includes an option to sign up (create account) and sign in. Default value is false meaning only sign in is enabled.
     is_sign_up_allowed: Optional[bool] = None
     
     @staticmethod

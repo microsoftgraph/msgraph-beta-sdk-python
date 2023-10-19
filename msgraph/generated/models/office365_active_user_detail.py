@@ -13,9 +13,9 @@ from .entity import Entity
 class Office365ActiveUserDetail(Entity):
     # All the products assigned for the user.
     assigned_products: Optional[List[str]] = None
-    # The date when the delete operation happened. Default value is 'null' when the user has not been deleted.
+    # The date when the delete operation happened. Default value is 'null' when the user hasn't been deleted.
     deleted_date: Optional[datetime.date] = None
-    # The name displayed in the address book for the user. This is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created and it cannot be cleared during updates.
+    # The name displayed in the address book for the user. This is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created and it can't be cleared during updates.
     display_name: Optional[str] = None
     # The date when user last read or sent email.
     exchange_last_activity_date: Optional[datetime.date] = None

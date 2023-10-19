@@ -67,7 +67,7 @@ class SensitiveType(Entity):
             "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
             "rulePackageId": lambda n : setattr(self, 'rule_package_id', n.get_str_value()),
             "rulePackageType": lambda n : setattr(self, 'rule_package_type', n.get_str_value()),
-            "scope": lambda n : setattr(self, 'scope', n.get_enum_value(SensitiveTypeScope)),
+            "scope": lambda n : setattr(self, 'scope', n.get_collection_of_enum_values(SensitiveTypeScope)),
             "sensitiveTypeSource": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(SensitiveTypeSource)),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
         }

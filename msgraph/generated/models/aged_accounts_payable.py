@@ -63,7 +63,7 @@ class AgedAccountsPayable(AdditionalDataHolder, BackedModel, Parsable):
             "currentAmount": lambda n : setattr(self, 'current_amount', n.get_float_value()),
             "id": lambda n : setattr(self, 'id', n.get_uuid_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "periodLengthFilter": lambda n : setattr(self, 'period_length_filter', n.get_str_value()),
             "period1Amount": lambda n : setattr(self, 'period1_amount', n.get_float_value()),
             "period2Amount": lambda n : setattr(self, 'period2_amount', n.get_float_value()),
@@ -87,7 +87,7 @@ class AgedAccountsPayable(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_float_value("currentAmount", self.current_amount)
         writer.write_uuid_value("id", self.id)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("periodLengthFilter", self.period_length_filter)
         writer.write_float_value("period1Amount", self.period1_amount)
         writer.write_float_value("period2Amount", self.period2_amount)

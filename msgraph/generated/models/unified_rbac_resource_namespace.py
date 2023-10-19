@@ -15,7 +15,7 @@ class UnifiedRbacResourceNamespace(Entity):
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Operations that an authorized principal are allowed to perform.
+    # Operations that an authorized principal is allowed to perform.
     resource_actions: Optional[List[UnifiedRbacResourceAction]] = None
     
     @staticmethod

@@ -54,7 +54,7 @@ class PayloadByFilter(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "assignmentFilterType": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(DeviceAndAppManagementAssignmentFilterType)),
             "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
             "payloadType": lambda n : setattr(self, 'payload_type', n.get_enum_value(AssociatedAssignmentPayloadType)),
         }
@@ -70,7 +70,7 @@ class PayloadByFilter(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("assignmentFilterType", self.assignment_filter_type)
         writer.write_str_value("groupId", self.group_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("payloadId", self.payload_id)
         writer.write_enum_value("payloadType", self.payload_type)
         writer.write_additional_data_value(self.additional_data)

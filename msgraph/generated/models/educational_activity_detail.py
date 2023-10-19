@@ -57,7 +57,7 @@ class EducationalActivityDetail(AdditionalDataHolder, BackedModel, Parsable):
             "fieldsOfStudy": lambda n : setattr(self, 'fields_of_study', n.get_collection_of_primitive_values(str)),
             "grade": lambda n : setattr(self, 'grade', n.get_str_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields
@@ -78,7 +78,7 @@ class EducationalActivityDetail(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_primitive_values("fieldsOfStudy", self.fields_of_study)
         writer.write_str_value("grade", self.grade)
         writer.write_str_value("notes", self.notes)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("webUrl", self.web_url)
         writer.write_additional_data_value(self.additional_data)
     

@@ -53,7 +53,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, BackedModel, Parsable):
             "adminAgentSoftwareUpdateStatus": lambda n : setattr(self, 'admin_agent_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
             "companyPortalSoftwareUpdateStatus": lambda n : setattr(self, 'company_portal_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
             "firmwareSoftwareUpdateStatus": lambda n : setattr(self, 'firmware_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operatingSystemSoftwareUpdateStatus": lambda n : setattr(self, 'operating_system_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
             "partnerAgentSoftwareUpdateStatus": lambda n : setattr(self, 'partner_agent_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
             "teamsClientSoftwareUpdateStatus": lambda n : setattr(self, 'teams_client_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
@@ -71,7 +71,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("adminAgentSoftwareUpdateStatus", self.admin_agent_software_update_status)
         writer.write_object_value("companyPortalSoftwareUpdateStatus", self.company_portal_software_update_status)
         writer.write_object_value("firmwareSoftwareUpdateStatus", self.firmware_software_update_status)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("operatingSystemSoftwareUpdateStatus", self.operating_system_software_update_status)
         writer.write_object_value("partnerAgentSoftwareUpdateStatus", self.partner_agent_software_update_status)
         writer.write_object_value("teamsClientSoftwareUpdateStatus", self.teams_client_software_update_status)

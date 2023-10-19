@@ -15,7 +15,7 @@ class Office365GroupsActivityDetail(Entity):
     exchange_mailbox_storage_used_in_bytes: Optional[int] = None
     # The number of items in the group mailbox.
     exchange_mailbox_total_item_count: Optional[int] = None
-    # The number of email that the group mailbox received.
+    # The number of emails that the group mailbox received.
     exchange_received_email_count: Optional[int] = None
     # The group external member count.
     external_member_count: Optional[int] = None

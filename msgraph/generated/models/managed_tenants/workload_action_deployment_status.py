@@ -65,7 +65,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable
             "includeAllUsers": lambda n : setattr(self, 'include_all_users', n.get_bool_value()),
             "includeGroups": lambda n : setattr(self, 'include_groups', n.get_collection_of_primitive_values(str)),
             "lastDeploymentDateTime": lambda n : setattr(self, 'last_deployment_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(WorkloadActionStatus)),
         }
         return fields
@@ -85,7 +85,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable
         writer.write_bool_value("includeAllUsers", self.include_all_users)
         writer.write_collection_of_primitive_values("includeGroups", self.include_groups)
         writer.write_datetime_value("lastDeploymentDateTime", self.last_deployment_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     

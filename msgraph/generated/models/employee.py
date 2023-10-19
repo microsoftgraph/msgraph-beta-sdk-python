@@ -93,7 +93,7 @@ class Employee(AdditionalDataHolder, BackedModel, Parsable):
             "middleName": lambda n : setattr(self, 'middle_name', n.get_str_value()),
             "mobilePhone": lambda n : setattr(self, 'mobile_phone', n.get_str_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "personalEmail": lambda n : setattr(self, 'personal_email', n.get_str_value()),
             "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(Picture)),
@@ -124,7 +124,7 @@ class Employee(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("middleName", self.middle_name)
         writer.write_str_value("mobilePhone", self.mobile_phone)
         writer.write_str_value("number", self.number)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("personalEmail", self.personal_email)
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_collection_of_object_values("picture", self.picture)

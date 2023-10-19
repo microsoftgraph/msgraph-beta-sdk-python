@@ -50,7 +50,7 @@ class TimeCardEntry(AdditionalDataHolder, BackedModel, Parsable):
             "breaks": lambda n : setattr(self, 'breaks', n.get_collection_of_object_values(TimeCardBreak)),
             "clockInEvent": lambda n : setattr(self, 'clock_in_event', n.get_object_value(TimeCardEvent)),
             "clockOutEvent": lambda n : setattr(self, 'clock_out_event', n.get_object_value(TimeCardEvent)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -65,7 +65,7 @@ class TimeCardEntry(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("breaks", self.breaks)
         writer.write_object_value("clockInEvent", self.clock_in_event)
         writer.write_object_value("clockOutEvent", self.clock_out_event)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

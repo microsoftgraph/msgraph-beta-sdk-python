@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .mac_o_s_app_script import MacOSAppScript
     from .mac_o_s_included_app import MacOSIncludedApp
     from .mac_o_s_minimum_operating_system import MacOSMinimumOperatingSystem
     from .mobile_lob_app import MobileLobApp
@@ -23,6 +24,10 @@ class MacOSPkgApp(MobileLobApp):
     included_apps: Optional[List[MacOSIncludedApp]] = None
     # The value for the minimum applicable operating system.
     minimum_supported_operating_system: Optional[MacOSMinimumOperatingSystem] = None
+    # ComplexType macOSAppScript the contains the post-install script for the app. This will execute on the macOS device after the app is installed.
+    post_install_script: Optional[MacOSAppScript] = None
+    # ComplexType macOSAppScript the contains the post-install script for the app. This will execute on the macOS device after the app is installed.
+    pre_install_script: Optional[MacOSAppScript] = None
     # The primary CFBundleIdentifier of the .pkg.
     primary_bundle_id: Optional[str] = None
     # The primary CFBundleVersion of the .pkg.
@@ -44,10 +49,12 @@ class MacOSPkgApp(MobileLobApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .mac_o_s_app_script import MacOSAppScript
         from .mac_o_s_included_app import MacOSIncludedApp
         from .mac_o_s_minimum_operating_system import MacOSMinimumOperatingSystem
         from .mobile_lob_app import MobileLobApp
 
+        from .mac_o_s_app_script import MacOSAppScript
         from .mac_o_s_included_app import MacOSIncludedApp
         from .mac_o_s_minimum_operating_system import MacOSMinimumOperatingSystem
         from .mobile_lob_app import MobileLobApp
@@ -56,6 +63,8 @@ class MacOSPkgApp(MobileLobApp):
             "ignoreVersionDetection": lambda n : setattr(self, 'ignore_version_detection', n.get_bool_value()),
             "includedApps": lambda n : setattr(self, 'included_apps', n.get_collection_of_object_values(MacOSIncludedApp)),
             "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(MacOSMinimumOperatingSystem)),
+            "postInstallScript": lambda n : setattr(self, 'post_install_script', n.get_object_value(MacOSAppScript)),
+            "preInstallScript": lambda n : setattr(self, 'pre_install_script', n.get_object_value(MacOSAppScript)),
             "primaryBundleId": lambda n : setattr(self, 'primary_bundle_id', n.get_str_value()),
             "primaryBundleVersion": lambda n : setattr(self, 'primary_bundle_version', n.get_str_value()),
         }
@@ -75,6 +84,8 @@ class MacOSPkgApp(MobileLobApp):
         writer.write_bool_value("ignoreVersionDetection", self.ignore_version_detection)
         writer.write_collection_of_object_values("includedApps", self.included_apps)
         writer.write_object_value("minimumSupportedOperatingSystem", self.minimum_supported_operating_system)
+        writer.write_object_value("postInstallScript", self.post_install_script)
+        writer.write_object_value("preInstallScript", self.pre_install_script)
         writer.write_str_value("primaryBundleId", self.primary_bundle_id)
         writer.write_str_value("primaryBundleVersion", self.primary_bundle_version)
     

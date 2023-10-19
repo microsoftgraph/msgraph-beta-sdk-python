@@ -43,7 +43,7 @@ class OperatingSystemVersionRange(AdditionalDataHolder, BackedModel, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "highestVersion": lambda n : setattr(self, 'highest_version', n.get_str_value()),
             "lowestVersion": lambda n : setattr(self, 'lowest_version', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -58,7 +58,7 @@ class OperatingSystemVersionRange(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("description", self.description)
         writer.write_str_value("highestVersion", self.highest_version)
         writer.write_str_value("lowestVersion", self.lowest_version)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

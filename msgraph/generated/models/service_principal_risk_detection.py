@@ -40,6 +40,8 @@ class ServicePrincipalRiskDetection(Entity):
     last_updated_date_time: Optional[datetime.datetime] = None
     # Location from where the sign-in was initiated.
     location: Optional[SignInLocation] = None
+    # The mitreTechniqueId property
+    mitre_technique_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Request identifier of the sign-in activity associated with the risk detection. This property is null if the risk detection is not associated with a sign-in activity. Supports $filter (eq).
@@ -107,6 +109,7 @@ class ServicePrincipalRiskDetection(Entity):
             "keyIds": lambda n : setattr(self, 'key_ids', n.get_collection_of_primitive_values(str)),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "location": lambda n : setattr(self, 'location', n.get_object_value(SignInLocation)),
+            "mitreTechniqueId": lambda n : setattr(self, 'mitre_technique_id', n.get_str_value()),
             "requestId": lambda n : setattr(self, 'request_id', n.get_str_value()),
             "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(RiskDetail)),
             "riskEventType": lambda n : setattr(self, 'risk_event_type', n.get_str_value()),
@@ -141,6 +144,7 @@ class ServicePrincipalRiskDetection(Entity):
         writer.write_collection_of_primitive_values("keyIds", self.key_ids)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_object_value("location", self.location)
+        writer.write_str_value("mitreTechniqueId", self.mitre_technique_id)
         writer.write_str_value("requestId", self.request_id)
         writer.write_enum_value("riskDetail", self.risk_detail)
         writer.write_str_value("riskEventType", self.risk_event_type)

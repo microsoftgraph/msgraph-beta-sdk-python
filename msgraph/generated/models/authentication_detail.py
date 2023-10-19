@@ -14,11 +14,11 @@ class AuthenticationDetail(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The type of authentication method used to perform this step of authentication. Possible values: Password, SMS, Voice, Authenticator App, Software OATH token, Satisfied by token, Previously satisfied.
     authentication_method: Optional[str] = None
-    # Details about the authentication method used to perform this authentication step. For example, phone number (for SMS and voice), device name (for Authenticator app), and password source (e.g. cloud, AD FS, PTA, PHS).
+    # Details about the authentication method used to perform this authentication step. For example, phone number (for SMS and voice), device name (for Authenticator app), and password source (for example, cloud, AD FS, PTA, PHS).
     authentication_method_detail: Optional[str] = None
     # Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     authentication_step_date_time: Optional[datetime.datetime] = None
-    # The step of authentication that this satisfied. For example, primary authentication, or multi-factor authentication.
+    # The step of authentication that this satisfied. For example, primary authentication, or multifactor authentication.
     authentication_step_requirement: Optional[str] = None
     # Details about why the step succeeded or failed. For examples, user is blocked, fraud code entered, no phone input - timed out, phone unreachable, or claim in token.
     authentication_step_result_detail: Optional[str] = None
@@ -49,7 +49,7 @@ class AuthenticationDetail(AdditionalDataHolder, BackedModel, Parsable):
             "authenticationStepDateTime": lambda n : setattr(self, 'authentication_step_date_time', n.get_datetime_value()),
             "authenticationStepRequirement": lambda n : setattr(self, 'authentication_step_requirement', n.get_str_value()),
             "authenticationStepResultDetail": lambda n : setattr(self, 'authentication_step_result_detail', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "succeeded": lambda n : setattr(self, 'succeeded', n.get_bool_value()),
         }
         return fields
@@ -67,7 +67,7 @@ class AuthenticationDetail(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_datetime_value("authenticationStepDateTime", self.authentication_step_date_time)
         writer.write_str_value("authenticationStepRequirement", self.authentication_step_requirement)
         writer.write_str_value("authenticationStepResultDetail", self.authentication_step_result_detail)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("succeeded", self.succeeded)
         writer.write_additional_data_value(self.additional_data)
     

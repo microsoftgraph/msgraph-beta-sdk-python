@@ -37,7 +37,7 @@ class Headers(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "origin": lambda n : setattr(self, 'origin', n.get_str_value()),
             "referrer": lambda n : setattr(self, 'referrer', n.get_str_value()),
             "xForwardedFor": lambda n : setattr(self, 'x_forwarded_for', n.get_str_value()),
@@ -52,7 +52,7 @@ class Headers(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("origin", self.origin)
         writer.write_str_value("referrer", self.referrer)
         writer.write_str_value("xForwardedFor", self.x_forwarded_for)

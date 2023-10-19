@@ -43,7 +43,7 @@ class DeviceManagementIntentCustomizedSetting(AdditionalDataHolder, BackedModel,
             "customizedJson": lambda n : setattr(self, 'customized_json', n.get_str_value()),
             "defaultJson": lambda n : setattr(self, 'default_json', n.get_str_value()),
             "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -58,7 +58,7 @@ class DeviceManagementIntentCustomizedSetting(AdditionalDataHolder, BackedModel,
         writer.write_str_value("customizedJson", self.customized_json)
         writer.write_str_value("defaultJson", self.default_json)
         writer.write_str_value("definitionId", self.definition_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

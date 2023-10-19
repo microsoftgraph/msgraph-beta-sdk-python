@@ -27,7 +27,7 @@ class OrganizationalBrandingProperties(Entity):
     banner_logo_relative_url: Optional[str] = None
     # A list of base URLs for all available CDN providers that are serving the assets of the current resource. Several CDN providers are used at the same time for high availability of read requests. Read-only.
     cdn_list: Optional[List[str]] = None
-    # Represents the various content options to be customized throughout the authentication flow for a tenant. NOTE: Supported by Azure Active Directory for customers tenants only.
+    # Represents the various content options to be customized throughout the authentication flow for a tenant. NOTE: Supported by Microsoft Entra ID for customers tenants only.
     content_customization: Optional[ContentCustomization] = None
     # A custom URL for resetting account credentials. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.
     custom_account_reset_credentials_url: Optional[str] = None
@@ -51,7 +51,7 @@ class OrganizationalBrandingProperties(Entity):
     custom_terms_of_use_text: Optional[str] = None
     # A custom URL to replace the default URL of the 'Terms of Use' hyperlink in the footer. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128characters.
     custom_terms_of_use_url: Optional[str] = None
-    # A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.
+    # A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
     favicon: Optional[bytes] = None
     # A relative url for the favicon above that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
     favicon_relative_url: Optional[str] = None

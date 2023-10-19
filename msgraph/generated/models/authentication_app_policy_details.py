@@ -54,7 +54,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, BackedModel, Parsable
         fields: Dict[str, Callable[[Any], None]] = {
             "adminConfiguration": lambda n : setattr(self, 'admin_configuration', n.get_enum_value(AuthenticationAppAdminConfiguration)),
             "authenticationEvaluation": lambda n : setattr(self, 'authentication_evaluation', n.get_enum_value(AuthenticationAppEvaluation)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(AuthenticationAppPolicyStatus)),
         }
@@ -70,7 +70,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, BackedModel, Parsable
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("adminConfiguration", self.admin_configuration)
         writer.write_enum_value("authenticationEvaluation", self.authentication_evaluation)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("policyName", self.policy_name)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)

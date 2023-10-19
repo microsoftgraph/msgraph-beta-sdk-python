@@ -39,7 +39,7 @@ class IndustryDataRunEntityCountMetric(AdditionalDataHolder, BackedModel, Parsab
         fields: Dict[str, Callable[[Any], None]] = {
             "active": lambda n : setattr(self, 'active', n.get_int_value()),
             "inactive": lambda n : setattr(self, 'inactive', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "total": lambda n : setattr(self, 'total', n.get_int_value()),
         }
         return fields
@@ -52,7 +52,7 @@ class IndustryDataRunEntityCountMetric(AdditionalDataHolder, BackedModel, Parsab
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

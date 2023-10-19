@@ -58,7 +58,7 @@ class ServerProcessedContent(AdditionalDataHolder, BackedModel, Parsable):
             "htmlStrings": lambda n : setattr(self, 'html_strings', n.get_collection_of_object_values(MetaDataKeyStringPair)),
             "imageSources": lambda n : setattr(self, 'image_sources', n.get_collection_of_object_values(MetaDataKeyStringPair)),
             "links": lambda n : setattr(self, 'links', n.get_collection_of_object_values(MetaDataKeyStringPair)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "searchablePlainTexts": lambda n : setattr(self, 'searchable_plain_texts', n.get_collection_of_object_values(MetaDataKeyStringPair)),
         }
         return fields
@@ -76,7 +76,7 @@ class ServerProcessedContent(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("htmlStrings", self.html_strings)
         writer.write_collection_of_object_values("imageSources", self.image_sources)
         writer.write_collection_of_object_values("links", self.links)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("searchablePlainTexts", self.searchable_plain_texts)
         writer.write_additional_data_value(self.additional_data)
     

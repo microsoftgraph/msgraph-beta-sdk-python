@@ -17,7 +17,7 @@ class ManagementActionTenantDeploymentStatus(Entity):
     statuses: Optional[List[ManagementActionDeploymentStatus]] = None
     # The identifier for the tenant group that is associated with the management action. Required. Read-only.
     tenant_group_id: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Required. Read-only.
     tenant_id: Optional[str] = None
     
     @staticmethod

@@ -57,7 +57,7 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, BackedModel, Parsable)
             "deviceProperties": lambda n : setattr(self, 'device_properties', n.get_collection_of_object_values(KeyValuePair)),
             "evalutionSummaries": lambda n : setattr(self, 'evalution_summaries', n.get_collection_of_object_values(AssignmentFilterEvaluationSummary)),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
@@ -74,7 +74,7 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, BackedModel, Parsable)
         writer.write_collection_of_object_values("deviceProperties", self.device_properties)
         writer.write_collection_of_object_values("evalutionSummaries", self.evalution_summaries)
         writer.write_str_value("managedDeviceId", self.managed_device_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("payloadId", self.payload_id)
         writer.write_str_value("userId", self.user_id)
         writer.write_additional_data_value(self.additional_data)

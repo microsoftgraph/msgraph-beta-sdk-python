@@ -49,7 +49,7 @@ class LocalConnectivityConfiguration(AdditionalDataHolder, BackedModel, Parsable
             "asn": lambda n : setattr(self, 'asn', n.get_int_value()),
             "bgpAddress": lambda n : setattr(self, 'bgp_address', n.get_str_value()),
             "endpoint": lambda n : setattr(self, 'endpoint', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "region": lambda n : setattr(self, 'region', n.get_enum_value(Region)),
         }
         return fields
@@ -65,7 +65,7 @@ class LocalConnectivityConfiguration(AdditionalDataHolder, BackedModel, Parsable
         writer.write_int_value("asn", self.asn)
         writer.write_str_value("bgpAddress", self.bgp_address)
         writer.write_str_value("endpoint", self.endpoint)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("region", self.region)
         writer.write_additional_data_value(self.additional_data)
     

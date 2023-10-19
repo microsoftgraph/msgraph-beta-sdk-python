@@ -21,7 +21,7 @@ class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
     alert_impact_details: Optional[List[KeyValuePair]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The number value of the impact. For the aggregation types of count and affectedCloudPcCount, the value indicates the number of affected instances. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. For the aggregation types of percentage and affectedCloudPcPercentage, the value indicates the percent of affected instances. For example, 12 affectedCloudPcPercentage means that 12% of Cloud PCs are affected.
+    # The number value of the impact. For the aggregation types of count and affectedCloudPcCount, the value indicates the number of affected instances. For example, 6 affectedCloudPcCount means that six Cloud PCs are affected. For the aggregation types of percentage and affectedCloudPcPercentage, the value indicates the percent of affected instances. For example, 12 affectedCloudPcPercentage means that 12% of Cloud PCs are affected.
     value: Optional[int] = None
     
     @staticmethod
@@ -49,7 +49,7 @@ class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "aggregationType": lambda n : setattr(self, 'aggregation_type', n.get_enum_value(AggregationType)),
             "alertImpactDetails": lambda n : setattr(self, 'alert_impact_details', n.get_collection_of_object_values(KeyValuePair)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_int_value()),
         }
         return fields
@@ -64,7 +64,7 @@ class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("aggregationType", self.aggregation_type)
         writer.write_collection_of_object_values("alertImpactDetails", self.alert_impact_details)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("value", self.value)
         writer.write_additional_data_value(self.additional_data)
     

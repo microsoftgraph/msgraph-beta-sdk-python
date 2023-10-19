@@ -49,7 +49,7 @@ class ExpressionEvaluationDetails(AdditionalDataHolder, BackedModel, Parsable):
             "expression": lambda n : setattr(self, 'expression', n.get_str_value()),
             "expressionEvaluationDetails": lambda n : setattr(self, 'expression_evaluation_details', n.get_collection_of_object_values(ExpressionEvaluationDetails)),
             "expressionResult": lambda n : setattr(self, 'expression_result', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "propertyToEvaluate": lambda n : setattr(self, 'property_to_evaluate', n.get_object_value(PropertyToEvaluate)),
         }
         return fields
@@ -65,7 +65,7 @@ class ExpressionEvaluationDetails(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("expression", self.expression)
         writer.write_collection_of_object_values("expressionEvaluationDetails", self.expression_evaluation_details)
         writer.write_bool_value("expressionResult", self.expression_result)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("propertyToEvaluate", self.property_to_evaluate)
         writer.write_additional_data_value(self.additional_data)
     

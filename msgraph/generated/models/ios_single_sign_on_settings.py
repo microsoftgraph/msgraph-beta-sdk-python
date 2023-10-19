@@ -56,7 +56,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "kerberosPrincipalName": lambda n : setattr(self, 'kerberos_principal_name', n.get_str_value()),
             "kerberosRealm": lambda n : setattr(self, 'kerberos_realm', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -73,7 +73,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("kerberosPrincipalName", self.kerberos_principal_name)
         writer.write_str_value("kerberosRealm", self.kerberos_realm)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

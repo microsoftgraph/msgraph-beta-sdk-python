@@ -63,9 +63,9 @@ class AndroidScepCertificateProfile(AndroidCertificateProfileBase):
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(HashAlgorithms)),
+            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
-            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(KeyUsages)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_collection_of_enum_values(KeyUsages)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
             "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
             "subjectAlternativeNameFormatString": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),

@@ -63,7 +63,7 @@ class DeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
             "contentApplicability": lambda n : setattr(self, 'content_applicability', n.get_object_value(ContentApplicabilitySettings)),
             "expedite": lambda n : setattr(self, 'expedite', n.get_object_value(ExpediteSettings)),
             "monitoring": lambda n : setattr(self, 'monitoring', n.get_object_value(MonitoringSettings)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(ScheduleSettings)),
             "userExperience": lambda n : setattr(self, 'user_experience', n.get_object_value(UserExperienceSettings)),
         }
@@ -80,7 +80,7 @@ class DeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("contentApplicability", self.content_applicability)
         writer.write_object_value("expedite", self.expedite)
         writer.write_object_value("monitoring", self.monitoring)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("schedule", self.schedule)
         writer.write_object_value("userExperience", self.user_experience)
         writer.write_additional_data_value(self.additional_data)

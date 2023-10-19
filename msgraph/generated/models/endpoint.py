@@ -12,13 +12,13 @@ from .directory_object import DirectoryObject
 class Endpoint(DirectoryObject):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.endpoint"
-    # Describes the capability that is associated with this resource. (e.g. Messages, Conversations, etc.) Not nullable. Read-only.
+    # Describes the capability that is associated with this resource. (for example, Messages, Conversations, etc.) Not nullable. Read-only.
     capability: Optional[str] = None
     # Application id of the publishing underlying service. Not nullable. Read-only.
     provider_id: Optional[str] = None
     # Name of the publishing underlying service. Read-only.
     provider_name: Optional[str] = None
-    # For Microsoft 365 groups, this is set to a well-known name for the resource (e.g. Yammer.FeedURL etc.). Not nullable. Read-only.
+    # For Microsoft 365 groups, this is set to a well-known name for the resource (for example, Yammer.FeedURL etc.). Not nullable. Read-only.
     provider_resource_id: Optional[str] = None
     # URL of the published resource. Not nullable. Read-only.
     uri: Optional[str] = None

@@ -37,7 +37,7 @@ class ConditionalAccessDeviceStates(AdditionalDataHolder, BackedModel, Parsable)
         fields: Dict[str, Callable[[Any], None]] = {
             "excludeStates": lambda n : setattr(self, 'exclude_states', n.get_collection_of_primitive_values(str)),
             "includeStates": lambda n : setattr(self, 'include_states', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -51,7 +51,7 @@ class ConditionalAccessDeviceStates(AdditionalDataHolder, BackedModel, Parsable)
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("excludeStates", self.exclude_states)
         writer.write_collection_of_primitive_values("includeStates", self.include_states)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

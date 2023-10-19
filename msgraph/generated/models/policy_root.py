@@ -42,19 +42,19 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The policy that contains directory-level access review settings.
     access_review_policy: Optional[AccessReviewPolicy] = None
-    # The policy that controls the idle time out for web sessions for applications.
+    # The policy that controls the idle time-out for web sessions for applications.
     activity_based_timeout_policies: Optional[List[ActivityBasedTimeoutPolicy]] = None
     # The policy by which consent requests are created and managed for the entire tenant.
     admin_consent_request_policy: Optional[AdminConsentRequestPolicy] = None
     # The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
     app_management_policies: Optional[List[AppManagementPolicy]] = None
-    # The policy configuration of the self-service sign-up experience of external users.
+    # The policy configuration of the self-service sign-up experience of guests.
     authentication_flows_policy: Optional[AuthenticationFlowsPolicy] = None
-    # The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
+    # The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.
     authentication_methods_policy: Optional[AuthenticationMethodsPolicy] = None
-    # The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
+    # The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.
     authentication_strength_policies: Optional[List[AuthenticationStrengthPolicy]] = None
-    # The policy that controls Azure AD authorization settings.
+    # The policy that controls Microsoft Entra authorization settings.
     authorization_policy: Optional[List[AuthorizationPolicy]] = None
     # The Azure AD B2C policies that define how end users register via local accounts.
     b2c_authentication_methods_policy: Optional[B2cAuthenticationMethodsPolicy] = None
@@ -62,7 +62,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
     claims_mapping_policies: Optional[List[ClaimsMappingPolicy]] = None
     # The custom rules that define an access scenario.
     conditional_access_policies: Optional[List[ConditionalAccessPolicy]] = None
-    # The custom rules that define an access scenario when interacting with external Azure AD tenants.
+    # The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
     cross_tenant_access_policy: Optional[CrossTenantAccessPolicy] = None
     # The tenant-wide policy that enforces app management restrictions for all applications and service principals.
     default_app_management_policy: Optional[TenantAppManagementPolicy] = None
@@ -70,17 +70,17 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
     device_registration_policy: Optional[DeviceRegistrationPolicy] = None
     # The directoryRoleAccessReviewPolicy property
     directory_role_access_review_policy: Optional[DirectoryRoleAccessReviewPolicy] = None
-    # Represents the tenant-wide policy that controls whether external users can leave an Azure AD tenant via self-service controls.
+    # Represents the tenant-wide policy that controls whether guests can leave a Microsoft Entra tenant via self-service controls.
     external_identities_policy: Optional[ExternalIdentitiesPolicy] = None
     # The feature rollout policy associated with a directory object.
     feature_rollout_policies: Optional[List[FeatureRolloutPolicy]] = None
     # The federatedTokenValidationPolicy property
     federated_token_validation_policy: Optional[FederatedTokenValidationPolicy] = None
-    # The policy to control Azure AD authentication behavior for federated users.
+    # The policy to control Microsoft Entra authentication behavior for federated users.
     home_realm_discovery_policies: Optional[List[HomeRealmDiscoveryPolicy]] = None
     # The policy that represents the security defaults that protect against common attacks.
     identity_security_defaults_enforcement_policy: Optional[IdentitySecurityDefaultsEnforcementPolicy] = None
-    # The policy that defines auto-enrollment configuration for a mobility management (MDM or MAM) application.
+    # The policy that defines autoenrollment configuration for a mobility management (MDM or MAM) application.
     mobile_app_management_policies: Optional[List[MobilityManagementPolicy]] = None
     # The mobileDeviceManagementPolicies property
     mobile_device_management_policies: Optional[List[MobilityManagementPolicy]] = None
@@ -94,9 +94,9 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
     role_management_policy_assignments: Optional[List[UnifiedRoleManagementPolicyAssignment]] = None
     # The servicePrincipalCreationPolicies property
     service_principal_creation_policies: Optional[List[ServicePrincipalCreationPolicy]] = None
-    # The policy that specifies the characteristics of SAML tokens issued by Azure AD.
+    # The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.
     token_issuance_policies: Optional[List[TokenIssuancePolicy]] = None
-    # The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.
+    # The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.
     token_lifetime_policies: Optional[List[TokenLifetimePolicy]] = None
     
     @staticmethod
@@ -194,7 +194,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
             "identitySecurityDefaultsEnforcementPolicy": lambda n : setattr(self, 'identity_security_defaults_enforcement_policy', n.get_object_value(IdentitySecurityDefaultsEnforcementPolicy)),
             "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
             "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "permissionGrantPolicies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(PermissionGrantPolicy)),
             "roleManagementPolicies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(UnifiedRoleManagementPolicy)),
             "roleManagementPolicyAssignments": lambda n : setattr(self, 'role_management_policy_assignments', n.get_collection_of_object_values(UnifiedRoleManagementPolicyAssignment)),
@@ -234,7 +234,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("identitySecurityDefaultsEnforcementPolicy", self.identity_security_defaults_enforcement_policy)
         writer.write_collection_of_object_values("mobileAppManagementPolicies", self.mobile_app_management_policies)
         writer.write_collection_of_object_values("mobileDeviceManagementPolicies", self.mobile_device_management_policies)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("permissionGrantPolicies", self.permission_grant_policies)
         writer.write_collection_of_object_values("roleManagementPolicies", self.role_management_policies)
         writer.write_collection_of_object_values("roleManagementPolicyAssignments", self.role_management_policy_assignments)

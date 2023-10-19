@@ -32,7 +32,7 @@ class NetworkInfo(AdditionalDataHolder, BackedModel, Parsable):
     ip_address: Optional[str] = None
     # Link speed in bits per second reported by the network adapter used by the media endpoint.
     link_speed: Optional[int] = None
-    # The media access control (MAC) address of the media endpoint's network device.
+    # The media access control (MAC) address of the media endpoint's network device. This value may be missing or shown as 02:00:00:00:00:00 due to operating system privacy policies.
     mac_address: Optional[str] = None
     # The networkTransportProtocol property
     network_transport_protocol: Optional[NetworkTransportProtocol] = None
@@ -111,7 +111,7 @@ class NetworkInfo(AdditionalDataHolder, BackedModel, Parsable):
             "linkSpeed": lambda n : setattr(self, 'link_speed', n.get_int_value()),
             "macAddress": lambda n : setattr(self, 'mac_address', n.get_str_value()),
             "networkTransportProtocol": lambda n : setattr(self, 'network_transport_protocol', n.get_enum_value(NetworkTransportProtocol)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
             "receivedQualityEventRatio": lambda n : setattr(self, 'received_quality_event_ratio', n.get_float_value()),
             "reflexiveIPAddress": lambda n : setattr(self, 'reflexive_i_p_address', n.get_str_value()),
@@ -149,7 +149,7 @@ class NetworkInfo(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("linkSpeed", self.link_speed)
         writer.write_str_value("macAddress", self.mac_address)
         writer.write_enum_value("networkTransportProtocol", self.network_transport_protocol)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("port", self.port)
         writer.write_float_value("receivedQualityEventRatio", self.received_quality_event_ratio)
         writer.write_str_value("reflexiveIPAddress", self.reflexive_i_p_address)

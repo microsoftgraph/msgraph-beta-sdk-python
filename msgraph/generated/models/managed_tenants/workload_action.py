@@ -60,7 +60,7 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "licenses": lambda n : setattr(self, 'licenses', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "service": lambda n : setattr(self, 'service', n.get_str_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(Setting)),
         }
@@ -79,7 +79,7 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("licenses", self.licenses)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("service", self.service)
         writer.write_collection_of_object_values("settings", self.settings)
         writer.write_additional_data_value(self.additional_data)

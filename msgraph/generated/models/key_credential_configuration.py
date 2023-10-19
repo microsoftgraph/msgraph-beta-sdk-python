@@ -15,7 +15,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The certificateBasedApplicationConfigurationIds property
+    # Collection of GUIDs that point to the certificateBasedApplicationConfiguration that contains the collection of allowed root and intermediate certificate authorities.
     certificate_based_application_configuration_ids: Optional[List[str]] = None
     # The maxLifetime property
     max_lifetime: Optional[datetime.timedelta] = None
@@ -49,7 +49,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "certificateBasedApplicationConfigurationIds": lambda n : setattr(self, 'certificate_based_application_configuration_ids', n.get_collection_of_primitive_values(str)),
             "maxLifetime": lambda n : setattr(self, 'max_lifetime', n.get_timedelta_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "restrictForAppsCreatedAfterDateTime": lambda n : setattr(self, 'restrict_for_apps_created_after_date_time', n.get_datetime_value()),
             "restrictionType": lambda n : setattr(self, 'restriction_type', n.get_enum_value(AppKeyCredentialRestrictionType)),
         }
@@ -65,7 +65,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("certificateBasedApplicationConfigurationIds", self.certificate_based_application_configuration_ids)
         writer.write_timedelta_value("maxLifetime", self.max_lifetime)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_datetime_value("restrictForAppsCreatedAfterDateTime", self.restrict_for_apps_created_after_date_time)
         writer.write_enum_value("restrictionType", self.restriction_type)
         writer.write_additional_data_value(self.additional_data)

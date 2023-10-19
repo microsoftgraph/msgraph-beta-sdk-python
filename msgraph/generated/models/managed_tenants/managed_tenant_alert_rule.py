@@ -93,7 +93,7 @@ class ManagedTenantAlertRule(Entity):
             "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
             "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "lastRunDateTime": lambda n : setattr(self, 'last_run_date_time', n.get_datetime_value()),
-            "notificationFinalDestinations": lambda n : setattr(self, 'notification_final_destinations', n.get_enum_value(NotificationDestination)),
+            "notificationFinalDestinations": lambda n : setattr(self, 'notification_final_destinations', n.get_collection_of_enum_values(NotificationDestination)),
             "ruleDefinition": lambda n : setattr(self, 'rule_definition', n.get_object_value(ManagedTenantAlertRuleDefinition)),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertSeverity)),
             "targets": lambda n : setattr(self, 'targets', n.get_collection_of_object_values(NotificationTarget)),

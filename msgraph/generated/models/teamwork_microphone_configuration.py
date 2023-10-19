@@ -47,7 +47,7 @@ class TeamworkMicrophoneConfiguration(AdditionalDataHolder, BackedModel, Parsabl
             "defaultMicrophone": lambda n : setattr(self, 'default_microphone', n.get_object_value(TeamworkPeripheral)),
             "isMicrophoneOptional": lambda n : setattr(self, 'is_microphone_optional', n.get_bool_value()),
             "microphones": lambda n : setattr(self, 'microphones', n.get_collection_of_object_values(TeamworkPeripheral)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class TeamworkMicrophoneConfiguration(AdditionalDataHolder, BackedModel, Parsabl
         writer.write_object_value("defaultMicrophone", self.default_microphone)
         writer.write_bool_value("isMicrophoneOptional", self.is_microphone_optional)
         writer.write_collection_of_object_values("microphones", self.microphones)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

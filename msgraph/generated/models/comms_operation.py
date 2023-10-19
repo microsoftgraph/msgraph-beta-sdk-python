@@ -8,8 +8,8 @@ if TYPE_CHECKING:
     from .cancel_media_processing_operation import CancelMediaProcessingOperation
     from .entity import Entity
     from .invite_participants_operation import InviteParticipantsOperation
-    from .mute_participant_operation import MuteParticipantOperation
     from .mute_participants_operation import MuteParticipantsOperation
+    from .mute_participant_operation import MuteParticipantOperation
     from .operation_status import OperationStatus
     from .play_prompt_operation import PlayPromptOperation
     from .record_operation import RecordOperation
@@ -105,8 +105,8 @@ class CommsOperation(Entity):
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .entity import Entity
         from .invite_participants_operation import InviteParticipantsOperation
-        from .mute_participant_operation import MuteParticipantOperation
         from .mute_participants_operation import MuteParticipantsOperation
+        from .mute_participant_operation import MuteParticipantOperation
         from .operation_status import OperationStatus
         from .play_prompt_operation import PlayPromptOperation
         from .record_operation import RecordOperation
@@ -121,8 +121,8 @@ class CommsOperation(Entity):
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .entity import Entity
         from .invite_participants_operation import InviteParticipantsOperation
-        from .mute_participant_operation import MuteParticipantOperation
         from .mute_participants_operation import MuteParticipantsOperation
+        from .mute_participant_operation import MuteParticipantOperation
         from .operation_status import OperationStatus
         from .play_prompt_operation import PlayPromptOperation
         from .record_operation import RecordOperation

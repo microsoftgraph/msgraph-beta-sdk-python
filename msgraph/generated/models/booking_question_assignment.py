@@ -11,11 +11,11 @@ class BookingQuestionAssignment(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Indicates whether it is mandatory to answer the custom question.
+    # Indicates whether it's mandatory to answer the custom question.
     is_required: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # If it is mandatory to answer the custom question.
+    # If it's mandatory to answer the custom question.
     question_id: Optional[str] = None
     
     @staticmethod
@@ -36,7 +36,7 @@ class BookingQuestionAssignment(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "questionId": lambda n : setattr(self, 'question_id', n.get_str_value()),
         }
         return fields
@@ -50,7 +50,7 @@ class BookingQuestionAssignment(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("isRequired", self.is_required)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("questionId", self.question_id)
         writer.write_additional_data_value(self.additional_data)
     

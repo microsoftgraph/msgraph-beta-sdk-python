@@ -89,7 +89,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
             "dynamics": lambda n : setattr(self, 'dynamics', n.get_object_value(AdminDynamics)),
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(Edge)),
             "forms": lambda n : setattr(self, 'forms', n.get_object_value(AdminForms)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "people": lambda n : setattr(self, 'people', n.get_object_value(PeopleAdminSettings)),
             "reportSettings": lambda n : setattr(self, 'report_settings', n.get_object_value(AdminReportSettings)),
             "serviceAnnouncement": lambda n : setattr(self, 'service_announcement', n.get_object_value(ServiceAnnouncement)),
@@ -111,7 +111,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("dynamics", self.dynamics)
         writer.write_object_value("edge", self.edge)
         writer.write_object_value("forms", self.forms)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("people", self.people)
         writer.write_object_value("reportSettings", self.report_settings)
         writer.write_object_value("serviceAnnouncement", self.service_announcement)

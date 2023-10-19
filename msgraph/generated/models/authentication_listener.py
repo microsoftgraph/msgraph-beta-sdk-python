@@ -16,7 +16,7 @@ class AuthenticationListener(Entity):
     odata_type: Optional[str] = None
     # The priority of the listener. Determines the order of evaluation when an event has multiple listeners. The priority is evaluated from low to high.
     priority: Optional[int] = None
-    # Filter based on the source of the authentication that is used to determine whether the listener is evaluated. This is currently limited to evaluations based on application the user is authenticating to.
+    # Filter based on the source of the authentication that is used to determine whether the listener is evaluated, and is currently limited to evaluations based on application the user is authenticating to.
     source_filter: Optional[AuthenticationSourceFilter] = None
     
     @staticmethod

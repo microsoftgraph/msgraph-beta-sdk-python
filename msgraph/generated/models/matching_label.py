@@ -68,7 +68,7 @@ class MatchingLabel(AdditionalDataHolder, BackedModel, Parsable):
             "isEndpointProtectionEnabled": lambda n : setattr(self, 'is_endpoint_protection_enabled', n.get_bool_value()),
             "labelActions": lambda n : setattr(self, 'label_actions', n.get_collection_of_object_values(LabelActionBase)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyTip": lambda n : setattr(self, 'policy_tip', n.get_str_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "toolTip": lambda n : setattr(self, 'tool_tip', n.get_str_value()),
@@ -90,7 +90,7 @@ class MatchingLabel(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("isEndpointProtectionEnabled", self.is_endpoint_protection_enabled)
         writer.write_collection_of_object_values("labelActions", self.label_actions)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("policyTip", self.policy_tip)
         writer.write_int_value("priority", self.priority)
         writer.write_str_value("toolTip", self.tool_tip)

@@ -47,7 +47,7 @@ class ManagementIntentInfo(AdditionalDataHolder, BackedModel, Parsable):
             "managementIntentDisplayName": lambda n : setattr(self, 'management_intent_display_name', n.get_str_value()),
             "managementIntentId": lambda n : setattr(self, 'management_intent_id', n.get_str_value()),
             "managementTemplates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(ManagementTemplateDetailedInfo)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class ManagementIntentInfo(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("managementIntentDisplayName", self.management_intent_display_name)
         writer.write_str_value("managementIntentId", self.management_intent_id)
         writer.write_collection_of_object_values("managementTemplates", self.management_templates)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

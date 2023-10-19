@@ -6,9 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
     from .metered_connection_limit_type import MeteredConnectionLimitType
+    from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
     from .wi_fi_proxy_setting import WiFiProxySetting
     from .wi_fi_security_type import WiFiSecurityType
-    from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
 
 from .device_configuration import DeviceConfiguration
 
@@ -72,15 +72,15 @@ class WindowsWifiConfiguration(DeviceConfiguration):
         """
         from .device_configuration import DeviceConfiguration
         from .metered_connection_limit_type import MeteredConnectionLimitType
+        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .wi_fi_proxy_setting import WiFiProxySetting
         from .wi_fi_security_type import WiFiSecurityType
-        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
 
         from .device_configuration import DeviceConfiguration
         from .metered_connection_limit_type import MeteredConnectionLimitType
+        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .wi_fi_proxy_setting import WiFiProxySetting
         from .wi_fi_security_type import WiFiSecurityType
-        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),

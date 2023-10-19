@@ -44,7 +44,7 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, BackedModel, P
         from .key_value import KeyValue
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_collection_of_object_values(KeyValue)),
             "subStatus": lambda n : setattr(self, 'sub_status', n.get_str_value()),
@@ -59,7 +59,7 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, BackedModel, P
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("status", self.status)
         writer.write_collection_of_object_values("statusDetails", self.status_details)
         writer.write_str_value("subStatus", self.sub_status)

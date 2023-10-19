@@ -89,7 +89,7 @@ class File(Entity):
             "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(FileProcessingStatus)),
             "senderOrAuthors": lambda n : setattr(self, 'sender_or_authors', n.get_collection_of_primitive_values(str)),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
-            "sourceType": lambda n : setattr(self, 'source_type', n.get_enum_value(SourceType)),
+            "sourceType": lambda n : setattr(self, 'source_type', n.get_collection_of_enum_values(SourceType)),
             "subjectTitle": lambda n : setattr(self, 'subject_title', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

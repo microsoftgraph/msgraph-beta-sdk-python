@@ -113,7 +113,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, BackedModel, Parsable)
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
             "identifierType": lambda n : setattr(self, 'identifier_type', n.get_enum_value(MacOSProcessIdentifierType)),
             "mediaLibrary": lambda n : setattr(self, 'media_library', n.get_enum_value(Enablement)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "photos": lambda n : setattr(self, 'photos', n.get_enum_value(Enablement)),
             "postEvent": lambda n : setattr(self, 'post_event', n.get_enum_value(Enablement)),
             "reminders": lambda n : setattr(self, 'reminders', n.get_enum_value(Enablement)),
@@ -151,7 +151,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, BackedModel, Parsable)
         writer.write_str_value("identifier", self.identifier)
         writer.write_enum_value("identifierType", self.identifier_type)
         writer.write_enum_value("mediaLibrary", self.media_library)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("photos", self.photos)
         writer.write_enum_value("postEvent", self.post_event)
         writer.write_enum_value("reminders", self.reminders)

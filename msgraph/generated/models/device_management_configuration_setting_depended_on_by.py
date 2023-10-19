@@ -36,7 +36,7 @@ class DeviceManagementConfigurationSettingDependedOnBy(AdditionalDataHolder, Bac
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "dependedOnBy": lambda n : setattr(self, 'depended_on_by', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
         }
         return fields
@@ -50,7 +50,7 @@ class DeviceManagementConfigurationSettingDependedOnBy(AdditionalDataHolder, Bac
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("dependedOnBy", self.depended_on_by)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("required", self.required)
         writer.write_additional_data_value(self.additional_data)
     

@@ -12,27 +12,27 @@ from ..entity import Entity
 class EmailThreatSubmissionPolicy(Entity):
     # Specifies the email address of the sender from which email notifications will be sent to end users to inform them whether an email is spam, phish or clean. The default value is null. Optional for creation.
     customized_notification_sender_email_address: Optional[str] = None
-    # Specifies the destination where the reported messages from end users will land whenever they report something as phish, junk or not junk. The default value is null. Optional for creation.
+    # Specifies the destination where the reported messages from end users land whenever they report something as phish, junk or not junk. The default value is null. Optional for creation.
     customized_report_recipient_email_address: Optional[str] = None
     # Indicates whether end users can report a message as spam, phish or junk directly without a confirmation(popup). The default value is true.  Optional for creation.
     is_always_report_enabled_for_users: Optional[bool] = None
     # Indicates whether end users can confirm using a popup before reporting messages as spam, phish or not junk. The default value is true.  Optional for creation.
     is_ask_me_enabled_for_users: Optional[bool] = None
-    # Indicates whether the email notifications sent to end users to inform them if an email is phish, spam or junk is customized or not. The default value is false. Optional for creation.
+    # Indicates whether the email notifications sent to end users to inform them if an email is a phish mail, spam or junk is customized or not. The default value is false. Optional for creation.
     is_customized_message_enabled: Optional[bool] = None
     # If enabled, customized message only shows when email is reported as phishing. The default value is false. Optional for creation.
     is_customized_message_enabled_for_phishing: Optional[bool] = None
     # Indicates whether to use the sender email address set using customizedNotificationSenderEmailAddress for sending email notifications to end users. The default value is false. Optional for creation.
     is_customized_notification_sender_enabled: Optional[bool] = None
-    # Indicates whether end users can simply move the message from one folder to another based on the action of spam, phish or not junk without actually reporting it. The default value is true. Optional for creation.
+    # Indicates whether end users can move the message from one folder to another based on the action of spam, phish or not junk without actually reporting it. The default value is true. Optional for creation.
     is_never_report_enabled_for_users: Optional[bool] = None
     # Indicates whether the branding logo should be used in the email notifications sent to end users. The default value is false. Optional for creation.
     is_organization_branding_enabled: Optional[bool] = None
     # Indicates whether end users can submit from the quarantine page. The default value is true. Optional for creation.
     is_report_from_quarantine_enabled: Optional[bool] = None
-    # Indicates whether emails reported by end users should be send to the custom mailbox configured using customizedReportRecipientEmailAddress.  The default value is false. Optional for creation.
+    # Indicates whether emails reported by end users should be sent to the custom mailbox configured using customizedReportRecipientEmailAddress.  The default value is false. Optional for creation.
     is_report_to_customized_email_address_enabled: Optional[bool] = None
-    # If enabled, the email will be sent to Microsoft for analysis. The default value is false. Required for creation.
+    # If enabled, the email is sent to Microsoft for analysis. The default value is false. Required for creation.
     is_report_to_microsoft_enabled: Optional[bool] = None
     # Indicates whether an email notification is sent to the end user who reported the email when it has been reviewed by the admin. The default value is false. Optional for creation.
     is_review_email_notification_enabled: Optional[bool] = None

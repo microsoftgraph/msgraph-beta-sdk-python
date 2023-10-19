@@ -17,21 +17,21 @@ from .directory_object import DirectoryObject
 class MultiTenantOrganizationMember(DirectoryObject):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.multiTenantOrganizationMember"
-    # Tenant ID of the tenant that added the tenant to the multi-tenant organization. Read-only.
+    # Tenant ID of the tenant that added the tenant to the multitenant organization. Read-only.
     added_by_tenant_id: Optional[UUID] = None
-    # Date and time when the tenant was added to the multi-tenant organization. Read-only.
+    # Date and time when the tenant was added to the multitenant organization. Read-only.
     added_date_time: Optional[datetime.datetime] = None
-    # Display name of the tenant added to the multi-tenant organization.
+    # Display name of the tenant added to the multitenant organization.
     display_name: Optional[str] = None
-    # Date and time when the tenant joined the multi-tenant organization. Read-only.
+    # Date and time when the tenant joined the multitenant organization. Read-only.
     joined_date_time: Optional[datetime.datetime] = None
-    # Role of the tenant in the multi-tenant organization. The possible values are: owner, member (default), unknownFutureValue. Tenants with the owner role can manage the multi-tenant organization but tenants with the member role can only participate in a multi-tenant organization. There can be multiple tenants with the owner role in a multi-tenant organization.
+    # Role of the tenant in the multitenant organization. The possible values are: owner, member (default), unknownFutureValue. Tenants with the owner role can manage the multitenant organization but tenants with the member role can only participate in a multitenant organization. There can be multiple tenants with the owner role in a multitenant organization.
     role: Optional[MultiTenantOrganizationMemberRole] = None
-    # State of the tenant in the multi-tenant organization. The possible values are: pending, active, removed, unknownFutureValue. Tenants in the pending state must join the multi-tenant organization to participate in the multi-tenant organization. Tenants in the active state can participate in the multi-tenant organization. Tenants in the removed state are in the process of being removed from the multi-tenant organization. Read-only.
+    # State of the tenant in the multitenant organization. The possible values are: pending, active, removed, unknownFutureValue. Tenants in the pending state must join the multitenant organization to participate in the multitenant organization. Tenants in the active state can participate in the multitenant organization. Tenants in the removed state are in the process of being removed from the multitenant organization. Read-only.
     state: Optional[MultiTenantOrganizationMemberState] = None
-    # Tenant ID of the Azure Active Directory tenant added to the multi-tenant organization. Set at the time tenant is added.Supports $filter. Key.
+    # Tenant ID of the Microsoft Entra tenant added to the multitenant organization. Set at the time tenant is added.Supports $filter. Key.
     tenant_id: Optional[str] = None
-    # Details of the processing status for a tenant in a multi-tenant organization. Read-only. Nullable.
+    # Details of the processing status for a tenant in a multitenant organization. Read-only. Nullable.
     transition_details: Optional[MultiTenantOrganizationMemberTransitionDetails] = None
     
     @staticmethod

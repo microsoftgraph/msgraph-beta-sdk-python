@@ -57,7 +57,7 @@ class PaymentTerm(AdditionalDataHolder, BackedModel, Parsable):
             "dueDateCalculation": lambda n : setattr(self, 'due_date_calculation', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_uuid_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class PaymentTerm(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("dueDateCalculation", self.due_date_calculation)
         writer.write_uuid_value("id", self.id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -44,7 +44,7 @@ class TenantContactInformation(AdditionalDataHolder, BackedModel, Parsable):
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "phone": lambda n : setattr(self, 'phone', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
@@ -61,7 +61,7 @@ class TenantContactInformation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("email", self.email)
         writer.write_str_value("name", self.name)
         writer.write_str_value("notes", self.notes)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("phone", self.phone)
         writer.write_str_value("title", self.title)
         writer.write_additional_data_value(self.additional_data)

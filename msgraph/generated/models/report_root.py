@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .app_credential_sign_in_activity import AppCredentialSignInActivity
     from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
+    from .app_credential_sign_in_activity import AppCredentialSignInActivity
     from .authentication_methods_root import AuthenticationMethodsRoot
     from .credential_user_registration_details import CredentialUserRegistrationDetails
     from .entity import Entity
@@ -74,8 +74,8 @@ class ReportRoot(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .app_credential_sign_in_activity import AppCredentialSignInActivity
         from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
+        from .app_credential_sign_in_activity import AppCredentialSignInActivity
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
@@ -87,8 +87,8 @@ class ReportRoot(Entity):
         from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
         from .user_credential_usage_details import UserCredentialUsageDetails
 
-        from .app_credential_sign_in_activity import AppCredentialSignInActivity
         from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
+        from .app_credential_sign_in_activity import AppCredentialSignInActivity
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity

@@ -50,7 +50,7 @@ class Setting(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "jsonValue": lambda n : setattr(self, 'json_value', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "overwriteAllowed": lambda n : setattr(self, 'overwrite_allowed', n.get_bool_value()),
             "settingId": lambda n : setattr(self, 'setting_id', n.get_str_value()),
             "valueType": lambda n : setattr(self, 'value_type', n.get_enum_value(ManagementParameterValueType)),
@@ -67,7 +67,7 @@ class Setting(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("jsonValue", self.json_value)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("overwriteAllowed", self.overwrite_allowed)
         writer.write_str_value("settingId", self.setting_id)
         writer.write_enum_value("valueType", self.value_type)

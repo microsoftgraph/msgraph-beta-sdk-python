@@ -16,7 +16,7 @@ class EmailPayloadDetail(PayloadDetail):
     from_email: Optional[str] = None
     # Display name of the user.
     from_name: Optional[str] = None
-    # Indicates whether the sender is not from the user's organization.
+    # Indicates whether the sender isn't from the user's organization.
     is_external_sender: Optional[bool] = None
     # The subject of the email address sent to the user.
     subject: Optional[str] = None

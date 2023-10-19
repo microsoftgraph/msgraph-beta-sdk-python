@@ -17,7 +17,7 @@ class OnPremisesAgent(Entity):
     agent_groups: Optional[List[OnPremisesAgentGroup]] = None
     # The external IP address as detected by the service for the agent machine. Read-only
     external_ip: Optional[str] = None
-    # The name of the machine that the aggent is running on. Read-only
+    # The name of the machine that the agent is running on. Read-only
     machine_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

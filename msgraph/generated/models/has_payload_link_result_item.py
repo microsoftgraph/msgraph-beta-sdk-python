@@ -51,7 +51,7 @@ class HasPayloadLinkResultItem(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "error": lambda n : setattr(self, 'error', n.get_str_value()),
             "hasLink": lambda n : setattr(self, 'has_link', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
             "sources": lambda n : setattr(self, 'sources', n.get_collection_of_enum_values(DeviceAndAppManagementAssignmentSource)),
         }
@@ -67,7 +67,7 @@ class HasPayloadLinkResultItem(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("error", self.error)
         writer.write_bool_value("hasLink", self.has_link)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("payloadId", self.payload_id)
         writer.write_collection_of_enum_values("sources", self.sources)
         writer.write_additional_data_value(self.additional_data)

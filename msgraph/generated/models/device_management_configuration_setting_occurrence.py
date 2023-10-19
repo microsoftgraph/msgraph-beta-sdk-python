@@ -37,7 +37,7 @@ class DeviceManagementConfigurationSettingOccurrence(AdditionalDataHolder, Backe
         fields: Dict[str, Callable[[Any], None]] = {
             "maxDeviceOccurrence": lambda n : setattr(self, 'max_device_occurrence', n.get_int_value()),
             "minDeviceOccurrence": lambda n : setattr(self, 'min_device_occurrence', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -51,7 +51,7 @@ class DeviceManagementConfigurationSettingOccurrence(AdditionalDataHolder, Backe
             raise TypeError("writer cannot be null.")
         writer.write_int_value("maxDeviceOccurrence", self.max_device_occurrence)
         writer.write_int_value("minDeviceOccurrence", self.min_device_occurrence)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

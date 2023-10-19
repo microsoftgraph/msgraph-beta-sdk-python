@@ -53,7 +53,7 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, BackedModel, Parsable):
             "codeRequirement": lambda n : setattr(self, 'code_requirement', n.get_str_value()),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
             "identifierType": lambda n : setattr(self, 'identifier_type', n.get_enum_value(MacOSProcessIdentifierType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("codeRequirement", self.code_requirement)
         writer.write_str_value("identifier", self.identifier)
         writer.write_enum_value("identifierType", self.identifier_type)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

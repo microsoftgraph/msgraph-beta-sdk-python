@@ -11,11 +11,11 @@ class NetworkInterface(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Description of the NIC (e.g. Ethernet adapter, Wireless LAN adapter Local Area Connection, and so on).
+    # Description of the NIC (for example, Ethernet adapter, Wireless LAN adapter Local Area Connection, and so on).
     description: Optional[str] = None
     # Last IPv4 address associated with this NIC.
     ip_v4_address: Optional[str] = None
-    # Last Public (aka global) IPv6 address associated with this NIC.
+    # Last Public (also known as global) IPv6 address associated with this NIC.
     ip_v6_address: Optional[str] = None
     # Last local (link-local or site-local) IPv6 address associated with this NIC.
     local_ip_v6_address: Optional[str] = None
@@ -46,7 +46,7 @@ class NetworkInterface(AdditionalDataHolder, BackedModel, Parsable):
             "ipV6Address": lambda n : setattr(self, 'ip_v6_address', n.get_str_value()),
             "localIpV6Address": lambda n : setattr(self, 'local_ip_v6_address', n.get_str_value()),
             "macAddress": lambda n : setattr(self, 'mac_address', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -63,7 +63,7 @@ class NetworkInterface(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("ipV6Address", self.ip_v6_address)
         writer.write_str_value("localIpV6Address", self.local_ip_v6_address)
         writer.write_str_value("macAddress", self.mac_address)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -44,7 +44,7 @@ class TeamworkHardwareDetail(AdditionalDataHolder, BackedModel, Parsable):
             "macAddresses": lambda n : setattr(self, 'mac_addresses', n.get_collection_of_primitive_values(str)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
             "uniqueId": lambda n : setattr(self, 'unique_id', n.get_str_value()),
         }
@@ -61,7 +61,7 @@ class TeamworkHardwareDetail(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_primitive_values("macAddresses", self.mac_addresses)
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_str_value("model", self.model)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("serialNumber", self.serial_number)
         writer.write_str_value("uniqueId", self.unique_id)
         writer.write_additional_data_value(self.additional_data)

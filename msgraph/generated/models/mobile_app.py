@@ -15,13 +15,13 @@ if TYPE_CHECKING:
     from .ios_lob_app import IosLobApp
     from .ios_store_app import IosStoreApp
     from .ios_vpp_app import IosVppApp
+    from .mac_os_vpp_app import MacOsVppApp
     from .mac_o_s_dmg_app import MacOSDmgApp
     from .mac_o_s_lob_app import MacOSLobApp
     from .mac_o_s_microsoft_defender_app import MacOSMicrosoftDefenderApp
     from .mac_o_s_microsoft_edge_app import MacOSMicrosoftEdgeApp
     from .mac_o_s_office_suite_app import MacOSOfficeSuiteApp
     from .mac_o_s_pkg_app import MacOSPkgApp
-    from .mac_os_vpp_app import MacOsVppApp
     from .mac_o_s_web_clip import MacOSWebClip
     from .managed_android_lob_app import ManagedAndroidLobApp
     from .managed_android_store_app import ManagedAndroidStoreApp
@@ -291,13 +291,13 @@ class MobileApp(Entity):
         from .ios_lob_app import IosLobApp
         from .ios_store_app import IosStoreApp
         from .ios_vpp_app import IosVppApp
+        from .mac_os_vpp_app import MacOsVppApp
         from .mac_o_s_dmg_app import MacOSDmgApp
         from .mac_o_s_lob_app import MacOSLobApp
         from .mac_o_s_microsoft_defender_app import MacOSMicrosoftDefenderApp
         from .mac_o_s_microsoft_edge_app import MacOSMicrosoftEdgeApp
         from .mac_o_s_office_suite_app import MacOSOfficeSuiteApp
         from .mac_o_s_pkg_app import MacOSPkgApp
-        from .mac_os_vpp_app import MacOsVppApp
         from .mac_o_s_web_clip import MacOSWebClip
         from .managed_android_lob_app import ManagedAndroidLobApp
         from .managed_android_store_app import ManagedAndroidStoreApp
@@ -337,13 +337,13 @@ class MobileApp(Entity):
         from .ios_lob_app import IosLobApp
         from .ios_store_app import IosStoreApp
         from .ios_vpp_app import IosVppApp
+        from .mac_os_vpp_app import MacOsVppApp
         from .mac_o_s_dmg_app import MacOSDmgApp
         from .mac_o_s_lob_app import MacOSLobApp
         from .mac_o_s_microsoft_defender_app import MacOSMicrosoftDefenderApp
         from .mac_o_s_microsoft_edge_app import MacOSMicrosoftEdgeApp
         from .mac_o_s_office_suite_app import MacOSOfficeSuiteApp
         from .mac_o_s_pkg_app import MacOSPkgApp
-        from .mac_os_vpp_app import MacOsVppApp
         from .mac_o_s_web_clip import MacOSWebClip
         from .managed_android_lob_app import ManagedAndroidLobApp
         from .managed_android_store_app import ManagedAndroidStoreApp

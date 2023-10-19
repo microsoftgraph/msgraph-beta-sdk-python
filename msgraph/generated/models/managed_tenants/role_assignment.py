@@ -46,7 +46,7 @@ class RoleAssignment(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "assignmentType": lambda n : setattr(self, 'assignment_type', n.get_enum_value(DelegatedPrivilegeStatus)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roles": lambda n : setattr(self, 'roles', n.get_collection_of_object_values(RoleDefinition)),
         }
         return fields
@@ -60,7 +60,7 @@ class RoleAssignment(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("assignmentType", self.assignment_type)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("roles", self.roles)
         writer.write_additional_data_value(self.additional_data)
     

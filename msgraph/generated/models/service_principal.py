@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .password_credential import PasswordCredential
     from .password_single_sign_on_settings import PasswordSingleSignOnSettings
     from .permission_scope import PermissionScope
+    from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
     from .saml_single_sign_on_settings import SamlSingleSignOnSettings
     from .synchronization import Synchronization
     from .token_issuance_policy import TokenIssuancePolicy
@@ -46,7 +47,7 @@ class ServicePrincipal(DirectoryObject):
     app_description: Optional[str] = None
     # The display name exposed by the associated application.
     app_display_name: Optional[str] = None
-    # The unique identifier for the associated application (its appId property). Supports $filter (eq, ne, not, in, startsWith).
+    # The unique identifier for the associated application (its appId property). Alternate key. Supports $filter (eq, ne, not, in, startsWith).
     app_id: Optional[str] = None
     # The appManagementPolicy applied to this service principal.
     app_management_policies: Optional[List[AppManagementPolicy]] = None
@@ -74,7 +75,7 @@ class ServicePrincipal(DirectoryObject):
     description: Optional[str] = None
     # Specifies whether Microsoft has disabled the registered application. Possible values are: null (default value), NotDisabled, and DisabledDueToViolationOfServicesAgreement (reasons may include suspicious, abusive, or malicious activity, or a violation of the Microsoft Services Agreement).  Supports $filter (eq, ne, not).
     disabled_by_microsoft_status: Optional[str] = None
-    # The display name for the service principal. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    # The display name for the service principal. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
     # Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.
     endpoints: Optional[List[Endpoint]] = None
@@ -86,13 +87,13 @@ class ServicePrincipal(DirectoryObject):
     home_realm_discovery_policies: Optional[List[HomeRealmDiscoveryPolicy]] = None
     # Home page or landing page of the application.
     homepage: Optional[str] = None
-    # Basic profile information of the acquired application such as app's marketing, support, terms of service and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more info, see How to: Add Terms of service and privacy statement for registered Azure AD apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).
+    # Basic profile information of the acquired application such as app's marketing, support, terms of service and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more info, see How to: Add Terms of service and privacy statement for registered Microsoft Entra apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).
     info: Optional[InformationalUrl] = None
     # The collection of key credentials associated with the service principal. Not nullable. Supports $filter (eq, not, ge, le).
     key_credentials: Optional[List[KeyCredential]] = None
     # The licenseDetails property
     license_details: Optional[List[LicenseDetails]] = None
-    # Specifies the URL where the service provider redirects the user to Azure AD to authenticate. Azure AD uses the URL to launch the application from Microsoft 365 or the Azure AD My Apps. When blank, Azure AD performs IdP-initiated sign-on for applications configured with SAML-based single sign-on. The user launches the application from Microsoft 365, the Azure AD My Apps, or the Azure AD SSO URL.
+    # Specifies the URL where the service provider redirects the user to Microsoft Entra ID to authenticate. Microsoft Entra ID uses the URL to launch the application from Microsoft 365 or the Microsoft Entra My Apps. When blank, Microsoft Entra ID performs IdP-initiated sign-on for applications configured with SAML-based single sign-on. The user launches the application from Microsoft 365, the Microsoft Entra My Apps, or the Microsoft Entra SSO URL.
     login_url: Optional[str] = None
     # Specifies the URL that will be used by Microsoft's authorization service to logout an user using OpenId Connect front-channel, back-channel or SAML logout protocols.
     logout_url: Optional[str] = None
@@ -100,7 +101,7 @@ class ServicePrincipal(DirectoryObject):
     member_of: Optional[List[DirectoryObject]] = None
     # Free text field to capture information about the service principal, typically used for operational purposes. Maximum allowed size is 1024 characters.
     notes: Optional[str] = None
-    # Specifies the list of email addresses where Azure AD sends a notification when the active certificate is near the expiration date. This is only for the certificates used to sign the SAML token issued for Azure AD Gallery applications.
+    # Specifies the list of email addresses where Microsoft Entra ID sends a notification when the active certificate is near the expiration date. This is only for the certificates used to sign the SAML token issued for Microsoft Entra Gallery applications.
     notification_email_addresses: Optional[List[str]] = None
     # Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.
     oauth2_permission_grants: Optional[List[OAuth2PermissionGrant]] = None
@@ -112,7 +113,7 @@ class ServicePrincipal(DirectoryObject):
     password_credentials: Optional[List[PasswordCredential]] = None
     # The collection for settings related to password single sign-on. Use $select=passwordSingleSignOnSettings to read the property. Read-only for applicationTemplates except for custom applicationTemplates.
     password_single_sign_on_settings: Optional[PasswordSingleSignOnSettings] = None
-    # Specifies the single sign-on mode configured for this application. Azure AD uses the preferred single sign-on mode to launch the application from Microsoft 365 or the Azure AD My Apps. The supported values are password, saml, notSupported, and oidc.
+    # Specifies the single sign-on mode configured for this application. Microsoft Entra ID uses the preferred single sign-on mode to launch the application from Microsoft 365 or the Microsoft Entra My Apps. The supported values are password, saml, notSupported, and oidc.
     preferred_single_sign_on_mode: Optional[str] = None
     # Specifies the expiration date of the keyCredential used for token signing, marked by preferredTokenSigningKeyThumbprint. Updating this attribute is not currentlysupported. For details, see ServicePrincipal property differences.
     preferred_token_signing_key_end_date_time: Optional[datetime.datetime] = None
@@ -120,25 +121,27 @@ class ServicePrincipal(DirectoryObject):
     preferred_token_signing_key_thumbprint: Optional[str] = None
     # The delegated permissions exposed by the application. For more information see the oauth2PermissionScopes property on the application entity's api property. Not nullable. Note: This property is named oauth2PermissionScopes in v1.0.
     published_permission_scopes: Optional[List[PermissionScope]] = None
-    # The name of the Azure AD tenant that published the application.
+    # The name of the Microsoft Entra tenant that published the application.
     publisher_name: Optional[str] = None
+    # The remoteDesktopSecurityConfiguration property
+    remote_desktop_security_configuration: Optional[RemoteDesktopSecurityConfiguration] = None
     # The URLs that user tokens are sent to for sign in with the associated application, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to for the associated application. Not nullable.
     reply_urls: Optional[List[str]] = None
     # The url where the service exposes SAML metadata for federation.
     saml_metadata_url: Optional[str] = None
     # The collection for settings related to saml single sign-on.
     saml_single_sign_on_settings: Optional[SamlSingleSignOnSettings] = None
-    # Contains the list of identifiersUris, copied over from the associated application. Additional values can be added to hybrid applications. These values can be used to identify the permissions exposed by this app within Azure AD. For example,Client apps can specify a resource URI which is based on the values of this property to acquire an access token, which is the URI returned in the 'aud' claim.The any operator is required for filter expressions on multi-valued properties. Not nullable.  Supports $filter (eq, not, ge, le, startsWith).
+    # Contains the list of identifiersUris, copied over from the associated application. Additional values can be added to hybrid applications. These values can be used to identify the permissions exposed by this app within Microsoft Entra ID. For example,Client apps can specify a resource URI which is based on the values of this property to acquire an access token, which is the URI returned in the 'aud' claim.The any operator is required for filter expressions on multi-valued properties. Not nullable.  Supports $filter (eq, not, ge, le, startsWith).
     service_principal_names: Optional[List[str]] = None
-    # Identifies if the service principal represents an application or a managed identity. This is set by Azure AD internally. For a service principal that represents an application this is set as Application. For a service principal that represent a managed identity this is set as ManagedIdentity. The SocialIdp type is for internal use.
+    # Identifies if the service principal represents an application or a managed identity. This is set by Microsoft Entra ID internally. For a service principal that represents an application this is set as Application. For a service principal that represent a managed identity this is set as ManagedIdentity. The SocialIdp type is for internal use.
     service_principal_type: Optional[str] = None
-    # Specifies the Microsoft accounts that are supported for the current application. Read-only. Supported values are:AzureADMyOrg: Users with a Microsoft work or school account in my organization's Azure AD tenant (single-tenant).AzureADMultipleOrgs: Users with a Microsoft work or school account in any organization's Azure AD tenant (multi-tenant).AzureADandPersonalMicrosoftAccount: Users with a personal Microsoft account, or a work or school account in any organization's Azure AD tenant.PersonalMicrosoftAccount: Users with a personal Microsoft account only.
+    # Specifies the Microsoft accounts that are supported for the current application. Read-only. Supported values are:AzureADMyOrg: Users with a Microsoft work or school account in my organization's Microsoft Entra tenant (single-tenant).AzureADMultipleOrgs: Users with a Microsoft work or school account in any organization's Microsoft Entra tenant (multi-tenant).AzureADandPersonalMicrosoftAccount: Users with a personal Microsoft account, or a work or school account in any organization's Microsoft Entra tenant.PersonalMicrosoftAccount: Users with a personal Microsoft account only.
     sign_in_audience: Optional[str] = None
-    # Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
+    # Represents the capability for Microsoft Entra identity synchronization through the Microsoft Graph API.
     synchronization: Optional[Synchronization] = None
     # Custom strings that can be used to categorize and identify the service principal. Not nullable. The value is the union of strings set here and on the associated application entity's tags property.Supports $filter (eq, not, ge, le, startsWith).
     tags: Optional[List[str]] = None
-    # Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD issues tokens for this application encrypted using the key specified by this property. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
+    # Specifies the keyId of a public key from the keyCredentials collection. When configured, Microsoft Entra ID issues tokens for this application encrypted using the key specified by this property. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
     token_encryption_key_id: Optional[UUID] = None
     # The tokenIssuancePolicies assigned to this service principal. Supports $expand.
     token_issuance_policies: Optional[List[TokenIssuancePolicy]] = None
@@ -183,6 +186,7 @@ class ServicePrincipal(DirectoryObject):
         from .password_credential import PasswordCredential
         from .password_single_sign_on_settings import PasswordSingleSignOnSettings
         from .permission_scope import PermissionScope
+        from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .saml_single_sign_on_settings import SamlSingleSignOnSettings
         from .synchronization import Synchronization
         from .token_issuance_policy import TokenIssuancePolicy
@@ -207,6 +211,7 @@ class ServicePrincipal(DirectoryObject):
         from .password_credential import PasswordCredential
         from .password_single_sign_on_settings import PasswordSingleSignOnSettings
         from .permission_scope import PermissionScope
+        from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .saml_single_sign_on_settings import SamlSingleSignOnSettings
         from .synchronization import Synchronization
         from .token_issuance_policy import TokenIssuancePolicy
@@ -257,6 +262,7 @@ class ServicePrincipal(DirectoryObject):
             "preferredTokenSigningKeyThumbprint": lambda n : setattr(self, 'preferred_token_signing_key_thumbprint', n.get_str_value()),
             "publishedPermissionScopes": lambda n : setattr(self, 'published_permission_scopes', n.get_collection_of_object_values(PermissionScope)),
             "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
+            "remoteDesktopSecurityConfiguration": lambda n : setattr(self, 'remote_desktop_security_configuration', n.get_object_value(RemoteDesktopSecurityConfiguration)),
             "replyUrls": lambda n : setattr(self, 'reply_urls', n.get_collection_of_primitive_values(str)),
             "samlMetadataUrl": lambda n : setattr(self, 'saml_metadata_url', n.get_str_value()),
             "samlSingleSignOnSettings": lambda n : setattr(self, 'saml_single_sign_on_settings', n.get_object_value(SamlSingleSignOnSettings)),
@@ -327,6 +333,7 @@ class ServicePrincipal(DirectoryObject):
         writer.write_str_value("preferredTokenSigningKeyThumbprint", self.preferred_token_signing_key_thumbprint)
         writer.write_collection_of_object_values("publishedPermissionScopes", self.published_permission_scopes)
         writer.write_str_value("publisherName", self.publisher_name)
+        writer.write_object_value("remoteDesktopSecurityConfiguration", self.remote_desktop_security_configuration)
         writer.write_collection_of_primitive_values("replyUrls", self.reply_urls)
         writer.write_str_value("samlMetadataUrl", self.saml_metadata_url)
         writer.write_object_value("samlSingleSignOnSettings", self.saml_single_sign_on_settings)

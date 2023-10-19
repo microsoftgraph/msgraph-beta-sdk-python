@@ -74,6 +74,7 @@ if TYPE_CHECKING:
     from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
     from .edition_upgrade_configuration import EditionUpgradeConfiguration
     from .entity import Entity
+    from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
     from .ios_certificate_profile import IosCertificateProfile
     from .ios_certificate_profile_base import IosCertificateProfileBase
     from .ios_custom_configuration import IosCustomConfiguration
@@ -85,7 +86,6 @@ if TYPE_CHECKING:
     from .ios_enterprise_wi_fi_configuration import IosEnterpriseWiFiConfiguration
     from .ios_expedited_checkin_configuration import IosExpeditedCheckinConfiguration
     from .ios_general_device_configuration import IosGeneralDeviceConfiguration
-    from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
     from .ios_imported_p_f_x_certificate_profile import IosImportedPFXCertificateProfile
     from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
     from .ios_scep_certificate_profile import IosScepCertificateProfile
@@ -107,8 +107,8 @@ if TYPE_CHECKING:
     from .mac_o_s_software_update_configuration import MacOSSoftwareUpdateConfiguration
     from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
     from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
-    from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
     from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
+    from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
     from .setting_state_device_summary import SettingStateDeviceSummary
     from .shared_p_c_configuration import SharedPCConfiguration
     from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -122,8 +122,8 @@ if TYPE_CHECKING:
     from .windows10_general_configuration import Windows10GeneralConfiguration
     from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
     from .windows10_network_boundary_configuration import Windows10NetworkBoundaryConfiguration
-    from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
     from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
+    from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
     from .windows10_secure_assessment_configuration import Windows10SecureAssessmentConfiguration
     from .windows10_team_general_configuration import Windows10TeamGeneralConfiguration
     from .windows10_vpn_configuration import Windows10VpnConfiguration
@@ -835,6 +835,7 @@ class DeviceConfiguration(Entity):
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .edition_upgrade_configuration import EditionUpgradeConfiguration
         from .entity import Entity
+        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
         from .ios_certificate_profile import IosCertificateProfile
         from .ios_certificate_profile_base import IosCertificateProfileBase
         from .ios_custom_configuration import IosCustomConfiguration
@@ -846,7 +847,6 @@ class DeviceConfiguration(Entity):
         from .ios_enterprise_wi_fi_configuration import IosEnterpriseWiFiConfiguration
         from .ios_expedited_checkin_configuration import IosExpeditedCheckinConfiguration
         from .ios_general_device_configuration import IosGeneralDeviceConfiguration
-        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
         from .ios_imported_p_f_x_certificate_profile import IosImportedPFXCertificateProfile
         from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
         from .ios_scep_certificate_profile import IosScepCertificateProfile
@@ -868,8 +868,8 @@ class DeviceConfiguration(Entity):
         from .mac_o_s_software_update_configuration import MacOSSoftwareUpdateConfiguration
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
         from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
-        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
+        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .setting_state_device_summary import SettingStateDeviceSummary
         from .shared_p_c_configuration import SharedPCConfiguration
         from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -883,8 +883,8 @@ class DeviceConfiguration(Entity):
         from .windows10_general_configuration import Windows10GeneralConfiguration
         from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
         from .windows10_network_boundary_configuration import Windows10NetworkBoundaryConfiguration
-        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
         from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
+        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
         from .windows10_secure_assessment_configuration import Windows10SecureAssessmentConfiguration
         from .windows10_team_general_configuration import Windows10TeamGeneralConfiguration
         from .windows10_vpn_configuration import Windows10VpnConfiguration
@@ -984,6 +984,7 @@ class DeviceConfiguration(Entity):
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .edition_upgrade_configuration import EditionUpgradeConfiguration
         from .entity import Entity
+        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
         from .ios_certificate_profile import IosCertificateProfile
         from .ios_certificate_profile_base import IosCertificateProfileBase
         from .ios_custom_configuration import IosCustomConfiguration
@@ -995,7 +996,6 @@ class DeviceConfiguration(Entity):
         from .ios_enterprise_wi_fi_configuration import IosEnterpriseWiFiConfiguration
         from .ios_expedited_checkin_configuration import IosExpeditedCheckinConfiguration
         from .ios_general_device_configuration import IosGeneralDeviceConfiguration
-        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
         from .ios_imported_p_f_x_certificate_profile import IosImportedPFXCertificateProfile
         from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
         from .ios_scep_certificate_profile import IosScepCertificateProfile
@@ -1017,8 +1017,8 @@ class DeviceConfiguration(Entity):
         from .mac_o_s_software_update_configuration import MacOSSoftwareUpdateConfiguration
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
         from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
-        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
+        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .setting_state_device_summary import SettingStateDeviceSummary
         from .shared_p_c_configuration import SharedPCConfiguration
         from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -1032,8 +1032,8 @@ class DeviceConfiguration(Entity):
         from .windows10_general_configuration import Windows10GeneralConfiguration
         from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
         from .windows10_network_boundary_configuration import Windows10NetworkBoundaryConfiguration
-        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
         from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
+        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
         from .windows10_secure_assessment_configuration import Windows10SecureAssessmentConfiguration
         from .windows10_team_general_configuration import Windows10TeamGeneralConfiguration
         from .windows10_vpn_configuration import Windows10VpnConfiguration

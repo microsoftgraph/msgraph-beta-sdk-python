@@ -14,7 +14,7 @@ from .directory_object import DirectoryObject
 class TrustedCertificateAuthorityAsEntityBase(DirectoryObject):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.trustedCertificateAuthorityAsEntityBase"
-    # The trustedCertificateAuthorities property
+    # Collection of trusted certificate authorities.
     trusted_certificate_authorities: Optional[List[CertificateAuthorityAsEntity]] = None
     
     @staticmethod

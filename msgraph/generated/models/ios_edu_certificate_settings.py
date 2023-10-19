@@ -63,7 +63,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, BackedModel, Parsable):
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
             "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
             "trustedRootCertificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),
         }
@@ -83,7 +83,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_str_value("certificationAuthority", self.certification_authority)
         writer.write_str_value("certificationAuthorityName", self.certification_authority_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("renewalThresholdPercentage", self.renewal_threshold_percentage)
         writer.write_bytes_value("trustedRootCertificate", self.trusted_root_certificate)
         writer.write_additional_data_value(self.additional_data)

@@ -21,9 +21,9 @@ class UnifiedRoleAssignmentMultiple(Entity):
     condition: Optional[str] = None
     # Description of the role assignment.
     description: Optional[str] = None
-    # Ids of the directory objects representing the scopes of the assignment. The scopes of an assignment determine the set of resources for which the principals have been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. App scopes are scopes that are defined and understood by this application only.
+    # Ids of the directory objects that represent the scopes of the assignment. The scopes of an assignment determine the set of resources for which the principals have been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. App scopes are scopes that are defined and understood by this application only.
     directory_scope_ids: Optional[List[str]] = None
-    # Read-only collection referencing the directory objects that are scope of the assignment. Provided so that callers can get the directory objects using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
+    # Read-only collection that references the directory objects that are scope of the assignment. Provided so that callers can get the directory objects using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
     directory_scopes: Optional[List[DirectoryObject]] = None
     # Name of the role assignment. Required.
     display_name: Optional[str] = None
@@ -31,7 +31,7 @@ class UnifiedRoleAssignmentMultiple(Entity):
     odata_type: Optional[str] = None
     # Identifiers of the principals to which the assignment is granted.  Supports $filter (any operator only).
     principal_ids: Optional[List[str]] = None
-    # Read-only collection referencing the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
+    # Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
     principals: Optional[List[DirectoryObject]] = None
     # Specifies the roleDefinition that the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment.  Supports $filter (eq operator on id, isBuiltIn, and displayName, and startsWith operator on displayName)  and $expand.
     role_definition: Optional[UnifiedRoleDefinition] = None

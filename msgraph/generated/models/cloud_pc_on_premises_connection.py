@@ -28,7 +28,7 @@ class CloudPcOnPremisesConnection(Entity):
     health_check_status: Optional[CloudPcOnPremisesConnectionStatus] = None
     # The details of the connection's health checks and the corresponding results. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
     health_check_status_details: Optional[CloudPcOnPremisesConnectionStatusDetails] = None
-    # When true, the Azure network connection is in use. When false, the connection is not in use. You cannot delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
+    # When true, the Azure network connection is in use. When false, the connection isn't in use. You can't delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
     in_use: Optional[bool] = None
     # The managedBy property
     managed_by: Optional[CloudPcManagementService] = None
@@ -44,7 +44,7 @@ class CloudPcOnPremisesConnection(Entity):
     subscription_id: Optional[str] = None
     # The name of the target Azure subscription. Read-only.
     subscription_name: Optional[str] = None
-    # Specifies how the provisioned Cloud PC will be joined to Azure Active Directory. Default value is hybridAzureADJoin. Possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue.
+    # Specifies how the provisioned Cloud PC is joined to Microsoft Entra ID. Default value is hybridAzureADJoin. Possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue.
     type: Optional[CloudPcOnPremisesConnectionType] = None
     # The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
     virtual_network_id: Optional[str] = None
@@ -88,7 +88,7 @@ class CloudPcOnPremisesConnection(Entity):
             "healthCheckStatus": lambda n : setattr(self, 'health_check_status', n.get_enum_value(CloudPcOnPremisesConnectionStatus)),
             "healthCheckStatusDetails": lambda n : setattr(self, 'health_check_status_details', n.get_object_value(CloudPcOnPremisesConnectionStatusDetails)),
             "inUse": lambda n : setattr(self, 'in_use', n.get_bool_value()),
-            "managedBy": lambda n : setattr(self, 'managed_by', n.get_enum_value(CloudPcManagementService)),
+            "managedBy": lambda n : setattr(self, 'managed_by', n.get_collection_of_enum_values(CloudPcManagementService)),
             "organizationalUnit": lambda n : setattr(self, 'organizational_unit', n.get_str_value()),
             "resourceGroupId": lambda n : setattr(self, 'resource_group_id', n.get_str_value()),
             "subnetId": lambda n : setattr(self, 'subnet_id', n.get_str_value()),

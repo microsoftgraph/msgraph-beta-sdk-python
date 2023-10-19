@@ -87,7 +87,7 @@ class CustomerPayment(AdditionalDataHolder, BackedModel, Parsable):
             "journalDisplayName": lambda n : setattr(self, 'journal_display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "lineNumber": lambda n : setattr(self, 'line_number', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "postingDate": lambda n : setattr(self, 'posting_date', n.get_date_value()),
         }
         return fields
@@ -115,7 +115,7 @@ class CustomerPayment(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("journalDisplayName", self.journal_display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_int_value("lineNumber", self.line_number)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_date_value("postingDate", self.posting_date)
         writer.write_additional_data_value(self.additional_data)
     

@@ -40,7 +40,7 @@ class Settings(AdditionalDataHolder, BackedModel, Parsable):
             "hasGraphMailbox": lambda n : setattr(self, 'has_graph_mailbox', n.get_bool_value()),
             "hasLicense": lambda n : setattr(self, 'has_license', n.get_bool_value()),
             "hasOptedOut": lambda n : setattr(self, 'has_opted_out', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -55,7 +55,7 @@ class Settings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("hasGraphMailbox", self.has_graph_mailbox)
         writer.write_bool_value("hasLicense", self.has_license)
         writer.write_bool_value("hasOptedOut", self.has_opted_out)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

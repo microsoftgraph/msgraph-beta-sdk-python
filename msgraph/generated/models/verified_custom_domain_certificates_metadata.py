@@ -45,7 +45,7 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, BackedModel
             "expiryDate": lambda n : setattr(self, 'expiry_date', n.get_datetime_value()),
             "issueDate": lambda n : setattr(self, 'issue_date', n.get_datetime_value()),
             "issuerName": lambda n : setattr(self, 'issuer_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "subjectName": lambda n : setattr(self, 'subject_name', n.get_str_value()),
             "thumbprint": lambda n : setattr(self, 'thumbprint', n.get_str_value()),
         }
@@ -62,7 +62,7 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, BackedModel
         writer.write_datetime_value("expiryDate", self.expiry_date)
         writer.write_datetime_value("issueDate", self.issue_date)
         writer.write_str_value("issuerName", self.issuer_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("subjectName", self.subject_name)
         writer.write_str_value("thumbprint", self.thumbprint)
         writer.write_additional_data_value(self.additional_data)
