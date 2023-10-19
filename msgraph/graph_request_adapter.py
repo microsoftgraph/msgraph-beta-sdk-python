@@ -6,7 +6,15 @@ from msgraph_core.middleware.options import GraphTelemetryHandlerOption
 
 from ._version import VERSION
 
-options = {GraphTelemetryHandlerOption.get_key(): GraphTelemetryHandlerOption(api_version=APIVersion.beta, sdk_version=VERSION)}
+options = {
+    UrlReplaceHandlerOption.get_key(): UrlReplaceHandlerOption(
+        enabled = True,
+        replacement_pairs = {"/users/me-token-to-replace": "/me"}
+    ),
+    GraphTelemetryHandlerOption.get_key(): GraphTelemetryHandlerOption(
+        api_version=APIVersion.beta,
+        sdk_version=VERSION)
+}
 
 class GraphRequestAdapter(BaseGraphRequestAdapter):
     def __init__(self, auth_provider: AuthenticationProvider,
