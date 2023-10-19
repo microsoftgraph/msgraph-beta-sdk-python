@@ -13,4 +13,3 @@ class GraphRequestAdapter(BaseGraphRequestAdapter):
                 client: Optional[httpx.AsyncClient] = GraphClientFactory.create_with_default_middleware(options=options)
                 ) -> None:
         super().__init__(auth_provider, http_client=client)
-
