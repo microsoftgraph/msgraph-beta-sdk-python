@@ -2,7 +2,7 @@ from typing import Dict, Optional
 import httpx
 from kiota_abstractions.authentication import AuthenticationProvider
 from msgraph_core import APIVersion, BaseGraphRequestAdapter, GraphClientFactory
-from msgraph_core.middleware.options import GraphTelemetryHandlerOption
+from msgraph_core.middleware.options import GraphTelemetryHandlerOption, UrlReplaceHandlerOption
 
 from ._version import VERSION
 
