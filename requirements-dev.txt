@@ -10,7 +10,7 @@ async-timeout==4.0.3
 
 attrs==23.1.0
 
-azure-core==1.29.4
+azure-core==1.29.5
 
 azure-identity==1.14.1
 
