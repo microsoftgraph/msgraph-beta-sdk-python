@@ -19,7 +19,7 @@ class CloudPcGalleryImage(Entity):
     # The date when the image is no longer available. Read-only.
     expiration_date: Optional[datetime.date] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The offer name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
     offer: Optional[str] = None
     # The official display offer name of the gallery image. For example, Windows 10 Enterprise + OS Optimizations. Read-only.

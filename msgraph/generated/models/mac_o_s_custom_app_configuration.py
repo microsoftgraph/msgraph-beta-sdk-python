@@ -14,7 +14,7 @@ class MacOSCustomAppConfiguration(DeviceConfiguration):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the macOSCustomAppConfiguration resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSCustomAppConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.macOSCustomAppConfiguration"
     # Bundle id for targeting.
     bundle_id: Optional[str] = None
     # Configuration xml. (UTF8 encoded byte array)

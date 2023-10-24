@@ -12,7 +12,7 @@ from .long_running_operation import LongRunningOperation
 @dataclass
 class AttackSimulationOperation(LongRunningOperation):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Percentage of completion of the respective operation.
     percentage_completed: Optional[int] = None
     # Tenant identifier.

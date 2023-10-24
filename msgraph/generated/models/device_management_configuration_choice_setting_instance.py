@@ -15,7 +15,7 @@ class DeviceManagementConfigurationChoiceSettingInstance(DeviceManagementConfigu
     Setting instance within policy
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance"
     # The choiceSettingValue property
     choice_setting_value: Optional[DeviceManagementConfigurationChoiceSettingValue] = None
     

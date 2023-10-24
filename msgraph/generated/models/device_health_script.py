@@ -45,7 +45,7 @@ class DeviceHealthScript(Entity):
     # The timestamp of when the device health script was modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Name of the device health script publisher
     publisher: Optional[str] = None
     # The entire content of the remediation powershell script

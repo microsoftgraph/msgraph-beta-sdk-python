@@ -16,7 +16,7 @@ class AndroidForWorkWiFiConfiguration(DeviceConfiguration):
     By providing the configurations in this profile you can instruct the Android for Work device to connect to desired Wi-Fi endpoint. By specifying the authentication method and security types expected by Wi-Fi endpoint you can make the Wi-Fi connection seamless for end user. This profile provides limited and simpler security types than Enterprise Wi-Fi profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidForWorkWiFiConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidForWorkWiFiConfiguration"
     # Connect automatically when this network is in range. Setting this to true will skip the user prompt and automatically connect the device to Wi-Fi network.
     connect_automatically: Optional[bool] = None
     # When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.

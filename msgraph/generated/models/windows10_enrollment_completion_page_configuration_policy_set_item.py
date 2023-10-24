@@ -14,7 +14,7 @@ class Windows10EnrollmentCompletionPageConfigurationPolicySetItem(PolicySetItem)
     A class containing the properties used for Windows10EnrollmentCompletionPageConfiguration PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10EnrollmentCompletionPageConfigurationPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.windows10EnrollmentCompletionPageConfigurationPolicySetItem"
     # Priority of the Windows10EnrollmentCompletionPageConfigurationPolicySetItem.
     priority: Optional[int] = None
     

@@ -20,7 +20,7 @@ class ExactMatchSession(ExactMatchSessionBase):
     # The fileName property
     file_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The rowsPerBlock property
     rows_per_block: Optional[int] = None
     # The salt property

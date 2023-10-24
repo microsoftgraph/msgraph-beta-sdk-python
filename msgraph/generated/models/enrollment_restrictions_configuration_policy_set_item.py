@@ -14,7 +14,7 @@ class EnrollmentRestrictionsConfigurationPolicySetItem(PolicySetItem):
     A class containing the properties used for enrollment restriction PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.enrollmentRestrictionsConfigurationPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.enrollmentRestrictionsConfigurationPolicySetItem"
     # Limit of the EnrollmentRestrictionsConfigurationPolicySetItem.
     limit: Optional[int] = None
     # Priority of the EnrollmentRestrictionsConfigurationPolicySetItem.

@@ -35,7 +35,7 @@ class LegalHold(Entity):
     # The date and time the legal hold was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Data source entity for SharePoint sites associated with the legal hold.
     site_sources: Optional[List[SiteSource]] = None
     # The status of the legal hold. Possible values are: Pending, Error, Success, UnknownFutureValue.

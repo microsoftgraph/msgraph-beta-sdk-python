@@ -31,4 +31,6 @@ class DeviceManagementConfigurationTemplateFamily(str, Enum):
     DeviceConfigurationScripts = "deviceConfigurationScripts",
     # Template Family for device configuration policies
     DeviceConfigurationPolicies = "deviceConfigurationPolicies",
+    # Template Family for Company Portal settings
+    CompanyPortal = "companyPortal",
 

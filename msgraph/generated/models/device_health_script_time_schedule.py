@@ -17,7 +17,7 @@ class DeviceHealthScriptTimeSchedule(DeviceHealthScriptRunSchedule):
     Base type of Device health script time schedule.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceHealthScriptTimeSchedule"
+    OdataType: Optional[str] = "#microsoft.graph.deviceHealthScriptTimeSchedule"
     # At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
     time: Optional[datetime.time] = None
     # Indicate if the time is Utc or client local time.

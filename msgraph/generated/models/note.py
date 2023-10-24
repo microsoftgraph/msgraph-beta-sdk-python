@@ -16,7 +16,7 @@ from .outlook_item import OutlookItem
 @dataclass
 class Note(OutlookItem):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.note"
+    OdataType: Optional[str] = "#microsoft.graph.note"
     # The attachments property
     attachments: Optional[List[Attachment]] = None
     # The body property

@@ -14,7 +14,7 @@ class KeyBooleanValuePair(KeyTypedValuePair):
     A key-value pair with a string key and a Boolean value.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.keyBooleanValuePair"
+    OdataType: Optional[str] = "#microsoft.graph.keyBooleanValuePair"
     # The Boolean value of the key-value pair.
     value: Optional[bool] = None
     

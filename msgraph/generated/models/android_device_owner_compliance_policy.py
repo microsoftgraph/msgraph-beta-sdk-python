@@ -16,7 +16,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the AndroidDeviceOwnerCompliancePolicy resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerCompliancePolicy"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerCompliancePolicy"
     # MDATP Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
     advanced_threat_protection_required_security_level: Optional[DeviceThreatProtectionLevel] = None
     # Require that devices have enabled device threat protection.

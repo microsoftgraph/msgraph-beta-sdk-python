@@ -18,7 +18,7 @@ class GroupPolicyUploadedDefinitionFile(GroupPolicyDefinitionFile):
     The entity represents an ADMX (Administrative Template) XML file uploaded by Administrator. The ADMX file contains a collection of group policy definitions and their locations by category path. The group policy definition file also contains the languages supported as determined by the language dependent ADML (Administrative Template) language files.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyUploadedDefinitionFile"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyUploadedDefinitionFile"
     # The contents of the uploaded ADMX file.
     content: Optional[bytes] = None
     # The default language of the uploaded ADMX file.

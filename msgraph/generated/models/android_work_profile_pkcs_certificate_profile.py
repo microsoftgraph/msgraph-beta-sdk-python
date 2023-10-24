@@ -17,7 +17,7 @@ class AndroidWorkProfilePkcsCertificateProfile(AndroidWorkProfileCertificateProf
     Android Work Profile PKCS certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidWorkProfilePkcsCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.androidWorkProfilePkcsCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # PKCS Certificate Template Name

@@ -27,7 +27,7 @@ class TenantTag(Entity):
     # The date and time the last action was performed against the tenant tag. Optional. Read-only.
     last_action_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The collection of managed tenants associated with the tenant tag. Optional.
     tenants: Optional[List[TenantInfo]] = None
     

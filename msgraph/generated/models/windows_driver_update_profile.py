@@ -41,7 +41,7 @@ class WindowsDriverUpdateProfile(Entity):
     # Number of new driver updates available for this profile.
     new_updates: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for this Driver Update entity.
     role_scope_tag_ids: Optional[List[str]] = None
     

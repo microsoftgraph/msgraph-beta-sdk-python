@@ -17,7 +17,7 @@ from .onenote_entity_base_model import OnenoteEntityBaseModel
 @dataclass
 class OnenoteEntitySchemaObjectModel(OnenoteEntityBaseModel):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.onenoteEntitySchemaObjectModel"
+    OdataType: Optional[str] = "#microsoft.graph.onenoteEntitySchemaObjectModel"
     # The createdDateTime property
     created_date_time: Optional[datetime.datetime] = None
     

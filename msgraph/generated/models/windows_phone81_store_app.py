@@ -14,7 +14,7 @@ class WindowsPhone81StoreApp(MobileApp):
     Contains properties and inherited properties for Windows Phone 8.1 Store apps. Inherits from graph.mobileApp. Will be deprecated in February 2023.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsPhone81StoreApp"
+    OdataType: Optional[str] = "#microsoft.graph.windowsPhone81StoreApp"
     # The Windows Phone 8.1 app store URL.
     app_store_url: Optional[str] = None
     

@@ -24,7 +24,7 @@ class ExactMatchJobBase(Entity):
     # The lastUpdatedDateTime property
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The startDateTime property
     start_date_time: Optional[datetime.datetime] = None
     

@@ -14,7 +14,7 @@ class GroupPolicyPresentationComboBox(GroupPolicyUploadedPresentation):
     Represents an ADMX comboBox element and an ADMX text element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyPresentationComboBox"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyPresentationComboBox"
     # Localized default string displayed in the combo box. The default value is empty.
     default_value: Optional[str] = None
     # An unsigned integer that specifies the maximum number of text characters for the parameter. The default value is 1023.

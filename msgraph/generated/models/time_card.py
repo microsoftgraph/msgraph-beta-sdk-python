@@ -17,7 +17,7 @@ from .change_tracked_entity import ChangeTrackedEntity
 @dataclass
 class TimeCard(ChangeTrackedEntity):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.timeCard"
+    OdataType: Optional[str] = "#microsoft.graph.timeCard"
     # The list of breaks associated with the timeCard.
     breaks: Optional[List[TimeCardBreak]] = None
     # The clock-in event of the timeCard.
@@ -71,7 +71,7 @@ class TimeCard(ChangeTrackedEntity):
             "breaks": lambda n : setattr(self, 'breaks', n.get_collection_of_object_values(TimeCardBreak)),
             "clockInEvent": lambda n : setattr(self, 'clock_in_event', n.get_object_value(TimeCardEvent)),
             "clockOutEvent": lambda n : setattr(self, 'clock_out_event', n.get_object_value(TimeCardEvent)),
-            "confirmedBy": lambda n : setattr(self, 'confirmed_by', n.get_enum_value(ConfirmedBy)),
+            "confirmedBy": lambda n : setattr(self, 'confirmed_by', n.get_collection_of_enum_values(ConfirmedBy)),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(ItemBody)),
             "originalEntry": lambda n : setattr(self, 'original_entry', n.get_object_value(TimeCardEntry)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(TimeCardState)),

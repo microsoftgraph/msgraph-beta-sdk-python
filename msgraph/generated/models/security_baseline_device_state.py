@@ -22,7 +22,7 @@ class SecurityBaselineDeviceState(Entity):
     # Intune device id
     managed_device_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Security Baseline Compliance State
     state: Optional[SecurityBaselineComplianceState] = None
     # User Principal Name

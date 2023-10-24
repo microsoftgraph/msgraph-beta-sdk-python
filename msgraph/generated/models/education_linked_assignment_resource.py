@@ -11,7 +11,7 @@ from .education_resource import EducationResource
 @dataclass
 class EducationLinkedAssignmentResource(EducationResource):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationLinkedAssignmentResource"
+    OdataType: Optional[str] = "#microsoft.graph.educationLinkedAssignmentResource"
     # URL of the actual assignment.
     url: Optional[str] = None
     

@@ -35,14 +35,14 @@ class SecureScoreControlProfile(Entity):
     # Current obtained max score on specified date.
     max_score: Optional[float] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Microsoft's stack ranking of control.
     rank: Optional[int] = None
     # Description of what the control will help remediate.
     remediation: Optional[str] = None
     # Description of the impact on users of the remediation.
     remediation_impact: Optional[str] = None
-    # Service that owns the control (Exchange, Sharepoint, Azure AD).
+    # Service that owns the control (Exchange, Sharepoint, Microsoft Entra ID).
     service: Optional[str] = None
     # List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,elevationOfPrivilege,maliciousInsider,passwordCracking,phishingOrWhaling,spoofing).
     threats: Optional[List[str]] = None

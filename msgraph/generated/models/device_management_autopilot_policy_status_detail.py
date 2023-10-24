@@ -25,7 +25,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(Entity):
     # Timestamp of the reported policy status
     last_reported_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The policyType property
     policy_type: Optional[DeviceManagementAutopilotPolicyType] = None
     # Indicates if this prolicy was tracked as part of the autopilot bootstrap enrollment sync session

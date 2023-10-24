@@ -11,7 +11,7 @@ from .generic_error import GenericError
 @dataclass
 class AccessReviewError(GenericError):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.accessReviewError"
+    OdataType: Optional[str] = "#microsoft.graph.accessReviewError"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewError:

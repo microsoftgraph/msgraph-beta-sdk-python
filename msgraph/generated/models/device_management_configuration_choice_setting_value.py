@@ -15,7 +15,7 @@ class DeviceManagementConfigurationChoiceSettingValue(DeviceManagementConfigurat
     Setting value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue"
     # Child settings.
     children: Optional[List[DeviceManagementConfigurationSettingInstance]] = None
     # Choice setting value: an OptionDefinition ItemId.

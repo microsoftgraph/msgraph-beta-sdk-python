@@ -16,7 +16,7 @@ class MobileAppPolicySetItem(PolicySetItem):
     A class containing the properties used for mobile app PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.mobileAppPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.mobileAppPolicySetItem"
     # Possible values for the install intent chosen by the admin.
     intent: Optional[InstallIntent] = None
     # Settings of the MobileAppPolicySetItem.

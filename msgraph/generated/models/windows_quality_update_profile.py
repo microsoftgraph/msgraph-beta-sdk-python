@@ -31,7 +31,7 @@ class WindowsQualityUpdateProfile(Entity):
     # The date time that the profile was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Friendly release date to display for a Quality Update release
     release_date_display_name: Optional[str] = None
     # List of Scope Tags for this Quality Update entity.

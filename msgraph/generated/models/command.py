@@ -17,7 +17,7 @@ class Command(Entity):
     # The error property
     error: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The packageFamilyName property
     package_family_name: Optional[str] = None
     # The payload property

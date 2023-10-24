@@ -7,13 +7,13 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class TenantInfo(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Optional.
+    # The Microsoft Entra tenant identifier for the managed tenant. Optional.
     tenant_id: Optional[str] = None
     
     @staticmethod

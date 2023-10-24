@@ -12,7 +12,7 @@ from .deployable_content import DeployableContent
 @dataclass
 class CatalogContent(DeployableContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.catalogContent"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.catalogContent"
     # The catalogEntry property
     catalog_entry: Optional[CatalogEntry] = None
     

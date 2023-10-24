@@ -14,7 +14,7 @@ from .item_facet import ItemFacet
 @dataclass
 class EducationalActivity(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationalActivity"
+    OdataType: Optional[str] = "#microsoft.graph.educationalActivity"
     # The month and year the user graduated or completed the activity.
     completion_month_year: Optional[datetime.date] = None
     # The month and year the user completed the educational activity referenced.

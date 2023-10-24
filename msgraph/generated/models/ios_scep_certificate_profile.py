@@ -21,7 +21,7 @@ class IosScepCertificateProfile(IosCertificateProfileBase):
     iOS SCEP certificate profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosScepCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.iosScepCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # Custom Subject Alternative Name Settings. The OnPremisesUserPrincipalName variable is support as well as others documented here: https://go.microsoft.com/fwlink/?LinkId=2027630. This collection can contain a maximum of 500 elements.
@@ -82,7 +82,7 @@ class IosScepCertificateProfile(IosCertificateProfileBase):
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
-            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(KeyUsages)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_collection_of_enum_values(KeyUsages)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
             "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(IosTrustedRootCertificate)),
             "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),

@@ -14,7 +14,7 @@ class WindowsKioskAzureADUser(WindowsKioskUser):
     The class used to identify an AzureAD user account for the kiosk configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskAzureADUser"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskAzureADUser"
     # The ID of the AzureAD user that will be locked to this kiosk configuration
     user_id: Optional[str] = None
     # The user accounts that will be locked to this kiosk configuration

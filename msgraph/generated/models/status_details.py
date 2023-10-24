@@ -12,8 +12,8 @@ from .status_base import StatusBase
 @dataclass
 class StatusDetails(StatusBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.statusDetails"
-    # Additional details in case of error.
+    OdataType: Optional[str] = "#microsoft.graph.statusDetails"
+    # Additional details if there is an error.
     additional_details: Optional[str] = None
     # Categorizes the error code. Possible values are Failure, NonServiceFailure, Success.
     error_category: Optional[ProvisioningStatusErrorCategory] = None

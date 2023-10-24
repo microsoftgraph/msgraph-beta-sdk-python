@@ -17,7 +17,7 @@ class PublishedResource(Entity):
     # Display Name of the publishedResource.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The publishingType property
     publishing_type: Optional[OnPremisesPublishingType] = None
     # Name of the publishedResource.

@@ -16,7 +16,7 @@ class TargetedManagedAppPolicyAssignment(Entity):
     The type for deployment of groups or apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents source of assignment.
     source: Optional[DeviceAndAppManagementAssignmentSource] = None
     # Identifier for resource used for deployment to a group

@@ -38,7 +38,7 @@ class TermsAndConditions(Entity):
     # DateTime the object was last modified.
     modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for this Entity instance.
     role_scope_tag_ids: Optional[List[str]] = None
     # Administrator-supplied title of the terms and conditions. This is shown to the user on prompts to accept the T&C policy.

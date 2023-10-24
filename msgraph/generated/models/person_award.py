@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class PersonAward(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personAward"
+    OdataType: Optional[str] = "#microsoft.graph.personAward"
     # Descpription of the award or honor.
     description: Optional[str] = None
     # Name of the award or honor.

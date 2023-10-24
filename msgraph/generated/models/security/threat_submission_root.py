@@ -21,7 +21,7 @@ class ThreatSubmissionRoot(Entity):
     # The fileThreats property
     file_threats: Optional[List[FileThreatSubmission]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The urlThreats property
     url_threats: Optional[List[UrlThreatSubmission]] = None
     

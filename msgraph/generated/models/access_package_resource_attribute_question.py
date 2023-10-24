@@ -12,7 +12,7 @@ from .access_package_resource_attribute_source import AccessPackageResourceAttri
 @dataclass
 class AccessPackageResourceAttributeQuestion(AccessPackageResourceAttributeSource):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.accessPackageResourceAttributeQuestion"
+    OdataType: Optional[str] = "#microsoft.graph.accessPackageResourceAttributeQuestion"
     # The question asked in order to get the value of the attribute
     question: Optional[AccessPackageQuestion] = None
     

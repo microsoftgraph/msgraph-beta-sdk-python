@@ -11,7 +11,7 @@ from .entity import Entity
 @dataclass
 class CloudPcForensicStorageAccount(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The ID of the storage account.
     storage_account_id: Optional[str] = None
     # The name of the storage account.

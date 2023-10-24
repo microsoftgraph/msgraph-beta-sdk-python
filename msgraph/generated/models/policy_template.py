@@ -17,7 +17,7 @@ class PolicyTemplate(Entity):
     # Defines an optional cross-tenant access policy template with inbound and outbound partner configuration settings for a multi-tenant organization.
     multi_tenant_organization_partner_configuration: Optional[MultiTenantOrganizationPartnerConfigurationTemplate] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PolicyTemplate:

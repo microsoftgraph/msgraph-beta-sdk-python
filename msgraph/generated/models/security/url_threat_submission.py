@@ -11,7 +11,7 @@ from .threat_submission import ThreatSubmission
 @dataclass
 class UrlThreatSubmission(ThreatSubmission):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.urlThreatSubmission"
+    OdataType: Optional[str] = "#microsoft.graph.security.urlThreatSubmission"
     # Denotes the webUrl that needs to be submitted.
     web_url: Optional[str] = None
     

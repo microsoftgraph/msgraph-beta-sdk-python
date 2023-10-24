@@ -19,7 +19,7 @@ class DeviceConfigurationGroupAssignment(Entity):
     # Indicates if this group is should be excluded. Defaults that the group should be included
     exclude_group: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The Id of the AAD group we are targeting the device configuration to.
     target_group_id: Optional[str] = None
     

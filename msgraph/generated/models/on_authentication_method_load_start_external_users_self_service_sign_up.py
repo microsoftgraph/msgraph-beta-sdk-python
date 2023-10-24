@@ -12,7 +12,7 @@ from .on_authentication_method_load_start_handler import OnAuthenticationMethodL
 @dataclass
 class OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp(OnAuthenticationMethodLoadStartHandler):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.onAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp"
+    OdataType: Optional[str] = "#microsoft.graph.onAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp"
     # The identityProviders property
     identity_providers: Optional[List[IdentityProviderBase]] = None
     

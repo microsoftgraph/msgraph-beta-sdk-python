@@ -10,13 +10,13 @@ if TYPE_CHECKING:
 @dataclass
 class EvaluateDynamicMembershipResult(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # If a group ID is provided, the value is the membership rule for the group. If a group ID is not provided, the value is the membership rule that was provided as a parameter. For more information, see Dynamic membership rules for groups in Azure Active Directory.
+    # If a group ID is provided, the value is the membership rule for the group. If a group ID isn't provided, the value is the membership rule that was provided as a parameter. For more information, see Dynamic membership rules for groups in Microsoft Entra ID.
     membership_rule: Optional[str] = None
-    # Provides a detailed anaylsis of the membership evaluation result.
+    # Provides a detailed analysis of the membership evaluation result.
     membership_rule_evaluation_details: Optional[ExpressionEvaluationDetails] = None
     # The value is true if the user or device is a member of the group. The value can also be true if a membership rule was provided and the user or device passes the rule evaluation; otherwise false.
     membership_rule_evaluation_result: Optional[bool] = None

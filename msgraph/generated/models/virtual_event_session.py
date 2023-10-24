@@ -12,8 +12,8 @@ from .online_meeting import OnlineMeeting
 @dataclass
 class VirtualEventSession(OnlineMeeting):
     # The OdataType property
-    odata_type: Optional[str] = None
-    # The registrations property
+    OdataType: Optional[str] = None
+    # Registration records of this virtual event session.
     registrations: Optional[List[VirtualEventRegistration]] = None
     
     @staticmethod

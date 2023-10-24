@@ -12,7 +12,7 @@ from .dlp_evaluation_input import DlpEvaluationInput
 @dataclass
 class DlpEvaluationWindowsDevicesInput(DlpEvaluationInput):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.dlpEvaluationWindowsDevicesInput"
+    OdataType: Optional[str] = "#microsoft.graph.dlpEvaluationWindowsDevicesInput"
     # The contentProperties property
     content_properties: Optional[ContentProperties] = None
     # The sharedBy property

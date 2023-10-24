@@ -11,7 +11,7 @@ from .cloud_pc_bulk_action import CloudPcBulkAction
 @dataclass
 class CloudPcBulkResize(CloudPcBulkAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkResize"
+    OdataType: Optional[str] = "#microsoft.graph.cloudPcBulkResize"
     # The targetServicePlanId property
     target_service_plan_id: Optional[str] = None
     

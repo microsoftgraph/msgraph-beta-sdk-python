@@ -19,7 +19,7 @@ class MacOsVppApp(MobileApp):
     Contains properties and inherited properties for MacOS Volume-Purchased Program (VPP) Apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOsVppApp"
+    OdataType: Optional[str] = "#microsoft.graph.macOsVppApp"
     # The store URL.
     app_store_url: Optional[str] = None
     # The licenses assigned to this app.

@@ -32,7 +32,7 @@ class Person(Entity):
     # The type of mailbox that is represented by the person's email address.
     mailbox_type: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The location of the person's office.
     office_location: Optional[str] = None
     # Free-form notes that the user has taken about this person.

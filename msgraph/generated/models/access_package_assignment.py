@@ -43,7 +43,7 @@ class AccessPackageAssignment(Entity):
     # Indicates whether the access package assignment is extended. Read-only.
     is_extended: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # When the access assignment is to be in place. Read-only.
     schedule: Optional[RequestSchedule] = None
     # The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.

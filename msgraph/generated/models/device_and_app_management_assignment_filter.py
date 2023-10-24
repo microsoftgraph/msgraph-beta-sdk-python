@@ -29,7 +29,7 @@ class DeviceAndAppManagementAssignmentFilter(Entity):
     # Last modified time of the Assignment Filter. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Indicates associated assignments for a specific filter.
     payloads: Optional[List[PayloadByFilter]] = None
     # Supported platform types.

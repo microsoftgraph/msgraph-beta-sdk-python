@@ -22,7 +22,7 @@ class DefaultManagedAppProtection(ManagedAppProtection):
     Policy used to configure detailed management settings for a specified set of apps for all users not targeted by a TargetedManagedAppProtection Policy
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.defaultManagedAppProtection"
+    OdataType: Optional[str] = "#microsoft.graph.defaultManagedAppProtection"
     # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work. (Android only)
     allowed_android_device_manufacturers: Optional[str] = None
     # List of device models allowed, as a string, for the managed app to work. (Android Only)

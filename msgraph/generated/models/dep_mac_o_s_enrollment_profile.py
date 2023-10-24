@@ -14,7 +14,7 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile):
     The DepMacOSEnrollmentProfile resource represents an Apple Device Enrollment Program (DEP) enrollment profile specific to macOS configuration. This type of profile must be assigned to Apple DEP serial numbers before the corresponding devices can enroll via DEP.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.depMacOSEnrollmentProfile"
+    OdataType: Optional[str] = "#microsoft.graph.depMacOSEnrollmentProfile"
     # Indicates if Accessibility screen is disabled
     accessibility_screen_disabled: Optional[bool] = None
     # Indicates what the full name for the admin account is

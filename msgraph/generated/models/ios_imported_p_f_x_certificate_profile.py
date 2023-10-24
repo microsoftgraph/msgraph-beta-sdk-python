@@ -16,7 +16,7 @@ class IosImportedPFXCertificateProfile(IosCertificateProfile):
     iOS PFX Import certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosImportedPFXCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.iosImportedPFXCertificateProfile"
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.

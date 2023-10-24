@@ -49,7 +49,7 @@ class RetentionLabel(Entity):
     # The latest date time when the retentionLabel was modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Specifies the number of days to retain the content.
     retention_duration: Optional[RetentionDuration] = None
     # Represents the type associated with a retention event.

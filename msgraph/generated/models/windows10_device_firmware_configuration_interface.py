@@ -16,7 +16,7 @@ class Windows10DeviceFirmwareConfigurationInterface(DeviceConfiguration):
     Graph properties for Device Firmware Configuration Interface 
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10DeviceFirmwareConfigurationInterface"
+    OdataType: Optional[str] = "#microsoft.graph.windows10DeviceFirmwareConfigurationInterface"
     # Possible values of a property
     bluetooth: Optional[Enablement] = None
     # Possible values of a property

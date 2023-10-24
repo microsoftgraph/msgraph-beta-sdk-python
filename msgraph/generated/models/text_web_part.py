@@ -11,7 +11,7 @@ from .web_part import WebPart
 @dataclass
 class TextWebPart(WebPart):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.textWebPart"
+    OdataType: Optional[str] = "#microsoft.graph.textWebPart"
     # The HTML string in text web part.
     inner_html: Optional[str] = None
     

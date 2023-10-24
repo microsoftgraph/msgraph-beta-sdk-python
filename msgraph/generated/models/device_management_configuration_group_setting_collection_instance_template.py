@@ -15,7 +15,7 @@ class DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate(Device
     Group Setting Collection Instance Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstanceTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstanceTemplate"
     # Linked policy may append values which are not present in the template.
     allow_unmanaged_values: Optional[bool] = None
     # Group Setting Collection Value Template

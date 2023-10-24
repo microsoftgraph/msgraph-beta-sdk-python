@@ -15,7 +15,7 @@ class IosWebContentFilterSpecificWebsitesAccess(IosWebContentFilterBase):
     Represents an iOS Web Content Filter setting type, which installs URL bookmarks into iOS built-in browser. An example scenario is in the classroom where teachers would like the students to navigate websites through browser bookmarks configured on their iOS devices, and no access to other sites.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosWebContentFilterSpecificWebsitesAccess"
+    OdataType: Optional[str] = "#microsoft.graph.iosWebContentFilterSpecificWebsitesAccess"
     # URL bookmarks which will be installed into built-in browser and user is only allowed to access websites through bookmarks. This collection can contain a maximum of 500 elements.
     specific_websites_only: Optional[List[IosBookmark]] = None
     # URL bookmarks which will be installed into built-in browser and user is only allowed to access websites through bookmarks. This collection can contain a maximum of 500 elements.

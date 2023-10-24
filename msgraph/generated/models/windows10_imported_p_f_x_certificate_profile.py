@@ -16,7 +16,7 @@ class Windows10ImportedPFXCertificateProfile(WindowsCertificateProfileBase):
     Windows 10 Desktop and Mobile PFX Import certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10ImportedPFXCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.windows10ImportedPFXCertificateProfile"
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.

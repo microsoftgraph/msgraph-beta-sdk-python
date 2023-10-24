@@ -15,7 +15,7 @@ class GovernancePolicyTemplate(Entity):
     # The displayName property
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The policy property
     policy: Optional[GovernancePolicy] = None
     # The settings property

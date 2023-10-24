@@ -14,7 +14,7 @@ class AndroidDeviceOwnerGlobalProxyAutoConfig(AndroidDeviceOwnerGlobalProxy):
     Android Device Owner Global Proxy Auto Config.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerGlobalProxyAutoConfig"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerGlobalProxyAutoConfig"
     # The proxy auto-config URL
     proxy_auto_config_u_r_l: Optional[str] = None
     

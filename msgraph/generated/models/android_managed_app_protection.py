@@ -21,7 +21,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     Policy used to configure detailed management settings targeted to specific security groups and for a specified set of apps on an Android device
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidManagedAppProtection"
+    OdataType: Optional[str] = "#microsoft.graph.androidManagedAppProtection"
     # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work.
     allowed_android_device_manufacturers: Optional[str] = None
     # List of device models allowed, as a string, for the managed app to work.

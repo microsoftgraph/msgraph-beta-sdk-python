@@ -20,7 +20,7 @@ class WindowsAutopilotSettings(Entity):
     # Last data sync date time with DDS service.
     last_sync_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The syncStatus property
     sync_status: Optional[WindowsAutopilotSyncStatus] = None
     

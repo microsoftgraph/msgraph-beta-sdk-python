@@ -28,7 +28,7 @@ class AndroidForWorkEnrollmentProfile(Entity):
     # Date time the enrollment profile was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # String used to generate a QR code for the token.
     qr_code_content: Optional[str] = None
     # String used to generate a QR code for the token.

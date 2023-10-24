@@ -14,7 +14,7 @@ class AndroidTrustedRootCertificate(DeviceConfiguration):
     Android Trusted Root Certificate configuration profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidTrustedRootCertificate"
+    OdataType: Optional[str] = "#microsoft.graph.androidTrustedRootCertificate"
     # File name to display in UI.
     cert_file_name: Optional[str] = None
     # Trusted Root Certificate

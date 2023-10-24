@@ -16,7 +16,7 @@ class DeviceManagementConfigurationPolicyAssignment(Entity):
     The DeviceManagementConfigurationPolicyAssignment entity assigns a specific DeviceManagementConfigurationPolicy to an AAD group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents source of assignment.
     source: Optional[DeviceAndAppManagementAssignmentSource] = None
     # The identifier of the source of the assignment.

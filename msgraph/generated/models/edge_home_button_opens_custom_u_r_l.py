@@ -14,7 +14,7 @@ class EdgeHomeButtonOpensCustomURL(EdgeHomeButtonConfiguration):
     Show the home button; clicking the home button loads a specific URL.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.edgeHomeButtonOpensCustomURL"
+    OdataType: Optional[str] = "#microsoft.graph.edgeHomeButtonOpensCustomURL"
     # The specific URL to load.
     home_button_custom_u_r_l: Optional[str] = None
     

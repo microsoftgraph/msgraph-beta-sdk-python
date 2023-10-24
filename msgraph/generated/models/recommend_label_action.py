@@ -14,7 +14,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class RecommendLabelAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.recommendLabelAction"
+    OdataType: Optional[str] = "#microsoft.graph.recommendLabelAction"
     # The actionSource property
     action_source: Optional[ActionSource] = None
     # Actions to take if the label is accepted by the user.

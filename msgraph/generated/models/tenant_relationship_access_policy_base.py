@@ -12,7 +12,7 @@ from .policy_base import PolicyBase
 @dataclass
 class TenantRelationshipAccessPolicyBase(PolicyBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.tenantRelationshipAccessPolicyBase"
+    OdataType: Optional[str] = "#microsoft.graph.tenantRelationshipAccessPolicyBase"
     # The definition property
     definition: Optional[List[str]] = None
     

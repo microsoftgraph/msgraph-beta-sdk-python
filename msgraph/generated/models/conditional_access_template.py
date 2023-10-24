@@ -19,7 +19,7 @@ class ConditionalAccessTemplate(Entity):
     # The user-friendly name of the template.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The scenarios property
     scenarios: Optional[TemplateScenarios] = None
     
@@ -51,7 +51,7 @@ class ConditionalAccessTemplate(Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "details": lambda n : setattr(self, 'details', n.get_object_value(ConditionalAccessPolicyDetail)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "scenarios": lambda n : setattr(self, 'scenarios', n.get_enum_value(TemplateScenarios)),
+            "scenarios": lambda n : setattr(self, 'scenarios', n.get_collection_of_enum_values(TemplateScenarios)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

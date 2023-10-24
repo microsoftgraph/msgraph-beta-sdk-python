@@ -14,7 +14,7 @@ class DeviceManagementConfigurationReferenceSettingValue(DeviceManagementConfigu
     Model for ReferenceSettingValue
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationReferenceSettingValue"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationReferenceSettingValue"
     # A note that admin can use to put some contextual information
     note: Optional[str] = None
     

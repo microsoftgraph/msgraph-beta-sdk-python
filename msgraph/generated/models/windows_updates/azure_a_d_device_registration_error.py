@@ -12,7 +12,7 @@ from .updatable_asset_error import UpdatableAssetError
 @dataclass
 class AzureADDeviceRegistrationError(UpdatableAssetError):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.azureADDeviceRegistrationError"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.azureADDeviceRegistrationError"
     # The reason property
     reason: Optional[AzureADDeviceRegistrationErrorReason] = None
     

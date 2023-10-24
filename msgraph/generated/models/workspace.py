@@ -11,7 +11,7 @@ from .place import Place
 @dataclass
 class Workspace(Place):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.workspace"
+    OdataType: Optional[str] = "#microsoft.graph.workspace"
     # Specifies the building name or building number that the workspace is in.
     building: Optional[str] = None
     # Specifies the capacity of the workspace.

@@ -12,10 +12,10 @@ from .policy_base import PolicyBase
 @dataclass
 class PermissionGrantPolicy(PolicyBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.permissionGrantPolicy"
-    # Condition sets which are excluded in this permission grant policy. Automatically expanded on GET.
+    OdataType: Optional[str] = "#microsoft.graph.permissionGrantPolicy"
+    # Condition sets that are excluded in this permission grant policy. Automatically expanded on GET.
     excludes: Optional[List[PermissionGrantConditionSet]] = None
-    # Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+    # Condition sets that are included in this permission grant policy. Automatically expanded on GET.
     includes: Optional[List[PermissionGrantConditionSet]] = None
     
     @staticmethod

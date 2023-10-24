@@ -14,7 +14,7 @@ class GroupPolicyPresentationListBox(GroupPolicyUploadedPresentation):
     Represents an ADMX listBox element and an ADMX list element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyPresentationListBox"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyPresentationListBox"
     # If this option is specified true the user must specify the registry subkey value and the registry subkey name. The list box shows two columns, one for the name and one for the data. The default value is false.
     explicit_value: Optional[bool] = None
     # Not yet documented

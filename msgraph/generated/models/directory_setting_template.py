@@ -12,7 +12,7 @@ from .directory_object import DirectoryObject
 @dataclass
 class DirectorySettingTemplate(DirectoryObject):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.directorySettingTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.directorySettingTemplate"
     # Description of the template. Read-only.
     description: Optional[str] = None
     # Display name of the template. Read-only.

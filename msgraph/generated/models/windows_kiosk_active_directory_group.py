@@ -14,7 +14,7 @@ class WindowsKioskActiveDirectoryGroup(WindowsKioskUser):
     The class used to identify an Azure Directory group for the kiosk configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskActiveDirectoryGroup"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskActiveDirectoryGroup"
     # The name of the AD group that will be locked to this kiosk configuration
     group_name: Optional[str] = None
     

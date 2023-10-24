@@ -12,7 +12,7 @@ from .file_plan_descriptor_base import FilePlanDescriptorBase
 @dataclass
 class AppliedCategory(FilePlanDescriptorBase):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents the file plan descriptor for a subcategory under a specific category, which has been assigned to a particular retention label.
     sub_category: Optional[SubCategory] = None
     

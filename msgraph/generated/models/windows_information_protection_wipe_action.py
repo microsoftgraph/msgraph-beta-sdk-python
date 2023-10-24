@@ -18,7 +18,7 @@ class WindowsInformationProtectionWipeAction(Entity):
     # Last checkin time of the device that was targeted by this wipe action.
     last_check_in_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The status property
     status: Optional[ActionState] = None
     # Targeted device Mac address.

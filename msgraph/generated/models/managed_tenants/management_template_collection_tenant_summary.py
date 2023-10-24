@@ -42,7 +42,7 @@ class ManagementTemplateCollectionTenantSummary(Entity):
     # The managementTemplateCollectionId property
     management_template_collection_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The regressedStepsCount property
     regressed_steps_count: Optional[int] = None
     # The regressedUsersCount property

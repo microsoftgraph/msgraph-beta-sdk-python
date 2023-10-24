@@ -11,7 +11,7 @@ from .entity import Entity
 @dataclass
 class SharedEmailDomain(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The provisioningStatus property
     provisioning_status: Optional[str] = None
     

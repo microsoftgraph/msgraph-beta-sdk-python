@@ -37,7 +37,7 @@ class CloudPcAuditEvent(Entity):
     # Event display name. Read-only.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of cloudPcAuditResource objects. Read-only.
     resources: Optional[List[CloudPcAuditResource]] = None
     

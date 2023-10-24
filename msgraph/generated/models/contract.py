@@ -12,14 +12,14 @@ from .directory_object import DirectoryObject
 @dataclass
 class Contract(DirectoryObject):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.contract"
+    OdataType: Optional[str] = "#microsoft.graph.contract"
     # Type of contract. Possible values are:  SyndicationPartner, BreadthPartner, ResellerPartner. See more in the table below.
     contract_type: Optional[str] = None
     # The unique identifier for the customer tenant referenced by this partnership. Corresponds to the id property of the customer tenant's organization resource.
     customer_id: Optional[UUID] = None
-    # A copy of the customer tenant's default domain name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's default domain name changes.
+    # A copy of the customer tenant's default domain name. The copy is made when the partnership with the customer is established. It isn't automatically updated if the customer tenant's default domain name changes.
     default_domain_name: Optional[str] = None
-    # A copy of the customer tenant's display name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's display name changes.
+    # A copy of the customer tenant's display name. The copy is made when the partnership with the customer is established. It isn't automatically updated if the customer tenant's display name changes.
     display_name: Optional[str] = None
     
     @staticmethod

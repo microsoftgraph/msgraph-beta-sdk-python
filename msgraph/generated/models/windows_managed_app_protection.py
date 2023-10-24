@@ -21,7 +21,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
     Policy used to configure detailed management settings targeted to specific security groups and for a specified set of apps on a Windows device
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsManagedAppProtection"
+    OdataType: Optional[str] = "#microsoft.graph.windowsManagedAppProtection"
     # Data can be transferred from/to these classes of apps
     allowed_inbound_data_transfer_sources: Optional[WindowsManagedAppDataTransferLevel] = None
     # Represents the level to which the device's clipboard may be shared between apps

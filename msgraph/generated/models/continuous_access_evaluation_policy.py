@@ -21,7 +21,7 @@ class ContinuousAccessEvaluationPolicy(Entity):
     # true to indicate that the continuous access evaluation policy settings should be or has been migrated to the conditional access policy.
     migrate: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The collection of user identifiers in scope for evaluation. All users are in scope when the collection is empty. Read-only.
     users: Optional[List[str]] = None
     

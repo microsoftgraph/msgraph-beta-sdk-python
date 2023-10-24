@@ -24,7 +24,7 @@ class ManagedDeviceMobileAppConfigurationDeviceStatus(Entity):
     # Last modified date time of the policy report.
     last_reported_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Platform of the device that is being reported
     platform: Optional[int] = None
     # The status property

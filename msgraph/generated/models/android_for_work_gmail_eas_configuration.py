@@ -14,7 +14,7 @@ class AndroidForWorkGmailEasConfiguration(AndroidForWorkEasEmailProfileBase):
     By providing configurations in this profile you can instruct the Gmail email client on Android For Work devices to communicate with an Exchange server and get email, contacts, calendar, tasks, and notes. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidForWorkGmailEasConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidForWorkGmailEasConfiguration"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkGmailEasConfiguration:

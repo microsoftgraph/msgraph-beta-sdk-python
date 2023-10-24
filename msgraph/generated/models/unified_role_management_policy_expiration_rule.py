@@ -12,10 +12,10 @@ from .unified_role_management_policy_rule import UnifiedRoleManagementPolicyRule
 @dataclass
 class UnifiedRoleManagementPolicyExpirationRule(UnifiedRoleManagementPolicyRule):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule"
+    OdataType: Optional[str] = "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule"
     # Indicates whether expiration is required or if it's a permanently active assignment or eligibility.
     is_expiration_required: Optional[bool] = None
-    # The maximum duration allowed for eligibility or assignment which is not permanent. Required when isExpirationRequired is true.
+    # The maximum duration allowed for eligibility or assignment that isn't permanent. Required when isExpirationRequired is true.
     maximum_duration: Optional[datetime.timedelta] = None
     
     @staticmethod

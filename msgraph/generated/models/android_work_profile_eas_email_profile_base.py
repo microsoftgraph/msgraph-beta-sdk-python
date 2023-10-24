@@ -21,7 +21,7 @@ class AndroidWorkProfileEasEmailProfileBase(DeviceConfiguration):
     Base for Android Work Profile EAS Email profiles
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidWorkProfileEasEmailProfileBase"
+    OdataType: Optional[str] = "#microsoft.graph.androidWorkProfileEasEmailProfileBase"
     # Exchange Active Sync authentication method.
     authentication_method: Optional[EasAuthenticationMethod] = None
     # Possible values for email sync duration.

@@ -33,7 +33,7 @@ class ImportedDeviceIdentity(Entity):
     # Last Modified DateTime of the description
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The platform property
     platform: Optional[Platform] = None
     

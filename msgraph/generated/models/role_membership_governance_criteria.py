@@ -11,7 +11,7 @@ from .governance_criteria import GovernanceCriteria
 @dataclass
 class RoleMembershipGovernanceCriteria(GovernanceCriteria):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.roleMembershipGovernanceCriteria"
+    OdataType: Optional[str] = "#microsoft.graph.roleMembershipGovernanceCriteria"
     # The roleId property
     role_id: Optional[str] = None
     # The roleTemplateId property

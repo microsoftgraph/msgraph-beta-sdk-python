@@ -17,7 +17,7 @@ class Windows10EasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
     By providing configurations in this profile you can instruct the native email client (Outlook) on Windows 10 devices to communicate with an Exchange server and get email, contacts, calendar, and tasks. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10EasEmailProfileConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windows10EasEmailProfileConfiguration"
     # Account name.
     account_name: Optional[str] = None
     # Possible values for email sync duration.

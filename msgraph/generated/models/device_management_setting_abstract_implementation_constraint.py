@@ -14,7 +14,7 @@ class DeviceManagementSettingAbstractImplementationConstraint(DeviceManagementCo
     Constraint that enforces an AbstractComplex type has or is set to a particular value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingAbstractImplementationConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingAbstractImplementationConstraint"
     # List of value which means not configured for the setting
     allowed_abstract_implementation_definition_ids: Optional[List[str]] = None
     

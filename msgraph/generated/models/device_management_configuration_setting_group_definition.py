@@ -20,7 +20,7 @@ class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfig
     # List of Dependencies for the setting group
     dependent_on: Optional[List[DeviceManagementConfigurationDependentOn]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingGroupDefinition:

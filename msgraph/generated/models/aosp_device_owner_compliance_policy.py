@@ -15,7 +15,7 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the AndroidDeviceOwnerAOSPCompliancePolicy resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.aospDeviceOwnerCompliancePolicy"
+    OdataType: Optional[str] = "#microsoft.graph.aospDeviceOwnerCompliancePolicy"
     # Minimum Android security patch level.
     min_android_security_patch_level: Optional[str] = None
     # Maximum Android version.

@@ -14,7 +14,7 @@ class MacOsVppAppAssignedLicense(Entity):
     MacOS Volume Purchase Program license assignment. This class does not support Create, Delete, or Update.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The user email address.
     user_email_address: Optional[str] = None
     # The user ID.

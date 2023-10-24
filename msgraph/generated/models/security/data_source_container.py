@@ -19,12 +19,12 @@ class DataSourceContainer(Entity):
     created_date_time: Optional[datetime.datetime] = None
     # Display name of the dataSourceContainer entity.
     display_name: Optional[str] = None
-    # The hold status of the dataSourceContainer.The possible values are: notApplied, applied, applying, removing, partial
+    # The hold status of the dataSourceContainer. The possible values are: notApplied, applied, applying, removing, partial
     hold_status: Optional[DataSourceHoldStatus] = None
     # Last modified date and time of the dataSourceContainer.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Date and time that the dataSourceContainer was released from the case.
     released_date_time: Optional[datetime.datetime] = None
     # Latest status of the dataSourceContainer. Possible values are: Active, Released.

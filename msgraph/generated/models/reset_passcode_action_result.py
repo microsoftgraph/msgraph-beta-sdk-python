@@ -16,7 +16,7 @@ class ResetPasscodeActionResult(DeviceActionResult):
     # RotateBitLockerKeys action error code. Valid values 0 to 2147483647
     error_code: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Newly generated passcode for the device
     passcode: Optional[str] = None
     

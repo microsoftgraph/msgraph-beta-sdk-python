@@ -19,7 +19,7 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the macOSGeneralDeviceConfiguration resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSGeneralDeviceConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.macOSGeneralDeviceConfiguration"
     # When TRUE, activation lock is allowed when the devices is in the supervised mode. When FALSE, activation lock is not allowed. Default is false.
     activation_lock_when_supervised_allowed: Optional[bool] = None
     # Yes prevents users from adding friends to Game Center. Available for devices running macOS versions 10.13 and later.
@@ -230,7 +230,7 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration):
             "softwareUpdatesEnforcedDelayInDays": lambda n : setattr(self, 'software_updates_enforced_delay_in_days', n.get_int_value()),
             "spotlightBlockInternetResults": lambda n : setattr(self, 'spotlight_block_internet_results', n.get_bool_value()),
             "touchIdTimeoutInHours": lambda n : setattr(self, 'touch_id_timeout_in_hours', n.get_int_value()),
-            "updateDelayPolicy": lambda n : setattr(self, 'update_delay_policy', n.get_enum_value(MacOSSoftwareUpdateDelayPolicy)),
+            "updateDelayPolicy": lambda n : setattr(self, 'update_delay_policy', n.get_collection_of_enum_values(MacOSSoftwareUpdateDelayPolicy)),
             "wallpaperModificationBlocked": lambda n : setattr(self, 'wallpaper_modification_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()

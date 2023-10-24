@@ -16,7 +16,7 @@ class AndroidManagedStoreAppConfiguration(ManagedDeviceMobileAppConfiguration):
     Contains properties, inherited properties and actions for Android Enterprise mobile app configurations.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidManagedStoreAppConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidManagedStoreAppConfiguration"
     # Whether or not this AppConfig is an OEMConfig policy.
     app_supports_oem_config: Optional[bool] = None
     # Setting to specify whether to allow ConnectedApps experience for this app.

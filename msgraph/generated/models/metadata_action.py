@@ -12,7 +12,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class MetadataAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.metadataAction"
+    OdataType: Optional[str] = "#microsoft.graph.metadataAction"
     # A collection of key value pairs that should be added to the file.
     metadata_to_add: Optional[List[KeyValuePair]] = None
     # A collection of strings that indicate which keys to remove from the file metadata.

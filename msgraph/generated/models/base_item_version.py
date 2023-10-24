@@ -16,12 +16,12 @@ from .entity import Entity
 
 @dataclass
 class BaseItemVersion(Entity):
-    # Identity of the user which last modified the version. Read-only.
+    # Identity of the user that last modified the version. Read-only.
     last_modified_by: Optional[IdentitySet] = None
     # Date and time when the version was last modified. Read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Indicates the publication status of this particular version. Read-only.
     publication: Optional[PublicationFacet] = None
     

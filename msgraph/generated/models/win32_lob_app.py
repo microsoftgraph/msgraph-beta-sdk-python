@@ -22,7 +22,7 @@ class Win32LobApp(MobileLobApp):
     Contains properties and inherited properties for Win32 apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.win32LobApp"
+    OdataType: Optional[str] = "#microsoft.graph.win32LobApp"
     # When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an Available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
     allow_available_uninstall: Optional[bool] = None
     # Contains properties for Windows architecture.
@@ -98,7 +98,7 @@ class Win32LobApp(MobileLobApp):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowAvailableUninstall": lambda n : setattr(self, 'allow_available_uninstall', n.get_bool_value()),
-            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(WindowsArchitecture)),
+            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "detectionRules": lambda n : setattr(self, 'detection_rules', n.get_collection_of_object_values(Win32LobAppDetection)),
             "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
             "installCommandLine": lambda n : setattr(self, 'install_command_line', n.get_str_value()),

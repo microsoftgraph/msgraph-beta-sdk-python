@@ -11,7 +11,7 @@ from .identity import Identity
 @dataclass
 class CommunicationsUserIdentity(Identity):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.communicationsUserIdentity"
+    OdataType: Optional[str] = "#microsoft.graph.communicationsUserIdentity"
     # The user's tenant ID.
     tenant_id: Optional[str] = None
     

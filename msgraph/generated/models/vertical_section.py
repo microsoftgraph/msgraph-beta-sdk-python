@@ -15,7 +15,7 @@ class VerticalSection(Entity):
     # Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
     emphasis: Optional[SectionEmphasisType] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The set of web parts in this section.
     webparts: Optional[List[WebPart]] = None
     

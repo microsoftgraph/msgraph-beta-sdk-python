@@ -15,7 +15,7 @@ class IosDerivedCredentialAuthenticationConfiguration(DeviceConfiguration):
     iOS Derived Credential profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosDerivedCredentialAuthenticationConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.iosDerivedCredentialAuthenticationConfiguration"
     # Tenant level settings for the Derived Credentials to be used for authentication.
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     

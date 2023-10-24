@@ -11,7 +11,7 @@ from .resource_connection import ResourceConnection
 @dataclass
 class OperationalInsightsConnection(ResourceConnection):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.operationalInsightsConnection"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.operationalInsightsConnection"
     # The name of the Azure resource group that contains the Log Analytics workspace.
     azure_resource_group_name: Optional[str] = None
     # The Azure subscription ID that contains the Log Analytics workspace.

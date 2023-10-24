@@ -11,7 +11,7 @@ from .industry_data_run_activity import IndustryDataRunActivity
 @dataclass
 class OutboundFlowActivity(IndustryDataRunActivity):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.outboundFlowActivity"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.outboundFlowActivity"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OutboundFlowActivity:

@@ -14,7 +14,7 @@ from .meeting_registration_base import MeetingRegistrationBase
 @dataclass
 class MeetingRegistration(MeetingRegistrationBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.meetingRegistration"
+    OdataType: Optional[str] = "#microsoft.graph.meetingRegistration"
     # Custom registration questions.
     custom_questions: Optional[List[MeetingRegistrationQuestion]] = None
     # The description of the meeting.

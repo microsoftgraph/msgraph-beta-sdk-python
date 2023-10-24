@@ -15,7 +15,7 @@ class WindowsKioskMultipleApps(WindowsKioskAppConfiguration):
     The class used to identify the MultiMode app configuration for the kiosk configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskMultipleApps"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskMultipleApps"
     # This setting allows access to Downloads folder in file explorer.
     allow_access_to_downloads_folder: Optional[bool] = None
     # These are the only Windows Store Apps that will be available to launch from the Start menu. This collection can contain a maximum of 128 elements.

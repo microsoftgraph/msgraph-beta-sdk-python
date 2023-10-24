@@ -33,7 +33,7 @@ class AppleUserInitiatedEnrollmentProfile(Entity):
     # Profile last modified time
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Supported platform types.
     platform: Optional[DevicePlatformType] = None
     # Priority, 0 is highest

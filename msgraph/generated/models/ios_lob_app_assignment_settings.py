@@ -14,7 +14,7 @@ class IosLobAppAssignmentSettings(MobileAppAssignmentSettings):
     Contains properties used to assign an iOS LOB mobile app to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosLobAppAssignmentSettings"
+    OdataType: Optional[str] = "#microsoft.graph.iosLobAppAssignmentSettings"
     # When TRUE, indicates that the app can be uninstalled by the user. When FALSE, indicates that the app cannot be uninstalled by the user. By default, this property is set to null which internally is treated as TRUE.
     is_removable: Optional[bool] = None
     # When TRUE, indicates that the app should not be backed up to iCloud. When FALSE, indicates that the app may be backed up to iCloud. By default, this property is set to null which internally is treated as FALSE.

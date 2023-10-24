@@ -34,7 +34,7 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
     # The user experience analytics device model.
     model: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # RAM spike time in percentage. Valid values 0 to 100
     ram_spike_time_percentage: Optional[float] = None
     # Threshold of ramSpikeTimeScore. Valid values 0 to 100

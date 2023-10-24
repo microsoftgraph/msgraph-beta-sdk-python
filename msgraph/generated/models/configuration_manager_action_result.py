@@ -19,7 +19,7 @@ class ConfigurationManagerActionResult(DeviceActionResult):
     # Error code of Configuration Manager action from client
     error_code: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConfigurationManagerActionResult:

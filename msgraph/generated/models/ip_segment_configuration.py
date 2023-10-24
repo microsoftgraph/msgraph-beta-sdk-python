@@ -12,7 +12,7 @@ from .segment_configuration import SegmentConfiguration
 @dataclass
 class IpSegmentConfiguration(SegmentConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.ipSegmentConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.ipSegmentConfiguration"
     # The applicationSegments property
     application_segments: Optional[List[IpApplicationSegment]] = None
     

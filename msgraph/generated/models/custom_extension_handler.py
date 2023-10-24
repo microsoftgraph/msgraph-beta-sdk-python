@@ -12,10 +12,10 @@ from .entity import Entity
 
 @dataclass
 class CustomExtensionHandler(Entity):
-    # Indicates which custom workflow extension will be executed at this stage. Nullable. Supports $expand.
+    # Indicates which custom workflow extension is executed at this stage. Nullable. Supports $expand.
     custom_extension: Optional[CustomAccessPackageWorkflowExtension] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Indicates the stage of the access package assignment request workflow when the access package custom extension runs. The possible values are: assignmentRequestCreated, assignmentRequestApproved, assignmentRequestGranted, assignmentRequestRemoved, assignmentFourteenDaysBeforeExpiration, assignmentOneDayBeforeExpiration, unknownFutureValue.
     stage: Optional[AccessPackageCustomExtensionStage] = None
     

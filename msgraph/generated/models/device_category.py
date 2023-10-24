@@ -18,7 +18,7 @@ class DeviceCategory(Entity):
     # Display name for the device category.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Optional role scope tags for the device category.
     role_scope_tag_ids: Optional[List[str]] = None
     

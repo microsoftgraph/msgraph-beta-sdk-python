@@ -14,7 +14,7 @@ class DeviceManagementSettingAppConstraint(DeviceManagementConstraint):
     Constraint enforcing the setting contains only vaild app types.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingAppConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingAppConstraint"
     # Acceptable app types to allow for this setting
     supported_types: Optional[List[str]] = None
     

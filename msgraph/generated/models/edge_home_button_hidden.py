@@ -14,7 +14,7 @@ class EdgeHomeButtonHidden(EdgeHomeButtonConfiguration):
     Hide the home button.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.edgeHomeButtonHidden"
+    OdataType: Optional[str] = "#microsoft.graph.edgeHomeButtonHidden"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EdgeHomeButtonHidden:

@@ -39,7 +39,7 @@ class DeviceManagementScript(Entity):
     # The date and time the device management script was last modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tag IDs for this PowerShellScript instance.
     role_scope_tag_ids: Optional[List[str]] = None
     # Indicates the type of execution context the app runs in.

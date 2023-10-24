@@ -14,7 +14,7 @@ class DeviceManagementConfigurationExchangeOnlineSettingApplicability(DeviceMana
     Applicability for an Exchange Online Setting
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationExchangeOnlineSettingApplicability"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationExchangeOnlineSettingApplicability"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationExchangeOnlineSettingApplicability:

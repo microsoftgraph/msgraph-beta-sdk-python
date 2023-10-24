@@ -16,7 +16,7 @@ class PlannerPlanConfigurationLocalization(Entity):
     # The language code associated with the localized names in this object.
     language_tag: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Localized title of the plan.
     plan_title: Optional[str] = None
     

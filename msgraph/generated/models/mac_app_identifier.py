@@ -14,7 +14,7 @@ class MacAppIdentifier(MobileAppIdentifier):
     The identifier for a Mac app.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macAppIdentifier"
+    OdataType: Optional[str] = "#microsoft.graph.macAppIdentifier"
     # The identifier for an app, as specified in the app store.
     bundle_id: Optional[str] = None
     

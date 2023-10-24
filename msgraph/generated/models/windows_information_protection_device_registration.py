@@ -25,7 +25,7 @@ class WindowsInformationProtectionDeviceRegistration(Entity):
     # Last checkin time of the device.
     last_check_in_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # UserId associated with this device registration record.
     user_id: Optional[str] = None
     

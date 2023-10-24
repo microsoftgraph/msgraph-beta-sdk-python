@@ -13,7 +13,7 @@ from .device_management_configuration_setting_applicability import DeviceManagem
 @dataclass
 class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementConfigurationSettingApplicability):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationWindowsSettingApplicability"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationWindowsSettingApplicability"
     # Version of CSP setting is a part of
     configuration_service_provider_version: Optional[str] = None
     # Maximum supported version of Windows

@@ -25,7 +25,7 @@ class RoleDefinition(Entity):
     # Type of Role. Set to True if it is built-in, or set to False if it is a custom role definition.
     is_built_in_role_definition: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Role Permissions this role is allowed to perform. These must match the actionName that is defined as part of the rolePermission.
     permissions: Optional[List[RolePermission]] = None
     # List of Role assignments for this role definition.

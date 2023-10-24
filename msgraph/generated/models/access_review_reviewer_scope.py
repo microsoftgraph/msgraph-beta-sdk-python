@@ -11,7 +11,7 @@ from .access_review_scope import AccessReviewScope
 @dataclass
 class AccessReviewReviewerScope(AccessReviewScope):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.accessReviewReviewerScope"
+    OdataType: Optional[str] = "#microsoft.graph.accessReviewReviewerScope"
     # The query specifying who will be the reviewer.
     query: Optional[str] = None
     # In the scenario where reviewers need to be specified dynamically, this property is used to indicate the relative source of the query. This property is only required if a relative query, for example, ./manager, is specified. Possible value: decisions.

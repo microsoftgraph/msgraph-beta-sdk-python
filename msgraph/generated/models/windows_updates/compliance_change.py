@@ -18,7 +18,7 @@ class ComplianceChange(Entity):
     # True indicates that a compliance change is revoked, preventing further application. Revoking a compliance change is a final action.
     is_revoked: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The date and time when the compliance change was revoked.
     revoked_date_time: Optional[datetime.datetime] = None
     # The policy this compliance change is a member of.

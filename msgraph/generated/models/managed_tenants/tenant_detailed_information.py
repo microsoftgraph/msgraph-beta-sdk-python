@@ -23,12 +23,12 @@ class TenantDetailedInformation(Entity):
     # The business industry associated with the managed tenant. Optional. Read-only.
     industry_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The region where the managed tenant is located. Optional. Read-only.
     region: Optional[str] = None
     # The business segment associated with the managed tenant. Optional. Read-only.
     segment_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant.
+    # The Microsoft Entra tenant identifier for the managed tenant.
     tenant_id: Optional[str] = None
     # The vertical associated with the managed tenant. Optional. Read-only.
     vertical_name: Optional[str] = None

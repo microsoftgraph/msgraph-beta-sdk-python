@@ -11,7 +11,7 @@ from .identity import Identity
 @dataclass
 class ProgramResource(Identity):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.programResource"
+    OdataType: Optional[str] = "#microsoft.graph.programResource"
     # Type of the resource, indicating whether it is a group or an app.
     type: Optional[str] = None
     

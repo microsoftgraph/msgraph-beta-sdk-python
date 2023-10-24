@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class AttackSimulationUser(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -19,7 +19,7 @@ class AttackSimulationUser(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Number of days the user is OOF during a simulation journey/course of a campaign.
     out_of_office_days: Optional[int] = None
-    # The id property value of the user resource that represents the user in the Azure Active Directory tenant.
+    # The id property value of the user resource that represents the user in the Microsoft Entra tenant.
     user_id: Optional[str] = None
     
     @staticmethod

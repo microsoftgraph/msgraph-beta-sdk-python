@@ -15,7 +15,7 @@ class CloudPcProvisioningPolicyAssignment(Entity):
     # The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
     assigned_users: Optional[List[User]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The assignment target for the provisioning policy. Currently, the only target supported for this policy is a user group. For details, see cloudPcManagementGroupAssignmentTarget.
     target: Optional[CloudPcManagementAssignmentTarget] = None
     

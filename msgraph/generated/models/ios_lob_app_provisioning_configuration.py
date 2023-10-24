@@ -35,7 +35,7 @@ class IosLobAppProvisioningConfiguration(Entity):
     # DateTime the object was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Payload. (UTF8 encoded byte array)
     payload: Optional[bytes] = None
     # Payload file name (.mobileprovision

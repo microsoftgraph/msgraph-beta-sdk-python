@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ChromeOSOnboardingStatus(str, Enum):
+class chromeOSOnboardingStatus(str, Enum):
     # Unknown
     Unknown = "unknown",
     # In progress

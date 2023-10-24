@@ -25,7 +25,7 @@ class PrivilegedApproval(Entity):
     # The endDateTime property
     end_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The request property
     request: Optional[PrivilegedRoleAssignmentRequest] = None
     # The requestorReason property

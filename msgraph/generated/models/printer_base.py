@@ -36,7 +36,7 @@ class PrinterBase(Entity):
     # The name property
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The status property
     status: Optional[PrinterStatus] = None
     

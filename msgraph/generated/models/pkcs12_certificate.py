@@ -11,10 +11,10 @@ from .api_authentication_configuration_base import ApiAuthenticationConfiguratio
 @dataclass
 class Pkcs12Certificate(ApiAuthenticationConfigurationBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.pkcs12Certificate"
-    # This is the password for the pfx file. Required. If no password is used, must still provide a value of ''.
+    OdataType: Optional[str] = "#microsoft.graph.pkcs12Certificate"
+    # Specifies the password for the pfx file. Required. If no password is used, must still provide a value of ''.
     password: Optional[str] = None
-    # This is the field for sending pfx content. The value should be a base-64 encoded version of the actual certificate content. Required.
+    # Specifies the field for sending pfx content. The value should be a base-64 encoded version of the actual certificate content. Required.
     pkcs12_value: Optional[str] = None
     
     @staticmethod

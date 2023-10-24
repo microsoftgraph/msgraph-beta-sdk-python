@@ -12,8 +12,8 @@ from ..entity import Entity
 @dataclass
 class TenantStatus(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
-    # Reflects a message to the user in case of an error.
+    OdataType: Optional[str] = None
+    # Reflects a message to the user if there's an error.
     onboarding_error_message: Optional[str] = None
     # The onboardingStatus property
     onboarding_status: Optional[OnboardingStatus] = None

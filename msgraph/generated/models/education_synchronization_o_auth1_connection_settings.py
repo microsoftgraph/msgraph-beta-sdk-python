@@ -11,7 +11,7 @@ from .education_synchronization_connection_settings import EducationSynchronizat
 @dataclass
 class EducationSynchronizationOAuth1ConnectionSettings(EducationSynchronizationConnectionSettings):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationSynchronizationOAuth1ConnectionSettings"
+    OdataType: Optional[str] = "#microsoft.graph.educationSynchronizationOAuth1ConnectionSettings"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationSynchronizationOAuth1ConnectionSettings:

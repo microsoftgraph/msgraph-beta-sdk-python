@@ -18,7 +18,7 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(AndroidDeviceOwnerCertific
     Android Device Owner PFX Import certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerImportedPFXCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerImportedPFXCertificateProfile"
     # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
     certificate_access_type: Optional[AndroidDeviceOwnerCertificateAccessType] = None
     # PFX Import Options.

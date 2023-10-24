@@ -11,7 +11,7 @@ from .dlp_notification import DlpNotification
 @dataclass
 class DlpWindowsDevicesNotification(DlpNotification):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.dlpWindowsDevicesNotification"
+    OdataType: Optional[str] = "#microsoft.graph.dlpWindowsDevicesNotification"
     # The contentName property
     content_name: Optional[str] = None
     # The lastModfiedBy property

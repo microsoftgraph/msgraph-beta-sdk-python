@@ -18,8 +18,8 @@ class PlannerPlanDetails(PlannerDelta):
     # A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.
     context_details: Optional[PlannerPlanContextDetailsCollection] = None
     # The OdataType property
-    odata_type: Optional[str] = None
-    # The set of user IDs that this plan is shared with. If you are using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it is not required in order for them to access the plan owned by the group.
+    OdataType: Optional[str] = None
+    # The set of user IDs that this plan is shared with. If you're using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it isn't required in order for them to access the plan owned by the group.
     shared_with: Optional[PlannerUserIds] = None
     
     @staticmethod

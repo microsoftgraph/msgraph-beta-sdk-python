@@ -15,7 +15,7 @@ class CanvasLayout(Entity):
     # Collection of horizontal sections on the SharePoint page.
     horizontal_sections: Optional[List[HorizontalSection]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Vertical section on the SharePoint page.
     vertical_section: Optional[VerticalSection] = None
     

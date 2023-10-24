@@ -25,7 +25,7 @@ class AppleVpnConfiguration(DeviceConfiguration):
     Apple VPN configuration profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.appleVpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.appleVpnConfiguration"
     # Associated Domains
     associated_domains: Optional[List[str]] = None
     # VPN Authentication Method.

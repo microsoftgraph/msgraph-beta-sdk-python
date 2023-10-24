@@ -18,7 +18,7 @@ class AndroidCompliancePolicy(DeviceCompliancePolicy):
     This class contains compliance settings for Android.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidCompliancePolicy"
+    OdataType: Optional[str] = "#microsoft.graph.androidCompliancePolicy"
     # Device threat protection levels for the Device Threat Protection API.
     advanced_threat_protection_required_security_level: Optional[DeviceThreatProtectionLevel] = None
     # Condition statement id.

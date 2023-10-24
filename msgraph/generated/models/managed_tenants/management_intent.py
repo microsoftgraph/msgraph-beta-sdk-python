@@ -18,7 +18,7 @@ class ManagementIntent(Entity):
     # The collection of management templates associated with the management intent. Optional. Read-only.
     management_templates: Optional[List[ManagementTemplateDetailedInfo]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementIntent:

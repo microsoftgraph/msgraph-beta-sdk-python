@@ -50,7 +50,7 @@ class DeviceCompliancePolicy(Entity):
     # DateTime the object was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for this Entity instance.
     role_scope_tag_ids: Optional[List[str]] = None
     # The list of scheduled action for this rule

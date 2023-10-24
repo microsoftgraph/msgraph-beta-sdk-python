@@ -12,7 +12,7 @@ from .label_action_base import LabelActionBase
 @dataclass
 class ProtectGroup(LabelActionBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.protectGroup"
+    OdataType: Optional[str] = "#microsoft.graph.protectGroup"
     # The allowEmailFromGuestUsers property
     allow_email_from_guest_users: Optional[bool] = None
     # The allowGuestUsers property

@@ -18,7 +18,7 @@ class BookingCustomer(BookingPerson):
     # Addresses associated with the customer, including home, business and other addresses.
     addresses: Optional[List[PhysicalAddress]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Phone numbers associated with the customer, including home, business and mobile numbers.
     phones: Optional[List[Phone]] = None
     

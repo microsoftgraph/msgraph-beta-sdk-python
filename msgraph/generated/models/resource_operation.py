@@ -20,7 +20,7 @@ class ResourceOperation(Entity):
     # Determines whether the Permission is validated for Scopes defined per Role Assignment. This property is read-only.
     enabled_for_scope_validation: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Resource category to which this Operation belongs. This property is read-only.
     resource: Optional[str] = None
     # Name of the Resource this operation is performed on.

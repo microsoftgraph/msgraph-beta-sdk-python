@@ -26,7 +26,7 @@ class Tag(Entity):
     # The date and time the tag was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Returns the parent tag of the specified tag.
     parent: Optional[Tag] = None
     

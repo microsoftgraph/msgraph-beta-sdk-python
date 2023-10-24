@@ -23,7 +23,7 @@ class WorkbookWorksheet(Entity):
     # Returns collection of names that are associated with the worksheet. Read-only.
     names: Optional[List[WorkbookNamedItem]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Collection of PivotTables that are part of the worksheet.
     pivot_tables: Optional[List[WorkbookPivotTable]] = None
     # The zero-based position of the worksheet within the workbook.
@@ -32,9 +32,9 @@ class WorkbookWorksheet(Entity):
     protection: Optional[WorkbookWorksheetProtection] = None
     # Collection of tables that are part of the worksheet. Read-only.
     tables: Optional[List[WorkbookTable]] = None
-    # The tasks property
+    # Collection of document tasks on this worksheet. Read-only.
     tasks: Optional[List[WorkbookDocumentTask]] = None
-    # The Visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
+    # The visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
     visibility: Optional[str] = None
     
     @staticmethod

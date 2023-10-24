@@ -19,7 +19,7 @@ class CorsConfiguration_v2(Entity):
     # The maximum amount of time that a browser should cache the response to the preflight OPTIONS request.
     max_age_in_seconds: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Resource within the application segment for which CORS permissions are granted. / grants permission for the whole app segment.
     resource: Optional[str] = None
     

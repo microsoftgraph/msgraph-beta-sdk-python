@@ -11,7 +11,7 @@ from .business_scenario_task_target_base import BusinessScenarioTaskTargetBase
 @dataclass
 class BusinessScenarioGroupTarget(BusinessScenarioTaskTargetBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.businessScenarioGroupTarget"
+    OdataType: Optional[str] = "#microsoft.graph.businessScenarioGroupTarget"
     # The unique identifier for the group.
     group_id: Optional[str] = None
     

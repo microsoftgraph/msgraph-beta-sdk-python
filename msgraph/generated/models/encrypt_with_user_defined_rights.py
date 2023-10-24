@@ -11,7 +11,7 @@ from .encrypt_content import EncryptContent
 @dataclass
 class EncryptWithUserDefinedRights(EncryptContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.encryptWithUserDefinedRights"
+    OdataType: Optional[str] = "#microsoft.graph.encryptWithUserDefinedRights"
     # The allowAdHocPermissions property
     allow_ad_hoc_permissions: Optional[bool] = None
     # The allowMailForwarding property

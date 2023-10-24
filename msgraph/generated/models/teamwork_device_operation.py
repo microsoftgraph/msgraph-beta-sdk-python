@@ -27,7 +27,7 @@ class TeamworkDeviceOperation(Entity):
     # The UTC date and time when the device operation was last modified.
     last_action_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The operationType property
     operation_type: Optional[TeamworkDeviceOperationType] = None
     # Time at which the operation was started.

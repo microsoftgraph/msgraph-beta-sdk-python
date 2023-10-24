@@ -13,7 +13,7 @@ from .threat_submission import ThreatSubmission
 @dataclass
 class FileThreatSubmission(ThreatSubmission):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.fileThreatSubmission"
+    OdataType: Optional[str] = "#microsoft.graph.security.fileThreatSubmission"
     # It specifies the file name to be submitted.
     file_name: Optional[str] = None
     

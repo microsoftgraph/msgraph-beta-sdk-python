@@ -29,7 +29,7 @@ class AdvancedThreatProtectionOnboardingStateSummary(Entity):
     # Number of not assigned devices
     not_assigned_device_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Number of remediated devices
     remediated_device_count: Optional[int] = None
     # Number of unknown devices

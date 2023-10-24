@@ -14,7 +14,7 @@ from .item_facet import ItemFacet
 @dataclass
 class ProjectParticipation(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.projectParticipation"
+    OdataType: Optional[str] = "#microsoft.graph.projectParticipation"
     # Contains categories a user has associated with the project (for example, digital transformation, oil rig).
     categories: Optional[List[str]] = None
     # Contains detailed information about the client the project was for.

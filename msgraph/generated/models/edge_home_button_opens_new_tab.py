@@ -14,7 +14,7 @@ class EdgeHomeButtonOpensNewTab(EdgeHomeButtonConfiguration):
     Show the home button; clicking the home button loads the New tab page.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.edgeHomeButtonOpensNewTab"
+    OdataType: Optional[str] = "#microsoft.graph.edgeHomeButtonOpensNewTab"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EdgeHomeButtonOpensNewTab:

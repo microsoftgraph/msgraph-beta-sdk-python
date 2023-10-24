@@ -18,7 +18,7 @@ class Operation(Entity):
     # The time of the last action of the operation.
     last_action_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Possible values are: notStarted, running, completed, failed. Read-only.
     status: Optional[OperationStatus] = None
     

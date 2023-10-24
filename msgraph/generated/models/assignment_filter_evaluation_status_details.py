@@ -14,7 +14,7 @@ class AssignmentFilterEvaluationStatusDetails(Entity):
     A class containing information about the payloads on which filter has been applied.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # PayloadId on which filter has been applied.
     payload_id: Optional[str] = None
     

@@ -14,7 +14,7 @@ class DeviceManagementConfigurationSettingGroupCollectionInstance(DeviceManageme
     Setting instance within policy
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionInstance"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionInstance"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingGroupCollectionInstance:

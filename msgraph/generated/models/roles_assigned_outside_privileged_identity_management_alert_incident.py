@@ -12,7 +12,7 @@ from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIn
 @dataclass
 class RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident(UnifiedRoleManagementAlertIncident):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertIncident"
+    OdataType: Optional[str] = "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertIncident"
     # Display name of the subject that the incident applies to.
     assignee_display_name: Optional[str] = None
     # The identifier of the subject that the incident applies to.

@@ -12,7 +12,7 @@ from .verifiable_credential_requirement_status import VerifiableCredentialRequir
 @dataclass
 class VerifiableCredentialRequired(VerifiableCredentialRequirementStatus):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.verifiableCredentialRequired"
+    OdataType: Optional[str] = "#microsoft.graph.verifiableCredentialRequired"
     # When the presentation request will expire and a new one will need to be generated.
     expiry_date_time: Optional[datetime.datetime] = None
     # A URL that launches the digital wallet and starts the presentation process. You can present this URL to the user if they can't scan the QR code.

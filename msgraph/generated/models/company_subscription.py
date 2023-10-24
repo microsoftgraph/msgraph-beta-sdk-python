@@ -23,7 +23,7 @@ class CompanySubscription(Entity):
     # The ocpSubscriptionId property
     ocp_subscription_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The object ID of the account admin.
     owner_id: Optional[str] = None
     # The unique identifier for the Microsoft partner tenant that created the subscription on a customer tenant.
@@ -36,7 +36,7 @@ class CompanySubscription(Entity):
     sku_id: Optional[str] = None
     # The SKU associated with this subscription.
     sku_part_number: Optional[str] = None
-    # The status of this subscription. Possible values are: Enabled, Expired, Suspended, Warning, LockedOut.
+    # The status of this subscription. Possible values are: Enabled, Deleted, Suspended, Warning, LockedOut.
     status: Optional[str] = None
     # The number of seats included in this subscription.
     total_licenses: Optional[int] = None

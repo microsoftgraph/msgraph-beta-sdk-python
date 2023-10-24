@@ -23,7 +23,7 @@ class UserSettings(Entity):
     # The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
     item_insights: Optional[UserInsightsSettings] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The user's preferences for languages, regional locale and date/time formatting.
     regional_and_language_settings: Optional[RegionalAndLanguageSettings] = None
     # The shift preferences for the user.

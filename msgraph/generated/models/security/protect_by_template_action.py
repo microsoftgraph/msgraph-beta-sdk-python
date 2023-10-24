@@ -11,7 +11,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class ProtectByTemplateAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.protectByTemplateAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.protectByTemplateAction"
     # The unique identifier for a protection template in Microsoft Purview Information Protection to apply to the content.
     template_id: Optional[str] = None
     

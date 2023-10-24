@@ -14,7 +14,7 @@ class DeviceManagementSettingRequiredConstraint(DeviceManagementConstraint):
     Constraint that enforces a particular required setting that is not null/undefined/empty string/not configured
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingRequiredConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingRequiredConstraint"
     # List of value which means not configured for the setting
     not_configured_value: Optional[str] = None
     

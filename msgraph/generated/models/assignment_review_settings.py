@@ -12,11 +12,11 @@ if TYPE_CHECKING:
 @dataclass
 class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The default decision to apply if the request is not reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
+    # The default decision to apply if the request isn't reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
     access_review_timeout_behavior: Optional[AccessReviewTimeoutBehavior] = None
     # The number of days within which reviewers should provide input.
     duration_in_days: Optional[int] = None

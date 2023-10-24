@@ -30,7 +30,7 @@ class DeviceHealthScriptDeviceState(Entity):
     # The managed device on which the device health script executed
     managed_device: Optional[ManagedDevice] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Error from the detection script after remediation
     post_remediation_detection_script_error: Optional[str] = None
     # Detection script output after remediation

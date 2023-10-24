@@ -25,7 +25,7 @@ class DeviceManagementScriptDeviceState(Entity):
     # The managed devices that executes the device management script.
     managed_device: Optional[ManagedDevice] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Details of execution output.
     result_message: Optional[str] = None
     # Indicates the type of execution status of the device management script.

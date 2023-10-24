@@ -11,7 +11,7 @@ from .file_data_connector import FileDataConnector
 @dataclass
 class AzureDataLakeConnector(FileDataConnector):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.azureDataLakeConnector"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.azureDataLakeConnector"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureDataLakeConnector:

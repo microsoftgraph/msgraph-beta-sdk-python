@@ -11,17 +11,17 @@ if TYPE_CHECKING:
 @dataclass
 class MonitoringRule(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The action triggered when the threshold for the given signal is met. Possible values are: alertError, pauseDeployment, unknownFutureValue.
+    # The action triggered when the threshold for the given signal is reached. Possible values are: alertError, pauseDeployment, offerFallback, unknownFutureValue. The offerFallback member is only supported on feature update deployments of Windows 11 and must be paired with the ineligible signal. The fallback version offered is the version 22H2 of Windows 10.
     action: Optional[MonitoringAction] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The signal to monitor. Possible values are: rollback, unknownFutureValue.
+    # The signal to monitor. Possible values are: rollback, ineligible, unknownFutureValue. The ineligible member is only supported on feature update deployments of Windows 11 and must be paired with the offerFallback action.
     signal: Optional[MonitoringSignal] = None
-    # The threshold for a signal at which to trigger action. An integer from 1 to 100 (inclusive).
+    # The threshold for a signal at which to trigger the action. An integer from 1 to 100 (inclusive). This value is ignored when the signal is ineligible and the action is offerFallback.
     threshold: Optional[int] = None
     
     @staticmethod

@@ -13,7 +13,7 @@ from .item_facet import ItemFacet
 @dataclass
 class PersonAnnualEvent(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personAnnualEvent"
+    OdataType: Optional[str] = "#microsoft.graph.personAnnualEvent"
     # The date property
     date: Optional[datetime.date] = None
     # The displayName property

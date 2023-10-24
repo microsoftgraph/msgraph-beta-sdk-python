@@ -14,7 +14,7 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
     Windows Domain Join device configuration.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsDomainJoinConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsDomainJoinConfiguration"
     # Active Directory domain name to join.
     active_directory_domain_name: Optional[str] = None
     # Fixed prefix to be used for computer name.

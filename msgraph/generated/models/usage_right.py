@@ -14,7 +14,7 @@ class UsageRight(Entity):
     # Product id corresponding to the usage right.
     catalog_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Identifier of the service corresponding to the usage right.
     service_identifier: Optional[str] = None
     # The state property

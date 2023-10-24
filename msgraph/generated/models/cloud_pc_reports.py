@@ -14,7 +14,7 @@ class CloudPcReports(Entity):
     # The export jobs created for downloading reports.
     export_jobs: Optional[List[CloudPcExportJob]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcReports:

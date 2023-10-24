@@ -18,7 +18,7 @@ class MacOSSingleSignOnExtension(SingleSignOnExtension):
     An abstract base class for all macOS-specific single sign-on extension types.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSSingleSignOnExtension"
+    OdataType: Optional[str] = "#microsoft.graph.macOSSingleSignOnExtension"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSingleSignOnExtension:

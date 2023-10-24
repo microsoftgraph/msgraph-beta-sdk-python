@@ -11,7 +11,7 @@ from .planner_delta import PlannerDelta
 @dataclass
 class PlannerProgressTaskBoardTaskFormat(PlannerDelta):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Hint value used to order the task on the progress view of the task board. For details about the supported format, see Using order hints in Planner.
     order_hint: Optional[str] = None
     

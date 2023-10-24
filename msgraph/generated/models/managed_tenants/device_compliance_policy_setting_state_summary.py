@@ -26,7 +26,7 @@ class DeviceCompliancePolicySettingStateSummary(Entity):
     # The number of devices in a not applicable state. Optional. Read-only.
     not_applicable_device_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The number of devices in a pending state. Optional. Read-only.
     pending_device_count: Optional[int] = None
     # The type for the device compliance policy. Optional. Read-only.
@@ -37,7 +37,7 @@ class DeviceCompliancePolicySettingStateSummary(Entity):
     succeeded_device_count: Optional[int] = None
     # The display name for the managed tenant. Required. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Required. Read-only.
     tenant_id: Optional[str] = None
     
     @staticmethod

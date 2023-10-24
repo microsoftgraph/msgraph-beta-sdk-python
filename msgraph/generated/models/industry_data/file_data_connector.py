@@ -12,7 +12,7 @@ from .industry_data_connector import IndustryDataConnector
 @dataclass
 class FileDataConnector(IndustryDataConnector):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.fileDataConnector"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.fileDataConnector"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FileDataConnector:

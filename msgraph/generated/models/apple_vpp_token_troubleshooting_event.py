@@ -14,7 +14,7 @@ class AppleVppTokenTroubleshootingEvent(DeviceManagementTroubleshootingEvent):
     Event representing an Apple Vpp Token Troubleshooting Event.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Apple Volume Purchase Program Token Identifier.
     token_id: Optional[str] = None
     

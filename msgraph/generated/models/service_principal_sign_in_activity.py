@@ -24,7 +24,7 @@ class ServicePrincipalSignInActivity(Entity):
     # The most recent sign-in activity of the application across delegated or app-only flows where the application is used either as a client or resource.
     last_sign_in_activity: Optional[SignInActivity] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServicePrincipalSignInActivity:

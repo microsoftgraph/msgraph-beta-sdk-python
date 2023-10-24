@@ -15,7 +15,7 @@ from .entity import Entity
 @dataclass
 class OfficeGraphInsights(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Access this property from the derived type itemInsights.
     shared: Optional[List[SharedInsight]] = None
     # Access this property from the derived type itemInsights.

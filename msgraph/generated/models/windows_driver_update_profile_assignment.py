@@ -15,7 +15,7 @@ class WindowsDriverUpdateProfileAssignment(Entity):
     This entity contains the properties used to assign a windows driver update profile to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Base type for assignment targets.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

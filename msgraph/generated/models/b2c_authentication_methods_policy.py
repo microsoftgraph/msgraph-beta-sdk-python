@@ -17,7 +17,7 @@ class B2cAuthenticationMethodsPolicy(Entity):
     # The tenant admin can configure local accounts using username if the username and password authentication method is enabled.
     is_user_name_authentication_enabled: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> B2cAuthenticationMethodsPolicy:

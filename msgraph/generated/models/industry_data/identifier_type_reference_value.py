@@ -11,7 +11,7 @@ from .reference_value import ReferenceValue
 @dataclass
 class IdentifierTypeReferenceValue(ReferenceValue):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.identifierTypeReferenceValue"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.identifierTypeReferenceValue"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IdentifierTypeReferenceValue:

@@ -19,7 +19,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(DeviceConfiguration):
     Android Work Profile general device configuration.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidWorkProfileGeneralDeviceConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidWorkProfileGeneralDeviceConfiguration"
     # Determine domains allow-list for accounts that can be added to work profile.
     allowed_google_account_domains: Optional[List[str]] = None
     # Prevent using unified password for unlocking device and work profile.

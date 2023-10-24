@@ -14,14 +14,14 @@ from .entity import Entity
 
 @dataclass
 class RoleManagementAlert(Entity):
-    # The various configurations of an alert for Azure AD roles. The configurations are pre-defined and cannot be created or deleted, but some of the configurations can be modified.
+    # The various configurations of an alert for Microsoft Entra roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
     alert_configurations: Optional[List[UnifiedRoleManagementAlertConfiguration]] = None
     # Defines an alert, its impact, and measures to mitigate or prevent it.
     alert_definitions: Optional[List[UnifiedRoleManagementAlertDefinition]] = None
     # Represents the alert entity.
     alerts: Optional[List[UnifiedRoleManagementAlert]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents operations on resources that take a long time to complete and can run in the background until completion.
     operations: Optional[List[LongRunningOperation]] = None
     

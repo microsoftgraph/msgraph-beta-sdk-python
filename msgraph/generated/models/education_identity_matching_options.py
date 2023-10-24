@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 @dataclass
 class EducationIdentityMatchingOptions(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -22,7 +22,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, BackedModel, Parsab
     source_property_name: Optional[str] = None
     # The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
     target_domain: Optional[str] = None
-    # The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
+    # The name of the target property, which should be a valid property in Microsoft Entra ID. This property is case-sensitive.
     target_property_name: Optional[str] = None
     
     @staticmethod

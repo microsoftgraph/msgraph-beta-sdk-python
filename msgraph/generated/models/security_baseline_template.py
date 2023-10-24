@@ -17,7 +17,7 @@ class SecurityBaselineTemplate(DeviceManagementTemplate):
     The security baseline template of the account
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.securityBaselineTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.securityBaselineTemplate"
     # The security baseline per category device state summary
     category_device_state_summaries: Optional[List[SecurityBaselineCategoryStateSummary]] = None
     # The security baseline device state summary

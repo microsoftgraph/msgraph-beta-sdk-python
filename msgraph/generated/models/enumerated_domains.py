@@ -11,7 +11,7 @@ from .validating_domains import ValidatingDomains
 @dataclass
 class EnumeratedDomains(ValidatingDomains):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.enumeratedDomains"
+    OdataType: Optional[str] = "#microsoft.graph.enumeratedDomains"
     # The domainNames property
     domain_names: Optional[List[str]] = None
     

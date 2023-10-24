@@ -12,7 +12,7 @@ from ..entity import Entity
 @dataclass
 class Logs(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents a collection of log entries in the network access traffic log.
     traffic: Optional[List[NetworkAccessTraffic]] = None
     

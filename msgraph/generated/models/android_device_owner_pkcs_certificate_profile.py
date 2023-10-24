@@ -20,7 +20,7 @@ class AndroidDeviceOwnerPkcsCertificateProfile(AndroidDeviceOwnerCertificateProf
     Android Device Owner PKCS certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerPkcsCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerPkcsCertificateProfile"
     # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
     certificate_access_type: Optional[AndroidDeviceOwnerCertificateAccessType] = None
     # CertificateStore types

@@ -11,7 +11,7 @@ from .account_target_content import AccountTargetContent
 @dataclass
 class IncludeAllAccountTargetContent(AccountTargetContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.includeAllAccountTargetContent"
+    OdataType: Optional[str] = "#microsoft.graph.includeAllAccountTargetContent"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IncludeAllAccountTargetContent:

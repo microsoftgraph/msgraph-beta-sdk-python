@@ -47,7 +47,7 @@ class SalesInvoiceLine(Entity):
     # The netTaxAmount property
     net_tax_amount: Optional[float] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The quantity property
     quantity: Optional[float] = None
     # The sequence property

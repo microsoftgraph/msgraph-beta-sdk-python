@@ -20,7 +20,7 @@ class EducationSynchronizationError(Entity):
     # The unique identifier for the entry.
     joining_value: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The time of occurrence of this error.
     recorded_date_time: Optional[datetime.datetime] = None
     # The identifier of this error entry.

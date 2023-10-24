@@ -15,7 +15,7 @@ class WindowsFeatureUpdateProfileAssignment(Entity):
     This entity contains the properties used to assign a windows feature update profile to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The assignment target that the feature update profile is assigned to.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

@@ -19,7 +19,7 @@ class CredentialUsageSummary(Entity):
     # The feature property
     feature: Optional[FeatureType] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Provides the count of successful registrations or resets.
     successful_activity_count: Optional[int] = None
     

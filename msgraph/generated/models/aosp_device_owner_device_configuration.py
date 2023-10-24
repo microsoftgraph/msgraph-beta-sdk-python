@@ -15,7 +15,7 @@ class AospDeviceOwnerDeviceConfiguration(DeviceConfiguration):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the AndroidDeviceOwnerAOSPDeviceConfiguration resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.aospDeviceOwnerDeviceConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.aospDeviceOwnerDeviceConfiguration"
     # Indicates whether or not the user is allowed to enable unknown sources setting. When set to true, user is not allowed to enable unknown sources settings.
     apps_block_install_from_unknown_sources: Optional[bool] = None
     # Indicates whether or not to block a user from configuring bluetooth.

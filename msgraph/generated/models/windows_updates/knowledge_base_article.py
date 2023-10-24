@@ -11,8 +11,8 @@ from ..entity import Entity
 @dataclass
 class KnowledgeBaseArticle(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
-    # The url property
+    OdataType: Optional[str] = None
+    # The URL of the knowledge base article. Read-only.
     url: Optional[str] = None
     
     @staticmethod

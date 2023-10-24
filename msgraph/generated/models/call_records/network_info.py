@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 @dataclass
 class NetworkInfo(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -32,7 +32,7 @@ class NetworkInfo(AdditionalDataHolder, BackedModel, Parsable):
     ip_address: Optional[str] = None
     # Link speed in bits per second reported by the network adapter used by the media endpoint.
     link_speed: Optional[int] = None
-    # The media access control (MAC) address of the media endpoint's network device.
+    # The media access control (MAC) address of the media endpoint's network device. This value may be missing or shown as 02:00:00:00:00:00 due to operating system privacy policies.
     mac_address: Optional[str] = None
     # The networkTransportProtocol property
     network_transport_protocol: Optional[NetworkTransportProtocol] = None

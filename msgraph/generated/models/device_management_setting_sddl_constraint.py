@@ -14,7 +14,7 @@ class DeviceManagementSettingSddlConstraint(DeviceManagementConstraint):
     Constraint enforcing the setting is well formed SDDL
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingSddlConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingSddlConstraint"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingSddlConstraint:

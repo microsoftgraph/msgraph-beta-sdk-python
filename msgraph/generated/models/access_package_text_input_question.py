@@ -11,10 +11,10 @@ from .access_package_question import AccessPackageQuestion
 @dataclass
 class AccessPackageTextInputQuestion(AccessPackageQuestion):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.accessPackageTextInputQuestion"
+    OdataType: Optional[str] = "#microsoft.graph.accessPackageTextInputQuestion"
     # Indicates whether the answer will be in single or multiple line format.
     is_single_line_question: Optional[bool] = None
-    # This is the regex pattern that the corresponding text answer must follow.
+    # The regex pattern that the corresponding text answer must follow.
     regex_pattern: Optional[str] = None
     
     @staticmethod

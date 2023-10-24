@@ -30,7 +30,7 @@ class PrivilegedRoleSettings(Entity):
     # The notificationToUserOnElevation property
     notification_to_user_on_elevation: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The ticketingInfoOnElevation property
     ticketing_info_on_elevation: Optional[bool] = None
     

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 @dataclass
 class EntitiesSummary(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -20,7 +20,7 @@ class EntitiesSummary(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
-    # Count of unique Azure Active Directoy users that were seen.
+    # Count of unique Microsoft Entra users that were seen.
     user_count: Optional[int] = None
     # Count of unique target workloads or hosts that were seen.
     workload_count: Optional[int] = None

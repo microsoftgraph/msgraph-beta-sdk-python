@@ -16,7 +16,7 @@ class AndroidImportedPFXCertificateProfile(AndroidCertificateProfileBase):
     Android PFX Import certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidImportedPFXCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.androidImportedPFXCertificateProfile"
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.

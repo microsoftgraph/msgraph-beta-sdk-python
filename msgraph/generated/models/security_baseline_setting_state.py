@@ -21,7 +21,7 @@ class SecurityBaselineSettingState(Entity):
     # The error code if the setting is in error state
     error_code: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The setting category id which this setting belongs to
     setting_category_id: Optional[str] = None
     # The setting category name which this setting belongs to

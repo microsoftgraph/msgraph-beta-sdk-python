@@ -13,7 +13,7 @@ from .identity_set import IdentitySet
 @dataclass
 class CommunicationsIdentitySet(IdentitySet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.communicationsIdentitySet"
+    OdataType: Optional[str] = "#microsoft.graph.communicationsIdentitySet"
     # The application instance associated with this action.
     application_instance: Optional[Identity] = None
     # An identity the participant would like to present itself as to the other participants in the call.

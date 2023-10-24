@@ -16,7 +16,7 @@ class AndroidForWorkMobileAppConfiguration(ManagedDeviceMobileAppConfiguration):
     Contains properties, inherited properties and actions for AFW mobile app configurations.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidForWorkMobileAppConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidForWorkMobileAppConfiguration"
     # Setting to specify whether to allow ConnectedApps experience for this app.
     connected_apps_enabled: Optional[bool] = None
     # Android For Work app configuration package id.

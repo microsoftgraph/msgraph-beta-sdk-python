@@ -22,8 +22,8 @@ class Tenant(Entity):
     # The date and time the tenant was last updated within the multi-tenant management platform. Optional. Read-only.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    OdataType: Optional[str] = None
+    # The Microsoft Entra tenant identifier for the managed tenant. Optional. Read-only.
     tenant_id: Optional[str] = None
     # The onboarding status information for the tenant. Optional. Read-only.
     tenant_status_information: Optional[TenantStatusInformation] = None

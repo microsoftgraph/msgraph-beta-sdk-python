@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 @dataclass
 class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -23,7 +23,7 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
     delegated_admin_relationships: Optional[List[DelegatedAdminRelationship]] = None
     # The operations available to interact with the multi-tenant management platform.
     managed_tenants: Optional[ManagedTenant] = None
-    # Defines an organization with more than one instance of Azure Active Directory (Azure AD).
+    # Defines an organization with more than one instance of Microsoft Entra ID.
     multi_tenant_organization: Optional[MultiTenantOrganization] = None
     # The OdataType property
     odata_type: Optional[str] = None

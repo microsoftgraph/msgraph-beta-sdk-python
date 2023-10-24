@@ -19,7 +19,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     Policy used to configure detailed management settings targeted to specific security groups and for a specified set of apps on an iOS device
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosManagedAppProtection"
+    OdataType: Optional[str] = "#microsoft.graph.iosManagedAppProtection"
     # Semicolon seperated list of device models allowed, as a string, for the managed app to work.
     allowed_ios_device_models: Optional[str] = None
     # An admin initiated action to be applied on a managed app.

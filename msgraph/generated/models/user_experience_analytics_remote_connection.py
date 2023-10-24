@@ -34,7 +34,7 @@ class UserExperienceAnalyticsRemoteConnection(Entity):
     # The user experience analytics device model.
     model: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The remote sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
     remote_sign_in_time: Optional[float] = None
     # The user experience analytics userPrincipalName.

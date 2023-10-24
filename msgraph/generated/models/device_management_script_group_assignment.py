@@ -14,7 +14,7 @@ class DeviceManagementScriptGroupAssignment(Entity):
     Contains properties used to assign a device management script to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The Id of the Azure Active Directory group we are targeting the script to.
     target_group_id: Optional[str] = None
     

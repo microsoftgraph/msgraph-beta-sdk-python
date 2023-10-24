@@ -18,7 +18,7 @@ class SecurityBaselineState(Entity):
     # The display name of the security baseline
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The security baseline template id
     security_baseline_template_id: Optional[str] = None
     # The security baseline state for different settings for a device

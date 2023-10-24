@@ -13,7 +13,7 @@ from .education_synchronization_data_provider import EducationSynchronizationDat
 @dataclass
 class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationOneRosterApiDataProvider"
+    OdataType: Optional[str] = "#microsoft.graph.educationOneRosterApiDataProvider"
     # The connectionSettings property
     connection_settings: Optional[EducationSynchronizationConnectionSettings] = None
     # The connection URL to the OneRoster instance.

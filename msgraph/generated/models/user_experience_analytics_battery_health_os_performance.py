@@ -31,7 +31,7 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(Entity):
     # The median of the maximum capacity for all devices running a particular operating system version. Maximum capacity measures the full charge vs. design capacity for a device’s batteries.. Valid values 0 to 2147483647
     median_max_capacity_percentage: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A weighted average of battery health score across all devices running a particular operating system version. Values range from 0-100. Valid values 0 to 2147483647
     os_battery_health_score: Optional[int] = None
     # Build number of the operating system.

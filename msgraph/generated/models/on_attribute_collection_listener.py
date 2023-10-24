@@ -12,8 +12,8 @@ from .authentication_event_listener import AuthenticationEventListener
 @dataclass
 class OnAttributeCollectionListener(AuthenticationEventListener):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.onAttributeCollectionListener"
-    # Required. Configuration for what to invoke if the event resolves to this listener. This lets us define potential handler configurations per-event.
+    OdataType: Optional[str] = "#microsoft.graph.onAttributeCollectionListener"
+    # Required. Configuration for what to invoke if the event resolves to this listener.
     handler: Optional[OnAttributeCollectionHandler] = None
     
     @staticmethod

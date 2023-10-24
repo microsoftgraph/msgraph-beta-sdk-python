@@ -12,7 +12,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class ApplyLabelAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.applyLabelAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.applyLabelAction"
     # The actionSource property
     action_source: Optional[ActionSource] = None
     # The collection of actions that should be implemented by the caller.

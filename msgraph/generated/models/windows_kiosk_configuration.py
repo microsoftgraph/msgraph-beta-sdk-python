@@ -16,7 +16,7 @@ class WindowsKioskConfiguration(DeviceConfiguration):
     This entity provides descriptions of the declared methods, properties and relationships exposed by the kiosk resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskConfiguration"
     # Enable public browsing kiosk mode for the Microsoft Edge browser. The Default is false.
     edge_kiosk_enable_public_browsing: Optional[bool] = None
     # Specify URLs that the kiosk browsers should not navigate to

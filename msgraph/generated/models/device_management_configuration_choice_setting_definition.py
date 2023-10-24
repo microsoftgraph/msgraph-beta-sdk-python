@@ -15,7 +15,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfi
     # Default option for the choice setting.
     default_option_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Options for the setting that can be selected.
     options: Optional[List[DeviceManagementConfigurationOptionDefinition]] = None
     

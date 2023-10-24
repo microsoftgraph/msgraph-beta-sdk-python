@@ -32,7 +32,7 @@ class CloudAppSecurityProfile(Entity):
     # The name property
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The permissionsRequired property
     permissions_required: Optional[ApplicationPermissionsRequired] = None
     # The platform property

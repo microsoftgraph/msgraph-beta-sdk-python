@@ -17,7 +17,7 @@ class Monitoring(Entity):
     # The collection of alert rules.
     alert_rules: Optional[List[AlertRule]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Monitoring:

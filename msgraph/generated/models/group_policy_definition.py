@@ -45,7 +45,7 @@ class GroupPolicyDefinition(Entity):
     # Definition of the next version of this definition
     next_version_definition: Optional[GroupPolicyDefinition] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Type of Group Policy File or Definition.
     policy_type: Optional[GroupPolicyType] = None
     # The group policy presentations associated with the definition.

@@ -11,8 +11,8 @@ from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIn
 @dataclass
 class InvalidLicenseAlertIncident(UnifiedRoleManagementAlertIncident):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.invalidLicenseAlertIncident"
-    # Status of the tenant's Azure AD Premium P2 license.
+    OdataType: Optional[str] = "#microsoft.graph.invalidLicenseAlertIncident"
+    # Status of the tenant's Microsoft Entra ID P2 license.
     tenant_license_status: Optional[str] = None
     
     @staticmethod

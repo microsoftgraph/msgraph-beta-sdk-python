@@ -28,7 +28,7 @@ class DeviceHealthStatus(Entity):
     # The lastUpdatedDateTime property
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The osVersion property
     os_version: Optional[str] = None
     # The primaryDiskType property

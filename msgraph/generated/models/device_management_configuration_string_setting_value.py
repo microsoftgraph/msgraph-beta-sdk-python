@@ -15,7 +15,7 @@ class DeviceManagementConfigurationStringSettingValue(DeviceManagementConfigurat
     Simple setting value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationStringSettingValue"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationStringSettingValue"
     # Value of the string setting.
     value: Optional[str] = None
     

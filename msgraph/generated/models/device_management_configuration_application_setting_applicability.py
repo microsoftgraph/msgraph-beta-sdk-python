@@ -14,7 +14,7 @@ class DeviceManagementConfigurationApplicationSettingApplicability(DeviceManagem
     Applicability for a setting that can be targeted on managed Applications by Intune
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationApplicationSettingApplicability"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationApplicationSettingApplicability"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationApplicationSettingApplicability:

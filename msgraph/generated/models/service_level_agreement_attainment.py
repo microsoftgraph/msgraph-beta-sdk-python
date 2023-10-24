@@ -8,7 +8,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class ServiceLevelAgreementAttainment(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -16,7 +16,7 @@ class ServiceLevelAgreementAttainment(AdditionalDataHolder, BackedModel, Parsabl
     end_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The level of SLA attainment achieved by the tenant for the calendar month identified, as described in Azure Active Directory SLA performance. Values are truncated, not rounded, so the actual value is always equal to or higher than the displayed value. Values are expressed as a percentage of availability for the tenant.
+    # The level of SLA attainment achieved by the tenant for the calendar month identified, as described in Microsoft Entra SLA performance. Values are truncated, not rounded, so the actual value is always equal to or higher than the displayed value. Values are expressed as a percentage of availability for the tenant.
     score: Optional[float] = None
     # The start date for the calendar month for which SLA attainment is measured.
     start_date: Optional[datetime.date] = None

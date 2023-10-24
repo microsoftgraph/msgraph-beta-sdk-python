@@ -11,7 +11,7 @@ from .access_package_resource_attribute_destination import AccessPackageResource
 @dataclass
 class AccessPackageUserDirectoryAttributeStore(AccessPackageResourceAttributeDestination):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.accessPackageUserDirectoryAttributeStore"
+    OdataType: Optional[str] = "#microsoft.graph.accessPackageUserDirectoryAttributeStore"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageUserDirectoryAttributeStore:

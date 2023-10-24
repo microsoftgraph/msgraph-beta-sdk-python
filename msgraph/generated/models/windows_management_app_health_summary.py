@@ -16,7 +16,7 @@ class WindowsManagementAppHealthSummary(Entity):
     # Healthy device count.
     healthy_device_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Unhealthy device count.
     unhealthy_device_count: Optional[int] = None
     # Unknown device count.

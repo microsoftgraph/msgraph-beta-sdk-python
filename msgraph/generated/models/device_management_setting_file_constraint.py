@@ -14,7 +14,7 @@ class DeviceManagementSettingFileConstraint(DeviceManagementConstraint):
     Constraint enforcing the file extension is acceptable for a given setting
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingFileConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingFileConstraint"
     # Acceptable file extensions to upload for this setting
     supported_extensions: Optional[List[str]] = None
     

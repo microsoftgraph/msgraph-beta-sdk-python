@@ -14,7 +14,7 @@ class WindowsKioskUWPApp(WindowsKioskAppBase):
     The base class for a type of apps
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsKioskUWPApp"
+    OdataType: Optional[str] = "#microsoft.graph.windowsKioskUWPApp"
     # This references an Intune App that will be target to the same assignments as Kiosk configuration
     app_id: Optional[str] = None
     # This is the only Application User Model ID (AUMID) that will be available to launch use while in Kiosk Mode

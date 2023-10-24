@@ -14,7 +14,7 @@ class IosLobAppProvisioningConfigurationPolicySetItem(PolicySetItem):
     A class containing the properties used for iOS lob app provisioning configuration PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosLobAppProvisioningConfigurationPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.iosLobAppProvisioningConfigurationPolicySetItem"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosLobAppProvisioningConfigurationPolicySetItem:

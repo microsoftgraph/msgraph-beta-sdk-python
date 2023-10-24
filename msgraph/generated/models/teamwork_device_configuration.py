@@ -37,7 +37,7 @@ class TeamworkDeviceConfiguration(Entity):
     # The microphone configuration. Applicable only for Teams Rooms-enabled devices.
     microphone_configuration: Optional[TeamworkMicrophoneConfiguration] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Information related to software versions for the device, such as firmware, operating system, Teams client, and admin agent.
     software_versions: Optional[TeamworkDeviceSoftwareVersions] = None
     # The speaker configuration. Applicable only for Teams Rooms-enabled devices.

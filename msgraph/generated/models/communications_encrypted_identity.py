@@ -11,7 +11,7 @@ from .identity import Identity
 @dataclass
 class CommunicationsEncryptedIdentity(Identity):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.communicationsEncryptedIdentity"
+    OdataType: Optional[str] = "#microsoft.graph.communicationsEncryptedIdentity"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CommunicationsEncryptedIdentity:

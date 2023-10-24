@@ -24,7 +24,7 @@ class IosDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase):
     iOS Device Features Configuration Profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosDeviceFeaturesConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.iosDeviceFeaturesConfiguration"
     # Asset tag information for the device, displayed on the login window and lock screen.
     asset_tag_template: Optional[str] = None
     # Gets or sets iOS Web Content Filter settings, supervised mode only

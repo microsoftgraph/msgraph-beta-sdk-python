@@ -18,7 +18,7 @@ class EstimateStatisticsOperation(CaseOperation):
     # The number of mailboxes that had search hits.
     mailbox_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The number of mailboxes that had search hits.
     site_count: Optional[int] = None
     # eDiscovery collection, commonly known as a search.

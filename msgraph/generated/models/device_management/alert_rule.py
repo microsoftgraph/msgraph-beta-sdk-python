@@ -27,7 +27,7 @@ class AlertRule(Entity):
     # The notification channels of the rule selected by the user.
     notification_channels: Optional[List[NotificationChannel]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The severity of the rule. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
     severity: Optional[RuleSeverityType] = None
     # The conditions to send alerts. For example, send alert when provisioning has failed for greater than or equal to 6 Cloud PCs.

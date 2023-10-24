@@ -24,7 +24,7 @@ class DeviceManagementDerivedCredentialSettings(Entity):
     # Supported values for the notification type to use.
     notification_type: Optional[DeviceManagementDerivedCredentialNotificationType] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The nominal percentage of time before certificate renewal is initiated by the client.
     renewal_threshold_percentage: Optional[int] = None
     
@@ -56,7 +56,7 @@ class DeviceManagementDerivedCredentialSettings(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "helpUrl": lambda n : setattr(self, 'help_url', n.get_str_value()),
             "issuer": lambda n : setattr(self, 'issuer', n.get_enum_value(DeviceManagementDerivedCredentialIssuer)),
-            "notificationType": lambda n : setattr(self, 'notification_type', n.get_enum_value(DeviceManagementDerivedCredentialNotificationType)),
+            "notificationType": lambda n : setattr(self, 'notification_type', n.get_collection_of_enum_values(DeviceManagementDerivedCredentialNotificationType)),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -14,7 +14,7 @@ class WindowsFeatureUpdateCatalogItem(WindowsUpdateCatalogItem):
     Windows update catalog item entity
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsFeatureUpdateCatalogItem"
+    OdataType: Optional[str] = "#microsoft.graph.windowsFeatureUpdateCatalogItem"
     # The feature update version
     version: Optional[str] = None
     

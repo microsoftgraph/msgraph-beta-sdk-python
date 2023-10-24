@@ -16,7 +16,7 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase):
     MacOS PFX Import certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSImportedPFXCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.macOSImportedPFXCertificateProfile"
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.

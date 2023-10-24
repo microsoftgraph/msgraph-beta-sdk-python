@@ -52,7 +52,7 @@ class Profile(Entity):
     # Represents notes that a user has added to their profile.
     notes: Optional[List[PersonAnnotation]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents patents that a user has added to their profile.
     patents: Optional[List[ItemPatent]] = None
     # Represents detailed information about phone numbers associated with a user in various services.

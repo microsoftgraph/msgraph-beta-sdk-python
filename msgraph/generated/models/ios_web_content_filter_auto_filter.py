@@ -14,7 +14,7 @@ class IosWebContentFilterAutoFilter(IosWebContentFilterBase):
     Represents an iOS Web Content Filter setting type, which enables iOS automatic filter feature and allows for additional URL access control. When constructed with no property values, the iOS device will enable the automatic filter regardless.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosWebContentFilterAutoFilter"
+    OdataType: Optional[str] = "#microsoft.graph.iosWebContentFilterAutoFilter"
     # Additional URLs allowed for access
     allowed_urls: Optional[List[str]] = None
     # Additional URLs blocked for access

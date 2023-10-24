@@ -12,7 +12,7 @@ from .entity import Entity
 @dataclass
 class AuthenticationEventsPolicy(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A list of applicable actions to be taken on sign-up.
     on_signup_start: Optional[List[AuthenticationListener]] = None
     

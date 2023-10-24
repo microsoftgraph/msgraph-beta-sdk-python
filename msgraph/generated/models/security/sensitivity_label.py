@@ -25,7 +25,7 @@ class SensitivityLabel(Entity):
     # The plaintext name of the label.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The parent label associated with a child label. Null if the label has no parent.
     parent: Optional[SensitivityLabel] = None
     # The sensitivity value of the label, where lower is less sensitive.

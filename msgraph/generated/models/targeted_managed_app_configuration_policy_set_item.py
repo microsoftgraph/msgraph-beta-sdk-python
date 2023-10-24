@@ -14,7 +14,7 @@ class TargetedManagedAppConfigurationPolicySetItem(PolicySetItem):
     A class containing the properties used for Targeted managed app configuration PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.targetedManagedAppConfigurationPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.targetedManagedAppConfigurationPolicySetItem"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TargetedManagedAppConfigurationPolicySetItem:

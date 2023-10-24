@@ -14,7 +14,7 @@ class ManagedAppProtectionPolicySetItem(PolicySetItem):
     A class containing the properties used for managed app protection PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.managedAppProtectionPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.managedAppProtectionPolicySetItem"
     # TargetedAppManagementLevels of the ManagedAppPolicySetItem.
     targeted_app_management_levels: Optional[str] = None
     

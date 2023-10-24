@@ -48,7 +48,7 @@ class WindowsAutopilotDeploymentProfile(Entity):
     # AzureAD management app ID used during client device-based enrollment discovery
     management_service_app_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Out of box experience setting
     out_of_box_experience_settings: Optional[OutOfBoxExperienceSettings] = None
     # Scope tags for the profile.

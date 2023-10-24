@@ -30,7 +30,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(Entity):
     # The intune device's model.
     model: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The intune device's serial number.
     serial_number: Optional[str] = None
     

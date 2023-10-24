@@ -11,7 +11,7 @@ from .item_facet import ItemFacet
 @dataclass
 class PersonResponsibility(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personResponsibility"
+    OdataType: Optional[str] = "#microsoft.graph.personResponsibility"
     # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
     collaboration_tags: Optional[List[str]] = None
     # Description of the responsibility.

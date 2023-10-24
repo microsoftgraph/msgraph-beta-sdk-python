@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 @dataclass
 class SharePointOneDriveOptions(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -40,7 +40,7 @@ class SharePointOneDriveOptions(AdditionalDataHolder, BackedModel, Parsable):
         from .search_content import SearchContent
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "includeContent": lambda n : setattr(self, 'include_content', n.get_enum_value(SearchContent)),
+            "includeContent": lambda n : setattr(self, 'include_content', n.get_collection_of_enum_values(SearchContent)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

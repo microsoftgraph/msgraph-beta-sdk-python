@@ -14,7 +14,7 @@ class AospDeviceOwnerTrustedRootCertificate(DeviceConfiguration):
     AOSP Device Owner Trusted Root Certificate configuration profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.aospDeviceOwnerTrustedRootCertificate"
+    OdataType: Optional[str] = "#microsoft.graph.aospDeviceOwnerTrustedRootCertificate"
     # File name to display in UI.
     cert_file_name: Optional[str] = None
     # Trusted Root Certificate

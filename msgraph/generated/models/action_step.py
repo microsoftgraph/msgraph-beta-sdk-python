@@ -10,11 +10,11 @@ if TYPE_CHECKING:
 @dataclass
 class ActionStep(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # A link to the documentation or Azure portal page that is associated with the action step.
+    # A link to the documentation or Microsoft Entra admin center page that is associated with the action step.
     action_url: Optional[ActionUrl] = None
     # The OdataType property
     odata_type: Optional[str] = None

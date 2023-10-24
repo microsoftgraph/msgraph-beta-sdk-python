@@ -15,7 +15,7 @@ class AndroidForWorkPkcsCertificateProfile(AndroidForWorkCertificateProfileBase)
     Android For Work PKCS certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidForWorkPkcsCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.androidForWorkPkcsCertificateProfile"
     # PKCS Certificate Template Name
     certificate_template_name: Optional[str] = None
     # PKCS Certification Authority

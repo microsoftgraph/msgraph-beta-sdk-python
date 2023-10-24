@@ -14,7 +14,7 @@ class KeyStringValuePair(KeyTypedValuePair):
     A key-value pair with a string key and a string value.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.keyStringValuePair"
+    OdataType: Optional[str] = "#microsoft.graph.keyStringValuePair"
     # The string value of the key-value pair.
     value: Optional[str] = None
     

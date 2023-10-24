@@ -15,7 +15,7 @@ class WinGetApp(MobileApp):
     A MobileApp that is based on a referenced application in a WinGet repository.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.winGetApp"
+    OdataType: Optional[str] = "#microsoft.graph.winGetApp"
     # The install experience settings associated with this application, which are used to ensure the desired install experiences on the target device are taken into account. This includes the account type (System or User) that actions should be run as on target devices. Required at creation time.
     install_experience: Optional[WinGetAppInstallExperience] = None
     # Hash of package metadata properties used to validate that the application matches the metadata in the source repository.

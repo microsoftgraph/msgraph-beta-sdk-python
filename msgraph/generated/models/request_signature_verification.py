@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 @dataclass
 class RequestSignatureVerification(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -42,7 +42,7 @@ class RequestSignatureVerification(AdditionalDataHolder, BackedModel, Parsable):
         from .weak_algorithms import WeakAlgorithms
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedWeakAlgorithms": lambda n : setattr(self, 'allowed_weak_algorithms', n.get_enum_value(WeakAlgorithms)),
+            "allowedWeakAlgorithms": lambda n : setattr(self, 'allowed_weak_algorithms', n.get_collection_of_enum_values(WeakAlgorithms)),
             "isSignedRequestRequired": lambda n : setattr(self, 'is_signed_request_required', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

@@ -14,7 +14,7 @@ class KeyRealValuePair(KeyTypedValuePair):
     A key-value pair with a string key and a real (floating-point) value.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.keyRealValuePair"
+    OdataType: Optional[str] = "#microsoft.graph.keyRealValuePair"
     # The real (floating-point) value of the key-value pair.
     value: Optional[float] = None
     

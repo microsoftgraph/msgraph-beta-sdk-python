@@ -11,7 +11,7 @@ from .rule_destination import RuleDestination
 @dataclass
 class Fqdn(RuleDestination):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.fqdn"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.fqdn"
     # Defines the FQDN used in a destination for a rule.
     value: Optional[str] = None
     

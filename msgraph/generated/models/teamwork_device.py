@@ -50,7 +50,7 @@ class TeamworkDevice(Entity):
     # The notes added by the admin to the device.
     notes: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The async operations on the device.
     operations: Optional[List[TeamworkDeviceOperation]] = None
     

@@ -15,7 +15,7 @@ class DeviceManagementTemplateSettingCategory(DeviceManagementSettingCategory):
     Entity representing a template setting category
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The settings this category contains
     recommended_settings: Optional[List[DeviceManagementSettingInstance]] = None
     

@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class WebAccount(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.webAccount"
+    OdataType: Optional[str] = "#microsoft.graph.webAccount"
     # Contains the description the user has provided for the account on the service being referenced.
     description: Optional[str] = None
     # The service property

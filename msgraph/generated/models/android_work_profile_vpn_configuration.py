@@ -22,7 +22,7 @@ class AndroidWorkProfileVpnConfiguration(DeviceConfiguration):
     By providing the configurations in this profile you can instruct the Android Work Profile device to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidWorkProfileVpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.androidWorkProfileVpnConfiguration"
     # Whether or not to enable always-on VPN connection.
     always_on: Optional[bool] = None
     # If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.

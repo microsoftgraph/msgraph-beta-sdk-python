@@ -15,7 +15,7 @@ class DeviceManagementConfigurationSecretSettingValue(DeviceManagementConfigurat
     Graph model for a secret setting value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSecretSettingValue"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSecretSettingValue"
     # Value of the secret setting.
     value: Optional[str] = None
     # type tracking the encryption state of a secret setting value

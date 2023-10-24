@@ -15,7 +15,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(DeviceManag
     # Minimum number of simple settings in the collection
     minimum_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingCollectionDefinition:

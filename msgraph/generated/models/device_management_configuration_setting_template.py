@@ -16,7 +16,7 @@ class DeviceManagementConfigurationSettingTemplate(Entity):
     Setting Template
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of related Setting Definitions
     setting_definitions: Optional[List[DeviceManagementConfigurationSettingDefinition]] = None
     # Setting Instance Template

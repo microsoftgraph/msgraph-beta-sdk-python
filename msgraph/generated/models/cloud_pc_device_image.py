@@ -21,7 +21,7 @@ class CloudPcDeviceImage(Entity):
     # The data and time that the image was last modified. The time is shown in ISO 8601 format and  Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The operating system of the image. For example, Windows 10 Enterprise.
     operating_system: Optional[str] = None
     # The OS build version of the image. For example, 1909.

@@ -47,7 +47,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
     # Indicates whether the setting is required or not
     occurrence: Optional[DeviceManagementConfigurationSettingOccurrence] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Offset CSP Path from Base
     offset_uri: Optional[str] = None
     # List of referred setting information.
@@ -144,7 +144,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "accessTypes": lambda n : setattr(self, 'access_types', n.get_enum_value(DeviceManagementConfigurationSettingAccessTypes)),
+            "accessTypes": lambda n : setattr(self, 'access_types', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingAccessTypes)),
             "applicability": lambda n : setattr(self, 'applicability', n.get_object_value(DeviceManagementConfigurationSettingApplicability)),
             "baseUri": lambda n : setattr(self, 'base_uri', n.get_str_value()),
             "categoryId": lambda n : setattr(self, 'category_id', n.get_str_value()),
@@ -158,10 +158,10 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
             "offsetUri": lambda n : setattr(self, 'offset_uri', n.get_str_value()),
             "referredSettingInformationList": lambda n : setattr(self, 'referred_setting_information_list', n.get_collection_of_object_values(DeviceManagementConfigurationReferredSettingInformation)),
             "rootDefinitionId": lambda n : setattr(self, 'root_definition_id', n.get_str_value()),
-            "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_enum_value(DeviceManagementConfigurationSettingUsage)),
+            "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingUsage)),
             "uxBehavior": lambda n : setattr(self, 'ux_behavior', n.get_enum_value(DeviceManagementConfigurationControlType)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
-            "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(DeviceManagementConfigurationSettingVisibility)),
+            "visibility": lambda n : setattr(self, 'visibility', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingVisibility)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

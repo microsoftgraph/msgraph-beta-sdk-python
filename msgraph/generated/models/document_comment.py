@@ -14,7 +14,7 @@ class DocumentComment(Entity):
     # The content property
     content: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The replies property
     replies: Optional[List[DocumentCommentReply]] = None
     

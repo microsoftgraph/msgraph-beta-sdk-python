@@ -21,7 +21,7 @@ class TenantGroup(Entity):
     # The collection of management intents associated with the tenant group. Optional. Read-only.
     management_intents: Optional[List[ManagementIntentInfo]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The collection of managed tenant identifiers include in the tenant group. Optional. Read-only.
     tenant_ids: Optional[List[str]] = None
     

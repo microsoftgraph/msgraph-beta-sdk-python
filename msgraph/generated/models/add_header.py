@@ -12,7 +12,7 @@ from .mark_content import MarkContent
 @dataclass
 class AddHeader(MarkContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.addHeader"
+    OdataType: Optional[str] = "#microsoft.graph.addHeader"
     # The alignment property
     alignment: Optional[Alignment] = None
     # The margin property

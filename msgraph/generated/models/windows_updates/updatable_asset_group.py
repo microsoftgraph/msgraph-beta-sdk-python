@@ -11,7 +11,7 @@ from .updatable_asset import UpdatableAsset
 @dataclass
 class UpdatableAssetGroup(UpdatableAsset):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.updatableAssetGroup"
+    OdataType: Optional[str] = "#microsoft.graph.windowsUpdates.updatableAssetGroup"
     # Members of the group. Read-only.
     members: Optional[List[UpdatableAsset]] = None
     

@@ -13,7 +13,7 @@ class DeviceManagementConfigurationRedirectSettingDefinition(DeviceManagementCon
     # A deep link that points to the specific location in the Intune console where feature support must be managed from.
     deep_link: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A message that explains that clicking the link will redirect the user to a supported page to manage the settings.
     redirect_message: Optional[str] = None
     # Indicates the reason for redirecting the user to an alternative location in the console.  For example: WiFi profiles are not supported in the settings catalog and must be created with a template policy.

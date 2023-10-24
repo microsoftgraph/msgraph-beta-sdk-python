@@ -11,7 +11,7 @@ from .rule_destination import RuleDestination
 @dataclass
 class IpSubnet(RuleDestination):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.ipSubnet"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.ipSubnet"
     # Defines the IP address of the subset used in a destination for a rule.
     value: Optional[str] = None
     

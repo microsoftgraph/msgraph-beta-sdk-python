@@ -25,7 +25,7 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration):
     By providing the configurations in this profile you can instruct the Windows 10 device (desktop or mobile) to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10VpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windows10VpnConfiguration"
     # Associated Apps. This collection can contain a maximum of 10000 elements.
     associated_apps: Optional[List[Windows10AssociatedApps]] = None
     # Windows 10 VPN connection types.

@@ -16,7 +16,7 @@ from .onenote_entity_schema_object_model import OnenoteEntitySchemaObjectModel
 @dataclass
 class OnenoteEntityHierarchyModel(OnenoteEntitySchemaObjectModel):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.onenoteEntityHierarchyModel"
+    OdataType: Optional[str] = "#microsoft.graph.onenoteEntityHierarchyModel"
     # The createdBy property
     created_by: Optional[IdentitySet] = None
     # The displayName property

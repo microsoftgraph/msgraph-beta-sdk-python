@@ -11,7 +11,7 @@ from .comms_operation import CommsOperation
 @dataclass
 class MuteParticipantsOperation(CommsOperation):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The participants property
     participants: Optional[List[str]] = None
     

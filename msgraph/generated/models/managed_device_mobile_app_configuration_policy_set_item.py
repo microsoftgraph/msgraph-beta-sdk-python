@@ -14,7 +14,7 @@ class ManagedDeviceMobileAppConfigurationPolicySetItem(PolicySetItem):
     A class containing the properties used for managed device mobile app configuration PolicySetItem.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.managedDeviceMobileAppConfigurationPolicySetItem"
+    OdataType: Optional[str] = "#microsoft.graph.managedDeviceMobileAppConfigurationPolicySetItem"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedDeviceMobileAppConfigurationPolicySetItem:

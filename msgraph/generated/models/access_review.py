@@ -33,7 +33,7 @@ class AccessReview(Entity):
     # The collection of decisions for the caller, if the caller is a reviewer.
     my_decisions: Optional[List[AccessReviewDecision]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The object for which the access reviews is reviewing the access rights assignments. This can be the group for the review of memberships of users in a group, or the app for a review of assignments of users to an application. Required on create.
     reviewed_entity: Optional[Identity] = None
     # The relationship type of reviewer to the target object, one of self, delegated or entityOwners. Required on create.

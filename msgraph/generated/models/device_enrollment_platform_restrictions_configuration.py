@@ -15,7 +15,7 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
     Device Enrollment Configuration that restricts the types of devices a user can enroll
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration"
     # Android for work restrictions based on platform, platform operating system version, and device ownership
     android_for_work_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
     # Android restrictions based on platform, platform operating system version, and device ownership

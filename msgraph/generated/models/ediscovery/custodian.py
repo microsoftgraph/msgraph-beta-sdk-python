@@ -15,7 +15,7 @@ from .data_source_container import DataSourceContainer
 @dataclass
 class Custodian(DataSourceContainer):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.ediscovery.custodian"
+    OdataType: Optional[str] = "#microsoft.graph.ediscovery.custodian"
     # Date and time the custodian acknowledged a hold notification.
     acknowledged_date_time: Optional[datetime.datetime] = None
     # Identifies whether a custodian's sources were placed on hold during creation.

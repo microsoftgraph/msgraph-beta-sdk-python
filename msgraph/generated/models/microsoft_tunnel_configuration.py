@@ -34,7 +34,7 @@ class MicrosoftTunnelConfiguration(Entity):
     # The subnet that will be used to allocate virtual address for the clients
     network: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for this Entity instance
     role_scope_tag_ids: Optional[List[str]] = None
     # Subsets of the routes that will not be routed by the server

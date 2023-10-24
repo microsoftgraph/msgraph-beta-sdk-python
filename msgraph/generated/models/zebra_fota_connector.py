@@ -24,7 +24,7 @@ class ZebraFotaConnector(Entity):
     # Date and time when the account was last synched with Zebra
     last_sync_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents various states for Zebra FOTA connector.
     state: Optional[ZebraFotaConnectorState] = None
     

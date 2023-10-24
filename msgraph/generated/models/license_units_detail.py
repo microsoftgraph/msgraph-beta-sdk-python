@@ -7,19 +7,19 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class LicenseUnitsDetail(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The number of units that are enabled for the active subscription of the service SKU.
     enabled: Optional[int] = None
-    # The number of units that are locked out because the customer cancelled their subscription of the service SKU.
+    # The number of units that are locked out because the customer canceled their subscription of the service SKU.
     locked_out: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The number of units that are suspended because the subscription of the service SKU has been cancelled. The units cannot be assigned but can still be reactivated before they are deleted.
+    # The number of units that are suspended because the subscription of the service SKU has been canceled. The units can't be assigned but can still be reactivated before they're deleted.
     suspended: Optional[int] = None
-    # The number of units that are in warning status. When the subscription of the service SKU has expired, the customer has a grace period to renew their subscription before it is cancelled (moved to a suspended state).
+    # The number of units that are in warning status. When the subscription of the service SKU has expired, the customer has a grace period to renew their subscription before it's canceled (moved to a suspended state).
     warning: Optional[int] = None
     
     @staticmethod

@@ -17,7 +17,7 @@ class VpnConfiguration(DeviceConfiguration):
     Base VPN Configuration profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.vpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.vpnConfiguration"
     # VPN Authentication Method.
     authentication_method: Optional[VpnAuthenticationMethod] = None
     # Connection name displayed to the user.

@@ -13,7 +13,7 @@ class CloudPcSharedUseServicePlan(Entity):
     # The display name of the shared-use service plan.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Total number of shared-use service plans purchased by the customer.
     total_count: Optional[int] = None
     # The number of service plans that the account uses.

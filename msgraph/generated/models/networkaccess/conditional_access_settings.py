@@ -12,7 +12,7 @@ from ..entity import Entity
 @dataclass
 class ConditionalAccessSettings(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The signalingStatus property
     signaling_status: Optional[Status] = None
     

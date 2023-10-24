@@ -30,7 +30,7 @@ class GroupPolicyDefinitionFile(Entity):
     # The date and time the entity was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Type of Group Policy File or Definition.
     policy_type: Optional[GroupPolicyType] = None
     # The revision version associated with the file.

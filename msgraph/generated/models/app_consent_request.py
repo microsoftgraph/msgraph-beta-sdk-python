@@ -19,7 +19,7 @@ class AppConsentRequest(Entity):
     # The consent type of the request. Possible values are: Static and Dynamic. These represent static and dynamic permissions, respectively, requested in the consent workflow. Supports $filter (eq only) and $orderby. Required.
     consent_type: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A list of pending scopes waiting for approval. This is empty if the consentType is Static. Required.
     pending_scopes: Optional[List[AppConsentRequestScope]] = None
     # A list of pending user consent requests. Supports $filter (eq).

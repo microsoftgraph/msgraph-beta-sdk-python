@@ -22,7 +22,7 @@ class CredentialUserRegistrationsSummary(Entity):
     # The number of users registered for multi-factor authentication. Optional. Read-only.
     mfa_registered_user_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A flag indicating whether Identity Security Defaults is enabled. Optional. Read-only.
     security_defaults_enabled: Optional[bool] = None
     # The number of users enabled for self service password reset. Optional. Read-only.
@@ -31,7 +31,7 @@ class CredentialUserRegistrationsSummary(Entity):
     sspr_registered_user_count: Optional[int] = None
     # The display name for the managed tenant. Required. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Required. Read-only.
     tenant_id: Optional[str] = None
     # The license type associated with the tenant; for example, AADFree, AADPremium1, AADPremium2.
     tenant_license_type: Optional[str] = None

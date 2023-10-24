@@ -12,7 +12,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class AddContentFooterAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.addContentFooterAction"
+    OdataType: Optional[str] = "#microsoft.graph.addContentFooterAction"
     # The alignment property
     alignment: Optional[ContentAlignment] = None
     # Color of the font to use for the footer.

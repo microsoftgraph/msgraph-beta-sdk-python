@@ -35,7 +35,7 @@ class GroupPolicyMigrationReport(Entity):
     # Indicates if the Group Policy Object file is covered and ready for Intune migration.
     migration_readiness: Optional[GroupPolicyMigrationReadiness] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The distinguished name of the OU.
     ou_distinguished_name: Optional[str] = None
     # The list of scope tags for the configuration.

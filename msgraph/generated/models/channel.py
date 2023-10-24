@@ -40,14 +40,14 @@ class Channel(Entity):
     # Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
     moderation_settings: Optional[ChannelModerationSettings] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A collection of teams with which a channel is shared.
     shared_with_teams: Optional[List[SharedWithChannelTeamInfo]] = None
     # Contains summary information about the channel, including number of guests, members, owners, and an indicator for members from other tenants. The summary property will only be returned if it is specified in the $select clause of the Get channel method.
     summary: Optional[ChannelSummary] = None
     # A collection of all the tabs in the channel. A navigation property.
     tabs: Optional[List[TeamsTab]] = None
-    # The ID of the Azure Active Directory tenant.
+    # The ID of the Microsoft Entra tenant.
     tenant_id: Optional[str] = None
     # A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
     web_url: Optional[str] = None

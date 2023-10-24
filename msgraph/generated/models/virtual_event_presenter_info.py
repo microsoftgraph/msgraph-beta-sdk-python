@@ -12,7 +12,7 @@ from .meeting_participant_info import MeetingParticipantInfo
 @dataclass
 class VirtualEventPresenterInfo(MeetingParticipantInfo):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.virtualEventPresenterInfo"
+    OdataType: Optional[str] = "#microsoft.graph.virtualEventPresenterInfo"
     # The presenterDetails property
     presenter_details: Optional[VirtualEventPresenterDetails] = None
     

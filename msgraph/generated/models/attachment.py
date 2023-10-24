@@ -23,7 +23,7 @@ class Attachment(Entity):
     # The display name of the attachment. This does not need to be the actual file name.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The length of the attachment in bytes.
     size: Optional[int] = None
     

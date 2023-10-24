@@ -12,7 +12,7 @@ from .file_plan_descriptor_template import FilePlanDescriptorTemplate
 @dataclass
 class CategoryTemplate(FilePlanDescriptorTemplate):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents all subcategories under a particular category.
     sub_categories: Optional[List[SubCategoryTemplate]] = None
     

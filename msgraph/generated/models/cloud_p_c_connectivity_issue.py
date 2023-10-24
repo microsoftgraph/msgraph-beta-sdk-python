@@ -23,7 +23,7 @@ class CloudPCConnectivityIssue(Entity):
     # The detailed description of what went wrong.
     error_description: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The recommended action to fix the corresponding error.
     recommended_action: Optional[str] = None
     # The unique id of user who initialize the connection.

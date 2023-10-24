@@ -27,7 +27,7 @@ class DeviceComplianceScriptDeviceState(Entity):
     # The managed device on which the device compliance script executed
     managed_device: Optional[ManagedDevice] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Error from the detection script
     script_error: Optional[str] = None
     # Output of the detection script

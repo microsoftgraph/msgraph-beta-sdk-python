@@ -11,7 +11,7 @@ from .parent_label_details import ParentLabelDetails
 @dataclass
 class LabelDetails(ParentLabelDetails):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.labelDetails"
+    OdataType: Optional[str] = "#microsoft.graph.labelDetails"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LabelDetails:

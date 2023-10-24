@@ -15,7 +15,7 @@ class DeviceManagementConfigurationSimpleSettingInstance(DeviceManagementConfigu
     Simple setting instance
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance"
     # The simpleSettingValue property
     simple_setting_value: Optional[DeviceManagementConfigurationSimpleSettingValue] = None
     

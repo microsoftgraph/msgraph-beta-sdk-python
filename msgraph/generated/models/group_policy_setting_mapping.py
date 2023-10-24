@@ -35,7 +35,7 @@ class GroupPolicySettingMapping(Entity):
     # Mdm Support Status of the setting.
     mdm_supported_state: Optional[MdmSupportedState] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Parent Id of the group policy setting.
     parent_id: Optional[str] = None
     # The category the group policy setting is in.

@@ -20,7 +20,7 @@ class ChromeOSOnboardingSettings(Entity):
     # The ChromebookTenant's LastModifiedDateTime
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The onboarding status of the tenant.
     onboarding_status: Optional[OnboardingStatus] = None
     # The ChromebookTenant's OwnerUserPrincipalName

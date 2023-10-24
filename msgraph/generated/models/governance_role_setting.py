@@ -25,7 +25,7 @@ class GovernanceRoleSetting(Entity):
     # Read-only. The time when the role setting was last updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Read-only. The associated resource for this role setting.
     resource: Optional[GovernanceResource] = None
     # Required. The id of the resource that the role setting is associated with.

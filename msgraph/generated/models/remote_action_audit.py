@@ -31,7 +31,7 @@ class RemoteActionAudit(Entity):
     # Action target.
     managed_device_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Time when the action was issued, given in UTC.
     request_date_time: Optional[datetime.datetime] = None
     # [deprecated] Please use InitiatedByUserPrincipalName instead.

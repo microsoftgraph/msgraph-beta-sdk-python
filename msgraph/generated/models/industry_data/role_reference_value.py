@@ -11,7 +11,7 @@ from .reference_value import ReferenceValue
 @dataclass
 class RoleReferenceValue(ReferenceValue):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.roleReferenceValue"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.roleReferenceValue"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RoleReferenceValue:

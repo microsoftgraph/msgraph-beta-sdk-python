@@ -16,7 +16,7 @@ class NotifyUserAction(DlpActionInfo):
     # The emailText property
     email_text: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The policyTip property
     policy_tip: Optional[str] = None
     # The recipients property

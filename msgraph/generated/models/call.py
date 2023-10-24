@@ -49,7 +49,7 @@ class Call(Entity):
     chat_info: Optional[ChatInfo] = None
     # The contentSharingSessions property
     content_sharing_sessions: Optional[List[ContentSharingSession]] = None
-    # The direction of the call. The possible value are incoming or outgoing. Read-only.
+    # The direction of the call. The possible values are incoming or outgoing. Read-only.
     direction: Optional[CallDirection] = None
     # The context associated with an incoming call. Read-only. Server generated.
     incoming_context: Optional[IncomingContext] = None
@@ -64,7 +64,7 @@ class Call(Entity):
     # The myParticipantId property
     my_participant_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The operations property
     operations: Optional[List[CommsOperation]] = None
     # The participants property

@@ -14,7 +14,7 @@ class DeviceManagementIntegerSettingInstance(DeviceManagementSettingInstance):
     A setting instance representing an integer value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementIntegerSettingInstance"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementIntegerSettingInstance"
     # The integer value
     value: Optional[int] = None
     

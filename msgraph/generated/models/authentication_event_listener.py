@@ -21,7 +21,7 @@ class AuthenticationEventListener(Entity):
     # The conditions on which this authenticationEventListener should trigger.
     conditions: Optional[AuthenticationConditions] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
     priority: Optional[int] = None
     

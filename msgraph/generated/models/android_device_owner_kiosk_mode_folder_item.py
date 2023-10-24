@@ -16,7 +16,7 @@ class AndroidDeviceOwnerKioskModeFolderItem(AndroidDeviceOwnerKioskModeHomeScree
     Represents an item that can be added to Android Device Owner folder (application or weblink)
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerKioskModeFolderItem"
+    OdataType: Optional[str] = "#microsoft.graph.androidDeviceOwnerKioskModeFolderItem"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerKioskModeFolderItem:

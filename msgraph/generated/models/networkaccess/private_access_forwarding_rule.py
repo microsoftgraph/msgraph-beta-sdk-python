@@ -11,7 +11,7 @@ from .forwarding_rule import ForwardingRule
 @dataclass
 class PrivateAccessForwardingRule(ForwardingRule):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.privateAccessForwardingRule"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.privateAccessForwardingRule"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivateAccessForwardingRule:

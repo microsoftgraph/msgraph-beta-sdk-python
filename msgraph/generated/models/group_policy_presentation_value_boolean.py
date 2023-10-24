@@ -14,7 +14,7 @@ class GroupPolicyPresentationValueBoolean(GroupPolicyPresentationValue):
     The entity represents a Boolean value of a checkbox presentation on a policy definition.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # An boolean value for the associated presentation.
     value: Optional[bool] = None
     

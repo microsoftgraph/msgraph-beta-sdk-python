@@ -14,7 +14,7 @@ class DefaultUserRoleOverride(Entity):
     # The isDefault property
     is_default: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The rolePermissions property
     role_permissions: Optional[List[UnifiedRolePermission]] = None
     

@@ -14,7 +14,7 @@ class SecurityBaselineCategoryStateSummary(SecurityBaselineStateSummary):
     The security baseline per category compliance state summary for the security baseline of the account.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.securityBaselineCategoryStateSummary"
+    OdataType: Optional[str] = "#microsoft.graph.securityBaselineCategoryStateSummary"
     # The category name
     display_name: Optional[str] = None
     

@@ -13,7 +13,7 @@ class TeamworkPeripheral(Entity):
     # Display name for the peripheral.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The product ID of the device. Each product from a vendor has its own ID.
     product_id: Optional[str] = None
     # The unique identifier for the vendor of the device. Each vendor has a unique ID.

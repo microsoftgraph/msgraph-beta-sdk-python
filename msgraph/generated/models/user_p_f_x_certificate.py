@@ -31,7 +31,7 @@ class UserPFXCertificate(Entity):
     # Date/time when this PFX certificate was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Supported values for the padding scheme used by encryption provider.
     padding_scheme: Optional[UserPfxPaddingScheme] = None
     # Crypto provider used to encrypt this blob.

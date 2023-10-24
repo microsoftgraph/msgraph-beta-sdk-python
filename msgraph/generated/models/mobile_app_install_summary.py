@@ -30,7 +30,7 @@ class MobileAppInstallSummary(Entity):
     # Number of Users that have 1 or more devices that did not install this app.
     not_installed_user_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Number of Devices that have been notified to install this app.
     pending_install_device_count: Optional[int] = None
     # Number of Users that have 1 or more device that have been notified to install this app and have 0 devices with failures.

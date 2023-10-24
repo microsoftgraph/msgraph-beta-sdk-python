@@ -13,7 +13,7 @@ from .policy_base import PolicyBase
 @dataclass
 class EdiscoveryHoldPolicy(PolicyBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.ediscoveryHoldPolicy"
+    OdataType: Optional[str] = "#microsoft.graph.security.ediscoveryHoldPolicy"
     # KQL query that specifies content to be held in the specified locations. To learn more, see Keyword queries and search conditions for Content Search and eDiscovery.  To hold all content in the specified locations, leave contentQuery blank.
     content_query: Optional[str] = None
     # Lists any errors that happened while placing the hold.

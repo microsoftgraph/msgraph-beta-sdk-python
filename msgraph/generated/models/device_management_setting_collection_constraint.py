@@ -14,7 +14,7 @@ class DeviceManagementSettingCollectionConstraint(DeviceManagementConstraint):
     Constraint that enforces the maximum number of elements a collection
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingCollectionConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingCollectionConstraint"
     # The maximum number of elements in the collection
     maximum_length: Optional[int] = None
     # The minimum number of elements in the collection

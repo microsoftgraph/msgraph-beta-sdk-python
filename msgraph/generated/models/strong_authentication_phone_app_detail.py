@@ -38,7 +38,7 @@ class StrongAuthenticationPhoneAppDetail(Entity):
     # The oathTokenTimeDriftInSeconds property
     oath_token_time_drift_in_seconds: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The phoneAppVersion property
     phone_app_version: Optional[str] = None
     # The tenantDeviceId property

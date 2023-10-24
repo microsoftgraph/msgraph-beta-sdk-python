@@ -20,7 +20,7 @@ class DeviceManagementDomainJoinConnector(Entity):
     # Last time connector contacted Intune.
     last_connection_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The ODJ request states.
     state: Optional[DeviceManagementDomainJoinConnectorState] = None
     # The version of the connector.

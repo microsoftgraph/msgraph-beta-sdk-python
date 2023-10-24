@@ -18,10 +18,10 @@ class CloudPcConnection(Entity):
     # Date and time the entity was last updated in the multi-tenant management platform. Required. Read-only.
     last_refreshed_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The display name for the managed tenant. Required. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Required. Read-only.
     tenant_id: Optional[str] = None
     
     @staticmethod

@@ -12,7 +12,7 @@ from .exact_match_data_store_base import ExactMatchDataStoreBase
 @dataclass
 class ExactMatchDataStore(ExactMatchDataStoreBase):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The sessions property
     sessions: Optional[List[ExactMatchSession]] = None
     

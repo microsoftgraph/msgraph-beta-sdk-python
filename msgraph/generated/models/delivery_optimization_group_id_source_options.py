@@ -15,7 +15,7 @@ class DeliveryOptimizationGroupIdSourceOptions(DeliveryOptimizationGroupIdSource
     Group id options type
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deliveryOptimizationGroupIdSourceOptions"
+    OdataType: Optional[str] = "#microsoft.graph.deliveryOptimizationGroupIdSourceOptions"
     # Possible values for the DeliveryOptimizationGroupIdOptionsType setting.
     group_id_source_option: Optional[DeliveryOptimizationGroupIdOptionsType] = None
     

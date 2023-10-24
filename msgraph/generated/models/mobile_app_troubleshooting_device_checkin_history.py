@@ -14,7 +14,7 @@ class MobileAppTroubleshootingDeviceCheckinHistory(MobileAppTroubleshootingHisto
     History Item contained in the Mobile App Troubleshooting Event.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppTroubleshootingDeviceCheckinHistory:

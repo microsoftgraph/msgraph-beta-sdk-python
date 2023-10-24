@@ -11,7 +11,7 @@ from ..identity import Identity
 @dataclass
 class SubmissionUserIdentity(Identity):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.submissionUserIdentity"
+    OdataType: Optional[str] = "#microsoft.graph.security.submissionUserIdentity"
     # The email of user who is making the submission when logged in (delegated token case).
     email: Optional[str] = None
     

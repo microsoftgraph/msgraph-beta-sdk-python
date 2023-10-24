@@ -12,7 +12,7 @@ from .planner_plan_container import PlannerPlanContainer
 @dataclass
 class PlannerSharedWithContainer(PlannerPlanContainer):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.plannerSharedWithContainer"
+    OdataType: Optional[str] = "#microsoft.graph.plannerSharedWithContainer"
     # The accessLevel property
     access_level: Optional[PlannerPlanAccessLevel] = None
     

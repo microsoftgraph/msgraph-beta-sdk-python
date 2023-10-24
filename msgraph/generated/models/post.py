@@ -20,7 +20,7 @@ from .outlook_item import OutlookItem
 @dataclass
 class Post(OutlookItem):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.post"
+    OdataType: Optional[str] = "#microsoft.graph.post"
     # The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
     attachments: Optional[List[Attachment]] = None
     # The contents of the post. This is a default property. This property can be null.

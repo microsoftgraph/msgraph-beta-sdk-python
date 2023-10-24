@@ -21,7 +21,7 @@ class UnsupportedGroupPolicyExtension(Entity):
     # Node name of the unsupported extension.
     node_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Scope of the group policy setting.
     setting_scope: Optional[GroupPolicySettingScope] = None
     

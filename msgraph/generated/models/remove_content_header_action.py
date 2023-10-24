@@ -11,7 +11,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class RemoveContentHeaderAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.removeContentHeaderAction"
+    OdataType: Optional[str] = "#microsoft.graph.removeContentHeaderAction"
     # The name of the UI element of the header to be removed.
     ui_element_names: Optional[List[str]] = None
     

@@ -37,7 +37,7 @@ class DeviceAppManagementTask(Entity):
     # The due date.
     due_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Device app management task priority.
     priority: Optional[DeviceAppManagementTaskPriority] = None
     # Device app management task status.

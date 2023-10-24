@@ -16,7 +16,7 @@ class DepEnrollmentProfile(EnrollmentProfile):
     The depEnrollmentProfile resource represents an Apple Device Enrollment Program (DEP) enrollment profile. This type of profile must be assigned to Apple DEP serial numbers before the corresponding devices can enroll via DEP.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.depEnrollmentProfile"
+    OdataType: Optional[str] = "#microsoft.graph.depEnrollmentProfile"
     # Indicates if Apple id setup pane is disabled
     apple_id_disabled: Optional[bool] = None
     # Indicates if Apple pay setup pane is disabled

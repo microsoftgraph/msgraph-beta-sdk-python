@@ -22,7 +22,7 @@ class MicrosoftTunnelServer(Entity):
     # Indicates when the server last checked in
     last_checkin_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The digest of the current server image running on this server
     server_image_digest: Optional[str] = None
     # Enum of possible MicrosoftTunnelServer health status types

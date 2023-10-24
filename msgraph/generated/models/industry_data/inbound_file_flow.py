@@ -11,7 +11,7 @@ from .inbound_flow import InboundFlow
 @dataclass
 class InboundFileFlow(InboundFlow):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.inboundFileFlow"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.inboundFileFlow"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InboundFileFlow:

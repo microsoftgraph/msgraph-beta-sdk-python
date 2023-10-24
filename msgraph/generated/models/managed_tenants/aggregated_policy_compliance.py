@@ -28,12 +28,12 @@ class AggregatedPolicyCompliance(Entity):
     # The number of device that are in a non-compliant status. Optional. Read-only.
     number_of_non_compliant_devices: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The date and time the device policy was last modified. Optional. Read-only.
     policy_modified_date_time: Optional[datetime.datetime] = None
     # The display name for the managed tenant. Optional. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Optional. Read-only.
     tenant_id: Optional[str] = None
     
     @staticmethod

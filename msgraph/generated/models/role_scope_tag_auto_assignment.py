@@ -15,7 +15,7 @@ class RoleScopeTagAutoAssignment(Entity):
     Contains the properties for auto-assigning a Role Scope Tag to a group to be applied to Devices.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The auto-assignment target for the specific Role Scope Tag.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

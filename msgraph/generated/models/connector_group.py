@@ -25,7 +25,7 @@ class ConnectorGroup(Entity):
     # The name associated with the connectorGroup.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The region the connectorGroup is assigned to and will optimize traffic for. This region can only be set if no connectors or applications are assigned to the connectorGroup. The possible values are: nam (for North America), eur (for Europe), aus (for Australia), asia (for Asia), ind (for India), and unknownFutureValue.
     region: Optional[ConnectorGroupRegion] = None
     

@@ -15,7 +15,7 @@ class PrintServiceEndpoint(Entity):
     # The name property
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The URI that can be used to access the service.
     uri: Optional[str] = None
     

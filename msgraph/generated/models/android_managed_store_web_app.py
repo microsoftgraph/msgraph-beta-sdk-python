@@ -14,7 +14,7 @@ class AndroidManagedStoreWebApp(AndroidManagedStoreApp):
     Contains properties and inherited properties for web apps configured to be distributed via the managed Android app store.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidManagedStoreWebApp"
+    OdataType: Optional[str] = "#microsoft.graph.androidManagedStoreWebApp"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidManagedStoreWebApp:

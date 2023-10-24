@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 @dataclass
 class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -38,7 +38,7 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from ......models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_enum_value(CloudPcPolicySettingType)),
+            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_collection_of_enum_values(CloudPcPolicySettingType)),
         }
         return fields
     

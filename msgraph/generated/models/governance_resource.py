@@ -20,7 +20,7 @@ class GovernanceResource(Entity):
     # The external id of the resource, representing its original id in the external system. For example, a subscription resource's external id can be '/subscriptions/c14ae696-5e0c-4e5d-88cc-bef6637737ac'.
     external_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Read-only. The parent resource. for pimforazurerbac scenario, it can represent the subscription the resource belongs to.
     parent: Optional[GovernanceResource] = None
     # Represents the date time when the resource is registered in PIM.
@@ -31,7 +31,7 @@ class GovernanceResource(Entity):
     role_assignment_requests: Optional[List[GovernanceRoleAssignmentRequest]] = None
     # The collection of role assignments for the resource.
     role_assignments: Optional[List[GovernanceRoleAssignment]] = None
-    # The collection of role defintions for the resource.
+    # The collection of role definitions for the resource.
     role_definitions: Optional[List[GovernanceRoleDefinition]] = None
     # The collection of role settings for the resource.
     role_settings: Optional[List[GovernanceRoleSetting]] = None

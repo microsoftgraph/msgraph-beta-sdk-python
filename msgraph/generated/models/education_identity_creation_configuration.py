@@ -12,7 +12,7 @@ from .education_identity_synchronization_configuration import EducationIdentityS
 @dataclass
 class EducationIdentityCreationConfiguration(EducationIdentitySynchronizationConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationIdentityCreationConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.educationIdentityCreationConfiguration"
     # The userDomains property
     user_domains: Optional[List[EducationIdentityDomain]] = None
     

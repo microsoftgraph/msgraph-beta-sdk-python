@@ -14,7 +14,7 @@ class IosExpeditedCheckinConfiguration(AppleExpeditedCheckinConfigurationBase):
     Experimental profile to increase the rate of device check-ins per day of iOS devices. This profile type is deprecated.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosExpeditedCheckinConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.iosExpeditedCheckinConfiguration"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosExpeditedCheckinConfiguration:

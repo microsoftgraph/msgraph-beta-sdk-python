@@ -11,8 +11,8 @@ from .identity_provider_base import IdentityProviderBase
 @dataclass
 class AppleManagedIdentityProvider(IdentityProviderBase):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.appleManagedIdentityProvider"
-    # The certificate data which is a long string of text from the certificate, can be null.
+    OdataType: Optional[str] = "#microsoft.graph.appleManagedIdentityProvider"
+    # The certificate data that is a long string of text from the certificate, can be null.
     certificate_data: Optional[str] = None
     # The Apple developer identifier. Required.
     developer_id: Optional[str] = None

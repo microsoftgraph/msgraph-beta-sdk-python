@@ -15,7 +15,7 @@ class MacOSVpnConfiguration(AppleVpnConfiguration):
     By providing the configurations in this profile you can instruct the Mac device to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSVpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.macOSVpnConfiguration"
     # Identity certificate for client authentication when authentication method is certificate.
     identity_certificate: Optional[MacOSCertificateProfileBase] = None
     

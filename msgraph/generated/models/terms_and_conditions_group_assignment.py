@@ -15,7 +15,7 @@ class TermsAndConditionsGroupAssignment(Entity):
     A termsAndConditionsGroupAssignment entity represents the assignment of a given Terms and Conditions (T&C) policy to a given group. Users in the group will be required to accept the terms in order to have devices enrolled into Intune.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Unique identifier of a group that the T&C policy is assigned to.
     target_group_id: Optional[str] = None
     # Navigation link to the terms and conditions that are assigned.

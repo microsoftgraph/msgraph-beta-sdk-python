@@ -14,7 +14,7 @@ class ServiceNowOauthSecretAuthentication(ServiceNowAuthenticationMethod):
     App id for the ServiceNow client app.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.serviceNowOauthSecretAuthentication"
+    OdataType: Optional[str] = "#microsoft.graph.serviceNowOauthSecretAuthentication"
     # Tenant appId registered with Azure AD
     app_id: Optional[str] = None
     

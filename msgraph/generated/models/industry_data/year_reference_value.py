@@ -11,7 +11,7 @@ from .reference_value import ReferenceValue
 @dataclass
 class YearReferenceValue(ReferenceValue):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.industryData.yearReferenceValue"
+    OdataType: Optional[str] = "#microsoft.graph.industryData.yearReferenceValue"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> YearReferenceValue:

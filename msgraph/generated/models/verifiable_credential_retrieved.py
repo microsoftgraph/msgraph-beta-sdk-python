@@ -12,7 +12,7 @@ from .verifiable_credential_requirement_status import VerifiableCredentialRequir
 @dataclass
 class VerifiableCredentialRetrieved(VerifiableCredentialRequirementStatus):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.verifiableCredentialRetrieved"
+    OdataType: Optional[str] = "#microsoft.graph.verifiableCredentialRetrieved"
     # The specific date and time that the presentation request will expire and a new one will need to be generated.
     expiry_date_time: Optional[datetime.datetime] = None
     

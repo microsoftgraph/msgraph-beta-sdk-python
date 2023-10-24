@@ -24,7 +24,7 @@ class EmbeddedSIMDeviceState(Entity):
     # The time the embedded SIM device status was last modified. Updated service side.
     modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Describes the various states for an embedded SIM activation code.
     state: Optional[EmbeddedSIMDeviceStateValue] = None
     # String description of the provisioning state.

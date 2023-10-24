@@ -15,7 +15,7 @@ class UserAnalytics(Entity):
     # The collection of work activities that a user spent time on during and outside of working hours. Read-only. Nullable.
     activity_statistics: Optional[List[ActivityStatistics]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The current settings for a user to use the analytics API.
     settings: Optional[Settings] = None
     

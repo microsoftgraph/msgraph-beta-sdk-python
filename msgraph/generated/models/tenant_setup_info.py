@@ -17,7 +17,7 @@ class TenantSetupInfo(Entity):
     # The firstTimeSetup property
     first_time_setup: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The relevantRolesSettings property
     relevant_roles_settings: Optional[List[str]] = None
     # The setupStatus property

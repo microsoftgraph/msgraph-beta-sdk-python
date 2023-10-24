@@ -14,7 +14,7 @@ class DeviceManagementBooleanSettingInstance(DeviceManagementSettingInstance):
     A setting instance representing a boolean value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementBooleanSettingInstance"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementBooleanSettingInstance"
     # The boolean value
     value: Optional[bool] = None
     

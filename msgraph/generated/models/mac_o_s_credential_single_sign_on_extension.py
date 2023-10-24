@@ -15,7 +15,7 @@ class MacOSCredentialSingleSignOnExtension(MacOSSingleSignOnExtension):
     Represents a Credential-type Single Sign-On extension profile for macOS devices.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSCredentialSingleSignOnExtension"
+    OdataType: Optional[str] = "#microsoft.graph.macOSCredentialSingleSignOnExtension"
     # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
     configurations: Optional[List[KeyTypedValuePair]] = None
     # Gets or sets a list of hosts or domain names for which the app extension performs SSO.

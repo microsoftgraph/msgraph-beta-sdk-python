@@ -7,15 +7,15 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class NetworkInterface(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Description of the NIC (e.g. Ethernet adapter, Wireless LAN adapter Local Area Connection, and so on).
+    # Description of the NIC (for example, Ethernet adapter, Wireless LAN adapter Local Area Connection, and so on).
     description: Optional[str] = None
     # Last IPv4 address associated with this NIC.
     ip_v4_address: Optional[str] = None
-    # Last Public (aka global) IPv6 address associated with this NIC.
+    # Last Public (also known as global) IPv6 address associated with this NIC.
     ip_v6_address: Optional[str] = None
     # Last local (link-local or site-local) IPv6 address associated with this NIC.
     local_ip_v6_address: Optional[str] = None

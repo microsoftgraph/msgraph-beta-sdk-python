@@ -60,7 +60,7 @@ class IntuneBrandingProfile(Entity):
     # Logo image displayed in Company Portal apps which have a light background behind the logo
     light_background_logo: Optional[MimeContent] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Display name of the company/organization’s IT helpdesk site
     online_support_site_name: Optional[str] = None
     # URL to the company/organization’s IT helpdesk site

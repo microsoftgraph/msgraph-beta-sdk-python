@@ -6,13 +6,13 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .code import Code
-    from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
     from .device_compliance_script_rules_validation_error import DeviceComplianceScriptRulesValidationError
+    from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
 
 @dataclass
 class DeviceComplianceScriptError(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -50,12 +50,12 @@ class DeviceComplianceScriptError(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .code import Code
-        from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
         from .device_compliance_script_rules_validation_error import DeviceComplianceScriptRulesValidationError
+        from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
 
         from .code import Code
-        from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
         from .device_compliance_script_rules_validation_error import DeviceComplianceScriptRulesValidationError
+        from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
 
         fields: Dict[str, Callable[[Any], None]] = {
             "code": lambda n : setattr(self, 'code', n.get_enum_value(Code)),

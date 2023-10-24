@@ -14,7 +14,7 @@ class AppleAppListItem(AppListItem):
     Represents an app in the list of managed Apple applications
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.appleAppListItem"
+    OdataType: Optional[str] = "#microsoft.graph.appleAppListItem"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleAppListItem:

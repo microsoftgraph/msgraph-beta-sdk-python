@@ -15,7 +15,7 @@ class DeviceManagementComplianceScheduledActionForRule(Entity):
     Scheduled Action for Rule
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Name of the rule which this scheduled action applies to.
     rule_name: Optional[str] = None
     # The list of scheduled action configurations for this compliance policy. This collection can contain a maximum of 100 elements.

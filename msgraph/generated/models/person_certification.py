@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class PersonCertification(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.personCertification"
+    OdataType: Optional[str] = "#microsoft.graph.personCertification"
     # The referenceable identifier for the certification.
     certification_id: Optional[str] = None
     # Description of the certification.

@@ -14,7 +14,7 @@ class OmaSettingInteger(OmaSetting):
     OMA Settings Integer definition.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.omaSettingInteger"
+    OdataType: Optional[str] = "#microsoft.graph.omaSettingInteger"
     # By setting to true, the CSP (configuration service provider) specified in the OMA-URI will perform a get, instead of set
     is_read_only: Optional[bool] = None
     # Value.

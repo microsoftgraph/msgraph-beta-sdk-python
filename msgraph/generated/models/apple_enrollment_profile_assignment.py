@@ -15,7 +15,7 @@ class AppleEnrollmentProfileAssignment(Entity):
     An assignment of an Apple profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The assignment target for the Apple user initiated deployment profile.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     

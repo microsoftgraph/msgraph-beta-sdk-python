@@ -7,21 +7,21 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # RSA Key - private exponent. Field cannot be read back.
+    # RSA Key - private exponent. Field can't be read back.
     d: Optional[str] = None
-    # RSA Key - first exponent. Field cannot be read back.
+    # RSA Key - first exponent. Field can't be read back.
     dp: Optional[str] = None
-    # RSA Key - second exponent. Field cannot be read back.
+    # RSA Key - second exponent. Field can't be read back.
     dq: Optional[str] = None
     # RSA Key - public exponent
     e: Optional[str] = None
     # This value is a NumericDate as defined in RFC 7519 (A JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the specified UTC date/time, ignoring leap seconds.)
     exp: Optional[int] = None
-    # Symmetric Key for oct key type. Field cannot be read back.
+    # Symmetric Key for oct key type. Field can't be read back.
     k: Optional[str] = None
     # The unique identifier for the key.
     kid: Optional[str] = None
@@ -33,17 +33,17 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
     nbf: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # RSA Key - first prime. Field cannot be read back.
+    # RSA Key - first prime. Field can't be read back.
     p: Optional[str] = None
-    # RSA Key - second prime. Field cannot be read back.
+    # RSA Key - second prime. Field can't be read back.
     q: Optional[str] = None
-    # RSA Key - Coefficient. Field cannot be read back.
+    # RSA Key - Coefficient. Field can't be read back.
     qi: Optional[str] = None
     # The use (public key use) parameter identifies the intended use of the public key.  The use parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Possible values are: sig (signature), enc (encryption)
     use: Optional[str] = None
     # The x5c (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates RFC 5280.
     x5c: Optional[List[str]] = None
-    # The x5t (X.509 certificate SHA-1 thumbprint) parameter is a base64url-encoded SHA-1 thumbprint (a.k.a. digest) of the DER encoding of an X.509 certificate RFC 5280.
+    # The x5t (X.509 certificate SHA-1 thumbprint) parameter is a base64url-encoded SHA-1 thumbprint (also known as digest) of the DER encoding of an X.509 certificate RFC 5280.
     x5t: Optional[str] = None
     
     @staticmethod

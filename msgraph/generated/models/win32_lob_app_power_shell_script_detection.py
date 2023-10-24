@@ -14,7 +14,7 @@ class Win32LobAppPowerShellScriptDetection(Win32LobAppDetection):
     Contains PowerShell script properties to detect a Win32 App
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.win32LobAppPowerShellScriptDetection"
+    OdataType: Optional[str] = "#microsoft.graph.win32LobAppPowerShellScriptDetection"
     # A value indicating whether signature check is enforced
     enforce_signature_check: Optional[bool] = None
     # A value indicating whether this script should run as 32-bit

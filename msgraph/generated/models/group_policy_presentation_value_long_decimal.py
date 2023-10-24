@@ -14,7 +14,7 @@ class GroupPolicyPresentationValueLongDecimal(GroupPolicyPresentationValue):
     The entity represents an unsigned long value of a long decimal text box presentation on a policy definition.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # An unsigned long value for the associated presentation.
     value: Optional[int] = None
     

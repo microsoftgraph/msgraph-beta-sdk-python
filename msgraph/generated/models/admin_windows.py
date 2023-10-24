@@ -12,7 +12,7 @@ from .entity import Entity
 @dataclass
 class AdminWindows(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Entity that acts as a container for all Windows Update for Business deployment service functionalities. Read-only.
     updates: Optional[AdminWindowsUpdates] = None
     

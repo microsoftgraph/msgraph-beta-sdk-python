@@ -14,7 +14,7 @@ class GroupPolicyPresentationMultiTextBox(GroupPolicyUploadedPresentation):
     Represents an ADMX multiTextBox element and an ADMX multiText element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyPresentationMultiTextBox"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyPresentationMultiTextBox"
     # An unsigned integer that specifies the maximum number of text characters. Default value is 1023.
     max_length: Optional[int] = None
     # An unsigned integer that specifies the maximum number of strings. Default value is 0.

@@ -28,7 +28,7 @@ class AuthenticationStrengthPolicy(Entity):
     # The datetime when this policy was last modified.
     modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The policyType property
     policy_type: Optional[AuthenticationStrengthPolicyType] = None
     # The requirementsSatisfied property
@@ -70,7 +70,7 @@ class AuthenticationStrengthPolicy(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
             "policyType": lambda n : setattr(self, 'policy_type', n.get_enum_value(AuthenticationStrengthPolicyType)),
-            "requirementsSatisfied": lambda n : setattr(self, 'requirements_satisfied', n.get_enum_value(AuthenticationStrengthRequirements)),
+            "requirementsSatisfied": lambda n : setattr(self, 'requirements_satisfied', n.get_collection_of_enum_values(AuthenticationStrengthRequirements)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -11,7 +11,7 @@ from .access_review_instance_decision_item_target import AccessReviewInstanceDec
 @dataclass
 class AccessReviewInstanceDecisionItemServicePrincipalTarget(AccessReviewInstanceDecisionItemTarget):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalTarget"
+    OdataType: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalTarget"
     # The appId for the service principal entity being reviewed.
     app_id: Optional[str] = None
     # The display name of the service principal whose access is being reviewed.

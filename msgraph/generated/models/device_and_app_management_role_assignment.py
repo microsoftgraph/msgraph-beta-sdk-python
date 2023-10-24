@@ -17,7 +17,7 @@ class DeviceAndAppManagementRoleAssignment(RoleAssignment):
     # The list of ids of role member security groups. These are IDs from Azure Active Directory.
     members: Optional[List[str]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The set of Role Scope Tags defined on the Role Assignment.
     role_scope_tags: Optional[List[RoleScopeTag]] = None
     

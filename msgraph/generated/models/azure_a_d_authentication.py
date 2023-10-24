@@ -14,7 +14,7 @@ class AzureADAuthentication(Entity):
     # A list of monthly serviceLevelAgreementAttainment objects.
     attainments: Optional[List[ServiceLevelAgreementAttainment]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureADAuthentication:

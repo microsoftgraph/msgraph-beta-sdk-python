@@ -11,8 +11,8 @@ from .file_threat_submission import FileThreatSubmission
 @dataclass
 class FileUrlThreatSubmission(FileThreatSubmission):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.fileUrlThreatSubmission"
-    # It specifies the URL of the file which needs to be submitted.
+    OdataType: Optional[str] = "#microsoft.graph.security.fileUrlThreatSubmission"
+    # It specifies the URL of the file that needs to be submitted.
     file_url: Optional[str] = None
     
     @staticmethod

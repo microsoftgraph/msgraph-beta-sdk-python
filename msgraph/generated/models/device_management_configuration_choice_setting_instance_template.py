@@ -15,7 +15,7 @@ class DeviceManagementConfigurationChoiceSettingInstanceTemplate(DeviceManagemen
     Choice Setting Instance Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate"
     # Choice Setting Value Template
     choice_setting_value_template: Optional[DeviceManagementConfigurationChoiceSettingValueTemplate] = None
     

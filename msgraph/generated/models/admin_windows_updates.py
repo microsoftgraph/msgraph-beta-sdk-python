@@ -23,7 +23,7 @@ class AdminWindowsUpdates(Entity):
     # Deployments created using the deployment service.
     deployments: Optional[List[Deployment]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Service connections to external resources such as analytics workspaces.
     resource_connections: Optional[List[ResourceConnection]] = None
     # Assets registered with the deployment service that can receive updates.

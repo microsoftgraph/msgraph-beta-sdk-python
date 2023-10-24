@@ -10,19 +10,19 @@ if TYPE_CHECKING:
 @dataclass
 class OnlineMeetingInfo(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The ID of the conference.
     conference_id: Optional[str] = None
-    # The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.
+    # The external link that launches the online meeting. This is a URL that clients launch into a browser and will redirect the user to join the meeting.
     join_url: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # All of the phone numbers associated with this conference.
     phones: Optional[List[Phone]] = None
-    # The pre-formatted quickdial for this call.
+    # The preformatted quick dial for this call.
     quick_dial: Optional[str] = None
     # The toll free numbers that can be used to join the conference.
     toll_free_numbers: Optional[List[str]] = None

@@ -11,7 +11,7 @@ from .file_threat_submission import FileThreatSubmission
 @dataclass
 class FileContentThreatSubmission(FileThreatSubmission):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.fileContentThreatSubmission"
+    OdataType: Optional[str] = "#microsoft.graph.security.fileContentThreatSubmission"
     # It specifies the file content in base 64 format.
     file_content: Optional[str] = None
     

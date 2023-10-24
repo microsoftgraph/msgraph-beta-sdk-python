@@ -21,7 +21,7 @@ class WindowsUpdateCatalogItem(Entity):
     # The last supported date for a catalog item
     end_of_support_date: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The date the catalog item was released
     release_date_time: Optional[datetime.datetime] = None
     

@@ -21,7 +21,7 @@ class SymantecCodeSigningCertificate(Entity):
     # The Issuer Name for the cert.
     issuer_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The Password required for .pfx file.
     password: Optional[str] = None
     # The status property

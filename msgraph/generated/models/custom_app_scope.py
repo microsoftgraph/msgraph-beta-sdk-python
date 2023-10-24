@@ -12,7 +12,7 @@ from .app_scope import AppScope
 @dataclass
 class CustomAppScope(AppScope):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.customAppScope"
+    OdataType: Optional[str] = "#microsoft.graph.customAppScope"
     # The customAttributes property
     custom_attributes: Optional[CustomAppScopeAttributesDictionary] = None
     

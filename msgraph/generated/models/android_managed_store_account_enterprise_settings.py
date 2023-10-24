@@ -37,7 +37,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity):
     # Initial scope tags for MGP apps
     managed_google_play_initial_scope_tag_ids: Optional[List[str]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Organization name used when onboarding Android Enterprise
     owner_organization_name: Optional[str] = None
     # Owner UPN that created the enterprise

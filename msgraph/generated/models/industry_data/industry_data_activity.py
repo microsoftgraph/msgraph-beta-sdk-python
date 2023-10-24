@@ -16,7 +16,7 @@ class IndustryDataActivity(Entity):
     # The name of the activity. Maximum supported length is 100 characters.
     display_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The readinessStatus property
     readiness_status: Optional[ReadinessStatus] = None
     

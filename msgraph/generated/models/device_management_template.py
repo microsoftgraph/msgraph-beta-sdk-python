@@ -33,7 +33,7 @@ class DeviceManagementTemplate(Entity):
     # Collection of templates this template can migrate to
     migratable_to: Optional[List[DeviceManagementTemplate]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Supported platform types for policies.
     platform_type: Optional[PolicyPlatformType] = None
     # When the template was published

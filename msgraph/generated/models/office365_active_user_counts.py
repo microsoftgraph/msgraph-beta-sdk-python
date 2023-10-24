@@ -14,7 +14,7 @@ class Office365ActiveUserCounts(Entity):
     # The number of active users in Exchange. Any user who can read and send email is considered an active user.
     exchange: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The number of active users in Microsoft 365. This number includes all the active users in Exchange, OneDrive, SharePoint, Skype For Business, Yammer, and Microsoft Teams. You can find the definition of active user for each product in the respective property description.
     office365: Optional[int] = None
     # The number of active users in OneDrive. Any user who viewed or edited files, shared files internally or externally, or synced files is considered an active user.

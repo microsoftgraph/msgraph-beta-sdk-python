@@ -13,7 +13,7 @@ from .content_properties import ContentProperties
 @dataclass
 class AttachmentContentProperties(ContentProperties):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.attachmentContentProperties"
+    OdataType: Optional[str] = "#microsoft.graph.attachmentContentProperties"
     # The currentLabel property
     current_label: Optional[CurrentLabel] = None
     # The discoveredSensitiveTypes property

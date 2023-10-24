@@ -17,10 +17,10 @@ class WorkbookComment(Entity):
     # Indicates the type for the comment.
     content_type: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The replies property
     replies: Optional[List[WorkbookCommentReply]] = None
-    # The task property
+    # The task associated with the comment. Read-only. Nullable.
     task: Optional[WorkbookDocumentTask] = None
     
     @staticmethod

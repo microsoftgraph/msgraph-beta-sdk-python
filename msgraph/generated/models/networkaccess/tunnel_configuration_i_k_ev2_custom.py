@@ -17,7 +17,7 @@ from .tunnel_configuration import TunnelConfiguration
 @dataclass
 class TunnelConfigurationIKEv2Custom(TunnelConfiguration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Custom"
+    OdataType: Optional[str] = "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Custom"
     # The dhGroup property
     dh_group: Optional[DhGroup] = None
     # The ikeEncryption property

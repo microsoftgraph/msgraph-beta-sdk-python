@@ -14,7 +14,7 @@ from .entity import Entity
 @dataclass
 class BusinessScenarioPlanner(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The configuration of Planner plans that will be created for the scenario.
     plan_configuration: Optional[PlannerPlanConfiguration] = None
     # The configuration of Planner tasks that will be created for the scenario.

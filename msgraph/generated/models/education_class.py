@@ -59,7 +59,7 @@ class EducationClass(Entity):
     # All modules in the class. Nullable.
     modules: Optional[List[EducationModule]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # All schools that this class is associated with. Nullable.
     schools: Optional[List[EducationSchool]] = None
     # All teachers in the class. Nullable.

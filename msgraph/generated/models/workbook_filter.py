@@ -14,7 +14,7 @@ class WorkbookFilter(Entity):
     # The criteria property
     criteria: Optional[WorkbookFilterCriteria] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkbookFilter:

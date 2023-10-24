@@ -24,7 +24,7 @@ class DeviceManagementCachedReportConfiguration(Entity):
     # Caller-managed metadata associated with the report
     metadata: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Ordering of columns in the report
     order_by: Optional[List[str]] = None
     # Name of the report. This property is read-only.

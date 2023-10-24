@@ -13,7 +13,7 @@ from .item_facet import ItemFacet
 @dataclass
 class WorkPosition(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.workPosition"
+    OdataType: Optional[str] = "#microsoft.graph.workPosition"
     # Categories that the user has associated with this position.
     categories: Optional[List[str]] = None
     # Colleagues that are associated with this position.

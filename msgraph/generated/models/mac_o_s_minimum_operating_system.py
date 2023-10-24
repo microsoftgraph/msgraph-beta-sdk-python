@@ -10,7 +10,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     The minimum operating system required for a macOS app.
     """
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -40,6 +40,8 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     v12_0: Optional[bool] = None
     # When TRUE, indicates macOS 13.0 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.
     v13_0: Optional[bool] = None
+    # When TRUE, indicates macOS 14.0 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.
+    v14_0: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSMinimumOperatingSystem:
@@ -71,6 +73,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
             "v11_0": lambda n : setattr(self, 'v11_0', n.get_bool_value()),
             "v12_0": lambda n : setattr(self, 'v12_0', n.get_bool_value()),
             "v13_0": lambda n : setattr(self, 'v13_0', n.get_bool_value()),
+            "v14_0": lambda n : setattr(self, 'v14_0', n.get_bool_value()),
         }
         return fields
     
@@ -95,6 +98,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("v11_0", self.v11_0)
         writer.write_bool_value("v12_0", self.v12_0)
         writer.write_bool_value("v13_0", self.v13_0)
+        writer.write_bool_value("v14_0", self.v14_0)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -31,7 +31,7 @@ class TeamTemplateDefinition(Entity):
     # The date time of when the team template was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The templateId for the team template
     parent_template_id: Optional[str] = None
     # The organization which published the team template.

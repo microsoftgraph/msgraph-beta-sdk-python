@@ -50,7 +50,7 @@ class ManagedTenantAlert(Entity):
     # The message property
     message: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The severity property
     severity: Optional[AlertSeverity] = None
     # The status property

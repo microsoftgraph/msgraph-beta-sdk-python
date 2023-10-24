@@ -17,7 +17,7 @@ class ConnectivityConfigurationLink(Entity):
     # The localConfigurations property
     local_configurations: Optional[List[LocalConnectivityConfiguration]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The peerConfiguration property
     peer_configuration: Optional[PeerConnectivityConfiguration] = None
     

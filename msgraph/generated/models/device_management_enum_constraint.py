@@ -15,7 +15,7 @@ class DeviceManagementEnumConstraint(DeviceManagementConstraint):
     Constraint that enforces the setting value is from a permitted set of strings
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementEnumConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementEnumConstraint"
     # List of valid values for this string
     values: Optional[List[DeviceManagementEnumValue]] = None
     

@@ -14,7 +14,7 @@ class GroupPolicyPresentationCheckBox(GroupPolicyUploadedPresentation):
     Represents an ADMX checkBox element and an ADMX boolean element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyPresentationCheckBox"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyPresentationCheckBox"
     # Default value for the check box. The default value is false.
     default_checked: Optional[bool] = None
     

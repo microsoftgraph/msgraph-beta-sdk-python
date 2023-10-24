@@ -11,7 +11,7 @@ from .account_target_content import AccountTargetContent
 @dataclass
 class AddressBookAccountTargetContent(AccountTargetContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.addressBookAccountTargetContent"
+    OdataType: Optional[str] = "#microsoft.graph.addressBookAccountTargetContent"
     # List of user emails targeted for an attack simulation training campaign.
     account_target_emails: Optional[List[str]] = None
     

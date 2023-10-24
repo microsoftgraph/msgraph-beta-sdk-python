@@ -11,7 +11,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class ProtectAdhocAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.protectAdhocAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.protectAdhocAction"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectAdhocAction:

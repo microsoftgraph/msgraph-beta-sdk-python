@@ -17,7 +17,7 @@ class YearTimePeriodDefinition(Entity):
     # The last day of the year using ISO 8601 format for date.
     end_date: Optional[datetime.date] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The first day of the year using ISO 8601 format for date.
     start_date: Optional[datetime.date] = None
     # The year property

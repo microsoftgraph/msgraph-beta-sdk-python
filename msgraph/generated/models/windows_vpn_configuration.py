@@ -18,7 +18,7 @@ class WindowsVpnConfiguration(DeviceConfiguration):
     Windows VPN configuration profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsVpnConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windowsVpnConfiguration"
     # Connection name displayed to the user.
     connection_name: Optional[str] = None
     # Custom XML commands that configures the VPN connection. (UTF8 encoded byte array)

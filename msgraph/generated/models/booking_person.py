@@ -16,7 +16,7 @@ class BookingPerson(BookingNamedEntity):
     Represents a booking customer or staff member.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.bookingPerson"
+    OdataType: Optional[str] = "#microsoft.graph.bookingPerson"
     # The email address of the person.
     email_address: Optional[str] = None
     

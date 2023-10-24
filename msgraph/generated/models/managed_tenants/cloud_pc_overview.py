@@ -40,7 +40,7 @@ class CloudPcOverview(Entity):
     # The number of cloud PCs that have a status of upgrading. Optional. Read-only.
     number_of_cloud_pc_status_upgrading: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The display name for the managed tenant. Optional. Read-only.
     tenant_display_name: Optional[str] = None
     # The tenantId property

@@ -17,7 +17,7 @@ class MacOSExtensionsConfiguration(DeviceConfiguration):
     MacOS extensions configuration profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSExtensionsConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.macOSExtensionsConfiguration"
     # All kernel extensions validly signed by the team identifiers in this list will be allowed to load.
     kernel_extension_allowed_team_identifiers: Optional[List[str]] = None
     # If set to true, users can approve additional kernel extensions not explicitly allowed by configurations profiles.

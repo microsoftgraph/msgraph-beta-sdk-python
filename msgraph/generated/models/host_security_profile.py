@@ -37,7 +37,7 @@ class HostSecurityProfile(Entity):
     # The networkInterfaces property
     network_interfaces: Optional[List[NetworkInterface]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The os property
     os: Optional[str] = None
     # The osVersion property

@@ -13,7 +13,7 @@ class PronounsSettings(Entity):
     # true to enable pronouns in the organization, false otherwise. The default is false, and pronouns are disabled.
     is_enabled_in_organization: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PronounsSettings:

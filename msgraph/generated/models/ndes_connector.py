@@ -26,7 +26,7 @@ class NdesConnector(Entity):
     # Name of the machine running on-prem certificate connector service.
     machine_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for this Entity instance.
     role_scope_tag_ids: Optional[List[str]] = None
     # The current status of the Ndes Connector.

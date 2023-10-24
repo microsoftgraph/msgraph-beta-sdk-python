@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class PrivateLinkDetails(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -15,9 +15,9 @@ class PrivateLinkDetails(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The unique identifier for the Private Link policy.
     policy_id: Optional[str] = None
-    # The name of the Private Link policy in Azure AD.
+    # The name of the Private Link policy in Microsoft Entra ID.
     policy_name: Optional[str] = None
-    # The tenant identifier of the Azure AD tenant the Private Link policy belongs to.
+    # The tenant identifier of the Microsoft Entra tenant the Private Link policy belongs to.
     policy_tenant_id: Optional[str] = None
     # The Azure Resource Manager (ARM) path for the Private Link policy resource.
     resource_id: Optional[str] = None

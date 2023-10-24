@@ -25,7 +25,7 @@ class MacOSDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase):
     MacOS device features configuration profile.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.macOSDeviceFeaturesConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.macOSDeviceFeaturesConfiguration"
     # Whether to show admin host information on the login window.
     admin_show_host_info: Optional[bool] = None
     # Gets or sets a list that maps apps to their associated domains. Application identifiers must be unique. This collection can contain a maximum of 500 elements.

@@ -14,7 +14,7 @@ class GroupPolicyPresentationValueMultiText(GroupPolicyPresentationValue):
     The entity represents a string value of a multi-line text box presentation on a policy definition.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # A collection of non-empty strings for the associated presentation.
     values: Optional[List[str]] = None
     

@@ -14,7 +14,7 @@ class RecordOperation(CommsOperation):
     # Possible values are: operationCanceled, stopToneDetected, maxRecordDurationReached, initialSilenceTimeout, maxSilenceTimeout, playPromptFailed, playBeepFailed, mediaReceiveTimeout, unspecifiedError, none.
     completion_reason: Optional[RecordCompletionReason] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The access token required to retrieve the recording.
     recording_access_token: Optional[str] = None
     # The location where the recording is located.

@@ -24,7 +24,7 @@ class CloudPcDevice(Entity):
     # The managed device display name of the cloud PC device. Optional. Read-only.
     managed_device_name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The provisioning policy identifier for the cloud PC device. Required. Read-only.
     provisioning_policy_id: Optional[str] = None
     # The service plan name of the cloud PC device. Required. Read-only.
@@ -33,7 +33,7 @@ class CloudPcDevice(Entity):
     service_plan_type: Optional[str] = None
     # The display name for the managed tenant. Required. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Required. Read-only.
     tenant_id: Optional[str] = None
     # The user principal name (UPN) of the user assigned to the cloud PC device. Required. Read-only.
     user_principal_name: Optional[str] = None

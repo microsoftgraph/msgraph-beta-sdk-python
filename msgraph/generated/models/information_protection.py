@@ -21,7 +21,7 @@ class InformationProtection(Entity):
     # The dataLossPreventionPolicies property
     data_loss_prevention_policies: Optional[List[DataLossPreventionPolicy]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The policy property
     policy: Optional[InformationProtectionPolicy] = None
     # The sensitivityLabels property

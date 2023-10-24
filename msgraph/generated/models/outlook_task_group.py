@@ -21,7 +21,7 @@ class OutlookTaskGroup(Entity):
     # The name of the task group.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The collection of task folders in the task group. Read-only. Nullable.
     task_folders: Optional[List[OutlookTaskFolder]] = None
     

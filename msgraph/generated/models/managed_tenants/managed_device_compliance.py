@@ -30,7 +30,7 @@ class ManagedDeviceCompliance(Entity):
     # The model for the device. Optional. Read-only.
     model: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The description of the operating system for the managed device. Optional. Read-only.
     os_description: Optional[str] = None
     # The version of the operating system for the managed device. Optional. Read-only.
@@ -39,7 +39,7 @@ class ManagedDeviceCompliance(Entity):
     owner_type: Optional[str] = None
     # The display name for the managed tenant. Optional. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Optional. Read-only.
     tenant_id: Optional[str] = None
     
     @staticmethod

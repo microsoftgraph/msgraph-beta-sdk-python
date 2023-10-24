@@ -30,7 +30,7 @@ class GroupPolicyConfiguration(Entity):
     # The date and time the entity was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Group Policy Configuration Ingestion Type
     policy_configuration_ingestion_type: Optional[GroupPolicyConfigurationIngestionType] = None
     # The list of scope tags for the configuration.

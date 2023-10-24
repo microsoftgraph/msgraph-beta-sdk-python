@@ -15,7 +15,7 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(DeviceManagement
     Group Setting Instance Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate"
     # Group Setting Value Template
     group_setting_value_template: Optional[DeviceManagementConfigurationGroupSettingValueTemplate] = None
     

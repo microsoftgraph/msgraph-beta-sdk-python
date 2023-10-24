@@ -22,7 +22,7 @@ class DeviceManagementSettingInstance(Entity):
     # The ID of the setting definition for this instance
     definition_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # JSON representation of the value
     value_json: Optional[str] = None
     

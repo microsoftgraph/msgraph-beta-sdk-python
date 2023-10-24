@@ -18,7 +18,7 @@ class SynchronizationJob(Entity):
     # The bulk upload operation for the job.
     bulk_upload: Optional[BulkUpload] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Schedule used to run the job. Read-only.
     schedule: Optional[SynchronizationSchedule] = None
     # The synchronization schema configured for the job.

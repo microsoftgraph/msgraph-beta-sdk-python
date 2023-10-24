@@ -14,7 +14,7 @@ class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(De
     Integer Setting Value Constant Default Template
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate"
     # Default Constant Value. Valid values -2147483648 to 2147483647
     constant_value: Optional[int] = None
     

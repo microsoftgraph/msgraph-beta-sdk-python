@@ -15,7 +15,7 @@ class VirtualEventsRoot(Entity):
     # The events property
     events: Optional[List[VirtualEvent]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The webinars property
     webinars: Optional[List[VirtualEventWebinar]] = None
     

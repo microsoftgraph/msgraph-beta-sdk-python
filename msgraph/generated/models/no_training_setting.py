@@ -11,7 +11,7 @@ from .training_setting import TrainingSetting
 @dataclass
 class NoTrainingSetting(TrainingSetting):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.noTrainingSetting"
+    OdataType: Optional[str] = "#microsoft.graph.noTrainingSetting"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NoTrainingSetting:

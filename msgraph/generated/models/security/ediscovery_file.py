@@ -15,7 +15,7 @@ class EdiscoveryFile(File):
     # Custodians associated with the file.
     custodian: Optional[EdiscoveryCustodian] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Tags associated with the file.
     tags: Optional[List[EdiscoveryReviewTag]] = None
     

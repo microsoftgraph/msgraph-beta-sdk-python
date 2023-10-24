@@ -13,11 +13,11 @@ if TYPE_CHECKING:
 @dataclass
 class GradualRolloutSettings(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The duration between each set of devices being offered the update. The value is represented in ISO 8601 format for duration. Default value is P1D (1 day).
+    # The duration between each set of devices being offered the update. The value is represented in ISO 8601 format for duration. Default value is P1D (one day).
     duration_between_offers: Optional[datetime.timedelta] = None
     # The OdataType property
     odata_type: Optional[str] = None

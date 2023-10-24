@@ -12,7 +12,7 @@ from .item_facet import ItemFacet
 @dataclass
 class ItemPhone(ItemFacet):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.itemPhone"
+    OdataType: Optional[str] = "#microsoft.graph.itemPhone"
     # Friendly name the user has assigned this phone number.
     display_name: Optional[str] = None
     # Phone number provided by the user.

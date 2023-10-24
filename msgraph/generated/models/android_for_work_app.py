@@ -14,7 +14,7 @@ class AndroidForWorkApp(MobileApp):
     Contains properties and inherited properties for Android for Work (AFW) Apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidForWorkApp"
+    OdataType: Optional[str] = "#microsoft.graph.androidForWorkApp"
     # The Identity Name.
     app_identifier: Optional[str] = None
     # The Play for Work Store app URL.

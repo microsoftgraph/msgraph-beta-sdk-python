@@ -31,7 +31,7 @@ class WindowsDriverUpdateInventory(Entity):
     # The name of the driver.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The release date time of the driver.
     release_date_time: Optional[datetime.datetime] = None
     # The version of the driver.

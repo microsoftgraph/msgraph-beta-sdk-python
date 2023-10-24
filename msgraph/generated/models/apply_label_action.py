@@ -14,7 +14,7 @@ from .information_protection_action import InformationProtectionAction
 @dataclass
 class ApplyLabelAction(InformationProtectionAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.applyLabelAction"
+    OdataType: Optional[str] = "#microsoft.graph.applyLabelAction"
     # The actionSource property
     action_source: Optional[ActionSource] = None
     # The collection of specific actions that should be taken by the consuming application to label the document. See  informationProtectionAction for the full list.

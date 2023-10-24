@@ -11,13 +11,13 @@ if TYPE_CHECKING:
 @dataclass
 class CloudPcAuditActor(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Name of the application.
     application_display_name: Optional[str] = None
-    # Azure AD application ID.
+    # Microsoft Entra application ID.
     application_id: Optional[str] = None
     # IP address.
     ip_address: Optional[str] = None
@@ -31,7 +31,7 @@ class CloudPcAuditActor(AdditionalDataHolder, BackedModel, Parsable):
     service_principal_name: Optional[str] = None
     # The type property
     type: Optional[CloudPcAuditActorType] = None
-    # Azure AD user ID.
+    # Microsoft Entra user ID.
     user_id: Optional[str] = None
     # List of user permissions and application permissions when the audit event was performed.
     user_permissions: Optional[List[str]] = None

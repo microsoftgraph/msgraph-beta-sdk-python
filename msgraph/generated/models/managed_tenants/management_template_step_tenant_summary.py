@@ -42,7 +42,7 @@ class ManagementTemplateStepTenantSummary(Entity):
     # The notCompliantTenantsCount property
     not_compliant_tenants_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementTemplateStepTenantSummary:

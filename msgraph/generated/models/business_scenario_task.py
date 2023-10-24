@@ -15,7 +15,7 @@ class BusinessScenarioTask(PlannerTask):
     # Scenario-specific properties of the task. externalObjectId and externalBucketId properties must be specified when creating a task.
     business_scenario_properties: Optional[BusinessScenarioProperties] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Target of the task that specifies where the task should be placed. Must be specified when creating a task.
     target: Optional[BusinessScenarioTaskTargetBase] = None
     

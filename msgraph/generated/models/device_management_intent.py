@@ -43,7 +43,7 @@ class DeviceManagementIntent(Entity):
     # When the intent was last modified
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # List of Scope Tags for this Entity instance.
     role_scope_tag_ids: Optional[List[str]] = None
     # Collection of all settings to be applied

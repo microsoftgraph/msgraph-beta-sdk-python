@@ -21,7 +21,7 @@ class PlannerUser(PlannerDelta):
     # Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
     favorite_plans: Optional[List[PlannerPlan]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The plans property
     plans: Optional[List[PlannerPlan]] = None
     # A collection that contains references to the plans that were viewed recently by the user in apps that support recent plans.

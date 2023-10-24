@@ -15,7 +15,7 @@ class ValidateOperation(LongRunningOperation):
     # Set of errors discovered through validation.
     errors: Optional[List[PublicError]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Set of warnings discovered through validation.
     warnings: Optional[List[PublicError]] = None
     

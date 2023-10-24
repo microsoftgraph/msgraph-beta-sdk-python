@@ -25,10 +25,10 @@ class UnifiedRoleManagementAlertConfiguration(Entity):
     # true if the alert is enabled. Setting it to false disables PIM scanning the tenant to identify instances that trigger the alert.
     is_enabled: Optional[bool] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The identifier of the scope to which the alert is related. Only / is supported to represent the tenant scope. Supports $filter (eq, ne).
     scope_id: Optional[str] = None
-    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Azure AD roles.
+    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Microsoft Entra roles.
     scope_type: Optional[str] = None
     
     @staticmethod

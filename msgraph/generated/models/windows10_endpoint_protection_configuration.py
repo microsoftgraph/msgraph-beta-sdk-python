@@ -54,7 +54,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the Windows10EndpointProtectionConfiguration resource.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10EndpointProtectionConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windows10EndpointProtectionConfiguration"
     # Possible values of AppLocker Application Control Types
     app_locker_application_control: Optional[AppLockerApplicationControlType] = None
     # Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.

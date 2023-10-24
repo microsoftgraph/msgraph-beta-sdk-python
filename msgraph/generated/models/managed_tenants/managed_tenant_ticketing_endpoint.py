@@ -24,7 +24,7 @@ class ManagedTenantTicketingEndpoint(Entity):
     # The lastActionDateTime property
     last_action_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The phoneNumber property
     phone_number: Optional[str] = None
     

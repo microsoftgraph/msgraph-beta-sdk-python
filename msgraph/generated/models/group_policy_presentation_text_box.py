@@ -14,7 +14,7 @@ class GroupPolicyPresentationTextBox(GroupPolicyUploadedPresentation):
     Represents an ADMX textBox element and an ADMX text element.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupPolicyPresentationTextBox"
+    OdataType: Optional[str] = "#microsoft.graph.groupPolicyPresentationTextBox"
     # Localized default string displayed in the text box. The default value is empty.
     default_value: Optional[str] = None
     # An unsigned integer that specifies the maximum number of text characters. Default value is 1023.

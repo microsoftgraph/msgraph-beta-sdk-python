@@ -11,7 +11,7 @@ from .governance_criteria import GovernanceCriteria
 @dataclass
 class GroupMembershipGovernanceCriteria(GovernanceCriteria):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.groupMembershipGovernanceCriteria"
+    OdataType: Optional[str] = "#microsoft.graph.groupMembershipGovernanceCriteria"
     # The groupId property
     group_id: Optional[str] = None
     

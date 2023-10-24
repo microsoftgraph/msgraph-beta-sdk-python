@@ -14,7 +14,7 @@ class IosiPadOSWebClip(MobileApp):
     Contains properties and inherited properties for iOS web apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosiPadOSWebClip"
+    OdataType: Optional[str] = "#microsoft.graph.iosiPadOSWebClip"
     # Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
     app_url: Optional[str] = None
     # Whether or not to open the web clip as a full-screen web app. Defaults to false. If TRUE, opens the web clip as a full-screen web app. If FALSE, the web clip opens inside of another app, such as Safari or the app specified with targetApplicationBundleIdentifier.

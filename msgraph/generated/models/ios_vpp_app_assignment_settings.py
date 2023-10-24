@@ -14,7 +14,7 @@ class IosVppAppAssignmentSettings(MobileAppAssignmentSettings):
     Contains properties used to assign an iOS VPP mobile app to a group.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosVppAppAssignmentSettings"
+    OdataType: Optional[str] = "#microsoft.graph.iosVppAppAssignmentSettings"
     # Whether or not the app can be removed by the user.
     is_removable: Optional[bool] = None
     # When TRUE, indicates that the app should not be automatically updated with the latest version from Apple app store. When FALSE, indicates that the app may be auto updated. By default, this property is set to null which internally is treated as FALSE.

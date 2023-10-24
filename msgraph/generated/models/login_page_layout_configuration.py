@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 @dataclass
 class LoginPageLayoutConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -18,7 +18,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     is_footer_shown: Optional[bool] = None
     # Option to show the header on the sign-in page.
     is_header_shown: Optional[bool] = None
-    # Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a backgound on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+    # Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a background on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Don't use.
     layout_template_type: Optional[LayoutTemplateType] = None
     # The OdataType property
     odata_type: Optional[str] = None

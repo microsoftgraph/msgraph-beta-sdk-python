@@ -15,7 +15,7 @@ class AppleExpeditedCheckinConfigurationBase(DeviceConfiguration):
     Experimental profile to increase the rate of device check-ins per day of iOS/macOS devices. This profile type is deprecated.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.appleExpeditedCheckinConfigurationBase"
+    OdataType: Optional[str] = "#microsoft.graph.appleExpeditedCheckinConfigurationBase"
     # Gets or sets whether to enable expedited device check-ins.
     enable_expedited_checkin: Optional[bool] = None
     

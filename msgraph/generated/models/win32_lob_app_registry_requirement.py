@@ -15,7 +15,7 @@ class Win32LobAppRegistryRequirement(Win32LobAppRequirement):
     Contains registry properties to detect a Win32 App
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.win32LobAppRegistryRequirement"
+    OdataType: Optional[str] = "#microsoft.graph.win32LobAppRegistryRequirement"
     # A value indicating whether this registry path is for checking 32-bit app on 64-bit system
     check32_bit_on64_system: Optional[bool] = None
     # Contains all supported registry data detection type.

@@ -18,7 +18,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(Entity):
     # The estimated runtime of the device when the battery is fully charged. Unit in minutes. Valid values 0 to 2147483647
     estimated_runtime_in_minutes: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The datetime for the instance of runtime history.
     runtime_date_time: Optional[str] = None
     

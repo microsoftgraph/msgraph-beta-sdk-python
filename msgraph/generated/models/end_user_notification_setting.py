@@ -14,17 +14,17 @@ if TYPE_CHECKING:
 @dataclass
 class EndUserNotificationSetting(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The notificationPreference property
+    # Notification preference. Possible values are: unknown, microsoft, custom, unknownFutureValue.
     notification_preference: Optional[EndUserNotificationPreference] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The positiveReinforcement property
+    # Positive reinforcement detail.
     positive_reinforcement: Optional[PositiveReinforcementNotification] = None
-    # The settingType property
+    # End user notification type. Possible values are: unknown, noTraining, trainingSelected, noNotification, unknownFutureValue.
     setting_type: Optional[EndUserNotificationSettingType] = None
     
     @staticmethod

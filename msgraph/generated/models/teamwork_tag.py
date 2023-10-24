@@ -12,16 +12,16 @@ from .entity import Entity
 
 @dataclass
 class TeamworkTag(Entity):
-    # Tag description as it will appear to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
+    # Tag description as it appears to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
     description: Optional[str] = None
-    # Tag name as it will appear to the user in Microsoft Teams.
+    # Tag name as it appears to the user in Microsoft Teams.
     display_name: Optional[str] = None
     # The number of users assigned to the tag.
     member_count: Optional[int] = None
     # Users assigned to the tag.
     members: Optional[List[TeamworkTagMember]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The type of tag. Default is standard.
     tag_type: Optional[TeamworkTagType] = None
     # ID of the team in which the tag is defined.

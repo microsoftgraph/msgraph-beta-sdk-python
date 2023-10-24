@@ -12,7 +12,7 @@ from .education_synchronization_data_provider import EducationSynchronizationDat
 @dataclass
 class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.educationPowerSchoolDataProvider"
+    OdataType: Optional[str] = "#microsoft.graph.educationPowerSchoolDataProvider"
     # Indicates whether the source has multiple identifiers for a single student or teacher.
     allow_teachers_in_multiple_schools: Optional[bool] = None
     # The client ID used to connect to PowerSchool.

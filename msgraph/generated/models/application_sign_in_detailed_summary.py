@@ -19,7 +19,7 @@ class ApplicationSignInDetailedSummary(Entity):
     # ID of the application that the user signed in to.
     app_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Count of sign-ins made by the application.
     sign_in_count: Optional[int] = None
     # Details of the sign-in status.

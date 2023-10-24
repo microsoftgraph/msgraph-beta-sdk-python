@@ -14,7 +14,7 @@ class Windows10EnrollmentCompletionPageConfiguration(DeviceEnrollmentConfigurati
     Windows 10 Enrollment Status Page Configuration
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration"
+    OdataType: Optional[str] = "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration"
     # Allow or block device reset on installation failure
     allow_device_reset_on_install_failure: Optional[bool] = None
     # Allow the user to continue using the device on installation failure

@@ -12,7 +12,7 @@ from .activity_statistics import ActivityStatistics
 @dataclass
 class CallActivityStatistics(ActivityStatistics):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.callActivityStatistics"
+    OdataType: Optional[str] = "#microsoft.graph.callActivityStatistics"
     # Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
     after_hours: Optional[datetime.timedelta] = None
     

@@ -15,7 +15,7 @@ class PlannerRoster(Entity):
     # Retrieves the members of the plannerRoster.
     members: Optional[List[PlannerRosterMember]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Retrieves the plans contained by the plannerRoster.
     plans: Optional[List[PlannerPlan]] = None
     

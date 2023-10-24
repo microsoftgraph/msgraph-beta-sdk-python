@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .managed_app_operation import ManagedAppOperation
     from .managed_app_policy import ManagedAppPolicy
     from .mobile_app_identifier import MobileAppIdentifier
+    from .windows_managed_app_registration import WindowsManagedAppRegistration
 
 from .entity import Entity
 
@@ -51,7 +52,7 @@ class ManagedAppRegistration(Entity):
     # App management SDK version
     management_sdk_version: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Zero or more long running operations triggered on the app registration.
     operations: Optional[List[ManagedAppOperation]] = None
     # Operating System version
@@ -82,6 +83,10 @@ class ManagedAppRegistration(Entity):
             from .ios_managed_app_registration import IosManagedAppRegistration
 
             return IosManagedAppRegistration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsManagedAppRegistration".casefold():
+            from .windows_managed_app_registration import WindowsManagedAppRegistration
+
+            return WindowsManagedAppRegistration()
         return ManagedAppRegistration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -96,6 +101,7 @@ class ManagedAppRegistration(Entity):
         from .managed_app_operation import ManagedAppOperation
         from .managed_app_policy import ManagedAppPolicy
         from .mobile_app_identifier import MobileAppIdentifier
+        from .windows_managed_app_registration import WindowsManagedAppRegistration
 
         from .android_managed_app_registration import AndroidManagedAppRegistration
         from .entity import Entity
@@ -104,6 +110,7 @@ class ManagedAppRegistration(Entity):
         from .managed_app_operation import ManagedAppOperation
         from .managed_app_policy import ManagedAppPolicy
         from .mobile_app_identifier import MobileAppIdentifier
+        from .windows_managed_app_registration import WindowsManagedAppRegistration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_object_value(MobileAppIdentifier)),

@@ -14,7 +14,7 @@ class DeliveryOptimizationMaxCacheSizePercentage(DeliveryOptimizationMaxCacheSiz
     Delivery Optimization Max cache size percentage types.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage"
+    OdataType: Optional[str] = "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage"
     # Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
     maximum_cache_size_percentage: Optional[int] = None
     

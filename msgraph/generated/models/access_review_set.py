@@ -14,14 +14,14 @@ from .entity import Entity
 
 @dataclass
 class AccessReviewSet(Entity):
-    # Represents an Azure AD access review decision on an instance of a review.
+    # Represents a Microsoft Entra access review decision on an instance of a review.
     decisions: Optional[List[AccessReviewInstanceDecisionItem]] = None
     # Represents the template and scheduling for an access review.
     definitions: Optional[List[AccessReviewScheduleDefinition]] = None
     # Represents a collection of access review history data and the scopes used to collect that data.
     history_definitions: Optional[List[AccessReviewHistoryDefinition]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Resource that enables administrators to manage directory-level access review policies in their tenant.
     policy: Optional[AccessReviewPolicy] = None
     

@@ -35,7 +35,7 @@ class DeviceComplianceScript(Entity):
     # The timestamp of when the device compliance script was modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Name of the device compliance script publisher
     publisher: Optional[str] = None
     # List of Scope Tag IDs for the device compliance script

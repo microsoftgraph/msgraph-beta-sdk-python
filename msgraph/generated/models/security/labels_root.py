@@ -27,7 +27,7 @@ class LabelsRoot(Entity):
     # Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
     file_plan_references: Optional[List[FilePlanReferenceTemplate]] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Represents how customers can manage their data, whether and for how long to retain or delete it.
     retention_labels: Optional[List[RetentionLabel]] = None
     

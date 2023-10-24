@@ -12,7 +12,7 @@ from .response_action import ResponseAction
 @dataclass
 class SoftDeleteResponseAction(ResponseAction):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.softDeleteResponseAction"
+    OdataType: Optional[str] = "#microsoft.graph.security.softDeleteResponseAction"
     # The identifier property
     identifier: Optional[EmailEntityIdentifier] = None
     
@@ -39,7 +39,7 @@ class SoftDeleteResponseAction(ResponseAction):
         from .response_action import ResponseAction
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "identifier": lambda n : setattr(self, 'identifier', n.get_enum_value(EmailEntityIdentifier)),
+            "identifier": lambda n : setattr(self, 'identifier', n.get_collection_of_enum_values(EmailEntityIdentifier)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

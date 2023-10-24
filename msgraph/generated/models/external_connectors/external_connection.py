@@ -42,7 +42,7 @@ class ExternalConnection(Entity):
     # The display name of the connection to be displayed in the Microsoft 365 admin center. Maximum length of 128 characters. Required.
     name: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The operations property
     operations: Optional[List[ConnectionOperation]] = None
     # The quota property
@@ -102,7 +102,7 @@ class ExternalConnection(Entity):
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(Configuration)),
             "connectorId": lambda n : setattr(self, 'connector_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "enabledContentExperiences": lambda n : setattr(self, 'enabled_content_experiences', n.get_enum_value(ContentExperienceType)),
+            "enabledContentExperiences": lambda n : setattr(self, 'enabled_content_experiences', n.get_collection_of_enum_values(ContentExperienceType)),
             "groups": lambda n : setattr(self, 'groups', n.get_collection_of_object_values(ExternalGroup)),
             "ingestedItemsCount": lambda n : setattr(self, 'ingested_items_count', n.get_int_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(ExternalItem)),

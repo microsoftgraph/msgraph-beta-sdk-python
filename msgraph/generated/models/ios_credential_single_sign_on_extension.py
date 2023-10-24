@@ -15,7 +15,7 @@ class IosCredentialSingleSignOnExtension(IosSingleSignOnExtension):
     Represents a Credential-type Single Sign-On extension profile for iOS devices.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.iosCredentialSingleSignOnExtension"
+    OdataType: Optional[str] = "#microsoft.graph.iosCredentialSingleSignOnExtension"
     # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
     configurations: Optional[List[KeyTypedValuePair]] = None
     # Gets or sets a list of hosts or domain names for which the app extension performs SSO.

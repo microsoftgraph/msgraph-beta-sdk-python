@@ -42,7 +42,7 @@ class PolicySetItem(Entity):
     # Last modified time of the PolicySetItem.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # PayloadId of the PolicySetItem.
     payload_id: Optional[str] = None
     # The enum to specify the status of PolicySet.

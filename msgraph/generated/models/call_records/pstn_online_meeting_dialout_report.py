@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
@@ -27,9 +27,9 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, BackedModel, Parsable
     usage_location: Optional[str] = None
     # Display name of the user.
     user_display_name: Optional[str] = None
-    # The unique identifier (GUID) of the user in Azure Active Directory.
+    # The unique identifier (GUID) of the user in Microsoft Entra ID.
     user_id: Optional[str] = None
-    # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
+    # The user principal name (sign-in name) in Microsoft Entra ID. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
     user_principal_name: Optional[str] = None
     
     @staticmethod

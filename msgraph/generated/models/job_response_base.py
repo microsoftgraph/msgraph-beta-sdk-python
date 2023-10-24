@@ -22,7 +22,7 @@ class JobResponseBase(Entity):
     # The error property
     error: Optional[ClassificationError] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The startDateTime property
     start_date_time: Optional[datetime.datetime] = None
     # The status property

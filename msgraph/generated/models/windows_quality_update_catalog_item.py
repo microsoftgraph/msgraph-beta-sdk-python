@@ -15,7 +15,7 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem):
     Windows update catalog item entity
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsQualityUpdateCatalogItem"
+    OdataType: Optional[str] = "#microsoft.graph.windowsQualityUpdateCatalogItem"
     # Windows quality update classification
     classification: Optional[WindowsQualityUpdateClassification] = None
     # Flag indicating if update qualifies for expedite

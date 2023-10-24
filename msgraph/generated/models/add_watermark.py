@@ -12,7 +12,7 @@ from .mark_content import MarkContent
 @dataclass
 class AddWatermark(MarkContent):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.addWatermark"
+    OdataType: Optional[str] = "#microsoft.graph.addWatermark"
     # The orientation property
     orientation: Optional[PageOrientation] = None
     

@@ -39,7 +39,7 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(Entity):
     # The modelHealthStatus property
     model_health_status: Optional[UserExperienceAnalyticsHealthState] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsBatteryHealthModelPerformance:

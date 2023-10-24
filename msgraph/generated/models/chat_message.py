@@ -58,7 +58,7 @@ class ChatMessage(Entity):
     # The messageType property
     message_type: Optional[ChatMessageType] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # User attribution of the message when bot sends a message on behalf of a user.
     on_behalf_of: Optional[ChatMessageFromIdentitySet] = None
     # Defines the properties of a policy violation set by a data loss prevention (DLP) application.

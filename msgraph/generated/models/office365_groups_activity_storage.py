@@ -14,7 +14,7 @@ class Office365GroupsActivityStorage(Entity):
     # The storage used in group mailbox.
     mailbox_storage_used_in_bytes: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The snapshot date for Exchange and SharePoint used storage.
     report_date: Optional[datetime.date] = None
     # The number of days the report covers.

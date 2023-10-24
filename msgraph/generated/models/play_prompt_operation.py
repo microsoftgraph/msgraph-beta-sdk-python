@@ -14,7 +14,7 @@ class PlayPromptOperation(CommsOperation):
     # Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
     completion_reason: Optional[PlayPromptCompletionReason] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlayPromptOperation:

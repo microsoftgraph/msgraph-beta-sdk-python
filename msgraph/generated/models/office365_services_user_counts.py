@@ -16,7 +16,7 @@ class Office365ServicesUserCounts(Entity):
     # The number of inactive users on Exchange.
     exchange_inactive: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The number of active users on Microsoft 365.
     office365_active: Optional[int] = None
     # The number of inactive users on Microsoft 365.

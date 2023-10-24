@@ -15,7 +15,7 @@ class Windows10XTrustedRootCertificate(DeviceManagementResourceAccessProfileBase
     Windows X Trusted Root Certificate configuration profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10XTrustedRootCertificate"
+    OdataType: Optional[str] = "#microsoft.graph.windows10XTrustedRootCertificate"
     # File name to display in UI.
     cert_file_name: Optional[str] = None
     # Possible values for the Certificate Destination Store.

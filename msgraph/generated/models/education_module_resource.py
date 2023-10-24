@@ -12,7 +12,7 @@ from .entity import Entity
 @dataclass
 class EducationModuleResource(Entity):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Resource object that has been associated with this module.
     resource: Optional[EducationResource] = None
     

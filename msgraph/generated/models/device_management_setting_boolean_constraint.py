@@ -14,7 +14,7 @@ class DeviceManagementSettingBooleanConstraint(DeviceManagementConstraint):
     Constraint the enforces a particular boolean value
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.deviceManagementSettingBooleanConstraint"
+    OdataType: Optional[str] = "#microsoft.graph.deviceManagementSettingBooleanConstraint"
     # The boolean value to compare against
     value: Optional[bool] = None
     

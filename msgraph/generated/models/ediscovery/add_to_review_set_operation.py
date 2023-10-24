@@ -13,7 +13,7 @@ from .case_operation import CaseOperation
 @dataclass
 class AddToReviewSetOperation(CaseOperation):
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The review set to which items matching the source collection query are added to.
     review_set: Optional[ReviewSet] = None
     # The sourceCollection that items are being added from.

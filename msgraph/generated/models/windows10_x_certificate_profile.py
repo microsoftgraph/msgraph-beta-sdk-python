@@ -15,7 +15,7 @@ class Windows10XCertificateProfile(DeviceManagementResourceAccessProfileBase):
     Base Profile Type for Authentication Certificates (SCEP or PFX Create)
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windows10XCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.windows10XCertificateProfile"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10XCertificateProfile:

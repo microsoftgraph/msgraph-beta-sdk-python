@@ -23,7 +23,7 @@ class SecurityBaselineStateSummary(Entity):
     # Number of not secure devices
     not_secure_count: Optional[int] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Number of secure devices
     secure_count: Optional[int] = None
     # Number of unknown devices

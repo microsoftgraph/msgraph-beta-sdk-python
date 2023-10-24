@@ -29,7 +29,7 @@ class GroupPolicyPresentationValue(Entity):
     # The date and time the object was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The group policy presentation associated with the presentation value.
     presentation: Optional[GroupPolicyPresentation] = None
     

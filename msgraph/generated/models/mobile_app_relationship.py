@@ -17,7 +17,7 @@ class MobileAppRelationship(Entity):
     Describes a relationship between two mobile apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # The target mobile app's display name.
     target_display_name: Optional[str] = None
     # The target mobile app's display version.

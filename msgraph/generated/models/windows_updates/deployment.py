@@ -24,7 +24,7 @@ class Deployment(Entity):
     # The date and time the deployment was last modified. Returned by default. Read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Settings specified on the specific deployment governing how to deploy content. Returned by default.
     settings: Optional[DeploymentSettings] = None
     # Execution status of the deployment. Returned by default.

@@ -16,7 +16,7 @@ class AndroidManagedStoreApp(MobileApp):
     Contains properties and inherited properties for Android Managed Store Apps.
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.androidManagedStoreApp"
+    OdataType: Optional[str] = "#microsoft.graph.androidManagedStoreApp"
     # The Identity Name.
     app_identifier: Optional[str] = None
     # The Play for Work Store app URL.

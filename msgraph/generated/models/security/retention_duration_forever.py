@@ -11,7 +11,7 @@ from .retention_duration import RetentionDuration
 @dataclass
 class RetentionDurationForever(RetentionDuration):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.retentionDurationForever"
+    OdataType: Optional[str] = "#microsoft.graph.security.retentionDurationForever"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RetentionDurationForever:

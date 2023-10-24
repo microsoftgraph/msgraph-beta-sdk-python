@@ -7,19 +7,19 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class BuildVersionDetails(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+    BackingStore: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The buildNumber property
+    # The build number of the product release. Read-only.
     build_number: Optional[int] = None
-    # The majorVersion property
+    # The major version of the product release. Read-only.
     major_version: Optional[int] = None
-    # The minorVersion property
+    # The minor version of the product release. Read-only.
     minor_version: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The updateBuildRevision property
+    # The update build revision number of the product revision. Read-only.
     update_build_revision: Optional[int] = None
     
     @staticmethod

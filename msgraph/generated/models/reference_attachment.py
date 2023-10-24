@@ -13,7 +13,7 @@ from .attachment import Attachment
 @dataclass
 class ReferenceAttachment(Attachment):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.referenceAttachment"
+    OdataType: Optional[str] = "#microsoft.graph.referenceAttachment"
     # Specifies whether the attachment is a link to a folder. Must set this to true if sourceUrl is a link to a folder. Optional.
     is_folder: Optional[bool] = None
     # Specifies the permissions granted for the attachment by the type of provider in providerType. Possible values are: other, view, edit, anonymousView, anonymousEdit, organizationView, organizationEdit. Optional.

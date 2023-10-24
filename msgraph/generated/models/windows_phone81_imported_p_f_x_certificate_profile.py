@@ -16,7 +16,7 @@ class WindowsPhone81ImportedPFXCertificateProfile(WindowsCertificateProfileBase)
     Windows 8.1 Phone and Mobile PFX Import certificate profile
     """
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsPhone81ImportedPFXCertificateProfile"
+    OdataType: Optional[str] = "#microsoft.graph.windowsPhone81ImportedPFXCertificateProfile"
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.

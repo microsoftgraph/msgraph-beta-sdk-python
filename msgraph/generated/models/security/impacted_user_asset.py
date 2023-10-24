@@ -12,7 +12,7 @@ from .impacted_asset import ImpactedAsset
 @dataclass
 class ImpactedUserAsset(ImpactedAsset):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.security.impactedUserAsset"
+    OdataType: Optional[str] = "#microsoft.graph.security.impactedUserAsset"
     # The identifier property
     identifier: Optional[UserAssetIdentifier] = None
     

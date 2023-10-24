@@ -19,7 +19,7 @@ class TeamsTab(Entity):
     # The messageId property
     message_id: Optional[str] = None
     # The OdataType property
-    odata_type: Optional[str] = None
+    OdataType: Optional[str] = None
     # Index of the order used for sorting tabs.
     sort_order_index: Optional[str] = None
     # The application that is linked to the tab.

@@ -12,7 +12,7 @@ from .on_user_create_start_handler import OnUserCreateStartHandler
 @dataclass
 class OnUserCreateStartExternalUsersSelfServiceSignUp(OnUserCreateStartHandler):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.onUserCreateStartExternalUsersSelfServiceSignUp"
+    OdataType: Optional[str] = "#microsoft.graph.onUserCreateStartExternalUsersSelfServiceSignUp"
     # The type of user object to create. The possible values are: member, guest, unknownFutureValue.
     user_type_to_create: Optional[UserType] = None
     
