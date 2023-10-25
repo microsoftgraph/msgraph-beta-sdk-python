@@ -27,9 +27,9 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
     user_block_mode: Optional[PstnUserBlockMode] = None
     # Display name of the user.
     user_display_name: Optional[str] = None
-    # The unique identifier (GUID) of the user in Azure Active Directory.
+    # The unique identifier (GUID) of the user in Microsoft Entra ID.
     user_id: Optional[str] = None
-    # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
+    # The user principal name (sign-in name) in Microsoft Entra ID. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
     user_principal_name: Optional[str] = None
     # User's blocked number. For details, see E.164.
     user_telephone_number: Optional[str] = None
@@ -57,7 +57,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "blockDateTime": lambda n : setattr(self, 'block_date_time', n.get_datetime_value()),
             "blockReason": lambda n : setattr(self, 'block_reason', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "remediationId": lambda n : setattr(self, 'remediation_id', n.get_str_value()),
             "userBlockMode": lambda n : setattr(self, 'user_block_mode', n.get_enum_value(PstnUserBlockMode)),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
@@ -77,7 +77,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("blockDateTime", self.block_date_time)
         writer.write_str_value("blockReason", self.block_reason)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("remediationId", self.remediation_id)
         writer.write_enum_value("userBlockMode", self.user_block_mode)
         writer.write_str_value("userDisplayName", self.user_display_name)

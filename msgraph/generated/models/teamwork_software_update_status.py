@@ -46,7 +46,7 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "availableVersion": lambda n : setattr(self, 'available_version', n.get_str_value()),
             "currentVersion": lambda n : setattr(self, 'current_version', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "softwareFreshness": lambda n : setattr(self, 'software_freshness', n.get_enum_value(TeamworkSoftwareFreshness)),
         }
         return fields
@@ -61,7 +61,7 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("availableVersion", self.available_version)
         writer.write_str_value("currentVersion", self.current_version)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("softwareFreshness", self.software_freshness)
         writer.write_additional_data_value(self.additional_data)
     

@@ -56,7 +56,7 @@ class ConnectorStatusDetails(AdditionalDataHolder, BackedModel, Parsable):
             "connectorInstanceId": lambda n : setattr(self, 'connector_instance_id', n.get_str_value()),
             "connectorName": lambda n : setattr(self, 'connector_name', n.get_enum_value(ConnectorName)),
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(ConnectorHealthState)),
         }
         return fields
@@ -72,7 +72,7 @@ class ConnectorStatusDetails(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("connectorInstanceId", self.connector_instance_id)
         writer.write_enum_value("connectorName", self.connector_name)
         writer.write_datetime_value("eventDateTime", self.event_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     

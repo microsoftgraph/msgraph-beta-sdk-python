@@ -42,7 +42,7 @@ class UserRegistrationCount(AdditionalDataHolder, BackedModel, Parsable):
         from .registration_status_type import RegistrationStatusType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "registrationCount": lambda n : setattr(self, 'registration_count', n.get_int_value()),
             "registrationStatus": lambda n : setattr(self, 'registration_status', n.get_enum_value(RegistrationStatusType)),
         }
@@ -56,7 +56,7 @@ class UserRegistrationCount(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("registrationCount", self.registration_count)
         writer.write_enum_value("registrationStatus", self.registration_status)
         writer.write_additional_data_value(self.additional_data)

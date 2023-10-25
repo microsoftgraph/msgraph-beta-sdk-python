@@ -11,7 +11,7 @@ class Label(str, Enum):
     FileName = "fileName",
     FileExtension = "fileExtension",
     UnknownFutureValue = "unknownFutureValue",
-    IconUrl = "iconUrl",
     ContainerName = "containerName",
     ContainerUrl = "containerUrl",
+    IconUrl = "iconUrl",
 

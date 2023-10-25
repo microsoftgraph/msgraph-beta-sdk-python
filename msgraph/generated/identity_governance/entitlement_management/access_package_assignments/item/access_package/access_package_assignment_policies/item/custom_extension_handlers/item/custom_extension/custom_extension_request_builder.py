@@ -28,7 +28,7 @@ class CustomExtensionRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CustomExtensionRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomAccessPackageWorkflowExtension]:
         """
-        Indicates which custom workflow extension will be executed at this stage. Nullable. Supports $expand.
+        Indicates which custom workflow extension is executed at this stage. Nullable. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAccessPackageWorkflowExtension]
         """
@@ -49,19 +49,19 @@ class CustomExtensionRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CustomExtensionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Indicates which custom workflow extension will be executed at this stage. Nullable. Supports $expand.
+        Indicates which custom workflow extension is executed at this stage. Nullable. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> CustomExtensionRequestBuilder:
@@ -72,12 +72,12 @@ class CustomExtensionRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CustomExtensionRequestBuilder(raw_url, self.request_adapter)
+        return CustomExtensionRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class CustomExtensionRequestBuilderGetQueryParameters():
         """
-        Indicates which custom workflow extension will be executed at this stage. Nullable. Supports $expand.
+        Indicates which custom workflow extension is executed at this stage. Nullable. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

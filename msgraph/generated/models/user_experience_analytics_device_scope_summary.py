@@ -44,7 +44,7 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, BackedMode
         fields: Dict[str, Callable[[Any], None]] = {
             "completedDeviceScopeIds": lambda n : setattr(self, 'completed_device_scope_ids', n.get_collection_of_primitive_values(str)),
             "insufficientDataDeviceScopeIds": lambda n : setattr(self, 'insufficient_data_device_scope_ids', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "totalDeviceScopes": lambda n : setattr(self, 'total_device_scopes', n.get_int_value()),
             "totalDeviceScopesEnabled": lambda n : setattr(self, 'total_device_scopes_enabled', n.get_int_value()),
         }
@@ -60,7 +60,7 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, BackedMode
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("completedDeviceScopeIds", self.completed_device_scope_ids)
         writer.write_collection_of_primitive_values("insufficientDataDeviceScopeIds", self.insufficient_data_device_scope_ids)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("totalDeviceScopes", self.total_device_scopes)
         writer.write_int_value("totalDeviceScopesEnabled", self.total_device_scopes_enabled)
         writer.write_additional_data_value(self.additional_data)

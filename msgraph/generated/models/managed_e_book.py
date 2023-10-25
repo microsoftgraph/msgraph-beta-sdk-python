@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_install_state import DeviceInstallState
-    from .e_book_install_summary import EBookInstallSummary
     from .entity import Entity
+    from .e_book_install_summary import EBookInstallSummary
     from .ios_vpp_e_book import IosVppEBook
     from .managed_e_book_assignment import ManagedEBookAssignment
     from .managed_e_book_category import ManagedEBookCategory
@@ -77,8 +77,8 @@ class ManagedEBook(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .device_install_state import DeviceInstallState
-        from .e_book_install_summary import EBookInstallSummary
         from .entity import Entity
+        from .e_book_install_summary import EBookInstallSummary
         from .ios_vpp_e_book import IosVppEBook
         from .managed_e_book_assignment import ManagedEBookAssignment
         from .managed_e_book_category import ManagedEBookCategory
@@ -86,8 +86,8 @@ class ManagedEBook(Entity):
         from .user_install_state_summary import UserInstallStateSummary
 
         from .device_install_state import DeviceInstallState
-        from .e_book_install_summary import EBookInstallSummary
         from .entity import Entity
+        from .e_book_install_summary import EBookInstallSummary
         from .ios_vpp_e_book import IosVppEBook
         from .managed_e_book_assignment import ManagedEBookAssignment
         from .managed_e_book_category import ManagedEBookCategory

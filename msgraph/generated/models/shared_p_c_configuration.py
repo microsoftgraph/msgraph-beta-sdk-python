@@ -85,7 +85,7 @@ class SharedPCConfiguration(DeviceConfiguration):
         fields: Dict[str, Callable[[Any], None]] = {
             "accountManagerPolicy": lambda n : setattr(self, 'account_manager_policy', n.get_object_value(SharedPCAccountManagerPolicy)),
             "allowLocalStorage": lambda n : setattr(self, 'allow_local_storage', n.get_bool_value()),
-            "allowedAccounts": lambda n : setattr(self, 'allowed_accounts', n.get_enum_value(SharedPCAllowedAccountType)),
+            "allowedAccounts": lambda n : setattr(self, 'allowed_accounts', n.get_collection_of_enum_values(SharedPCAllowedAccountType)),
             "disableAccountManager": lambda n : setattr(self, 'disable_account_manager', n.get_bool_value()),
             "disableEduPolicies": lambda n : setattr(self, 'disable_edu_policies', n.get_bool_value()),
             "disablePowerPolicies": lambda n : setattr(self, 'disable_power_policies', n.get_bool_value()),

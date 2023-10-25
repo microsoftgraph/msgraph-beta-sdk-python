@@ -17,7 +17,7 @@ class TenantCustomizedInformation(Entity):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Optional. Read-only.
     tenant_id: Optional[str] = None
     # The website for the managed tenant. Required.
     website: Optional[str] = None

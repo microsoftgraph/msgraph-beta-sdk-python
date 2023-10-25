@@ -53,7 +53,7 @@ class UserAccount(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "service": lambda n : setattr(self, 'service', n.get_str_value()),
             "signinName": lambda n : setattr(self, 'signin_name', n.get_str_value()),
@@ -71,7 +71,7 @@ class UserAccount(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastSeenDateTime", self.last_seen_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("riskScore", self.risk_score)
         writer.write_str_value("service", self.service)
         writer.write_str_value("signinName", self.signin_name)

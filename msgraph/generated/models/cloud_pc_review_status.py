@@ -61,7 +61,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
             "azureStorageAccountName": lambda n : setattr(self, 'azure_storage_account_name', n.get_str_value()),
             "azureStorageContainerName": lambda n : setattr(self, 'azure_storage_container_name', n.get_str_value()),
             "inReview": lambda n : setattr(self, 'in_review', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "restorePointDateTime": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
             "reviewStartDateTime": lambda n : setattr(self, 'review_start_date_time', n.get_datetime_value()),
             "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
@@ -82,7 +82,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("azureStorageAccountName", self.azure_storage_account_name)
         writer.write_str_value("azureStorageContainerName", self.azure_storage_container_name)
         writer.write_bool_value("inReview", self.in_review)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_datetime_value("restorePointDateTime", self.restore_point_date_time)
         writer.write_datetime_value("reviewStartDateTime", self.review_start_date_time)
         writer.write_str_value("subscriptionId", self.subscription_id)

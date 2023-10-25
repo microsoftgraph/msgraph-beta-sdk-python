@@ -51,7 +51,7 @@ class ChannelModerationSettings(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "allowNewMessageFromBots": lambda n : setattr(self, 'allow_new_message_from_bots', n.get_bool_value()),
             "allowNewMessageFromConnectors": lambda n : setattr(self, 'allow_new_message_from_connectors', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "replyRestriction": lambda n : setattr(self, 'reply_restriction', n.get_enum_value(ReplyRestriction)),
             "userNewMessageRestriction": lambda n : setattr(self, 'user_new_message_restriction', n.get_enum_value(UserNewMessageRestriction)),
         }
@@ -67,7 +67,7 @@ class ChannelModerationSettings(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("allowNewMessageFromBots", self.allow_new_message_from_bots)
         writer.write_bool_value("allowNewMessageFromConnectors", self.allow_new_message_from_connectors)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("replyRestriction", self.reply_restriction)
         writer.write_enum_value("userNewMessageRestriction", self.user_new_message_restriction)
         writer.write_additional_data_value(self.additional_data)

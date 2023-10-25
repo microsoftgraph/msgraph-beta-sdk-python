@@ -68,7 +68,7 @@ class TitleArea(AdditionalDataHolder, BackedModel, Parsable):
             "enableGradientEffect": lambda n : setattr(self, 'enable_gradient_effect', n.get_bool_value()),
             "imageWebUrl": lambda n : setattr(self, 'image_web_url', n.get_str_value()),
             "layout": lambda n : setattr(self, 'layout', n.get_enum_value(TitleAreaLayoutType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "serverProcessedContent": lambda n : setattr(self, 'server_processed_content', n.get_object_value(ServerProcessedContent)),
             "showAuthor": lambda n : setattr(self, 'show_author', n.get_bool_value()),
             "showPublishedDate": lambda n : setattr(self, 'show_published_date', n.get_bool_value()),
@@ -90,7 +90,7 @@ class TitleArea(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("enableGradientEffect", self.enable_gradient_effect)
         writer.write_str_value("imageWebUrl", self.image_web_url)
         writer.write_enum_value("layout", self.layout)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("serverProcessedContent", self.server_processed_content)
         writer.write_bool_value("showAuthor", self.show_author)
         writer.write_bool_value("showPublishedDate", self.show_published_date)

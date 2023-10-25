@@ -46,7 +46,7 @@ class VppTokenLicenseSummary(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "appleId": lambda n : setattr(self, 'apple_id', n.get_str_value()),
             "availableLicenseCount": lambda n : setattr(self, 'available_license_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "organizationName": lambda n : setattr(self, 'organization_name', n.get_str_value()),
             "usedLicenseCount": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
             "vppTokenId": lambda n : setattr(self, 'vpp_token_id', n.get_str_value()),
@@ -63,7 +63,7 @@ class VppTokenLicenseSummary(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("appleId", self.apple_id)
         writer.write_int_value("availableLicenseCount", self.available_license_count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("organizationName", self.organization_name)
         writer.write_int_value("usedLicenseCount", self.used_license_count)
         writer.write_str_value("vppTokenId", self.vpp_token_id)

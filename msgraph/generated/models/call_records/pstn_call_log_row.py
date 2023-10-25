@@ -57,9 +57,9 @@ class PstnCallLogRow(AdditionalDataHolder, BackedModel, Parsable):
     license_capability: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The telecommunications operator which provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.
+    # The telecommunications operator that provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.
     operator: Optional[str] = None
-    # Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
+    # Country code of the caller for an incoming call, or callee for an outgoing call. For details, see ISO 3166-1 alpha-2.
     other_party_country_code: Optional[str] = None
     # Call start time.
     start_date_time: Optional[datetime.datetime] = None
@@ -69,9 +69,9 @@ class PstnCallLogRow(AdditionalDataHolder, BackedModel, Parsable):
     usage_country_code: Optional[str] = None
     # Display name of the user.
     user_display_name: Optional[str] = None
-    # The unique identifier (GUID) of the user in Azure Active Directory. This and other user info will be null/empty for bot call types (ucapin, ucapout).
+    # The unique identifier (GUID) of the user in Microsoft Entra ID. This and other user info will be null/empty for bot call types (ucapin, ucapout).
     user_id: Optional[str] = None
-    # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
+    # The user principal name (sign-in name) in Microsoft Entra ID. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
     user_principal_name: Optional[str] = None
     
     @staticmethod
@@ -115,7 +115,7 @@ class PstnCallLogRow(AdditionalDataHolder, BackedModel, Parsable):
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "inventoryType": lambda n : setattr(self, 'inventory_type', n.get_str_value()),
             "licenseCapability": lambda n : setattr(self, 'license_capability', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_str_value()),
             "otherPartyCountryCode": lambda n : setattr(self, 'other_party_country_code', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
@@ -155,7 +155,7 @@ class PstnCallLogRow(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("id", self.id)
         writer.write_str_value("inventoryType", self.inventory_type)
         writer.write_str_value("licenseCapability", self.license_capability)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("operator", self.operator)
         writer.write_str_value("otherPartyCountryCode", self.other_party_country_code)
         writer.write_datetime_value("startDateTime", self.start_date_time)

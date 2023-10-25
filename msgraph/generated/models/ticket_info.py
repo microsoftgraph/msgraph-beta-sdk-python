@@ -13,8 +13,12 @@ class TicketInfo(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
+    # The ticketApproverIdentityId property
+    ticket_approver_identity_id: Optional[str] = None
     # The ticket number.
     ticket_number: Optional[str] = None
+    # The ticketSubmitterIdentityId property
+    ticket_submitter_identity_id: Optional[str] = None
     # The description of the ticket system.
     ticket_system: Optional[str] = None
     
@@ -35,8 +39,10 @@ class TicketInfo(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "ticketApproverIdentityId": lambda n : setattr(self, 'ticket_approver_identity_id', n.get_str_value()),
             "ticketNumber": lambda n : setattr(self, 'ticket_number', n.get_str_value()),
+            "ticketSubmitterIdentityId": lambda n : setattr(self, 'ticket_submitter_identity_id', n.get_str_value()),
             "ticketSystem": lambda n : setattr(self, 'ticket_system', n.get_str_value()),
         }
         return fields
@@ -49,8 +55,10 @@ class TicketInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("ticketApproverIdentityId", self.ticket_approver_identity_id)
         writer.write_str_value("ticketNumber", self.ticket_number)
+        writer.write_str_value("ticketSubmitterIdentityId", self.ticket_submitter_identity_id)
         writer.write_str_value("ticketSystem", self.ticket_system)
         writer.write_additional_data_value(self.additional_data)
     

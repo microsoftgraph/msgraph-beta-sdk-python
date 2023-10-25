@@ -31,7 +31,7 @@ class CredentialUserRegistrationsSummary(Entity):
     sspr_registered_user_count: Optional[int] = None
     # The display name for the managed tenant. Required. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Required. Read-only.
     tenant_id: Optional[str] = None
     # The license type associated with the tenant; for example, AADFree, AADPremium1, AADPremium2.
     tenant_license_type: Optional[str] = None

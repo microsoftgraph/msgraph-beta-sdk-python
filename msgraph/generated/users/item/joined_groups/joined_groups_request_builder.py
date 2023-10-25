@@ -14,9 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .delta.delta_request_builder import DeltaRequestBuilder
     from .evaluate_dynamic_membership.evaluate_dynamic_membership_request_builder import EvaluateDynamicMembershipRequestBuilder
-    from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
-    from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
-    from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
 
 class JoinedGroupsRequestBuilder(BaseRequestBuilder):
     """
@@ -59,14 +56,14 @@ class JoinedGroupsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> JoinedGroupsRequestBuilder:
@@ -77,7 +74,7 @@ class JoinedGroupsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return JoinedGroupsRequestBuilder(raw_url, self.request_adapter)
+        return JoinedGroupsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def delta(self) -> DeltaRequestBuilder:
@@ -96,33 +93,6 @@ class JoinedGroupsRequestBuilder(BaseRequestBuilder):
         from .evaluate_dynamic_membership.evaluate_dynamic_membership_request_builder import EvaluateDynamicMembershipRequestBuilder
 
         return EvaluateDynamicMembershipRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_by_ids(self) -> GetByIdsRequestBuilder:
-        """
-        Provides operations to call the getByIds method.
-        """
-        from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
-
-        return GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_user_owned_objects(self) -> GetUserOwnedObjectsRequestBuilder:
-        """
-        Provides operations to call the getUserOwnedObjects method.
-        """
-        from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
-
-        return GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def validate_properties(self) -> ValidatePropertiesRequestBuilder:
-        """
-        Provides operations to call the validateProperties method.
-        """
-        from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
-
-        return ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class JoinedGroupsRequestBuilderGetQueryParameters():

@@ -28,7 +28,7 @@ class OnPremisesPublishingProfile(Entity):
     hybrid_agent_updater_configuration: Optional[HybridAgentUpdaterConfiguration] = None
     # The isDefaultAccessEnabled property
     is_default_access_enabled: Optional[bool] = None
-    # Represents if Azure AD Application Proxy is enabled for the tenant.
+    # Represents if Microsoft Entra application proxy is enabled for the tenant.
     is_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

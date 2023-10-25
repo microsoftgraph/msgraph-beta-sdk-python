@@ -21,8 +21,8 @@ if TYPE_CHECKING:
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .refresh_session.refresh_session_request_builder import RefreshSessionRequestBuilder
     from .session_info_resource_with_key.session_info_resource_with_key_request_builder import SessionInfoResourceWithKeyRequestBuilder
-    from .table_row_operation_result_with_key.table_row_operation_result_with_key_request_builder import TableRowOperationResultWithKeyRequestBuilder
     from .tables.tables_request_builder import TablesRequestBuilder
+    from .table_row_operation_result_with_key.table_row_operation_result_with_key_request_builder import TableRowOperationResultWithKeyRequestBuilder
     from .worksheets.worksheets_request_builder import WorksheetsRequestBuilder
 
 class WorkbookRequestBuilder(BaseRequestBuilder):
@@ -59,7 +59,7 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WorkbookRequestBuilderGetRequestConfiguration] = None) -> Optional[Workbook]:
         """
-        For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+        For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Workbook]
         """
@@ -133,29 +133,30 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[WorkbookRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+        For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Workbook] = None, request_configuration: Optional[WorkbookRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -168,13 +169,13 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -186,7 +187,7 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WorkbookRequestBuilder(raw_url, self.request_adapter)
+        return WorkbookRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def application(self) -> ApplicationRequestBuilder:
@@ -291,7 +292,7 @@ class WorkbookRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WorkbookRequestBuilderGetQueryParameters():
         """
-        For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+        For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

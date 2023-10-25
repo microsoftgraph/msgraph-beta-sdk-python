@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .generate_apple_push_notification_certificate_signing_request_response import GenerateApplePushNotificationCertificateSigningRequestResponse
+    from .generate_apple_push_notification_certificate_signing_request_post_response import GenerateApplePushNotificationCertificateSigningRequestPostResponse
 
 class GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(BaseR
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/applePushNotificationCertificate/generateApplePushNotificationCertificateSigningRequest", path_parameters)
     
-    async def post(self,request_configuration: Optional[GenerateApplePushNotificationCertificateSigningRequestRequestBuilderPostRequestConfiguration] = None) -> Optional[GenerateApplePushNotificationCertificateSigningRequestResponse]:
+    async def post(self,request_configuration: Optional[GenerateApplePushNotificationCertificateSigningRequestRequestBuilderPostRequestConfiguration] = None) -> Optional[GenerateApplePushNotificationCertificateSigningRequestPostResponse]:
         """
         Download Apple push notification certificate signing request
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GenerateApplePushNotificationCertificateSigningRequestResponse]
+        Returns: Optional[GenerateApplePushNotificationCertificateSigningRequestPostResponse]
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(BaseR
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .generate_apple_push_notification_certificate_signing_request_response import GenerateApplePushNotificationCertificateSigningRequestResponse
+        from .generate_apple_push_notification_certificate_signing_request_post_response import GenerateApplePushNotificationCertificateSigningRequestPostResponse
 
-        return await self.request_adapter.send_async(request_info, GenerateApplePushNotificationCertificateSigningRequestResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GenerateApplePushNotificationCertificateSigningRequestPostResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[GenerateApplePushNotificationCertificateSigningRequestRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -54,13 +54,13 @@ class GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(BaseR
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> GenerateApplePushNotificationCertificateSigningRequestRequestBuilder:
@@ -71,7 +71,7 @@ class GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(BaseR
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(raw_url, self.request_adapter)
+        return GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

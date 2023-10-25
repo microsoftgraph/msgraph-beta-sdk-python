@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .app_diagnostics_with_upn_response import AppDiagnosticsWithUpnResponse
+    from .app_diagnostics_with_upn_get_response import AppDiagnosticsWithUpnGetResponse
 
 class AppDiagnosticsWithUpnRequestBuilder(BaseRequestBuilder):
     """
@@ -25,13 +25,15 @@ class AppDiagnosticsWithUpnRequestBuilder(BaseRequestBuilder):
         param upn: Usage: upn='{upn}'
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['upn'] = str(upn)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/comanagedDevices/appDiagnostics(upn='{upn}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
-    async def get(self,request_configuration: Optional[AppDiagnosticsWithUpnRequestBuilderGetRequestConfiguration] = None) -> Optional[AppDiagnosticsWithUpnResponse]:
+    async def get(self,request_configuration: Optional[AppDiagnosticsWithUpnRequestBuilderGetRequestConfiguration] = None) -> Optional[AppDiagnosticsWithUpnGetResponse]:
         """
         Invoke function appDiagnostics
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[AppDiagnosticsWithUpnResponse]
+        Returns: Optional[AppDiagnosticsWithUpnGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -44,9 +46,9 @@ class AppDiagnosticsWithUpnRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .app_diagnostics_with_upn_response import AppDiagnosticsWithUpnResponse
+        from .app_diagnostics_with_upn_get_response import AppDiagnosticsWithUpnGetResponse
 
-        return await self.request_adapter.send_async(request_info, AppDiagnosticsWithUpnResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, AppDiagnosticsWithUpnGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AppDiagnosticsWithUpnRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -55,14 +57,14 @@ class AppDiagnosticsWithUpnRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> AppDiagnosticsWithUpnRequestBuilder:
@@ -73,7 +75,7 @@ class AppDiagnosticsWithUpnRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AppDiagnosticsWithUpnRequestBuilder(raw_url, self.request_adapter)
+        return AppDiagnosticsWithUpnRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class AppDiagnosticsWithUpnRequestBuilderGetQueryParameters():

@@ -18,7 +18,7 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, BackedModel, Parsabl
     detail: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Identifies what Azure AD feature requires MFA in this policy. Possible values are: user, request, servicePrincipal, v1ConditionalAccess, multiConditionalAccess, tenantSessionRiskPolicy, accountCompromisePolicies, v1ConditionalAccessDependency, v1ConditionalAccessPolicyIdRequested, mfaRegistrationRequiredByIdentityProtectionPolicy, baselineProtection, mfaRegistrationRequiredByBaselineProtection, mfaRegistrationRequiredByMultiConditionalAccess, enforcedForCspAdmins, securityDefaults, mfaRegistrationRequiredBySecurityDefaults, proofUpCodeRequest, crossTenantOutboundRule, gpsLocationCondition, riskBasedPolicy, unknownFutureValue.
+    # Identifies what Microsoft Entra feature requires MFA in this policy. Possible values are: user, request, servicePrincipal, v1ConditionalAccess, multiConditionalAccess, tenantSessionRiskPolicy, accountCompromisePolicies, v1ConditionalAccessDependency, v1ConditionalAccessPolicyIdRequested, mfaRegistrationRequiredByIdentityProtectionPolicy, baselineProtection, mfaRegistrationRequiredByBaselineProtection, mfaRegistrationRequiredByMultiConditionalAccess, enforcedForCspAdmins, securityDefaults, mfaRegistrationRequiredBySecurityDefaults, proofUpCodeRequest, crossTenantOutboundRule, gpsLocationCondition, riskBasedPolicy, unknownFutureValue.
     requirement_provider: Optional[RequirementProvider] = None
     
     @staticmethod
@@ -43,7 +43,7 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, BackedModel, Parsabl
 
         fields: Dict[str, Callable[[Any], None]] = {
             "detail": lambda n : setattr(self, 'detail', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "requirementProvider": lambda n : setattr(self, 'requirement_provider', n.get_enum_value(RequirementProvider)),
         }
         return fields
@@ -57,7 +57,7 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, BackedModel, Parsabl
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("detail", self.detail)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("requirementProvider", self.requirement_provider)
         writer.write_additional_data_value(self.additional_data)
     

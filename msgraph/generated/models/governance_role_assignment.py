@@ -14,9 +14,9 @@ from .entity import Entity
 
 @dataclass
 class GovernanceRoleAssignment(Entity):
-    # The state of the assignment. The value can be Eligible for eligible assignment or Active if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
+    # The state of the assignment. The value can be Eligible for eligible assignment or Active if it's directly assigned Active by administrators, or activated on an eligible assignment by the users.
     assignment_state: Optional[str] = None
-    # For a non-permanent role assignment, this is the time when the role assignment will be expired. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # For a non-permanent role assignment, this is the time when the role assignment is expired. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     end_date_time: Optional[datetime.datetime] = None
     # The external ID the resource that is used to identify the role assignment in the provider.
     external_id: Optional[str] = None
@@ -24,17 +24,17 @@ class GovernanceRoleAssignment(Entity):
     linked_eligible_role_assignment: Optional[GovernanceRoleAssignment] = None
     # If this is an active assignment and created due to activation on an eligible assignment, it represents the ID of that eligible assignment; Otherwise, the value is null.
     linked_eligible_role_assignment_id: Optional[str] = None
-    # The type of member. The value can be: Inherited (if the role assignment is inherited from a parent resource scope), Group (if the role assignment is not inherited, but comes from the membership of a group assignment), or User (if the role assignment is neither inherited nor from a group assignment).
+    # The type of member. The value can be: Inherited (if the role assignment is inherited from a parent resource scope), Group (if the role assignment isn't inherited, but comes from the membership of a group assignment), or User (if the role assignment isn't inherited or from a group assignment).
     member_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Read-only. The resource associated with the role assignment.
     resource: Optional[GovernanceResource] = None
-    # Required. The ID of the resource which the role assignment is associated with.
+    # Required. The ID of the resource that the role assignment is associated with.
     resource_id: Optional[str] = None
     # Read-only. The role definition associated with the role assignment.
     role_definition: Optional[GovernanceRoleDefinition] = None
-    # Required. The ID of the role definition which the role assignment is associated with.
+    # Required. The ID of the role definition that the role assignment is associated with.
     role_definition_id: Optional[str] = None
     # The start time of the role assignment. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     start_date_time: Optional[datetime.datetime] = None
@@ -42,7 +42,7 @@ class GovernanceRoleAssignment(Entity):
     status: Optional[str] = None
     # Read-only. The subject associated with the role assignment.
     subject: Optional[GovernanceSubject] = None
-    # Required. The ID of the subject which the role assignment is associated with.
+    # Required. The ID of the subject that the role assignment is associated with.
     subject_id: Optional[str] = None
     
     @staticmethod

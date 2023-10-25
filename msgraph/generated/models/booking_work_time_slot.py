@@ -37,7 +37,7 @@ class BookingWorkTimeSlot(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "end": lambda n : setattr(self, 'end', n.get_time_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "start": lambda n : setattr(self, 'start', n.get_time_value()),
         }
         return fields
@@ -51,7 +51,7 @@ class BookingWorkTimeSlot(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_time_value("end", self.end)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_time_value("start", self.start)
         writer.write_additional_data_value(self.additional_data)
     

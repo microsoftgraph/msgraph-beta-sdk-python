@@ -53,7 +53,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "nextInSeriesTaskId": lambda n : setattr(self, 'next_in_series_task_id', n.get_str_value()),
             "occurrenceId": lambda n : setattr(self, 'occurrence_id', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "previousInSeriesTaskId": lambda n : setattr(self, 'previous_in_series_task_id', n.get_str_value()),
             "recurrenceStartDateTime": lambda n : setattr(self, 'recurrence_start_date_time', n.get_datetime_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(PlannerRecurrenceSchedule)),
@@ -71,7 +71,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("nextInSeriesTaskId", self.next_in_series_task_id)
         writer.write_int_value("occurrenceId", self.occurrence_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("previousInSeriesTaskId", self.previous_in_series_task_id)
         writer.write_datetime_value("recurrenceStartDateTime", self.recurrence_start_date_time)
         writer.write_object_value("schedule", self.schedule)

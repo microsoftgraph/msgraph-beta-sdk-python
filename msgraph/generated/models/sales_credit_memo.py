@@ -140,7 +140,7 @@ class SalesCreditMemo(AdditionalDataHolder, BackedModel, Parsable):
             "invoiceNumber": lambda n : setattr(self, 'invoice_number', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "paymentTerm": lambda n : setattr(self, 'payment_term', n.get_object_value(PaymentTerm)),
             "paymentTermsId": lambda n : setattr(self, 'payment_terms_id', n.get_uuid_value()),
             "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
@@ -185,7 +185,7 @@ class SalesCreditMemo(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("invoiceNumber", self.invoice_number)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("paymentTerm", self.payment_term)
         writer.write_uuid_value("paymentTermsId", self.payment_terms_id)
         writer.write_str_value("phoneNumber", self.phone_number)

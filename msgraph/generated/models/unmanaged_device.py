@@ -66,7 +66,7 @@ class UnmanagedDevice(AdditionalDataHolder, BackedModel, Parsable):
             "macAddress": lambda n : setattr(self, 'mac_address', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "os": lambda n : setattr(self, 'os', n.get_str_value()),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
         }
@@ -89,7 +89,7 @@ class UnmanagedDevice(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("macAddress", self.mac_address)
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_str_value("model", self.model)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("os", self.os)
         writer.write_str_value("osVersion", self.os_version)
         writer.write_additional_data_value(self.additional_data)

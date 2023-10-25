@@ -54,7 +54,7 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, BackedModel, Parsab
             "managementActionId": lambda n : setattr(self, 'management_action_id', n.get_str_value()),
             "managementTemplateId": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
             "managementTemplateVersion": lambda n : setattr(self, 'management_template_version', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(ManagementActionStatus)),
             "workloadActionDeploymentStatuses": lambda n : setattr(self, 'workload_action_deployment_statuses', n.get_collection_of_object_values(WorkloadActionDeploymentStatus)),
         }
@@ -71,7 +71,7 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, BackedModel, Parsab
         writer.write_str_value("managementActionId", self.management_action_id)
         writer.write_str_value("managementTemplateId", self.management_template_id)
         writer.write_int_value("managementTemplateVersion", self.management_template_version)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_collection_of_object_values("workloadActionDeploymentStatuses", self.workload_action_deployment_statuses)
         writer.write_additional_data_value(self.additional_data)

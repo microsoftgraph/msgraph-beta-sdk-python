@@ -13,16 +13,16 @@ if TYPE_CHECKING:
     from ..models.identity_container import IdentityContainer
     from ..models.o_data_errors.o_data_error import ODataError
     from .api_connectors.api_connectors_request_builder import ApiConnectorsRequestBuilder
-    from .authentication_event_listeners.authentication_event_listeners_request_builder import AuthenticationEventListenersRequestBuilder
     from .authentication_events_flows.authentication_events_flows_request_builder import AuthenticationEventsFlowsRequestBuilder
+    from .authentication_event_listeners.authentication_event_listeners_request_builder import AuthenticationEventListenersRequestBuilder
     from .b2c_user_flows.b2c_user_flows_request_builder import B2cUserFlowsRequestBuilder
     from .b2x_user_flows.b2x_user_flows_request_builder import B2xUserFlowsRequestBuilder
     from .conditional_access.conditional_access_request_builder import ConditionalAccessRequestBuilder
     from .continuous_access_evaluation_policy.continuous_access_evaluation_policy_request_builder import ContinuousAccessEvaluationPolicyRequestBuilder
     from .custom_authentication_extensions.custom_authentication_extensions_request_builder import CustomAuthenticationExtensionsRequestBuilder
     from .identity_providers.identity_providers_request_builder import IdentityProvidersRequestBuilder
-    from .user_flow_attributes.user_flow_attributes_request_builder import UserFlowAttributesRequestBuilder
     from .user_flows.user_flows_request_builder import UserFlowsRequestBuilder
+    from .user_flow_attributes.user_flow_attributes_request_builder import UserFlowAttributesRequestBuilder
 
 class IdentityRequestBuilder(BaseRequestBuilder):
     """
@@ -89,14 +89,14 @@ class IdentityRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[IdentityContainer] = None, request_configuration: Optional[IdentityRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -109,13 +109,13 @@ class IdentityRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -127,7 +127,7 @@ class IdentityRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return IdentityRequestBuilder(raw_url, self.request_adapter)
+        return IdentityRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def api_connectors(self) -> ApiConnectorsRequestBuilder:

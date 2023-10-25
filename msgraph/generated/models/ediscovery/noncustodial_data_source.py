@@ -13,9 +13,9 @@ from .data_source_container import DataSourceContainer
 class NoncustodialDataSource(DataSourceContainer):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.ediscovery.noncustodialDataSource"
-    # Indicates if hold is applied to non-custodial data source (such as mailbox or site).
+    # Indicates if hold is applied to noncustodial data source (such as mailbox or site).
     apply_hold_to_source: Optional[bool] = None
-    # User source or SharePoint site data source as non-custodial data source.
+    # User source or SharePoint site data source as noncustodial data source.
     data_source: Optional[DataSource] = None
     
     @staticmethod

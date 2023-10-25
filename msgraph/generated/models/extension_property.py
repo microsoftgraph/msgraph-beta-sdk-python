@@ -18,7 +18,7 @@ class ExtensionProperty(DirectoryObject):
     data_type: Optional[str] = None
     # Defines the directory extension as a multi-valued property. When true, the directory extension property can store a collection of objects of the dataType; for example, a collection of integers. The default value is false.
     is_multi_valued: Optional[bool] = None
-    # Indicates if this extension property was synced from on-premises active directory using Azure AD Connect. Read-only.
+    # Indicates if this extension property was synced from on-premises active directory using Microsoft Entra Connect. Read-only.
     is_synced_from_on_premises: Optional[bool] = None
     # Name of the extension property. Not nullable. Supports $filter (eq).
     name: Optional[str] = None

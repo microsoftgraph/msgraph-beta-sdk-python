@@ -14,13 +14,13 @@ from .entity import Entity
 
 @dataclass
 class UnifiedRoleManagementAlert(Entity):
-    # The configuration of the alert in PIM for Azure AD roles. Alert configurations are pre-defined and cannot be created or deleted, but some configurations can be modified. Supports $filter for the isEnabled property and $expand.
+    # The configuration of the alert in PIM for Microsoft Entra roles. Alert configurations are pre-defined and cannot be created or deleted, but some configurations can be modified. Supports $filter for the isEnabled property and $expand.
     alert_configuration: Optional[UnifiedRoleManagementAlertConfiguration] = None
     # Contains the description, impact, and measures to mitigate or prevent the security alert from being triggered in your tenant. Supports $expand.
     alert_definition: Optional[UnifiedRoleManagementAlertDefinition] = None
     # The identifier of an alert definition. Supports $filter (eq, ne).
     alert_definition_id: Optional[str] = None
-    # Represents the incidents of this type of alert that have been triggered in Privileged Identity Management (PIM) for Azure AD roles in the tenant. Supports $expand.
+    # Represents the incidents of this type of alert that have been triggered in Privileged Identity Management (PIM) for Microsoft Entra roles in the tenant. Supports $expand.
     alert_incidents: Optional[List[UnifiedRoleManagementAlertIncident]] = None
     # The number of incidents triggered in the tenant and relating to the alert. Can only be a positive integer.
     incident_count: Optional[int] = None
@@ -34,7 +34,7 @@ class UnifiedRoleManagementAlert(Entity):
     odata_type: Optional[str] = None
     # The identifier of the scope where the alert is related. / is the only supported one for the tenant. Supports $filter (eq, ne).
     scope_id: Optional[str] = None
-    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Azure AD roles.
+    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Microsoft Entra roles.
     scope_type: Optional[str] = None
     
     @staticmethod

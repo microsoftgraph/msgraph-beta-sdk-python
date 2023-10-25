@@ -23,7 +23,7 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
     delegated_admin_relationships: Optional[List[DelegatedAdminRelationship]] = None
     # The operations available to interact with the multi-tenant management platform.
     managed_tenants: Optional[ManagedTenant] = None
-    # Defines an organization with more than one instance of Azure Active Directory (Azure AD).
+    # Defines an organization with more than one instance of Microsoft Entra ID.
     multi_tenant_organization: Optional[MultiTenantOrganization] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -59,7 +59,7 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
             "delegatedAdminRelationships": lambda n : setattr(self, 'delegated_admin_relationships', n.get_collection_of_object_values(DelegatedAdminRelationship)),
             "managedTenants": lambda n : setattr(self, 'managed_tenants', n.get_object_value(ManagedTenant)),
             "multiTenantOrganization": lambda n : setattr(self, 'multi_tenant_organization', n.get_object_value(MultiTenantOrganization)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -75,7 +75,7 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("delegatedAdminRelationships", self.delegated_admin_relationships)
         writer.write_object_value("managedTenants", self.managed_tenants)
         writer.write_object_value("multiTenantOrganization", self.multi_tenant_organization)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

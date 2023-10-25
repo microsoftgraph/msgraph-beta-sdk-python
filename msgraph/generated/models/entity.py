@@ -33,15 +33,17 @@ if TYPE_CHECKING:
     from .access_review_set import AccessReviewSet
     from .access_review_stage import AccessReviewStage
     from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
+    from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
+    from .active_users_metric import ActiveUsersMetric
     from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
     from .activity_history_item import ActivityHistoryItem
     from .activity_statistics import ActivityStatistics
     from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+    from .administrative_unit import AdministrativeUnit
     from .admin_apps_and_services import AdminAppsAndServices
     from .admin_consent_request_policy import AdminConsentRequestPolicy
     from .admin_dynamics import AdminDynamics
     from .admin_forms import AdminForms
-    from .administrative_unit import AdministrativeUnit
     from .admin_report_settings import AdminReportSettings
     from .admin_todo import AdminTodo
     from .admin_windows import AdminWindows
@@ -135,9 +137,6 @@ if TYPE_CHECKING:
     from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
     from .aosp_device_owner_trusted_root_certificate import AospDeviceOwnerTrustedRootCertificate
     from .aosp_device_owner_wi_fi_configuration import AospDeviceOwnerWiFiConfiguration
-    from .app_consent_approval_route import AppConsentApprovalRoute
-    from .app_consent_request import AppConsentRequest
-    from .app_credential_sign_in_activity import AppCredentialSignInActivity
     from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
     from .apple_enrollment_profile_assignment import AppleEnrollmentProfileAssignment
     from .apple_expedited_checkin_configuration_base import AppleExpeditedCheckinConfigurationBase
@@ -151,16 +150,20 @@ if TYPE_CHECKING:
     from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
     from .application_sign_in_summary import ApplicationSignInSummary
     from .application_template import ApplicationTemplate
-    from .app_log_collection_request import AppLogCollectionRequest
-    from .app_management_policy import AppManagementPolicy
-    from .app_role_assignment import AppRoleAssignment
     from .approval import Approval
     from .approval_step import ApprovalStep
     from .approval_workflow_provider import ApprovalWorkflowProvider
+    from .app_consent_approval_route import AppConsentApprovalRoute
+    from .app_consent_request import AppConsentRequest
+    from .app_credential_sign_in_activity import AppCredentialSignInActivity
+    from .app_log_collection_request import AppLogCollectionRequest
+    from .app_management_policy import AppManagementPolicy
+    from .app_role_assignment import AppRoleAssignment
     from .app_scope import AppScope
     from .app_vulnerability_managed_device import AppVulnerabilityManagedDevice
     from .app_vulnerability_mobile_app import AppVulnerabilityMobileApp
     from .app_vulnerability_task import AppVulnerabilityTask
+    from .assigned_compute_instance_details import AssignedComputeInstanceDetails
     from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
     from .associated_team_info import AssociatedTeamInfo
     from .attachment import Attachment
@@ -174,26 +177,59 @@ if TYPE_CHECKING:
     from .audio_routing_group import AudioRoutingGroup
     from .audit_event import AuditEvent
     from .authentication import Authentication
+    from .authentications_metric import AuthenticationsMetric
     from .authentication_combination_configuration import AuthenticationCombinationConfiguration
     from .authentication_context_class_reference import AuthenticationContextClassReference
-    from .authentication_event_listener import AuthenticationEventListener
     from .authentication_events_flow import AuthenticationEventsFlow
     from .authentication_events_policy import AuthenticationEventsPolicy
+    from .authentication_event_listener import AuthenticationEventListener
     from .authentication_flows_policy import AuthenticationFlowsPolicy
     from .authentication_listener import AuthenticationListener
     from .authentication_method import AuthenticationMethod
-    from .authentication_method_configuration import AuthenticationMethodConfiguration
-    from .authentication_method_mode_detail import AuthenticationMethodModeDetail
     from .authentication_methods_policy import AuthenticationMethodsPolicy
     from .authentication_methods_root import AuthenticationMethodsRoot
+    from .authentication_method_configuration import AuthenticationMethodConfiguration
+    from .authentication_method_mode_detail import AuthenticationMethodModeDetail
     from .authentication_method_target import AuthenticationMethodTarget
     from .authentication_strength_policy import AuthenticationStrengthPolicy
     from .authentication_strength_root import AuthenticationStrengthRoot
     from .authored_note import AuthoredNote
     from .authorization_policy import AuthorizationPolicy
+    from .authorization_system import AuthorizationSystem
+    from .authorization_system_identity import AuthorizationSystemIdentity
+    from .authorization_system_resource import AuthorizationSystemResource
+    from .authorization_system_type_action import AuthorizationSystemTypeAction
+    from .authorization_system_type_service import AuthorizationSystemTypeService
+    from .aws_access_key import AwsAccessKey
+    from .aws_authorization_system import AwsAuthorizationSystem
+    from .aws_authorization_system_resource import AwsAuthorizationSystemResource
+    from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
+    from .aws_ec2_instance import AwsEc2Instance
+    from .aws_external_system_access_finding import AwsExternalSystemAccessFinding
+    from .aws_external_system_access_role_finding import AwsExternalSystemAccessRoleFinding
+    from .aws_group import AwsGroup
+    from .aws_identity import AwsIdentity
+    from .aws_identity_access_management_key_age_finding import AwsIdentityAccessManagementKeyAgeFinding
+    from .aws_identity_access_management_key_usage_finding import AwsIdentityAccessManagementKeyUsageFinding
+    from .aws_lambda import AwsLambda
+    from .aws_policy import AwsPolicy
+    from .aws_role import AwsRole
+    from .aws_secret_information_access_finding import AwsSecretInformationAccessFinding
+    from .aws_security_tool_administration_finding import AwsSecurityToolAdministrationFinding
+    from .aws_user import AwsUser
+    from .azure_authorization_system import AzureAuthorizationSystem
+    from .azure_authorization_system_resource import AzureAuthorizationSystemResource
+    from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
     from .azure_a_d_authentication import AzureADAuthentication
     from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
     from .azure_communication_services_user_conversation_member import AzureCommunicationServicesUserConversationMember
+    from .azure_group import AzureGroup
+    from .azure_identity import AzureIdentity
+    from .azure_managed_identity import AzureManagedIdentity
+    from .azure_role_definition import AzureRoleDefinition
+    from .azure_serverless_function import AzureServerlessFunction
+    from .azure_service_principal import AzureServicePrincipal
+    from .azure_user import AzureUser
     from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
     from .b2c_identity_user_flow import B2cIdentityUserFlow
     from .b2x_identity_user_flow import B2xIdentityUserFlow
@@ -228,6 +264,7 @@ if TYPE_CHECKING:
     from .calendar_sharing_message import CalendarSharingMessage
     from .call import Call
     from .call_activity_statistics import CallActivityStatistics
+    from .call_event import CallEvent
     from .call_recording import CallRecording
     from .call_records.call_record import CallRecord
     from .call_records.segment import Segment
@@ -253,7 +290,6 @@ if TYPE_CHECKING:
     from .claims_mapping_policy import ClaimsMappingPolicy
     from .classification_job_response import ClassificationJobResponse
     from .cloud_app_security_profile import CloudAppSecurityProfile
-    from .cloud_p_c import CloudPC
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
     from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
@@ -263,7 +299,6 @@ if TYPE_CHECKING:
     from .cloud_pc_bulk_restart import CloudPcBulkRestart
     from .cloud_pc_bulk_restore import CloudPcBulkRestore
     from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
-    from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
     from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
     from .cloud_pc_device_image import CloudPcDeviceImage
     from .cloud_pc_export_job import CloudPcExportJob
@@ -281,6 +316,8 @@ if TYPE_CHECKING:
     from .cloud_pc_supported_region import CloudPcSupportedRegion
     from .cloud_pc_user_setting import CloudPcUserSetting
     from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
+    from .cloud_p_c import CloudPC
+    from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
     from .column_definition import ColumnDefinition
     from .column_link import ColumnLink
     from .comanagement_eligible_device import ComanagementEligibleDevice
@@ -321,7 +358,11 @@ if TYPE_CHECKING:
     from .custom_extension_stage_setting import CustomExtensionStageSetting
     from .custom_security_attribute_audit import CustomSecurityAttributeAudit
     from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
+    from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
+    from .daily_inactive_users_metric import DailyInactiveUsersMetric
+    from .daily_user_insight_metrics_root import DailyUserInsightMetricsRoot
     from .data_classification_service import DataClassificationService
+    from .data_collection_info import DataCollectionInfo
     from .data_loss_prevention_policy import DataLossPreventionPolicy
     from .data_policy_operation import DataPolicyOperation
     from .data_sharing_consent import DataSharingConsent
@@ -386,8 +427,8 @@ if TYPE_CHECKING:
     from .device_enrollment_configuration import DeviceEnrollmentConfiguration
     from .device_enrollment_limit_configuration import DeviceEnrollmentLimitConfiguration
     from .device_enrollment_notification_configuration import DeviceEnrollmentNotificationConfiguration
-    from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
     from .device_enrollment_platform_restrictions_configuration import DeviceEnrollmentPlatformRestrictionsConfiguration
+    from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
     from .device_enrollment_windows_hello_for_business_configuration import DeviceEnrollmentWindowsHelloForBusinessConfiguration
     from .device_health_script import DeviceHealthScript
     from .device_health_script_assignment import DeviceHealthScriptAssignment
@@ -492,7 +533,6 @@ if TYPE_CHECKING:
     from .drive_item import DriveItem
     from .drive_item_version import DriveItemVersion
     from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-    from .e_book_install_summary import EBookInstallSummary
     from .edge import Edge
     from .ediscovery.add_to_review_set_operation import AddToReviewSetOperation
     from .ediscovery.case import Case
@@ -550,6 +590,9 @@ if TYPE_CHECKING:
     from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
     from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
     from .employee_experience_user import EmployeeExperienceUser
+    from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
+    from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
+    from .encrypted_gcp_storage_bucket_finding import EncryptedGcpStorageBucketFinding
     from .endpoint import Endpoint
     from .end_user_notification import EndUserNotification
     from .end_user_notification_detail import EndUserNotificationDetail
@@ -575,6 +618,9 @@ if TYPE_CHECKING:
     from .extension import Extension
     from .extension_property import ExtensionProperty
     from .external import External
+    from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
+    from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
+    from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
     from .external_connection import ExternalConnection
     from .external_connectors.connection_operation import ConnectionOperation
     from .external_connectors.connection_quota import ConnectionQuota
@@ -592,6 +638,7 @@ if TYPE_CHECKING:
     from .external_meeting_registrant import ExternalMeetingRegistrant
     from .external_meeting_registration import ExternalMeetingRegistration
     from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
+    from .e_book_install_summary import EBookInstallSummary
     from .feature_rollout_policy import FeatureRolloutPolicy
     from .federated_identity_credential import FederatedIdentityCredential
     from .federated_token_validation_policy import FederatedTokenValidationPolicy
@@ -604,7 +651,17 @@ if TYPE_CHECKING:
     from .file_classification_request import FileClassificationRequest
     from .file_security_profile import FileSecurityProfile
     from .filter_operator_schema import FilterOperatorSchema
+    from .finding import Finding
     from .focus_activity_statistics import FocusActivityStatistics
+    from .gcp_authorization_system import GcpAuthorizationSystem
+    from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
+    from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
+    from .gcp_cloud_function import GcpCloudFunction
+    from .gcp_group import GcpGroup
+    from .gcp_identity import GcpIdentity
+    from .gcp_role import GcpRole
+    from .gcp_service_account import GcpServiceAccount
+    from .gcp_user import GcpUser
     from .governance_insight import GovernanceInsight
     from .governance_policy_template import GovernancePolicyTemplate
     from .governance_resource import GovernanceResource
@@ -652,6 +709,7 @@ if TYPE_CHECKING:
     from .identity_api_connector import IdentityApiConnector
     from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
     from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
+    from .identity_finding import IdentityFinding
     from .identity_governance.custom_task_extension import CustomTaskExtension
     from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
     from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
@@ -675,6 +733,15 @@ if TYPE_CHECKING:
     from .imported_device_identity_result import ImportedDeviceIdentityResult
     from .imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
     from .imported_windows_autopilot_device_identity_upload import ImportedWindowsAutopilotDeviceIdentityUpload
+    from .inactive_aws_resource_finding import InactiveAwsResourceFinding
+    from .inactive_aws_role_finding import InactiveAwsRoleFinding
+    from .inactive_azure_service_principal_finding import InactiveAzureServicePrincipalFinding
+    from .inactive_gcp_service_account_finding import InactiveGcpServiceAccountFinding
+    from .inactive_group_finding import InactiveGroupFinding
+    from .inactive_serverless_function_finding import InactiveServerlessFunctionFinding
+    from .inactive_users_by_application_metric_base import InactiveUsersByApplicationMetricBase
+    from .inactive_users_metric_base import InactiveUsersMetricBase
+    from .inactive_user_finding import InactiveUserFinding
     from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
     from .industry_data.file_data_connector import FileDataConnector
     from .industry_data.file_validate_operation import FileValidateOperation
@@ -698,6 +765,7 @@ if TYPE_CHECKING:
     from .information_protection_label import InformationProtectionLabel
     from .information_protection_policy import InformationProtectionPolicy
     from .insights_settings import InsightsSettings
+    from .insight_summary import InsightSummary
     from .internal_domain_federation import InternalDomainFederation
     from .internet_explorer_mode import InternetExplorerMode
     from .intune_branding_profile import IntuneBrandingProfile
@@ -707,6 +775,8 @@ if TYPE_CHECKING:
     from .invitation import Invitation
     from .invite_participants_operation import InviteParticipantsOperation
     from .invoke_user_flow_listener import InvokeUserFlowListener
+    from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+    from .iosi_pad_o_s_web_clip import IosiPadOSWebClip
     from .ios_certificate_profile import IosCertificateProfile
     from .ios_certificate_profile_base import IosCertificateProfileBase
     from .ios_compliance_policy import IosCompliancePolicy
@@ -719,9 +789,7 @@ if TYPE_CHECKING:
     from .ios_enterprise_wi_fi_configuration import IosEnterpriseWiFiConfiguration
     from .ios_expedited_checkin_configuration import IosExpeditedCheckinConfiguration
     from .ios_general_device_configuration import IosGeneralDeviceConfiguration
-    from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
     from .ios_imported_p_f_x_certificate_profile import IosImportedPFXCertificateProfile
-    from .iosi_pad_o_s_web_clip import IosiPadOSWebClip
     from .ios_lob_app import IosLobApp
     from .ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
     from .ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
@@ -770,13 +838,15 @@ if TYPE_CHECKING:
     from .learning_self_initiated_course import LearningSelfInitiatedCourse
     from .license_details import LicenseDetails
     from .linked_resource import LinkedResource
+    from .list_ import List_
     from .list_item import ListItem
     from .list_item_version import ListItemVersion
-    from .list_ import List_
     from .localized_notification_message import LocalizedNotificationMessage
     from .login_page import LoginPage
     from .long_running_operation import LongRunningOperation
     from .lookup_result_row import LookupResultRow
+    from .mac_os_vpp_app import MacOsVppApp
+    from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
     from .mac_o_s_compliance_policy import MacOSCompliancePolicy
     from .mac_o_s_custom_app_configuration import MacOSCustomAppConfiguration
@@ -801,11 +871,9 @@ if TYPE_CHECKING:
     from .mac_o_s_software_update_state_summary import MacOSSoftwareUpdateStateSummary
     from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
     from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
-    from .mac_os_vpp_app import MacOsVppApp
-    from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
     from .mac_o_s_web_clip import MacOSWebClip
-    from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
     from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
+    from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
     from .mail_assessment_request import MailAssessmentRequest
     from .mail_folder import MailFolder
     from .mail_search_folder import MailSearchFolder
@@ -896,6 +964,7 @@ if TYPE_CHECKING:
     from .message_recipient import MessageRecipient
     from .message_rule import MessageRule
     from .message_trace import MessageTrace
+    from .mfa_completion_metric import MfaCompletionMetric
     from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
     from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -926,14 +995,17 @@ if TYPE_CHECKING:
     from .mobile_lob_app import MobileLobApp
     from .mobile_threat_defense_connector import MobileThreatDefenseConnector
     from .mobility_management_policy import MobilityManagementPolicy
+    from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
+    from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
+    from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
     from .multi_tenant_organization import MultiTenantOrganization
     from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
     from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
     from .multi_tenant_organization_member import MultiTenantOrganizationMember
     from .multi_tenant_organization_partner_configuration_template import MultiTenantOrganizationPartnerConfigurationTemplate
     from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-    from .mute_participant_operation import MuteParticipantOperation
     from .mute_participants_operation import MuteParticipantsOperation
+    from .mute_participant_operation import MuteParticipantOperation
     from .named_location import NamedLocation
     from .ndes_connector import NdesConnector
     from .networkaccess.branch_site import BranchSite
@@ -960,13 +1032,12 @@ if TYPE_CHECKING:
     from .networkaccess.reports import Reports
     from .networkaccess.settings import Settings
     from .networkaccess.tenant_status import TenantStatus
-    from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
-    from .no_mfa_on_role_activation_alert_incident import NoMfaOnRoleActivationAlertIncident
     from .note import Note
     from .notebook import Notebook
     from .notification import Notification
     from .notification_message_template import NotificationMessageTemplate
-    from .o_auth2_permission_grant import OAuth2PermissionGrant
+    from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
+    from .no_mfa_on_role_activation_alert_incident import NoMfaOnRoleActivationAlertIncident
     from .offer_shift_request import OfferShiftRequest
     from .office365_active_user_counts import Office365ActiveUserCounts
     from .office365_active_user_detail import Office365ActiveUserDetail
@@ -978,8 +1049,6 @@ if TYPE_CHECKING:
     from .office365_services_user_counts import Office365ServicesUserCounts
     from .office_graph_insights import OfficeGraphInsights
     from .office_suite_app import OfficeSuiteApp
-    from .on_attribute_collection_listener import OnAttributeCollectionListener
-    from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
     from .onenote import Onenote
     from .onenote_entity_base_model import OnenoteEntityBaseModel
     from .onenote_entity_hierarchy_model import OnenoteEntityHierarchyModel
@@ -988,8 +1057,10 @@ if TYPE_CHECKING:
     from .onenote_page import OnenotePage
     from .onenote_resource import OnenoteResource
     from .onenote_section import OnenoteSection
-    from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
     from .online_meeting import OnlineMeeting
+    from .on_attribute_collection_listener import OnAttributeCollectionListener
+    from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+    from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
     from .on_premises_agent import OnPremisesAgent
     from .on_premises_agent_group import OnPremisesAgentGroup
     from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -998,8 +1069,10 @@ if TYPE_CHECKING:
     from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
     from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
     from .on_user_create_start_listener import OnUserCreateStartListener
+    from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
     from .open_id_connect_identity_provider import OpenIdConnectIdentityProvider
     from .open_id_connect_provider import OpenIdConnectProvider
+    from .open_network_azure_security_group_finding import OpenNetworkAzureSecurityGroupFinding
     from .open_shift import OpenShift
     from .open_shift_change_request import OpenShiftChangeRequest
     from .open_type_extension import OpenTypeExtension
@@ -1016,16 +1089,31 @@ if TYPE_CHECKING:
     from .outlook_task_folder import OutlookTaskFolder
     from .outlook_task_group import OutlookTaskGroup
     from .outlook_user import OutlookUser
+    from .overprovisioned_aws_resource_finding import OverprovisionedAwsResourceFinding
+    from .overprovisioned_aws_role_finding import OverprovisionedAwsRoleFinding
+    from .overprovisioned_azure_service_principal_finding import OverprovisionedAzureServicePrincipalFinding
+    from .overprovisioned_gcp_service_account_finding import OverprovisionedGcpServiceAccountFinding
+    from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
+    from .overprovisioned_user_finding import OverprovisionedUserFinding
+    from .o_auth2_permission_grant import OAuth2PermissionGrant
     from .participant import Participant
     from .participant_joining_notification import ParticipantJoiningNotification
     from .participant_left_notification import ParticipantLeftNotification
-    from .password_authentication_method import PasswordAuthenticationMethod
     from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+    from .password_authentication_method import PasswordAuthenticationMethod
     from .payload import Payload
     from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
     from .payload_response import PayloadResponse
     from .people_admin_settings import PeopleAdminSettings
     from .permission import Permission
+    from .permissions_analytics import PermissionsAnalytics
+    from .permissions_analytics_aggregation import PermissionsAnalyticsAggregation
+    from .permissions_creep_index_distribution import PermissionsCreepIndexDistribution
+    from .permissions_definition_aws_policy import PermissionsDefinitionAwsPolicy
+    from .permissions_definition_azure_role import PermissionsDefinitionAzureRole
+    from .permissions_definition_gcp_role import PermissionsDefinitionGcpRole
+    from .permissions_management import PermissionsManagement
+    from .permissions_request_change import PermissionsRequestChange
     from .permission_grant_condition_set import PermissionGrantConditionSet
     from .permission_grant_policy import PermissionGrantPolicy
     from .person import Person
@@ -1058,6 +1146,7 @@ if TYPE_CHECKING:
     from .planner_task_configuration import PlannerTaskConfiguration
     from .planner_task_details import PlannerTaskDetails
     from .planner_user import PlannerUser
+    from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
     from .play_prompt_operation import PlayPromptOperation
     from .policy_base import PolicyBase
     from .policy_set import PolicySet
@@ -1067,12 +1156,12 @@ if TYPE_CHECKING:
     from .post import Post
     from .presence import Presence
     from .presentation import Presentation
-    from .print_connector import PrintConnector
-    from .print_document import PrintDocument
     from .printer import Printer
     from .printer_base import PrinterBase
     from .printer_create_operation import PrinterCreateOperation
     from .printer_share import PrinterShare
+    from .print_connector import PrintConnector
+    from .print_document import PrintDocument
     from .print_job import PrintJob
     from .print_operation import PrintOperation
     from .print_service import PrintService
@@ -1103,6 +1192,12 @@ if TYPE_CHECKING:
     from .privileged_role_settings import PrivilegedRoleSettings
     from .privileged_role_summary import PrivilegedRoleSummary
     from .privileged_signup_status import PrivilegedSignupStatus
+    from .privilege_escalation import PrivilegeEscalation
+    from .privilege_escalation_aws_resource_finding import PrivilegeEscalationAwsResourceFinding
+    from .privilege_escalation_aws_role_finding import PrivilegeEscalationAwsRoleFinding
+    from .privilege_escalation_finding import PrivilegeEscalationFinding
+    from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
+    from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
     from .privilege_management_elevation import PrivilegeManagementElevation
     from .profile import Profile
     from .profile_card_property import ProfileCardProperty
@@ -1121,6 +1216,8 @@ if TYPE_CHECKING:
     from .recommendation import Recommendation
     from .recommendation_base import RecommendationBase
     from .record_operation import RecordOperation
+    from .recycle_bin import RecycleBin
+    from .recycle_bin_item import RecycleBinItem
     from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
     from .redundant_assignment_alert_incident import RedundantAssignmentAlertIncident
     from .reference_attachment import ReferenceAttachment
@@ -1129,6 +1226,7 @@ if TYPE_CHECKING:
     from .remote_action_audit import RemoteActionAudit
     from .remote_assistance_partner import RemoteAssistancePartner
     from .remote_assistance_settings import RemoteAssistanceSettings
+    from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
     from .report_root import ReportRoot
     from .request import Request
     from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
@@ -1136,16 +1234,16 @@ if TYPE_CHECKING:
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
     from .restricted_apps_violation import RestrictedAppsViolation
     from .rich_long_running_operation import RichLongRunningOperation
-    from .risk_detection import RiskDetection
     from .risky_service_principal import RiskyServicePrincipal
     from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
     from .risky_user import RiskyUser
     from .risky_user_history_item import RiskyUserHistoryItem
+    from .risk_detection import RiskDetection
+    from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+    from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
     from .role_assignment import RoleAssignment
     from .role_definition import RoleDefinition
     from .role_management_alert import RoleManagementAlert
-    from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
-    from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
     from .role_scope_tag import RoleScopeTag
     from .role_scope_tag_auto_assignment import RoleScopeTagAutoAssignment
     from .room import Room
@@ -1157,6 +1255,7 @@ if TYPE_CHECKING:
     from .saml_or_ws_fed_external_domain_federation import SamlOrWsFedExternalDomainFederation
     from .saml_or_ws_fed_provider import SamlOrWsFedProvider
     from .schedule import Schedule
+    from .scheduled_permissions_request import ScheduledPermissionsRequest
     from .schedule_change_request import ScheduleChangeRequest
     from .scheduling_group import SchedulingGroup
     from .schema import Schema
@@ -1167,6 +1266,10 @@ if TYPE_CHECKING:
     from .search.qna import Qna
     from .search.search_answer import SearchAnswer
     from .search_entity import SearchEntity
+    from .secret_information_access_aws_resource_finding import SecretInformationAccessAwsResourceFinding
+    from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
+    from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
+    from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
     from .section_group import SectionGroup
     from .secure_score import SecureScore
     from .secure_score_control_profile import SecureScoreControlProfile
@@ -1176,8 +1279,8 @@ if TYPE_CHECKING:
     from .security.artifact import Artifact
     from .security.authority_template import AuthorityTemplate
     from .security.case import Case
-    from .security.case_operation import CaseOperation
     from .security.cases_root import CasesRoot
+    from .security.case_operation import CaseOperation
     from .security.category_template import CategoryTemplate
     from .security.citation_template import CitationTemplate
     from .security.data_set import DataSet
@@ -1202,6 +1305,7 @@ if TYPE_CHECKING:
     from .security.ediscovery_review_set_query import EdiscoveryReviewSetQuery
     from .security.ediscovery_review_tag import EdiscoveryReviewTag
     from .security.ediscovery_search import EdiscoverySearch
+    from .security.ediscovery_search_export_operation import EdiscoverySearchExportOperation
     from .security.ediscovery_tag_operation import EdiscoveryTagOperation
     from .security.email_content_threat_submission import EmailContentThreatSubmission
     from .security.email_threat_submission import EmailThreatSubmission
@@ -1215,10 +1319,11 @@ if TYPE_CHECKING:
     from .security.file_threat_submission import FileThreatSubmission
     from .security.file_url_threat_submission import FileUrlThreatSubmission
     from .security.host import Host
+    from .security.hostname import Hostname
     from .security.host_component import HostComponent
     from .security.host_cookie import HostCookie
-    from .security.hostname import Hostname
     from .security.host_pair import HostPair
+    from .security.host_port import HostPort
     from .security.host_reputation import HostReputation
     from .security.host_ssl_certificate import HostSslCertificate
     from .security.host_tracker import HostTracker
@@ -1241,8 +1346,8 @@ if TYPE_CHECKING:
     from .security.sensitivity_label import SensitivityLabel
     from .security.site_source import SiteSource
     from .security.ssl_certificate import SslCertificate
-    from .security.sub_category_template import SubCategoryTemplate
     from .security.subdomain import Subdomain
+    from .security.sub_category_template import SubCategoryTemplate
     from .security.tag import Tag
     from .security.threat_intelligence import ThreatIntelligence
     from .security.threat_submission import ThreatSubmission
@@ -1267,6 +1372,10 @@ if TYPE_CHECKING:
     from .security_baseline_template import SecurityBaselineTemplate
     from .security_configuration_task import SecurityConfigurationTask
     from .security_reports_root import SecurityReportsRoot
+    from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
+    from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
+    from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
+    from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
     from .sensitive_type import SensitiveType
     from .sensitivity_label import SensitivityLabel
     from .sensitivity_policy_settings import SensitivityPolicySettings
@@ -1324,6 +1433,12 @@ if TYPE_CHECKING:
     from .subscribed_sku import SubscribedSku
     from .subscribe_to_tone_operation import SubscribeToToneOperation
     from .subscription import Subscription
+    from .super_aws_resource_finding import SuperAwsResourceFinding
+    from .super_aws_role_finding import SuperAwsRoleFinding
+    from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
+    from .super_gcp_service_account_finding import SuperGcpServiceAccountFinding
+    from .super_serverless_function_finding import SuperServerlessFunctionFinding
+    from .super_user_finding import SuperUserFinding
     from .swap_shifts_change_request import SwapShiftsChangeRequest
     from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
     from .synchronization import Synchronization
@@ -1334,10 +1449,10 @@ if TYPE_CHECKING:
     from .targeted_managed_app_configuration_policy_set_item import TargetedManagedAppConfigurationPolicySetItem
     from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
     from .targeted_managed_app_protection import TargetedManagedAppProtection
+    from .target_device_group import TargetDeviceGroup
     from .task_file_attachment import TaskFileAttachment
     from .tax_group import TaxGroup
     from .team import Team
-    from .team_info import TeamInfo
     from .teams_app import TeamsApp
     from .teams_app_definition import TeamsAppDefinition
     from .teams_app_icon import TeamsAppIcon
@@ -1346,8 +1461,6 @@ if TYPE_CHECKING:
     from .teams_async_operation import TeamsAsyncOperation
     from .teams_tab import TeamsTab
     from .teams_template import TeamsTemplate
-    from .team_template import TeamTemplate
-    from .team_template_definition import TeamTemplateDefinition
     from .teamwork import Teamwork
     from .teamwork_bot import TeamworkBot
     from .teamwork_device import TeamworkDevice
@@ -1359,6 +1472,9 @@ if TYPE_CHECKING:
     from .teamwork_peripheral import TeamworkPeripheral
     from .teamwork_tag import TeamworkTag
     from .teamwork_tag_member import TeamworkTagMember
+    from .team_info import TeamInfo
+    from .team_template import TeamTemplate
+    from .team_template_definition import TeamTemplateDefinition
     from .telecom_expense_management_partner import TelecomExpenseManagementPartner
     from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
     from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
@@ -1381,11 +1497,11 @@ if TYPE_CHECKING:
     from .threat_assessment_request import ThreatAssessmentRequest
     from .threat_assessment_result import ThreatAssessmentResult
     from .thumbnail_set import ThumbnailSet
-    from .ti_indicator import TiIndicator
     from .time_card import TimeCard
     from .time_off import TimeOff
     from .time_off_reason import TimeOffReason
     from .time_off_request import TimeOffRequest
+    from .ti_indicator import TiIndicator
     from .todo import Todo
     from .todo_task import TodoTask
     from .todo_task_list import TodoTaskList
@@ -1399,6 +1515,7 @@ if TYPE_CHECKING:
     from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
     from .trust_framework_key_set import TrustFrameworkKeySet
     from .trust_framework_policy import TrustFrameworkPolicy
+    from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
     from .unified_rbac_application import UnifiedRbacApplication
     from .unified_rbac_resource_action import UnifiedRbacResourceAction
     from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
@@ -1441,6 +1558,7 @@ if TYPE_CHECKING:
     from .user_app_install_status import UserAppInstallStatus
     from .user_configuration import UserConfiguration
     from .user_consent_request import UserConsentRequest
+    from .user_count_metric import UserCountMetric
     from .user_credential_usage_details import UserCredentialUsageDetails
     from .user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
     from .user_experience_analytics_anomaly_correlation_group_overview import UserExperienceAnalyticsAnomalyCorrelationGroupOverview
@@ -1487,26 +1605,31 @@ if TYPE_CHECKING:
     from .user_experience_analytics_work_from_anywhere_model_performance import UserExperienceAnalyticsWorkFromAnywhereModelPerformance
     from .user_flow_language_configuration import UserFlowLanguageConfiguration
     from .user_flow_language_page import UserFlowLanguagePage
+    from .user_insights_root import UserInsightsRoot
     from .user_insights_settings import UserInsightsSettings
     from .user_install_state_summary import UserInstallStateSummary
     from .user_p_f_x_certificate import UserPFXCertificate
     from .user_registration_details import UserRegistrationDetails
+    from .user_requests_metric import UserRequestsMetric
     from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
     from .user_security_profile import UserSecurityProfile
     from .user_settings import UserSettings
     from .user_sign_in_insight import UserSignInInsight
+    from .user_sign_up_metric import UserSignUpMetric
     from .user_teamwork import UserTeamwork
+    from .user_virtual_events_root import UserVirtualEventsRoot
     from .vertical_section import VerticalSection
     from .virtual_endpoint import VirtualEndpoint
     from .virtual_event import VirtualEvent
+    from .virtual_events_root import VirtualEventsRoot
     from .virtual_event_presenter import VirtualEventPresenter
     from .virtual_event_registration import VirtualEventRegistration
     from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
     from .virtual_event_registration_question import VirtualEventRegistrationQuestion
     from .virtual_event_session import VirtualEventSession
-    from .virtual_events_root import VirtualEventsRoot
     from .virtual_event_webinar import VirtualEventWebinar
     from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
+    from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
     from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
     from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
     from .vpn_configuration import VpnConfiguration
@@ -1530,8 +1653,8 @@ if TYPE_CHECKING:
     from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
     from .windows10_mobile_compliance_policy import Windows10MobileCompliancePolicy
     from .windows10_network_boundary_configuration import Windows10NetworkBoundaryConfiguration
-    from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
     from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
+    from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
     from .windows10_secure_assessment_configuration import Windows10SecureAssessmentConfiguration
     from .windows10_team_general_configuration import Windows10TeamGeneralConfiguration
     from .windows10_vpn_configuration import Windows10VpnConfiguration
@@ -1582,6 +1705,7 @@ if TYPE_CHECKING:
     from .windows_kiosk_configuration import WindowsKioskConfiguration
     from .windows_malware_information import WindowsMalwareInformation
     from .windows_managed_app_protection import WindowsManagedAppProtection
+    from .windows_managed_app_registration import WindowsManagedAppRegistration
     from .windows_managed_device import WindowsManagedDevice
     from .windows_management_app import WindowsManagementApp
     from .windows_management_app_health_state import WindowsManagementAppHealthState
@@ -1595,8 +1719,8 @@ if TYPE_CHECKING:
     from .windows_phone81_custom_configuration import WindowsPhone81CustomConfiguration
     from .windows_phone81_general_configuration import WindowsPhone81GeneralConfiguration
     from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
-    from .windows_phone81_s_c_e_p_certificate_profile import WindowsPhone81SCEPCertificateProfile
     from .windows_phone81_store_app import WindowsPhone81StoreApp
+    from .windows_phone81_s_c_e_p_certificate_profile import WindowsPhone81SCEPCertificateProfile
     from .windows_phone81_trusted_root_certificate import WindowsPhone81TrustedRootCertificate
     from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
     from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
@@ -1609,8 +1733,6 @@ if TYPE_CHECKING:
     from .windows_store_app import WindowsStoreApp
     from .windows_universal_app_x import WindowsUniversalAppX
     from .windows_universal_app_x_contained_app import WindowsUniversalAppXContainedApp
-    from .windows_update_catalog_item import WindowsUpdateCatalogItem
-    from .windows_update_for_business_configuration import WindowsUpdateForBusinessConfiguration
     from .windows_updates.azure_a_d_device import AzureADDevice
     from .windows_updates.catalog import Catalog
     from .windows_updates.catalog_entry import CatalogEntry
@@ -1629,6 +1751,8 @@ if TYPE_CHECKING:
     from .windows_updates.updatable_asset import UpdatableAsset
     from .windows_updates.updatable_asset_group import UpdatableAssetGroup
     from .windows_updates.update_policy import UpdatePolicy
+    from .windows_update_catalog_item import WindowsUpdateCatalogItem
+    from .windows_update_for_business_configuration import WindowsUpdateForBusinessConfiguration
     from .windows_update_state import WindowsUpdateState
     from .windows_vpn_configuration import WindowsVpnConfiguration
     from .windows_web_app import WindowsWebApp
@@ -1645,8 +1769,8 @@ if TYPE_CHECKING:
     from .workbook_chart_axis_format import WorkbookChartAxisFormat
     from .workbook_chart_axis_title import WorkbookChartAxisTitle
     from .workbook_chart_axis_title_format import WorkbookChartAxisTitleFormat
-    from .workbook_chart_data_label_format import WorkbookChartDataLabelFormat
     from .workbook_chart_data_labels import WorkbookChartDataLabels
+    from .workbook_chart_data_label_format import WorkbookChartDataLabelFormat
     from .workbook_chart_fill import WorkbookChartFill
     from .workbook_chart_font import WorkbookChartFont
     from .workbook_chart_gridlines import WorkbookChartGridlines
@@ -1666,8 +1790,8 @@ if TYPE_CHECKING:
     from .workbook_document_task_change import WorkbookDocumentTaskChange
     from .workbook_filter import WorkbookFilter
     from .workbook_format_protection import WorkbookFormatProtection
-    from .workbook_function_result import WorkbookFunctionResult
     from .workbook_functions import WorkbookFunctions
+    from .workbook_function_result import WorkbookFunctionResult
     from .workbook_named_item import WorkbookNamedItem
     from .workbook_operation import WorkbookOperation
     from .workbook_pivot_table import WorkbookPivotTable
@@ -1685,8 +1809,8 @@ if TYPE_CHECKING:
     from .workbook_worksheet import WorkbookWorksheet
     from .workbook_worksheet_protection import WorkbookWorksheetProtection
     from .workforce_integration import WorkforceIntegration
-    from .work_position import WorkPosition
     from .workspace import Workspace
+    from .work_position import WorkPosition
     from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
     from .zebra_fota_artifact import ZebraFotaArtifact
     from .zebra_fota_connector import ZebraFotaConnector
@@ -1829,6 +1953,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
 
             return ActiveDirectoryWindowsAutopilotDeploymentProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.activeUsersBreakdownMetric".casefold():
+            from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
+
+            return ActiveUsersBreakdownMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.activeUsersMetric".casefold():
+            from .active_users_metric import ActiveUsersMetric
+
+            return ActiveUsersMetric()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.activityBasedTimeoutPolicy".casefold():
             from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
 
@@ -2342,6 +2474,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .app_vulnerability_task import AppVulnerabilityTask
 
             return AppVulnerabilityTask()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.assignedComputeInstanceDetails".casefold():
+            from .assigned_compute_instance_details import AssignedComputeInstanceDetails
+
+            return AssignedComputeInstanceDetails()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.assignmentFilterEvaluationStatusDetails".casefold():
             from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
 
@@ -2447,6 +2583,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .authentication_method_target import AuthenticationMethodTarget
 
             return AuthenticationMethodTarget()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationsMetric".casefold():
+            from .authentications_metric import AuthenticationsMetric
+
+            return AuthenticationsMetric()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationStrengthPolicy".casefold():
             from .authentication_strength_policy import AuthenticationStrengthPolicy
 
@@ -2463,6 +2603,94 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .authorization_policy import AuthorizationPolicy
 
             return AuthorizationPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authorizationSystem".casefold():
+            from .authorization_system import AuthorizationSystem
+
+            return AuthorizationSystem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authorizationSystemIdentity".casefold():
+            from .authorization_system_identity import AuthorizationSystemIdentity
+
+            return AuthorizationSystemIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authorizationSystemResource".casefold():
+            from .authorization_system_resource import AuthorizationSystemResource
+
+            return AuthorizationSystemResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authorizationSystemTypeAction".casefold():
+            from .authorization_system_type_action import AuthorizationSystemTypeAction
+
+            return AuthorizationSystemTypeAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authorizationSystemTypeService".casefold():
+            from .authorization_system_type_service import AuthorizationSystemTypeService
+
+            return AuthorizationSystemTypeService()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAccessKey".casefold():
+            from .aws_access_key import AwsAccessKey
+
+            return AwsAccessKey()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAuthorizationSystem".casefold():
+            from .aws_authorization_system import AwsAuthorizationSystem
+
+            return AwsAuthorizationSystem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAuthorizationSystemResource".casefold():
+            from .aws_authorization_system_resource import AwsAuthorizationSystemResource
+
+            return AwsAuthorizationSystemResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAuthorizationSystemTypeAction".casefold():
+            from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
+
+            return AwsAuthorizationSystemTypeAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsEc2Instance".casefold():
+            from .aws_ec2_instance import AwsEc2Instance
+
+            return AwsEc2Instance()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsExternalSystemAccessFinding".casefold():
+            from .aws_external_system_access_finding import AwsExternalSystemAccessFinding
+
+            return AwsExternalSystemAccessFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsExternalSystemAccessRoleFinding".casefold():
+            from .aws_external_system_access_role_finding import AwsExternalSystemAccessRoleFinding
+
+            return AwsExternalSystemAccessRoleFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsGroup".casefold():
+            from .aws_group import AwsGroup
+
+            return AwsGroup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsIdentity".casefold():
+            from .aws_identity import AwsIdentity
+
+            return AwsIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsIdentityAccessManagementKeyAgeFinding".casefold():
+            from .aws_identity_access_management_key_age_finding import AwsIdentityAccessManagementKeyAgeFinding
+
+            return AwsIdentityAccessManagementKeyAgeFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsIdentityAccessManagementKeyUsageFinding".casefold():
+            from .aws_identity_access_management_key_usage_finding import AwsIdentityAccessManagementKeyUsageFinding
+
+            return AwsIdentityAccessManagementKeyUsageFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsLambda".casefold():
+            from .aws_lambda import AwsLambda
+
+            return AwsLambda()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsPolicy".casefold():
+            from .aws_policy import AwsPolicy
+
+            return AwsPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsRole".casefold():
+            from .aws_role import AwsRole
+
+            return AwsRole()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsSecretInformationAccessFinding".casefold():
+            from .aws_secret_information_access_finding import AwsSecretInformationAccessFinding
+
+            return AwsSecretInformationAccessFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsSecurityToolAdministrationFinding".casefold():
+            from .aws_security_tool_administration_finding import AwsSecurityToolAdministrationFinding
+
+            return AwsSecurityToolAdministrationFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsUser".casefold():
+            from .aws_user import AwsUser
+
+            return AwsUser()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureADAuthentication".casefold():
             from .azure_a_d_authentication import AzureADAuthentication
 
@@ -2471,10 +2699,50 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
 
             return AzureADWindowsAutopilotDeploymentProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureAuthorizationSystem".casefold():
+            from .azure_authorization_system import AzureAuthorizationSystem
+
+            return AzureAuthorizationSystem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureAuthorizationSystemResource".casefold():
+            from .azure_authorization_system_resource import AzureAuthorizationSystemResource
+
+            return AzureAuthorizationSystemResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureAuthorizationSystemTypeAction".casefold():
+            from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
+
+            return AzureAuthorizationSystemTypeAction()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureCommunicationServicesUserConversationMember".casefold():
             from .azure_communication_services_user_conversation_member import AzureCommunicationServicesUserConversationMember
 
             return AzureCommunicationServicesUserConversationMember()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureGroup".casefold():
+            from .azure_group import AzureGroup
+
+            return AzureGroup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureIdentity".casefold():
+            from .azure_identity import AzureIdentity
+
+            return AzureIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureManagedIdentity".casefold():
+            from .azure_managed_identity import AzureManagedIdentity
+
+            return AzureManagedIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureRoleDefinition".casefold():
+            from .azure_role_definition import AzureRoleDefinition
+
+            return AzureRoleDefinition()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureServerlessFunction".casefold():
+            from .azure_serverless_function import AzureServerlessFunction
+
+            return AzureServerlessFunction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureServicePrincipal".casefold():
+            from .azure_service_principal import AzureServicePrincipal
+
+            return AzureServicePrincipal()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureUser".casefold():
+            from .azure_user import AzureUser
+
+            return AzureUser()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2cAuthenticationMethodsPolicy".casefold():
             from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
 
@@ -2611,6 +2879,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .call_activity_statistics import CallActivityStatistics
 
             return CallActivityStatistics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callEvent".casefold():
+            from .call_event import CallEvent
+
+            return CallEvent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecording".casefold():
             from .call_recording import CallRecording
 
@@ -2985,10 +3257,26 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
 
             return CustomSecurityAttributeDefinition()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dailyInactiveUsersByApplicationMetric".casefold():
+            from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
+
+            return DailyInactiveUsersByApplicationMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dailyInactiveUsersMetric".casefold():
+            from .daily_inactive_users_metric import DailyInactiveUsersMetric
+
+            return DailyInactiveUsersMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dailyUserInsightMetricsRoot".casefold():
+            from .daily_user_insight_metrics_root import DailyUserInsightMetricsRoot
+
+            return DailyUserInsightMetricsRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.dataClassificationService".casefold():
             from .data_classification_service import DataClassificationService
 
             return DataClassificationService()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dataCollectionInfo".casefold():
+            from .data_collection_info import DataCollectionInfo
+
+            return DataCollectionInfo()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.dataLossPreventionPolicy".casefold():
             from .data_loss_prevention_policy import DataLossPreventionPolicy
 
@@ -3910,6 +4198,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .employee_experience_user import EmployeeExperienceUser
 
             return EmployeeExperienceUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.encryptedAwsStorageBucketFinding".casefold():
+            from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
+
+            return EncryptedAwsStorageBucketFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.encryptedAzureStorageAccountFinding".casefold():
+            from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
+
+            return EncryptedAzureStorageAccountFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.encryptedGcpStorageBucketFinding".casefold():
+            from .encrypted_gcp_storage_bucket_finding import EncryptedGcpStorageBucketFinding
+
+            return EncryptedGcpStorageBucketFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.endpoint".casefold():
             from .endpoint import Endpoint
 
@@ -4074,6 +4374,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .external_item import ExternalItem
 
             return ExternalItem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externallyAccessibleAwsStorageBucketFinding".casefold():
+            from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
+
+            return ExternallyAccessibleAwsStorageBucketFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externallyAccessibleAzureBlobContainerFinding".casefold():
+            from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
+
+            return ExternallyAccessibleAzureBlobContainerFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externallyAccessibleGcpStorageBucketFinding".casefold():
+            from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
+
+            return ExternallyAccessibleGcpStorageBucketFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalMeetingRegistrant".casefold():
             from .external_meeting_registrant import ExternalMeetingRegistrant
 
@@ -4134,10 +4446,50 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .filter_operator_schema import FilterOperatorSchema
 
             return FilterOperatorSchema()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.finding".casefold():
+            from .finding import Finding
+
+            return Finding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.focusActivityStatistics".casefold():
             from .focus_activity_statistics import FocusActivityStatistics
 
             return FocusActivityStatistics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystem".casefold():
+            from .gcp_authorization_system import GcpAuthorizationSystem
+
+            return GcpAuthorizationSystem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystemResource".casefold():
+            from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
+
+            return GcpAuthorizationSystemResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystemTypeAction".casefold():
+            from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
+
+            return GcpAuthorizationSystemTypeAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpCloudFunction".casefold():
+            from .gcp_cloud_function import GcpCloudFunction
+
+            return GcpCloudFunction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpGroup".casefold():
+            from .gcp_group import GcpGroup
+
+            return GcpGroup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpIdentity".casefold():
+            from .gcp_identity import GcpIdentity
+
+            return GcpIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpRole".casefold():
+            from .gcp_role import GcpRole
+
+            return GcpRole()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpServiceAccount".casefold():
+            from .gcp_service_account import GcpServiceAccount
+
+            return GcpServiceAccount()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpUser".casefold():
+            from .gcp_user import GcpUser
+
+            return GcpUser()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.governanceInsight".casefold():
             from .governance_insight import GovernanceInsight
 
@@ -4327,6 +4679,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
 
             return IdentityCustomUserFlowAttribute()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityFinding".casefold():
+            from .identity_finding import IdentityFinding
+
+            return IdentityFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.customTaskExtension".casefold():
             from .identity_governance.custom_task_extension import CustomTaskExtension
 
@@ -4419,6 +4775,42 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .imported_windows_autopilot_device_identity_upload import ImportedWindowsAutopilotDeviceIdentityUpload
 
             return ImportedWindowsAutopilotDeviceIdentityUpload()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveAwsResourceFinding".casefold():
+            from .inactive_aws_resource_finding import InactiveAwsResourceFinding
+
+            return InactiveAwsResourceFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveAwsRoleFinding".casefold():
+            from .inactive_aws_role_finding import InactiveAwsRoleFinding
+
+            return InactiveAwsRoleFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveAzureServicePrincipalFinding".casefold():
+            from .inactive_azure_service_principal_finding import InactiveAzureServicePrincipalFinding
+
+            return InactiveAzureServicePrincipalFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveGcpServiceAccountFinding".casefold():
+            from .inactive_gcp_service_account_finding import InactiveGcpServiceAccountFinding
+
+            return InactiveGcpServiceAccountFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveGroupFinding".casefold():
+            from .inactive_group_finding import InactiveGroupFinding
+
+            return InactiveGroupFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveServerlessFunctionFinding".casefold():
+            from .inactive_serverless_function_finding import InactiveServerlessFunctionFinding
+
+            return InactiveServerlessFunctionFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveUserFinding".casefold():
+            from .inactive_user_finding import InactiveUserFinding
+
+            return InactiveUserFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveUsersByApplicationMetricBase".casefold():
+            from .inactive_users_by_application_metric_base import InactiveUsersByApplicationMetricBase
+
+            return InactiveUsersByApplicationMetricBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveUsersMetricBase".casefold():
+            from .inactive_users_metric_base import InactiveUsersMetricBase
+
+            return InactiveUsersMetricBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.azureDataLakeConnector".casefold():
             from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
 
@@ -4512,6 +4904,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .insights_settings import InsightsSettings
 
             return InsightsSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.insightSummary".casefold():
+            from .insight_summary import InsightSummary
+
+            return InsightSummary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.internalDomainFederation".casefold():
             from .internal_domain_federation import InternalDomainFederation
 
@@ -5308,6 +5704,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .message_trace import MessageTrace
 
             return MessageTrace()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mfaCompletionMetric".casefold():
+            from .mfa_completion_metric import MfaCompletionMetric
+
+            return MfaCompletionMetric()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftAccountUserConversationMember".casefold():
             from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
 
@@ -5428,6 +5828,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mobility_management_policy import MobilityManagementPolicy
 
             return MobilityManagementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.monthlyInactiveUsersByApplicationMetric".casefold():
+            from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
+
+            return MonthlyInactiveUsersByApplicationMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.monthlyInactiveUsersMetric".casefold():
+            from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
+
+            return MonthlyInactiveUsersMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.monthlyUserInsightMetricsRoot".casefold():
+            from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
+
+            return MonthlyUserInsightMetricsRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiTenantOrganization".casefold():
             from .multi_tenant_organization import MultiTenantOrganization
 
@@ -5718,6 +6130,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .on_user_create_start_listener import OnUserCreateStartListener
 
             return OnUserCreateStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.openAwsSecurityGroupFinding".casefold():
+            from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
+
+            return OpenAwsSecurityGroupFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.openIdConnectIdentityProvider".casefold():
             from .open_id_connect_identity_provider import OpenIdConnectIdentityProvider
 
@@ -5726,6 +6142,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .open_id_connect_provider import OpenIdConnectProvider
 
             return OpenIdConnectProvider()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.openNetworkAzureSecurityGroupFinding".casefold():
+            from .open_network_azure_security_group_finding import OpenNetworkAzureSecurityGroupFinding
+
+            return OpenNetworkAzureSecurityGroupFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.openShift".casefold():
             from .open_shift import OpenShift
 
@@ -5790,6 +6210,30 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .outlook_user import OutlookUser
 
             return OutlookUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedAwsResourceFinding".casefold():
+            from .overprovisioned_aws_resource_finding import OverprovisionedAwsResourceFinding
+
+            return OverprovisionedAwsResourceFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedAwsRoleFinding".casefold():
+            from .overprovisioned_aws_role_finding import OverprovisionedAwsRoleFinding
+
+            return OverprovisionedAwsRoleFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedAzureServicePrincipalFinding".casefold():
+            from .overprovisioned_azure_service_principal_finding import OverprovisionedAzureServicePrincipalFinding
+
+            return OverprovisionedAzureServicePrincipalFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedGcpServiceAccountFinding".casefold():
+            from .overprovisioned_gcp_service_account_finding import OverprovisionedGcpServiceAccountFinding
+
+            return OverprovisionedGcpServiceAccountFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedServerlessFunctionFinding".casefold():
+            from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
+
+            return OverprovisionedServerlessFunctionFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedUserFinding".casefold():
+            from .overprovisioned_user_finding import OverprovisionedUserFinding
+
+            return OverprovisionedUserFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.participant".casefold():
             from .participant import Participant
 
@@ -5838,6 +6282,38 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .permission_grant_policy import PermissionGrantPolicy
 
             return PermissionGrantPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionsAnalytics".casefold():
+            from .permissions_analytics import PermissionsAnalytics
+
+            return PermissionsAnalytics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionsAnalyticsAggregation".casefold():
+            from .permissions_analytics_aggregation import PermissionsAnalyticsAggregation
+
+            return PermissionsAnalyticsAggregation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionsCreepIndexDistribution".casefold():
+            from .permissions_creep_index_distribution import PermissionsCreepIndexDistribution
+
+            return PermissionsCreepIndexDistribution()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionsDefinitionAwsPolicy".casefold():
+            from .permissions_definition_aws_policy import PermissionsDefinitionAwsPolicy
+
+            return PermissionsDefinitionAwsPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionsDefinitionAzureRole".casefold():
+            from .permissions_definition_azure_role import PermissionsDefinitionAzureRole
+
+            return PermissionsDefinitionAzureRole()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionsDefinitionGcpRole".casefold():
+            from .permissions_definition_gcp_role import PermissionsDefinitionGcpRole
+
+            return PermissionsDefinitionGcpRole()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionsManagement".casefold():
+            from .permissions_management import PermissionsManagement
+
+            return PermissionsManagement()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionsRequestChange".casefold():
+            from .permissions_request_change import PermissionsRequestChange
+
+            return PermissionsRequestChange()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.person".casefold():
             from .person import Person
 
@@ -5958,6 +6434,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .planner_user import PlannerUser
 
             return PlannerUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.platformCredentialAuthenticationMethod".casefold():
+            from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
+
+            return PlatformCredentialAuthenticationMethod()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.playPromptOperation".casefold():
             from .play_prompt_operation import PlayPromptOperation
 
@@ -6139,6 +6619,30 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .privileged_signup_status import PrivilegedSignupStatus
 
             return PrivilegedSignupStatus()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalation".casefold():
+            from .privilege_escalation import PrivilegeEscalation
+
+            return PrivilegeEscalation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationAwsResourceFinding".casefold():
+            from .privilege_escalation_aws_resource_finding import PrivilegeEscalationAwsResourceFinding
+
+            return PrivilegeEscalationAwsResourceFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationAwsRoleFinding".casefold():
+            from .privilege_escalation_aws_role_finding import PrivilegeEscalationAwsRoleFinding
+
+            return PrivilegeEscalationAwsRoleFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationFinding".casefold():
+            from .privilege_escalation_finding import PrivilegeEscalationFinding
+
+            return PrivilegeEscalationFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationGcpServiceAccountFinding".casefold():
+            from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
+
+            return PrivilegeEscalationGcpServiceAccountFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationUserFinding".casefold():
+            from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
+
+            return PrivilegeEscalationUserFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeManagementElevation".casefold():
             from .privilege_management_elevation import PrivilegeManagementElevation
 
@@ -6212,6 +6716,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .record_operation import RecordOperation
 
             return RecordOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recycleBin".casefold():
+            from .recycle_bin import RecycleBin
+
+            return RecycleBin()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recycleBinItem".casefold():
+            from .recycle_bin_item import RecycleBinItem
+
+            return RecycleBinItem()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.redundantAssignmentAlertConfiguration".casefold():
             from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
 
@@ -6244,6 +6756,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .remote_assistance_settings import RemoteAssistanceSettings
 
             return RemoteAssistanceSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.remoteDesktopSecurityConfiguration".casefold():
+            from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
+
+            return RemoteDesktopSecurityConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.reportRoot".casefold():
             from .report_root import ReportRoot
 
@@ -6360,6 +6876,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .schedule_change_request import ScheduleChangeRequest
 
             return ScheduleChangeRequest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.scheduledPermissionsRequest".casefold():
+            from .scheduled_permissions_request import ScheduledPermissionsRequest
+
+            return ScheduledPermissionsRequest()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.schedulingGroup".casefold():
             from .scheduling_group import SchedulingGroup
 
@@ -6397,6 +6917,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .search_entity import SearchEntity
 
             return SearchEntity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsResourceFinding".casefold():
+            from .secret_information_access_aws_resource_finding import SecretInformationAccessAwsResourceFinding
+
+            return SecretInformationAccessAwsResourceFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsRoleFinding".casefold():
+            from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
+
+            return SecretInformationAccessAwsRoleFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsServerlessFunctionFinding".casefold():
+            from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
+
+            return SecretInformationAccessAwsServerlessFunctionFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsUserFinding".casefold():
+            from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
+
+            return SecretInformationAccessAwsUserFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sectionGroup".casefold():
             from .section_group import SectionGroup
 
@@ -6546,6 +7082,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.ediscovery_search import EdiscoverySearch
 
             return EdiscoverySearch()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ediscoverySearchExportOperation".casefold():
+            from .security.ediscovery_search_export_operation import EdiscoverySearchExportOperation
+
+            return EdiscoverySearchExportOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ediscoveryTagOperation".casefold():
             from .security.ediscovery_tag_operation import EdiscoveryTagOperation
 
@@ -6614,6 +7154,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.host_pair import HostPair
 
             return HostPair()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostPort".casefold():
+            from .security.host_port import HostPort
+
+            return HostPort()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostReputation".casefold():
             from .security.host_reputation import HostReputation
 
@@ -6813,6 +7357,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security_reports_root import SecurityReportsRoot
 
             return SecurityReportsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsResourceAdministratorFinding".casefold():
+            from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
+
+            return SecurityToolAwsResourceAdministratorFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsRoleAdministratorFinding".casefold():
+            from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
+
+            return SecurityToolAwsRoleAdministratorFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsServerlessFunctionAdministratorFinding".casefold():
+            from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
+
+            return SecurityToolAwsServerlessFunctionAdministratorFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsUserAdministratorFinding".casefold():
+            from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+
+            return SecurityToolAwsUserAdministratorFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sensitiveType".casefold():
             from .sensitive_type import SensitiveType
 
@@ -7042,6 +7602,30 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .subscription import Subscription
 
             return Subscription()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superAwsResourceFinding".casefold():
+            from .super_aws_resource_finding import SuperAwsResourceFinding
+
+            return SuperAwsResourceFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superAwsRoleFinding".casefold():
+            from .super_aws_role_finding import SuperAwsRoleFinding
+
+            return SuperAwsRoleFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superAzureServicePrincipalFinding".casefold():
+            from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
+
+            return SuperAzureServicePrincipalFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superGcpServiceAccountFinding".casefold():
+            from .super_gcp_service_account_finding import SuperGcpServiceAccountFinding
+
+            return SuperGcpServiceAccountFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superServerlessFunctionFinding".casefold():
+            from .super_serverless_function_finding import SuperServerlessFunctionFinding
+
+            return SuperServerlessFunctionFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superUserFinding".casefold():
+            from .super_user_finding import SuperUserFinding
+
+            return SuperUserFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.swapShiftsChangeRequest".casefold():
             from .swap_shifts_change_request import SwapShiftsChangeRequest
 
@@ -7066,6 +7650,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .synchronization_template import SynchronizationTemplate
 
             return SynchronizationTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetDeviceGroup".casefold():
+            from .target_device_group import TargetDeviceGroup
+
+            return TargetDeviceGroup()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetedManagedAppConfiguration".casefold():
             from .targeted_managed_app_configuration import TargetedManagedAppConfiguration
 
@@ -7343,6 +7931,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .trust_framework_policy import TrustFrameworkPolicy
 
             return TrustFrameworkPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unenforcedMfaAwsUserFinding".casefold():
+            from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
+
+            return UnenforcedMfaAwsUserFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.unifiedRbacApplication".casefold():
             from .unified_rbac_application import UnifiedRbacApplication
 
@@ -7511,6 +8103,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_consent_request import UserConsentRequest
 
             return UserConsentRequest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userCountMetric".casefold():
+            from .user_count_metric import UserCountMetric
+
+            return UserCountMetric()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userCredentialUsageDetails".casefold():
             from .user_credential_usage_details import UserCredentialUsageDetails
 
@@ -7695,6 +8291,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_flow_language_page import UserFlowLanguagePage
 
             return UserFlowLanguagePage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userInsightsRoot".casefold():
+            from .user_insights_root import UserInsightsRoot
+
+            return UserInsightsRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userInsightsSettings".casefold():
             from .user_insights_settings import UserInsightsSettings
 
@@ -7711,6 +8311,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_registration_details import UserRegistrationDetails
 
             return UserRegistrationDetails()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userRequestsMetric".casefold():
+            from .user_requests_metric import UserRequestsMetric
+
+            return UserRequestsMetric()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userScopeTeamsAppInstallation".casefold():
             from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
 
@@ -7727,10 +8331,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_sign_in_insight import UserSignInInsight
 
             return UserSignInInsight()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userSignUpMetric".casefold():
+            from .user_sign_up_metric import UserSignUpMetric
+
+            return UserSignUpMetric()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userTeamwork".casefold():
             from .user_teamwork import UserTeamwork
 
             return UserTeamwork()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userVirtualEventsRoot".casefold():
+            from .user_virtual_events_root import UserVirtualEventsRoot
+
+            return UserVirtualEventsRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.verticalSection".casefold():
             from .vertical_section import VerticalSection
 
@@ -7775,6 +8387,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
             return VirtualEventWebinarRegistrationConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualMachineWithAwsStorageBucketAccessFinding".casefold():
+            from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
+
+            return VirtualMachineWithAwsStorageBucketAccessFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.voiceAuthenticationMethodConfiguration".casefold():
             from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
 
@@ -8076,6 +8692,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_managed_app_protection import WindowsManagedAppProtection
 
             return WindowsManagedAppProtection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsManagedAppRegistration".casefold():
+            from .windows_managed_app_registration import WindowsManagedAppRegistration
+
+            return WindowsManagedAppRegistration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsManagedDevice".casefold():
             from .windows_managed_device import WindowsManagedDevice
 
@@ -8548,15 +9168,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .access_review_set import AccessReviewSet
         from .access_review_stage import AccessReviewStage
         from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
+        from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
+        from .active_users_metric import ActiveUsersMetric
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .activity_history_item import ActivityHistoryItem
         from .activity_statistics import ActivityStatistics
         from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+        from .administrative_unit import AdministrativeUnit
         from .admin_apps_and_services import AdminAppsAndServices
         from .admin_consent_request_policy import AdminConsentRequestPolicy
         from .admin_dynamics import AdminDynamics
         from .admin_forms import AdminForms
-        from .administrative_unit import AdministrativeUnit
         from .admin_report_settings import AdminReportSettings
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
@@ -8650,9 +9272,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
         from .aosp_device_owner_trusted_root_certificate import AospDeviceOwnerTrustedRootCertificate
         from .aosp_device_owner_wi_fi_configuration import AospDeviceOwnerWiFiConfiguration
-        from .app_consent_approval_route import AppConsentApprovalRoute
-        from .app_consent_request import AppConsentRequest
-        from .app_credential_sign_in_activity import AppCredentialSignInActivity
         from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
         from .apple_enrollment_profile_assignment import AppleEnrollmentProfileAssignment
         from .apple_expedited_checkin_configuration_base import AppleExpeditedCheckinConfigurationBase
@@ -8666,16 +9285,20 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
         from .application_sign_in_summary import ApplicationSignInSummary
         from .application_template import ApplicationTemplate
-        from .app_log_collection_request import AppLogCollectionRequest
-        from .app_management_policy import AppManagementPolicy
-        from .app_role_assignment import AppRoleAssignment
         from .approval import Approval
         from .approval_step import ApprovalStep
         from .approval_workflow_provider import ApprovalWorkflowProvider
+        from .app_consent_approval_route import AppConsentApprovalRoute
+        from .app_consent_request import AppConsentRequest
+        from .app_credential_sign_in_activity import AppCredentialSignInActivity
+        from .app_log_collection_request import AppLogCollectionRequest
+        from .app_management_policy import AppManagementPolicy
+        from .app_role_assignment import AppRoleAssignment
         from .app_scope import AppScope
         from .app_vulnerability_managed_device import AppVulnerabilityManagedDevice
         from .app_vulnerability_mobile_app import AppVulnerabilityMobileApp
         from .app_vulnerability_task import AppVulnerabilityTask
+        from .assigned_compute_instance_details import AssignedComputeInstanceDetails
         from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
         from .associated_team_info import AssociatedTeamInfo
         from .attachment import Attachment
@@ -8689,26 +9312,59 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .audio_routing_group import AudioRoutingGroup
         from .audit_event import AuditEvent
         from .authentication import Authentication
+        from .authentications_metric import AuthenticationsMetric
         from .authentication_combination_configuration import AuthenticationCombinationConfiguration
         from .authentication_context_class_reference import AuthenticationContextClassReference
-        from .authentication_event_listener import AuthenticationEventListener
         from .authentication_events_flow import AuthenticationEventsFlow
         from .authentication_events_policy import AuthenticationEventsPolicy
+        from .authentication_event_listener import AuthenticationEventListener
         from .authentication_flows_policy import AuthenticationFlowsPolicy
         from .authentication_listener import AuthenticationListener
         from .authentication_method import AuthenticationMethod
-        from .authentication_method_configuration import AuthenticationMethodConfiguration
-        from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_methods_root import AuthenticationMethodsRoot
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_method_target import AuthenticationMethodTarget
         from .authentication_strength_policy import AuthenticationStrengthPolicy
         from .authentication_strength_root import AuthenticationStrengthRoot
         from .authored_note import AuthoredNote
         from .authorization_policy import AuthorizationPolicy
+        from .authorization_system import AuthorizationSystem
+        from .authorization_system_identity import AuthorizationSystemIdentity
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .authorization_system_type_action import AuthorizationSystemTypeAction
+        from .authorization_system_type_service import AuthorizationSystemTypeService
+        from .aws_access_key import AwsAccessKey
+        from .aws_authorization_system import AwsAuthorizationSystem
+        from .aws_authorization_system_resource import AwsAuthorizationSystemResource
+        from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
+        from .aws_ec2_instance import AwsEc2Instance
+        from .aws_external_system_access_finding import AwsExternalSystemAccessFinding
+        from .aws_external_system_access_role_finding import AwsExternalSystemAccessRoleFinding
+        from .aws_group import AwsGroup
+        from .aws_identity import AwsIdentity
+        from .aws_identity_access_management_key_age_finding import AwsIdentityAccessManagementKeyAgeFinding
+        from .aws_identity_access_management_key_usage_finding import AwsIdentityAccessManagementKeyUsageFinding
+        from .aws_lambda import AwsLambda
+        from .aws_policy import AwsPolicy
+        from .aws_role import AwsRole
+        from .aws_secret_information_access_finding import AwsSecretInformationAccessFinding
+        from .aws_security_tool_administration_finding import AwsSecurityToolAdministrationFinding
+        from .aws_user import AwsUser
+        from .azure_authorization_system import AzureAuthorizationSystem
+        from .azure_authorization_system_resource import AzureAuthorizationSystemResource
+        from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
         from .azure_a_d_authentication import AzureADAuthentication
         from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
         from .azure_communication_services_user_conversation_member import AzureCommunicationServicesUserConversationMember
+        from .azure_group import AzureGroup
+        from .azure_identity import AzureIdentity
+        from .azure_managed_identity import AzureManagedIdentity
+        from .azure_role_definition import AzureRoleDefinition
+        from .azure_serverless_function import AzureServerlessFunction
+        from .azure_service_principal import AzureServicePrincipal
+        from .azure_user import AzureUser
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
@@ -8743,6 +9399,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .calendar_sharing_message import CalendarSharingMessage
         from .call import Call
         from .call_activity_statistics import CallActivityStatistics
+        from .call_event import CallEvent
         from .call_recording import CallRecording
         from .call_records.call_record import CallRecord
         from .call_records.segment import Segment
@@ -8768,7 +9425,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .classification_job_response import ClassificationJobResponse
         from .cloud_app_security_profile import CloudAppSecurityProfile
-        from .cloud_p_c import CloudPC
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
@@ -8778,7 +9434,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
-        from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
         from .cloud_pc_export_job import CloudPcExportJob
@@ -8796,6 +9451,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_supported_region import CloudPcSupportedRegion
         from .cloud_pc_user_setting import CloudPcUserSetting
         from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
+        from .cloud_p_c import CloudPC
+        from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
         from .column_definition import ColumnDefinition
         from .column_link import ColumnLink
         from .comanagement_eligible_device import ComanagementEligibleDevice
@@ -8836,7 +9493,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
         from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
+        from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
+        from .daily_inactive_users_metric import DailyInactiveUsersMetric
+        from .daily_user_insight_metrics_root import DailyUserInsightMetricsRoot
         from .data_classification_service import DataClassificationService
+        from .data_collection_info import DataCollectionInfo
         from .data_loss_prevention_policy import DataLossPreventionPolicy
         from .data_policy_operation import DataPolicyOperation
         from .data_sharing_consent import DataSharingConsent
@@ -8901,8 +9562,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
         from .device_enrollment_limit_configuration import DeviceEnrollmentLimitConfiguration
         from .device_enrollment_notification_configuration import DeviceEnrollmentNotificationConfiguration
-        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
         from .device_enrollment_platform_restrictions_configuration import DeviceEnrollmentPlatformRestrictionsConfiguration
+        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
         from .device_enrollment_windows_hello_for_business_configuration import DeviceEnrollmentWindowsHelloForBusinessConfiguration
         from .device_health_script import DeviceHealthScript
         from .device_health_script_assignment import DeviceHealthScriptAssignment
@@ -9007,7 +9668,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .drive_item import DriveItem
         from .drive_item_version import DriveItemVersion
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-        from .e_book_install_summary import EBookInstallSummary
         from .edge import Edge
         from .ediscovery.add_to_review_set_operation import AddToReviewSetOperation
         from .ediscovery.case import Case
@@ -9065,6 +9725,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
         from .employee_experience_user import EmployeeExperienceUser
+        from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
+        from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
+        from .encrypted_gcp_storage_bucket_finding import EncryptedGcpStorageBucketFinding
         from .endpoint import Endpoint
         from .end_user_notification import EndUserNotification
         from .end_user_notification_detail import EndUserNotificationDetail
@@ -9090,6 +9753,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .extension import Extension
         from .extension_property import ExtensionProperty
         from .external import External
+        from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
+        from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
+        from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
         from .external_connection import ExternalConnection
         from .external_connectors.connection_operation import ConnectionOperation
         from .external_connectors.connection_quota import ConnectionQuota
@@ -9107,6 +9773,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .external_meeting_registrant import ExternalMeetingRegistrant
         from .external_meeting_registration import ExternalMeetingRegistration
         from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
+        from .e_book_install_summary import EBookInstallSummary
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .federated_identity_credential import FederatedIdentityCredential
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
@@ -9119,7 +9786,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_classification_request import FileClassificationRequest
         from .file_security_profile import FileSecurityProfile
         from .filter_operator_schema import FilterOperatorSchema
+        from .finding import Finding
         from .focus_activity_statistics import FocusActivityStatistics
+        from .gcp_authorization_system import GcpAuthorizationSystem
+        from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
+        from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
+        from .gcp_cloud_function import GcpCloudFunction
+        from .gcp_group import GcpGroup
+        from .gcp_identity import GcpIdentity
+        from .gcp_role import GcpRole
+        from .gcp_service_account import GcpServiceAccount
+        from .gcp_user import GcpUser
         from .governance_insight import GovernanceInsight
         from .governance_policy_template import GovernancePolicyTemplate
         from .governance_resource import GovernanceResource
@@ -9167,6 +9844,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_api_connector import IdentityApiConnector
         from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
+        from .identity_finding import IdentityFinding
         from .identity_governance.custom_task_extension import CustomTaskExtension
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
@@ -9190,6 +9868,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .imported_device_identity_result import ImportedDeviceIdentityResult
         from .imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
         from .imported_windows_autopilot_device_identity_upload import ImportedWindowsAutopilotDeviceIdentityUpload
+        from .inactive_aws_resource_finding import InactiveAwsResourceFinding
+        from .inactive_aws_role_finding import InactiveAwsRoleFinding
+        from .inactive_azure_service_principal_finding import InactiveAzureServicePrincipalFinding
+        from .inactive_gcp_service_account_finding import InactiveGcpServiceAccountFinding
+        from .inactive_group_finding import InactiveGroupFinding
+        from .inactive_serverless_function_finding import InactiveServerlessFunctionFinding
+        from .inactive_users_by_application_metric_base import InactiveUsersByApplicationMetricBase
+        from .inactive_users_metric_base import InactiveUsersMetricBase
+        from .inactive_user_finding import InactiveUserFinding
         from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
         from .industry_data.file_data_connector import FileDataConnector
         from .industry_data.file_validate_operation import FileValidateOperation
@@ -9213,6 +9900,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .information_protection_label import InformationProtectionLabel
         from .information_protection_policy import InformationProtectionPolicy
         from .insights_settings import InsightsSettings
+        from .insight_summary import InsightSummary
         from .internal_domain_federation import InternalDomainFederation
         from .internet_explorer_mode import InternetExplorerMode
         from .intune_branding_profile import IntuneBrandingProfile
@@ -9222,6 +9910,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .invitation import Invitation
         from .invite_participants_operation import InviteParticipantsOperation
         from .invoke_user_flow_listener import InvokeUserFlowListener
+        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+        from .iosi_pad_o_s_web_clip import IosiPadOSWebClip
         from .ios_certificate_profile import IosCertificateProfile
         from .ios_certificate_profile_base import IosCertificateProfileBase
         from .ios_compliance_policy import IosCompliancePolicy
@@ -9234,9 +9924,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .ios_enterprise_wi_fi_configuration import IosEnterpriseWiFiConfiguration
         from .ios_expedited_checkin_configuration import IosExpeditedCheckinConfiguration
         from .ios_general_device_configuration import IosGeneralDeviceConfiguration
-        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
         from .ios_imported_p_f_x_certificate_profile import IosImportedPFXCertificateProfile
-        from .iosi_pad_o_s_web_clip import IosiPadOSWebClip
         from .ios_lob_app import IosLobApp
         from .ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
         from .ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
@@ -9285,13 +9973,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .learning_self_initiated_course import LearningSelfInitiatedCourse
         from .license_details import LicenseDetails
         from .linked_resource import LinkedResource
+        from .list_ import List_
         from .list_item import ListItem
         from .list_item_version import ListItemVersion
-        from .list_ import List_
         from .localized_notification_message import LocalizedNotificationMessage
         from .login_page import LoginPage
         from .long_running_operation import LongRunningOperation
         from .lookup_result_row import LookupResultRow
+        from .mac_os_vpp_app import MacOsVppApp
+        from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .mac_o_s_compliance_policy import MacOSCompliancePolicy
         from .mac_o_s_custom_app_configuration import MacOSCustomAppConfiguration
@@ -9316,11 +10006,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_software_update_state_summary import MacOSSoftwareUpdateStateSummary
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
         from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
-        from .mac_os_vpp_app import MacOsVppApp
-        from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
         from .mac_o_s_web_clip import MacOSWebClip
-        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
+        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mail_assessment_request import MailAssessmentRequest
         from .mail_folder import MailFolder
         from .mail_search_folder import MailSearchFolder
@@ -9411,6 +10099,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_recipient import MessageRecipient
         from .message_rule import MessageRule
         from .message_trace import MessageTrace
+        from .mfa_completion_metric import MfaCompletionMetric
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -9441,14 +10130,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mobile_lob_app import MobileLobApp
         from .mobile_threat_defense_connector import MobileThreatDefenseConnector
         from .mobility_management_policy import MobilityManagementPolicy
+        from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
+        from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
+        from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
         from .multi_tenant_organization import MultiTenantOrganization
         from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
         from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .multi_tenant_organization_partner_configuration_template import MultiTenantOrganizationPartnerConfigurationTemplate
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-        from .mute_participant_operation import MuteParticipantOperation
         from .mute_participants_operation import MuteParticipantsOperation
+        from .mute_participant_operation import MuteParticipantOperation
         from .named_location import NamedLocation
         from .ndes_connector import NdesConnector
         from .networkaccess.branch_site import BranchSite
@@ -9475,13 +10167,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
         from .networkaccess.tenant_status import TenantStatus
-        from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
-        from .no_mfa_on_role_activation_alert_incident import NoMfaOnRoleActivationAlertIncident
         from .note import Note
         from .notebook import Notebook
         from .notification import Notification
         from .notification_message_template import NotificationMessageTemplate
-        from .o_auth2_permission_grant import OAuth2PermissionGrant
+        from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
+        from .no_mfa_on_role_activation_alert_incident import NoMfaOnRoleActivationAlertIncident
         from .offer_shift_request import OfferShiftRequest
         from .office365_active_user_counts import Office365ActiveUserCounts
         from .office365_active_user_detail import Office365ActiveUserDetail
@@ -9493,8 +10184,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .office365_services_user_counts import Office365ServicesUserCounts
         from .office_graph_insights import OfficeGraphInsights
         from .office_suite_app import OfficeSuiteApp
-        from .on_attribute_collection_listener import OnAttributeCollectionListener
-        from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
         from .onenote import Onenote
         from .onenote_entity_base_model import OnenoteEntityBaseModel
         from .onenote_entity_hierarchy_model import OnenoteEntityHierarchyModel
@@ -9503,8 +10192,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .onenote_page import OnenotePage
         from .onenote_resource import OnenoteResource
         from .onenote_section import OnenoteSection
-        from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .online_meeting import OnlineMeeting
+        from .on_attribute_collection_listener import OnAttributeCollectionListener
+        from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+        from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -9513,8 +10204,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
+        from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
         from .open_id_connect_identity_provider import OpenIdConnectIdentityProvider
         from .open_id_connect_provider import OpenIdConnectProvider
+        from .open_network_azure_security_group_finding import OpenNetworkAzureSecurityGroupFinding
         from .open_shift import OpenShift
         from .open_shift_change_request import OpenShiftChangeRequest
         from .open_type_extension import OpenTypeExtension
@@ -9531,16 +10224,31 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .outlook_task_folder import OutlookTaskFolder
         from .outlook_task_group import OutlookTaskGroup
         from .outlook_user import OutlookUser
+        from .overprovisioned_aws_resource_finding import OverprovisionedAwsResourceFinding
+        from .overprovisioned_aws_role_finding import OverprovisionedAwsRoleFinding
+        from .overprovisioned_azure_service_principal_finding import OverprovisionedAzureServicePrincipalFinding
+        from .overprovisioned_gcp_service_account_finding import OverprovisionedGcpServiceAccountFinding
+        from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
+        from .overprovisioned_user_finding import OverprovisionedUserFinding
+        from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
-        from .password_authentication_method import PasswordAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+        from .password_authentication_method import PasswordAuthenticationMethod
         from .payload import Payload
         from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
         from .payload_response import PayloadResponse
         from .people_admin_settings import PeopleAdminSettings
         from .permission import Permission
+        from .permissions_analytics import PermissionsAnalytics
+        from .permissions_analytics_aggregation import PermissionsAnalyticsAggregation
+        from .permissions_creep_index_distribution import PermissionsCreepIndexDistribution
+        from .permissions_definition_aws_policy import PermissionsDefinitionAwsPolicy
+        from .permissions_definition_azure_role import PermissionsDefinitionAzureRole
+        from .permissions_definition_gcp_role import PermissionsDefinitionGcpRole
+        from .permissions_management import PermissionsManagement
+        from .permissions_request_change import PermissionsRequestChange
         from .permission_grant_condition_set import PermissionGrantConditionSet
         from .permission_grant_policy import PermissionGrantPolicy
         from .person import Person
@@ -9573,6 +10281,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_task_configuration import PlannerTaskConfiguration
         from .planner_task_details import PlannerTaskDetails
         from .planner_user import PlannerUser
+        from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
         from .policy_set import PolicySet
@@ -9582,12 +10291,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .post import Post
         from .presence import Presence
         from .presentation import Presentation
-        from .print_connector import PrintConnector
-        from .print_document import PrintDocument
         from .printer import Printer
         from .printer_base import PrinterBase
         from .printer_create_operation import PrinterCreateOperation
         from .printer_share import PrinterShare
+        from .print_connector import PrintConnector
+        from .print_document import PrintDocument
         from .print_job import PrintJob
         from .print_operation import PrintOperation
         from .print_service import PrintService
@@ -9618,6 +10327,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .privileged_role_settings import PrivilegedRoleSettings
         from .privileged_role_summary import PrivilegedRoleSummary
         from .privileged_signup_status import PrivilegedSignupStatus
+        from .privilege_escalation import PrivilegeEscalation
+        from .privilege_escalation_aws_resource_finding import PrivilegeEscalationAwsResourceFinding
+        from .privilege_escalation_aws_role_finding import PrivilegeEscalationAwsRoleFinding
+        from .privilege_escalation_finding import PrivilegeEscalationFinding
+        from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
+        from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
         from .privilege_management_elevation import PrivilegeManagementElevation
         from .profile import Profile
         from .profile_card_property import ProfileCardProperty
@@ -9636,6 +10351,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
         from .record_operation import RecordOperation
+        from .recycle_bin import RecycleBin
+        from .recycle_bin_item import RecycleBinItem
         from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
         from .redundant_assignment_alert_incident import RedundantAssignmentAlertIncident
         from .reference_attachment import ReferenceAttachment
@@ -9644,6 +10361,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .remote_action_audit import RemoteActionAudit
         from .remote_assistance_partner import RemoteAssistancePartner
         from .remote_assistance_settings import RemoteAssistanceSettings
+        from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .report_root import ReportRoot
         from .request import Request
         from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
@@ -9651,16 +10369,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .restricted_apps_violation import RestrictedAppsViolation
         from .rich_long_running_operation import RichLongRunningOperation
-        from .risk_detection import RiskDetection
         from .risky_service_principal import RiskyServicePrincipal
         from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
         from .risky_user import RiskyUser
         from .risky_user_history_item import RiskyUserHistoryItem
+        from .risk_detection import RiskDetection
+        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_assignment import RoleAssignment
         from .role_definition import RoleDefinition
         from .role_management_alert import RoleManagementAlert
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
-        from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_scope_tag import RoleScopeTag
         from .role_scope_tag_auto_assignment import RoleScopeTagAutoAssignment
         from .room import Room
@@ -9672,6 +10390,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .saml_or_ws_fed_external_domain_federation import SamlOrWsFedExternalDomainFederation
         from .saml_or_ws_fed_provider import SamlOrWsFedProvider
         from .schedule import Schedule
+        from .scheduled_permissions_request import ScheduledPermissionsRequest
         from .schedule_change_request import ScheduleChangeRequest
         from .scheduling_group import SchedulingGroup
         from .schema import Schema
@@ -9682,6 +10401,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .search.qna import Qna
         from .search.search_answer import SearchAnswer
         from .search_entity import SearchEntity
+        from .secret_information_access_aws_resource_finding import SecretInformationAccessAwsResourceFinding
+        from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
+        from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
+        from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
         from .section_group import SectionGroup
         from .secure_score import SecureScore
         from .secure_score_control_profile import SecureScoreControlProfile
@@ -9691,8 +10414,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.artifact import Artifact
         from .security.authority_template import AuthorityTemplate
         from .security.case import Case
-        from .security.case_operation import CaseOperation
         from .security.cases_root import CasesRoot
+        from .security.case_operation import CaseOperation
         from .security.category_template import CategoryTemplate
         from .security.citation_template import CitationTemplate
         from .security.data_set import DataSet
@@ -9717,6 +10440,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.ediscovery_review_set_query import EdiscoveryReviewSetQuery
         from .security.ediscovery_review_tag import EdiscoveryReviewTag
         from .security.ediscovery_search import EdiscoverySearch
+        from .security.ediscovery_search_export_operation import EdiscoverySearchExportOperation
         from .security.ediscovery_tag_operation import EdiscoveryTagOperation
         from .security.email_content_threat_submission import EmailContentThreatSubmission
         from .security.email_threat_submission import EmailThreatSubmission
@@ -9730,10 +10454,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.file_threat_submission import FileThreatSubmission
         from .security.file_url_threat_submission import FileUrlThreatSubmission
         from .security.host import Host
+        from .security.hostname import Hostname
         from .security.host_component import HostComponent
         from .security.host_cookie import HostCookie
-        from .security.hostname import Hostname
         from .security.host_pair import HostPair
+        from .security.host_port import HostPort
         from .security.host_reputation import HostReputation
         from .security.host_ssl_certificate import HostSslCertificate
         from .security.host_tracker import HostTracker
@@ -9756,8 +10481,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.sensitivity_label import SensitivityLabel
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
-        from .security.sub_category_template import SubCategoryTemplate
         from .security.subdomain import Subdomain
+        from .security.sub_category_template import SubCategoryTemplate
         from .security.tag import Tag
         from .security.threat_intelligence import ThreatIntelligence
         from .security.threat_submission import ThreatSubmission
@@ -9782,6 +10507,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_baseline_template import SecurityBaselineTemplate
         from .security_configuration_task import SecurityConfigurationTask
         from .security_reports_root import SecurityReportsRoot
+        from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
+        from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
+        from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
+        from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
         from .sensitive_type import SensitiveType
         from .sensitivity_label import SensitivityLabel
         from .sensitivity_policy_settings import SensitivityPolicySettings
@@ -9839,6 +10568,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .subscribed_sku import SubscribedSku
         from .subscribe_to_tone_operation import SubscribeToToneOperation
         from .subscription import Subscription
+        from .super_aws_resource_finding import SuperAwsResourceFinding
+        from .super_aws_role_finding import SuperAwsRoleFinding
+        from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
+        from .super_gcp_service_account_finding import SuperGcpServiceAccountFinding
+        from .super_serverless_function_finding import SuperServerlessFunctionFinding
+        from .super_user_finding import SuperUserFinding
         from .swap_shifts_change_request import SwapShiftsChangeRequest
         from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
         from .synchronization import Synchronization
@@ -9849,10 +10584,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .targeted_managed_app_configuration_policy_set_item import TargetedManagedAppConfigurationPolicySetItem
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
         from .targeted_managed_app_protection import TargetedManagedAppProtection
+        from .target_device_group import TargetDeviceGroup
         from .task_file_attachment import TaskFileAttachment
         from .tax_group import TaxGroup
         from .team import Team
-        from .team_info import TeamInfo
         from .teams_app import TeamsApp
         from .teams_app_definition import TeamsAppDefinition
         from .teams_app_icon import TeamsAppIcon
@@ -9861,8 +10596,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_async_operation import TeamsAsyncOperation
         from .teams_tab import TeamsTab
         from .teams_template import TeamsTemplate
-        from .team_template import TeamTemplate
-        from .team_template_definition import TeamTemplateDefinition
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
         from .teamwork_device import TeamworkDevice
@@ -9874,6 +10607,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teamwork_peripheral import TeamworkPeripheral
         from .teamwork_tag import TeamworkTag
         from .teamwork_tag_member import TeamworkTagMember
+        from .team_info import TeamInfo
+        from .team_template import TeamTemplate
+        from .team_template_definition import TeamTemplateDefinition
         from .telecom_expense_management_partner import TelecomExpenseManagementPartner
         from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
@@ -9896,11 +10632,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .threat_assessment_request import ThreatAssessmentRequest
         from .threat_assessment_result import ThreatAssessmentResult
         from .thumbnail_set import ThumbnailSet
-        from .ti_indicator import TiIndicator
         from .time_card import TimeCard
         from .time_off import TimeOff
         from .time_off_reason import TimeOffReason
         from .time_off_request import TimeOffRequest
+        from .ti_indicator import TiIndicator
         from .todo import Todo
         from .todo_task import TodoTask
         from .todo_task_list import TodoTaskList
@@ -9914,6 +10650,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
         from .trust_framework_key_set import TrustFrameworkKeySet
         from .trust_framework_policy import TrustFrameworkPolicy
+        from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
         from .unified_rbac_application import UnifiedRbacApplication
         from .unified_rbac_resource_action import UnifiedRbacResourceAction
         from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
@@ -9956,6 +10693,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_app_install_status import UserAppInstallStatus
         from .user_configuration import UserConfiguration
         from .user_consent_request import UserConsentRequest
+        from .user_count_metric import UserCountMetric
         from .user_credential_usage_details import UserCredentialUsageDetails
         from .user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
         from .user_experience_analytics_anomaly_correlation_group_overview import UserExperienceAnalyticsAnomalyCorrelationGroupOverview
@@ -10002,26 +10740,31 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_experience_analytics_work_from_anywhere_model_performance import UserExperienceAnalyticsWorkFromAnywhereModelPerformance
         from .user_flow_language_configuration import UserFlowLanguageConfiguration
         from .user_flow_language_page import UserFlowLanguagePage
+        from .user_insights_root import UserInsightsRoot
         from .user_insights_settings import UserInsightsSettings
         from .user_install_state_summary import UserInstallStateSummary
         from .user_p_f_x_certificate import UserPFXCertificate
         from .user_registration_details import UserRegistrationDetails
+        from .user_requests_metric import UserRequestsMetric
         from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
         from .user_security_profile import UserSecurityProfile
         from .user_settings import UserSettings
         from .user_sign_in_insight import UserSignInInsight
+        from .user_sign_up_metric import UserSignUpMetric
         from .user_teamwork import UserTeamwork
+        from .user_virtual_events_root import UserVirtualEventsRoot
         from .vertical_section import VerticalSection
         from .virtual_endpoint import VirtualEndpoint
         from .virtual_event import VirtualEvent
+        from .virtual_events_root import VirtualEventsRoot
         from .virtual_event_presenter import VirtualEventPresenter
         from .virtual_event_registration import VirtualEventRegistration
         from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
         from .virtual_event_registration_question import VirtualEventRegistrationQuestion
         from .virtual_event_session import VirtualEventSession
-        from .virtual_events_root import VirtualEventsRoot
         from .virtual_event_webinar import VirtualEventWebinar
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
+        from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
         from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
         from .vpn_configuration import VpnConfiguration
@@ -10045,8 +10788,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
         from .windows10_mobile_compliance_policy import Windows10MobileCompliancePolicy
         from .windows10_network_boundary_configuration import Windows10NetworkBoundaryConfiguration
-        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
         from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
+        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
         from .windows10_secure_assessment_configuration import Windows10SecureAssessmentConfiguration
         from .windows10_team_general_configuration import Windows10TeamGeneralConfiguration
         from .windows10_vpn_configuration import Windows10VpnConfiguration
@@ -10097,6 +10840,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_kiosk_configuration import WindowsKioskConfiguration
         from .windows_malware_information import WindowsMalwareInformation
         from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_managed_app_registration import WindowsManagedAppRegistration
         from .windows_managed_device import WindowsManagedDevice
         from .windows_management_app import WindowsManagementApp
         from .windows_management_app_health_state import WindowsManagementAppHealthState
@@ -10110,8 +10854,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_phone81_custom_configuration import WindowsPhone81CustomConfiguration
         from .windows_phone81_general_configuration import WindowsPhone81GeneralConfiguration
         from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
-        from .windows_phone81_s_c_e_p_certificate_profile import WindowsPhone81SCEPCertificateProfile
         from .windows_phone81_store_app import WindowsPhone81StoreApp
+        from .windows_phone81_s_c_e_p_certificate_profile import WindowsPhone81SCEPCertificateProfile
         from .windows_phone81_trusted_root_certificate import WindowsPhone81TrustedRootCertificate
         from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
         from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
@@ -10124,8 +10868,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_store_app import WindowsStoreApp
         from .windows_universal_app_x import WindowsUniversalAppX
         from .windows_universal_app_x_contained_app import WindowsUniversalAppXContainedApp
-        from .windows_update_catalog_item import WindowsUpdateCatalogItem
-        from .windows_update_for_business_configuration import WindowsUpdateForBusinessConfiguration
         from .windows_updates.azure_a_d_device import AzureADDevice
         from .windows_updates.catalog import Catalog
         from .windows_updates.catalog_entry import CatalogEntry
@@ -10144,6 +10886,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_updates.updatable_asset import UpdatableAsset
         from .windows_updates.updatable_asset_group import UpdatableAssetGroup
         from .windows_updates.update_policy import UpdatePolicy
+        from .windows_update_catalog_item import WindowsUpdateCatalogItem
+        from .windows_update_for_business_configuration import WindowsUpdateForBusinessConfiguration
         from .windows_update_state import WindowsUpdateState
         from .windows_vpn_configuration import WindowsVpnConfiguration
         from .windows_web_app import WindowsWebApp
@@ -10160,8 +10904,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_chart_axis_format import WorkbookChartAxisFormat
         from .workbook_chart_axis_title import WorkbookChartAxisTitle
         from .workbook_chart_axis_title_format import WorkbookChartAxisTitleFormat
-        from .workbook_chart_data_label_format import WorkbookChartDataLabelFormat
         from .workbook_chart_data_labels import WorkbookChartDataLabels
+        from .workbook_chart_data_label_format import WorkbookChartDataLabelFormat
         from .workbook_chart_fill import WorkbookChartFill
         from .workbook_chart_font import WorkbookChartFont
         from .workbook_chart_gridlines import WorkbookChartGridlines
@@ -10181,8 +10925,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_document_task_change import WorkbookDocumentTaskChange
         from .workbook_filter import WorkbookFilter
         from .workbook_format_protection import WorkbookFormatProtection
-        from .workbook_function_result import WorkbookFunctionResult
         from .workbook_functions import WorkbookFunctions
+        from .workbook_function_result import WorkbookFunctionResult
         from .workbook_named_item import WorkbookNamedItem
         from .workbook_operation import WorkbookOperation
         from .workbook_pivot_table import WorkbookPivotTable
@@ -10200,8 +10944,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_worksheet import WorkbookWorksheet
         from .workbook_worksheet_protection import WorkbookWorksheetProtection
         from .workforce_integration import WorkforceIntegration
-        from .work_position import WorkPosition
         from .workspace import Workspace
+        from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
         from .zebra_fota_artifact import ZebraFotaArtifact
         from .zebra_fota_connector import ZebraFotaConnector
@@ -10235,15 +10979,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .access_review_set import AccessReviewSet
         from .access_review_stage import AccessReviewStage
         from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
+        from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
+        from .active_users_metric import ActiveUsersMetric
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .activity_history_item import ActivityHistoryItem
         from .activity_statistics import ActivityStatistics
         from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+        from .administrative_unit import AdministrativeUnit
         from .admin_apps_and_services import AdminAppsAndServices
         from .admin_consent_request_policy import AdminConsentRequestPolicy
         from .admin_dynamics import AdminDynamics
         from .admin_forms import AdminForms
-        from .administrative_unit import AdministrativeUnit
         from .admin_report_settings import AdminReportSettings
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
@@ -10337,9 +11083,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
         from .aosp_device_owner_trusted_root_certificate import AospDeviceOwnerTrustedRootCertificate
         from .aosp_device_owner_wi_fi_configuration import AospDeviceOwnerWiFiConfiguration
-        from .app_consent_approval_route import AppConsentApprovalRoute
-        from .app_consent_request import AppConsentRequest
-        from .app_credential_sign_in_activity import AppCredentialSignInActivity
         from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
         from .apple_enrollment_profile_assignment import AppleEnrollmentProfileAssignment
         from .apple_expedited_checkin_configuration_base import AppleExpeditedCheckinConfigurationBase
@@ -10353,16 +11096,20 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
         from .application_sign_in_summary import ApplicationSignInSummary
         from .application_template import ApplicationTemplate
-        from .app_log_collection_request import AppLogCollectionRequest
-        from .app_management_policy import AppManagementPolicy
-        from .app_role_assignment import AppRoleAssignment
         from .approval import Approval
         from .approval_step import ApprovalStep
         from .approval_workflow_provider import ApprovalWorkflowProvider
+        from .app_consent_approval_route import AppConsentApprovalRoute
+        from .app_consent_request import AppConsentRequest
+        from .app_credential_sign_in_activity import AppCredentialSignInActivity
+        from .app_log_collection_request import AppLogCollectionRequest
+        from .app_management_policy import AppManagementPolicy
+        from .app_role_assignment import AppRoleAssignment
         from .app_scope import AppScope
         from .app_vulnerability_managed_device import AppVulnerabilityManagedDevice
         from .app_vulnerability_mobile_app import AppVulnerabilityMobileApp
         from .app_vulnerability_task import AppVulnerabilityTask
+        from .assigned_compute_instance_details import AssignedComputeInstanceDetails
         from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
         from .associated_team_info import AssociatedTeamInfo
         from .attachment import Attachment
@@ -10376,26 +11123,59 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .audio_routing_group import AudioRoutingGroup
         from .audit_event import AuditEvent
         from .authentication import Authentication
+        from .authentications_metric import AuthenticationsMetric
         from .authentication_combination_configuration import AuthenticationCombinationConfiguration
         from .authentication_context_class_reference import AuthenticationContextClassReference
-        from .authentication_event_listener import AuthenticationEventListener
         from .authentication_events_flow import AuthenticationEventsFlow
         from .authentication_events_policy import AuthenticationEventsPolicy
+        from .authentication_event_listener import AuthenticationEventListener
         from .authentication_flows_policy import AuthenticationFlowsPolicy
         from .authentication_listener import AuthenticationListener
         from .authentication_method import AuthenticationMethod
-        from .authentication_method_configuration import AuthenticationMethodConfiguration
-        from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_methods_root import AuthenticationMethodsRoot
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_method_target import AuthenticationMethodTarget
         from .authentication_strength_policy import AuthenticationStrengthPolicy
         from .authentication_strength_root import AuthenticationStrengthRoot
         from .authored_note import AuthoredNote
         from .authorization_policy import AuthorizationPolicy
+        from .authorization_system import AuthorizationSystem
+        from .authorization_system_identity import AuthorizationSystemIdentity
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .authorization_system_type_action import AuthorizationSystemTypeAction
+        from .authorization_system_type_service import AuthorizationSystemTypeService
+        from .aws_access_key import AwsAccessKey
+        from .aws_authorization_system import AwsAuthorizationSystem
+        from .aws_authorization_system_resource import AwsAuthorizationSystemResource
+        from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
+        from .aws_ec2_instance import AwsEc2Instance
+        from .aws_external_system_access_finding import AwsExternalSystemAccessFinding
+        from .aws_external_system_access_role_finding import AwsExternalSystemAccessRoleFinding
+        from .aws_group import AwsGroup
+        from .aws_identity import AwsIdentity
+        from .aws_identity_access_management_key_age_finding import AwsIdentityAccessManagementKeyAgeFinding
+        from .aws_identity_access_management_key_usage_finding import AwsIdentityAccessManagementKeyUsageFinding
+        from .aws_lambda import AwsLambda
+        from .aws_policy import AwsPolicy
+        from .aws_role import AwsRole
+        from .aws_secret_information_access_finding import AwsSecretInformationAccessFinding
+        from .aws_security_tool_administration_finding import AwsSecurityToolAdministrationFinding
+        from .aws_user import AwsUser
+        from .azure_authorization_system import AzureAuthorizationSystem
+        from .azure_authorization_system_resource import AzureAuthorizationSystemResource
+        from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
         from .azure_a_d_authentication import AzureADAuthentication
         from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
         from .azure_communication_services_user_conversation_member import AzureCommunicationServicesUserConversationMember
+        from .azure_group import AzureGroup
+        from .azure_identity import AzureIdentity
+        from .azure_managed_identity import AzureManagedIdentity
+        from .azure_role_definition import AzureRoleDefinition
+        from .azure_serverless_function import AzureServerlessFunction
+        from .azure_service_principal import AzureServicePrincipal
+        from .azure_user import AzureUser
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
@@ -10430,6 +11210,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .calendar_sharing_message import CalendarSharingMessage
         from .call import Call
         from .call_activity_statistics import CallActivityStatistics
+        from .call_event import CallEvent
         from .call_recording import CallRecording
         from .call_records.call_record import CallRecord
         from .call_records.segment import Segment
@@ -10455,7 +11236,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .classification_job_response import ClassificationJobResponse
         from .cloud_app_security_profile import CloudAppSecurityProfile
-        from .cloud_p_c import CloudPC
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
@@ -10465,7 +11245,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
-        from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
         from .cloud_pc_export_job import CloudPcExportJob
@@ -10483,6 +11262,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_supported_region import CloudPcSupportedRegion
         from .cloud_pc_user_setting import CloudPcUserSetting
         from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
+        from .cloud_p_c import CloudPC
+        from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
         from .column_definition import ColumnDefinition
         from .column_link import ColumnLink
         from .comanagement_eligible_device import ComanagementEligibleDevice
@@ -10523,7 +11304,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
         from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
+        from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
+        from .daily_inactive_users_metric import DailyInactiveUsersMetric
+        from .daily_user_insight_metrics_root import DailyUserInsightMetricsRoot
         from .data_classification_service import DataClassificationService
+        from .data_collection_info import DataCollectionInfo
         from .data_loss_prevention_policy import DataLossPreventionPolicy
         from .data_policy_operation import DataPolicyOperation
         from .data_sharing_consent import DataSharingConsent
@@ -10588,8 +11373,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
         from .device_enrollment_limit_configuration import DeviceEnrollmentLimitConfiguration
         from .device_enrollment_notification_configuration import DeviceEnrollmentNotificationConfiguration
-        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
         from .device_enrollment_platform_restrictions_configuration import DeviceEnrollmentPlatformRestrictionsConfiguration
+        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
         from .device_enrollment_windows_hello_for_business_configuration import DeviceEnrollmentWindowsHelloForBusinessConfiguration
         from .device_health_script import DeviceHealthScript
         from .device_health_script_assignment import DeviceHealthScriptAssignment
@@ -10694,7 +11479,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .drive_item import DriveItem
         from .drive_item_version import DriveItemVersion
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-        from .e_book_install_summary import EBookInstallSummary
         from .edge import Edge
         from .ediscovery.add_to_review_set_operation import AddToReviewSetOperation
         from .ediscovery.case import Case
@@ -10752,6 +11536,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
         from .employee_experience_user import EmployeeExperienceUser
+        from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
+        from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
+        from .encrypted_gcp_storage_bucket_finding import EncryptedGcpStorageBucketFinding
         from .endpoint import Endpoint
         from .end_user_notification import EndUserNotification
         from .end_user_notification_detail import EndUserNotificationDetail
@@ -10777,6 +11564,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .extension import Extension
         from .extension_property import ExtensionProperty
         from .external import External
+        from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
+        from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
+        from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
         from .external_connection import ExternalConnection
         from .external_connectors.connection_operation import ConnectionOperation
         from .external_connectors.connection_quota import ConnectionQuota
@@ -10794,6 +11584,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .external_meeting_registrant import ExternalMeetingRegistrant
         from .external_meeting_registration import ExternalMeetingRegistration
         from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
+        from .e_book_install_summary import EBookInstallSummary
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .federated_identity_credential import FederatedIdentityCredential
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
@@ -10806,7 +11597,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_classification_request import FileClassificationRequest
         from .file_security_profile import FileSecurityProfile
         from .filter_operator_schema import FilterOperatorSchema
+        from .finding import Finding
         from .focus_activity_statistics import FocusActivityStatistics
+        from .gcp_authorization_system import GcpAuthorizationSystem
+        from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
+        from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
+        from .gcp_cloud_function import GcpCloudFunction
+        from .gcp_group import GcpGroup
+        from .gcp_identity import GcpIdentity
+        from .gcp_role import GcpRole
+        from .gcp_service_account import GcpServiceAccount
+        from .gcp_user import GcpUser
         from .governance_insight import GovernanceInsight
         from .governance_policy_template import GovernancePolicyTemplate
         from .governance_resource import GovernanceResource
@@ -10854,6 +11655,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_api_connector import IdentityApiConnector
         from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
+        from .identity_finding import IdentityFinding
         from .identity_governance.custom_task_extension import CustomTaskExtension
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
@@ -10877,6 +11679,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .imported_device_identity_result import ImportedDeviceIdentityResult
         from .imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
         from .imported_windows_autopilot_device_identity_upload import ImportedWindowsAutopilotDeviceIdentityUpload
+        from .inactive_aws_resource_finding import InactiveAwsResourceFinding
+        from .inactive_aws_role_finding import InactiveAwsRoleFinding
+        from .inactive_azure_service_principal_finding import InactiveAzureServicePrincipalFinding
+        from .inactive_gcp_service_account_finding import InactiveGcpServiceAccountFinding
+        from .inactive_group_finding import InactiveGroupFinding
+        from .inactive_serverless_function_finding import InactiveServerlessFunctionFinding
+        from .inactive_users_by_application_metric_base import InactiveUsersByApplicationMetricBase
+        from .inactive_users_metric_base import InactiveUsersMetricBase
+        from .inactive_user_finding import InactiveUserFinding
         from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
         from .industry_data.file_data_connector import FileDataConnector
         from .industry_data.file_validate_operation import FileValidateOperation
@@ -10900,6 +11711,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .information_protection_label import InformationProtectionLabel
         from .information_protection_policy import InformationProtectionPolicy
         from .insights_settings import InsightsSettings
+        from .insight_summary import InsightSummary
         from .internal_domain_federation import InternalDomainFederation
         from .internet_explorer_mode import InternetExplorerMode
         from .intune_branding_profile import IntuneBrandingProfile
@@ -10909,6 +11721,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .invitation import Invitation
         from .invite_participants_operation import InviteParticipantsOperation
         from .invoke_user_flow_listener import InvokeUserFlowListener
+        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+        from .iosi_pad_o_s_web_clip import IosiPadOSWebClip
         from .ios_certificate_profile import IosCertificateProfile
         from .ios_certificate_profile_base import IosCertificateProfileBase
         from .ios_compliance_policy import IosCompliancePolicy
@@ -10921,9 +11735,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .ios_enterprise_wi_fi_configuration import IosEnterpriseWiFiConfiguration
         from .ios_expedited_checkin_configuration import IosExpeditedCheckinConfiguration
         from .ios_general_device_configuration import IosGeneralDeviceConfiguration
-        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
         from .ios_imported_p_f_x_certificate_profile import IosImportedPFXCertificateProfile
-        from .iosi_pad_o_s_web_clip import IosiPadOSWebClip
         from .ios_lob_app import IosLobApp
         from .ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
         from .ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
@@ -10972,13 +11784,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .learning_self_initiated_course import LearningSelfInitiatedCourse
         from .license_details import LicenseDetails
         from .linked_resource import LinkedResource
+        from .list_ import List_
         from .list_item import ListItem
         from .list_item_version import ListItemVersion
-        from .list_ import List_
         from .localized_notification_message import LocalizedNotificationMessage
         from .login_page import LoginPage
         from .long_running_operation import LongRunningOperation
         from .lookup_result_row import LookupResultRow
+        from .mac_os_vpp_app import MacOsVppApp
+        from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .mac_o_s_compliance_policy import MacOSCompliancePolicy
         from .mac_o_s_custom_app_configuration import MacOSCustomAppConfiguration
@@ -11003,11 +11817,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_software_update_state_summary import MacOSSoftwareUpdateStateSummary
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
         from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
-        from .mac_os_vpp_app import MacOsVppApp
-        from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
         from .mac_o_s_web_clip import MacOSWebClip
-        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
+        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mail_assessment_request import MailAssessmentRequest
         from .mail_folder import MailFolder
         from .mail_search_folder import MailSearchFolder
@@ -11098,6 +11910,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_recipient import MessageRecipient
         from .message_rule import MessageRule
         from .message_trace import MessageTrace
+        from .mfa_completion_metric import MfaCompletionMetric
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -11128,14 +11941,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mobile_lob_app import MobileLobApp
         from .mobile_threat_defense_connector import MobileThreatDefenseConnector
         from .mobility_management_policy import MobilityManagementPolicy
+        from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
+        from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
+        from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
         from .multi_tenant_organization import MultiTenantOrganization
         from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
         from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .multi_tenant_organization_partner_configuration_template import MultiTenantOrganizationPartnerConfigurationTemplate
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-        from .mute_participant_operation import MuteParticipantOperation
         from .mute_participants_operation import MuteParticipantsOperation
+        from .mute_participant_operation import MuteParticipantOperation
         from .named_location import NamedLocation
         from .ndes_connector import NdesConnector
         from .networkaccess.branch_site import BranchSite
@@ -11162,13 +11978,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
         from .networkaccess.tenant_status import TenantStatus
-        from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
-        from .no_mfa_on_role_activation_alert_incident import NoMfaOnRoleActivationAlertIncident
         from .note import Note
         from .notebook import Notebook
         from .notification import Notification
         from .notification_message_template import NotificationMessageTemplate
-        from .o_auth2_permission_grant import OAuth2PermissionGrant
+        from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
+        from .no_mfa_on_role_activation_alert_incident import NoMfaOnRoleActivationAlertIncident
         from .offer_shift_request import OfferShiftRequest
         from .office365_active_user_counts import Office365ActiveUserCounts
         from .office365_active_user_detail import Office365ActiveUserDetail
@@ -11180,8 +11995,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .office365_services_user_counts import Office365ServicesUserCounts
         from .office_graph_insights import OfficeGraphInsights
         from .office_suite_app import OfficeSuiteApp
-        from .on_attribute_collection_listener import OnAttributeCollectionListener
-        from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
         from .onenote import Onenote
         from .onenote_entity_base_model import OnenoteEntityBaseModel
         from .onenote_entity_hierarchy_model import OnenoteEntityHierarchyModel
@@ -11190,8 +12003,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .onenote_page import OnenotePage
         from .onenote_resource import OnenoteResource
         from .onenote_section import OnenoteSection
-        from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .online_meeting import OnlineMeeting
+        from .on_attribute_collection_listener import OnAttributeCollectionListener
+        from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+        from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -11200,8 +12015,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
+        from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
         from .open_id_connect_identity_provider import OpenIdConnectIdentityProvider
         from .open_id_connect_provider import OpenIdConnectProvider
+        from .open_network_azure_security_group_finding import OpenNetworkAzureSecurityGroupFinding
         from .open_shift import OpenShift
         from .open_shift_change_request import OpenShiftChangeRequest
         from .open_type_extension import OpenTypeExtension
@@ -11218,16 +12035,31 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .outlook_task_folder import OutlookTaskFolder
         from .outlook_task_group import OutlookTaskGroup
         from .outlook_user import OutlookUser
+        from .overprovisioned_aws_resource_finding import OverprovisionedAwsResourceFinding
+        from .overprovisioned_aws_role_finding import OverprovisionedAwsRoleFinding
+        from .overprovisioned_azure_service_principal_finding import OverprovisionedAzureServicePrincipalFinding
+        from .overprovisioned_gcp_service_account_finding import OverprovisionedGcpServiceAccountFinding
+        from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
+        from .overprovisioned_user_finding import OverprovisionedUserFinding
+        from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
-        from .password_authentication_method import PasswordAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+        from .password_authentication_method import PasswordAuthenticationMethod
         from .payload import Payload
         from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
         from .payload_response import PayloadResponse
         from .people_admin_settings import PeopleAdminSettings
         from .permission import Permission
+        from .permissions_analytics import PermissionsAnalytics
+        from .permissions_analytics_aggregation import PermissionsAnalyticsAggregation
+        from .permissions_creep_index_distribution import PermissionsCreepIndexDistribution
+        from .permissions_definition_aws_policy import PermissionsDefinitionAwsPolicy
+        from .permissions_definition_azure_role import PermissionsDefinitionAzureRole
+        from .permissions_definition_gcp_role import PermissionsDefinitionGcpRole
+        from .permissions_management import PermissionsManagement
+        from .permissions_request_change import PermissionsRequestChange
         from .permission_grant_condition_set import PermissionGrantConditionSet
         from .permission_grant_policy import PermissionGrantPolicy
         from .person import Person
@@ -11260,6 +12092,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_task_configuration import PlannerTaskConfiguration
         from .planner_task_details import PlannerTaskDetails
         from .planner_user import PlannerUser
+        from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
         from .policy_set import PolicySet
@@ -11269,12 +12102,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .post import Post
         from .presence import Presence
         from .presentation import Presentation
-        from .print_connector import PrintConnector
-        from .print_document import PrintDocument
         from .printer import Printer
         from .printer_base import PrinterBase
         from .printer_create_operation import PrinterCreateOperation
         from .printer_share import PrinterShare
+        from .print_connector import PrintConnector
+        from .print_document import PrintDocument
         from .print_job import PrintJob
         from .print_operation import PrintOperation
         from .print_service import PrintService
@@ -11305,6 +12138,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .privileged_role_settings import PrivilegedRoleSettings
         from .privileged_role_summary import PrivilegedRoleSummary
         from .privileged_signup_status import PrivilegedSignupStatus
+        from .privilege_escalation import PrivilegeEscalation
+        from .privilege_escalation_aws_resource_finding import PrivilegeEscalationAwsResourceFinding
+        from .privilege_escalation_aws_role_finding import PrivilegeEscalationAwsRoleFinding
+        from .privilege_escalation_finding import PrivilegeEscalationFinding
+        from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
+        from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
         from .privilege_management_elevation import PrivilegeManagementElevation
         from .profile import Profile
         from .profile_card_property import ProfileCardProperty
@@ -11323,6 +12162,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
         from .record_operation import RecordOperation
+        from .recycle_bin import RecycleBin
+        from .recycle_bin_item import RecycleBinItem
         from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
         from .redundant_assignment_alert_incident import RedundantAssignmentAlertIncident
         from .reference_attachment import ReferenceAttachment
@@ -11331,6 +12172,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .remote_action_audit import RemoteActionAudit
         from .remote_assistance_partner import RemoteAssistancePartner
         from .remote_assistance_settings import RemoteAssistanceSettings
+        from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .report_root import ReportRoot
         from .request import Request
         from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
@@ -11338,16 +12180,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .restricted_apps_violation import RestrictedAppsViolation
         from .rich_long_running_operation import RichLongRunningOperation
-        from .risk_detection import RiskDetection
         from .risky_service_principal import RiskyServicePrincipal
         from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
         from .risky_user import RiskyUser
         from .risky_user_history_item import RiskyUserHistoryItem
+        from .risk_detection import RiskDetection
+        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_assignment import RoleAssignment
         from .role_definition import RoleDefinition
         from .role_management_alert import RoleManagementAlert
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
-        from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_scope_tag import RoleScopeTag
         from .role_scope_tag_auto_assignment import RoleScopeTagAutoAssignment
         from .room import Room
@@ -11359,6 +12201,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .saml_or_ws_fed_external_domain_federation import SamlOrWsFedExternalDomainFederation
         from .saml_or_ws_fed_provider import SamlOrWsFedProvider
         from .schedule import Schedule
+        from .scheduled_permissions_request import ScheduledPermissionsRequest
         from .schedule_change_request import ScheduleChangeRequest
         from .scheduling_group import SchedulingGroup
         from .schema import Schema
@@ -11369,6 +12212,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .search.qna import Qna
         from .search.search_answer import SearchAnswer
         from .search_entity import SearchEntity
+        from .secret_information_access_aws_resource_finding import SecretInformationAccessAwsResourceFinding
+        from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
+        from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
+        from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
         from .section_group import SectionGroup
         from .secure_score import SecureScore
         from .secure_score_control_profile import SecureScoreControlProfile
@@ -11378,8 +12225,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.artifact import Artifact
         from .security.authority_template import AuthorityTemplate
         from .security.case import Case
-        from .security.case_operation import CaseOperation
         from .security.cases_root import CasesRoot
+        from .security.case_operation import CaseOperation
         from .security.category_template import CategoryTemplate
         from .security.citation_template import CitationTemplate
         from .security.data_set import DataSet
@@ -11404,6 +12251,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.ediscovery_review_set_query import EdiscoveryReviewSetQuery
         from .security.ediscovery_review_tag import EdiscoveryReviewTag
         from .security.ediscovery_search import EdiscoverySearch
+        from .security.ediscovery_search_export_operation import EdiscoverySearchExportOperation
         from .security.ediscovery_tag_operation import EdiscoveryTagOperation
         from .security.email_content_threat_submission import EmailContentThreatSubmission
         from .security.email_threat_submission import EmailThreatSubmission
@@ -11417,10 +12265,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.file_threat_submission import FileThreatSubmission
         from .security.file_url_threat_submission import FileUrlThreatSubmission
         from .security.host import Host
+        from .security.hostname import Hostname
         from .security.host_component import HostComponent
         from .security.host_cookie import HostCookie
-        from .security.hostname import Hostname
         from .security.host_pair import HostPair
+        from .security.host_port import HostPort
         from .security.host_reputation import HostReputation
         from .security.host_ssl_certificate import HostSslCertificate
         from .security.host_tracker import HostTracker
@@ -11443,8 +12292,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.sensitivity_label import SensitivityLabel
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
-        from .security.sub_category_template import SubCategoryTemplate
         from .security.subdomain import Subdomain
+        from .security.sub_category_template import SubCategoryTemplate
         from .security.tag import Tag
         from .security.threat_intelligence import ThreatIntelligence
         from .security.threat_submission import ThreatSubmission
@@ -11469,6 +12318,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_baseline_template import SecurityBaselineTemplate
         from .security_configuration_task import SecurityConfigurationTask
         from .security_reports_root import SecurityReportsRoot
+        from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
+        from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
+        from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
+        from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
         from .sensitive_type import SensitiveType
         from .sensitivity_label import SensitivityLabel
         from .sensitivity_policy_settings import SensitivityPolicySettings
@@ -11526,6 +12379,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .subscribed_sku import SubscribedSku
         from .subscribe_to_tone_operation import SubscribeToToneOperation
         from .subscription import Subscription
+        from .super_aws_resource_finding import SuperAwsResourceFinding
+        from .super_aws_role_finding import SuperAwsRoleFinding
+        from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
+        from .super_gcp_service_account_finding import SuperGcpServiceAccountFinding
+        from .super_serverless_function_finding import SuperServerlessFunctionFinding
+        from .super_user_finding import SuperUserFinding
         from .swap_shifts_change_request import SwapShiftsChangeRequest
         from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
         from .synchronization import Synchronization
@@ -11536,10 +12395,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .targeted_managed_app_configuration_policy_set_item import TargetedManagedAppConfigurationPolicySetItem
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
         from .targeted_managed_app_protection import TargetedManagedAppProtection
+        from .target_device_group import TargetDeviceGroup
         from .task_file_attachment import TaskFileAttachment
         from .tax_group import TaxGroup
         from .team import Team
-        from .team_info import TeamInfo
         from .teams_app import TeamsApp
         from .teams_app_definition import TeamsAppDefinition
         from .teams_app_icon import TeamsAppIcon
@@ -11548,8 +12407,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_async_operation import TeamsAsyncOperation
         from .teams_tab import TeamsTab
         from .teams_template import TeamsTemplate
-        from .team_template import TeamTemplate
-        from .team_template_definition import TeamTemplateDefinition
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
         from .teamwork_device import TeamworkDevice
@@ -11561,6 +12418,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teamwork_peripheral import TeamworkPeripheral
         from .teamwork_tag import TeamworkTag
         from .teamwork_tag_member import TeamworkTagMember
+        from .team_info import TeamInfo
+        from .team_template import TeamTemplate
+        from .team_template_definition import TeamTemplateDefinition
         from .telecom_expense_management_partner import TelecomExpenseManagementPartner
         from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
@@ -11583,11 +12443,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .threat_assessment_request import ThreatAssessmentRequest
         from .threat_assessment_result import ThreatAssessmentResult
         from .thumbnail_set import ThumbnailSet
-        from .ti_indicator import TiIndicator
         from .time_card import TimeCard
         from .time_off import TimeOff
         from .time_off_reason import TimeOffReason
         from .time_off_request import TimeOffRequest
+        from .ti_indicator import TiIndicator
         from .todo import Todo
         from .todo_task import TodoTask
         from .todo_task_list import TodoTaskList
@@ -11601,6 +12461,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
         from .trust_framework_key_set import TrustFrameworkKeySet
         from .trust_framework_policy import TrustFrameworkPolicy
+        from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
         from .unified_rbac_application import UnifiedRbacApplication
         from .unified_rbac_resource_action import UnifiedRbacResourceAction
         from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
@@ -11643,6 +12504,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_app_install_status import UserAppInstallStatus
         from .user_configuration import UserConfiguration
         from .user_consent_request import UserConsentRequest
+        from .user_count_metric import UserCountMetric
         from .user_credential_usage_details import UserCredentialUsageDetails
         from .user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
         from .user_experience_analytics_anomaly_correlation_group_overview import UserExperienceAnalyticsAnomalyCorrelationGroupOverview
@@ -11689,26 +12551,31 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_experience_analytics_work_from_anywhere_model_performance import UserExperienceAnalyticsWorkFromAnywhereModelPerformance
         from .user_flow_language_configuration import UserFlowLanguageConfiguration
         from .user_flow_language_page import UserFlowLanguagePage
+        from .user_insights_root import UserInsightsRoot
         from .user_insights_settings import UserInsightsSettings
         from .user_install_state_summary import UserInstallStateSummary
         from .user_p_f_x_certificate import UserPFXCertificate
         from .user_registration_details import UserRegistrationDetails
+        from .user_requests_metric import UserRequestsMetric
         from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
         from .user_security_profile import UserSecurityProfile
         from .user_settings import UserSettings
         from .user_sign_in_insight import UserSignInInsight
+        from .user_sign_up_metric import UserSignUpMetric
         from .user_teamwork import UserTeamwork
+        from .user_virtual_events_root import UserVirtualEventsRoot
         from .vertical_section import VerticalSection
         from .virtual_endpoint import VirtualEndpoint
         from .virtual_event import VirtualEvent
+        from .virtual_events_root import VirtualEventsRoot
         from .virtual_event_presenter import VirtualEventPresenter
         from .virtual_event_registration import VirtualEventRegistration
         from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
         from .virtual_event_registration_question import VirtualEventRegistrationQuestion
         from .virtual_event_session import VirtualEventSession
-        from .virtual_events_root import VirtualEventsRoot
         from .virtual_event_webinar import VirtualEventWebinar
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
+        from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
         from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
         from .vpn_configuration import VpnConfiguration
@@ -11732,8 +12599,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
         from .windows10_mobile_compliance_policy import Windows10MobileCompliancePolicy
         from .windows10_network_boundary_configuration import Windows10NetworkBoundaryConfiguration
-        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
         from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
+        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
         from .windows10_secure_assessment_configuration import Windows10SecureAssessmentConfiguration
         from .windows10_team_general_configuration import Windows10TeamGeneralConfiguration
         from .windows10_vpn_configuration import Windows10VpnConfiguration
@@ -11784,6 +12651,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_kiosk_configuration import WindowsKioskConfiguration
         from .windows_malware_information import WindowsMalwareInformation
         from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_managed_app_registration import WindowsManagedAppRegistration
         from .windows_managed_device import WindowsManagedDevice
         from .windows_management_app import WindowsManagementApp
         from .windows_management_app_health_state import WindowsManagementAppHealthState
@@ -11797,8 +12665,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_phone81_custom_configuration import WindowsPhone81CustomConfiguration
         from .windows_phone81_general_configuration import WindowsPhone81GeneralConfiguration
         from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
-        from .windows_phone81_s_c_e_p_certificate_profile import WindowsPhone81SCEPCertificateProfile
         from .windows_phone81_store_app import WindowsPhone81StoreApp
+        from .windows_phone81_s_c_e_p_certificate_profile import WindowsPhone81SCEPCertificateProfile
         from .windows_phone81_trusted_root_certificate import WindowsPhone81TrustedRootCertificate
         from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
         from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
@@ -11811,8 +12679,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_store_app import WindowsStoreApp
         from .windows_universal_app_x import WindowsUniversalAppX
         from .windows_universal_app_x_contained_app import WindowsUniversalAppXContainedApp
-        from .windows_update_catalog_item import WindowsUpdateCatalogItem
-        from .windows_update_for_business_configuration import WindowsUpdateForBusinessConfiguration
         from .windows_updates.azure_a_d_device import AzureADDevice
         from .windows_updates.catalog import Catalog
         from .windows_updates.catalog_entry import CatalogEntry
@@ -11831,6 +12697,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_updates.updatable_asset import UpdatableAsset
         from .windows_updates.updatable_asset_group import UpdatableAssetGroup
         from .windows_updates.update_policy import UpdatePolicy
+        from .windows_update_catalog_item import WindowsUpdateCatalogItem
+        from .windows_update_for_business_configuration import WindowsUpdateForBusinessConfiguration
         from .windows_update_state import WindowsUpdateState
         from .windows_vpn_configuration import WindowsVpnConfiguration
         from .windows_web_app import WindowsWebApp
@@ -11847,8 +12715,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_chart_axis_format import WorkbookChartAxisFormat
         from .workbook_chart_axis_title import WorkbookChartAxisTitle
         from .workbook_chart_axis_title_format import WorkbookChartAxisTitleFormat
-        from .workbook_chart_data_label_format import WorkbookChartDataLabelFormat
         from .workbook_chart_data_labels import WorkbookChartDataLabels
+        from .workbook_chart_data_label_format import WorkbookChartDataLabelFormat
         from .workbook_chart_fill import WorkbookChartFill
         from .workbook_chart_font import WorkbookChartFont
         from .workbook_chart_gridlines import WorkbookChartGridlines
@@ -11868,8 +12736,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_document_task_change import WorkbookDocumentTaskChange
         from .workbook_filter import WorkbookFilter
         from .workbook_format_protection import WorkbookFormatProtection
-        from .workbook_function_result import WorkbookFunctionResult
         from .workbook_functions import WorkbookFunctions
+        from .workbook_function_result import WorkbookFunctionResult
         from .workbook_named_item import WorkbookNamedItem
         from .workbook_operation import WorkbookOperation
         from .workbook_pivot_table import WorkbookPivotTable
@@ -11887,8 +12755,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_worksheet import WorkbookWorksheet
         from .workbook_worksheet_protection import WorkbookWorksheetProtection
         from .workforce_integration import WorkforceIntegration
-        from .work_position import WorkPosition
         from .workspace import Workspace
+        from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
         from .zebra_fota_artifact import ZebraFotaArtifact
         from .zebra_fota_connector import ZebraFotaConnector
@@ -11896,7 +12764,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -11909,7 +12777,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("id", self.id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -13,8 +13,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.report_root import ReportRoot
-    from .app_credential_sign_in_activities.app_credential_sign_in_activities_request_builder import AppCredentialSignInActivitiesRequestBuilder
     from .application_sign_in_detailed_summary.application_sign_in_detailed_summary_request_builder import ApplicationSignInDetailedSummaryRequestBuilder
+    from .app_credential_sign_in_activities.app_credential_sign_in_activities_request_builder import AppCredentialSignInActivitiesRequestBuilder
     from .authentication_methods.authentication_methods_request_builder import AuthenticationMethodsRequestBuilder
     from .credential_user_registration_details.credential_user_registration_details_request_builder import CredentialUserRegistrationDetailsRequestBuilder
     from .daily_print_usage.daily_print_usage_request_builder import DailyPrintUsageRequestBuilder
@@ -55,9 +55,9 @@ if TYPE_CHECKING:
     from .get_mailbox_usage_mailbox_counts_with_period.get_mailbox_usage_mailbox_counts_with_period_request_builder import GetMailboxUsageMailboxCountsWithPeriodRequestBuilder
     from .get_mailbox_usage_quota_status_mailbox_counts_with_period.get_mailbox_usage_quota_status_mailbox_counts_with_period_request_builder import GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder
     from .get_mailbox_usage_storage_with_period.get_mailbox_usage_storage_with_period_request_builder import GetMailboxUsageStorageWithPeriodRequestBuilder
-    from .get_office365_activation_counts.get_office365_activation_counts_request_builder import GetOffice365ActivationCountsRequestBuilder
     from .get_office365_activations_user_counts.get_office365_activations_user_counts_request_builder import GetOffice365ActivationsUserCountsRequestBuilder
     from .get_office365_activations_user_detail.get_office365_activations_user_detail_request_builder import GetOffice365ActivationsUserDetailRequestBuilder
+    from .get_office365_activation_counts.get_office365_activation_counts_request_builder import GetOffice365ActivationCountsRequestBuilder
     from .get_office365_active_user_counts_with_period.get_office365_active_user_counts_with_period_request_builder import GetOffice365ActiveUserCountsWithPeriodRequestBuilder
     from .get_office365_active_user_detail_with_date.get_office365_active_user_detail_with_date_request_builder import GetOffice365ActiveUserDetailWithDateRequestBuilder
     from .get_office365_active_user_detail_with_period.get_office365_active_user_detail_with_period_request_builder import GetOffice365ActiveUserDetailWithPeriodRequestBuilder
@@ -155,6 +155,7 @@ if TYPE_CHECKING:
     from .service_principal_sign_in_activities.service_principal_sign_in_activities_request_builder import ServicePrincipalSignInActivitiesRequestBuilder
     from .sla.sla_request_builder import SlaRequestBuilder
     from .user_credential_usage_details.user_credential_usage_details_request_builder import UserCredentialUsageDetailsRequestBuilder
+    from .user_insights.user_insights_request_builder import UserInsightsRequestBuilder
 
 class ReportsRequestBuilder(BaseRequestBuilder):
     """
@@ -1622,14 +1623,14 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[ReportRoot] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -1642,13 +1643,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -1660,7 +1661,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ReportsRequestBuilder(raw_url, self.request_adapter)
+        return ReportsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def app_credential_sign_in_activities(self) -> AppCredentialSignInActivitiesRequestBuilder:
@@ -1922,6 +1923,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .user_credential_usage_details.user_credential_usage_details_request_builder import UserCredentialUsageDetailsRequestBuilder
 
         return UserCredentialUsageDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_insights(self) -> UserInsightsRequestBuilder:
+        """
+        Provides operations to manage the userInsights property of the microsoft.graph.reportRoot entity.
+        """
+        from .user_insights.user_insights_request_builder import UserInsightsRequestBuilder
+
+        return UserInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ReportsRequestBuilderGetQueryParameters():

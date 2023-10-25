@@ -10,13 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ...models.directory_object import DirectoryObject
     from ...models.directory_object_collection_response import DirectoryObjectCollectionResponse
     from ...models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
-    from .delta.delta_request_builder import DeltaRequestBuilder
     from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
-    from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
     from .graph_administrative_unit.graph_administrative_unit_request_builder import GraphAdministrativeUnitRequestBuilder
     from .graph_application.graph_application_request_builder import GraphApplicationRequestBuilder
     from .graph_device.graph_device_request_builder import GraphDeviceRequestBuilder
@@ -74,30 +71,6 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectoryObjectCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DirectoryObject] = None, request_configuration: Optional[DeletedItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[DirectoryObject]:
-        """
-        Create new navigation property to deletedItems for directory
-        param body: The request body
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DirectoryObject]
-        """
-        if not body:
-            raise TypeError("body cannot be null.")
-        request_info = self.to_post_request_information(
-            body, request_configuration
-        )
-        from ...models.o_data_errors.o_data_error import ODataError
-
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        from ...models.directory_object import DirectoryObject
-
-        return await self.request_adapter.send_async(request_info, DirectoryObject, error_mapping)
-    
     def to_get_request_information(self,request_configuration: Optional[DeletedItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get deletedItems from directory
@@ -105,34 +78,14 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
-    def to_post_request_information(self,body: Optional[DirectoryObject] = None, request_configuration: Optional[DeletedItemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
-        """
-        Create new navigation property to deletedItems for directory
-        param body: The request body
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if not body:
-            raise TypeError("body cannot be null.")
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> DeletedItemsRequestBuilder:
@@ -143,7 +96,7 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeletedItemsRequestBuilder(raw_url, self.request_adapter)
+        return DeletedItemsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -155,15 +108,6 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delta(self) -> DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        """
-        from .delta.delta_request_builder import DeltaRequestBuilder
-
-        return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_by_ids(self) -> GetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
@@ -171,15 +115,6 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
         from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
 
         return GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_user_owned_objects(self) -> GetUserOwnedObjectsRequestBuilder:
-        """
-        Provides operations to call the getUserOwnedObjects method.
-        """
-        from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
-
-        return GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def graph_administrative_unit(self) -> GraphAdministrativeUnitRequestBuilder:
@@ -312,15 +247,5 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
         # Request query parameters
         query_parameters: Optional[DeletedItemsRequestBuilder.DeletedItemsRequestBuilderGetQueryParameters] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeletedItemsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

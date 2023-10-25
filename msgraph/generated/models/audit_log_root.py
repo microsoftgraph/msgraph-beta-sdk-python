@@ -60,7 +60,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
             "customSecurityAttributeAudits": lambda n : setattr(self, 'custom_security_attribute_audits', n.get_collection_of_object_values(CustomSecurityAttributeAudit)),
             "directoryAudits": lambda n : setattr(self, 'directory_audits', n.get_collection_of_object_values(DirectoryAudit)),
             "directoryProvisioning": lambda n : setattr(self, 'directory_provisioning', n.get_collection_of_object_values(ProvisioningObjectSummary)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "provisioning": lambda n : setattr(self, 'provisioning', n.get_collection_of_object_values(ProvisioningObjectSummary)),
             "signIns": lambda n : setattr(self, 'sign_ins', n.get_collection_of_object_values(SignIn)),
         }
@@ -77,7 +77,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("customSecurityAttributeAudits", self.custom_security_attribute_audits)
         writer.write_collection_of_object_values("directoryAudits", self.directory_audits)
         writer.write_collection_of_object_values("directoryProvisioning", self.directory_provisioning)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("provisioning", self.provisioning)
         writer.write_collection_of_object_values("signIns", self.sign_ins)
         writer.write_additional_data_value(self.additional_data)

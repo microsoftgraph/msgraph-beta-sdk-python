@@ -14,8 +14,27 @@ if TYPE_CHECKING:
     from ...models.mobile_app_collection_response import MobileAppCollectionResponse
     from ...models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
+    from .graph_android_for_work_app.graph_android_for_work_app_request_builder import GraphAndroidForWorkAppRequestBuilder
+    from .graph_android_lob_app.graph_android_lob_app_request_builder import GraphAndroidLobAppRequestBuilder
+    from .graph_android_managed_store_app.graph_android_managed_store_app_request_builder import GraphAndroidManagedStoreAppRequestBuilder
+    from .graph_android_store_app.graph_android_store_app_request_builder import GraphAndroidStoreAppRequestBuilder
+    from .graph_ios_lob_app.graph_ios_lob_app_request_builder import GraphIosLobAppRequestBuilder
+    from .graph_ios_store_app.graph_ios_store_app_request_builder import GraphIosStoreAppRequestBuilder
+    from .graph_ios_vpp_app.graph_ios_vpp_app_request_builder import GraphIosVppAppRequestBuilder
+    from .graph_mac_o_s_dmg_app.graph_mac_o_s_dmg_app_request_builder import GraphMacOSDmgAppRequestBuilder
+    from .graph_mac_o_s_lob_app.graph_mac_o_s_lob_app_request_builder import GraphMacOSLobAppRequestBuilder
+    from .graph_mac_o_s_pkg_app.graph_mac_o_s_pkg_app_request_builder import GraphMacOSPkgAppRequestBuilder
+    from .graph_managed_android_lob_app.graph_managed_android_lob_app_request_builder import GraphManagedAndroidLobAppRequestBuilder
+    from .graph_managed_i_o_s_lob_app.graph_managed_i_o_s_lob_app_request_builder import GraphManagedIOSLobAppRequestBuilder
     from .graph_managed_mobile_lob_app.graph_managed_mobile_lob_app_request_builder import GraphManagedMobileLobAppRequestBuilder
-    from .graph_mobile_lob_app.graph_mobile_lob_app_request_builder import GraphMobileLobAppRequestBuilder
+    from .graph_microsoft_store_for_business_app.graph_microsoft_store_for_business_app_request_builder import GraphMicrosoftStoreForBusinessAppRequestBuilder
+    from .graph_win32_lob_app.graph_win32_lob_app_request_builder import GraphWin32LobAppRequestBuilder
+    from .graph_windows_app_x.graph_windows_app_x_request_builder import GraphWindowsAppXRequestBuilder
+    from .graph_windows_mobile_m_s_i.graph_windows_mobile_m_s_i_request_builder import GraphWindowsMobileMSIRequestBuilder
+    from .graph_windows_store_app.graph_windows_store_app_request_builder import GraphWindowsStoreAppRequestBuilder
+    from .graph_windows_universal_app_x.graph_windows_universal_app_x_request_builder import GraphWindowsUniversalAppXRequestBuilder
+    from .graph_windows_web_app.graph_windows_web_app_request_builder import GraphWindowsWebAppRequestBuilder
+    from .graph_win_get_app.graph_win_get_app_request_builder import GraphWinGetAppRequestBuilder
     from .has_payload_links.has_payload_links_request_builder import HasPayloadLinksRequestBuilder
     from .item.mobile_app_item_request_builder import MobileAppItemRequestBuilder
     from .validate_xml.validate_xml_request_builder import ValidateXmlRequestBuilder
@@ -99,14 +118,14 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_post_request_information(self,body: Optional[MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -119,13 +138,13 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -137,7 +156,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MobileAppsRequestBuilder(raw_url, self.request_adapter)
+        return MobileAppsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,6 +168,114 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def graph_android_for_work_app(self) -> GraphAndroidForWorkAppRequestBuilder:
+        """
+        Casts the previous resource to androidForWorkApp.
+        """
+        from .graph_android_for_work_app.graph_android_for_work_app_request_builder import GraphAndroidForWorkAppRequestBuilder
+
+        return GraphAndroidForWorkAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_android_lob_app(self) -> GraphAndroidLobAppRequestBuilder:
+        """
+        Casts the previous resource to androidLobApp.
+        """
+        from .graph_android_lob_app.graph_android_lob_app_request_builder import GraphAndroidLobAppRequestBuilder
+
+        return GraphAndroidLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_android_managed_store_app(self) -> GraphAndroidManagedStoreAppRequestBuilder:
+        """
+        Casts the previous resource to androidManagedStoreApp.
+        """
+        from .graph_android_managed_store_app.graph_android_managed_store_app_request_builder import GraphAndroidManagedStoreAppRequestBuilder
+
+        return GraphAndroidManagedStoreAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_android_store_app(self) -> GraphAndroidStoreAppRequestBuilder:
+        """
+        Casts the previous resource to androidStoreApp.
+        """
+        from .graph_android_store_app.graph_android_store_app_request_builder import GraphAndroidStoreAppRequestBuilder
+
+        return GraphAndroidStoreAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_ios_lob_app(self) -> GraphIosLobAppRequestBuilder:
+        """
+        Casts the previous resource to iosLobApp.
+        """
+        from .graph_ios_lob_app.graph_ios_lob_app_request_builder import GraphIosLobAppRequestBuilder
+
+        return GraphIosLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_ios_store_app(self) -> GraphIosStoreAppRequestBuilder:
+        """
+        Casts the previous resource to iosStoreApp.
+        """
+        from .graph_ios_store_app.graph_ios_store_app_request_builder import GraphIosStoreAppRequestBuilder
+
+        return GraphIosStoreAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_ios_vpp_app(self) -> GraphIosVppAppRequestBuilder:
+        """
+        Casts the previous resource to iosVppApp.
+        """
+        from .graph_ios_vpp_app.graph_ios_vpp_app_request_builder import GraphIosVppAppRequestBuilder
+
+        return GraphIosVppAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_mac_o_s_dmg_app(self) -> GraphMacOSDmgAppRequestBuilder:
+        """
+        Casts the previous resource to macOSDmgApp.
+        """
+        from .graph_mac_o_s_dmg_app.graph_mac_o_s_dmg_app_request_builder import GraphMacOSDmgAppRequestBuilder
+
+        return GraphMacOSDmgAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_mac_o_s_lob_app(self) -> GraphMacOSLobAppRequestBuilder:
+        """
+        Casts the previous resource to macOSLobApp.
+        """
+        from .graph_mac_o_s_lob_app.graph_mac_o_s_lob_app_request_builder import GraphMacOSLobAppRequestBuilder
+
+        return GraphMacOSLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_mac_o_s_pkg_app(self) -> GraphMacOSPkgAppRequestBuilder:
+        """
+        Casts the previous resource to macOSPkgApp.
+        """
+        from .graph_mac_o_s_pkg_app.graph_mac_o_s_pkg_app_request_builder import GraphMacOSPkgAppRequestBuilder
+
+        return GraphMacOSPkgAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_managed_android_lob_app(self) -> GraphManagedAndroidLobAppRequestBuilder:
+        """
+        Casts the previous resource to managedAndroidLobApp.
+        """
+        from .graph_managed_android_lob_app.graph_managed_android_lob_app_request_builder import GraphManagedAndroidLobAppRequestBuilder
+
+        return GraphManagedAndroidLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_managed_i_o_s_lob_app(self) -> GraphManagedIOSLobAppRequestBuilder:
+        """
+        Casts the previous resource to managedIOSLobApp.
+        """
+        from .graph_managed_i_o_s_lob_app.graph_managed_i_o_s_lob_app_request_builder import GraphManagedIOSLobAppRequestBuilder
+
+        return GraphManagedIOSLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def graph_managed_mobile_lob_app(self) -> GraphManagedMobileLobAppRequestBuilder:
         """
         Casts the previous resource to managedMobileLobApp.
@@ -158,13 +285,76 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         return GraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def graph_mobile_lob_app(self) -> GraphMobileLobAppRequestBuilder:
+    def graph_microsoft_store_for_business_app(self) -> GraphMicrosoftStoreForBusinessAppRequestBuilder:
         """
-        Casts the previous resource to mobileLobApp.
+        Casts the previous resource to microsoftStoreForBusinessApp.
         """
-        from .graph_mobile_lob_app.graph_mobile_lob_app_request_builder import GraphMobileLobAppRequestBuilder
+        from .graph_microsoft_store_for_business_app.graph_microsoft_store_for_business_app_request_builder import GraphMicrosoftStoreForBusinessAppRequestBuilder
 
-        return GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+        return GraphMicrosoftStoreForBusinessAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_win_get_app(self) -> GraphWinGetAppRequestBuilder:
+        """
+        Casts the previous resource to winGetApp.
+        """
+        from .graph_win_get_app.graph_win_get_app_request_builder import GraphWinGetAppRequestBuilder
+
+        return GraphWinGetAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_win32_lob_app(self) -> GraphWin32LobAppRequestBuilder:
+        """
+        Casts the previous resource to win32LobApp.
+        """
+        from .graph_win32_lob_app.graph_win32_lob_app_request_builder import GraphWin32LobAppRequestBuilder
+
+        return GraphWin32LobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_windows_app_x(self) -> GraphWindowsAppXRequestBuilder:
+        """
+        Casts the previous resource to windowsAppX.
+        """
+        from .graph_windows_app_x.graph_windows_app_x_request_builder import GraphWindowsAppXRequestBuilder
+
+        return GraphWindowsAppXRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_windows_mobile_m_s_i(self) -> GraphWindowsMobileMSIRequestBuilder:
+        """
+        Casts the previous resource to windowsMobileMSI.
+        """
+        from .graph_windows_mobile_m_s_i.graph_windows_mobile_m_s_i_request_builder import GraphWindowsMobileMSIRequestBuilder
+
+        return GraphWindowsMobileMSIRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_windows_store_app(self) -> GraphWindowsStoreAppRequestBuilder:
+        """
+        Casts the previous resource to windowsStoreApp.
+        """
+        from .graph_windows_store_app.graph_windows_store_app_request_builder import GraphWindowsStoreAppRequestBuilder
+
+        return GraphWindowsStoreAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_windows_universal_app_x(self) -> GraphWindowsUniversalAppXRequestBuilder:
+        """
+        Casts the previous resource to windowsUniversalAppX.
+        """
+        from .graph_windows_universal_app_x.graph_windows_universal_app_x_request_builder import GraphWindowsUniversalAppXRequestBuilder
+
+        return GraphWindowsUniversalAppXRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_windows_web_app(self) -> GraphWindowsWebAppRequestBuilder:
+        """
+        Casts the previous resource to windowsWebApp.
+        """
+        from .graph_windows_web_app.graph_windows_web_app_request_builder import GraphWindowsWebAppRequestBuilder
+
+        return GraphWindowsWebAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def has_payload_links(self) -> HasPayloadLinksRequestBuilder:

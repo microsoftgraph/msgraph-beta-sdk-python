@@ -13,15 +13,15 @@ from .training_setting import TrainingSetting
 class CustomTrainingSetting(TrainingSetting):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customTrainingSetting"
-    # The assignedTo property
+    # A user collection that specifies to whom the training should be assigned. Possible values are: none, allUsers, clickedPayload, compromised, reportedPhish, readButNotClicked, didNothing, unknownFutureValue.
     assigned_to: Optional[List[TrainingAssignedTo]] = None
-    # The description property
+    # The description of the custom training setting.
     description: Optional[str] = None
-    # The displayName property
+    # The display name of the custom training setting.
     display_name: Optional[str] = None
-    # The durationInMinutes property
-    duration_in_minutes: Optional[str] = None
-    # The url property
+    # Training duration.
+    duration_in_minutes: Optional[int] = None
+    # The training URL.
     url: Optional[str] = None
     
     @staticmethod
@@ -50,7 +50,7 @@ class CustomTrainingSetting(TrainingSetting):
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_collection_of_enum_values(TrainingAssignedTo)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "durationInMinutes": lambda n : setattr(self, 'duration_in_minutes', n.get_str_value()),
+            "durationInMinutes": lambda n : setattr(self, 'duration_in_minutes', n.get_int_value()),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -69,7 +69,7 @@ class CustomTrainingSetting(TrainingSetting):
         writer.write_collection_of_enum_values("assignedTo", self.assigned_to)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("durationInMinutes", self.duration_in_minutes)
+        writer.write_int_value("durationInMinutes", self.duration_in_minutes)
         writer.write_str_value("url", self.url)
     
 

@@ -47,7 +47,7 @@ class AuthenticationStrength(AdditionalDataHolder, BackedModel, Parsable):
             "authenticationStrengthId": lambda n : setattr(self, 'authentication_strength_id', n.get_str_value()),
             "authenticationStrengthResult": lambda n : setattr(self, 'authentication_strength_result', n.get_enum_value(AuthenticationStrengthResult)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class AuthenticationStrength(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("authenticationStrengthId", self.authentication_strength_id)
         writer.write_enum_value("authenticationStrengthResult", self.authentication_strength_result)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

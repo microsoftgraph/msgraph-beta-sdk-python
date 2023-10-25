@@ -14,25 +14,25 @@ from .entity import Entity
 
 @dataclass
 class VirtualEventRegistration(Entity):
-    # The cancelationDateTime property
+    # Date and time when the registrant cancels their registration for the virtual event. Only appears when applicable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     cancelation_date_time: Optional[datetime.datetime] = None
-    # The email property
+    # Email address of the registrant.
     email: Optional[str] = None
-    # The firstName property
+    # First name of the registrant.
     first_name: Optional[str] = None
-    # The lastName property
+    # Last name of the registrant.
     last_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The registrationDateTime property
+    # Date and time when the registrant registers for the virtual event. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     registration_date_time: Optional[datetime.datetime] = None
-    # The registrationQuestionAnswers property
+    # The registrant's answer to the registration questions.
     registration_question_answers: Optional[List[VirtualEventRegistrationQuestionAnswer]] = None
-    # The sessions property
+    # Sessions of the webinar.
     sessions: Optional[List[VirtualEventSession]] = None
-    # The status property
+    # Registration status of the registrant. Read-only. Possible values are: registered, canceled, waitlisted, pendingApproval, rejectedByOrganizer, unknownFutureValue.
     status: Optional[VirtualEventAttendeeRegistrationStatus] = None
-    # The userId property
+    # The registrant's ID in Microsoft Entra ID. Only appears when the registrant is registered in Microsoft Entra ID.
     user_id: Optional[str] = None
     
     @staticmethod

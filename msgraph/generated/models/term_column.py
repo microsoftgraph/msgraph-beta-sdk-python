@@ -15,7 +15,7 @@ class TermColumn(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Specifies whether the column will allow more than one value
+    # Specifies whether the column allows more than one value
     allow_multiple_values: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -50,7 +50,7 @@ class TermColumn(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowMultipleValues": lambda n : setattr(self, 'allow_multiple_values', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "parentTerm": lambda n : setattr(self, 'parent_term', n.get_object_value(Term)),
             "showFullyQualifiedName": lambda n : setattr(self, 'show_fully_qualified_name', n.get_bool_value()),
             "termSet": lambda n : setattr(self, 'term_set', n.get_object_value(Set)),
@@ -66,7 +66,7 @@ class TermColumn(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("allowMultipleValues", self.allow_multiple_values)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("parentTerm", self.parent_term)
         writer.write_bool_value("showFullyQualifiedName", self.show_fully_qualified_name)
         writer.write_object_value("termSet", self.term_set)

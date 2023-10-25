@@ -71,7 +71,7 @@ class VpnOnDemandRule(AdditionalDataHolder, BackedModel, Parsable):
             "domainAction": lambda n : setattr(self, 'domain_action', n.get_enum_value(VpnOnDemandRuleConnectionDomainAction)),
             "domains": lambda n : setattr(self, 'domains', n.get_collection_of_primitive_values(str)),
             "interfaceTypeMatch": lambda n : setattr(self, 'interface_type_match', n.get_enum_value(VpnOnDemandRuleInterfaceTypeMatch)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "probeRequiredUrl": lambda n : setattr(self, 'probe_required_url', n.get_str_value()),
             "probeUrl": lambda n : setattr(self, 'probe_url', n.get_str_value()),
             "ssids": lambda n : setattr(self, 'ssids', n.get_collection_of_primitive_values(str)),
@@ -92,7 +92,7 @@ class VpnOnDemandRule(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("domainAction", self.domain_action)
         writer.write_collection_of_primitive_values("domains", self.domains)
         writer.write_enum_value("interfaceTypeMatch", self.interface_type_match)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("probeRequiredUrl", self.probe_required_url)
         writer.write_str_value("probeUrl", self.probe_url)
         writer.write_collection_of_primitive_values("ssids", self.ssids)

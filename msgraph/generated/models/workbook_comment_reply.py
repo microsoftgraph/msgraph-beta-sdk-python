@@ -17,7 +17,7 @@ class WorkbookCommentReply(Entity):
     content_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The task property
+    # The task associated with the comment thread.
     task: Optional[WorkbookDocumentTask] = None
     
     @staticmethod

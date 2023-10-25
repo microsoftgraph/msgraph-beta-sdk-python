@@ -48,7 +48,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, BackedModel, Par
         fields: Dict[str, Callable[[Any], None]] = {
             "blockedManufacturers": lambda n : setattr(self, 'blocked_manufacturers', n.get_collection_of_primitive_values(str)),
             "blockedSkus": lambda n : setattr(self, 'blocked_skus', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
             "osMinimumVersion": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
             "personalDeviceEnrollmentBlocked": lambda n : setattr(self, 'personal_device_enrollment_blocked', n.get_bool_value()),
@@ -66,7 +66,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, BackedModel, Par
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("blockedManufacturers", self.blocked_manufacturers)
         writer.write_collection_of_primitive_values("blockedSkus", self.blocked_skus)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("osMaximumVersion", self.os_maximum_version)
         writer.write_str_value("osMinimumVersion", self.os_minimum_version)
         writer.write_bool_value("personalDeviceEnrollmentBlocked", self.personal_device_enrollment_blocked)

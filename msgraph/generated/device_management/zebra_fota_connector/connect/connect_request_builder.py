@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .connect_response import ConnectResponse
+    from .connect_post_response import ConnectPostResponse
 
 class ConnectRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class ConnectRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/zebraFotaConnector/connect", path_parameters)
     
-    async def post(self,request_configuration: Optional[ConnectRequestBuilderPostRequestConfiguration] = None) -> Optional[ConnectResponse]:
+    async def post(self,request_configuration: Optional[ConnectRequestBuilderPostRequestConfiguration] = None) -> Optional[ConnectPostResponse]:
         """
         Invoke action connect
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ConnectResponse]
+        Returns: Optional[ConnectPostResponse]
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class ConnectRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .connect_response import ConnectResponse
+        from .connect_post_response import ConnectPostResponse
 
-        return await self.request_adapter.send_async(request_info, ConnectResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ConnectPostResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ConnectRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -54,13 +54,13 @@ class ConnectRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> ConnectRequestBuilder:
@@ -71,7 +71,7 @@ class ConnectRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ConnectRequestBuilder(raw_url, self.request_adapter)
+        return ConnectRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

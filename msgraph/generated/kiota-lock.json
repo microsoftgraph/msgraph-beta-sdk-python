@@ -1,12 +1,13 @@
 {
-  "descriptionHash": "A01E4E2FD4CA1961C871ADA03DEE41B1853C4C4B0EF4BA6CC55D17DDA41EEA3B6733B3D4CE567EA7351A3A10CF2C3B0F61DAA986FE4F739D35B49649FD03B618",
+  "descriptionHash": "0F85EDF3F69EBA3BAC31D2B654ECD7C9E7C842C1DB6A667E6A3BDC7405B1B968941EA8EED8B0C5E2F5C79913DA83EBDBC15B41CFBC31E8F8C05ABD6018431327",
   "descriptionLocation": "/mnt/vss/_work/1/s/msgraph-metadata/clean_beta_openapi/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.6.0",
+  "kiotaVersion": "1.8.0",
   "clientClassName": "BaseGraphServiceClient",
   "clientNamespaceName": "msgraph.generated",
   "language": "Python",
   "usesBackingStore": true,
+  "excludeBackwardCompatible": false,
   "includeAdditionalData": true,
   "serializers": [
     "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",
@@ -20,10 +21,10 @@
     "Microsoft.Kiota.Serialization.Form.FormParseNodeFactory"
   ],
   "structuredMimeTypes": [
-    "application/json",
-    "text/plain",
-    "application/x-www-form-urlencoded",
-    "multipart/form-data"
+    "application/json;q=1",
+    "text/plain;q=0.9",
+    "application/x-www-form-urlencoded;q=0.2",
+    "multipart/form-data;q=0.1"
   ],
   "includePatterns": [],
   "excludePatterns": [

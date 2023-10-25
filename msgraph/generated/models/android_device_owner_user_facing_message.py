@@ -47,7 +47,7 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, BackedModel, Par
         fields: Dict[str, Callable[[Any], None]] = {
             "defaultMessage": lambda n : setattr(self, 'default_message', n.get_str_value()),
             "localizedMessages": lambda n : setattr(self, 'localized_messages', n.get_collection_of_object_values(KeyValuePair)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -61,7 +61,7 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, BackedModel, Par
             raise TypeError("writer cannot be null.")
         writer.write_str_value("defaultMessage", self.default_message)
         writer.write_collection_of_object_values("localizedMessages", self.localized_messages)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

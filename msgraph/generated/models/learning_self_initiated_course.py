@@ -13,7 +13,7 @@ from .learning_course_activity import LearningCourseActivity
 class LearningSelfInitiatedCourse(LearningCourseActivity):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The date time value on which the self-initiated course was started by the learner. Optional.
+    # The date and time on which the self-initiated course was started by the learner. Optional.
     started_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

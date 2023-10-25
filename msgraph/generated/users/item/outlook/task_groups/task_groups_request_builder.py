@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.o_data_errors.o_data_error import ODataError
     from .....models.outlook_task_group import OutlookTaskGroup
     from .....models.outlook_task_group_collection_response import OutlookTaskGroupCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.outlook_task_group_item_request_builder import OutlookTaskGroupItemRequestBuilder
 
@@ -45,7 +45,7 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TaskGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[OutlookTaskGroupCollectionResponse]:
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskGroupCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/outlookuser-list-taskgroups?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[OutlookTaskGroup] = None, request_configuration: Optional[TaskGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[OutlookTaskGroup]:
         """
-        Create an Outlook task group in the user's mailbox.
+        Create an Outlook task group in the user's mailbox. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskGroup]
@@ -92,24 +92,24 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TaskGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_post_request_information(self,body: Optional[OutlookTaskGroup] = None, request_configuration: Optional[TaskGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an Outlook task group in the user's mailbox.
+        Create an Outlook task group in the user's mailbox. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -117,13 +117,13 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -135,7 +135,7 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TaskGroupsRequestBuilder(raw_url, self.request_adapter)
+        return TaskGroupsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TaskGroupsRequestBuilderGetQueryParameters():
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

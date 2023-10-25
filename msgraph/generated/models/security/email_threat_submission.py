@@ -18,9 +18,9 @@ from .threat_submission import ThreatSubmission
 class EmailThreatSubmission(ThreatSubmission):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.emailThreatSubmission"
-    # If the email is phishing simulation, this field will not be null.
+    # If the email is phishing simulation, this field won't be null.
     attack_simulation_info: Optional[AttackSimulationInfo] = None
-    # Specifies the internet message id of the email being submitted. This information is present in the email header.
+    # Specifies the internet message ID of the email being submitted. This information is present in the email header.
     internet_message_id: Optional[str] = None
     # The original category of the submission. The possible values are: notJunk, spam, phishing, malware and unkownFutureValue.
     original_category: Optional[SubmissionCategory] = None
@@ -32,9 +32,9 @@ class EmailThreatSubmission(ThreatSubmission):
     sender: Optional[str] = None
     # Specifies the IP address of the sender.
     sender_i_p: Optional[str] = None
-    # Specifies the subject of the email .
+    # Specifies the subject of the email.
     subject: Optional[str] = None
-    # It is used to automatically add allows for the components such as URL, file, sender; which are deemed bad by Microsoft so that similar messages in the future can be allowed.
+    # It's used to automatically add allows for the components such as URL, file, sender; which are deemed bad by Microsoft so that similar messages in the future can be allowed.
     tenant_allow_or_block_list_action: Optional[TenantAllowOrBlockListAction] = None
     
     @staticmethod

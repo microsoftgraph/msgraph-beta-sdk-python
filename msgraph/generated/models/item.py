@@ -90,7 +90,7 @@ class Item(AdditionalDataHolder, BackedModel, Parsable):
             "itemCategoryId": lambda n : setattr(self, 'item_category_id', n.get_uuid_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(Picture)),
             "priceIncludesTax": lambda n : setattr(self, 'price_includes_tax', n.get_bool_value()),
             "taxGroupCode": lambda n : setattr(self, 'tax_group_code', n.get_str_value()),
@@ -120,7 +120,7 @@ class Item(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_uuid_value("itemCategoryId", self.item_category_id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("picture", self.picture)
         writer.write_bool_value("priceIncludesTax", self.price_includes_tax)
         writer.write_str_value("taxGroupCode", self.tax_group_code)

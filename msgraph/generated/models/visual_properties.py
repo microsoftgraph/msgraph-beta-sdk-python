@@ -36,7 +36,7 @@ class VisualProperties(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "body": lambda n : setattr(self, 'body', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
         return fields
@@ -50,7 +50,7 @@ class VisualProperties(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("body", self.body)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("title", self.title)
         writer.write_additional_data_value(self.additional_data)
     

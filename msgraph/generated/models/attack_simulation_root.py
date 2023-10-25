@@ -18,11 +18,11 @@ from .entity import Entity
 
 @dataclass
 class AttackSimulationRoot(Entity):
-    # The endUserNotifications property
+    # Represents an end user's notification for an attack simulation training.
     end_user_notifications: Optional[List[EndUserNotification]] = None
-    # The landingPages property
+    # Represents an attack simulation training landing page.
     landing_pages: Optional[List[LandingPage]] = None
-    # The loginPages property
+    # Represents an attack simulation training login page.
     login_pages: Optional[List[LoginPage]] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -34,7 +34,7 @@ class AttackSimulationRoot(Entity):
     simulation_automations: Optional[List[SimulationAutomation]] = None
     # Represents an attack simulation training campaign in a tenant.
     simulations: Optional[List[Simulation]] = None
-    # The trainings property
+    # Represents details about attack simulation trainings.
     trainings: Optional[List[Training]] = None
     
     @staticmethod

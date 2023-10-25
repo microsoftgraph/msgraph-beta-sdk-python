@@ -16,7 +16,7 @@ class SignInLocation(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Provides the city where the sign-in originated. This is calculated using latitude/longitude information from the sign-in activity.
     city: Optional[str] = None
-    # Provides the country code info (2 letter code) where the sign-in originated.  This is calculated using latitude/longitude information from the sign-in activity.
+    # Provides the country code info (two letter code) where the sign-in originated.  This is calculated using latitude/longitude information from the sign-in activity.
     country_or_region: Optional[str] = None
     # Provides the latitude, longitude and altitude where the sign-in originated.
     geo_coordinates: Optional[GeoCoordinates] = None
@@ -49,7 +49,7 @@ class SignInLocation(AdditionalDataHolder, BackedModel, Parsable):
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
             "countryOrRegion": lambda n : setattr(self, 'country_or_region', n.get_str_value()),
             "geoCoordinates": lambda n : setattr(self, 'geo_coordinates', n.get_object_value(GeoCoordinates)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
         }
         return fields
@@ -65,7 +65,7 @@ class SignInLocation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("city", self.city)
         writer.write_str_value("countryOrRegion", self.country_or_region)
         writer.write_object_value("geoCoordinates", self.geo_coordinates)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("state", self.state)
         writer.write_additional_data_value(self.additional_data)
     

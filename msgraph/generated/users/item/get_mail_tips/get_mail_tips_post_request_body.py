@@ -41,7 +41,7 @@ class GetMailTipsPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "EmailAddresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_primitive_values(str)),
-            "MailTipsOptions": lambda n : setattr(self, 'mail_tips_options', n.get_enum_value(MailTipsType)),
+            "MailTipsOptions": lambda n : setattr(self, 'mail_tips_options', n.get_collection_of_enum_values(MailTipsType)),
         }
         return fields
     

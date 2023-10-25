@@ -49,7 +49,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "permanentFail": lambda n : setattr(self, 'permanent_fail', n.get_int_value()),
             "permanentSuccess": lambda n : setattr(self, 'permanent_success', n.get_int_value()),
             "removeFail": lambda n : setattr(self, 'remove_fail', n.get_int_value()),
@@ -70,7 +70,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("permanentFail", self.permanent_fail)
         writer.write_int_value("permanentSuccess", self.permanent_success)
         writer.write_int_value("removeFail", self.remove_fail)

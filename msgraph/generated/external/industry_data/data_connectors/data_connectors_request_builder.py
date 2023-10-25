@@ -45,7 +45,7 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[IndustryDataConnectorCollectionResponse]:
         """
-        Get the industryDataConnector resources from the dataConnector navigation property.
+        Get the industryDataConnector resources from the dataConnector navigation property. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnectorCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-list?view=graph-rest-1.0
@@ -67,11 +67,11 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[IndustryDataConnector]:
         """
-        Create a new azureDataLakeConnector object.
+        Create a new industryDataConnector object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnector]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-post?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,24 +92,24 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the industryDataConnector resources from the dataConnector navigation property.
+        Get the industryDataConnector resources from the dataConnector navigation property. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_post_request_information(self,body: Optional[IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new azureDataLakeConnector object.
+        Create a new industryDataConnector object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -117,13 +117,13 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -135,7 +135,7 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DataConnectorsRequestBuilder(raw_url, self.request_adapter)
+        return DataConnectorsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DataConnectorsRequestBuilderGetQueryParameters():
         """
-        Get the industryDataConnector resources from the dataConnector navigation property.
+        Get the industryDataConnector resources from the dataConnector navigation property. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

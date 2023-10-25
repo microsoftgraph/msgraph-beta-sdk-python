@@ -24,7 +24,7 @@ class Acl(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The type property
     type: Optional[AclType] = None
-    # The unique identifer of the identity. In case of Azure Active Directory identities, value is set to the object identifier of the user, group or tenant for types user, group and everyone (and everyoneExceptGuests) respectively. In case of external groups value is set to the ID of the externalGroup.
+    # The unique identifer of the identity. For Microsoft Entra identities, value is set to the object identifier of the user, group or tenant for types user, group and everyone (and everyoneExceptGuests) respectively. For external groups, value is set to the ID of the externalGroup.
     value: Optional[str] = None
     
     @staticmethod
@@ -54,7 +54,7 @@ class Acl(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "accessType": lambda n : setattr(self, 'access_type', n.get_enum_value(AccessType)),
             "identitySource": lambda n : setattr(self, 'identity_source', n.get_enum_value(IdentitySourceType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(AclType)),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }
@@ -70,7 +70,7 @@ class Acl(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("accessType", self.access_type)
         writer.write_enum_value("identitySource", self.identity_source)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("type", self.type)
         writer.write_str_value("value", self.value)
         writer.write_additional_data_value(self.additional_data)

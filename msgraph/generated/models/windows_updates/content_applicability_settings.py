@@ -18,7 +18,7 @@ class ContentApplicabilitySettings(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Offer if the update is recommended by a vendor in the list, otherwise withhold the offer.
     offer_while_recommended_by: Optional[List[str]] = None
-    # Settings for governing safeguard holds on offering content.
+    # Settings for governing safeguard-holds on offering content.
     safeguard: Optional[SafeguardSettings] = None
     
     @staticmethod
@@ -42,7 +42,7 @@ class ContentApplicabilitySettings(AdditionalDataHolder, BackedModel, Parsable):
         from .safeguard_settings import SafeguardSettings
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "offerWhileRecommendedBy": lambda n : setattr(self, 'offer_while_recommended_by', n.get_collection_of_primitive_values(str)),
             "safeguard": lambda n : setattr(self, 'safeguard', n.get_object_value(SafeguardSettings)),
         }
@@ -56,7 +56,7 @@ class ContentApplicabilitySettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_primitive_values("offerWhileRecommendedBy", self.offer_while_recommended_by)
         writer.write_object_value("safeguard", self.safeguard)
         writer.write_additional_data_value(self.additional_data)

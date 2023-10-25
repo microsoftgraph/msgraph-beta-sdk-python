@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .import_office365_device_configuration_policies_response import ImportOffice365DeviceConfigurationPoliciesResponse
+    from .import_office365_device_configuration_policies_post_response import ImportOffice365DeviceConfigurationPoliciesPostResponse
 
 class ImportOffice365DeviceConfigurationPoliciesRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class ImportOffice365DeviceConfigurationPoliciesRequestBuilder(BaseRequestBuilde
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/templates/importOffice365DeviceConfigurationPolicies", path_parameters)
     
-    async def post(self,request_configuration: Optional[ImportOffice365DeviceConfigurationPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[ImportOffice365DeviceConfigurationPoliciesResponse]:
+    async def post(self,request_configuration: Optional[ImportOffice365DeviceConfigurationPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[ImportOffice365DeviceConfigurationPoliciesPostResponse]:
         """
         Invoke action importOffice365DeviceConfigurationPolicies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[ImportOffice365DeviceConfigurationPoliciesResponse]
+        Returns: Optional[ImportOffice365DeviceConfigurationPoliciesPostResponse]
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class ImportOffice365DeviceConfigurationPoliciesRequestBuilder(BaseRequestBuilde
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .import_office365_device_configuration_policies_response import ImportOffice365DeviceConfigurationPoliciesResponse
+        from .import_office365_device_configuration_policies_post_response import ImportOffice365DeviceConfigurationPoliciesPostResponse
 
-        return await self.request_adapter.send_async(request_info, ImportOffice365DeviceConfigurationPoliciesResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ImportOffice365DeviceConfigurationPoliciesPostResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ImportOffice365DeviceConfigurationPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -54,13 +54,13 @@ class ImportOffice365DeviceConfigurationPoliciesRequestBuilder(BaseRequestBuilde
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> ImportOffice365DeviceConfigurationPoliciesRequestBuilder:
@@ -71,7 +71,7 @@ class ImportOffice365DeviceConfigurationPoliciesRequestBuilder(BaseRequestBuilde
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ImportOffice365DeviceConfigurationPoliciesRequestBuilder(raw_url, self.request_adapter)
+        return ImportOffice365DeviceConfigurationPoliciesRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

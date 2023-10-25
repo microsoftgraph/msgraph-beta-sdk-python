@@ -17,7 +17,7 @@ class PermissionGrantConditionSet(Entity):
     client_application_ids: Optional[List[str]] = None
     # A list of Microsoft Partner Network (MPN) IDs for verified publishers of the client application, or a list with the single value all to match with client apps from any publisher. Default is the single value all.
     client_application_publisher_ids: Optional[List[str]] = None
-    # A list of Azure Active Directory tenant IDs in which the client application is registered, or a list with the single value all to match with client apps registered in any tenant. Default is the single value all.
+    # A list of Microsoft Entra tenant IDs in which the client application is registered, or a list with the single value all to match with client apps registered in any tenant. Default is the single value all.
     client_application_tenant_ids: Optional[List[str]] = None
     # Set to true to only match on client applications with a verified publisher. Set to false to match on any client app, even if it does not have a verified publisher. Default is false.
     client_applications_from_verified_publisher_only: Optional[bool] = None

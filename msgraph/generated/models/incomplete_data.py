@@ -12,11 +12,11 @@ class IncompleteData(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The service does not have source data before the specified time.
+    # The service doesn't have source data before the specified time.
     missing_data_before_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Some data was not recorded due to excessive activity.
+    # Some data wasn't recorded due to excessive activity.
     was_throttled: Optional[bool] = None
     
     @staticmethod
@@ -37,7 +37,7 @@ class IncompleteData(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "missingDataBeforeDateTime": lambda n : setattr(self, 'missing_data_before_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "wasThrottled": lambda n : setattr(self, 'was_throttled', n.get_bool_value()),
         }
         return fields
@@ -51,7 +51,7 @@ class IncompleteData(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("missingDataBeforeDateTime", self.missing_data_before_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("wasThrottled", self.was_throttled)
         writer.write_additional_data_value(self.additional_data)
     

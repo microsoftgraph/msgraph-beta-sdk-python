@@ -45,7 +45,7 @@ class CorsConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "allowedMethods": lambda n : setattr(self, 'allowed_methods', n.get_collection_of_primitive_values(str)),
             "allowedOrigins": lambda n : setattr(self, 'allowed_origins', n.get_collection_of_primitive_values(str)),
             "maxAgeInSeconds": lambda n : setattr(self, 'max_age_in_seconds', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_str_value()),
         }
         return fields
@@ -62,7 +62,7 @@ class CorsConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_primitive_values("allowedMethods", self.allowed_methods)
         writer.write_collection_of_primitive_values("allowedOrigins", self.allowed_origins)
         writer.write_int_value("maxAgeInSeconds", self.max_age_in_seconds)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("resource", self.resource)
         writer.write_additional_data_value(self.additional_data)
     

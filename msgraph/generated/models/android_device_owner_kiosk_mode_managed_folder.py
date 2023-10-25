@@ -50,7 +50,7 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, BackedModel
             "folderIdentifier": lambda n : setattr(self, 'folder_identifier', n.get_str_value()),
             "folderName": lambda n : setattr(self, 'folder_name', n.get_str_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(AndroidDeviceOwnerKioskModeFolderItem)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -65,7 +65,7 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, BackedModel
         writer.write_str_value("folderIdentifier", self.folder_identifier)
         writer.write_str_value("folderName", self.folder_name)
         writer.write_collection_of_object_values("items", self.items)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

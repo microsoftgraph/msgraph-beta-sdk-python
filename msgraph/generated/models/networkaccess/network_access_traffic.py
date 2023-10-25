@@ -38,18 +38,30 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     device_operating_system: Optional[str] = None
     # Represents the version or release number of the operating system installed on a device within a network infrastructure. Supports $filter (eq) and $orderby.
     device_operating_system_version: Optional[str] = None
+    # The filteringProfileId property
+    filtering_profile_id: Optional[str] = None
+    # The filteringProfileName property
+    filtering_profile_name: Optional[str] = None
     # Represents the headers included in a network request or response. Supports $filter (eq) and $orderby.
     headers: Optional[Headers] = None
+    # The initiatingProcessName property
+    initiating_process_name: Optional[str] = None
     # Represents the networking protocol used for communication.The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue. Supports $filter (eq) and $orderby.
     network_protocol: Optional[NetworkingProtocol] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents a unique identifier assigned to a policy. Supports $filter (eq) and $orderby.
     policy_id: Optional[str] = None
+    # The policyName property
+    policy_name: Optional[str] = None
     # Represents a unique identifier assigned to a policy rule. Supports $filter (eq) and $orderby.
     policy_rule_id: Optional[str] = None
+    # The policyRuleName property
+    policy_rule_name: Optional[str] = None
     # Represents the total number of bytes received in a network communication or data transfer. Supports $filter (eq) and $orderby.
     received_bytes: Optional[int] = None
+    # The resourceTenantId property
+    resource_tenant_id: Optional[str] = None
     # Represents the total number of bytes sent in a network communication or data transfer. Supports $filter (eq) and $orderby.
     sent_bytes: Optional[int] = None
     # Represents a unique identifier assigned to a session or connection within a network infrastructure. Supports $filter (eq) and $orderby.
@@ -108,12 +120,18 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceOperatingSystem": lambda n : setattr(self, 'device_operating_system', n.get_str_value()),
             "deviceOperatingSystemVersion": lambda n : setattr(self, 'device_operating_system_version', n.get_str_value()),
+            "filteringProfileId": lambda n : setattr(self, 'filtering_profile_id', n.get_str_value()),
+            "filteringProfileName": lambda n : setattr(self, 'filtering_profile_name', n.get_str_value()),
             "headers": lambda n : setattr(self, 'headers', n.get_object_value(Headers)),
+            "initiatingProcessName": lambda n : setattr(self, 'initiating_process_name', n.get_str_value()),
             "networkProtocol": lambda n : setattr(self, 'network_protocol', n.get_enum_value(NetworkingProtocol)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
+            "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "policyRuleId": lambda n : setattr(self, 'policy_rule_id', n.get_str_value()),
+            "policyRuleName": lambda n : setattr(self, 'policy_rule_name', n.get_str_value()),
             "receivedBytes": lambda n : setattr(self, 'received_bytes', n.get_int_value()),
+            "resourceTenantId": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
             "sentBytes": lambda n : setattr(self, 'sent_bytes', n.get_int_value()),
             "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
             "sourceIp": lambda n : setattr(self, 'source_ip', n.get_str_value()),
@@ -145,12 +163,18 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceOperatingSystem", self.device_operating_system)
         writer.write_str_value("deviceOperatingSystemVersion", self.device_operating_system_version)
+        writer.write_str_value("filteringProfileId", self.filtering_profile_id)
+        writer.write_str_value("filteringProfileName", self.filtering_profile_name)
         writer.write_object_value("headers", self.headers)
+        writer.write_str_value("initiatingProcessName", self.initiating_process_name)
         writer.write_enum_value("networkProtocol", self.network_protocol)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("policyId", self.policy_id)
+        writer.write_str_value("policyName", self.policy_name)
         writer.write_str_value("policyRuleId", self.policy_rule_id)
+        writer.write_str_value("policyRuleName", self.policy_rule_name)
         writer.write_int_value("receivedBytes", self.received_bytes)
+        writer.write_str_value("resourceTenantId", self.resource_tenant_id)
         writer.write_int_value("sentBytes", self.sent_bytes)
         writer.write_str_value("sessionId", self.session_id)
         writer.write_str_value("sourceIp", self.source_ip)

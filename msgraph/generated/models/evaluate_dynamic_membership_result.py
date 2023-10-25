@@ -14,9 +14,9 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, BackedModel, Parsabl
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # If a group ID is provided, the value is the membership rule for the group. If a group ID is not provided, the value is the membership rule that was provided as a parameter. For more information, see Dynamic membership rules for groups in Azure Active Directory.
+    # If a group ID is provided, the value is the membership rule for the group. If a group ID isn't provided, the value is the membership rule that was provided as a parameter. For more information, see Dynamic membership rules for groups in Microsoft Entra ID.
     membership_rule: Optional[str] = None
-    # Provides a detailed anaylsis of the membership evaluation result.
+    # Provides a detailed analysis of the membership evaluation result.
     membership_rule_evaluation_details: Optional[ExpressionEvaluationDetails] = None
     # The value is true if the user or device is a member of the group. The value can also be true if a membership rule was provided and the user or device passes the rule evaluation; otherwise false.
     membership_rule_evaluation_result: Optional[bool] = None
@@ -47,7 +47,7 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, BackedModel, Parsabl
             "membershipRule": lambda n : setattr(self, 'membership_rule', n.get_str_value()),
             "membershipRuleEvaluationDetails": lambda n : setattr(self, 'membership_rule_evaluation_details', n.get_object_value(ExpressionEvaluationDetails)),
             "membershipRuleEvaluationResult": lambda n : setattr(self, 'membership_rule_evaluation_result', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, BackedModel, Parsabl
         writer.write_str_value("membershipRule", self.membership_rule)
         writer.write_object_value("membershipRuleEvaluationDetails", self.membership_rule_evaluation_details)
         writer.write_bool_value("membershipRuleEvaluationResult", self.membership_rule_evaluation_result)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

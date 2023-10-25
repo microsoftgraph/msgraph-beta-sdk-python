@@ -54,7 +54,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, BackedModel, Parsable):
             "contentCameraHealth": lambda n : setattr(self, 'content_camera_health', n.get_object_value(TeamworkPeripheralHealth)),
             "displayHealthCollection": lambda n : setattr(self, 'display_health_collection', n.get_collection_of_object_values(TeamworkPeripheralHealth)),
             "microphoneHealth": lambda n : setattr(self, 'microphone_health', n.get_object_value(TeamworkPeripheralHealth)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roomCameraHealth": lambda n : setattr(self, 'room_camera_health', n.get_object_value(TeamworkPeripheralHealth)),
             "speakerHealth": lambda n : setattr(self, 'speaker_health', n.get_object_value(TeamworkPeripheralHealth)),
         }
@@ -72,7 +72,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("contentCameraHealth", self.content_camera_health)
         writer.write_collection_of_object_values("displayHealthCollection", self.display_health_collection)
         writer.write_object_value("microphoneHealth", self.microphone_health)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("roomCameraHealth", self.room_camera_health)
         writer.write_object_value("speakerHealth", self.speaker_health)
         writer.write_additional_data_value(self.additional_data)

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .passwordless_microsoft_authenticator_methods.passwordless_microsoft_authenticator_methods_request_builder import PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
     from .password_methods.password_methods_request_builder import PasswordMethodsRequestBuilder
     from .phone_methods.phone_methods_request_builder import PhoneMethodsRequestBuilder
+    from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
     from .software_oath_methods.software_oath_methods_request_builder import SoftwareOathMethodsRequestBuilder
     from .temporary_access_pass_methods.temporary_access_pass_methods_request_builder import TemporaryAccessPassMethodsRequestBuilder
     from .windows_hello_for_business_methods.windows_hello_for_business_methods_request_builder import WindowsHelloForBusinessMethodsRequestBuilder
@@ -108,12 +109,13 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -123,14 +125,14 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Authentication] = None, request_configuration: Optional[AuthenticationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -143,13 +145,13 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -161,7 +163,7 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return AuthenticationRequestBuilder(raw_url, self.request_adapter)
+        return AuthenticationRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def email_methods(self) -> EmailMethodsRequestBuilder:
@@ -209,15 +211,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def passwordless_microsoft_authenticator_methods(self) -> PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder:
-        """
-        Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
-        """
-        from .passwordless_microsoft_authenticator_methods.passwordless_microsoft_authenticator_methods_request_builder import PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
-
-        return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def password_methods(self) -> PasswordMethodsRequestBuilder:
         """
         Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
@@ -227,6 +220,15 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         return PasswordMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def passwordless_microsoft_authenticator_methods(self) -> PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder:
+        """
+        Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
+        """
+        from .passwordless_microsoft_authenticator_methods.passwordless_microsoft_authenticator_methods_request_builder import PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
+
+        return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def phone_methods(self) -> PhoneMethodsRequestBuilder:
         """
         Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
@@ -234,6 +236,15 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         from .phone_methods.phone_methods_request_builder import PhoneMethodsRequestBuilder
 
         return PhoneMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def platform_credential_methods(self) -> PlatformCredentialMethodsRequestBuilder:
+        """
+        Provides operations to manage the platformCredentialMethods property of the microsoft.graph.authentication entity.
+        """
+        from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
+
+        return PlatformCredentialMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def software_oath_methods(self) -> SoftwareOathMethodsRequestBuilder:

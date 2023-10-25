@@ -50,7 +50,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, BackedModel, Parsable):
             "enforcedDeviceCount": lambda n : setattr(self, 'enforced_device_count', n.get_int_value()),
             "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
             "nonCompliantDeviceCount": lambda n : setattr(self, 'non_compliant_device_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "pendingDeviceCount": lambda n : setattr(self, 'pending_device_count', n.get_int_value()),
             "targetedDeviceCount": lambda n : setattr(self, 'targeted_device_count', n.get_int_value()),
         }
@@ -68,7 +68,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("enforcedDeviceCount", self.enforced_device_count)
         writer.write_int_value("failedDeviceCount", self.failed_device_count)
         writer.write_int_value("nonCompliantDeviceCount", self.non_compliant_device_count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("pendingDeviceCount", self.pending_device_count)
         writer.write_int_value("targetedDeviceCount", self.targeted_device_count)
         writer.write_additional_data_value(self.additional_data)

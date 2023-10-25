@@ -74,7 +74,7 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, BackedMod
             "isApprovalRequiredForExtension": lambda n : setattr(self, 'is_approval_required_for_extension', n.get_bool_value()),
             "isCustomAssignmentScheduleAllowed": lambda n : setattr(self, 'is_custom_assignment_schedule_allowed', n.get_bool_value()),
             "isRequestorJustificationRequired": lambda n : setattr(self, 'is_requestor_justification_required', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyDescription": lambda n : setattr(self, 'policy_description', n.get_str_value()),
             "policyDisplayName": lambda n : setattr(self, 'policy_display_name', n.get_str_value()),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
@@ -97,7 +97,7 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, BackedMod
         writer.write_bool_value("isApprovalRequiredForExtension", self.is_approval_required_for_extension)
         writer.write_bool_value("isCustomAssignmentScheduleAllowed", self.is_custom_assignment_schedule_allowed)
         writer.write_bool_value("isRequestorJustificationRequired", self.is_requestor_justification_required)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("policyDescription", self.policy_description)
         writer.write_str_value("policyDisplayName", self.policy_display_name)
         writer.write_str_value("policyId", self.policy_id)

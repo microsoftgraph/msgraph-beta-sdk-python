@@ -42,7 +42,7 @@ class CloudPcBulkRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable)
             "failedDeviceIds": lambda n : setattr(self, 'failed_device_ids', n.get_collection_of_primitive_values(str)),
             "notFoundDeviceIds": lambda n : setattr(self, 'not_found_device_ids', n.get_collection_of_primitive_values(str)),
             "notSupportedDeviceIds": lambda n : setattr(self, 'not_supported_device_ids', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "successfulDeviceIds": lambda n : setattr(self, 'successful_device_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
@@ -58,7 +58,7 @@ class CloudPcBulkRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable)
         writer.write_collection_of_primitive_values("failedDeviceIds", self.failed_device_ids)
         writer.write_collection_of_primitive_values("notFoundDeviceIds", self.not_found_device_ids)
         writer.write_collection_of_primitive_values("notSupportedDeviceIds", self.not_supported_device_ids)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_primitive_values("successfulDeviceIds", self.successful_device_ids)
         writer.write_additional_data_value(self.additional_data)
     

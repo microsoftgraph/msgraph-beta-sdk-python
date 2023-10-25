@@ -40,9 +40,9 @@ from .entity import Entity
 
 @dataclass
 class SignIn(Entity):
-    # The application name displayed in the Azure Portal.  Supports $filter (eq, startsWith).
+    # The application name displayed in the Microsoft Entra admin center.  Supports $filter (eq, startsWith).
     app_display_name: Optional[str] = None
-    # The application identifier in Azure Active Directory.  Supports $filter (eq).
+    # The application identifier in Microsoft Entra ID.  Supports $filter (eq).
     app_id: Optional[str] = None
     # The appTokenProtectionStatus property
     app_token_protection_status: Optional[TokenProtectionStatus] = None
@@ -50,19 +50,19 @@ class SignIn(Entity):
     applied_conditional_access_policies: Optional[List[AppliedConditionalAccessPolicy]] = None
     # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event.
     applied_event_listeners: Optional[List[AppliedAuthenticationEventListener]] = None
-    # Provides details about the app and device used during an Azure AD authentication step.
+    # Provides details about the app and device used during a Microsoft Entra authentication step.
     authentication_app_device_details: Optional[AuthenticationAppDeviceDetails] = None
-    # Provides details of the Azure AD policies applied to a user and client authentication app during an authentication step.
+    # Provides details of the Microsoft Entra policies applied to a user and client authentication app during an authentication step.
     authentication_app_policy_evaluation_details: Optional[List[AuthenticationAppPolicyDetails]] = None
     # Contains a collection of values that represent the conditional access authentication contexts applied to the sign-in.
     authentication_context_class_references: Optional[List[AuthenticationContext]] = None
-    # The result of the authentication attempt and additional details on the authentication method.
+    # The result of the authentication attempt and more details on the authentication method.
     authentication_details: Optional[List[AuthenticationDetail]] = None
     # The authentication methods used. Possible values: SMS, Authenticator App, App Verification code, Password, FIDO, PTA, or PHS.
     authentication_methods_used: Optional[List[str]] = None
-    # Additional authentication processing details, such as the agent name in case of PTA/PHS or Server/farm name in case of federated authentication.
+    # More authentication processing details, such as the agent name for  PTA and PHS, or a server or farm name for federated authentication.
     authentication_processing_details: Optional[List[KeyValue]] = None
-    # Lists the protocol type or grant type used in the authentication. The possible values are: none, oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue. For authentications that use protocols other than the possible values listed, the protocol type is listed as none.
+    # Lists the protocol type or grant type used in the authentication. The possible values are: oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue, authenticationTransfer, and none. Use none for all authentications that do not have a specific value in that list.
     authentication_protocol: Optional[ProtocolType] = None
     # This holds the highest level of authentication needed through all the sign-in steps, for sign-in to succeed.  Supports $filter (eq, startsWith).
     authentication_requirement: Optional[str] = None
@@ -74,7 +74,7 @@ class SignIn(Entity):
     azure_resource_id: Optional[str] = None
     # The legacy client used for sign-in activity. For example: Browser, Exchange ActiveSync, Modern clients, IMAP, MAPI, SMTP, or POP.  Supports $filter (eq).
     client_app_used: Optional[str] = None
-    # Describes the credential type that a user client or service principal provided to Azure AD to authenticate itself. You may wish to review clientCredentialType to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
+    # Describes the credential type that a user client or service principal provided to Microsoft Entra ID to authenticate itself. You may wish to review clientCredentialType to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
     client_credential_type: Optional[ClientCredentialType] = None
     # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue.  Supports $filter (eq).
     conditional_access_status: Optional[ConditionalAccessStatus] = None
@@ -82,29 +82,29 @@ class SignIn(Entity):
     correlation_id: Optional[str] = None
     # The date and time the sign-in was initiated. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $orderby, $filter (eq, le, and ge).
     created_date_time: Optional[datetime.datetime] = None
-    # Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue. If the sign in did not cross tenant boundaries, the value is none.
+    # Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue. If the sign in didn't cross tenant boundaries, the value is none.
     cross_tenant_access_type: Optional[SignInAccessType] = None
     # The device information from where the sign-in occurred. Includes information such as deviceId, OS, and browser.  Supports $filter (eq, startsWith) on browser and operatingSystem properties.
     device_detail: Optional[DeviceDetail] = None
     # Contains the identifier of an application's federated identity credential, if a federated identity credential was used to sign in.
     federated_credential_id: Optional[str] = None
-    # During a failed sign in, a user may click a button in the Azure portal to mark the failed event for tenant admins. If a user clicked the button to flag the failed sign in, this value is true.
+    # During a failed sign in, a user may select a button in the Azure portal to mark the failed event for tenant admins. If a user clicked the button to flag the failed sign in, this value is true.
     flagged_for_review: Optional[bool] = None
     # The tenant identifier of the user initiating the sign in. Not applicable in Managed Identity or service principal sign ins.
     home_tenant_id: Optional[str] = None
-    # For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Azure AD to show the tenant content.
+    # For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Microsoft Entra ID to show the tenant content.
     home_tenant_name: Optional[str] = None
-    # Indicates the token types that were presented to Azure AD to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Azure AD may have also used token types not listed in this Enum type to authenticate the actor. Do not infer the lack of a token if it is not one of the types listed. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: remoteDesktopToken.
+    # Indicates the token types that were presented to Microsoft Entra ID to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Microsoft Entra ID may have also used token types not listed in this Enum type to authenticate the actor. Don't infer the lack of a token if it isn't one of the types listed. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: remoteDesktopToken.
     incoming_token_type: Optional[IncomingTokenType] = None
     # The IP address of the client from where the sign-in occurred.  Supports $filter (eq, startsWith).
     ip_address: Optional[str] = None
     # The IP address a user used to reach a resource provider, used to determine Conditional Access compliance for some policies. For example, when a user interacts with Exchange Online, the IP address Exchange receives from the user may be recorded here. This value is often null.
     ip_address_from_resource_provider: Optional[str] = None
-    # Indicates whether a user sign in is interactive. In interactive sign in, the user provides an authentication factor to Azure AD. These factors include passwords, responses to MFA challenges, biometric factors, or QR codes that a user provides to Azure AD or an associated app. In non-interactive sign in, the user doesn't provide an authentication factor. Instead, the client app uses a token or code to authenticate or access a resource on behalf of a user. Non-interactive sign ins are commonly used for a client to sign in on a user's behalf in a process transparent to the user.
+    # Indicates whether a user sign in is interactive. In interactive sign in, the user provides an authentication factor to Microsoft Entra ID. These factors include passwords, responses to MFA challenges, biometric factors, or QR codes that a user provides to Microsoft Entra ID or an associated app. In non-interactive sign in, the user doesn't provide an authentication factor. Instead, the client app uses a token or code to authenticate or access a resource on behalf of a user. Non-interactive sign ins are commonly used for a client to sign in on a user's behalf in a process transparent to the user.
     is_interactive: Optional[bool] = None
-    # Shows whether the sign in event was subject to an Azure AD tenant restriction policy.
+    # Shows whether the sign in event was subject to a Microsoft Entra tenant restriction policy.
     is_tenant_restricted: Optional[bool] = None
-    # The city, state, and 2 letter country code from where the sign-in occurred.  Supports $filter (eq, startsWith) on city, state, and countryOrRegion properties.
+    # The city, state, and two letter country code from where the sign-in occurred.  Supports $filter (eq, startsWith) on city, state, and countryOrRegion properties.
     location: Optional[SignInLocation] = None
     # Contains information about the managed identity used for the sign in, including its type, associated Azure Resource Manager (ARM) resource ID, and federated token information.
     managed_service_identity: Optional[ManagedIdentity] = None
@@ -118,7 +118,7 @@ class SignIn(Entity):
     original_request_id: Optional[str] = None
     # Transfer method used to initiate a session throughout all subsequent request. The possible values are: none, deviceCodeFlow, authenticationTransfer, unknownFutureValue.
     original_transfer_method: Optional[OriginalTransferMethods] = None
-    # Contains information about the Azure AD Private Link policy that is associated with the sign in event.
+    # Contains information about the Microsoft Entra Private Link policy that is associated with the sign in event.
     private_link_details: Optional[PrivateLinkDetails] = None
     # The request processing time in milliseconds in AD STS.
     processing_time_in_milliseconds: Optional[int] = None
@@ -130,13 +130,13 @@ class SignIn(Entity):
     resource_service_principal_id: Optional[str] = None
     # The tenant identifier of the resource referenced in the sign in.
     resource_tenant_id: Optional[str] = None
-    # The reason behind a specific state of a risky user, sign-in, or a risk event. Possible values: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, or unknownFutureValue. The value none means that no action has been performed on the user or sign-in so far.  Supports $filter (eq). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
+    # The reason behind a specific state of a risky user, sign-in, or a risk event. Possible values: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, or unknownFutureValue. The value none means that no action has been performed on the user or sign-in so far.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
     risk_detail: Optional[RiskDetail] = None
     # The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, or unknownFutureValue.  Supports $filter (eq, startsWith).
     risk_event_types_v2: Optional[List[str]] = None
-    # The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection.  Supports $filter (eq). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
+    # The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Microsoft Entra ID Protection.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
     risk_level_aggregated: Optional[RiskLevel] = None
-    # The risk level during sign-in. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection.  Supports $filter (eq). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
+    # The risk level during sign-in. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in wasn't enabled for Microsoft Entra ID Protection.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
     risk_level_during_sign_in: Optional[RiskLevel] = None
     # The risk state of a risky user, sign-in, or a risk event. Possible values: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, or unknownFutureValue.  Supports $filter (eq).
     risk_state: Optional[RiskState] = None
@@ -144,9 +144,9 @@ class SignIn(Entity):
     service_principal_credential_key_id: Optional[str] = None
     # The certificate thumbprint of the certificate used by the service principal to authenticate.
     service_principal_credential_thumbprint: Optional[str] = None
-    # The application identifier used for sign-in. This field is populated when you are signing in using an application.  Supports $filter (eq, startsWith).
+    # The application identifier used for sign-in. This field is populated when you're signing in using an application.  Supports $filter (eq, startsWith).
     service_principal_id: Optional[str] = None
-    # The application name used for sign-in. This field is populated when you are signing in using an application.  Supports $filter (eq, startsWith).
+    # The application name used for sign-in. This field is populated when you're signing in using an application.  Supports $filter (eq, startsWith).
     service_principal_name: Optional[str] = None
     # Any conditional access session management policies that were applied during the sign-in event.
     session_lifetime_policies: Optional[List[SessionLifetimePolicy]] = None
@@ -158,13 +158,13 @@ class SignIn(Entity):
     sign_in_identifier_type: Optional[SignInIdentifierType] = None
     # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the signin token was bound to the device or not. The possible values are: none, bound, unbound, unknownFutureValue.
     sign_in_token_protection_status: Optional[TokenProtectionStatus] = None
-    # The sign-in status. Includes the error code and description of the error (in case of a sign-in failure).  Supports $filter (eq) on errorCode property.
+    # The sign-in status. Includes the error code and description of the error (for a sign-in failure).  Supports $filter (eq) on errorCode property.
     status: Optional[SignInStatus] = None
     # The name of the identity provider. For example, sts.microsoft.com.  Supports $filter (eq).
     token_issuer_name: Optional[str] = None
-    # The type of identity provider. The possible values are: AzureAD, ADFederationServices, UnknownFutureValue, AzureADBackupAuth, ADFederationServicesMFAAdapter, NPSExtension. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: AzureADBackupAuth , ADFederationServicesMFAAdapter , NPSExtension.
+    # The type of identity provider. The possible values are: AzureAD, ADFederationServices, UnknownFutureValue, AzureADBackupAuth, ADFederationServicesMFAAdapter, NPSExtension. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: AzureADBackupAuth , ADFederationServicesMFAAdapter , NPSExtension.
     token_issuer_type: Optional[TokenIssuerType] = None
-    # A unique base64 encoded request identifier used to track tokens issued by Azure AD as they are redeemed at resource providers.
+    # A unique base64 encoded request identifier used to track tokens issued by Microsoft Entra ID as they're redeemed at resource providers.
     unique_token_identifier: Optional[str] = None
     # The user agent information related to sign-in.  Supports $filter (eq, startsWith).
     user_agent: Optional[str] = None
@@ -267,7 +267,7 @@ class SignIn(Entity):
             "authenticationDetails": lambda n : setattr(self, 'authentication_details', n.get_collection_of_object_values(AuthenticationDetail)),
             "authenticationMethodsUsed": lambda n : setattr(self, 'authentication_methods_used', n.get_collection_of_primitive_values(str)),
             "authenticationProcessingDetails": lambda n : setattr(self, 'authentication_processing_details', n.get_collection_of_object_values(KeyValue)),
-            "authenticationProtocol": lambda n : setattr(self, 'authentication_protocol', n.get_enum_value(ProtocolType)),
+            "authenticationProtocol": lambda n : setattr(self, 'authentication_protocol', n.get_collection_of_enum_values(ProtocolType)),
             "authenticationRequirement": lambda n : setattr(self, 'authentication_requirement', n.get_str_value()),
             "authenticationRequirementPolicies": lambda n : setattr(self, 'authentication_requirement_policies', n.get_collection_of_object_values(AuthenticationRequirementPolicy)),
             "autonomousSystemNumber": lambda n : setattr(self, 'autonomous_system_number', n.get_int_value()),
@@ -277,13 +277,13 @@ class SignIn(Entity):
             "conditionalAccessStatus": lambda n : setattr(self, 'conditional_access_status', n.get_enum_value(ConditionalAccessStatus)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "crossTenantAccessType": lambda n : setattr(self, 'cross_tenant_access_type', n.get_enum_value(SignInAccessType)),
+            "crossTenantAccessType": lambda n : setattr(self, 'cross_tenant_access_type', n.get_collection_of_enum_values(SignInAccessType)),
             "deviceDetail": lambda n : setattr(self, 'device_detail', n.get_object_value(DeviceDetail)),
             "federatedCredentialId": lambda n : setattr(self, 'federated_credential_id', n.get_str_value()),
             "flaggedForReview": lambda n : setattr(self, 'flagged_for_review', n.get_bool_value()),
             "homeTenantId": lambda n : setattr(self, 'home_tenant_id', n.get_str_value()),
             "homeTenantName": lambda n : setattr(self, 'home_tenant_name', n.get_str_value()),
-            "incomingTokenType": lambda n : setattr(self, 'incoming_token_type', n.get_enum_value(IncomingTokenType)),
+            "incomingTokenType": lambda n : setattr(self, 'incoming_token_type', n.get_collection_of_enum_values(IncomingTokenType)),
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "ipAddressFromResourceProvider": lambda n : setattr(self, 'ip_address_from_resource_provider', n.get_str_value()),
             "isInteractive": lambda n : setattr(self, 'is_interactive', n.get_bool_value()),

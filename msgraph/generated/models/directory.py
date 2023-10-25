@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .certificate_authority_path import CertificateAuthorityPath
     from .company_subscription import CompanySubscription
     from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
+    from .device_local_credential_info import DeviceLocalCredentialInfo
     from .directory_object import DirectoryObject
     from .entity import Entity
     from .feature_rollout_policy import FeatureRolloutPolicy
@@ -34,6 +35,8 @@ class Directory(Entity):
     custom_security_attribute_definitions: Optional[List[CustomSecurityAttributeDefinition]] = None
     # The deletedItems property
     deleted_items: Optional[List[DirectoryObject]] = None
+    # The credentials of the device's local administrator account backed up to Microsoft Entra ID.
+    device_local_credentials: Optional[List[DeviceLocalCredentialInfo]] = None
     # The featureRolloutPolicies property
     feature_rollout_policies: Optional[List[FeatureRolloutPolicy]] = None
     # Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
@@ -76,6 +79,7 @@ class Directory(Entity):
         from .certificate_authority_path import CertificateAuthorityPath
         from .company_subscription import CompanySubscription
         from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
+        from .device_local_credential_info import DeviceLocalCredentialInfo
         from .directory_object import DirectoryObject
         from .entity import Entity
         from .feature_rollout_policy import FeatureRolloutPolicy
@@ -92,6 +96,7 @@ class Directory(Entity):
         from .certificate_authority_path import CertificateAuthorityPath
         from .company_subscription import CompanySubscription
         from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
+        from .device_local_credential_info import DeviceLocalCredentialInfo
         from .directory_object import DirectoryObject
         from .entity import Entity
         from .feature_rollout_policy import FeatureRolloutPolicy
@@ -109,6 +114,7 @@ class Directory(Entity):
             "certificateAuthorities": lambda n : setattr(self, 'certificate_authorities', n.get_object_value(CertificateAuthorityPath)),
             "customSecurityAttributeDefinitions": lambda n : setattr(self, 'custom_security_attribute_definitions', n.get_collection_of_object_values(CustomSecurityAttributeDefinition)),
             "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_collection_of_object_values(DirectoryObject)),
+            "deviceLocalCredentials": lambda n : setattr(self, 'device_local_credentials', n.get_collection_of_object_values(DeviceLocalCredentialInfo)),
             "featureRolloutPolicies": lambda n : setattr(self, 'feature_rollout_policies', n.get_collection_of_object_values(FeatureRolloutPolicy)),
             "federationConfigurations": lambda n : setattr(self, 'federation_configurations', n.get_collection_of_object_values(IdentityProviderBase)),
             "impactedResources": lambda n : setattr(self, 'impacted_resources', n.get_collection_of_object_values(ImpactedResource)),
@@ -137,6 +143,7 @@ class Directory(Entity):
         writer.write_object_value("certificateAuthorities", self.certificate_authorities)
         writer.write_collection_of_object_values("customSecurityAttributeDefinitions", self.custom_security_attribute_definitions)
         writer.write_collection_of_object_values("deletedItems", self.deleted_items)
+        writer.write_collection_of_object_values("deviceLocalCredentials", self.device_local_credentials)
         writer.write_collection_of_object_values("featureRolloutPolicies", self.feature_rollout_policies)
         writer.write_collection_of_object_values("federationConfigurations", self.federation_configurations)
         writer.write_collection_of_object_values("impactedResources", self.impacted_resources)

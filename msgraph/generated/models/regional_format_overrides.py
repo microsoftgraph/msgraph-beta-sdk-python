@@ -49,7 +49,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, BackedModel, Parsable):
             "firstDayOfWeek": lambda n : setattr(self, 'first_day_of_week', n.get_str_value()),
             "longDateFormat": lambda n : setattr(self, 'long_date_format', n.get_str_value()),
             "longTimeFormat": lambda n : setattr(self, 'long_time_format', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "shortDateFormat": lambda n : setattr(self, 'short_date_format', n.get_str_value()),
             "shortTimeFormat": lambda n : setattr(self, 'short_time_format', n.get_str_value()),
             "timeZone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
@@ -68,7 +68,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("firstDayOfWeek", self.first_day_of_week)
         writer.write_str_value("longDateFormat", self.long_date_format)
         writer.write_str_value("longTimeFormat", self.long_time_format)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("shortDateFormat", self.short_date_format)
         writer.write_str_value("shortTimeFormat", self.short_time_format)
         writer.write_str_value("timeZone", self.time_zone)

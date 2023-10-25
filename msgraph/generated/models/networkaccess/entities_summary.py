@@ -20,7 +20,7 @@ class EntitiesSummary(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
-    # Count of unique Azure Active Directoy users that were seen.
+    # Count of unique Microsoft Entra users that were seen.
     user_count: Optional[int] = None
     # Count of unique target workloads or hosts that were seen.
     workload_count: Optional[int] = None
@@ -47,7 +47,7 @@ class EntitiesSummary(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(TrafficType)),
             "userCount": lambda n : setattr(self, 'user_count', n.get_int_value()),
             "workloadCount": lambda n : setattr(self, 'workload_count', n.get_int_value()),
@@ -63,7 +63,7 @@ class EntitiesSummary(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_int_value("deviceCount", self.device_count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("trafficType", self.traffic_type)
         writer.write_int_value("userCount", self.user_count)
         writer.write_int_value("workloadCount", self.workload_count)

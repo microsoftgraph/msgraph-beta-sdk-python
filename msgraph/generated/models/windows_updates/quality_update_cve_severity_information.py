@@ -17,7 +17,7 @@ class QualityUpdateCveSeverityInformation(AdditionalDataHolder, BackedModel, Par
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The exploitedCves property
     exploited_cves: Optional[List[CveInformation]] = None
-    # The maxBaseScore property
+    # Highest base score that occurs of any CVE addressed by the quality update. Read-only.
     max_base_score: Optional[float] = None
     # The maxSeverity property
     max_severity: Optional[CveSeverityLevel] = None
@@ -50,7 +50,7 @@ class QualityUpdateCveSeverityInformation(AdditionalDataHolder, BackedModel, Par
             "exploitedCves": lambda n : setattr(self, 'exploited_cves', n.get_collection_of_object_values(CveInformation)),
             "maxBaseScore": lambda n : setattr(self, 'max_base_score', n.get_float_value()),
             "maxSeverity": lambda n : setattr(self, 'max_severity', n.get_enum_value(CveSeverityLevel)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -65,7 +65,7 @@ class QualityUpdateCveSeverityInformation(AdditionalDataHolder, BackedModel, Par
         writer.write_collection_of_object_values("exploitedCves", self.exploited_cves)
         writer.write_float_value("maxBaseScore", self.max_base_score)
         writer.write_enum_value("maxSeverity", self.max_severity)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

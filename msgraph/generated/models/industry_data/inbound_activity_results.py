@@ -18,7 +18,7 @@ class InboundActivityResults(IndustryDataActivityStatistics):
     errors: Optional[int] = None
     # Counts of active and inactive groups processed by the inbound flow.
     groups: Optional[IndustryDataRunEntityCountMetric] = None
-    # Number of people matched to an Azure Active Directory user, by role.
+    # Number of people matched to a Microsoft Entra user, by role.
     matched_people_by_role: Optional[List[IndustryDataRunRoleCountMetric]] = None
     # Counts of active and inactive memberships processed by the inbound flow.
     memberships: Optional[IndustryDataRunEntityCountMetric] = None
@@ -26,7 +26,7 @@ class InboundActivityResults(IndustryDataActivityStatistics):
     organizations: Optional[IndustryDataRunEntityCountMetric] = None
     # Counts of active and inactive people processed by the inbound flow.
     people: Optional[IndustryDataRunEntityCountMetric] = None
-    # Number of people not matched to an Azure Active Directory user, by role.
+    # Number of people not matched to a Microsoft Entra user, by role.
     unmatched_people_by_role: Optional[List[IndustryDataRunRoleCountMetric]] = None
     # Number of warnings encountered while processing the inbound flow.
     warnings: Optional[int] = None

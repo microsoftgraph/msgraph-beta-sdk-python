@@ -36,7 +36,7 @@ class SuggestedEnrollmentLimit(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "suggestedDailyLimit": lambda n : setattr(self, 'suggested_daily_limit', n.get_int_value()),
         }
         return fields
@@ -49,7 +49,7 @@ class SuggestedEnrollmentLimit(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("suggestedDailyLimit", self.suggested_daily_limit)
         writer.write_additional_data_value(self.additional_data)
     

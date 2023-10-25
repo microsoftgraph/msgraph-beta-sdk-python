@@ -7,4 +7,5 @@ class SignInAccessType(str, Enum):
     MicrosoftSupport = "microsoftSupport",
     ServiceProvider = "serviceProvider",
     UnknownFutureValue = "unknownFutureValue",
+    Passthrough = "passthrough",
 

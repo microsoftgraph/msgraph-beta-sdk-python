@@ -53,7 +53,7 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, BackedModel, Par
 
         fields: Dict[str, Callable[[Any], None]] = {
             "lifetimeInMinutes": lambda n : setattr(self, 'lifetime_in_minutes', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "securityDiffieHellmanGroup": lambda n : setattr(self, 'security_diffie_hellman_group', n.get_int_value()),
             "securityEncryptionAlgorithm": lambda n : setattr(self, 'security_encryption_algorithm', n.get_enum_value(VpnEncryptionAlgorithmType)),
             "securityIntegrityAlgorithm": lambda n : setattr(self, 'security_integrity_algorithm', n.get_enum_value(VpnIntegrityAlgorithmType)),
@@ -69,7 +69,7 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, BackedModel, Par
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_int_value("lifetimeInMinutes", self.lifetime_in_minutes)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("securityDiffieHellmanGroup", self.security_diffie_hellman_group)
         writer.write_enum_value("securityEncryptionAlgorithm", self.security_encryption_algorithm)
         writer.write_enum_value("securityIntegrityAlgorithm", self.security_integrity_algorithm)

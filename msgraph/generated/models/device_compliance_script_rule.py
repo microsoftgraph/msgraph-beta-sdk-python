@@ -62,7 +62,7 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, BackedModel, Parsable):
             "dataType": lambda n : setattr(self, 'data_type', n.get_enum_value(DataType)),
             "deviceComplianceScriptRulOperator": lambda n : setattr(self, 'device_compliance_script_rul_operator', n.get_enum_value(DeviceComplianceScriptRulOperator)),
             "deviceComplianceScriptRuleDataType": lambda n : setattr(self, 'device_compliance_script_rule_data_type', n.get_enum_value(DeviceComplianceScriptRuleDataType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operand": lambda n : setattr(self, 'operand', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_enum_value(Operator)),
             "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
@@ -80,7 +80,7 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("dataType", self.data_type)
         writer.write_enum_value("deviceComplianceScriptRulOperator", self.device_compliance_script_rul_operator)
         writer.write_enum_value("deviceComplianceScriptRuleDataType", self.device_compliance_script_rule_data_type)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("operand", self.operand)
         writer.write_enum_value("operator", self.operator)
         writer.write_str_value("settingName", self.setting_name)

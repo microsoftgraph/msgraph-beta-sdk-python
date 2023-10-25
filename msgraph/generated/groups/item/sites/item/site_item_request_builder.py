@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .pages.pages_request_builder import PagesRequestBuilder
     from .permissions.permissions_request_builder import PermissionsRequestBuilder
+    from .recycle_bin.recycle_bin_request_builder import RecycleBinRequestBuilder
     from .sites.sites_request_builder import SitesRequestBuilder
     from .term_store.term_store_request_builder import TermStoreRequestBuilder
 
@@ -140,14 +141,14 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Site] = None, request_configuration: Optional[SiteItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -160,13 +161,13 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -178,7 +179,7 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SiteItemRequestBuilder(raw_url, self.request_adapter)
+        return SiteItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def analytics(self) -> AnalyticsRequestBuilder:
@@ -314,6 +315,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         from .permissions.permissions_request_builder import PermissionsRequestBuilder
 
         return PermissionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def recycle_bin(self) -> RecycleBinRequestBuilder:
+        """
+        Provides operations to manage the recycleBin property of the microsoft.graph.site entity.
+        """
+        from .recycle_bin.recycle_bin_request_builder import RecycleBinRequestBuilder
+
+        return RecycleBinRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sites(self) -> SitesRequestBuilder:

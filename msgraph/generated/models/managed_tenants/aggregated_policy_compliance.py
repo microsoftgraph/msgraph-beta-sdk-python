@@ -33,7 +33,7 @@ class AggregatedPolicyCompliance(Entity):
     policy_modified_date_time: Optional[datetime.datetime] = None
     # The display name for the managed tenant. Optional. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Optional. Read-only.
     tenant_id: Optional[str] = None
     
     @staticmethod

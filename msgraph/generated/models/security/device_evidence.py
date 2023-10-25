@@ -19,7 +19,7 @@ from .alert_evidence import AlertEvidence
 class DeviceEvidence(AlertEvidence):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.deviceEvidence"
-    # A unique identifier assigned to a device by Azure Active Directory (Azure AD) when device is Azure AD-joined.
+    # A unique identifier assigned to a device by Microsoft Entra ID when device is Microsoft Entra joined.
     azure_ad_device_id: Optional[str] = None
     # State of the Defender AntiMalware engine. The possible values are: notReporting, disabled, notUpdated, updated, unknown, notSupported, unknownFutureValue.
     defender_av_status: Optional[DefenderAvStatus] = None
@@ -27,7 +27,7 @@ class DeviceEvidence(AlertEvidence):
     device_dns_name: Optional[str] = None
     # The date and time when the device was first seen.
     first_seen_date_time: Optional[datetime.datetime] = None
-    # The health state of the device.The possible values are: active, inactive, impairedCommunication, noSensorData, noSensorDataImpairedCommunication, unknown, unknownFutureValue.
+    # The health state of the device. The possible values are: active, inactive, impairedCommunication, noSensorData, noSensorDataImpairedCommunication, unknown, unknownFutureValue.
     health_status: Optional[DeviceHealthStatus] = None
     # Ip interfaces of the device during the time of the alert.
     ip_interfaces: Optional[List[str]] = None
@@ -35,15 +35,15 @@ class DeviceEvidence(AlertEvidence):
     logged_on_users: Optional[List[LoggedOnUser]] = None
     # A unique identifier assigned to a device by Microsoft Defender for Endpoint.
     mde_device_id: Optional[str] = None
-    # The status of the machine onboarding to Microsoft Defender for Endpoint.The possible values are: insufficientInfo, onboarded, canBeOnboarded, unsupported, unknownFutureValue.
+    # The status of the machine onboarding to Microsoft Defender for Endpoint. The possible values are: insufficientInfo, onboarded, canBeOnboarded, unsupported, unknownFutureValue.
     onboarding_status: Optional[OnboardingStatus] = None
     # The build version for the operating system the device is running.
     os_build: Optional[int] = None
     # The operating system platform the device is running.
     os_platform: Optional[str] = None
-    # The ID of the role-based access control (RBAC) device group.
+    # The ID of the role-based access control device group.
     rbac_group_id: Optional[int] = None
-    # The name of the RBAC device group.
+    # The name of the role-based access control device group.
     rbac_group_name: Optional[str] = None
     # Risk score as evaluated by Microsoft Defender for Endpoint. The possible values are: none, informational, low, medium, high, unknownFutureValue.
     risk_score: Optional[DeviceRiskScore] = None

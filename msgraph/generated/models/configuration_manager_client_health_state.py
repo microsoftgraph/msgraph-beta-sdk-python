@@ -50,7 +50,7 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, BackedModel, P
         fields: Dict[str, Callable[[Any], None]] = {
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(ConfigurationManagerClientState)),
         }
         return fields
@@ -65,7 +65,7 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, BackedModel, P
             raise TypeError("writer cannot be null.")
         writer.write_int_value("errorCode", self.error_code)
         writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("state", self.state)
         writer.write_additional_data_value(self.additional_data)
     

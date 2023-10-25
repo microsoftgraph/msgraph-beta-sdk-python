@@ -12,16 +12,11 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.device import Device
     from .....models.o_data_errors.o_data_error import ODataError
-    from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
-    from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
     from .commands.commands_request_builder import CommandsRequestBuilder
     from .extensions.extensions_request_builder import ExtensionsRequestBuilder
-    from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
-    from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
     from .member_of.member_of_request_builder import MemberOfRequestBuilder
     from .registered_owners.registered_owners_request_builder import RegisteredOwnersRequestBuilder
     from .registered_users.registered_users_request_builder import RegisteredUsersRequestBuilder
-    from .restore.restore_request_builder import RestoreRequestBuilder
     from .transitive_member_of.transitive_member_of_request_builder import TransitiveMemberOfRequestBuilder
     from .usage_rights.usage_rights_request_builder import UsageRightsRequestBuilder
 
@@ -109,12 +104,13 @@ class DeviceItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[DeviceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -124,14 +120,14 @@ class DeviceItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Device] = None, request_configuration: Optional[DeviceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -144,13 +140,13 @@ class DeviceItemRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -162,25 +158,7 @@ class DeviceItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceItemRequestBuilder(raw_url, self.request_adapter)
-    
-    @property
-    def check_member_groups(self) -> CheckMemberGroupsRequestBuilder:
-        """
-        Provides operations to call the checkMemberGroups method.
-        """
-        from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
-
-        return CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def check_member_objects(self) -> CheckMemberObjectsRequestBuilder:
-        """
-        Provides operations to call the checkMemberObjects method.
-        """
-        from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
-
-        return CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def commands(self) -> CommandsRequestBuilder:
@@ -199,24 +177,6 @@ class DeviceItemRequestBuilder(BaseRequestBuilder):
         from .extensions.extensions_request_builder import ExtensionsRequestBuilder
 
         return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_member_groups(self) -> GetMemberGroupsRequestBuilder:
-        """
-        Provides operations to call the getMemberGroups method.
-        """
-        from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
-
-        return GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_member_objects(self) -> GetMemberObjectsRequestBuilder:
-        """
-        Provides operations to call the getMemberObjects method.
-        """
-        from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
-
-        return GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def member_of(self) -> MemberOfRequestBuilder:
@@ -244,15 +204,6 @@ class DeviceItemRequestBuilder(BaseRequestBuilder):
         from .registered_users.registered_users_request_builder import RegisteredUsersRequestBuilder
 
         return RegisteredUsersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def restore(self) -> RestoreRequestBuilder:
-        """
-        Provides operations to call the restore method.
-        """
-        from .restore.restore_request_builder import RestoreRequestBuilder
-
-        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def transitive_member_of(self) -> TransitiveMemberOfRequestBuilder:

@@ -24,7 +24,7 @@ class DeviceLocalCredentialInfoItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceLocalCredentials/{deviceLocalCredentialInfo%2Did}{?%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceLocalCredentials/{deviceLocalCredentialInfo%2Did}{?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[DeviceLocalCredentialInfoItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -47,10 +47,9 @@ class DeviceLocalCredentialInfoItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeviceLocalCredentialInfoItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceLocalCredentialInfo]:
         """
-        Retrieve the properties of a deviceLocalCredentialInfo for a specified device object. 
+        Get entity from deviceLocalCredentials by key
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLocalCredentialInfo]
-        Find more info here: https://learn.microsoft.com/graph/api/devicelocalcredentialinfo-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -98,29 +97,30 @@ class DeviceLocalCredentialInfoItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[DeviceLocalCredentialInfoItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a deviceLocalCredentialInfo for a specified device object. 
+        Get entity from deviceLocalCredentials by key
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[DeviceLocalCredentialInfo] = None, request_configuration: Optional[DeviceLocalCredentialInfoItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -133,13 +133,13 @@ class DeviceLocalCredentialInfoItemRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -151,7 +151,7 @@ class DeviceLocalCredentialInfoItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceLocalCredentialInfoItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceLocalCredentialInfoItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +166,7 @@ class DeviceLocalCredentialInfoItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceLocalCredentialInfoItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a deviceLocalCredentialInfo for a specified device object. 
+        Get entity from deviceLocalCredentials by key
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -176,10 +176,15 @@ class DeviceLocalCredentialInfoItemRequestBuilder(BaseRequestBuilder):
             """
             if not original_name:
                 raise TypeError("original_name cannot be null.")
+            if original_name == "expand":
+                return "%24expand"
             if original_name == "select":
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
         # Select properties to be returned
         select: Optional[List[str]] = None
 

@@ -43,7 +43,7 @@ class MediaStream(AdditionalDataHolder, BackedModel, Parsable):
     average_video_frame_rate: Optional[float] = None
     # Average fraction of packets lost, as specified in [RFC 3550][], computed over the duration of the session.
     average_video_packet_loss_rate: Optional[float] = None
-    # UTC time when the stream ended. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # UTC time when the stream ended. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This field is only available for streams that use the SIP protocol.
     end_date_time: Optional[datetime.datetime] = None
     # Indicates whether the forward error correction (FEC) was used at some point during the session. The default value is null.
     is_audio_forward_error_correction_used: Optional[bool] = None
@@ -69,7 +69,7 @@ class MediaStream(AdditionalDataHolder, BackedModel, Parsable):
     post_forward_error_correction_packet_loss_rate: Optional[float] = None
     # Root mean square of the received freeze duration related to the video stream.
     rms_freeze_duration: Optional[datetime.timedelta] = None
-    # UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This field is only available for streams that use the SIP protocol.
     start_date_time: Optional[datetime.datetime] = None
     # The streamDirection property
     stream_direction: Optional[MediaStreamDirection] = None
@@ -127,7 +127,7 @@ class MediaStream(AdditionalDataHolder, BackedModel, Parsable):
             "maxPacketLossRate": lambda n : setattr(self, 'max_packet_loss_rate', n.get_float_value()),
             "maxRatioOfConcealedSamples": lambda n : setattr(self, 'max_ratio_of_concealed_samples', n.get_float_value()),
             "maxRoundTripTime": lambda n : setattr(self, 'max_round_trip_time', n.get_timedelta_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "packetUtilization": lambda n : setattr(self, 'packet_utilization', n.get_int_value()),
             "postForwardErrorCorrectionPacketLossRate": lambda n : setattr(self, 'post_forward_error_correction_packet_loss_rate', n.get_float_value()),
             "rmsFreezeDuration": lambda n : setattr(self, 'rms_freeze_duration', n.get_timedelta_value()),
@@ -169,7 +169,7 @@ class MediaStream(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_float_value("maxPacketLossRate", self.max_packet_loss_rate)
         writer.write_float_value("maxRatioOfConcealedSamples", self.max_ratio_of_concealed_samples)
         writer.write_timedelta_value("maxRoundTripTime", self.max_round_trip_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("packetUtilization", self.packet_utilization)
         writer.write_float_value("postForwardErrorCorrectionPacketLossRate", self.post_forward_error_correction_packet_loss_rate)
         writer.write_timedelta_value("rmsFreezeDuration", self.rms_freeze_duration)

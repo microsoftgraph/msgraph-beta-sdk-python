@@ -43,7 +43,7 @@ class VpnServer(AdditionalDataHolder, BackedModel, Parsable):
             "address": lambda n : setattr(self, 'address', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "isDefaultServer": lambda n : setattr(self, 'is_default_server', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -58,7 +58,7 @@ class VpnServer(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("address", self.address)
         writer.write_str_value("description", self.description)
         writer.write_bool_value("isDefaultServer", self.is_default_server)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

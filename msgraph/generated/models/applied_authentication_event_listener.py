@@ -50,7 +50,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
             "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(AuthenticationEventType)),
             "executedListenerId": lambda n : setattr(self, 'executed_listener_id', n.get_str_value()),
             "handlerResult": lambda n : setattr(self, 'handler_result', n.get_object_value(AuthenticationEventHandlerResult)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -65,7 +65,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
         writer.write_enum_value("eventType", self.event_type)
         writer.write_str_value("executedListenerId", self.executed_listener_id)
         writer.write_object_value("handlerResult", self.handler_result)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

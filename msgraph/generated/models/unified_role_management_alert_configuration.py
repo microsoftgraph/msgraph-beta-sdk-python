@@ -28,7 +28,7 @@ class UnifiedRoleManagementAlertConfiguration(Entity):
     odata_type: Optional[str] = None
     # The identifier of the scope to which the alert is related. Only / is supported to represent the tenant scope. Supports $filter (eq, ne).
     scope_id: Optional[str] = None
-    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Azure AD roles.
+    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Microsoft Entra roles.
     scope_type: Optional[str] = None
     
     @staticmethod

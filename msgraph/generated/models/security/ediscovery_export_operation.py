@@ -23,9 +23,9 @@ class EdiscoveryExportOperation(CaseOperation):
     description: Optional[str] = None
     # The exportFileMetadata property
     export_file_metadata: Optional[List[ExportFileMetadata]] = None
-    # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30th, 2023. Going forward, the summary and load file are always included.
+    # The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30, 2023. Going forward, the summary and load file are always included.
     export_options: Optional[ExportOptions] = None
-    # The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
+    # The options provided that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst.
     export_structure: Optional[ExportFileStructure] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -35,7 +35,7 @@ class EdiscoveryExportOperation(CaseOperation):
     output_name: Optional[str] = None
     # Review set from where documents are exported.
     review_set: Optional[EdiscoveryReviewSet] = None
-    # The review set query which is used to filter the documents for export.
+    # The review set query that is used to filter the documents for export.
     review_set_query: Optional[EdiscoveryReviewSetQuery] = None
     
     @staticmethod
@@ -73,7 +73,7 @@ class EdiscoveryExportOperation(CaseOperation):
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "exportFileMetadata": lambda n : setattr(self, 'export_file_metadata', n.get_collection_of_object_values(ExportFileMetadata)),
-            "exportOptions": lambda n : setattr(self, 'export_options', n.get_enum_value(ExportOptions)),
+            "exportOptions": lambda n : setattr(self, 'export_options', n.get_collection_of_enum_values(ExportOptions)),
             "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(ExportFileStructure)),
             "outputFolderId": lambda n : setattr(self, 'output_folder_id', n.get_str_value()),
             "outputName": lambda n : setattr(self, 'output_name', n.get_str_value()),

@@ -18,13 +18,13 @@ class UnifiedRoleDefinition(Entity):
     description: Optional[str] = None
     # The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith).
     display_name: Optional[str] = None
-    # Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
+    # Read-only collection of role definitions that the given role definition inherits from. Only Microsoft Entra built-in roles support this attribute.
     inherits_permissions_from: Optional[List[UnifiedRoleDefinition]] = None
     # Flag indicating if the unifiedRoleDefinition is part of the default set included with the product or custom. Read-only.  Supports $filter (eq).
     is_built_in: Optional[bool] = None
     # Flag indicating if the role is enabled for assignment. If false the role is not available for assignment. Read-only when isBuiltIn is true.
     is_enabled: Optional[bool] = None
-    # The isPrivileged property
+    # Flag indicating if the role is privileged. Microsoft Entra ID defines a role as privileged if it contains at least one sensitive resource action in the rolePermissions and allowedResourceActions objects. Applies only for actions in the microsoft.directory resource namespace. Read-only. Supports $filter (eq).
     is_privileged: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -62,7 +62,7 @@ class UnifiedRoleDefinition(Entity):
         from .unified_role_permission import UnifiedRolePermission
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_enum_value(AllowedRolePrincipalTypes)),
+            "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_collection_of_enum_values(AllowedRolePrincipalTypes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "inheritsPermissionsFrom": lambda n : setattr(self, 'inherits_permissions_from', n.get_collection_of_object_values(UnifiedRoleDefinition)),

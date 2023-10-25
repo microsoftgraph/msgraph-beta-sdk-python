@@ -78,7 +78,7 @@ class PrinterLocation(AdditionalDataHolder, BackedModel, Parsable):
             "floorNumber": lambda n : setattr(self, 'floor_number', n.get_int_value()),
             "latitude": lambda n : setattr(self, 'latitude', n.get_float_value()),
             "longitude": lambda n : setattr(self, 'longitude', n.get_float_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "organization": lambda n : setattr(self, 'organization', n.get_collection_of_primitive_values(str)),
             "postalCode": lambda n : setattr(self, 'postal_code', n.get_str_value()),
             "roomDescription": lambda n : setattr(self, 'room_description', n.get_str_value()),
@@ -109,7 +109,7 @@ class PrinterLocation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("floorNumber", self.floor_number)
         writer.write_float_value("latitude", self.latitude)
         writer.write_float_value("longitude", self.longitude)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_primitive_values("organization", self.organization)
         writer.write_str_value("postalCode", self.postal_code)
         writer.write_str_value("roomDescription", self.room_description)

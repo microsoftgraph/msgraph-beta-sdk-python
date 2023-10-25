@@ -42,7 +42,7 @@ class PayloadTypes(AdditionalDataHolder, BackedModel, Parsable):
         from .visual_properties import VisualProperties
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "rawContent": lambda n : setattr(self, 'raw_content', n.get_str_value()),
             "visualContent": lambda n : setattr(self, 'visual_content', n.get_object_value(VisualProperties)),
         }
@@ -56,7 +56,7 @@ class PayloadTypes(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("rawContent", self.raw_content)
         writer.write_object_value("visualContent", self.visual_content)
         writer.write_additional_data_value(self.additional_data)

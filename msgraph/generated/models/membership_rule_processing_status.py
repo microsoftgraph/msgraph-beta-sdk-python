@@ -47,7 +47,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
         fields: Dict[str, Callable[[Any], None]] = {
             "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "lastMembershipUpdated": lambda n : setattr(self, 'last_membership_updated', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(MembershipRuleProcessingStatusDetails)),
         }
         return fields
@@ -62,7 +62,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
             raise TypeError("writer cannot be null.")
         writer.write_str_value("errorMessage", self.error_message)
         writer.write_datetime_value("lastMembershipUpdated", self.last_membership_updated)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     

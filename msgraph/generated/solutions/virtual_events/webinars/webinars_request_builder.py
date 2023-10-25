@@ -14,6 +14,8 @@ if TYPE_CHECKING:
     from ....models.virtual_event_webinar import VirtualEventWebinar
     from ....models.virtual_event_webinar_collection_response import VirtualEventWebinarCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
+    from .get_by_user_id_and_role_with_user_id_with_role.get_by_user_id_and_role_with_user_id_with_role_request_builder import GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder
+    from .get_by_user_role_with_role.get_by_user_role_with_role_request_builder import GetByUserRoleWithRoleRequestBuilder
     from .item.virtual_event_webinar_item_request_builder import VirtualEventWebinarItemRequestBuilder
 
 class WebinarsRequestBuilder(BaseRequestBuilder):
@@ -45,7 +47,7 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WebinarsRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventWebinarCollectionResponse]:
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventWebinarCollectionResponse]
         """
@@ -63,6 +65,33 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
         from ....models.virtual_event_webinar_collection_response import VirtualEventWebinarCollectionResponse
 
         return await self.request_adapter.send_async(request_info, VirtualEventWebinarCollectionResponse, error_mapping)
+    
+    def get_by_user_id_and_role_with_user_id_with_role(self,role: Optional[str] = None, user_id: Optional[str] = None) -> GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder:
+        """
+        Provides operations to call the getByUserIdAndRole method.
+        param role: Usage: role='{role}'
+        param user_id: Usage: userId='{userId}'
+        Returns: GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder
+        """
+        if not role:
+            raise TypeError("role cannot be null.")
+        if not user_id:
+            raise TypeError("user_id cannot be null.")
+        from .get_by_user_id_and_role_with_user_id_with_role.get_by_user_id_and_role_with_user_id_with_role_request_builder import GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder
+
+        return GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder(self.request_adapter, self.path_parameters, role, user_id)
+    
+    def get_by_user_role_with_role(self,role: Optional[str] = None) -> GetByUserRoleWithRoleRequestBuilder:
+        """
+        Provides operations to call the getByUserRole method.
+        param role: Usage: role='{role}'
+        Returns: GetByUserRoleWithRoleRequestBuilder
+        """
+        if not role:
+            raise TypeError("role cannot be null.")
+        from .get_by_user_role_with_role.get_by_user_role_with_role_request_builder import GetByUserRoleWithRoleRequestBuilder
+
+        return GetByUserRoleWithRoleRequestBuilder(self.request_adapter, self.path_parameters, role)
     
     async def post(self,body: Optional[VirtualEventWebinar] = None, request_configuration: Optional[WebinarsRequestBuilderPostRequestConfiguration] = None) -> Optional[VirtualEventWebinar]:
         """
@@ -90,19 +119,19 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WebinarsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_post_request_information(self,body: Optional[VirtualEventWebinar] = None, request_configuration: Optional[WebinarsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -115,13 +144,13 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -133,7 +162,7 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WebinarsRequestBuilder(raw_url, self.request_adapter)
+        return WebinarsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -147,7 +176,7 @@ class WebinarsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WebinarsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Read the properties and relationships of a virtualEventWebinar object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

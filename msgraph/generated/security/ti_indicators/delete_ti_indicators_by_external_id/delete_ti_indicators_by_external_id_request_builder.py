@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .delete_ti_indicators_by_external_id_post_request_body import DeleteTiIndicatorsByExternalIdPostRequestBody
-    from .delete_ti_indicators_by_external_id_response import DeleteTiIndicatorsByExternalIdResponse
+    from .delete_ti_indicators_by_external_id_post_response import DeleteTiIndicatorsByExternalIdPostResponse
 
 class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
     """
@@ -27,12 +27,12 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/tiIndicators/deleteTiIndicatorsByExternalId", path_parameters)
     
-    async def post(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> Optional[DeleteTiIndicatorsByExternalIdResponse]:
+    async def post(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> Optional[DeleteTiIndicatorsByExternalIdPostResponse]:
         """
-        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
+        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DeleteTiIndicatorsByExternalIdResponse]
+        Returns: Optional[DeleteTiIndicatorsByExternalIdPostResponse]
         Find more info here: https://learn.microsoft.com/graph/api/tiindicator-deletetiindicatorsbyexternalid?view=graph-rest-1.0
         """
         if not body:
@@ -48,13 +48,13 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .delete_ti_indicators_by_external_id_response import DeleteTiIndicatorsByExternalIdResponse
+        from .delete_ti_indicators_by_external_id_post_response import DeleteTiIndicatorsByExternalIdPostResponse
 
-        return await self.request_adapter.send_async(request_info, DeleteTiIndicatorsByExternalIdResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeleteTiIndicatorsByExternalIdPostResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
+        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -62,13 +62,13 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -80,7 +80,7 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeleteTiIndicatorsByExternalIdRequestBuilder(raw_url, self.request_adapter)
+        return DeleteTiIndicatorsByExternalIdRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

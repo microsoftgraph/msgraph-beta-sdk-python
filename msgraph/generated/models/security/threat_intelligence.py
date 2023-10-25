@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .host_component import HostComponent
     from .host_cookie import HostCookie
     from .host_pair import HostPair
+    from .host_port import HostPort
     from .host_ssl_certificate import HostSslCertificate
     from .host_tracker import HostTracker
     from .intelligence_profile import IntelligenceProfile
@@ -26,21 +27,23 @@ from ..entity import Entity
 
 @dataclass
 class ThreatIntelligence(Entity):
-    # Refers to indicators of threat or compromise highlighted in an microsoft.graph.security.article.Note: List retrieval is not yet supported.
+    # Refers to indicators of threat or compromise highlighted in an article.Note: List retrieval is not yet supported.
     article_indicators: Optional[List[ArticleIndicator]] = None
     # A list of article objects.
     articles: Optional[List[Article]] = None
-    # Retrieve details about microsoft.graph.security.hostComponent objects.Note: List retrieval is not yet supported.
+    # Retrieve details about hostComponent objects.Note: List retrieval is not yet supported.
     host_components: Optional[List[HostComponent]] = None
-    # Retrieve details about microsoft.graph.security.hostCookie objects.Note: List retrieval is not yet supported.
+    # Retrieve details about hostCookie objects.Note: List retrieval is not yet supported.
     host_cookies: Optional[List[HostCookie]] = None
-    # Retrieve details about microsoft.graph.security.hostTracker objects.Note: List retrieval is not yet supported.
+    # Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
     host_pairs: Optional[List[HostPair]] = None
-    # The hostSslCertificates property
+    # Retrieve details about hostPort objects.Note: List retrieval is not yet supported.
+    host_ports: Optional[List[HostPort]] = None
+    # Retrieve details about hostSslCertificate objects.Note: List retrieval is not yet supported.
     host_ssl_certificates: Optional[List[HostSslCertificate]] = None
-    # Retrieve details about microsoft.graph.security.hostTracker objects.Note: List retrieval is not yet supported.
+    # Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
     host_trackers: Optional[List[HostTracker]] = None
-    # Refers to microsoft.graph.security.host objects that Microsoft Threat Intelligence has observed.Note: List retrieval is not yet supported.
+    # Refers to host objects that Microsoft Threat Intelligence has observed.Note: List retrieval is not yet supported.
     hosts: Optional[List[Host]] = None
     # A list of intelligenceProfile objects.
     intel_profiles: Optional[List[IntelligenceProfile]] = None
@@ -48,17 +51,17 @@ class ThreatIntelligence(Entity):
     intelligence_profile_indicators: Optional[List[IntelligenceProfileIndicator]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Retrieve details about microsoft.graph.security.passiveDnsRecord objects.Note: List retrieval is not yet supported.
+    # Retrieve details about passiveDnsRecord objects.Note: List retrieval is not yet supported.
     passive_dns_records: Optional[List[PassiveDnsRecord]] = None
-    # The sslCertificates property
+    # Retrieve details about sslCertificate objects.Note: List retrieval is not yet supported.
     ssl_certificates: Optional[List[SslCertificate]] = None
-    # Retrieve details about the microsoft.graph.security.subdomain.Note: List retrieval is not yet supported.
+    # Retrieve details about the subdomain.Note: List retrieval is not yet supported.
     subdomains: Optional[List[Subdomain]] = None
-    # Retrieve details about microsoft.graph.security.vulnerabilities.Note: List retrieval is not yet supported.
+    # Retrieve details about vulnerabilities.Note: List retrieval is not yet supported.
     vulnerabilities: Optional[List[Vulnerability]] = None
-    # The whoisHistoryRecords property
+    # Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.
     whois_history_records: Optional[List[WhoisHistoryRecord]] = None
-    # The whoisRecords property
+    # A list of whoisRecord objects.
     whois_records: Optional[List[WhoisRecord]] = None
     
     @staticmethod
@@ -84,6 +87,7 @@ class ThreatIntelligence(Entity):
         from .host_component import HostComponent
         from .host_cookie import HostCookie
         from .host_pair import HostPair
+        from .host_port import HostPort
         from .host_ssl_certificate import HostSslCertificate
         from .host_tracker import HostTracker
         from .intelligence_profile import IntelligenceProfile
@@ -102,6 +106,7 @@ class ThreatIntelligence(Entity):
         from .host_component import HostComponent
         from .host_cookie import HostCookie
         from .host_pair import HostPair
+        from .host_port import HostPort
         from .host_ssl_certificate import HostSslCertificate
         from .host_tracker import HostTracker
         from .intelligence_profile import IntelligenceProfile
@@ -119,6 +124,7 @@ class ThreatIntelligence(Entity):
             "hostComponents": lambda n : setattr(self, 'host_components', n.get_collection_of_object_values(HostComponent)),
             "hostCookies": lambda n : setattr(self, 'host_cookies', n.get_collection_of_object_values(HostCookie)),
             "hostPairs": lambda n : setattr(self, 'host_pairs', n.get_collection_of_object_values(HostPair)),
+            "hostPorts": lambda n : setattr(self, 'host_ports', n.get_collection_of_object_values(HostPort)),
             "hostSslCertificates": lambda n : setattr(self, 'host_ssl_certificates', n.get_collection_of_object_values(HostSslCertificate)),
             "hostTrackers": lambda n : setattr(self, 'host_trackers', n.get_collection_of_object_values(HostTracker)),
             "hosts": lambda n : setattr(self, 'hosts', n.get_collection_of_object_values(Host)),
@@ -149,6 +155,7 @@ class ThreatIntelligence(Entity):
         writer.write_collection_of_object_values("hostComponents", self.host_components)
         writer.write_collection_of_object_values("hostCookies", self.host_cookies)
         writer.write_collection_of_object_values("hostPairs", self.host_pairs)
+        writer.write_collection_of_object_values("hostPorts", self.host_ports)
         writer.write_collection_of_object_values("hostSslCertificates", self.host_ssl_certificates)
         writer.write_collection_of_object_values("hostTrackers", self.host_trackers)
         writer.write_collection_of_object_values("hosts", self.hosts)

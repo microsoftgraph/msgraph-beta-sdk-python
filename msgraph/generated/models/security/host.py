@@ -6,10 +6,11 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .artifact import Artifact
+    from .hostname import Hostname
     from .host_component import HostComponent
     from .host_cookie import HostCookie
-    from .hostname import Hostname
     from .host_pair import HostPair
+    from .host_port import HostPort
     from .host_reputation import HostReputation
     from .host_ssl_certificate import HostSslCertificate
     from .host_tracker import HostTracker
@@ -42,15 +43,17 @@ class Host(Artifact):
     passive_dns: Optional[List[PassiveDnsRecord]] = None
     # Reverse passive DNS retrieval about this host.
     passive_dns_reverse: Optional[List[PassiveDnsRecord]] = None
+    # The hostPorts associated with a host.
+    ports: Optional[List[HostPort]] = None
     # Represents a calculated reputation of this host.
     reputation: Optional[HostReputation] = None
-    # The sslCertificates property
+    # The hostSslCertificates that are associated with this host.
     ssl_certificates: Optional[List[HostSslCertificate]] = None
     # The subdomains that are associated with this host.
     subdomains: Optional[List[Subdomain]] = None
     # The hostTrackers that are associated with this host.
     trackers: Optional[List[HostTracker]] = None
-    # The whois property
+    # The most recent whoisRecord for this host.
     whois: Optional[WhoisRecord] = None
     
     @staticmethod
@@ -82,10 +85,11 @@ class Host(Artifact):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .artifact import Artifact
+        from .hostname import Hostname
         from .host_component import HostComponent
         from .host_cookie import HostCookie
-        from .hostname import Hostname
         from .host_pair import HostPair
+        from .host_port import HostPort
         from .host_reputation import HostReputation
         from .host_ssl_certificate import HostSslCertificate
         from .host_tracker import HostTracker
@@ -95,10 +99,11 @@ class Host(Artifact):
         from .whois_record import WhoisRecord
 
         from .artifact import Artifact
+        from .hostname import Hostname
         from .host_component import HostComponent
         from .host_cookie import HostCookie
-        from .hostname import Hostname
         from .host_pair import HostPair
+        from .host_port import HostPort
         from .host_reputation import HostReputation
         from .host_ssl_certificate import HostSslCertificate
         from .host_tracker import HostTracker
@@ -117,6 +122,7 @@ class Host(Artifact):
             "parentHostPairs": lambda n : setattr(self, 'parent_host_pairs', n.get_collection_of_object_values(HostPair)),
             "passiveDns": lambda n : setattr(self, 'passive_dns', n.get_collection_of_object_values(PassiveDnsRecord)),
             "passiveDnsReverse": lambda n : setattr(self, 'passive_dns_reverse', n.get_collection_of_object_values(PassiveDnsRecord)),
+            "ports": lambda n : setattr(self, 'ports', n.get_collection_of_object_values(HostPort)),
             "reputation": lambda n : setattr(self, 'reputation', n.get_object_value(HostReputation)),
             "sslCertificates": lambda n : setattr(self, 'ssl_certificates', n.get_collection_of_object_values(HostSslCertificate)),
             "subdomains": lambda n : setattr(self, 'subdomains', n.get_collection_of_object_values(Subdomain)),
@@ -145,6 +151,7 @@ class Host(Artifact):
         writer.write_collection_of_object_values("parentHostPairs", self.parent_host_pairs)
         writer.write_collection_of_object_values("passiveDns", self.passive_dns)
         writer.write_collection_of_object_values("passiveDnsReverse", self.passive_dns_reverse)
+        writer.write_collection_of_object_values("ports", self.ports)
         writer.write_object_value("reputation", self.reputation)
         writer.write_collection_of_object_values("sslCertificates", self.ssl_certificates)
         writer.write_collection_of_object_values("subdomains", self.subdomains)

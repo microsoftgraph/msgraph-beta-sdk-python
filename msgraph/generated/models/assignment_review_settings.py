@@ -16,7 +16,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The default decision to apply if the request is not reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
+    # The default decision to apply if the request isn't reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
     access_review_timeout_behavior: Optional[AccessReviewTimeoutBehavior] = None
     # The number of days within which reviewers should provide input.
     duration_in_days: Optional[int] = None
@@ -65,7 +65,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
             "isAccessRecommendationEnabled": lambda n : setattr(self, 'is_access_recommendation_enabled', n.get_bool_value()),
             "isApprovalJustificationRequired": lambda n : setattr(self, 'is_approval_justification_required', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recurrenceType": lambda n : setattr(self, 'recurrence_type', n.get_str_value()),
             "reviewerType": lambda n : setattr(self, 'reviewer_type', n.get_str_value()),
             "reviewers": lambda n : setattr(self, 'reviewers', n.get_collection_of_object_values(UserSet)),
@@ -86,7 +86,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("isAccessRecommendationEnabled", self.is_access_recommendation_enabled)
         writer.write_bool_value("isApprovalJustificationRequired", self.is_approval_justification_required)
         writer.write_bool_value("isEnabled", self.is_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("recurrenceType", self.recurrence_type)
         writer.write_str_value("reviewerType", self.reviewer_type)
         writer.write_collection_of_object_values("reviewers", self.reviewers)

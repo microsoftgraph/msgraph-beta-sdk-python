@@ -48,7 +48,7 @@ class EducationUser(Entity):
     display_name: Optional[str] = None
     # The type of external source this resource was generated from (automatically determined from externalSourceDetail). Possible values are: sis, lms, or manual.
     external_source: Optional[EducationExternalSource] = None
-    # The name of the external source this resources was generated from.
+    # The name of the external source this resource was generated from.
     external_source_detail: Optional[str] = None
     # The given name (first name) of the user. Supports /$filter.
     given_name: Optional[str] = None
@@ -56,7 +56,7 @@ class EducationUser(Entity):
     mail: Optional[str] = None
     # The mail alias for the user. This property must be specified when a user is created. Supports /$filter.
     mail_nickname: Optional[str] = None
-    # Mail address of user. Note: type and postOfficeBox are not supported for educationUser resources.
+    # Mail address of user. Note: type and postOfficeBox aren't supported for educationUser resources.
     mailing_address: Optional[PhysicalAddress] = None
     # The middle name of user.
     middle_name: Optional[str] = None
@@ -66,11 +66,11 @@ class EducationUser(Entity):
     odata_type: Optional[str] = None
     # The officeLocation property
     office_location: Optional[str] = None
-    # Additional information used to associate the AAD user with it's Active Directory counterpart.
+    # Additional information used to associate the Microsoft Entra user with its Active Directory counterpart.
     on_premises_info: Optional[EducationOnPremisesInfo] = None
-    # Specifies password policies for the user. See standard [user] resource for additional details.
+    # Specifies password policies for the user. See standard [user] resource for more details.
     password_policies: Optional[str] = None
-    # Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. See standard [user] resource for additional details.
+    # Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. See standard [user] resource for more details.
     password_profile: Optional[PasswordProfile] = None
     # The preferred language for the user. Should follow ISO 639-1 Code; for example, 'en-US'.
     preferred_language: Optional[str] = None
@@ -82,7 +82,7 @@ class EducationUser(Entity):
     refresh_tokens_valid_from_date_time: Optional[datetime.datetime] = None
     # Related records related to the user. Possible relationships are parent, relative, aide, doctor, guardian, child, other, unknownFutureValue
     related_contacts: Optional[List[RelatedContact]] = None
-    # Address where user lives. Note: type and postOfficeBox are not supported for educationUser resources.
+    # Address where user lives. Note: type and postOfficeBox aren't supported for educationUser resources.
     residence_address: Optional[PhysicalAddress] = None
     # When set, the grading rubric attached to the assignment.
     rubrics: Optional[List[EducationRubric]] = None
@@ -90,7 +90,7 @@ class EducationUser(Entity):
     schools: Optional[List[EducationSchool]] = None
     # The showInAddressList property
     show_in_address_list: Optional[bool] = None
-    # If the primary role is student, this block will contain student specific data.
+    # If the primary role is student, this block contains student specific data.
     student: Optional[EducationStudent] = None
     # The user's surname (family name or last name). Supports /$filter.
     surname: Optional[str] = None

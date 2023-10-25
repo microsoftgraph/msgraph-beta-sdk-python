@@ -92,7 +92,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
             "installRuleStartDateTime": lambda n : setattr(self, 'install_rule_start_date_time', n.get_datetime_value()),
             "installRuleWindowEndTime": lambda n : setattr(self, 'install_rule_window_end_time', n.get_time_value()),
             "installRuleWindowStartTime": lambda n : setattr(self, 'install_rule_window_start_time', n.get_time_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "scheduleDurationInDays": lambda n : setattr(self, 'schedule_duration_in_days', n.get_int_value()),
             "scheduleMode": lambda n : setattr(self, 'schedule_mode', n.get_enum_value(ZebraFotaScheduleMode)),
             "timeZoneOffsetInMinutes": lambda n : setattr(self, 'time_zone_offset_in_minutes', n.get_int_value()),
@@ -120,7 +120,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_datetime_value("installRuleStartDateTime", self.install_rule_start_date_time)
         writer.write_time_value("installRuleWindowEndTime", self.install_rule_window_end_time)
         writer.write_time_value("installRuleWindowStartTime", self.install_rule_window_start_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("scheduleDurationInDays", self.schedule_duration_in_days)
         writer.write_enum_value("scheduleMode", self.schedule_mode)
         writer.write_int_value("timeZoneOffsetInMinutes", self.time_zone_offset_in_minutes)

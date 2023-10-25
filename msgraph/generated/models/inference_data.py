@@ -36,7 +36,7 @@ class InferenceData(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "confidenceScore": lambda n : setattr(self, 'confidence_score', n.get_float_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "userHasVerifiedAccuracy": lambda n : setattr(self, 'user_has_verified_accuracy', n.get_bool_value()),
         }
         return fields
@@ -50,7 +50,7 @@ class InferenceData(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_float_value("confidenceScore", self.confidence_score)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("userHasVerifiedAccuracy", self.user_has_verified_accuracy)
         writer.write_additional_data_value(self.additional_data)
     

@@ -37,15 +37,17 @@ class RiskDetection(Entity):
     last_updated_date_time: Optional[datetime.datetime] = None
     # Location of the sign-in.
     location: Optional[SignInLocation] = None
+    # The mitreTechniqueId property
+    mitre_technique_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Request ID of the sign-in associated with the risk detection. This property is null if the risk detection is not associated with a sign-in.
     request_id: Optional[str] = None
-    # Details of the detected risk. The possible values are: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection. Note that you must use the Prefer: include - unknown -enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal , m365DAdminDismissedDetection. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden.
+    # Details of the detected risk. The possible values are: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection. Note that you must use the Prefer: include - unknown -enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal , m365DAdminDismissedDetection. Note: Details for this property are only available for Microsoft Entra ID P2 customers. P1 customers will be returned hidden.
     risk_detail: Optional[RiskDetail] = None
     # The type of risk event detected. The possible values are unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence, generic,adminConfirmedUserCompromised, mcasImpossibleTravel, mcasSuspiciousInboxManipulationRules, investigationsThreatIntelligenceSigninLinked, maliciousIPAddressValidCredentialsBlockedIP, anomalousUserActivity, userReportedSuspiciousActivity.  For more information about each value, see riskEventType values.
     risk_event_type: Optional[str] = None
-    # Level of the detected risk. The possible values are low, medium, high, hidden, none, unknownFutureValue. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden.
+    # Level of the detected risk. The possible values are low, medium, high, hidden, none, unknownFutureValue. Note: Details for this property are only available for Microsoft Entra ID P2 customers. P1 customers will be returned hidden.
     risk_level: Optional[RiskLevel] = None
     # The state of a detected risky user or sign-in. The possible values are none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, and unknownFutureValue.
     risk_state: Optional[RiskState] = None
@@ -108,6 +110,7 @@ class RiskDetection(Entity):
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "location": lambda n : setattr(self, 'location', n.get_object_value(SignInLocation)),
+            "mitreTechniqueId": lambda n : setattr(self, 'mitre_technique_id', n.get_str_value()),
             "requestId": lambda n : setattr(self, 'request_id', n.get_str_value()),
             "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(RiskDetail)),
             "riskEventType": lambda n : setattr(self, 'risk_event_type', n.get_str_value()),
@@ -142,6 +145,7 @@ class RiskDetection(Entity):
         writer.write_str_value("ipAddress", self.ip_address)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_object_value("location", self.location)
+        writer.write_str_value("mitreTechniqueId", self.mitre_technique_id)
         writer.write_str_value("requestId", self.request_id)
         writer.write_enum_value("riskDetail", self.risk_detail)
         writer.write_str_value("riskEventType", self.risk_event_type)

@@ -48,7 +48,7 @@ class Windows10AppsForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsab
         from .windows10_apps_update_recurrence import Windows10AppsUpdateRecurrence
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_enum_value(Windows10AppsUpdateRecurrence)),
             "runImmediatelyIfAfterStartDateTime": lambda n : setattr(self, 'run_immediately_if_after_start_date_time', n.get_bool_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
@@ -63,7 +63,7 @@ class Windows10AppsForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsab
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("recurrence", self.recurrence)
         writer.write_bool_value("runImmediatelyIfAfterStartDateTime", self.run_immediately_if_after_start_date_time)
         writer.write_datetime_value("startDateTime", self.start_date_time)

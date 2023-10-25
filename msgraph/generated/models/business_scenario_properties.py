@@ -45,7 +45,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, BackedModel, Parsable):
             "externalContextId": lambda n : setattr(self, 'external_context_id', n.get_str_value()),
             "externalObjectId": lambda n : setattr(self, 'external_object_id', n.get_str_value()),
             "externalObjectVersion": lambda n : setattr(self, 'external_object_version', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields
@@ -62,7 +62,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("externalContextId", self.external_context_id)
         writer.write_str_value("externalObjectId", self.external_object_id)
         writer.write_str_value("externalObjectVersion", self.external_object_version)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("webUrl", self.web_url)
         writer.write_additional_data_value(self.additional_data)
     

@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .parent_host_pairs.parent_host_pairs_request_builder import ParentHostPairsRequestBuilder
     from .passive_dns.passive_dns_request_builder import PassiveDnsRequestBuilder
     from .passive_dns_reverse.passive_dns_reverse_request_builder import PassiveDnsReverseRequestBuilder
+    from .ports.ports_request_builder import PortsRequestBuilder
     from .reputation.reputation_request_builder import ReputationRequestBuilder
     from .ssl_certificates.ssl_certificates_request_builder import SslCertificatesRequestBuilder
     from .subdomains.subdomains_request_builder import SubdomainsRequestBuilder
@@ -59,7 +60,7 @@ class HostItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[HostItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Host]:
         """
-        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
+        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types: This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Host]
         Find more info here: https://learn.microsoft.com/graph/api/security-host-get?view=graph-rest-1.0
@@ -110,29 +111,30 @@ class HostItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[HostItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
+        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types: This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Host] = None, request_configuration: Optional[HostItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -145,13 +147,13 @@ class HostItemRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -163,7 +165,7 @@ class HostItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return HostItemRequestBuilder(raw_url, self.request_adapter)
+        return HostItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def child_host_pairs(self) -> ChildHostPairsRequestBuilder:
@@ -229,6 +231,15 @@ class HostItemRequestBuilder(BaseRequestBuilder):
         return PassiveDnsReverseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def ports(self) -> PortsRequestBuilder:
+        """
+        Provides operations to manage the ports property of the microsoft.graph.security.host entity.
+        """
+        from .ports.ports_request_builder import PortsRequestBuilder
+
+        return PortsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def reputation(self) -> ReputationRequestBuilder:
         """
         Provides operations to manage the reputation property of the microsoft.graph.security.host entity.
@@ -286,7 +297,7 @@ class HostItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HostItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
+        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types: This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

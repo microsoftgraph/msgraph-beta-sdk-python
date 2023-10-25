@@ -15,7 +15,7 @@ from .identity_provider_base import IdentityProviderBase
 class OpenIdConnectIdentityProvider(IdentityProviderBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.openIdConnectIdentityProvider"
-    # After the OIDC provider sends an ID token back to Azure AD, Azure AD needs to be able to map the claims from the received token to the claims that Azure AD recognizes and uses. This complex type captures that mapping. Required.
+    # After the OIDC provider sends an ID token back to Microsoft Entra ID, Microsoft Entra ID needs to be able to map the claims from the received token to the claims that Microsoft Entra ID recognizes and uses. This complex type captures that mapping. Required.
     claims_mapping: Optional[ClaimsMapping] = None
     # The client identifier for the application obtained when registering the application with the identity provider. Required.
     client_id: Optional[str] = None
@@ -29,7 +29,7 @@ class OpenIdConnectIdentityProvider(IdentityProviderBase):
     response_mode: Optional[OpenIdConnectResponseMode] = None
     # The responseType property
     response_type: Optional[OpenIdConnectResponseTypes] = None
-    # Scope defines the information and permissions you are looking to gather from your custom identity provider. OpenID Connect requests must contain the openid scope value in order to receive the ID token from the identity provider. Without the ID token, users are not able to sign in to Azure AD B2C using the custom identity provider. Other scopes can be appended, separated by a space. For more details about the scope limitations see RFC6749 Section 3.3. Required.
+    # Scope defines the information and permissions you are looking to gather from your custom identity provider. OpenID Connect requests must contain the openid scope value in order to receive the ID token from the identity provider. Without the ID token, users are not able to sign in to Azure AD B2C using the custom identity provider. Other scopes can be appended, separated by a space. For more details about the scope limitations, see RFC6749 Section 3.3. Required.
     scope: Optional[str] = None
     
     @staticmethod
@@ -65,7 +65,7 @@ class OpenIdConnectIdentityProvider(IdentityProviderBase):
             "domainHint": lambda n : setattr(self, 'domain_hint', n.get_str_value()),
             "metadataUrl": lambda n : setattr(self, 'metadata_url', n.get_str_value()),
             "responseMode": lambda n : setattr(self, 'response_mode', n.get_enum_value(OpenIdConnectResponseMode)),
-            "responseType": lambda n : setattr(self, 'response_type', n.get_enum_value(OpenIdConnectResponseTypes)),
+            "responseType": lambda n : setattr(self, 'response_type', n.get_collection_of_enum_values(OpenIdConnectResponseTypes)),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

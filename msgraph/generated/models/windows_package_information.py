@@ -58,14 +58,14 @@ class WindowsPackageInformation(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableArchitecture": lambda n : setattr(self, 'applicable_architecture', n.get_enum_value(WindowsArchitecture)),
+            "applicableArchitecture": lambda n : setattr(self, 'applicable_architecture', n.get_collection_of_enum_values(WindowsArchitecture)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
             "identityPublisher": lambda n : setattr(self, 'identity_publisher', n.get_str_value()),
             "identityResourceIdentifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),
             "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
             "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(WindowsMinimumOperatingSystem)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -84,7 +84,7 @@ class WindowsPackageInformation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("identityResourceIdentifier", self.identity_resource_identifier)
         writer.write_str_value("identityVersion", self.identity_version)
         writer.write_object_value("minimumSupportedOperatingSystem", self.minimum_supported_operating_system)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

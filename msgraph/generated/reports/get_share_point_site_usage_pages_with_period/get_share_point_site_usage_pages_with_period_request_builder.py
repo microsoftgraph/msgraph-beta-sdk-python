@@ -24,6 +24,8 @@ class GetSharePointSiteUsagePagesWithPeriodRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getSharePointSiteUsagePages(period='{period}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetSharePointSiteUsagePagesWithPeriodRequestBuilderGetRequestConfiguration] = None) -> bytes:
@@ -52,12 +54,13 @@ class GetSharePointSiteUsagePagesWithPeriodRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/octet-stream, application/json, application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> GetSharePointSiteUsagePagesWithPeriodRequestBuilder:
@@ -68,7 +71,7 @@ class GetSharePointSiteUsagePagesWithPeriodRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetSharePointSiteUsagePagesWithPeriodRequestBuilder(raw_url, self.request_adapter)
+        return GetSharePointSiteUsagePagesWithPeriodRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

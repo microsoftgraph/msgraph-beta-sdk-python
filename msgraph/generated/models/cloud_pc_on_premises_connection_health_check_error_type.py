@@ -13,6 +13,7 @@ class CloudPcOnPremisesConnectionHealthCheckErrorType(str, Enum):
     AdJoinCheckCredentialsExpired = "adJoinCheckCredentialsExpired",
     AdJoinCheckAccountLockedOrDisabled = "adJoinCheckAccountLockedOrDisabled",
     AdJoinCheckAccountQuotaExceeded = "adJoinCheckAccountQuotaExceeded",
+    AdJoinCheckServerNotOperational = "adJoinCheckServerNotOperational",
     AdJoinCheckUnknownError = "adJoinCheckUnknownError",
     EndpointConnectivityCheckCloudPcUrlNotAllowListed = "endpointConnectivityCheckCloudPcUrlNotAllowListed",
     EndpointConnectivityCheckWVDUrlNotAllowListed = "endpointConnectivityCheckWVDUrlNotAllowListed",

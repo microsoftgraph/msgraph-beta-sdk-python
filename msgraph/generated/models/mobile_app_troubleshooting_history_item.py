@@ -86,7 +86,7 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, BackedModel, Par
 
         fields: Dict[str, Callable[[Any], None]] = {
             "occurrenceDateTime": lambda n : setattr(self, 'occurrence_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "troubleshootingErrorDetails": lambda n : setattr(self, 'troubleshooting_error_details', n.get_object_value(DeviceManagementTroubleshootingErrorDetails)),
         }
         return fields
@@ -100,7 +100,7 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, BackedModel, Par
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("occurrenceDateTime", self.occurrence_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("troubleshootingErrorDetails", self.troubleshooting_error_details)
         writer.write_additional_data_value(self.additional_data)
     

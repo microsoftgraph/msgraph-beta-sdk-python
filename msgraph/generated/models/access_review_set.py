@@ -14,7 +14,7 @@ from .entity import Entity
 
 @dataclass
 class AccessReviewSet(Entity):
-    # Represents an Azure AD access review decision on an instance of a review.
+    # Represents a Microsoft Entra access review decision on an instance of a review.
     decisions: Optional[List[AccessReviewInstanceDecisionItem]] = None
     # Represents the template and scheduling for an access review.
     definitions: Optional[List[AccessReviewScheduleDefinition]] = None

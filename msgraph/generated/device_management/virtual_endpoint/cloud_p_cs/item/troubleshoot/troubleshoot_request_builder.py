@@ -27,7 +27,7 @@ class TroubleshootRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[TroubleshootRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Troubleshoot a specific Cloud PC. Use this API to check the health status of the Cloud PC and the session host.
+        Troubleshoot a specific Cloud PC. Use this API to check the health status of the Cloud PC and the session host. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpc-troubleshoot?view=graph-rest-1.0
@@ -47,17 +47,18 @@ class TroubleshootRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[TroubleshootRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Troubleshoot a specific Cloud PC. Use this API to check the health status of the Cloud PC and the session host.
+        Troubleshoot a specific Cloud PC. Use this API to check the health status of the Cloud PC and the session host. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> TroubleshootRequestBuilder:
@@ -68,7 +69,7 @@ class TroubleshootRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return TroubleshootRequestBuilder(raw_url, self.request_adapter)
+        return TroubleshootRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

@@ -43,7 +43,7 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, BackedModel, Parsable)
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "dateFormat": lambda n : setattr(self, 'date_format', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "officeHoursEndTime": lambda n : setattr(self, 'office_hours_end_time', n.get_time_value()),
             "officeHoursStartTime": lambda n : setattr(self, 'office_hours_start_time', n.get_time_value()),
             "timeFormat": lambda n : setattr(self, 'time_format', n.get_str_value()),
@@ -60,7 +60,7 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, BackedModel, Parsable)
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("dateFormat", self.date_format)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_time_value("officeHoursEndTime", self.office_hours_end_time)
         writer.write_time_value("officeHoursStartTime", self.office_hours_start_time)
         writer.write_str_value("timeFormat", self.time_format)

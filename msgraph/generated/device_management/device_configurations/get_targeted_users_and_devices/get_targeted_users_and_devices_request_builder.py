@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .get_targeted_users_and_devices_post_request_body import GetTargetedUsersAndDevicesPostRequestBody
-    from .get_targeted_users_and_devices_response import GetTargetedUsersAndDevicesResponse
+    from .get_targeted_users_and_devices_post_response import GetTargetedUsersAndDevicesPostResponse
 
 class GetTargetedUsersAndDevicesRequestBuilder(BaseRequestBuilder):
     """
@@ -27,12 +27,12 @@ class GetTargetedUsersAndDevicesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceConfigurations/getTargetedUsersAndDevices", path_parameters)
     
-    async def post(self,body: Optional[GetTargetedUsersAndDevicesPostRequestBody] = None, request_configuration: Optional[GetTargetedUsersAndDevicesRequestBuilderPostRequestConfiguration] = None) -> Optional[GetTargetedUsersAndDevicesResponse]:
+    async def post(self,body: Optional[GetTargetedUsersAndDevicesPostRequestBody] = None, request_configuration: Optional[GetTargetedUsersAndDevicesRequestBuilderPostRequestConfiguration] = None) -> Optional[GetTargetedUsersAndDevicesPostResponse]:
         """
         Invoke action getTargetedUsersAndDevices
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetTargetedUsersAndDevicesResponse]
+        Returns: Optional[GetTargetedUsersAndDevicesPostResponse]
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -47,9 +47,9 @@ class GetTargetedUsersAndDevicesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_targeted_users_and_devices_response import GetTargetedUsersAndDevicesResponse
+        from .get_targeted_users_and_devices_post_response import GetTargetedUsersAndDevicesPostResponse
 
-        return await self.request_adapter.send_async(request_info, GetTargetedUsersAndDevicesResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetTargetedUsersAndDevicesPostResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[GetTargetedUsersAndDevicesPostRequestBody] = None, request_configuration: Optional[GetTargetedUsersAndDevicesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -61,13 +61,13 @@ class GetTargetedUsersAndDevicesRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -79,7 +79,7 @@ class GetTargetedUsersAndDevicesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetTargetedUsersAndDevicesRequestBuilder(raw_url, self.request_adapter)
+        return GetTargetedUsersAndDevicesRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

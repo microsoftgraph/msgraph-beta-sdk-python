@@ -78,7 +78,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "lockPin": lambda n : setattr(self, 'lock_pin', n.get_str_value()),
             "loggingLevel": lambda n : setattr(self, 'logging_level', n.get_str_value()),
             "networkConfiguration": lambda n : setattr(self, 'network_configuration', n.get_object_value(TeamworkNetworkConfiguration)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -102,7 +102,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("lockPin", self.lock_pin)
         writer.write_str_value("loggingLevel", self.logging_level)
         writer.write_object_value("networkConfiguration", self.network_configuration)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

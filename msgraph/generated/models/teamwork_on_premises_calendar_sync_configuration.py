@@ -39,7 +39,7 @@ class TeamworkOnPremisesCalendarSyncConfiguration(AdditionalDataHolder, BackedMo
         fields: Dict[str, Callable[[Any], None]] = {
             "domain": lambda n : setattr(self, 'domain', n.get_str_value()),
             "domainUserName": lambda n : setattr(self, 'domain_user_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "smtpAddress": lambda n : setattr(self, 'smtp_address', n.get_str_value()),
         }
         return fields
@@ -54,7 +54,7 @@ class TeamworkOnPremisesCalendarSyncConfiguration(AdditionalDataHolder, BackedMo
             raise TypeError("writer cannot be null.")
         writer.write_str_value("domain", self.domain)
         writer.write_str_value("domainUserName", self.domain_user_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("smtpAddress", self.smtp_address)
         writer.write_additional_data_value(self.additional_data)
     

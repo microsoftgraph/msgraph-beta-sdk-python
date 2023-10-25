@@ -80,7 +80,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
             "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(WindowsKioskAppType)),
             "autoLaunch": lambda n : setattr(self, 'auto_launch', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startLayoutTileSize": lambda n : setattr(self, 'start_layout_tile_size', n.get_enum_value(WindowsAppStartLayoutTileSize)),
         }
         return fields
@@ -96,7 +96,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("appType", self.app_type)
         writer.write_bool_value("autoLaunch", self.auto_launch)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("startLayoutTileSize", self.start_layout_tile_size)
         writer.write_additional_data_value(self.additional_data)
     

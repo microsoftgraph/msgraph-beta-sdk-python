@@ -12,9 +12,9 @@ from .user_set import UserSet
 class SingleUser(UserSet):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.singleUser"
-    # The name of the user in Azure AD. Read only.
+    # The name of the user in Microsoft Entra ID. Read only.
     description: Optional[str] = None
-    # The ID of the user in Azure AD.
+    # The ID of the user in Microsoft Entra ID.
     id: Optional[str] = None
     
     @staticmethod

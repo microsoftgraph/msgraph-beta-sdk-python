@@ -39,7 +39,7 @@ class BookingService(BookingNamedEntity):
     description: Optional[str] = None
     # True if an anonymousJoinWebUrl(webrtcUrl) will be generated for the appointment booked for this service.
     is_anonymous_join_enabled: Optional[bool] = None
-    # True means this service is not available to customers for booking.
+    # True means this service isn't available to customers for booking.
     is_hidden_from_customers: Optional[bool] = None
     # True indicates that the appointments for the service will be held online. Default value is false.
     is_location_online: Optional[bool] = None

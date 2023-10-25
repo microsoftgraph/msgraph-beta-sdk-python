@@ -76,7 +76,7 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
             "enhancedJailBreak": lambda n : setattr(self, 'enhanced_jail_break', n.get_bool_value()),
             "ignoreDevicesForUnsupportedSettingsEnabled": lambda n : setattr(self, 'ignore_devices_for_unsupported_settings_enabled', n.get_bool_value()),
             "isScheduledActionEnabled": lambda n : setattr(self, 'is_scheduled_action_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "secureByDefault": lambda n : setattr(self, 'secure_by_default', n.get_bool_value()),
         }
         return fields
@@ -101,7 +101,7 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("enhancedJailBreak", self.enhanced_jail_break)
         writer.write_bool_value("ignoreDevicesForUnsupportedSettingsEnabled", self.ignore_devices_for_unsupported_settings_enabled)
         writer.write_bool_value("isScheduledActionEnabled", self.is_scheduled_action_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("secureByDefault", self.secure_by_default)
         writer.write_additional_data_value(self.additional_data)
     

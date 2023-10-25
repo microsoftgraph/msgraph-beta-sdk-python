@@ -43,7 +43,7 @@ class GovernanceNotificationTemplate(AdditionalDataHolder, BackedModel, Parsable
         fields: Dict[str, Callable[[Any], None]] = {
             "culture": lambda n : setattr(self, 'culture', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "source": lambda n : setattr(self, 'source', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
@@ -60,7 +60,7 @@ class GovernanceNotificationTemplate(AdditionalDataHolder, BackedModel, Parsable
             raise TypeError("writer cannot be null.")
         writer.write_str_value("culture", self.culture)
         writer.write_str_value("id", self.id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("source", self.source)
         writer.write_str_value("type", self.type)
         writer.write_str_value("version", self.version)

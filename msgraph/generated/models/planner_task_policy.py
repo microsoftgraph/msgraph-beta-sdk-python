@@ -16,7 +16,7 @@ class PlannerTaskPolicy(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The rules that should be enforced on the tasks when they are being changed outside of the scenario, based on the role of the caller.
+    # The rules that should be enforced on the tasks when they're being changed outside of the scenario, based on the role of the caller.
     rules: Optional[List[PlannerTaskRoleBasedRule]] = None
     
     @staticmethod
@@ -40,7 +40,7 @@ class PlannerTaskPolicy(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_task_role_based_rule import PlannerTaskRoleBasedRule
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "rules": lambda n : setattr(self, 'rules', n.get_collection_of_object_values(PlannerTaskRoleBasedRule)),
         }
         return fields
@@ -53,7 +53,7 @@ class PlannerTaskPolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("rules", self.rules)
         writer.write_additional_data_value(self.additional_data)
     

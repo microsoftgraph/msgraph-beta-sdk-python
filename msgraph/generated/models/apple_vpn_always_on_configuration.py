@@ -74,7 +74,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, BackedModel, Parsable)
             "cellularExceptionAction": lambda n : setattr(self, 'cellular_exception_action', n.get_enum_value(VpnServiceExceptionAction)),
             "natKeepAliveIntervalInSeconds": lambda n : setattr(self, 'nat_keep_alive_interval_in_seconds', n.get_int_value()),
             "natKeepAliveOffloadEnable": lambda n : setattr(self, 'nat_keep_alive_offload_enable', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "tunnelConfiguration": lambda n : setattr(self, 'tunnel_configuration', n.get_enum_value(VpnTunnelConfigurationType)),
             "userToggleEnabled": lambda n : setattr(self, 'user_toggle_enabled', n.get_bool_value()),
             "voicemailExceptionAction": lambda n : setattr(self, 'voicemail_exception_action', n.get_enum_value(VpnServiceExceptionAction)),
@@ -96,7 +96,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, BackedModel, Parsable)
         writer.write_enum_value("cellularExceptionAction", self.cellular_exception_action)
         writer.write_int_value("natKeepAliveIntervalInSeconds", self.nat_keep_alive_interval_in_seconds)
         writer.write_bool_value("natKeepAliveOffloadEnable", self.nat_keep_alive_offload_enable)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("tunnelConfiguration", self.tunnel_configuration)
         writer.write_bool_value("userToggleEnabled", self.user_toggle_enabled)
         writer.write_enum_value("voicemailExceptionAction", self.voicemail_exception_action)

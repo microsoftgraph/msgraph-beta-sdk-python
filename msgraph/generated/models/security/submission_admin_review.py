@@ -45,7 +45,7 @@ class SubmissionAdminReview(AdditionalDataHolder, BackedModel, Parsable):
         from .submission_result_category import SubmissionResultCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reviewBy": lambda n : setattr(self, 'review_by', n.get_str_value()),
             "reviewDateTime": lambda n : setattr(self, 'review_date_time', n.get_datetime_value()),
             "reviewResult": lambda n : setattr(self, 'review_result', n.get_enum_value(SubmissionResultCategory)),
@@ -60,7 +60,7 @@ class SubmissionAdminReview(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("reviewBy", self.review_by)
         writer.write_datetime_value("reviewDateTime", self.review_date_time)
         writer.write_enum_value("reviewResult", self.review_result)

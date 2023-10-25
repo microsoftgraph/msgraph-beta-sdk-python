@@ -48,7 +48,7 @@ class DlpPoliciesJobResult(AdditionalDataHolder, BackedModel, Parsable):
             "auditCorrelationId": lambda n : setattr(self, 'audit_correlation_id', n.get_str_value()),
             "evaluationDateTime": lambda n : setattr(self, 'evaluation_date_time', n.get_datetime_value()),
             "matchingRules": lambda n : setattr(self, 'matching_rules', n.get_collection_of_object_values(MatchingDlpRule)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -63,7 +63,7 @@ class DlpPoliciesJobResult(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("auditCorrelationId", self.audit_correlation_id)
         writer.write_datetime_value("evaluationDateTime", self.evaluation_date_time)
         writer.write_collection_of_object_values("matchingRules", self.matching_rules)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

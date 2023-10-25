@@ -14,11 +14,11 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, BackedModel, P
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Determines whether users will be able to approve push notifications on other Microsoft applications such as Outlook Mobile.
+    # Determines whether users are able to approve push notifications on other Microsoft applications such as Outlook Mobile.
     companion_app_allowed_state: Optional[AuthenticationMethodFeatureConfiguration] = None
-    # Determines whether the user's Authenticator app will show them the client app they are signing into.
+    # Determines whether the user's Authenticator app shows them the client app they're signing into.
     display_app_information_required_state: Optional[AuthenticationMethodFeatureConfiguration] = None
-    # Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
+    # Determines whether the user's Authenticator app shows them the geographic location of where the authentication request originated from.
     display_location_information_required_state: Optional[AuthenticationMethodFeatureConfiguration] = None
     # Specifies whether the user needs to enter a number in the Authenticator app from the login screen to complete their login. Value is ignored for phone sign-in notifications.
     number_matching_required_state: Optional[AuthenticationMethodFeatureConfiguration] = None
@@ -50,7 +50,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, BackedModel, P
             "displayAppInformationRequiredState": lambda n : setattr(self, 'display_app_information_required_state', n.get_object_value(AuthenticationMethodFeatureConfiguration)),
             "displayLocationInformationRequiredState": lambda n : setattr(self, 'display_location_information_required_state', n.get_object_value(AuthenticationMethodFeatureConfiguration)),
             "numberMatchingRequiredState": lambda n : setattr(self, 'number_matching_required_state', n.get_object_value(AuthenticationMethodFeatureConfiguration)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, BackedModel, P
         writer.write_object_value("displayAppInformationRequiredState", self.display_app_information_required_state)
         writer.write_object_value("displayLocationInformationRequiredState", self.display_location_information_required_state)
         writer.write_object_value("numberMatchingRequiredState", self.number_matching_required_state)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

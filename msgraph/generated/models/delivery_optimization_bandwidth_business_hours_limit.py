@@ -46,7 +46,7 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Back
             "bandwidthEndBusinessHours": lambda n : setattr(self, 'bandwidth_end_business_hours', n.get_int_value()),
             "bandwidthPercentageDuringBusinessHours": lambda n : setattr(self, 'bandwidth_percentage_during_business_hours', n.get_int_value()),
             "bandwidthPercentageOutsideBusinessHours": lambda n : setattr(self, 'bandwidth_percentage_outside_business_hours', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Back
         writer.write_int_value("bandwidthEndBusinessHours", self.bandwidth_end_business_hours)
         writer.write_int_value("bandwidthPercentageDuringBusinessHours", self.bandwidth_percentage_during_business_hours)
         writer.write_int_value("bandwidthPercentageOutsideBusinessHours", self.bandwidth_percentage_outside_business_hours)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

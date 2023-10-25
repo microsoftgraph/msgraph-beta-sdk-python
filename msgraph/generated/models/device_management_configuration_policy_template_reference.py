@@ -49,7 +49,7 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         from .device_management_configuration_template_family import DeviceManagementConfigurationTemplateFamily
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "templateDisplayName": lambda n : setattr(self, 'template_display_name', n.get_str_value()),
             "templateDisplayVersion": lambda n : setattr(self, 'template_display_version', n.get_str_value()),
             "templateFamily": lambda n : setattr(self, 'template_family', n.get_enum_value(DeviceManagementConfigurationTemplateFamily)),
@@ -65,7 +65,7 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("templateFamily", self.template_family)
         writer.write_str_value("templateId", self.template_id)
         writer.write_additional_data_value(self.additional_data)

@@ -44,7 +44,7 @@ class TeamworkHardwareHealth(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "computeHealth": lambda n : setattr(self, 'compute_health', n.get_object_value(TeamworkPeripheralHealth)),
             "hdmiIngestHealth": lambda n : setattr(self, 'hdmi_ingest_health', n.get_object_value(TeamworkPeripheralHealth)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -58,7 +58,7 @@ class TeamworkHardwareHealth(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("computeHealth", self.compute_health)
         writer.write_object_value("hdmiIngestHealth", self.hdmi_ingest_health)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

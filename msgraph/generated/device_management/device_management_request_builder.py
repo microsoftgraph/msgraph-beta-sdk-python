@@ -36,11 +36,11 @@ if TYPE_CHECKING:
     from .compliance_policies.compliance_policies_request_builder import CompliancePoliciesRequestBuilder
     from .compliance_settings.compliance_settings_request_builder import ComplianceSettingsRequestBuilder
     from .conditional_access_settings.conditional_access_settings_request_builder import ConditionalAccessSettingsRequestBuilder
-    from .config_manager_collections.config_manager_collections_request_builder import ConfigManagerCollectionsRequestBuilder
     from .configuration_categories.configuration_categories_request_builder import ConfigurationCategoriesRequestBuilder
     from .configuration_policies.configuration_policies_request_builder import ConfigurationPoliciesRequestBuilder
     from .configuration_policy_templates.configuration_policy_templates_request_builder import ConfigurationPolicyTemplatesRequestBuilder
     from .configuration_settings.configuration_settings_request_builder import ConfigurationSettingsRequestBuilder
+    from .config_manager_collections.config_manager_collections_request_builder import ConfigManagerCollectionsRequestBuilder
     from .data_sharing_consents.data_sharing_consents_request_builder import DataSharingConsentsRequestBuilder
     from .dep_onboarding_settings.dep_onboarding_settings_request_builder import DepOnboardingSettingsRequestBuilder
     from .derived_credentials.derived_credentials_request_builder import DerivedCredentialsRequestBuilder
@@ -50,11 +50,11 @@ if TYPE_CHECKING:
     from .device_compliance_policy_device_state_summary.device_compliance_policy_device_state_summary_request_builder import DeviceCompliancePolicyDeviceStateSummaryRequestBuilder
     from .device_compliance_policy_setting_state_summaries.device_compliance_policy_setting_state_summaries_request_builder import DeviceCompliancePolicySettingStateSummariesRequestBuilder
     from .device_compliance_scripts.device_compliance_scripts_request_builder import DeviceComplianceScriptsRequestBuilder
+    from .device_configurations.device_configurations_request_builder import DeviceConfigurationsRequestBuilder
+    from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_request_builder import DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder
     from .device_configuration_conflict_summary.device_configuration_conflict_summary_request_builder import DeviceConfigurationConflictSummaryRequestBuilder
     from .device_configuration_device_state_summaries.device_configuration_device_state_summaries_request_builder import DeviceConfigurationDeviceStateSummariesRequestBuilder
     from .device_configuration_restricted_apps_violations.device_configuration_restricted_apps_violations_request_builder import DeviceConfigurationRestrictedAppsViolationsRequestBuilder
-    from .device_configurations.device_configurations_request_builder import DeviceConfigurationsRequestBuilder
-    from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_request_builder import DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder
     from .device_configuration_user_state_summaries.device_configuration_user_state_summaries_request_builder import DeviceConfigurationUserStateSummariesRequestBuilder
     from .device_custom_attribute_shell_scripts.device_custom_attribute_shell_scripts_request_builder import DeviceCustomAttributeShellScriptsRequestBuilder
     from .device_enrollment_configurations.device_enrollment_configurations_request_builder import DeviceEnrollmentConfigurationsRequestBuilder
@@ -82,8 +82,8 @@ if TYPE_CHECKING:
     from .get_suggested_enrollment_limit_with_enrollment_type.get_suggested_enrollment_limit_with_enrollment_type_request_builder import GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder
     from .group_policy_categories.group_policy_categories_request_builder import GroupPolicyCategoriesRequestBuilder
     from .group_policy_configurations.group_policy_configurations_request_builder import GroupPolicyConfigurationsRequestBuilder
-    from .group_policy_definition_files.group_policy_definition_files_request_builder import GroupPolicyDefinitionFilesRequestBuilder
     from .group_policy_definitions.group_policy_definitions_request_builder import GroupPolicyDefinitionsRequestBuilder
+    from .group_policy_definition_files.group_policy_definition_files_request_builder import GroupPolicyDefinitionFilesRequestBuilder
     from .group_policy_migration_reports.group_policy_migration_reports_request_builder import GroupPolicyMigrationReportsRequestBuilder
     from .group_policy_object_files.group_policy_object_files_request_builder import GroupPolicyObjectFilesRequestBuilder
     from .group_policy_uploaded_definition_files.group_policy_uploaded_definition_files_request_builder import GroupPolicyUploadedDefinitionFilesRequestBuilder
@@ -93,9 +93,9 @@ if TYPE_CHECKING:
     from .intune_branding_profiles.intune_branding_profiles_request_builder import IntuneBrandingProfilesRequestBuilder
     from .ios_update_statuses.ios_update_statuses_request_builder import IosUpdateStatusesRequestBuilder
     from .mac_o_s_software_update_account_summaries.mac_o_s_software_update_account_summaries_request_builder import MacOSSoftwareUpdateAccountSummariesRequestBuilder
+    from .managed_devices.managed_devices_request_builder import ManagedDevicesRequestBuilder
     from .managed_device_encryption_states.managed_device_encryption_states_request_builder import ManagedDeviceEncryptionStatesRequestBuilder
     from .managed_device_overview.managed_device_overview_request_builder import ManagedDeviceOverviewRequestBuilder
-    from .managed_devices.managed_devices_request_builder import ManagedDevicesRequestBuilder
     from .microsoft_tunnel_configurations.microsoft_tunnel_configurations_request_builder import MicrosoftTunnelConfigurationsRequestBuilder
     from .microsoft_tunnel_health_thresholds.microsoft_tunnel_health_thresholds_request_builder import MicrosoftTunnelHealthThresholdsRequestBuilder
     from .microsoft_tunnel_server_log_collection_responses.microsoft_tunnel_server_log_collection_responses_request_builder import MicrosoftTunnelServerLogCollectionResponsesRequestBuilder
@@ -123,8 +123,8 @@ if TYPE_CHECKING:
     from .setting_definitions.setting_definitions_request_builder import SettingDefinitionsRequestBuilder
     from .software_update_status_summary.software_update_status_summary_request_builder import SoftwareUpdateStatusSummaryRequestBuilder
     from .telecom_expense_management_partners.telecom_expense_management_partners_request_builder import TelecomExpenseManagementPartnersRequestBuilder
-    from .template_insights.template_insights_request_builder import TemplateInsightsRequestBuilder
     from .templates.templates_request_builder import TemplatesRequestBuilder
+    from .template_insights.template_insights_request_builder import TemplateInsightsRequestBuilder
     from .template_settings.template_settings_request_builder import TemplateSettingsRequestBuilder
     from .tenant_attach_r_b_a_c.tenant_attach_r_b_a_c_request_builder import TenantAttachRBACRequestBuilder
     from .terms_and_conditions.terms_and_conditions_request_builder import TermsAndConditionsRequestBuilder
@@ -140,8 +140,8 @@ if TYPE_CHECKING:
     from .user_experience_analytics_app_health_device_model_performance.user_experience_analytics_app_health_device_model_performance_request_builder import UserExperienceAnalyticsAppHealthDeviceModelPerformanceRequestBuilder
     from .user_experience_analytics_app_health_device_performance.user_experience_analytics_app_health_device_performance_request_builder import UserExperienceAnalyticsAppHealthDevicePerformanceRequestBuilder
     from .user_experience_analytics_app_health_device_performance_details.user_experience_analytics_app_health_device_performance_details_request_builder import UserExperienceAnalyticsAppHealthDevicePerformanceDetailsRequestBuilder
-    from .user_experience_analytics_app_health_o_s_version_performance.user_experience_analytics_app_health_o_s_version_performance_request_builder import UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder
     from .user_experience_analytics_app_health_overview.user_experience_analytics_app_health_overview_request_builder import UserExperienceAnalyticsAppHealthOverviewRequestBuilder
+    from .user_experience_analytics_app_health_o_s_version_performance.user_experience_analytics_app_health_o_s_version_performance_request_builder import UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder
     from .user_experience_analytics_baselines.user_experience_analytics_baselines_request_builder import UserExperienceAnalyticsBaselinesRequestBuilder
     from .user_experience_analytics_battery_health_app_impact.user_experience_analytics_battery_health_app_impact_request_builder import UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder
     from .user_experience_analytics_battery_health_capacity_details.user_experience_analytics_battery_health_capacity_details_request_builder import UserExperienceAnalyticsBatteryHealthCapacityDetailsRequestBuilder
@@ -152,6 +152,7 @@ if TYPE_CHECKING:
     from .user_experience_analytics_battery_health_os_performance.user_experience_analytics_battery_health_os_performance_request_builder import UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder
     from .user_experience_analytics_battery_health_runtime_details.user_experience_analytics_battery_health_runtime_details_request_builder import UserExperienceAnalyticsBatteryHealthRuntimeDetailsRequestBuilder
     from .user_experience_analytics_categories.user_experience_analytics_categories_request_builder import UserExperienceAnalyticsCategoriesRequestBuilder
+    from .user_experience_analytics_devices_without_cloud_identity.user_experience_analytics_devices_without_cloud_identity_request_builder import UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder
     from .user_experience_analytics_device_metric_history.user_experience_analytics_device_metric_history_request_builder import UserExperienceAnalyticsDeviceMetricHistoryRequestBuilder
     from .user_experience_analytics_device_performance.user_experience_analytics_device_performance_request_builder import UserExperienceAnalyticsDevicePerformanceRequestBuilder
     from .user_experience_analytics_device_scope.user_experience_analytics_device_scope_request_builder import UserExperienceAnalyticsDeviceScopeRequestBuilder
@@ -160,7 +161,6 @@ if TYPE_CHECKING:
     from .user_experience_analytics_device_startup_history.user_experience_analytics_device_startup_history_request_builder import UserExperienceAnalyticsDeviceStartupHistoryRequestBuilder
     from .user_experience_analytics_device_startup_processes.user_experience_analytics_device_startup_processes_request_builder import UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder
     from .user_experience_analytics_device_startup_process_performance.user_experience_analytics_device_startup_process_performance_request_builder import UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder
-    from .user_experience_analytics_devices_without_cloud_identity.user_experience_analytics_devices_without_cloud_identity_request_builder import UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder
     from .user_experience_analytics_device_timeline_event.user_experience_analytics_device_timeline_event_request_builder import UserExperienceAnalyticsDeviceTimelineEventRequestBuilder
     from .user_experience_analytics_impacting_process.user_experience_analytics_impacting_process_request_builder import UserExperienceAnalyticsImpactingProcessRequestBuilder
     from .user_experience_analytics_metric_history.user_experience_analytics_metric_history_request_builder import UserExperienceAnalyticsMetricHistoryRequestBuilder
@@ -317,14 +317,14 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -337,13 +337,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -367,7 +367,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def advanced_threat_protection_onboarding_state_summary(self) -> AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder:
@@ -739,6 +739,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return DeviceConfigurationRestrictedAppsViolationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def device_configuration_user_state_summaries(self) -> DeviceConfigurationUserStateSummariesRequestBuilder:
+        """
+        Provides operations to manage the deviceConfigurationUserStateSummaries property of the microsoft.graph.deviceManagement entity.
+        """
+        from .device_configuration_user_state_summaries.device_configuration_user_state_summaries_request_builder import DeviceConfigurationUserStateSummariesRequestBuilder
+
+        return DeviceConfigurationUserStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def device_configurations(self) -> DeviceConfigurationsRequestBuilder:
         """
         Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.
@@ -755,15 +764,6 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_request_builder import DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder
 
         return DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_configuration_user_state_summaries(self) -> DeviceConfigurationUserStateSummariesRequestBuilder:
-        """
-        Provides operations to manage the deviceConfigurationUserStateSummaries property of the microsoft.graph.deviceManagement entity.
-        """
-        from .device_configuration_user_state_summaries.device_configuration_user_state_summaries_request_builder import DeviceConfigurationUserStateSummariesRequestBuilder
-
-        return DeviceConfigurationUserStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def device_custom_attribute_shell_scripts(self) -> DeviceCustomAttributeShellScriptsRequestBuilder:
@@ -1333,15 +1333,6 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return TemplateInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def templates(self) -> TemplatesRequestBuilder:
-        """
-        Provides operations to manage the templates property of the microsoft.graph.deviceManagement entity.
-        """
-        from .templates.templates_request_builder import TemplatesRequestBuilder
-
-        return TemplatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def template_settings(self) -> TemplateSettingsRequestBuilder:
         """
         Provides operations to manage the templateSettings property of the microsoft.graph.deviceManagement entity.
@@ -1349,6 +1340,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .template_settings.template_settings_request_builder import TemplateSettingsRequestBuilder
 
         return TemplateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def templates(self) -> TemplatesRequestBuilder:
+        """
+        Provides operations to manage the templates property of the microsoft.graph.deviceManagement entity.
+        """
+        from .templates.templates_request_builder import TemplatesRequestBuilder
+
+        return TemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def tenant_attach_r_b_a_c(self) -> TenantAttachRBACRequestBuilder:
@@ -1639,15 +1639,6 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsDeviceStartupHistoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_device_startup_processes(self) -> UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder:
-        """
-        Provides operations to manage the userExperienceAnalyticsDeviceStartupProcesses property of the microsoft.graph.deviceManagement entity.
-        """
-        from .user_experience_analytics_device_startup_processes.user_experience_analytics_device_startup_processes_request_builder import UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder
-
-        return UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def user_experience_analytics_device_startup_process_performance(self) -> UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder:
         """
         Provides operations to manage the userExperienceAnalyticsDeviceStartupProcessPerformance property of the microsoft.graph.deviceManagement entity.
@@ -1657,13 +1648,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_devices_without_cloud_identity(self) -> UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder:
+    def user_experience_analytics_device_startup_processes(self) -> UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder:
         """
-        Provides operations to manage the userExperienceAnalyticsDevicesWithoutCloudIdentity property of the microsoft.graph.deviceManagement entity.
+        Provides operations to manage the userExperienceAnalyticsDeviceStartupProcesses property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_devices_without_cloud_identity.user_experience_analytics_devices_without_cloud_identity_request_builder import UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder
+        from .user_experience_analytics_device_startup_processes.user_experience_analytics_device_startup_processes_request_builder import UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder
 
-        return UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_device_timeline_event(self) -> UserExperienceAnalyticsDeviceTimelineEventRequestBuilder:
@@ -1673,6 +1664,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .user_experience_analytics_device_timeline_event.user_experience_analytics_device_timeline_event_request_builder import UserExperienceAnalyticsDeviceTimelineEventRequestBuilder
 
         return UserExperienceAnalyticsDeviceTimelineEventRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_experience_analytics_devices_without_cloud_identity(self) -> UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsDevicesWithoutCloudIdentity property of the microsoft.graph.deviceManagement entity.
+        """
+        from .user_experience_analytics_devices_without_cloud_identity.user_experience_analytics_devices_without_cloud_identity_request_builder import UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder
+
+        return UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_impacting_process(self) -> UserExperienceAnalyticsImpactingProcessRequestBuilder:
@@ -1747,15 +1747,6 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsScoreHistoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_summarized_device_scopes(self) -> UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder:
-        """
-        Provides operations to call the userExperienceAnalyticsSummarizedDeviceScopes method.
-        """
-        from .user_experience_analytics_summarized_device_scopes.user_experience_analytics_summarized_device_scopes_request_builder import UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder
-
-        return UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def user_experience_analytics_summarize_work_from_anywhere_devices(self) -> UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder:
         """
         Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.
@@ -1763,6 +1754,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .user_experience_analytics_summarize_work_from_anywhere_devices.user_experience_analytics_summarize_work_from_anywhere_devices_request_builder import UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder
 
         return UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_experience_analytics_summarized_device_scopes(self) -> UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder:
+        """
+        Provides operations to call the userExperienceAnalyticsSummarizedDeviceScopes method.
+        """
+        from .user_experience_analytics_summarized_device_scopes.user_experience_analytics_summarized_device_scopes_request_builder import UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder
+
+        return UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_work_from_anywhere_hardware_readiness_metric(self) -> UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder:

@@ -18,30 +18,30 @@ if TYPE_CHECKING:
     from .company_information.company_information_request_builder import CompanyInformationRequestBuilder
     from .countries_regions.countries_regions_request_builder import CountriesRegionsRequestBuilder
     from .currencies.currencies_request_builder import CurrenciesRequestBuilder
-    from .customer_payment_journals.customer_payment_journals_request_builder import CustomerPaymentJournalsRequestBuilder
-    from .customer_payments.customer_payments_request_builder import CustomerPaymentsRequestBuilder
     from .customers.customers_request_builder import CustomersRequestBuilder
+    from .customer_payments.customer_payments_request_builder import CustomerPaymentsRequestBuilder
+    from .customer_payment_journals.customer_payment_journals_request_builder import CustomerPaymentJournalsRequestBuilder
     from .dimensions.dimensions_request_builder import DimensionsRequestBuilder
     from .dimension_values.dimension_values_request_builder import DimensionValuesRequestBuilder
     from .employees.employees_request_builder import EmployeesRequestBuilder
     from .general_ledger_entries.general_ledger_entries_request_builder import GeneralLedgerEntriesRequestBuilder
-    from .item_categories.item_categories_request_builder import ItemCategoriesRequestBuilder
     from .items.items_request_builder import ItemsRequestBuilder
-    from .journal_lines.journal_lines_request_builder import JournalLinesRequestBuilder
+    from .item_categories.item_categories_request_builder import ItemCategoriesRequestBuilder
     from .journals.journals_request_builder import JournalsRequestBuilder
+    from .journal_lines.journal_lines_request_builder import JournalLinesRequestBuilder
     from .payment_methods.payment_methods_request_builder import PaymentMethodsRequestBuilder
     from .payment_terms.payment_terms_request_builder import PaymentTermsRequestBuilder
     from .picture.picture_request_builder import PictureRequestBuilder
-    from .purchase_invoice_lines.purchase_invoice_lines_request_builder import PurchaseInvoiceLinesRequestBuilder
     from .purchase_invoices.purchase_invoices_request_builder import PurchaseInvoicesRequestBuilder
-    from .sales_credit_memo_lines.sales_credit_memo_lines_request_builder import SalesCreditMemoLinesRequestBuilder
+    from .purchase_invoice_lines.purchase_invoice_lines_request_builder import PurchaseInvoiceLinesRequestBuilder
     from .sales_credit_memos.sales_credit_memos_request_builder import SalesCreditMemosRequestBuilder
-    from .sales_invoice_lines.sales_invoice_lines_request_builder import SalesInvoiceLinesRequestBuilder
+    from .sales_credit_memo_lines.sales_credit_memo_lines_request_builder import SalesCreditMemoLinesRequestBuilder
     from .sales_invoices.sales_invoices_request_builder import SalesInvoicesRequestBuilder
-    from .sales_order_lines.sales_order_lines_request_builder import SalesOrderLinesRequestBuilder
+    from .sales_invoice_lines.sales_invoice_lines_request_builder import SalesInvoiceLinesRequestBuilder
     from .sales_orders.sales_orders_request_builder import SalesOrdersRequestBuilder
-    from .sales_quote_lines.sales_quote_lines_request_builder import SalesQuoteLinesRequestBuilder
+    from .sales_order_lines.sales_order_lines_request_builder import SalesOrderLinesRequestBuilder
     from .sales_quotes.sales_quotes_request_builder import SalesQuotesRequestBuilder
+    from .sales_quote_lines.sales_quote_lines_request_builder import SalesQuoteLinesRequestBuilder
     from .shipment_methods.shipment_methods_request_builder import ShipmentMethodsRequestBuilder
     from .tax_areas.tax_areas_request_builder import TaxAreasRequestBuilder
     from .tax_groups.tax_groups_request_builder import TaxGroupsRequestBuilder
@@ -89,14 +89,14 @@ class CompanyItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> CompanyItemRequestBuilder:
@@ -107,7 +107,7 @@ class CompanyItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return CompanyItemRequestBuilder(raw_url, self.request_adapter)
+        return CompanyItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def accounts(self) -> AccountsRequestBuilder:
@@ -191,15 +191,6 @@ class CompanyItemRequestBuilder(BaseRequestBuilder):
         return CustomersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def dimensions(self) -> DimensionsRequestBuilder:
-        """
-        Provides operations to manage the dimensions property of the microsoft.graph.company entity.
-        """
-        from .dimensions.dimensions_request_builder import DimensionsRequestBuilder
-
-        return DimensionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def dimension_values(self) -> DimensionValuesRequestBuilder:
         """
         Provides operations to manage the dimensionValues property of the microsoft.graph.company entity.
@@ -207,6 +198,15 @@ class CompanyItemRequestBuilder(BaseRequestBuilder):
         from .dimension_values.dimension_values_request_builder import DimensionValuesRequestBuilder
 
         return DimensionValuesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def dimensions(self) -> DimensionsRequestBuilder:
+        """
+        Provides operations to manage the dimensions property of the microsoft.graph.company entity.
+        """
+        from .dimensions.dimensions_request_builder import DimensionsRequestBuilder
+
+        return DimensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def employees(self) -> EmployeesRequestBuilder:

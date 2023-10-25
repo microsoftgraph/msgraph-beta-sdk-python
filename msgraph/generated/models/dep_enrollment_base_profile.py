@@ -60,6 +60,8 @@ class DepEnrollmentBaseProfile(EnrollmentProfile):
     terms_and_conditions_disabled: Optional[bool] = None
     # Indicates if touch id setup pane is disabled
     touch_id_disabled: Optional[bool] = None
+    # Indicates if the device will need to wait for configured confirmation
+    wait_for_device_configured_confirmation: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DepEnrollmentBaseProfile:
@@ -119,6 +121,7 @@ class DepEnrollmentBaseProfile(EnrollmentProfile):
             "supportPhoneNumber": lambda n : setattr(self, 'support_phone_number', n.get_str_value()),
             "termsAndConditionsDisabled": lambda n : setattr(self, 'terms_and_conditions_disabled', n.get_bool_value()),
             "touchIdDisabled": lambda n : setattr(self, 'touch_id_disabled', n.get_bool_value()),
+            "waitForDeviceConfiguredConfirmation": lambda n : setattr(self, 'wait_for_device_configured_confirmation', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -154,5 +157,6 @@ class DepEnrollmentBaseProfile(EnrollmentProfile):
         writer.write_str_value("supportPhoneNumber", self.support_phone_number)
         writer.write_bool_value("termsAndConditionsDisabled", self.terms_and_conditions_disabled)
         writer.write_bool_value("touchIdDisabled", self.touch_id_disabled)
+        writer.write_bool_value("waitForDeviceConfiguredConfirmation", self.wait_for_device_configured_confirmation)
     
 

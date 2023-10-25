@@ -53,7 +53,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
 
         fields: Dict[str, Callable[[Any], None]] = {
             "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefaultTemplate)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
             "requiredValueDefinition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
             "settingValueTemplateId": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
@@ -69,7 +69,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("defaultValue", self.default_value)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("recommendedValueDefinition", self.recommended_value_definition)
         writer.write_object_value("requiredValueDefinition", self.required_value_definition)
         writer.write_str_value("settingValueTemplateId", self.setting_value_template_id)

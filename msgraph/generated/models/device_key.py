@@ -41,7 +41,7 @@ class DeviceKey(AdditionalDataHolder, BackedModel, Parsable):
             "deviceId": lambda n : setattr(self, 'device_id', n.get_uuid_value()),
             "keyMaterial": lambda n : setattr(self, 'key_material', n.get_bytes_value()),
             "keyType": lambda n : setattr(self, 'key_type', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -56,7 +56,7 @@ class DeviceKey(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_uuid_value("deviceId", self.device_id)
         writer.write_bytes_value("keyMaterial", self.key_material)
         writer.write_str_value("keyType", self.key_type)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -44,7 +44,7 @@ class ClassificationInnerError(AdditionalDataHolder, BackedModel, Parsable):
             "clientRequestId": lambda n : setattr(self, 'client_request_id', n.get_str_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "errorDateTime": lambda n : setattr(self, 'error_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -60,7 +60,7 @@ class ClassificationInnerError(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("clientRequestId", self.client_request_id)
         writer.write_str_value("code", self.code)
         writer.write_datetime_value("errorDateTime", self.error_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

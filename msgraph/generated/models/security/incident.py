@@ -56,7 +56,7 @@ class Incident(Entity):
     status: Optional[IncidentStatus] = None
     # The systemTags property
     system_tags: Optional[List[str]] = None
-    # The Azure Active Directory tenant in which the alert was created.
+    # The Microsoft Entra tenant in which the alert was created.
     tenant_id: Optional[str] = None
     
     @staticmethod

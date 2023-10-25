@@ -28,7 +28,7 @@ class WorkPositionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[WorkPositionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a specific workPosition object from a user's profile.
+        Delete a specific workPosition object from a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/workposition-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class WorkPositionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WorkPositionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkPosition]:
         """
-        Retrieve the properties and relationships of a workPosition object in a user's profile.
+        Retrieve the properties and relationships of a workPosition object in a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkPosition]
         Find more info here: https://learn.microsoft.com/graph/api/workposition-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class WorkPositionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[WorkPosition] = None, request_configuration: Optional[WorkPositionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WorkPosition]:
         """
-        Update the properties of a workPosition object in a user's profile.
+        Update the properties of a workPosition object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkPosition]
@@ -95,39 +95,40 @@ class WorkPositionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[WorkPositionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a specific workPosition object from a user's profile.
+        Delete a specific workPosition object from a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[WorkPositionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a workPosition object in a user's profile.
+        Retrieve the properties and relationships of a workPosition object in a user's profile. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[WorkPosition] = None, request_configuration: Optional[WorkPositionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a workPosition object in a user's profile.
+        Update the properties of a workPosition object in a user's profile. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,13 +136,13 @@ class WorkPositionItemRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -153,7 +154,7 @@ class WorkPositionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return WorkPositionItemRequestBuilder(raw_url, self.request_adapter)
+        return WorkPositionItemRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -168,7 +169,7 @@ class WorkPositionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WorkPositionItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a workPosition object in a user's profile.
+        Retrieve the properties and relationships of a workPosition object in a user's profile. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -52,7 +52,7 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "endDay": lambda n : setattr(self, 'end_day', n.get_enum_value(DayOfWeek)),
             "endTime": lambda n : setattr(self, 'end_time', n.get_time_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startDay": lambda n : setattr(self, 'start_day', n.get_enum_value(DayOfWeek)),
             "startTime": lambda n : setattr(self, 'start_time', n.get_time_value()),
         }
@@ -68,7 +68,7 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("endDay", self.end_day)
         writer.write_time_value("endTime", self.end_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("startDay", self.start_day)
         writer.write_time_value("startTime", self.start_time)
         writer.write_additional_data_value(self.additional_data)

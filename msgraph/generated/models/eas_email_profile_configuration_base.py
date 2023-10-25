@@ -7,8 +7,8 @@ if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
     from .domain_name_source import DomainNameSource
     from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
-    from .user_email_source import UserEmailSource
     from .username_source import UsernameSource
+    from .user_email_source import UserEmailSource
     from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
     from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
 
@@ -65,16 +65,16 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration):
         from .device_configuration import DeviceConfiguration
         from .domain_name_source import DomainNameSource
         from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
-        from .user_email_source import UserEmailSource
         from .username_source import UsernameSource
+        from .user_email_source import UserEmailSource
         from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
         from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
 
         from .device_configuration import DeviceConfiguration
         from .domain_name_source import DomainNameSource
         from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
-        from .user_email_source import UserEmailSource
         from .username_source import UsernameSource
+        from .user_email_source import UserEmailSource
         from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
         from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
 

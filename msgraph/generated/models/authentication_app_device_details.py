@@ -42,7 +42,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, BackedModel, Parsable
             "appVersion": lambda n : setattr(self, 'app_version', n.get_str_value()),
             "clientApp": lambda n : setattr(self, 'client_app', n.get_str_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
         }
         return fields
@@ -58,7 +58,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, BackedModel, Parsable
         writer.write_str_value("appVersion", self.app_version)
         writer.write_str_value("clientApp", self.client_app)
         writer.write_str_value("deviceId", self.device_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("operatingSystem", self.operating_system)
         writer.write_additional_data_value(self.additional_data)
     

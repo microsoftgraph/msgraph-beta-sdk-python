@@ -15,15 +15,17 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The errorMessage property
+    error_message: Optional[str] = None
     # The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
     install_status: Optional[CloudPcPartnerAgentInstallStatus] = None
-    # Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent.  When 'FALSE', the agent is a Microsoft agent or is not known.  The default value is 'FALSE'.
+    # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known.  The default value is 'FALSE'
     is_third_party_partner: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the name of a partner agent and includes first-party and third-party. Currently, Citrix is the only third-party value. Read-Only.
+    # The name of the partner agent, whether first party or third party. Possible values for third-party partners are Citrix and VMware. Read-Only.
     partner_agent_name: Optional[CloudPcPartnerAgentName] = None
-    # Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent. When 'FALSE', the agent is a Microsoft agent or is not known. The default value is 'FALSE'.
+    # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known. The default value is 'FALSE'
     retriable: Optional[bool] = None
     
     @staticmethod
@@ -49,9 +51,10 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
         from .cloud_pc_partner_agent_name import CloudPcPartnerAgentName
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "installStatus": lambda n : setattr(self, 'install_status', n.get_enum_value(CloudPcPartnerAgentInstallStatus)),
             "isThirdPartyPartner": lambda n : setattr(self, 'is_third_party_partner', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "partnerAgentName": lambda n : setattr(self, 'partner_agent_name', n.get_enum_value(CloudPcPartnerAgentName)),
             "retriable": lambda n : setattr(self, 'retriable', n.get_bool_value()),
         }
@@ -65,9 +68,10 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_str_value("errorMessage", self.error_message)
         writer.write_enum_value("installStatus", self.install_status)
         writer.write_bool_value("isThirdPartyPartner", self.is_third_party_partner)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("partnerAgentName", self.partner_agent_name)
         writer.write_bool_value("retriable", self.retriable)
         writer.write_additional_data_value(self.additional_data)

@@ -67,7 +67,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Backed
             "helpText": lambda n : setattr(self, 'help_text', n.get_str_value()),
             "itemId": lambda n : setattr(self, 'item_id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "optionValue": lambda n : setattr(self, 'option_value', n.get_object_value(DeviceManagementConfigurationSettingValue)),
         }
         return fields
@@ -87,7 +87,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Backed
         writer.write_str_value("helpText", self.help_text)
         writer.write_str_value("itemId", self.item_id)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("optionValue", self.option_value)
         writer.write_additional_data_value(self.additional_data)
     

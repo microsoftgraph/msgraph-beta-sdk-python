@@ -14,17 +14,17 @@ class RetentionLabelSettings(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The behaviorDuringRetentionPeriod property
+    # Describes the item behavior during retention period. Possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue. Read-only.
     behavior_during_retention_period: Optional[BehaviorDuringRetentionPeriod] = None
-    # The isContentUpdateAllowed property
+    # Specifies whether updates to document content are allowed. Read-only.
     is_content_update_allowed: Optional[bool] = None
-    # The isDeleteAllowed property
+    # Specifies whether the document deletion is allowed. Read-only.
     is_delete_allowed: Optional[bool] = None
-    # The isLabelUpdateAllowed property
+    # Specifies whether you're allowed to change the retention label on the document. Read-only.
     is_label_update_allowed: Optional[bool] = None
-    # The isMetadataUpdateAllowed property
+    # Specifies whether updates to the item metadata (for example, the Title field) are blocked. Read-only.
     is_metadata_update_allowed: Optional[bool] = None
-    # The isRecordLocked property
+    # Specifies whether the item is locked. Read-write.
     is_record_locked: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -56,7 +56,7 @@ class RetentionLabelSettings(AdditionalDataHolder, BackedModel, Parsable):
             "isLabelUpdateAllowed": lambda n : setattr(self, 'is_label_update_allowed', n.get_bool_value()),
             "isMetadataUpdateAllowed": lambda n : setattr(self, 'is_metadata_update_allowed', n.get_bool_value()),
             "isRecordLocked": lambda n : setattr(self, 'is_record_locked', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -74,7 +74,7 @@ class RetentionLabelSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("isLabelUpdateAllowed", self.is_label_update_allowed)
         writer.write_bool_value("isMetadataUpdateAllowed", self.is_metadata_update_allowed)
         writer.write_bool_value("isRecordLocked", self.is_record_locked)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -58,7 +58,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, BackedModel, Parsable):
             "easyId": lambda n : setattr(self, 'easy_id', n.get_str_value()),
             "fileNames": lambda n : setattr(self, 'file_names', n.get_collection_of_primitive_values(str)),
             "locale": lambda n : setattr(self, 'locale', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
             "powerliftId": lambda n : setattr(self, 'powerlift_id', n.get_uuid_value()),
         }
@@ -78,7 +78,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("easyId", self.easy_id)
         writer.write_collection_of_primitive_values("fileNames", self.file_names)
         writer.write_str_value("locale", self.locale)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("platform", self.platform)
         writer.write_uuid_value("powerliftId", self.powerlift_id)
         writer.write_additional_data_value(self.additional_data)

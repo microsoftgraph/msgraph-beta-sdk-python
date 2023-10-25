@@ -44,7 +44,7 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, BackedModel, Pa
         fields: Dict[str, Callable[[Any], None]] = {
             "includeAllApplications": lambda n : setattr(self, 'include_all_applications', n.get_bool_value()),
             "includeApplications": lambda n : setattr(self, 'include_applications', n.get_collection_of_object_values(AuthenticationConditionApplication)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -58,7 +58,7 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, BackedModel, Pa
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("includeAllApplications", self.include_all_applications)
         writer.write_collection_of_object_values("includeApplications", self.include_applications)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

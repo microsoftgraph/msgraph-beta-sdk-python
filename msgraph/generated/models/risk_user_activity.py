@@ -49,7 +49,7 @@ class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "detail": lambda n : setattr(self, 'detail', n.get_enum_value(RiskDetail)),
             "eventTypes": lambda n : setattr(self, 'event_types', n.get_collection_of_enum_values(RiskEventType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "riskEventTypes": lambda n : setattr(self, 'risk_event_types', n.get_collection_of_primitive_values(str)),
         }
         return fields
@@ -64,7 +64,7 @@ class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("detail", self.detail)
         writer.write_collection_of_enum_values("eventTypes", self.event_types)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_primitive_values("riskEventTypes", self.risk_event_types)
         writer.write_additional_data_value(self.additional_data)
     

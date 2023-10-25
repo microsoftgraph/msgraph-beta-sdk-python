@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
-    from .get_role_scope_tags_by_ids_with_ids_response import GetRoleScopeTagsByIdsWithIdsResponse
+    from .get_role_scope_tags_by_ids_with_ids_get_response import GetRoleScopeTagsByIdsWithIdsGetResponse
 
 class GetRoleScopeTagsByIdsWithIdsRequestBuilder(BaseRequestBuilder):
     """
@@ -25,13 +25,15 @@ class GetRoleScopeTagsByIdsWithIdsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['ids'] = str(ids)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/getRoleScopeTagsByIds(ids={ids}){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetRoleScopeTagsByIdsWithIdsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetRoleScopeTagsByIdsWithIdsResponse]:
+    async def get(self,request_configuration: Optional[GetRoleScopeTagsByIdsWithIdsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetRoleScopeTagsByIdsWithIdsGetResponse]:
         """
         Invoke function getRoleScopeTagsByIds
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetRoleScopeTagsByIdsWithIdsResponse]
+        Returns: Optional[GetRoleScopeTagsByIdsWithIdsGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -44,9 +46,9 @@ class GetRoleScopeTagsByIdsWithIdsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_role_scope_tags_by_ids_with_ids_response import GetRoleScopeTagsByIdsWithIdsResponse
+        from .get_role_scope_tags_by_ids_with_ids_get_response import GetRoleScopeTagsByIdsWithIdsGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetRoleScopeTagsByIdsWithIdsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetRoleScopeTagsByIdsWithIdsGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetRoleScopeTagsByIdsWithIdsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -55,14 +57,14 @@ class GetRoleScopeTagsByIdsWithIdsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> GetRoleScopeTagsByIdsWithIdsRequestBuilder:
@@ -73,7 +75,7 @@ class GetRoleScopeTagsByIdsWithIdsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetRoleScopeTagsByIdsWithIdsRequestBuilder(raw_url, self.request_adapter)
+        return GetRoleScopeTagsByIdsWithIdsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class GetRoleScopeTagsByIdsWithIdsRequestBuilderGetQueryParameters():

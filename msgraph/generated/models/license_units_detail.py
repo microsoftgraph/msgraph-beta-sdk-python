@@ -13,13 +13,13 @@ class LicenseUnitsDetail(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The number of units that are enabled for the active subscription of the service SKU.
     enabled: Optional[int] = None
-    # The number of units that are locked out because the customer cancelled their subscription of the service SKU.
+    # The number of units that are locked out because the customer canceled their subscription of the service SKU.
     locked_out: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The number of units that are suspended because the subscription of the service SKU has been cancelled. The units cannot be assigned but can still be reactivated before they are deleted.
+    # The number of units that are suspended because the subscription of the service SKU has been canceled. The units can't be assigned but can still be reactivated before they're deleted.
     suspended: Optional[int] = None
-    # The number of units that are in warning status. When the subscription of the service SKU has expired, the customer has a grace period to renew their subscription before it is cancelled (moved to a suspended state).
+    # The number of units that are in warning status. When the subscription of the service SKU has expired, the customer has a grace period to renew their subscription before it's canceled (moved to a suspended state).
     warning: Optional[int] = None
     
     @staticmethod
@@ -41,7 +41,7 @@ class LicenseUnitsDetail(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "enabled": lambda n : setattr(self, 'enabled', n.get_int_value()),
             "lockedOut": lambda n : setattr(self, 'locked_out', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "suspended": lambda n : setattr(self, 'suspended', n.get_int_value()),
             "warning": lambda n : setattr(self, 'warning', n.get_int_value()),
         }
@@ -57,7 +57,7 @@ class LicenseUnitsDetail(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("enabled", self.enabled)
         writer.write_int_value("lockedOut", self.locked_out)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("suspended", self.suspended)
         writer.write_int_value("warning", self.warning)
         writer.write_additional_data_value(self.additional_data)

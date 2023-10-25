@@ -12,9 +12,9 @@ from .user_set import UserSet
 class GroupMembers(UserSet):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.groupMembers"
-    # The name of the group in Azure AD. Read only.
+    # The name of the group in Microsoft Entra ID. Read only.
     description: Optional[str] = None
-    # The ID of the group in Azure AD.
+    # The ID of the group in Microsoft Entra ID.
     id: Optional[str] = None
     
     @staticmethod

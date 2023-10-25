@@ -15,25 +15,25 @@ from .artifact import Artifact
 class SslCertificate(Artifact):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.sslCertificate"
-    # The expirationDateTime property
+    # The date and time when a certificate expires. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     expiration_date_time: Optional[datetime.datetime] = None
-    # The fingerprint property
+    # A hash of the certificate calculated on the data and signature.
     fingerprint: Optional[str] = None
-    # The firstSeenDateTime property
+    # The first date and time when this sslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     first_seen_date_time: Optional[datetime.datetime] = None
-    # The issueDateTime property
+    # The date and time when a certificate was issued. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     issue_date_time: Optional[datetime.datetime] = None
-    # The issuer property
+    # The entity that grants this certificate.
     issuer: Optional[SslCertificateEntity] = None
-    # The lastSeenDateTime property
+    # The most recent date and time when this sslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_seen_date_time: Optional[datetime.datetime] = None
-    # The relatedHosts property
+    # The hosts related with this sslCertificate.
     related_hosts: Optional[List[Host]] = None
-    # The serialNumber property
+    # The serial number associated with an SSL certificate.
     serial_number: Optional[str] = None
-    # The sha1 property
+    # A SHA-1 hash of the certificate. Note: This is not the signature.
     sha1: Optional[str] = None
-    # The subject property
+    # The person, site, machine, and so on, this certificate is for.
     subject: Optional[SslCertificateEntity] = None
     
     @staticmethod

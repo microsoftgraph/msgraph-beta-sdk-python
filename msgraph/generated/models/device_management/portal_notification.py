@@ -67,7 +67,7 @@ class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
             "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(AlertRuleTemplate)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isPortalNotificationSent": lambda n : setattr(self, 'is_portal_notification_sent', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(RuleSeverityType)),
         }
         return fields
@@ -87,7 +87,7 @@ class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("alertRuleTemplate", self.alert_rule_template)
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isPortalNotificationSent", self.is_portal_notification_sent)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("severity", self.severity)
         writer.write_additional_data_value(self.additional_data)
     

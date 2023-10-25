@@ -44,7 +44,7 @@ class MultiTenantOrganizationIdentitySyncPolicyTemplate(Entity):
         from .template_application_level import TemplateApplicationLevel
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "templateApplicationLevel": lambda n : setattr(self, 'template_application_level', n.get_enum_value(TemplateApplicationLevel)),
+            "templateApplicationLevel": lambda n : setattr(self, 'template_application_level', n.get_collection_of_enum_values(TemplateApplicationLevel)),
             "userSyncInbound": lambda n : setattr(self, 'user_sync_inbound', n.get_object_value(CrossTenantUserSyncInbound)),
         }
         super_fields = super().get_field_deserializers()

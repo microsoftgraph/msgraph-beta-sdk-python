@@ -51,7 +51,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(BitLockerEncryptionMethod)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recoveryOptions": lambda n : setattr(self, 'recovery_options', n.get_object_value(BitLockerRecoveryOptions)),
             "requireEncryptionForWriteAccess": lambda n : setattr(self, 'require_encryption_for_write_access', n.get_bool_value()),
         }
@@ -66,7 +66,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("encryptionMethod", self.encryption_method)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("recoveryOptions", self.recovery_options)
         writer.write_bool_value("requireEncryptionForWriteAccess", self.require_encryption_for_write_access)
         writer.write_additional_data_value(self.additional_data)

@@ -57,7 +57,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, BackedModel, Parsable):
             "endpointProtectionCount": lambda n : setattr(self, 'endpoint_protection_count', n.get_int_value()),
             "inventoryCount": lambda n : setattr(self, 'inventory_count', n.get_int_value()),
             "modernAppsCount": lambda n : setattr(self, 'modern_apps_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "officeAppsCount": lambda n : setattr(self, 'office_apps_count', n.get_int_value()),
             "resourceAccessCount": lambda n : setattr(self, 'resource_access_count', n.get_int_value()),
             "totalComanagedCount": lambda n : setattr(self, 'total_comanaged_count', n.get_int_value()),
@@ -73,7 +73,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

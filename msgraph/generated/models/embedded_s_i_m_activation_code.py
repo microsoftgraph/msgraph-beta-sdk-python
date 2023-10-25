@@ -42,7 +42,7 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "integratedCircuitCardIdentifier": lambda n : setattr(self, 'integrated_circuit_card_identifier', n.get_str_value()),
             "matchingIdentifier": lambda n : setattr(self, 'matching_identifier', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "smdpPlusServerAddress": lambda n : setattr(self, 'smdp_plus_server_address', n.get_str_value()),
         }
         return fields
@@ -57,7 +57,7 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("integratedCircuitCardIdentifier", self.integrated_circuit_card_identifier)
         writer.write_str_value("matchingIdentifier", self.matching_identifier)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("smdpPlusServerAddress", self.smdp_plus_server_address)
         writer.write_additional_data_value(self.additional_data)
     

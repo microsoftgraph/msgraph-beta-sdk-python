@@ -24,7 +24,7 @@ from .entity import Entity
 
 @dataclass
 class CloudPC(Entity):
-    # The Azure Active Directory (Azure AD) device ID of the Cloud PC.
+    # The Microsoft Entra device ID of the Cloud PC.
     aad_device_id: Optional[str] = None
     # The connectionSettings property
     connection_settings: Optional[CloudPcConnectionSettings] = None
@@ -34,7 +34,7 @@ class CloudPC(Entity):
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
     # The display name of the Cloud PC.
     display_name: Optional[str] = None
-    # The date and time when the grace period ends and reprovisioning/deprovisioning happens. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time when the grace period ends and reprovisioning or deprovisioning happen. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     grace_period_end_date_time: Optional[datetime.datetime] = None
     # Name of the OS image that's on the Cloud PC.
     image_display_name: Optional[str] = None

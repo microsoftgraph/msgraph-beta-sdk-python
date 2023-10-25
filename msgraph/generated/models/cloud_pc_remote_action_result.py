@@ -61,7 +61,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
             "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(CloudPcStatusDetails)),
         }
@@ -80,7 +80,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("cloudPcId", self.cloud_pc_id)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_str_value("managedDeviceId", self.managed_device_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_object_value("statusDetails", self.status_details)
         writer.write_additional_data_value(self.additional_data)

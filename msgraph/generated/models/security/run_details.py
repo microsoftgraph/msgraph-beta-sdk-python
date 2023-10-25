@@ -53,7 +53,7 @@ class RunDetails(AdditionalDataHolder, BackedModel, Parsable):
             "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(HuntingRuleErrorCode)),
             "failureReason": lambda n : setattr(self, 'failure_reason', n.get_str_value()),
             "lastRunDateTime": lambda n : setattr(self, 'last_run_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(HuntingRuleRunStatus)),
         }
         return fields
@@ -69,7 +69,7 @@ class RunDetails(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("errorCode", self.error_code)
         writer.write_str_value("failureReason", self.failure_reason)
         writer.write_datetime_value("lastRunDateTime", self.last_run_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     

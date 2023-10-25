@@ -54,7 +54,7 @@ class VirtualEventPresenterDetails(AdditionalDataHolder, BackedModel, Parsable):
             "company": lambda n : setattr(self, 'company', n.get_str_value()),
             "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
             "linkedInProfileWebUrl": lambda n : setattr(self, 'linked_in_profile_web_url', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "personalSiteWebUrl": lambda n : setattr(self, 'personal_site_web_url', n.get_str_value()),
             "twitterProfileWebUrl": lambda n : setattr(self, 'twitter_profile_web_url', n.get_str_value()),
         }
@@ -72,7 +72,7 @@ class VirtualEventPresenterDetails(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("company", self.company)
         writer.write_str_value("jobTitle", self.job_title)
         writer.write_str_value("linkedInProfileWebUrl", self.linked_in_profile_web_url)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("personalSiteWebUrl", self.personal_site_web_url)
         writer.write_str_value("twitterProfileWebUrl", self.twitter_profile_web_url)
         writer.write_additional_data_value(self.additional_data)

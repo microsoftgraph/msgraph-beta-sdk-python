@@ -54,7 +54,7 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, BackedMo
             "context": lambda n : setattr(self, 'context', n.get_str_value()),
             "failure": lambda n : setattr(self, 'failure', n.get_str_value()),
             "failureDetails": lambda n : setattr(self, 'failure_details', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "remediation": lambda n : setattr(self, 'remediation', n.get_str_value()),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_object_values(DeviceManagementTroubleshootingErrorResource)),
         }
@@ -71,7 +71,7 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, BackedMo
         writer.write_str_value("context", self.context)
         writer.write_str_value("failure", self.failure)
         writer.write_str_value("failureDetails", self.failure_details)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("remediation", self.remediation)
         writer.write_collection_of_object_values("resources", self.resources)
         writer.write_additional_data_value(self.additional_data)

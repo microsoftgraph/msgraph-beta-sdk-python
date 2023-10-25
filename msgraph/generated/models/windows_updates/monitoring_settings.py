@@ -14,7 +14,7 @@ class MonitoringSettings(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Specifies the rules through which monitoring signals can trigger actions on the deployment. Rules are combined using 'or'.
+    # Specifies the rules through which monitoring signals can trigger actions on the deployment. Rules are combined using 'or.'
     monitoring_rules: Optional[List[MonitoringRule]] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -41,7 +41,7 @@ class MonitoringSettings(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "monitoringRules": lambda n : setattr(self, 'monitoring_rules', n.get_collection_of_object_values(MonitoringRule)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -54,7 +54,7 @@ class MonitoringSettings(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("monitoringRules", self.monitoring_rules)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

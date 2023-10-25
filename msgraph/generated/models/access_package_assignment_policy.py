@@ -26,7 +26,7 @@ class AccessPackageAssignmentPolicy(Entity):
     access_package_catalog: Optional[AccessPackageCatalog] = None
     # Identifier of the access package.
     access_package_id: Optional[str] = None
-    # Who must review, and how often, the assignments to the access package from this policy. This property is null if reviews are not required.
+    # Who must review, and how often, the assignments to the access package from this policy. This property is null if reviews aren't required.
     access_review_settings: Optional[AssignmentReviewSettings] = None
     # Indicates whether a user can extend the access package assignment duration after approval.
     can_extend: Optional[bool] = None
@@ -42,7 +42,7 @@ class AccessPackageAssignmentPolicy(Entity):
     description: Optional[str] = None
     # The display name of the policy. Supports $filter (eq).
     display_name: Optional[str] = None
-    # The number of days in which assignments from this policy last until they are expired.
+    # The number of days in which assignments from this policy last until they're expired.
     duration_in_days: Optional[int] = None
     # The expiration date for assignments created in this policy. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     expiration_date_time: Optional[datetime.datetime] = None
@@ -58,7 +58,7 @@ class AccessPackageAssignmentPolicy(Entity):
     request_approval_settings: Optional[ApprovalSettings] = None
     # Who can request this access package from this policy.
     requestor_settings: Optional[RequestorSettings] = None
-    # Settings for verifiable credentials set up through the Azure AD Verified ID service. These settings represent the verifiable credentials that a requestor of an access package in this policy can present to be assigned the access package.
+    # Settings for verifiable credentials set up through the Microsoft Entra Verified I D service. These settings represent the verifiable credentials that a requestor of an access package in this policy can present to be assigned the access package.
     verifiable_credential_settings: Optional[VerifiableCredentialSettings] = None
     
     @staticmethod

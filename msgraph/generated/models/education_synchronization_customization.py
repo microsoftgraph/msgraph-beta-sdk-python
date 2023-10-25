@@ -42,7 +42,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, BackedModel, P
         fields: Dict[str, Callable[[Any], None]] = {
             "allowDisplayNameUpdate": lambda n : setattr(self, 'allow_display_name_update', n.get_bool_value()),
             "isSyncDeferred": lambda n : setattr(self, 'is_sync_deferred', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "optionalPropertiesToSync": lambda n : setattr(self, 'optional_properties_to_sync', n.get_collection_of_primitive_values(str)),
             "synchronizationStartDate": lambda n : setattr(self, 'synchronization_start_date', n.get_datetime_value()),
         }
@@ -58,7 +58,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, BackedModel, P
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("allowDisplayNameUpdate", self.allow_display_name_update)
         writer.write_bool_value("isSyncDeferred", self.is_sync_deferred)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_primitive_values("optionalPropertiesToSync", self.optional_properties_to_sync)
         writer.write_datetime_value("synchronizationStartDate", self.synchronization_start_date)
         writer.write_additional_data_value(self.additional_data)

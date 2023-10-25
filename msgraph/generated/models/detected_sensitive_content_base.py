@@ -74,7 +74,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, BackedModel, Parsable):
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_uuid_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommendedConfidence": lambda n : setattr(self, 'recommended_confidence', n.get_int_value()),
             "uniqueCount": lambda n : setattr(self, 'unique_count', n.get_int_value()),
         }
@@ -91,7 +91,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("confidence", self.confidence)
         writer.write_str_value("displayName", self.display_name)
         writer.write_uuid_value("id", self.id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("recommendedConfidence", self.recommended_confidence)
         writer.write_int_value("uniqueCount", self.unique_count)
         writer.write_additional_data_value(self.additional_data)

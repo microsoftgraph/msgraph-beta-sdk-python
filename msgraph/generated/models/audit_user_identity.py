@@ -14,7 +14,7 @@ class AuditUserIdentity(UserIdentity):
     odata_type: Optional[str] = "#microsoft.graph.auditUserIdentity"
     # For user sign ins, the identifier of the tenant that the user is a member of.
     home_tenant_id: Optional[str] = None
-    # For user sign ins, the name of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Azure AD to show the tenant content.
+    # For user sign ins, the name of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Microsoft Entra ID to show the tenant content.
     home_tenant_name: Optional[str] = None
     
     @staticmethod

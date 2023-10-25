@@ -15,7 +15,7 @@ class ActionUrl(AdditionalDataHolder, BackedModel, Parsable):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The URL to the documentation or Azure portal page.
+    # The URL to the documentation or Microsoft Entra admin center page.
     url: Optional[str] = None
     
     @staticmethod
@@ -36,7 +36,7 @@ class ActionUrl(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         return fields
@@ -50,7 +50,7 @@ class ActionUrl(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("url", self.url)
         writer.write_additional_data_value(self.additional_data)
     

@@ -45,8 +45,8 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
         from .conditional_access_rule import ConditionalAccessRule
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "conditionalAccessCondition": lambda n : setattr(self, 'conditional_access_condition', n.get_enum_value(ConditionalAccessConditions)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "conditionalAccessCondition": lambda n : setattr(self, 'conditional_access_condition', n.get_collection_of_enum_values(ConditionalAccessConditions)),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ruleSatisfied": lambda n : setattr(self, 'rule_satisfied', n.get_enum_value(ConditionalAccessRule)),
         }
         return fields
@@ -60,7 +60,7 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("conditionalAccessCondition", self.conditional_access_condition)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("ruleSatisfied", self.rule_satisfied)
         writer.write_additional_data_value(self.additional_data)
     

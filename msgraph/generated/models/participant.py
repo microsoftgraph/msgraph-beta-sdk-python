@@ -29,7 +29,7 @@ class Participant(Entity):
     metadata: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The preferredDisplayName property
+    # The participant's preferred display name that overrides the original display name.
     preferred_display_name: Optional[str] = None
     # Information on whether the participant has recording capability.
     recording_info: Optional[RecordingInfo] = None

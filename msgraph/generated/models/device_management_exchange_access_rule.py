@@ -50,7 +50,7 @@ class DeviceManagementExchangeAccessRule(AdditionalDataHolder, BackedModel, Pars
         fields: Dict[str, Callable[[Any], None]] = {
             "accessLevel": lambda n : setattr(self, 'access_level', n.get_enum_value(DeviceManagementExchangeAccessLevel)),
             "deviceClass": lambda n : setattr(self, 'device_class', n.get_object_value(DeviceManagementExchangeDeviceClass)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -64,7 +64,7 @@ class DeviceManagementExchangeAccessRule(AdditionalDataHolder, BackedModel, Pars
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("accessLevel", self.access_level)
         writer.write_object_value("deviceClass", self.device_class)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -43,7 +43,7 @@ class ExactDataMatchStoreColumn(AdditionalDataHolder, BackedModel, Parsable):
             "isCaseInsensitive": lambda n : setattr(self, 'is_case_insensitive', n.get_bool_value()),
             "isSearchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -59,7 +59,7 @@ class ExactDataMatchStoreColumn(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("isCaseInsensitive", self.is_case_insensitive)
         writer.write_bool_value("isSearchable", self.is_searchable)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

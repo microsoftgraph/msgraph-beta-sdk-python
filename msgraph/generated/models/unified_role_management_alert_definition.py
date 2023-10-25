@@ -13,11 +13,11 @@ from .entity import Entity
 class UnifiedRoleManagementAlertDefinition(Entity):
     # The description of the alert.
     description: Optional[str] = None
-    # The friendly display name that renders in Privileged Identity Management (PIM) alerts in the Azure portal.
+    # The friendly display name that renders in Privileged Identity Management (PIM) alerts in the Microsoft Entra admin center.
     display_name: Optional[str] = None
     # Long-form text that indicates the ways to prevent the alert from being triggered in your tenant.
     how_to_prevent: Optional[str] = None
-    # true if the alert configuration can be customized in the tenant, and false otherwise. For example, the number and percentage thresholds of the 'There are too many global administrators' alert can be configured by users, while the 'This organization does not have Azure AD Premium P2' cannot be configured, because the criteria is restricted.
+    # true if the alert configuration can be customized in the tenant, and false otherwise. For example, the number and percentage thresholds of the 'There are too many global administrators' alert can be configured by users, while the 'This organization doesn't have Microsoft Entra ID P2' can't be configured, because the criteria are restricted.
     is_configurable: Optional[bool] = None
     # true if the alert can be remediated, and false otherwise.
     is_remediatable: Optional[bool] = None
@@ -27,7 +27,7 @@ class UnifiedRoleManagementAlertDefinition(Entity):
     odata_type: Optional[str] = None
     # The identifier of the scope where the alert is related. / is the only supported one for the tenant. Supports $filter (eq, ne).
     scope_id: Optional[str] = None
-    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Azure AD Roles.
+    # The type of scope where the alert is created. DirectoryRole is the only currently supported scope type for Microsoft Entra roles.
     scope_type: Optional[str] = None
     # Security impact of the alert. For example, it could be information leaks or unauthorized access.
     security_impact: Optional[str] = None

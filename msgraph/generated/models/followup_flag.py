@@ -17,7 +17,7 @@ class FollowupFlag(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The date and time that the follow-up was finished.
     completed_date_time: Optional[DateTimeTimeZone] = None
-    # The date and time that the follow up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you will get a 400 Bad Request response.
+    # The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.
     due_date_time: Optional[DateTimeTimeZone] = None
     # The status for follow-up for an item. Possible values are notFlagged, complete, and flagged.
     flag_status: Optional[FollowupFlagStatus] = None
@@ -52,7 +52,7 @@ class FollowupFlag(AdditionalDataHolder, BackedModel, Parsable):
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_object_value(DateTimeTimeZone)),
             "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_object_value(DateTimeTimeZone)),
             "flagStatus": lambda n : setattr(self, 'flag_status', n.get_enum_value(FollowupFlagStatus)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_object_value(DateTimeTimeZone)),
         }
         return fields
@@ -68,7 +68,7 @@ class FollowupFlag(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("completedDateTime", self.completed_date_time)
         writer.write_object_value("dueDateTime", self.due_date_time)
         writer.write_enum_value("flagStatus", self.flag_status)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("startDateTime", self.start_date_time)
         writer.write_additional_data_value(self.additional_data)
     
