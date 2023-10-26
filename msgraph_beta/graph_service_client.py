@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import List, Optional, TYPE_CHECKING, Union
 from azure.core.credentials import TokenCredential
 from azure.core.credentials_async import AsyncTokenCredential
